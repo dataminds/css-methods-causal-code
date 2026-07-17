@@ -26,6 +26,10 @@
 https://colab.research.google.com/github/dataminds/css-methods-causal-code/blob/main/notebooks/ch07.ipynb
 ```
 
+**코드 읽기 노트북**(`notebooks/code_reading.ipynb`)은 이 책의 목적 — AI가 준 코드를 읽고 판단하기 — 을 직접 훈련합니다. AI 코드의 조용한 오류 여섯 가지(엉뚱한 집단·엉뚱한 열·표본 결측·경계 조건·부호 방향·통계 기본값)를 버그판·정답판 나란히 돌려 사냥합니다. 전부 crash 없이 그럴듯한 다른 숫자를 내는 오류라, 출력만으로는 안 걸리고 코드를 읽어야 잡힙니다.
+
+[![코드 읽기 노트북 열기](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dataminds/css-methods-causal-code/blob/main/notebooks/code_reading.ipynb)
+
 ### 갈래 2 · 내 컴퓨터에 설치 (10분)
 
 1. 파이썬 3.11 이상 설치 (python.org ; "Add Python to PATH" 체크)
@@ -43,8 +47,8 @@ python -c "import pandas, statsmodels; print('준비 끝')"
 
 | 파일/폴더 | 내용 | 책 연결 |
 |---|---|---|
-| `notebooks/` | 장별 실습 노트북 13개(ch02~ch13·ch16) — 코랩에서 바로 열어 재현·검증 | 각 장 실습 |
-| `make_notebooks.py` | 장별 노트북 생성기(`--verify`로 전 노트북 코드 실행 점검) | 배포 게이트 |
+| `notebooks/` | 장별 실습 노트북 13개(ch02~ch13·ch16) + 코드 읽기 노트북(code_reading) — 코랩에서 바로 열어 재현·검증·버그 사냥 | 각 장 실습 · 2장 §2.4 |
+| `make_notebooks.py` | 노트북 생성기(`--verify`로 전 노트북 코드 실행 점검) | 배포 게이트 |
 | `data/` | 모의 세계 일곱 벌 CSV + 데이터 사전 README | 2장·전 시나리오 |
 | `make_data_family.py` | 데이터 생성기 (자체 검증 배터리 내장). 씨앗을 바꾸면 "다른 세계"가 무한히 나온다 | 6장 표본 요동·S1·S2 검정력 |
 | `make_book_figures.py` | 책의 그림 전부를 만드는 스크립트 (`figures/`에 저장) | 부록 C |

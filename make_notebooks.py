@@ -259,7 +259,135 @@ BAKE = ("## 4. 직접 바꿔 보기\n"
         "위 셀의 숫자(씨앗 73, 표본 크기, 제외 기준 등)를 바꿔 다시 실행해 보세요. "
         "결과가 어떻게 달라지나요?\n\n"
         "> **검증 로그(부록 B)**: 무엇을 바꿨고, 무엇이 나왔고, 예상과 같았는지 한 문단으로 적어 두세요. "
-        "실행이 아니라 *검증*이 이 책의 핵심입니다.")
+        "실행이 아니라 검증이 이 책의 핵심입니다.")
+
+
+# ── 특별 노트북: 코드 읽기(버그 사냥) ─────────────────────────────
+# 이 책의 목적 = AI가 준 코드를 '읽고' 판단하기. 출력 대조만으로는 안 잡히는
+# '조용한 오류'(코드는 멀쩡히 돌아가는데 엉뚱한 것을 계산)를 직접 잡아 본다.
+# 모든 버그는 crash 하지 않는다 — 그럴듯한 다른 숫자를 낸다. 그게 무서운 것.
+CR_TITLE = "부록 · 코드 읽기: AI 코드의 조용한 오류 잡기"
+
+CR_INTRO = (
+    "여섯 가지 조용한 오류를 하나씩 사냥합니다. 각 문제는 이렇게 생겼습니다.\n\n"
+    "1. **의도**(말로 적은 분석)를 읽습니다.\n"
+    "2. **AI가 준 코드**를 읽습니다. 돌리기 전에, 의도와 코드가 정말 같은지 눈으로 짚어 보세요.\n"
+    "3. **실행 셀**을 돌리면 버그판과 정답판의 숫자가 나란히 나옵니다. 얼마나 그럴듯하게 어긋나는지 보세요.\n\n"
+    "> 왜 이 노트북인가. 이 책의 세 검증(독립 재계산·극단값·재실행)은 모두 **출력**을 본다. "
+    "그런데 AI가 엉뚱한 열이나 엉뚱한 집단을 계산하면, 그 출력은 그럴듯한 숫자라 대조로 안 걸릴 수 있다. "
+    "그런 오류를 확실히 잡는 단 하나의 길은 **코드를 읽는 것**이다. 이 노트북이 그 근육을 만든다.")
+
+CR_FAMILIES = (
+    "## 읽을 때 지목할 여섯 자리\n"
+    "AI 코드를 받으면, 돌리기 전에 이 여섯 자리를 손가락으로 짚어 의도와 맞는지 확인하세요. "
+    "이 노트북의 여섯 문제가 정확히 이 여섯 자리입니다.\n\n"
+    "| # | 자리 | 흔한 조용한 오류 |\n"
+    "|---|---|---|\n"
+    "| 1 | **집단** | 통제군 대신 전체와 비교, 엉뚱한 집단 필터 |\n"
+    "| 2 | **열** | 결과변수 대신 기저·다른 척도 열 |\n"
+    "| 3 | **표본·결측** | 정제 필터 누락, dropna 위치 |\n"
+    "| 4 | **경계** | `<` 와 `<=`, 중앙값 분할에서 사람 소실 |\n"
+    "| 5 | **방향** | 빼는 순서가 뒤집혀 결론이 정반대 |\n"
+    "| 6 | **기본값** | 표준편차 ddof, 양측·단측, 표준화 여부 |")
+
+# (제목, 의도+버그코드 markdown, 실행 셀) — 실행 셀은 버그판·정답판을 나란히 출력
+CODE_READING = [
+ ("### 문제 1 · 집단",
+  "**의도**: 개입 집단(cond==1)과 **통제 집단(cond==0)** 의 삶의 의미(mil) 평균 차이를 구한다.\n\n"
+  "AI가 준 코드:\n\n"
+  "```python\n"
+  'exp = exp[exp.attn_1 == 1]\n'
+  'gap = exp[exp.cond==1].mil.mean() - exp.mil.mean()   # 개입 - ???\n'
+  "```\n\n"
+  "돌리기 전에: 둘째 항 `exp.mil.mean()` 은 무엇의 평균인가? 의도의 '통제 집단'과 같은가?",
+  'exp = load("exp")\n'
+  'tg, cg = exp[exp.cond==1].mil, exp[exp.cond==0].mil\n'
+  'buggy = tg.mean() - exp.mil.mean()     # 개입 - 전체(개입 포함) 평균\n'
+  'right = tg.mean() - cg.mean()          # 개입 - 통제\n'
+  'print(f"버그(개입-전체): {buggy:+.3f}     바름(개입-통제): {right:+.3f}")\n'
+  'print("→ 둘째 항이 통제군(cg)이 아니라 전체평균. 개입이 섞인 평균과 비교해 효과가 절반으로 줄어 보인다.")'),
+
+ ("### 문제 2 · 열",
+  "**의도**: 개입이 개입 **후** 삶의 의미(**mil**)를 높였는지 두 집단으로 비교한다.\n\n"
+  "AI가 준 코드:\n\n"
+  "```python\n"
+  'diff = exp[exp.cond==1].mil_t1.mean() - exp[exp.cond==0].mil_t1.mean()\n'
+  "```\n\n"
+  "돌리기 전에: `mil_t1` 은 어느 시점의 값인가? 의도의 결과변수와 같은 열인가?",
+  'exp = load("exp")\n'
+  'for col in ["mil_t1", "mil"]:\n'
+  '    d = exp[exp.cond==1][col].mean() - exp[exp.cond==0][col].mean()\n'
+  '    print(f"{col:7s} 집단차 = {d:+.3f}")\n'
+  'print("→ mil_t1은 개입 \'전\' 기저. 무작위배정이라 0 근처 = \'효과 없음\'으로 오판. 결과변수는 mil.")'),
+
+ ("### 문제 3 · 표본·결측",
+  "**의도**: 패널에서 1차 → 3차로 삶의 의미(mil)가 올랐는지 내렸는지 본다.\n\n"
+  "AI가 준 코드:\n\n"
+  "```python\n"
+  'change = panel[panel.wave==3].mil.mean() - panel[panel.wave==1].mil.mean()\n'
+  "```\n\n"
+  "돌리기 전에: 3차에 남은 사람과 1차 전원은 같은 사람들인가? 중간에 떠난 사람은 누구였나?",
+  'panel = pd.read_csv("data/journey_panel.csv")\n'
+  'w = panel.pivot(index="id", columns="wave", values="mil")\n'
+  'buggy = panel[panel.wave==3].mil.mean() - panel[panel.wave==1].mil.mean()   # 생존자 3차 - 전원 1차\n'
+  'bal = w.dropna()                                                            # 3회 다 참여한 사람만\n'
+  'right = (bal[3] - bal[1]).mean()                                            # 같은 사람의 변화\n'
+  'print(f"버그(생존자 3차 - 전원 1차): {buggy:+.3f}  →  \'의미가 올랐다\'")\n'
+  'print(f"바름(같은 사람 3차 - 1차)  : {right:+.3f}  →  \'의미가 내렸다\'")\n'
+  'w1 = panel[panel.wave==1]; stay = set(bal.index)\n'
+  'print(f"이탈자 1차 mil {w1[~w1.id.isin(stay)].mil.mean():.2f} < 잔류자 {w1[w1.id.isin(stay)].mil.mean():.2f}")\n'
+  'print("→ 부호가 뒤집힌다. 낮았던 사람이 먼저 떠나(생존 편향), 남은 평균만 올라 보인다. 같은 사람을 따라가야.")'),
+
+ ("### 문제 4 · 경계",
+  "**의도**: 나이 중앙값으로 젊은/나이 든 두 집단을 나눈다(둘을 합치면 전체).\n\n"
+  "AI가 준 코드:\n\n"
+  "```python\n"
+  'young = d[d.age <  med]\n'
+  'old   = d[d.age >  med]\n'
+  "```\n\n"
+  "돌리기 전에: 나이가 **정확히** 중앙값인 사람은 어느 쪽에 들어가는가?",
+  'd = load("exp"); med = d.age.median()\n'
+  'yb, ob = d[d.age < med], d[d.age > med]         # 버그: < 와 >\n'
+  'yg      = d[d.age <= med]                        # 바름: <=\n'
+  'print(f"버그: 젊은 {len(yb)} + 나이 {len(ob)} = {len(yb)+len(ob)}   (전체 {len(d)})")\n'
+  'print(f"→ {len(d)-len(yb)-len(ob)}명 증발. 나이가 정확히 중앙값({med})인 사람들이 양쪽에서 빠졌다. < 하나를 <= 로.")'),
+
+ ("### 문제 5 · 방향",
+  "**의도**: 개입 집단이 통제보다 의미가 **높은지** 본다(개입 - 통제).\n\n"
+  "AI가 준 코드:\n\n"
+  "```python\n"
+  'gap = cg.mean() - tg.mean()   # 통제 - 개입\n'
+  'print(f"차이 {gap:+.3f}")     # 부호를 그대로 문장에 옮기면?\n'
+  "```\n\n"
+  "돌리기 전에: 빼는 순서가 의도와 같은가? 부호가 뒤집히면 문장이 어떻게 바뀌나?",
+  'exp = load("exp")\n'
+  'tg, cg = exp[exp.cond==1].mil, exp[exp.cond==0].mil\n'
+  'print(f"버그(통제-개입): {cg.mean()-tg.mean():+.3f}  →  \'통제가 더 높다\'는 정반대 결론")\n'
+  'print(f"바름(개입-통제): {tg.mean()-cg.mean():+.3f}")\n'
+  'print("→ t검정 양측 p는 같아도 방향이 뒤집혀 해석이 반대가 된다. 빼는 순서를 읽어야 잡힌다.")'),
+
+ ("### 문제 6 · 기본값",
+  "**의도**: 삶의 의미(mil)의 표본 표준편차를 구한다.\n\n"
+  "AI가 준 코드(넘파이로 짬):\n\n"
+  "```python\n"
+  'sd = np.std(x)     # 기본값은?\n'
+  "```\n\n"
+  "돌리기 전에: `np.std` 의 기본 ddof는 0(모표준편차)인가 1(표본)인가? pandas와 같은가?",
+  'x = load("svy").mil.values\n'
+  'print(f"버그 np.std 기본(ddof=0): {np.std(x):.4f}")\n'
+  'print(f"바름 표본 SD(ddof=1):     {np.std(x, ddof=1):.4f}   (= pandas .std() 기본값)")\n'
+  'print("→ numpy와 pandas의 기본이 다르다. 표본 통계에는 ddof=1. AI가 numpy로 짰다면 특히 확인.")'),
+]
+
+CR_CLOSE = (
+    "## 정리: 읽기가 곧 검증이다\n"
+    "여섯 오류의 공통점 — **전부 멀쩡히 돌아갔다.** crash 도, 빨간 글씨도 없이 그럴듯한 숫자를 냈다. "
+    "출력만 봐서는 두 판을 나란히 놓기 전까지 어느 것이 버그인지 알 수 없었다. "
+    "그래서 AI 코드를 받으면 돌리기 전에 위 여섯 자리(집단·열·표본·경계·방향·기본값)를 손가락으로 짚어 "
+    "의도와 맞는지 읽는다. 그다음에 세 검증(독립 재계산·극단값·재실행)으로 출력을 확인한다. "
+    "읽기가 첫째, 대조가 둘째다.\n\n"
+    "> **연습**: 실제 분석에서 AI에게 코드를 받거든, 그 코드에서 이 여섯 자리를 하나씩 지목해 "
+    "'여기는 내 의도의 무엇에 해당하는가'를 한 줄씩 적어 보라. 그것이 이 책이 말하는 '코드를 읽는다'이다.")
 
 
 def md(t): return {"cell_type": "markdown", "metadata": {}, "source": t.splitlines(keepends=True)}
@@ -285,34 +413,61 @@ def build(ch):
             "nbformat": 4, "nbformat_minor": 0}
 
 
+def build_code_reading():
+    intro = (f"# {CR_TITLE}\n\n이 노트북은 구글 **Colab**에서 바로 실행됩니다. "
+             f"위에서부터 각 셀을 **Shift+Enter** 로 실행하세요.\n\n"
+             f"📖 본문 학습 페이지: [2장 · AI에게 시키고 검증하기]({BASE}/{SLUG['ch02']}.html)\n\n"
+             + CR_INTRO)
+    env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
+           f"!git clone -q {REPO}\n"
+           f"%cd css-methods-causal-code")
+    cells = [md(intro), md("## 1. 준비"), code(env), code(SETUP), md(CR_FAMILIES)]
+    for title, m, c in CODE_READING:
+        cells.append(md(title + "\n\n" + m)); cells.append(code(c))
+    cells.append(md(CR_CLOSE))
+    return {"cells": cells,
+            "metadata": {"colab": {"provenance": []},
+                         "kernelspec": {"display_name": "Python 3", "name": "python3"},
+                         "language_info": {"name": "python"}},
+            "nbformat": 4, "nbformat_minor": 0}
+
+
 def verify_one(ch):
     """노트북 코드 셀(git/%cd 매직 제외)을 로컬 data/ 로 실행 — 에러 없으면 통과."""
     ns = {}
-    src = [SETUP] + [c for _, c in STEPS[ch]]
+    if ch == "code_reading":
+        src = [SETUP] + [c for _, _, c in CODE_READING]
+    else:
+        src = [SETUP] + [c for _, c in STEPS[ch]]
     full = "\n".join(src)
     exec(compile(full, f"<{ch}>", "exec"), ns)  # noqa: S102 (검증용 실행)
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
+    targets = list(STEPS) + ["code_reading"]
     if "--verify" in sys.argv:
         os.chdir(HERE)  # data/ 가 여기 있음
         fails = []
-        for ch in STEPS:
+        for ch in targets:
             try:
                 verify_one(ch); print(f"  PASS  {ch} 노트북 코드 실행")
             except Exception as e:  # noqa: BLE001
                 fails.append((ch, e)); print(f"  FAIL  {ch}: {e}")
         if fails:
             sys.exit(f"[실패] {len(fails)}개 노트북 코드 오류")
-        print(f"\n[통과] 노트북 {len(STEPS)}개 코드 전부 로컬 실행 OK")
+        print(f"\n[통과] 노트북 {len(targets)}개 코드 전부 로컬 실행 OK")
         return
     for ch in STEPS:
         path = os.path.join(OUT, f"{ch}.ipynb")
         with open(path, "w", encoding="utf-8", newline="\n") as f:
             json.dump(build(ch), f, ensure_ascii=False, indent=1)
         print("생성:", os.path.relpath(path, HERE))
-    print(f"\n완료 → {OUT} ({len(STEPS)}개)")
+    cr_path = os.path.join(OUT, "code_reading.ipynb")
+    with open(cr_path, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(build_code_reading(), f, ensure_ascii=False, indent=1)
+    print("생성:", os.path.relpath(cr_path, HERE))
+    print(f"\n완료 → {OUT} ({len(STEPS)}개 장별 + 코드읽기 1개)")
 
 
 if __name__ == "__main__":
