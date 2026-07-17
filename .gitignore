@@ -1,0 +1,7 @@
+# 생성 산출물 (스크립트로 재생성 가능)
+figures/
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+.DS_Store

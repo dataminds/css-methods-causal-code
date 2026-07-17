@@ -1,0 +1,9 @@
+# 『자료로 따지는 사회』 실습 환경 (Python)
+# 설치: python -m venv .venv && (activate) && pip install -r requirements.txt
+numpy>=1.26
+pandas>=2.0
+scipy>=1.11
+matplotlib>=3.8
+statsmodels>=0.14
+# 노트북 (선택)
+jupyterlab
