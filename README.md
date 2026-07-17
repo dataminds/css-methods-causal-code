@@ -20,6 +20,12 @@
 
 위 배지를 누르면 Google Colab(무료 ; 구글 계정 필요)에서 시작 노트북이 열립니다. 셀을 위에서부터 실행(▶ 또는 Shift+Enter)하면 설치 없이 일곱 벌 데이터를 불러와 책의 첫 수치들을 직접 재현할 수 있습니다.
 
+**장별 실습 노트북**은 `notebooks/` 폴더에 있습니다(ch02~ch13·ch16). 각 장의 핵심 수치를 코랩에서 직접 재현·검증합니다. 코랩에서 열려면 아래 주소의 `{장}`을 바꾸세요:
+
+```
+https://colab.research.google.com/github/dataminds/css-methods-causal-code/blob/main/notebooks/ch07.ipynb
+```
+
 ### 갈래 2 · 내 컴퓨터에 설치 (10분)
 
 1. 파이썬 3.11 이상 설치 (python.org ; "Add Python to PATH" 체크)
@@ -37,6 +43,8 @@ python -c "import pandas, statsmodels; print('준비 끝')"
 
 | 파일/폴더 | 내용 | 책 연결 |
 |---|---|---|
+| `notebooks/` | 장별 실습 노트북 13개(ch02~ch13·ch16) — 코랩에서 바로 열어 재현·검증 | 각 장 실습 |
+| `make_notebooks.py` | 장별 노트북 생성기(`--verify`로 전 노트북 코드 실행 점검) | 배포 게이트 |
 | `data/` | 모의 세계 일곱 벌 CSV + 데이터 사전 README | 2장·전 시나리오 |
 | `make_data_family.py` | 데이터 생성기 (자체 검증 배터리 내장). 씨앗을 바꾸면 "다른 세계"가 무한히 나온다 | 6장 표본 요동·S1·S2 검정력 |
 | `make_book_figures.py` | 책의 그림 전부를 만드는 스크립트 (`figures/`에 저장) | 부록 C |
