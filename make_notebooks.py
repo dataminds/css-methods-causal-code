@@ -751,12 +751,16 @@ def code(t): return {"cell_type": "code", "execution_count": None, "metadata": {
 
 def build(ch):
     intro = (f"# {TITLE[ch]}\n\n이 노트북은 구글 **Colab**에서 바로 실행됩니다. "
-             f"위에서부터 각 셀을 **Shift+Enter** 로 실행하세요. 설치는 없고, 구글 계정만 있으면 됩니다.\n\n"
+             f"설치는 없고, 구글 계정만 있으면 됩니다.\n\n"
+             f"**읽는 법.** 흰 바탕의 글(지금 이것)은 설명이라 실행하지 않습니다. "
+             f"**회색 상자**만 코드이고, 왼쪽의 **▶** 또는 `Shift`+`Enter` 로 실행합니다.\n\n"
+             f"**순서.** 번호 차례대로 끝까지 갑니다. **1 준비**부터 시작해 마지막 번호까지 "
+             f"위에서 아래로 내려가면 됩니다. ⚠ 가운데부터 누르면 앞에서 만든 것이 없어 오류가 납니다.\n\n"
              f"📖 본문 학습 페이지: [{TITLE[ch]}]({BASE}/{SLUG[ch]}.html)")
     env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
            f"!git clone -q {REPO}\n"
            f"%cd css-methods-causal-code")
-    cells = [md(intro), md("## 1. 준비"), code(env), code(SETUP)]
+    cells = [md(intro), md("## 1. 준비\n\n아래 **회색 상자 둘**을 차례로 실행하세요. 둘 다 해야 그다음이 돌아갑니다.\n\n1. 첫째 = 자료와 코드를 내려받습니다. **몇 초 걸리고**, 「경고」 문구가 떠도 정상입니다.\n2. 둘째 = 도구와 도우미 함수를 불러옵니다. **「준비 끝」**이 찍히면 됩니다."), code(env), code(SETUP)]
     for m, c in STEPS[ch]:
         cells.append(md(m)); cells.append(code(c))
     cells.append(md(BAKE))
@@ -769,13 +773,14 @@ def build(ch):
 
 def build_code_reading():
     intro = (f"# {CR_TITLE}\n\n이 노트북은 구글 **Colab**에서 바로 실행됩니다. "
-             f"위에서부터 각 셀을 **Shift+Enter** 로 실행하세요.\n\n"
+             f"흰 바탕의 글은 설명이고 **회색 상자**만 코드입니다. "
+             f"**1 준비**부터 번호 차례대로 위에서 아래로 내려갑니다.\n\n"
              f"📖 본문 학습 페이지: [2장 · AI에게 시키고 검증하기]({BASE}/{SLUG['ch02']}.html)\n\n"
              + CR_INTRO)
     env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
            f"!git clone -q {REPO}\n"
            f"%cd css-methods-causal-code")
-    cells = [md(intro), md("## 1. 준비"), code(env), code(SETUP), md(CR_FAMILIES)]
+    cells = [md(intro), md("## 1. 준비\n\n아래 **회색 상자 둘**을 차례로 실행하세요. 둘 다 해야 그다음이 돌아갑니다.\n\n1. 첫째 = 자료와 코드를 내려받습니다. **몇 초 걸리고**, 「경고」 문구가 떠도 정상입니다.\n2. 둘째 = 도구와 도우미 함수를 불러옵니다. **「준비 끝」**이 찍히면 됩니다."), code(env), code(SETUP), md(CR_FAMILIES)]
     for title, m, c in CODE_READING:
         cells.append(md(title + "\n\n" + m)); cells.append(code(c))
     cells.append(md(CR_CLOSE))
