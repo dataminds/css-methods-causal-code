@@ -749,6 +749,34 @@ def code(t): return {"cell_type": "code", "execution_count": None, "metadata": {
                      "source": t.splitlines(keepends=True)}
 
 
+PREP = """## 1. 준비
+
+아래 **회색 상자 둘**을 차례로 실행하세요. 둘 다 해야 그다음이 돌아갑니다.
+
+1. 첫째 = 자료와 코드를 내려받습니다. **몇 초 걸리고**, 「경고」 문구가 떠도 정상입니다. 상자 아래에 `/content/css-methods-causal-code` 가 찍히면 성공입니다.
+2. 둘째 = 도구와 도우미 함수를 불러옵니다. **「준비 끝」**이 찍히면 됩니다.
+
+---
+
+### ⛔ 둘째 상자의 코드는 지금 이해하지 않아도 됩니다
+
+상자가 길어 놀랄 수 있습니다. 이 책 전체가 쓰는 **도우미 넷**을 미리 만들어 두는 곳이라 그렇습니다. 지금은 **이름과 하는 일만** 훑고 넘어가세요. 안에 든 식은 필요한 장에서 하나씩 만납니다.
+
+| 이름 | 하는 일 | 처음 쓰는 곳 |
+|---|---|---|
+| `load` | 자료 한 벌을 불러오고 주의 점검 실패자를 걸러 낸다 | 2장 |
+| `cronbach` | 척도 신뢰도(알파) | 4장 |
+| `cohen_d` | 두 집단 차이의 효과크기 | 13장 |
+| `ols` | 회귀의 계수·표준오차·p·R² | 14장 |
+
+⚠ `np.linalg.lstsq` 처럼 낯선 이름이 보여도 괜찮습니다. **그것이 이 책이 「계산은 AI가」라고 말하는 곳입니다.**
+
+⭐ **그리고 이 넷은 여러분이 검증할 대상이 아닙니다.** 이 책이 검증해 둔 도구입니다(배포 때마다 대조 배터리가 이 함수들의 출력을 본문 수치와 맞춰 봅니다). 여러분이 읽어야 할 코드는 **AI가 준 코드**이고, 그 훈련은 3장부터 시작합니다.
+
+📖 이 넷을 다시 보고 싶으면 책 부록 E.1b 에 같은 코드가 있습니다."""
+
+
+
 def build(ch):
     intro = (f"# {TITLE[ch]}\n\n이 노트북은 구글 **Colab**에서 바로 실행됩니다. "
              f"설치는 없고, 구글 계정만 있으면 됩니다.\n\n"
@@ -760,7 +788,7 @@ def build(ch):
     env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
            f"!git clone -q {REPO}\n"
            f"%cd css-methods-causal-code")
-    cells = [md(intro), md("## 1. 준비\n\n아래 **회색 상자 둘**을 차례로 실행하세요. 둘 다 해야 그다음이 돌아갑니다.\n\n1. 첫째 = 자료와 코드를 내려받습니다. **몇 초 걸리고**, 「경고」 문구가 떠도 정상입니다.\n2. 둘째 = 도구와 도우미 함수를 불러옵니다. **「준비 끝」**이 찍히면 됩니다."), code(env), code(SETUP)]
+    cells = [md(intro), md(PREP), code(env), code(SETUP)]
     for m, c in STEPS[ch]:
         cells.append(md(m)); cells.append(code(c))
     cells.append(md(BAKE))
@@ -780,7 +808,7 @@ def build_code_reading():
     env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
            f"!git clone -q {REPO}\n"
            f"%cd css-methods-causal-code")
-    cells = [md(intro), md("## 1. 준비\n\n아래 **회색 상자 둘**을 차례로 실행하세요. 둘 다 해야 그다음이 돌아갑니다.\n\n1. 첫째 = 자료와 코드를 내려받습니다. **몇 초 걸리고**, 「경고」 문구가 떠도 정상입니다.\n2. 둘째 = 도구와 도우미 함수를 불러옵니다. **「준비 끝」**이 찍히면 됩니다."), code(env), code(SETUP), md(CR_FAMILIES)]
+    cells = [md(intro), md(PREP), code(env), code(SETUP), md(CR_FAMILIES)]
     for title, m, c in CODE_READING:
         cells.append(md(title + "\n\n" + m)); cells.append(code(c))
     cells.append(md(CR_CLOSE))
