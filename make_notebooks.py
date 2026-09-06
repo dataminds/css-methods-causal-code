@@ -12,6 +12,7 @@
 """
 from __future__ import annotations
 import json
+import re
 import os
 import sys
 
@@ -749,18 +750,48 @@ def code(t): return {"cell_type": "code", "execution_count": None, "metadata": {
                      "source": t.splitlines(keepends=True)}
 
 
+# ── 콜랩 markdown 관문 ─────────────────────────────────────────
+# 콜랩(CommonMark)은 닫는 `**` 앞이 구두점인데 뒤가 글자면 굵게를 안 닫는다.
+# 그러면 `**` 가 화면에 글자로 찍힌다. 실측 = `**「준비 끝」**이` 가 27 편 전부에서
+# 깨져 있었고, 하필 그 문장이 「준비가 끝났다」는 유일한 성공 신호였다.
+_PUNCT = set("「」『』\"'()[]{}<>《》〈〉·、。，．!?！？:;：；~—-/")
+_BOLD = re.compile(r"\*\*([^*\n]{1,80})\*\*(.?)")
+
+
+def _bold_breaks(inner: str, after: str) -> bool:
+    """닫는 `**` 가 right-flanking 이 아니면 참(= 굵게가 안 닫힌다)."""
+    if not inner:
+        return True
+    return inner[-1] in _PUNCT and not (after == "" or after.isspace() or after in _PUNCT)
+
+
+def check_markdown(cells, where: str) -> None:
+    bad = [m.group(0) for c in cells if c["cell_type"] == "markdown"
+           for m in _BOLD.finditer("".join(c["source"]))
+           if _bold_breaks(m.group(1), m.group(2))]
+    if bad:
+        sys.exit(f"[실패] {where}: 콜랩에서 굵게가 안 닫히는 자리 {len(bad)} 개 {bad[:3]}")
+
+
+def _self_test() -> None:
+    """⭐ 관문이 실패할 수 있는지 먼저 확인한다. 통과만 본 시험은 시험이 아니다."""
+    assert _bold_breaks("「준비 끝」", "이"), "관문이 깨진 자리를 못 잡는다"
+    assert not _bold_breaks("검증 로그(부록 B)", ":"), "관문이 멀쩡한 자리를 잡는다"
+    assert not _bold_breaks("회색 상자 둘", "을"), "관문이 멀쩡한 자리를 잡는다"
+
+
 PREP = """## 1. 준비
 
-아래 **회색 상자 둘**을 차례로 실행하세요. 둘 다 해야 그다음이 돌아갑니다.
+아래 상자 **둘**을 차례로 실행하세요. 둘 다 해야 그다음이 돌아갑니다.
 
-1. 첫째 = 자료와 코드를 내려받습니다. **몇 초 걸리고**, 「경고」 문구가 떠도 정상입니다. 상자 아래에 `/content/css-methods-causal-code` 가 찍히면 성공입니다.
-2. 둘째 = 도구와 도우미 함수를 불러옵니다. **「준비 끝」**이 찍히면 됩니다.
+1. 첫째 = 자료와 코드를 내려받습니다. 몇 초 걸리고 「경고」 문구가 떠도 정상입니다. 상자 아래에 `/content/css-methods-causal-code` 가 찍히면 성공입니다.
+2. 둘째 = 도구를 불러옵니다. **준비 끝**이라는 줄이 찍히면 됩니다.
 
----
+> **어느 것이 상자인가.** 왼쪽에 `[ ]` 표시와 **▶** 단추가 붙은 것이 코드 상자입니다. 글씨에 색이 섞여 있습니다. 지금 읽고 있는 이런 글에는 `[ ]` 도 ▶ 도 없습니다."""
 
-### ⛔ 둘째 상자의 코드는 지금 이해하지 않아도 됩니다
+AFTER_PREP = """💡 **방금 둘째 상자에 코드가 길게 펼쳐졌는데, 지금 이해하지 않아도 됩니다.**
 
-상자가 길어 놀랄 수 있습니다. 이 책 전체가 쓰는 **도우미 넷**을 미리 만들어 두는 곳이라 그렇습니다. 지금은 **이름과 하는 일만** 훑고 넘어가세요. 안에 든 식은 필요한 장에서 하나씩 만납니다.
+이 책 전체가 쓰는 **도우미 넷**을 미리 만들어 두는 곳이라 그렇습니다. 지금은 이름과 하는 일만 훑고 넘어가세요. 안에 든 식은 필요한 장에서 하나씩 만납니다.
 
 | 이름 | 하는 일 | 처음 쓰는 곳 |
 |---|---|---|
@@ -780,15 +811,16 @@ PREP = """## 1. 준비
 def build(ch):
     intro = (f"# {TITLE[ch]}\n\n이 노트북은 구글 **Colab**에서 바로 실행됩니다. "
              f"설치는 없고, 구글 계정만 있으면 됩니다.\n\n"
-             f"**읽는 법.** 흰 바탕의 글(지금 이것)은 설명이라 실행하지 않습니다. "
-             f"**회색 상자**만 코드이고, 왼쪽의 **▶** 또는 `Shift`+`Enter` 로 실행합니다.\n\n"
+             f"**읽는 법.** 지금 읽고 있는 이런 글은 설명이라 실행할 것이 없습니다. "
+             f"코드는 **왼쪽에 `[ ]` 와 ▶ 단추가 붙은 상자**이고, 그 ▶ 또는 "
+             f"`Shift`+`Enter` 로 실행합니다.\n\n"
              f"**순서.** 번호 차례대로 끝까지 갑니다. **1 준비**부터 시작해 마지막 번호까지 "
              f"위에서 아래로 내려가면 됩니다. ⚠ 가운데부터 누르면 앞에서 만든 것이 없어 오류가 납니다.\n\n"
              f"📖 본문 학습 페이지: [{TITLE[ch]}]({BASE}/{SLUG[ch]}.html)")
     env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
            f"!git clone -q {REPO}\n"
            f"%cd css-methods-causal-code")
-    cells = [md(intro), md(PREP), code(env), code(SETUP)]
+    cells = [md(intro), md(PREP), code(env), code(SETUP), md(AFTER_PREP)]
     for m, c in STEPS[ch]:
         cells.append(md(m)); cells.append(code(c))
     cells.append(md(BAKE))
@@ -801,14 +833,14 @@ def build(ch):
 
 def build_code_reading():
     intro = (f"# {CR_TITLE}\n\n이 노트북은 구글 **Colab**에서 바로 실행됩니다. "
-             f"흰 바탕의 글은 설명이고 **회색 상자**만 코드입니다. "
+             f"설명 글에는 실행할 것이 없고, 왼쪽에 `[ ]` 와 ▶ 가 붙은 상자만 코드입니다. "
              f"**1 준비**부터 번호 차례대로 위에서 아래로 내려갑니다.\n\n"
              f"📖 본문 학습 페이지: [2장 · AI에게 시키고 검증하기]({BASE}/{SLUG['ch02']}.html)\n\n"
              + CR_INTRO)
     env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
            f"!git clone -q {REPO}\n"
            f"%cd css-methods-causal-code")
-    cells = [md(intro), md(PREP), code(env), code(SETUP), md(CR_FAMILIES)]
+    cells = [md(intro), md(PREP), code(env), code(SETUP), md(AFTER_PREP), md(CR_FAMILIES)]
     for title, m, c in CODE_READING:
         cells.append(md(title + "\n\n" + m)); cells.append(code(c))
     cells.append(md(CR_CLOSE))
@@ -845,14 +877,19 @@ def main():
             sys.exit(f"[실패] {len(fails)}개 노트북 코드 오류")
         print(f"\n[통과] 노트북 {len(targets)}개 코드 전부 로컬 실행 OK")
         return
+    _self_test()
     for ch in STEPS:
         path = os.path.join(OUT, f"{ch}.ipynb")
+        nb = build(ch)
+        check_markdown(nb["cells"], ch)
         with open(path, "w", encoding="utf-8", newline="\n") as f:
-            json.dump(build(ch), f, ensure_ascii=False, indent=1)
+            json.dump(nb, f, ensure_ascii=False, indent=1)
         print("생성:", os.path.relpath(path, HERE))
     cr_path = os.path.join(OUT, "code_reading.ipynb")
+    cr = build_code_reading()
+    check_markdown(cr["cells"], "code_reading")
     with open(cr_path, "w", encoding="utf-8", newline="\n") as f:
-        json.dump(build_code_reading(), f, ensure_ascii=False, indent=1)
+        json.dump(cr, f, ensure_ascii=False, indent=1)
     print("생성:", os.path.relpath(cr_path, HERE))
     print(f"\n완료 → {OUT} ({len(STEPS)}개 장별 + 코드읽기 1개)")
 
