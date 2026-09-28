@@ -128,7 +128,7 @@ STEPS = {
   'svy = load("svy")\n'
   'for v in ["age","hjs","mil","flr","swl"]:\n'
   '    print(f"{v}: M={svy[v].mean():.2f}, SD={svy[v].std(ddof=1):.2f}")'),
- ("## 3. 상관: 이 책 내내 따라올 숫자\n여정과 의미의 상관 .63. 아직 아무 인과도 아닙니다(10장).",
+ ("## 3. 상관: 이 책 내내 따라올 숫자\n여정과 의미의 상관 .63. 아직 아무 인과도 아닙니다(6·7장).",
   'print("r(여정, 의미) =", round(svy.hjs.corr(svy.mil), 2))'),
 ],
 "ch11": [
@@ -195,7 +195,7 @@ STEPS = {
   'print("성별 효과 제거 후 전체 기울기:", round(np.polyfit(zg2.dose, zg2.vigor,1)[0], 2))'),
 ],
 "ch15": [
- ("## 2. 다중회귀 = 통계적 통제\n저그마을(10장): 성별을 통제하자 복용량 계수가 +1.70에서 -1.69로 뒤집힙니다.",
+ ("## 2. 다중회귀 = 통계적 통제\n저그마을(8장): 성별을 통제하자 복용량 계수가 +1.70에서 -1.69로 뒤집힙니다.",
   'def make_simpson(seed=73, n=400):\n'
   '    rng = np.random.default_rng(seed); sex = rng.integers(0, 2, n)\n'
   '    dose = np.clip(rng.normal(2 + 4*sex, 1.5), 0, 10)\n'
@@ -225,6 +225,19 @@ STEPS = {
   'c,_,_,_ = ols(exp.mil.values, [exp.cond.values]); c = c[1]\n'
   'print(f"a={a:.2f} b={b_path:.2f} c\'={cprime:.2f}  간접 a×b={a*b_path:.2f}")\n'
   'print("c\' + a×b =", round(cprime+a*b_path,3), " = 총효과 c =", round(c,3))   # 0.283'),
+ ("## 4. 유의 대 비유의는 차이가 아니다\n참 기울기가 같은 두 집단(0.3)을 인원만 300명과 40명으로 다르게 짓습니다. "
+  "한쪽만 유의해도 두 기울기의 차이는 유의하지 않습니다.",
+  'from scipy.stats import norm\n'
+  'g = np.random.default_rng(73)\n'
+  'res = []\n'
+  'for n_ in (300, 40):\n'
+  '    x = g.normal(0, 1, n_); y = .3*x + g.normal(0, 1, n_)\n'
+  '    b, se, p, _ = ols(y, [x])\n'
+  '    res.append((b[1], se[1]))\n'
+  '    print(n_, round(b[1], 3), f"{p[1]:.3f}")\n'
+  'z = (res[0][0] - res[1][0]) / np.sqrt(res[0][1]**2 + res[1][1]**2)\n'
+  'print(round(res[0][0] - res[1][0], 3), round(2 * norm.sf(abs(z)), 3))\n'
+  '# 300 0.275 0.000 / 40 0.241 0.091 / 0.034 0.821'),
 ],
 "ch06": [
  ("## 2. 우연은 얼마나 흔한가\n아무 관계 없는 두 변수 쌍을 스무 번 만들면 그중 하나가 유의하게 나온다.",
@@ -250,6 +263,27 @@ STEPS = {
   'w1 = panel[panel.wave==1]\n'
   'within = panel[["hjs","mil"]] - panel.groupby("id")[["hjs","mil"]].transform("mean")\n'
   'print("횡단 r:", round(w1.hjs.corr(w1.mil),2), " 개인 내 r:", round(within.hjs.corr(within.mil),2))'),
+ ("## 3. 같은 상관을 내는 세 세계\nA(여정→다음 의미) · B(의미→다음 여정) · C(안정된 성향만, 서로 영향 없음). "
+  "횡단 상관은 셋 다 0.2대이고, 시차 기울기는 A와 B를 가르지만 C에서는 영향 없이 두 방향이 다 나옵니다.",
+  'def 시차_세계(seed=73, n=5000):\n'
+  '    g = np.random.default_rng(seed)\n'
+  '    e = lambda s=1: g.normal(0, s, n)\n'
+  '    x1 = e(); y1 = .3*x1 + e(); x2 = .6*x1 + e(.8); y2 = .5*y1 + .3*x1 + e(.8)\n'
+  '    A = (x1, y1, x2, y2)\n'
+  '    y1 = e(); x1 = .3*y1 + e(); y2 = .6*y1 + e(.8); x2 = .5*x1 + .3*y1 + e(.8)\n'
+  '    B = (x1, y1, x2, y2)\n'
+  '    T = e()\n'
+  '    C = tuple(.64*T + e() for _ in range(4))\n'
+  '    return {"A 여정→의미": A, "B 의미→여정": B, "C 성향만": C}\n'
+  '\n'
+  'def 시차(앞_자기, 원인, 뒤):\n'
+  '    q = pd.qcut(앞_자기, 10, labels=False)\n'
+  '    return float(np.mean([np.polyfit(원인[q == k], 뒤[q == k], 1)[0] for k in range(10)]))\n'
+  '\n'
+  'for name, (x1, y1, x2, y2) in 시차_세계().items():\n'
+  '    print(name, round(np.corrcoef(x1, y1)[0, 1], 2),\n'
+  '          round(시차(y1, x1, y2), 2), round(시차(x1, y1, x2), 2))\n'
+  '# A 0.23 0.31 -0.0 / B 0.28 0.01 0.31 / C 0.29 0.23 0.22'),
 ],
 "ch17": [
  ("## 2. 단절 시계열\n캠페인 도입(53주차) 전후로 수준이 이동했는가. 4.78 → 5.09.",

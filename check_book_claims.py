@@ -10,9 +10,13 @@
   - 씨앗 규약 73(기본)·37(교차) 준수. 데이터 생성 자체의 모수 검증은
     make_data_family.py 내장 배터리 소관(이중 게이트의 아래층).
 
-실행:
-  python check_book_claims.py          # 전체 (수 분 ; 검정력·점근 시뮬 포함)
+실행 (층 둘):
+  python check_book_claims.py          # 기본 = 배포 게이트가 도는 것
   python check_book_claims.py --fast   # 무거운 시뮬(ch08 검정력 표·S2 참값/검정력·ch16 반복) 생략
+
+⭐ `--fast` 가 건너뛴 것은 끝에 이름으로 찍힌다. 조용한 면제를 만들지 않는다.
+⛔ 배포 게이트(`sync_css_causal.py`)는 **기본**을 돌린다. 게이트에서 빼는 검사를
+   만들지 않는다 = 배포마다 안 도는 검사는 배포 사이에 드리프트한다.
 """
 from __future__ import annotations
 import os
@@ -28,6 +32,12 @@ sys.path.insert(0, HERE)
 DATA = os.path.join(HERE, "data")
 
 FAST = "--fast" in sys.argv
+# ⭐ `--fast` 가 무엇을 건너뛰는지 끝에 이름으로 찍는다. 조용한 면제를 만들지 않는다.
+#    (2026-09-06 신설. 그전에는 무엇이 빠졌는지 출력만 봐서는 알 수 없었다.)
+SKIPPED: list[str] = ([] if not FAST else [
+    "ch08 검정력 표", "ch16 반복 시뮬", "ch14 §14.4 위양성 3 항",
+    "ch20 200 회 수확", "S2 참값·검정력", "그 밖 `if not FAST` 블록",
+])
 FAILS: list[str] = []
 
 
@@ -1029,6 +1039,18 @@ def main():
     checkf("ch16 §16.1 중앙값 분할 대조(n·기울기)",
            [len(_lo), len(_hi), ols(_lo.mil.values, [_lo.hjs.values])[0][1],
             ols(_hi.mil.values, [_hi.hjs.values])[0][1]], [435, 131, .873, 1.438], tol=.0006)
+    check("ch16 §16.1 설문판 두 기울기는 둘 다 유의(함정에 안 걸린다)",
+          [bool(ols(_lo.mil.values, [_lo.hjs.values])[2][1] < .05),
+           bool(ols(_hi.mil.values, [_hi.hjs.values])[2][1] < .05)], [True, True])
+    # §16.1 유의 대 비유의 (2026-09-28 인과 축 보강 P6)
+    _g = np.random.default_rng(73); _res = []
+    for _nn in (300, 40):
+        _xx = _g.normal(0, 1, _nn); _yy = .3*_xx + _g.normal(0, 1, _nn)
+        _bb6, _se6, _p6, _ = ols(_yy, [_xx]); _res.append((_bb6[1], _se6[1], _p6[1]))
+    _z6 = (_res[0][0] - _res[1][0]) / np.sqrt(_res[0][1]**2 + _res[1][1]**2)
+    checkf("ch16 §16.1 유의 대 비유의(기울기·p ×2 · 차이 · 차이 p)",
+           [_res[0][0], _res[0][2], _res[1][0], _res[1][2], _res[0][0] - _res[1][0],
+            2 * stats.norm.sf(abs(_z6))], [.275, .000, .241, .091, .034, .821], tol=.0006)
     # §12.5 부트스트랩 간접효과 구간
     _r = np.random.default_rng(73); _n = len(exp); _ind = []
     for _ in range(2000):
@@ -1143,6 +1165,31 @@ def main():
     r_within = within.hjs.corr(within.mil)
     checkf("ch09 횡단→개인 내(.29→.06)", [r_cross, r_within], [.29, .06])
     check("ch09 축소 = 5분의 1(비율<0.25)", bool(r_within / r_cross < .25), True)
+
+    # 9장 §9.3 같은 상관을 내는 세 세계 (2026-09-28 인과 축 보강 P4)
+    def _시차_세계(seed=73, n=5000):
+        g = np.random.default_rng(seed)
+        e = lambda s=1: g.normal(0, s, n)
+        x1 = e(); y1 = .3*x1 + e(); x2 = .6*x1 + e(.8); y2 = .5*y1 + .3*x1 + e(.8)
+        A = (x1, y1, x2, y2)
+        y1 = e(); x1 = .3*y1 + e(); y2 = .6*y1 + e(.8); x2 = .5*x1 + .3*y1 + e(.8)
+        B = (x1, y1, x2, y2)
+        T = e()
+        C = tuple(.64*T + e() for _ in range(4))
+        return [A, B, C]
+
+    def _시차(앞, 원인, 뒤):
+        q = pd.qcut(앞, 10, labels=False)
+        return float(np.mean([np.polyfit(원인[q == k], 뒤[q == k], 1)[0] for k in range(10)]))
+
+    for _seed, _want in ((73, [.23, .31, -.00, .28, .01, .31, .29, .23, .22]),
+                         (37, [.29, .30, .02, .31, -.00, .30, .30, .22, .20])):
+        _got = []
+        for (_x1, _y1, _x2, _y2) in _시차_세계(seed=_seed):
+            _got += [float(np.corrcoef(_x1, _y1)[0, 1]), _시차(_y1, _x1, _y2), _시차(_x1, _y1, _x2)]
+        checkf(f"ch09 §9.3 세 세계(횡단·X→Y·Y→X ; 씨앗 {_seed})", _got, _want)
+    check("ch09 §9.3 C 는 영향 없이 두 방향 시차가 다 0.15 이상",
+          [v > .15 for v in _got[7:9]], [True, True])
 
     print("[S1] 균형·조작 점검·강건성")
     checkf("S1③ 균형 age M(소수 1자리 보고)",
@@ -1562,13 +1609,90 @@ def main():
           max(sum(not _grid(f)[k] for f in (_no_int, _swap, _half)) for k in range(6)), 2)
 
 
+    print("[ch02·ch04·ch14·ch16] 배터리 밖에 있던 네 곳 (2026-09-06 등재)")
+    import glob as _glob
+    _found = sorted(os.path.basename(p)
+                    for p in _glob.glob(os.path.join(DATA, "journey_*.csv")))
+    check("ch02 §2.2 glob 이 일곱 벌을 다 찾는다(경로 = data/)",
+          _found,
+          ["journey_coding.csv", "journey_cohort.csv", "journey_exp.csv",
+           "journey_fac.csv", "journey_panel.csv", "journey_svy.csv",
+           "journey_ts.csv"])
+    check("ch02 §2.2 인쇄된 행·열 (glob 순서)",
+          [[pd.read_csv(os.path.join(DATA, n)).shape[0],
+            pd.read_csv(os.path.join(DATA, n)).shape[1]] for n in _found],
+          [[200, 16], [1800, 7], [380, 30], [448, 8], [1270, 5], [590, 51], [104, 3]])
+
+    _g46 = np.random.default_rng(73)
+    _n46 = 500
+    _A = _g46.normal(0, 1, _n46)
+    _B = _g46.normal(0, 1, _n46)
+    _M = _g46.normal(0, 1, _n46)
+    _r46 = []
+    for _w in (0.0, 0.3, 0.5, 0.7):
+        _a = _A + _w * _M + _g46.normal(0, .5, _n46)
+        _b = _B + _w * _M + _g46.normal(0, .5, _n46)
+        _r46.append(float(np.corrcoef(_a, _b)[0, 1]))
+    checkf("ch04 §4.6 공통 방법 요인이 만드는 상관(w = 0·.3·.5·.7)",
+           _r46, [-0.012, 0.1, 0.198, 0.339], tol=.0006)
+
+    _hc = svy.hjs - svy.hjs.mean()
+    _rc = svy.refl - svy.refl.mean()
+    _b16 = ols(svy.mil.values, [_hc.values, _rc.values, (_hc * _rc).values])[0]
+    _sd16 = float(svy.refl.std(ddof=1))
+    checkf("ch16 §16.3 단순기울기(refl SD · -1SD·평균·+1SD)",
+           [_sd16] + [_b16[1] + _b16[3] * v for v in (-_sd16, 0, _sd16)],
+           [1.338, 0.731, 0.987, 1.244], tol=.0006)
+
+    if not FAST:
+        def _fp(뽑기, 검정, R=2000, seed=73):
+            g_ = np.random.default_rng(seed)
+            return round(sum(검정(*뽑기(g_)) < .05 for _ in range(R)) / R, 3)
+
+        def _tt(x, y):
+            return stats.ttest_ind(x, y).pvalue
+
+        def _welch(x, y):
+            return stats.ttest_ind(x, y, equal_var=False).pvalue
+
+        def _perm(x, y, B=500):
+            g_ = np.random.default_rng(37)
+            obs = abs(x.mean() - y.mean())
+            pool = np.concatenate([x, y])
+            k = len(x)
+            return sum(abs((p := g_.permutation(pool))[:k].mean()
+                           - p[k:].mean()) >= obs for _ in range(B)) / B
+
+        _skew = []
+        for _n in (10, 30, 100):
+            def _draw(g_, n=_n):
+                return (g_.exponential(1, n), g_.exponential(1, n))
+            _skew += [_fp(_draw, _tt), _fp(_draw, _perm)]
+        checkf("ch14 §14.4 치우친 세계 위양성(n = 10·30·100 × t·뒤섞기)",
+               _skew, [.042, .046, .044, .044, .055, .056], tol=.0006)
+
+        _v1 = (lambda g_: (g_.normal(0, 3, 20), g_.normal(0, 1, 60)))
+        _v2 = (lambda g_: (g_.normal(0, 1, 20), g_.normal(0, 3, 60)))
+        checkf("ch14 §14.4 분산 불균등 위양성(작은 집단이 큰 분산 · t·웰치·뒤섞기)",
+               [_fp(_v1, _tt), _fp(_v1, _welch), _fp(_v1, _perm, R=500)],
+               [.222, .058, .22], tol=.0006)
+        checkf("ch14 §14.4 분산 불균등 위양성(큰 집단이 큰 분산 · t·웰치·뒤섞기)",
+               [_fp(_v2, _tt), _fp(_v2, _welch), _fp(_v2, _perm, R=500)],
+               [.002, .052, .004], tol=.0006)
+
+
     dt = time.time() - t0
     if FAILS:
         print(f"\n[실패] {len(FAILS)}건 ({dt:.0f}s): 본문 또는 코드가 어긋남 — 정전을 대조하세요.")
         for f in FAILS:
             print("  -", f)
         sys.exit(1)
-    print(f"\n[통과] 본문-실물 대조 전 항목 일치 ({dt:.0f}s{' ; --fast' if FAST else ''}).")
+    if SKIPPED:
+        print(f"\n⚠ 건너뛴 검사 {len(SKIPPED)} 항 (이 실행에서 확인되지 않음):")
+        for k in SKIPPED:
+            print("  -", k)
+        print("  ⛔ 배포 게이트는 플래그 없이 돌므로 전부 확인된다. 이 목록은 --fast 를 쓴 이번 실행에서만 빠진 것이다.")
+    print(f"\n[통과] 본문-실물 대조 {'일부' if SKIPPED else '전 항목'} 일치 ({dt:.0f}s{' ; --fast' if FAST else ''}).")
 
 
 if __name__ == "__main__":

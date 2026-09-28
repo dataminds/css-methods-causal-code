@@ -573,6 +573,47 @@ def fig_ch08_dag():
     save(fig, "fig-ch08-dag.png")
 
 
+def fig_ch08_unrolled():
+    """양방향은 한 시점에 그리면 순환이 되고, 시점을 붙이면 비순환 그림이 된다."""
+    fig, axes = plt.subplots(1, 2, figsize=(9, 3.0))
+
+    def node(ax, xy, label):
+        ax.scatter(*xy, s=900, color="white", edgecolors=OI[7], zorder=3)
+        ax.text(*xy, label, ha="center", va="center", zorder=4, fontsize=11)
+
+    def arrow(ax, a, b, color, rad=0.0):
+        (x1, y1), (x2, y2) = a, b
+        dx, dy = x2 - x1, y2 - y1
+        ax.annotate("", xy=(x1 + dx * .80, y1 + dy * .80), xytext=(x1 + dx * .20, y1 + dy * .20),
+                    arrowprops=dict(arrowstyle="-|>", lw=1.6, color=color,
+                                    connectionstyle=f"arc3,rad={rad}"))
+
+    ax = axes[0]
+    p = {"X": (0, 0.5), "Y": (2, 0.5)}
+    for k, xy in p.items():
+        node(ax, xy, k)
+    arrow(ax, p["X"], p["Y"], OI[5], rad=-0.35)
+    arrow(ax, p["Y"], p["X"], OI[5], rad=-0.35)
+    ax.set_title("한 시점에 그리면: X → Y 이고 Y → X\n자기가 자기의 원인이 되는 순환", fontsize=10)
+    ax.text(1, -0.35, "인과 그래프로 성립하지 않는다", ha="center", fontsize=9, color=OI[5])
+    ax.set_xlim(-0.5, 2.5); ax.set_ylim(-0.6, 1.5); ax.axis("off")
+
+    ax = axes[1]
+    q = {"X₁": (0, 1), "Y₁": (0, 0), "X₂": (2, 1), "Y₂": (2, 0)}
+    for k, xy in q.items():
+        node(ax, xy, k)
+    arrow(ax, q["X₁"], q["X₂"], "#777777")
+    arrow(ax, q["Y₁"], q["Y₂"], "#777777")
+    arrow(ax, q["X₁"], q["Y₂"], OI[4])
+    arrow(ax, q["Y₁"], q["X₂"], OI[0])
+    ax.text(0, 1.45, "시점 1", ha="center", fontsize=9)
+    ax.text(2, 1.45, "시점 2", ha="center", fontsize=9)
+    ax.set_title("시점을 붙이면: 대각선 두 화살표가 두 방향이다", fontsize=10)
+    ax.text(1, -0.55, "회색 = 자기 자신의 이월", ha="center", fontsize=9, color="#555555")
+    ax.set_xlim(-0.5, 2.5); ax.set_ylim(-0.8, 1.7); ax.axis("off")
+    save(fig, "fig-ch08-unrolled.png")
+
+
 # ── ch12: 조절 = 단순기울기 두 줄 ───────────────────────────────
 def fig_ch15_control():
     """통제는 '나눠 보기'와 같은 일을 한 식으로 한다."""
@@ -1418,6 +1459,7 @@ if __name__ == "__main__":
     b0, b1 = fig_ch14_reg()
     b_all, slopes = fig_ch08_simpson()
     fig_ch08_dag()
+    fig_ch08_unrolled()
     r_all, r_win = fig_ch08_collider()
     ctrl = fig_ch08_control()
     fig_ch15_control()
