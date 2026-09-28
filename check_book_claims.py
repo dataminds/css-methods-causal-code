@@ -1159,6 +1159,11 @@ def main():
     print("[ch13·S5] 시계열·패널 축소")
     pre, post = ts[ts.campaign == 0], ts[ts.campaign == 1]
     checkf("ch17 ITS 전·후", [pre.wellbeing.mean(), post.wellbeing.mean()], [4.78, 5.09])
+    # 17장 실습 1 위약 검정: 도입 전 52주 안에서 27주차부터 가짜 표시 (2026-09-29)
+    _fk = (pre.week >= 27)
+    checkf("ch17 실습1 위약 전후 차(0.14 안)",
+           pre.wellbeing[_fk].mean() - pre.wellbeing[~_fk].mean(), -.013, tol=.0006)
+    check("ch17 실습1 위약 도입 전 주 수", [int(pre.week.min()), int(pre.week.max()), len(pre)], [1, 52, 52])
     w1 = pan[pan.wave == 1]
     r_cross = w1.hjs.corr(w1.mil)
     within = pan[["hjs", "mil"]] - pan.groupby("id")[["hjs", "mil"]].transform("mean")
@@ -1199,6 +1204,11 @@ def main():
     checkf("ch09 §9.3 비대칭 C(X→Y · Y→X)", [_시차(_c2, _c1, _c4), _시차(_c1, _c2, _c3)], [.14, .52])
 
     print("[S1] 균형·조작 점검·강건성")
+    # S1 ⑤ 천장 (2026-09-29 저자 판단 반영)
+    checkf("S1⑤ 6.5점 이상 % (전체·통제·개입)",
+           [100 * (exp.mil >= 6.5).mean(), 100 * (cg.mil >= 6.5).mean(), 100 * (tg.mil >= 6.5).mean()],
+           [18.0, 14.8, 21.3], tol=.051)
+    check("S1⑤ 만점(7.00) 인원", int((exp.mil == 7).sum()), 38)
     checkf("S1③ 균형 age M(소수 1자리 보고)",
            [tg.age.mean(), cg.age.mean()], [36.9, 37.5], tol=.051)
     checkf("S1③ 균형 age d", cohen_d(tg.age, cg.age), -0.06)
