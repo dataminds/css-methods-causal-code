@@ -1190,6 +1190,13 @@ def main():
         checkf(f"ch09 §9.3 세 세계(횡단·X→Y·Y→X ; 씨앗 {_seed})", _got, _want)
     check("ch09 §9.3 C 는 영향 없이 두 방향 시차가 다 0.15 이상",
           [v > .15 for v in _got[7:9]], [True, True])
+    # 비대칭 C: 의미 쪽 요동만 0.5 로 줄이면 한 방향처럼 보인다 (2026-09-28 점검 반영)
+    _g9 = np.random.default_rng(73); _n9 = 5000
+    _e9 = lambda s=1: _g9.normal(0, s, _n9)
+    _e9(); _e9(); _e9(); _e9(); _e9(); _e9(); _e9(); _e9()   # A·B 여덟 줄과 같은 순서로 소비
+    _T9 = _e9()
+    _c1, _c2, _c3, _c4 = .64*_T9 + _e9(), .64*_T9 + _e9(.5), .64*_T9 + _e9(), .64*_T9 + _e9(.5)
+    checkf("ch09 §9.3 비대칭 C(X→Y · Y→X)", [_시차(_c2, _c1, _c4), _시차(_c1, _c2, _c3)], [.14, .52])
 
     print("[S1] 균형·조작 점검·강건성")
     checkf("S1③ 균형 age M(소수 1자리 보고)",
@@ -1267,6 +1274,10 @@ def main():
     _b2, _se2, _, _ = ols(_y2, [_e2, _f2, _e2 * _f2])
     checkf("S2 §교훈 곱항 SE = 주효과 SE 의 √2 배",
            [_se2[1], _se2[3], _se2[3] / _se2[1]], [.163, .231, 1.414], tol=.0016)
+    # 두 조건을 평균한 주효과(±0.5 부호화)와 견주면 차이의 차이 SE 는 두 배 = 표본 네 배 (2026-09-28)
+    _ec, _fc = _e2 - .5, _f2 - .5
+    _bc, _sec, _, _ = ols(_y2, [_ec, _fc, _ec * _fc])
+    checkf("S2 §교훈 평균 주효과 대비 곱항 SE 비 = 2", _sec[3] / _sec[1], 2.0, tol=.0006)
     checkf("S2 시점 상관", fac.mil_t1.corr(fac.mil_t2), .59)
     g11 = fac[(fac.elem == 1) & (fac.frame == 1)]
     tt = stats.ttest_rel(g11.mil_t2, g11.mil_t1)
