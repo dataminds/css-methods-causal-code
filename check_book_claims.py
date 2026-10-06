@@ -662,13 +662,20 @@ def main():
            [_x15.mean() - _tc*_x15.std(ddof=1)/np.sqrt(len(_x15)),
             _y15.mean() + _tc*_y15.std(ddof=1)/np.sqrt(len(_y15)), _p15],
            [5.092, 5.166, .028], tol=.0006)
-    for _v, _want in (("hjs", [5.27, .75, 5.06, .78, 2.58, .010, .27]),
-                      ("flr", [5.53, .89, 5.33, .95, 2.08, .038, .22])):
+    # 2026-10-06c: 본보기 조작 점검·번영 문장에 SD·d 구간을 더해 네 종 세트를 채웠다
+    for _v, _want in (("hjs", [5.27, .75, 5.06, .78, 2.58, .010, .27, .06, .48]),
+                      ("flr", [5.53, .89, 5.33, .95, 2.08, .038, .22, .01, .42])):
         _xa = exp[exp.cond == 1][_v].values; _ya = exp[exp.cond == 0][_v].values
-        _dv, _tv, _pv, _, _, _ = _rep15(_xa, _ya)
+        _dv, _tv, _pv, _lov, _hiv, _ = _rep15(_xa, _ya)
         checkf(f"ch19 §19.6 본보기 {_v}",
-               [_xa.mean(), _xa.std(ddof=1), _ya.mean(), _ya.std(ddof=1), _tv, _pv, _dv],
+               [_xa.mean(), _xa.std(ddof=1), _ya.mean(), _ya.std(ddof=1), _tv, _pv, _dv, _lov, _hiv],
                _want, tol=.006)
+    # 2026-10-06c: 본보기의 p 를 규칙 3(셋째 자리 정확값)에 맞췄다
+    _chi19, _pchi19, _, _ = stats.chi2_contingency(pd.crosstab(exp.cond, exp.gender))
+    checkf("ch19 §19.6 본보기 성별 χ²·p", [_chi19, _pchi19], [2.28, .320], tol=.006)
+    _k19 = exp.mil_t1 - exp.mil_t1.mean()
+    _bi19, _, _pi19, _ = ols(exp.mil.values, [exp.cond.values, _k19.values, (exp.cond * _k19).values])
+    checkf("ch19 §19.6 본보기 조건×기저 상호작용 b·p", [_bi19[3], float(_pi19[3])], [.02, .797], tol=.0051)
     for _v, _want in (("age", [36.92, 10.51, 37.53, 11.26, -.54, .591, -.06]),
                       ("mil_t1", [4.80, 1.21, 4.82, 1.27, -.13, .900, -.01])):
         _xa = exp[exp.cond == 1][_v].values; _ya = exp[exp.cond == 0][_v].values
@@ -766,6 +773,16 @@ def main():
                 h2 += stats.ttest_ind(a_, b_).pvalue < .05
             noi.append(h2 / 2000)
         checkf("ch13 §13.4 측정 잡음이 갉는 검정력", noi, [.56, .52, .41])
+
+    # 2026-10-06d: §13.4 「참여자를 160명 넘게 더 모으는 것보다 싸다」 (구 「수십 명」 정정)
+    # 두 집단에 같은 잡음 → 관찰 d = 참 d × √신뢰도 ; 검정력 .57(집단당 190명)을 되찾는 집단당 n
+    def _pw13(d, n):
+        df_ = 2 * n - 2; nc = d * np.sqrt(n / 2); tc = stats.t.ppf(.975, df_)
+        return stats.nct.sf(tc, df_, nc) + stats.nct.cdf(-tc, df_, nc)
+    _d13 = .22 * np.sqrt(.7)
+    _n13 = next(n for n in range(190, 2000) if _pw13(_d13, n) >= _pw13(.22, 190))
+    checkf("ch13 §13.4 신뢰도 .7 에서 검정력 되찾는 집단당 n · 관찰 d · 더 모을 인원",
+           [_n13, _d13, 2 * (_n13 - 190)], [272, .18, 164], tol=.006)
 
     print("[ch14] 회귀·적합")
     # ── v1.0 본 보강 신규 (2026-08-24) ──

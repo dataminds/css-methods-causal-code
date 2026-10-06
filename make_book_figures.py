@@ -1148,7 +1148,7 @@ def fig_ch04_atten(seed=73, n=50000, r_true=0.60):
     ax.axhline(r_true, color=OI[7], linestyle=":", linewidth=1.2, label=f"참 상관 {r_true:.2f}")
     ax.set_xlabel("측정 신뢰도"); ax.set_ylabel("관찰되는 상관")
     ax.invert_xaxis(); ax.set_ylim(0, .7); ax.legend(fontsize=8)
-    fig.suptitle("잘못 잰 것은 분석으로 못 구한다 (씨앗 73)", y=1.02)
+    fig.suptitle("잘못 측정한 것은 분석으로 못 구한다 (씨앗 73)", y=1.02)
     save(fig, "fig-ch04-atten.png")
     return list(zip(rels, obs))
 

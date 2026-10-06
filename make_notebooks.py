@@ -276,7 +276,7 @@ STEPS = {
   '    C = tuple(.64*T + e() for _ in range(4))\n'
   '    return {"A 여정→의미": A, "B 의미→여정": B, "C 성향만": C}\n'
   '\n'
-  'def 시차(앞_자기, 원인, 뒤):                       # 앞 시점 자기 값이 비슷한 사람끼리 잰 기울기\n'
+  'def 시차(앞_자기, 원인, 뒤):                       # 앞 시점 자기 값이 비슷한 사람끼리 구한 기울기\n'
   '    q = pd.qcut(앞_자기, 10, labels=False)          # 앞 시점 자기 값을 열 층으로\n'
   '    return float(np.mean([np.polyfit(원인[q == k], 뒤[q == k], 1)[0] for k in range(10)]))\n'
   '\n'
@@ -614,7 +614,7 @@ STEPS = {
   'print("잔차 자기상관:", round(float(np.corrcoef(resid[:-1], resid[1:])[0, 1]), 3))  # 0.227'),
 ],
 "s6": [
- ("## 2. 코더 둘의 일치를 잰다\n단순 일치율이 아니라 **우연을 뺀** 일치다. 거리까지 반영한 가중 카파.",
+ ("## 2. 코더 둘의 일치를 평가한다\n단순 일치율이 아니라 **우연을 뺀** 일치다. 거리까지 반영한 가중 카파.",
   'cd = load("coding")\n'
   'cats = list(range(-2, 3)); k = len(cats); idx = {c: i for i, c in enumerate(cats)}\n'
   'W = np.array([[1 - ((cats[i]-cats[j])/(k-1))**2 for j in range(k)] for i in range(k)])\n'
