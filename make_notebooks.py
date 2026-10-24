@@ -821,6 +821,8 @@ PREP = """## 1. 준비
 1. 첫째 = 자료와 코드를 내려받습니다. 몇 초 걸리고 「경고」 문구가 떠도 정상입니다. 상자 아래에 `/content/css-methods-causal-code` 가 찍히면 성공입니다.
 2. 둘째 = 도구를 불러옵니다. **준비 끝**이라는 줄이 찍히면 됩니다.
 
+⚠ 한참 뒤에 돌아와 `pd`·`exp`가 없다거나 파일이 없다는 오류가 나면 코랩이 연결을 끊은 것입니다. 자료는 내 컴퓨터가 아니라 코랩의 컴퓨터에 있었으므로 함께 사라졌습니다. **이 두 상자를 위에서부터 다시** 누르면 됩니다(첫째 상자는 여러 번 눌러도 됩니다).
+
 > **어느 것이 상자인가.** 왼쪽에 `[ ]` 표시와 **▶** 단추가 붙은 것이 코드 상자입니다. 글씨에 색이 섞여 있습니다. 지금 읽고 있는 이런 글에는 `[ ]` 도 ▶ 도 없습니다."""
 
 AFTER_PREP = """💡 **방금 둘째 상자에 코드가 길게 펼쳐졌는데, 지금 이해하지 않아도 됩니다.**
@@ -842,6 +844,16 @@ AFTER_PREP = """💡 **방금 둘째 상자에 코드가 길게 펼쳐졌는데,
 
 
 
+# 준비 첫째 상자. 두 번 눌러도 같은 자리에 선다(2026-10-24).
+# 옛판(내려받기 → 상대 경로 이동)은 연결이 살아 있을 때 다시 누르면 폴더 안에
+# 한 겹 더 내려받아 /content/css-methods-causal-code/css-methods-causal-code 가 찍혔고,
+# 「이 경로가 찍히면 성공」 안내와 어긋나 독자가 실패로 읽었다.
+ENV = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(수 초). 다시 눌러도 됩니다.\n"
+       f"%cd /content\n"
+       f"![ -d css-methods-causal-code ] || git clone -q {REPO}\n"
+       f"%cd /content/css-methods-causal-code")
+
+
 def build(ch):
     intro = (f"# {TITLE[ch]}\n\n이 노트북은 구글 **Colab**에서 바로 실행됩니다. "
              f"설치는 없고, 구글 계정만 있으면 됩니다.\n\n"
@@ -851,10 +863,7 @@ def build(ch):
              f"**순서.** 번호 차례대로 끝까지 갑니다. **1 준비**부터 시작해 마지막 번호까지 "
              f"위에서 아래로 내려가면 됩니다. ⚠ 가운데부터 누르면 앞에서 만든 것이 없어 오류가 납니다.\n\n"
              f"📖 본문 학습 페이지: [{TITLE[ch]}]({BASE}/{SLUG[ch]}.html)")
-    env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
-           f"!git clone -q {REPO}\n"
-           f"%cd css-methods-causal-code")
-    cells = [md(intro), md(PREP), code(env), code(SETUP), md(AFTER_PREP)]
+    cells = [md(intro), md(PREP), code(ENV), code(SETUP), md(AFTER_PREP)]
     for m, c in STEPS[ch]:
         cells.append(md(m)); cells.append(code(c))
     cells.append(md(BAKE))
@@ -871,10 +880,7 @@ def build_code_reading():
              f"**1 준비**부터 번호 차례대로 위에서 아래로 내려갑니다.\n\n"
              f"📖 본문 학습 페이지: [2장 · AI에게 시키고 검증하기]({BASE}/{SLUG['ch02']}.html)\n\n"
              + CR_INTRO)
-    env = (f"# 이 책의 데이터·코드를 코랩으로 내려받습니다(처음 한 번, 수 초).\n"
-           f"!git clone -q {REPO}\n"
-           f"%cd css-methods-causal-code")
-    cells = [md(intro), md(PREP), code(env), code(SETUP), md(AFTER_PREP), md(CR_FAMILIES)]
+    cells = [md(intro), md(PREP), code(ENV), code(SETUP), md(AFTER_PREP), md(CR_FAMILIES)]
     for title, m, c in CODE_READING:
         cells.append(md(title + "\n\n" + m)); cells.append(code(c))
     cells.append(md(CR_CLOSE))

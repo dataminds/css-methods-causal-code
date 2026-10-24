@@ -74,24 +74,36 @@ def fig_ch01_map():
              ("④", "측정\n점검"), ("⑤", "기술\n시각화"), ("⑥", "가정\n점검"),
              ("⑦", "주 분석"), ("⑧", "강건성"), ("⑨", "해석\n보고")]
 
-    fig, ax = plt.subplots(figsize=(7.8, 3.9))
-    ax.set_xlim(0, 9.55); ax.set_ylim(0, 3.5); ax.axis("off"); ax.grid(False)
+    fig, ax = plt.subplots(figsize=(8.6, 3.9))
+    ax.set_xlim(0, 10.58); ax.set_ylim(0, 3.5); ax.axis("off"); ax.grid(False)
 
-    x0, step, bw = 0.15, 1.03, 0.90       # 아홉 칸의 배치 규칙
+    # 맨 왼쪽(-1번) 칸 = 서론. 아홉 단계에 들지 않는다.
+    x0, step, bw = 0.15 + 1.03, 1.03, 0.90  # 아홉 칸의 배치 규칙
     def span(i, j):                        # i번 칸 왼끝 ~ j번 칸 오른끝
         return x0 + i * step, (x0 + j * step + bw) - (x0 + i * step)
 
-    # 위층 = 논문의 네 부분. 아홉 칸과 자리를 맞춘다. 이 책 밖은 빗금.
-    parts = [("서론", 0, 0, True), ("방법", 1, 3, False),
-             ("결과", 4, 7, False), ("논의", 8, 8, True)]
+    # 위층 = 논문의 다섯 부분. 아홉 칸과 자리를 맞춘다. 이 책 밖은 빗금.
+    # 서론 = 문제의식. 연구질문·가설(①)은 서론이 아니라 이론적 논의(문헌 분석)의
+    # 끝에서 나온다(2026-10-23 사용자 정정).
+    parts = [("서론", -1, -1, True), ("이론적\n논의", 0, 0, True),
+             ("방법", 1, 3, False), ("결과", 4, 7, False), ("논의", 8, 8, True)]
     for name, i, j, outside in parts:
         x, w = span(i, j)
         ax.add_patch(FancyBboxPatch((x, 2.66), w, .54, boxstyle="round,pad=0.02",
                                     facecolor="white", edgecolor=OI[7],
                                     hatch="////" if outside else None, linewidth=1.2))
-        ax.text(x + w / 2, 2.93, name, ha="center", va="center", fontsize=11,
+        ax.text(x + w / 2, 2.93, name, ha="center", va="center",
+                fontsize=9 if "\n" in name else 11, linespacing=1.1,
                 bbox=dict(boxstyle="square,pad=0.18", facecolor="white",
                           edgecolor="none"))          # 빗금 위에서도 글자가 읽히게
+
+    # 서론 밑 칸 = 문제의식. 번호가 없다(아홉 단계 밖). 점선·빗금으로 가른다.
+    xs, _ = span(-1, -1)
+    ax.add_patch(FancyBboxPatch((xs, 1.22), bw, 1.10, boxstyle="round,pad=0.02",
+                                facecolor="white", edgecolor=OI[7], hatch="////",
+                                linestyle="--", linewidth=1.0))
+    ax.text(xs + bw / 2, 1.77, "문제\n의식", ha="center", va="center", fontsize=8.5,
+            bbox=dict(boxstyle="square,pad=0.18", facecolor="white", edgecolor="none"))
 
     # 가운데 = 아홉 단계. ⑦만 칠하고 테두리를 굵게(색이 사라져도 구분된다).
     for i, (num, label) in enumerate(steps):
@@ -110,7 +122,7 @@ def fig_ch01_map():
     ax.text(xa + wa / 2, 0.60, "이 책은 아홉 단계를 처음부터 끝까지 데려간다",
             ha="center", fontsize=9.5)
     ax.text(xa + wa / 2, 0.22,
-            "빗금 친 서론(문헌검토·이론)과 논의, 그리고 자기 자료 수집은 이 책 밖이다",
+            "빗금 친 서론(문제의식)·이론적 논의(문헌 분석)·논의, 그리고 자기 자료 수집은 이 책 밖이다",
             ha="center", fontsize=8.5)
     ax.set_title("논문 한 편의 아홉 단계: 통계 기법은 ⑦ 한 칸이다", fontsize=11, pad=10)
 
