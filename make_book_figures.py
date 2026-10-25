@@ -129,6 +129,34 @@ def fig_ch01_map():
     save(fig, "fig-ch01-map.png")
 
 
+# ── 웹 코랩 안내: 왼쪽 막대 아이콘 일곱 ──────────────────────────
+def fig_colab_sidebar():
+    """코랩 화면 왼쪽 막대의 아이콘 일곱에 번호를 달고 파일 아이콘을 두른다.
+
+    원본 = book/figures/_src/colab-screen-2026-10.png (사용자가 보낸 2026-10 화면).
+    오른쪽 위 계정 표시는 잘라 낸다. 코랩이 화면을 바꾸면 원본만 갈아 끼운다.
+    """
+    from PIL import Image, ImageDraw, ImageFont
+    src = os.path.join(OUT, "_src", "colab-screen-2026-10.png")
+    if not os.path.exists(src):                # 코드 저장소에는 원본 화면이 없다
+        print("건너뜀: fig-colab-sidebar.png (원본 화면 없음)")
+        return
+    im =Image.open(src).convert("RGB").crop((0, 0, 470, 470))
+    pad = 44                                   # 번호를 놓을 왼쪽 여백
+    canvas = Image.new("RGB", (im.width + pad, im.height), "white")
+    canvas.paste(im, (pad, 0))
+    d = ImageDraw.Draw(canvas)
+    font = ImageFont.truetype("malgunbd.ttf", 20)
+    ys = [135, 180, 224, 268, 312, 356, 400]   # 아이콘 중심(원본 화면 실측)
+    for n, y in enumerate(ys, 1):
+        d.text((pad - 14, y), str(n), font=font, fill="black", anchor="rm")
+    x, y = pad + 32, ys[5]                     # 여섯째 = 파일
+    d.rounded_rectangle((x - 22, y - 20, x + 22, y + 20), radius=8,
+                        outline=OI[5], width=4)
+    canvas.save(os.path.join(OUT, "fig-colab-sidebar.png"))
+    print("저장: fig-colab-sidebar.png")
+
+
 # ── ch05: 분포 먼저 (hjs·mil 히스토그램) ────────────────────────
 def fig_ch05_dist():
     svy = load_clean("svy")
@@ -1452,6 +1480,7 @@ def fig_ch17_its():
 
 if __name__ == "__main__":
     fig_ch01_map()
+    fig_colab_sidebar()
     _b1m = fig_b1_shapes()
     _b1sd = fig_b1_two_dists()
     print("B1 평균 셋", [round(x, 2) for x in _b1m],
