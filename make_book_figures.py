@@ -157,6 +157,31 @@ def fig_colab_sidebar():
     print("저장: fig-colab-sidebar.png")
 
 
+# ── ch06: 아르침볼도 「과일 바구니」 바로 · 뒤집어 ─────────────────
+def fig_ch06_arcimboldo():
+    """§6.1 = 같은 그림이 놓는 방향에 따라 얼굴도 되고 과일 바구니도 된다.
+
+    원본 = teaching-wiki/wiki/shared/figures/arcimboldo-fruit-basket/ (공개 영역).
+    코드 저장소에는 원본이 없으므로 없으면 건너뛴다.
+    """
+    from PIL import Image
+    src = os.path.normpath(os.path.join(HERE, "..", "..", "..", "shared", "figures",
+                                        "arcimboldo-fruit-basket",
+                                        "Giuseppe_Arcimboldo_-_Fruit_Basket.jpg"))
+    if not os.path.exists(src):
+        print("건너뜀: fig-ch06-arcimboldo.png (원본 그림 없음)")
+        return
+    im = Image.open(src).convert("RGB")
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 5.2))
+    for ax, img, label in ((axes[0], im, "이대로 두면: 얼굴"),
+                           (axes[1], im.rotate(180), "뒤집으면: 과일 바구니")):
+        ax.imshow(img); ax.axis("off"); ax.grid(False)
+        ax.set_title(label, fontsize=11, pad=8)
+    fig.text(0.5, 0.01, "주세페 아르침볼도, 「과일 바구니」(16세기). 공개 영역.",
+             ha="center", fontsize=8, color="#444444")
+    save(fig, "fig-ch06-arcimboldo.png")
+
+
 # ── ch05: 분포 먼저 (hjs·mil 히스토그램) ────────────────────────
 def fig_ch05_dist():
     svy = load_clean("svy")
@@ -1481,6 +1506,7 @@ def fig_ch17_its():
 if __name__ == "__main__":
     fig_ch01_map()
     fig_colab_sidebar()
+    fig_ch06_arcimboldo()
     _b1m = fig_b1_shapes()
     _b1sd = fig_b1_two_dists()
     print("B1 평균 셋", [round(x, 2) for x in _b1m],

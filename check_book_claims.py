@@ -418,6 +418,8 @@ def main():
     checkf("ch05 표1 SD", [svy[v].std(ddof=1) for v in ("age", "hjs", "mil", "flr", "swl")],
            [12.4, 0.80, 1.25, 0.88, 1.10], tol=.051)
     checkf("ch05 §5.1 mil 중앙값", svy.mil.median(), 5.0)
+    check("ch05 §5.4 리커트 값의 가짓수(문항 하나·4문항 평균·21문항 평균)",
+          [int(svy.mil_1.nunique()), int(svy.mil.nunique()), int(svy.hjs.nunique())], [7, 24, 79])
     checkf("ch05 §5.2 상관(hjs-mil·hjs-flr·hjs-swl·mil-flr·mil-swl·flr-swl)",
            [svy.hjs.corr(svy.mil), svy.hjs.corr(svy.flr), svy.hjs.corr(svy.swl),
             svy.mil.corr(svy.flr), svy.mil.corr(svy.swl), svy.flr.corr(svy.swl)],
