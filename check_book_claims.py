@@ -191,6 +191,13 @@ def main():
            [exp_raw[exp_raw.cond == 1].mil.mean() - exp_raw.mil.mean(),
             exp[exp.cond == 1].mil.mean() - exp[exp.cond == 0].mil.mean()],
            [.139, .283], tol=.0006)
+    # 2026-11-12d S0 §S0.4 = 평균 차이 0.28 은 집단 안 SD(1.18 · 1.27)의 4분의 1 에도 못 미친다
+    _s0 = exp.groupby("cond").mil.agg(["mean", "std"])
+    _d0 = exp[exp.cond == 1].mil.mean() - exp[exp.cond == 0].mil.mean()
+    checkf("S0 §S0.4 평균 차이 ÷ 집단 SD(개입·통제)",
+           [_d0 / _s0.loc[1, "std"], _d0 / _s0.loc[0, "std"]], [.240, .222], tol=.0006)
+    check("S0 §S0.4 두 비 모두 1/4 미만",
+          [bool(_d0 / _s0.loc[1, "std"] < .25), bool(_d0 / _s0.loc[0, "std"] < .25)], [True, True])
 
     print("[ch03] §3.2~3.5 정제·성별·파생 검산·long/wide")
     check("ch03 §3.2 svy.shape", list(svy_raw.shape), [590, 51])
@@ -263,8 +270,11 @@ def main():
                 _rs = [_sub[m].hjs.corr(_sub[m].mil) for m in _ms]
                 _sp.append(max(_rs) - min(_rs))
             _out[_n] = (float(np.mean(_sp)), float(max(_sp)))
-        checkf("ch03 §3.3 표본이 작을수록 기준 선택이 무거워진다",
-               [_out[566][0], _out[60][0], _out[60][1]], [.011, .030, .100], tol=.011)
+        # 2026-11-12d 정정: 구 기대값 [.011, .030, .100] · tol .011 이 .100 대 .111 을 가렸다.
+        #   566명 최댓값까지 대조한다(본문 [더 나아가기] 상자 출력 = 566 0.011 0.014 · 60 0.028 0.111).
+        checkf("ch03 §3.3 [더 나아가기] 표본이 작을수록 기준 선택이 무거워진다(566 평균·최대 · 60 평균·최대)",
+               [_out[566][0], _out[566][1], _out[60][0], _out[60][1]],
+               [.011, .014, .028, .111], tol=.0006)
 
     # ── B1 확률과 분포 (2026-09-06 신설) ──
     print("[B1] 확률과 분포")
@@ -292,6 +302,20 @@ def main():
     check("B1 §B1.4 통계량이 자료보다 훨씬 덜 흩어진다",
           _means.std(ddof=1) < _pop.std(ddof=1) / 4, True)
     checkf("B1 §B1.4 공식 SD/√n", _pop.std(ddof=1) / np.sqrt(30), .229)
+    # 2026-11-12d B1 §B1.4 사람 수별 표 (사람 수마다 씨앗 73 으로 다시 정한다)
+    _sd_n, _sk_n = [], []
+    for _n in (5, 30, 100):
+        _g = np.random.default_rng(73)
+        _m = np.array([_g.choice(_pop, _n, replace=False).mean() for _ in range(2000)])
+        _sd_n.append(_m.std(ddof=1)); _sk_n.append(float(stats.skew(_m)))
+    checkf("B1 §B1.4 사람 수별 평균 2,000개의 SD(5·30·100)", _sd_n, [.574, .222, .116], tol=.0006)
+    checkf("B1 §B1.4 사람 수별 평균 2,000개의 치우침(5·30·100)", _sk_n, [-.200, -.059, -.048], tol=.0006)
+    _sk37 = []
+    for _n in (5, 30, 100):
+        _g = np.random.default_rng(37)
+        _m = np.array([_g.choice(_pop, _n, replace=False).mean() for _ in range(2000)])
+        _sk37.append(float(stats.skew(_m)))
+    checkf("B1 §B1.4 교차 씨앗 37 치우침(5·30·100)", _sk37, [-.091, .002, .023], tol=.0006)
     checkf("B1 §B1.5 t 의 97.5% 지점(df 5·30·200)과 정규",
            [stats.t.ppf(.975, d) for d in (5, 30, 200)] + [stats.norm.ppf(.975)],
            [2.571, 2.042, 1.972, 1.960])
@@ -346,6 +370,17 @@ def main():
     check("B2 §B2.2 쌍별 여섯 중 유의 하나", [len(_ps), sum(q < .05 for q in _ps)], [6, 1])
     checkf("B2 §B2.2 쌍별 최소 p", min(_ps), .0308)
     check("B2 §B2.2 본페로니 뒤에는 0 개", sum(q < .05/len(_ps) for q in _ps), 0)
+    # 2026-11-12d B2 §B2.0 · 실습 3 곱셈 · §B2.1 F = t² · 가장 벌어진 두 칸
+    checkf("B2 §B2.0 여섯 번 다 안 걸릴 확률 · 하나라도", [.95**6, 1 - .95**6], [.735, .265], tol=.0006)
+    checkf("B2 실습 3 쌍 3·15 개", [1 - .95**3, 1 - .95**15], [.143, .537], tol=.0006)
+    _tgB, _cgB = exp[exp.cond == 1].mil, exp[exp.cond == 0].mil
+    _F2, _ = stats.f_oneway(_tgB, _cgB)
+    _t2B = stats.ttest_ind(_tgB, _cgB).statistic
+    # 18장 §18.2 의 F(1, 364) = 4.864 도 이 항목이 받친다
+    checkf("B2 §B2.1 두 집단 F(1, 364) 와 t²", [_F2, _t2B**2], [4.864, 4.864], tol=.0006)
+    check("B2 §B2.1 두 집단 F 의 자유도(1, 364)", [1, len(_tgB) + len(_cgB) - 2], [1, 364])
+    _gmB = [g.mean() for g in _grp]
+    checkf("B2 §B2.1 가장 벌어진 두 칸(4.81 · 5.2)의 차이", max(_gmB) - min(_gmB), .39, tol=.006)
 
     print("[ch04] §4.2~4.3 신뢰도·최저 문항·수렴")
     checkf("ch04 §4.2 α HJS21", cronbach(svy[items].values), .93)
@@ -365,13 +400,25 @@ def main():
     checkf("ch04 §4.2 최저 문항 r(수정)", cit["hjs_a1"], .50)
     check("ch04 §4.2 수정 전후 최저 문항 동일",
           [min(it_tot, key=it_tot.get), min(cit, key=cit.get)], ["hjs_a1", "hjs_a1"])
-    checkf("ch04 §4.2 평균 부풀림",
+    checkf("ch04 §4.2 [더 나아가기] 21문항 전체의 부풀림 = 평균 부풀림",
            float(np.mean([it_tot[c] - cit[c] for c in items])), .045, tol=.0015)
     # §4.2 스피어만-브라운 = 문항 수만으로는 .97 이 예측되나 실제는 .93
     el_a = [cronbach(svy[[f"hjs_{e}{j}" for j in (1, 2, 3)]].values) for e in ELEMENTS]
     abar = float(np.mean(el_a))
-    checkf("ch04 §4.2 요소 알파 평균·SB 예측·실제",
+    checkf("ch04 §4.2 [더 나아가기] 문항을 늘리면 알파는 얼마나 오르나 = 요소 알파 평균·SB 예측·실제",
            [abar, 7*abar/(1+6*abar), cronbach(svy[items].values)], [.82, .97, .93])
+    # 2026-11-12d §4.2 끝 · 실습 7 = 요소 일곱 평균 점수 사이 상관 범위
+    _el = pd.DataFrame({t: svy[[f"hjs_{t}{i}" for i in (1, 2, 3)]].mean(axis=1) for t in ELEMENTS})
+    _off = _el.corr().values[np.triu_indices(7, 1)]
+    checkf("ch04 §4.2 · 실습 7 요소 일곱 평균 점수 사이 상관 범위(최저·최고)",
+           [_off.min(), _off.max()], [.44, .55])
+    # 2026-11-12d §4.2 상자 「문항을 늘리면 …」 = 같은 요소 안 · 다른 요소 사이 문항 상관 평균
+    _items7 = [f"hjs_{t}{i}" for t in ELEMENTS for i in (1, 2, 3)]
+    _Ri = svy[_items7].corr().values
+    _within = [_Ri[i, j] for i in range(21) for j in range(i + 1, 21) if i // 3 == j // 3]
+    _between = [_Ri[i, j] for i in range(21) for j in range(i + 1, 21) if i // 3 != j // 3]
+    checkf("ch04 §4.2 [더 나아가기] 문항 상관 평균(같은 요소 안·다른 요소 사이)",
+           [np.mean(_within), np.mean(_between)], [.60, .37])
     legacy = svy[[f"hjs_l{j}" for j in (1, 2, 3)]].mean(axis=1)
     # ── §4.2 역채점은 알파가 아니라 문항-총점 상관이 잡는다 (2026-09-05) ──
     _R = svy[items].copy()
@@ -420,6 +467,8 @@ def main():
     checkf("ch05 §5.1 mil 중앙값", svy.mil.median(), 5.0)
     check("ch05 §5.4 리커트 값의 가짓수(문항 하나·4문항 평균·21문항 평균)",
           [int(svy.mil_1.nunique()), int(svy.mil.nunique()), int(svy.hjs.nunique())], [7, 24, 79])
+    # 2026-11-12d 5장 실습 5 = gender 값의 가짓수 (mil_1 7 · mil 24 는 위 항목이 대조)
+    check("ch05 실습 5 gender 값의 가짓수", int(svy.gender.nunique()), 3)
     checkf("ch05 §5.2 상관(hjs-mil·hjs-flr·hjs-swl·mil-flr·mil-swl·flr-swl)",
            [svy.hjs.corr(svy.mil), svy.hjs.corr(svy.flr), svy.hjs.corr(svy.swl),
             svy.mil.corr(svy.flr), svy.mil.corr(svy.swl), svy.flr.corr(svy.swl)],
@@ -486,6 +535,21 @@ def main():
     # n=200 에서 시뮬과 공식이 갈리는 이유 = 보정. 본문·실습·상자 세 곳이 이 수에 걸려 있다.
     fpc200 = np.sqrt((len(pop) - 200) / (len(pop) - 1))
     checkf("ch11 §11.4 n=200 보정 후 참 SE", pop.std(ddof=1) / np.sqrt(200) * fpc200, .071, tol=.0006)
+    # 2026-11-12d §11.4 본문 시연 n = 25 · 100 (위 25·50·200 항목은 상자 「공식이 정확히 맞는 조건」)
+    _sim, _for = [], []
+    for _n in (25, 100):
+        _r = np.random.default_rng(73)
+        _m = np.array([_r.choice(pop, size=_n, replace=False).mean() for _ in range(1000)])
+        _sim.append(_m.std(ddof=1)); _for.append(pop.std(ddof=1) / _n ** 0.5)
+    checkf("ch11 §11.4 n=25·100 시뮬 SE(0.235 → 0.116)", _sim, [.235, .116], tol=.0006)
+    checkf("ch11 §11.4 n=25·100 공식 SE(0.25 → 0.125)", _for, [.25, .125], tol=.0006)
+    _fpc100 = np.sqrt((len(pop) - 100) / (len(pop) - 1))
+    checkf("ch11 §11.4 상자 n=100 보정 후 참 SE", pop.std(ddof=1) / np.sqrt(100) * _fpc100, .114, tol=.0006)
+    checkf("ch11 §11.4 상자 100 명은 566 명의 18%", 100 / len(pop) * 100, 18, tol=.6)
+    # 상자 「여기서만 공식이 20% 크다」(n = 200 ; 구 18% 정정) — 위 n별 시뮬 SE 의 sim[2] 와 같은 수
+    checkf("ch11 §11.4 상자 n=200 공식 ÷ 시뮬 − 1(20%)", formula[2] / sim[2] - 1, .20, tol=.01)
+    # §11.3 [더 나아가기] ddof 두 값
+    checkf("ch11 §11.3 ddof=1·0 표준편차", [pop.std(ddof=1), pop.std()], [1.2518, 1.2507], tol=.00006)
     # §6.5 중심극한정리 시연 = 치우침이 모집단에서 평균으로 가며 줄어든다
     r = np.random.default_rng(73)
     skew_pop = r.exponential(1.0, 20000)
@@ -511,6 +575,11 @@ def main():
     checkf("ch12 뒤섞기 p", (np.abs(diffs) >= abs(obs)).mean(), .030)
     tt = stats.ttest_ind(tg.mil, cg.mil)
     checkf("ch12 t·p", [tt.statistic, tt.pvalue], [2.21, .028])
+    # 2026-11-12d §12.4 t = 차이 ÷ 표준오차(0.283 ÷ 0.128 ≈ 2.21) · 자유도 364 의 자르는 지점
+    _se12 = np.sqrt(tg.mil.std(ddof=1)**2 / len(tg) + cg.mil.std(ddof=1)**2 / len(cg))
+    checkf("ch12 §12.4 차이 ÷ 표준오차", obs / _se12, 2.21, tol=.006)
+    checkf("ch12 §12.4 차이 · 표준오차(0.283 · 0.128)", [obs, _se12], [.283, .128], tol=.0006)
+    checkf("ch12 §12.4 자유도 364 의 97.5% 지점", stats.t.ppf(.975, 364), 1.967, tol=.0006)
 
     # ── v1.0 보강분 (2026-08-11 견본 장) ──────────────────────────
     raw_exp = load("exp", clean=False)
@@ -566,7 +635,7 @@ def main():
         ds = np.array([(y[(sh := rs.permutation(cnd)) == 1].mean() - y[sh == 0].mean())
                        for _ in range(5000)])
         ps_seed.append((np.abs(ds) >= abs(obs)).mean())
-    checkf("ch12 §12.6 씨앗별 뒤섞기 p", ps_seed, [.0302, .0290, .0304], tol=.00006)
+    checkf("ch12 §12.7 씨앗별 뒤섞기 p", ps_seed, [.0302, .0290, .0304], tol=.00006)
 
     # §7.6 사전등록 주장 = 결과변수를 여럿 두면 5%가 깨진다 (효과 없는 세계)
     rpre = np.random.default_rng(73)
@@ -577,7 +646,7 @@ def main():
         ps3 = [stats.ttest_ind(g1, g0).pvalue, stats.ttest_ind(y2, y3).pvalue,
                stats.ttest_ind(g1, y2).pvalue]
         hit3 += min(ps3) < .05
-    checkf("ch12 §12.6 결과변수 3개 위양성(12% 언저리)", hit3 / 3000, .126, tol=.015)
+    checkf("ch12 §12.7 결과변수 3개 위양성(12% 언저리)", hit3 / 3000, .126, tol=.015)
 
     # §7.2 영분포 퍼짐 = 이론 표준오차와 같다
     sp7 = np.sqrt(((len(tg)-1)*tg.mil.var(ddof=1) + (len(cg)-1)*cg.mil.var(ddof=1))
@@ -614,7 +683,7 @@ def main():
     checkf("ch13 §13.3 거꾸로 읽기(r .30 · 이 세계의 r .63)",
            [2 * r / np.sqrt(1 - r**2) for r in (.30, .63)], [.63, 1.62], tol=.006)
 
-    # ── ch16 §16.2 다중비교 보정 (2026-09-05) ──
+    # ── ch20 §20.2 다중비교 보정 (2026-09-05 ; 2026-11-12d 주석 정정 = 16장이 아니라 20장) ──
     from scipy import stats as _st
     _g = np.random.default_rng(73)
     _n, _K, _R = 100, 5, 4000
@@ -685,6 +754,21 @@ def main():
         checkf(f"ch19 §19.6 기저 균형 {_v}",
                [_xa.mean(), _xa.std(ddof=1), _ya.mean(), _ya.std(ddof=1), _tv, _pv, _dv],
                _want, tol=.006)
+    # 2026-11-12d §19.3 회귀 결과를 쓰는 문장 (S3 위계 회귀 ; 상자 출력 0.981 0.052 0.88 1.08 · 0.193 0.04 0.12 0.27)
+    _s19 = svy[svy.gender.isin([1, 2])]
+    _fm19 = (_s19.gender == 2).astype(float).values
+    _hc19 = (_s19.hjs - _s19.hjs.mean()).values
+    _rc19 = (_s19.refl - _s19.refl.mean()).values
+    def _ci19(X, k):
+        b, se, p, _ = ols(_s19.mil.values, X)
+        t = stats.t.ppf(.975, len(_s19) - len(X) - 1)
+        return b[k], se[k], b[k] - t * se[k], b[k] + t * se[k], float(p[k])
+    _a19 = _ci19([_s19.age.values, _fm19, _s19.hjs.values], 3)
+    _c19 = _ci19([_s19.age.values, _fm19, _hc19, _rc19, _hc19 * _rc19], 5)
+    checkf("ch19 §19.3 회귀 판형 여정 지각 b·SE·CI", list(_a19[:4]), [.981, .052, .88, 1.08], tol=.0051)
+    checkf("ch19 §19.3 회귀 판형 곱항 b·SE·CI", list(_c19[:4]), [.193, .040, .12, .27], tol=.0051)
+    check("ch19 §19.3 회귀 판형 두 p < .001", [_a19[4] < .001, _c19[4] < .001], [True, True])
+    check("ch19 §19.3 회귀 판형 n", len(_s19), 554)
 
     print("[ch18] §14.2 같은 기계·잘못 고르기")
     _bb, _se, _p14, _ = ols(exp.mil.values, [exp.cond.values])
@@ -727,6 +811,11 @@ def main():
     checkf("ch13 부트스트랩 95% CI", [np.percentile(bd, 2.5), np.percentile(bd, 97.5)],
            [0.03, 0.54])
     checkf("ch13 d(mil)", cohen_d(tg.mil, cg.mil), .23)
+    # 2026-11-12d §13.2 공식 경로 (0.128 은 「ch12 §12.2 이론 표준오차」와 같은 수)
+    _se13 = np.sqrt(tg.mil.std(ddof=1)**2 / len(tg) + cg.mil.std(ddof=1)**2 / len(cg))
+    checkf("ch13 §13.2 공식 SE", _se13, .128, tol=.0006)
+    checkf("ch13 §13.2 공식 구간 [0.03, 0.53]", [obs - 1.96 * _se13, obs + 1.96 * _se13], [.03, .53], tol=.0051)
+    checkf("ch13 §13.2 반올림 SD 로 쓴 식", np.sqrt(1.18**2 / 183 + 1.27**2 / 183), .128, tol=.0006)
     if not FAST:
         rng = np.random.default_rng(73)
         power = []
@@ -804,9 +893,15 @@ def main():
            [_res.mean(), np.corrcoef(_pred, _res)[0, 1]], [0.0, 0.0], tol=1e-9)
     _zx = (_x - _x.mean()) / _x.std(ddof=1)
     _zy = (_y - _y.mean()) / _y.std(ddof=1)
-    checkf("ch14 §14.5 표준화 기울기 = r",
+    checkf("ch14 §14.7 실습 1 표준화 기울기 = r",
            [np.polyfit(_zx, _zy, 1)[0], np.corrcoef(_x, _y)[0, 1]], [.6288, .6288], tol=.0006)
-    checkf("ch14 §14.5 극단값(mil 상수)", np.polyfit(_x, np.full(len(_y), 5.0), 1)[0], 0.0, tol=1e-9)
+    checkf("ch14 §14.7 실습 3 극단값(mil 상수)", np.polyfit(_x, np.full(len(_y), 5.0), 1)[0], 0.0, tol=1e-9)
+    # 2026-11-12d §14.4 첫머리 = 두 집단 t검정 = cond 회귀 (원고 출력 4.98 0.283 0.028)
+    _bc14, _, _pc14, _ = ols(exp.mil.values, [exp.cond.values])
+    _t14, _c14 = exp[exp.cond == 1].mil.values, exp[exp.cond == 0].mil.values
+    checkf("ch14 §14.4 cond 회귀(절편·기울기·p) = t검정",
+           [_bc14[0], _bc14[1], _pc14[1]], [4.98, .283, .028], tol=.006)
+    checkf("ch14 §14.4 cond 기울기 = 평균 차이", _bc14[1], _t14.mean() - _c14.mean(), tol=1e-9)
     # §9.1 네 세계 = 상관이 같아도 생김새가 다르다. 그림의 근거 수치.
     def _shape(kind, s_):
         g = np.random.default_rng(73); m = 200
@@ -973,7 +1068,7 @@ def main():
         ds = np.clip(r_.normal(2 + 4 * sx, 1.5), 0, 10)
         vg = 55 + sexeff * sx - 1.5 * ds + r_.normal(0, 4, n)
         return pd.DataFrame({"sex": sx, "dose": ds.round(1), "vigor": vg.round(1)})
-    checkf("ch08 §8.1 성별→기력 다리를 끊으면",
+    checkf("ch08 §8.6 실습 2 [더 나아가기] 상자 · 성별→기력 다리를 끊으면(본문 §8.1 결론)",
            [np.polyfit(_make2(sexeff=e).dose, _make2(sexeff=e).vigor, 1)[0] for e in (20.0, 0.0)],
            [1.70, -1.66])
     checkf("ch15 §15.2 통제 전후 회귀판(혼란·사슬·충돌)",
@@ -1058,6 +1153,19 @@ def main():
     checkf("ch16 §16.1 중앙값 분할 대조(n·기울기)",
            [len(_lo), len(_hi), ols(_lo.mil.values, [_lo.hjs.values])[0][1],
             ols(_hi.mil.values, [_hi.hjs.values])[0][1]], [435, 131, .873, 1.438], tol=.0006)
+    # 2026-11-12d §16.3 상자 = 쪼갠 집단의 평균 위치 (정합 결함 E11 ; 원고 −0.40SD · +1.31SD)
+    _sdr16, _mr16 = svy.refl.std(ddof=1), svy.refl.mean()
+    checkf("ch16 §16.3 쪼갠 집단의 평균 위치(SD 단위 ; 하위·상위)",
+           [(_lo.refl.mean() - _mr16) / _sdr16, (_hi.refl.mean() - _mr16) / _sdr16], [-.40, 1.31], tol=.006)
+    # 2026-11-12d §16.4 곱의 신뢰도 (난수 순서 = X → W → X 오차 → W 오차, 0.8 다음 0.6)
+    _g16 = np.random.default_rng(73)
+    _rel_out = []
+    for _rel in (0.8, 0.6):
+        _sde = np.sqrt((1 - _rel) / _rel)
+        _Xr, _Wr = _g16.normal(0, 1, 100_000), _g16.normal(0, 1, 100_000)
+        _Xo, _Wo = _Xr + _g16.normal(0, _sde, 100_000), _Wr + _g16.normal(0, _sde, 100_000)
+        _rel_out += [np.corrcoef(_Xr, _Xo)[0, 1] ** 2, np.corrcoef(_Xr * _Wr, _Xo * _Wo)[0, 1] ** 2]
+    checkf("ch16 §16.4 곱의 신뢰도(0.8 → .64 · 0.6 → .35)", _rel_out, [.80, .64, .60, .35], tol=.006)
     check("ch16 §16.1 설문판 두 기울기는 둘 다 유의(함정에 안 걸린다)",
           [bool(ols(_lo.mil.values, [_lo.hjs.values])[2][1] < .05),
            bool(ols(_hi.mil.values, [_hi.hjs.values])[2][1] < .05)], [True, True])
@@ -1154,6 +1262,14 @@ def main():
                 cell.append(5.0 + .3*reg + .2*t + drift + .5*reg*t + rr.normal(0, .02))
         return (cell[3] - cell[2]) - (cell[1] - cell[0])
     checkf("ch17 §17.2 DID(평행 성립·깨짐 ; 심은 값 .50)", [_did(True), _did(False)], [.476, .876], tol=.0006)
+    # 2026-11-12d §17.2 네 칸 표(잡음 뺀 값 ; 칸 순서 = 비교 전·후 · 정책 전·후)
+    def _cells(par):
+        return [5.0 + .3*reg + .2*t + (0 if par else .4*reg*t) + .5*reg*t
+                for reg in (0, 1) for t in (0, 1)]
+    checkf("ch17 §17.2 네 칸(잡음 없음 ; 평행)", _cells(True), [5.0, 5.2, 5.3, 6.0], tol=1e-9)
+    checkf("ch17 §17.2 네 칸(잡음 없음 ; 깨짐)", _cells(False), [5.0, 5.2, 5.3, 6.4], tol=1e-9)
+    checkf("ch17 §17.2 이중차분(잡음 없음 0.5 · 0.9)",
+           [(c[3]-c[2])-(c[1]-c[0]) for c in (_cells(True), _cells(False))], [.5, .9], tol=1e-9)
     # §13.2 단절 시계열: 실제 세계 + 추세 함정
     _b, _se, _, _ = ols(ts.wellbeing.values, [ts.week.values, ts.campaign.values])
     checkf("ch17 §17.3 시계열판(추세·사건·SE)", [_b[1], _b[2], _se[2]], [0.0, .306, .070], tol=.0006)
@@ -1161,10 +1277,17 @@ def main():
     _wk = np.arange(1, 105); _cm = (_wk >= 53).astype(int)
     _y = 4.5 + .012 * _wk + _r.normal(0, .25, 104)
     _bt, _st, _, _ = ols(_y, [_wk, _cm])
-    checkf("ch17 §17.3 추세 함정(전후차·추세 넣은 사건·회수된 추세)",
-           [_y[_cm == 1].mean() - _y[_cm == 0].mean(), _bt[2], _bt[1]], [.638, -.022, .0127], tol=.0006)
+    # 2026-11-12d 본문 출력 순서 = 추세 · 캠페인 · 표준오차 (0.0127 -0.022 0.100)
+    checkf("ch17 §17.3 추세 함정(전후차·회수된 추세·추세 넣은 사건·SE)",
+           [_y[_cm == 1].mean() - _y[_cm == 0].mean(), _bt[1], _bt[2], _st[2]],
+           [.638, .0127, -.022, .100], tol=.0006)
+    check("ch17 §17.3 −0.022 가 SE 의 두 배(0.20) 안", bool(abs(_bt[2]) < 2 * _st[2]), True)
+    checkf("ch17 §17.3 SE 의 두 배", 2 * _st[2], .20, tol=.0051)
     # §13.4 APC 비식별
     _co = pd.read_csv(os.path.join(DATA, "journey_cohort.csv"))
+    # 2026-11-12d 17장 실습 3 = 조사 연도별 평균 mil (S4b 와 같은 수)
+    checkf("ch17 실습3 연도별 mil(2015·2020·2025)",
+           list(_co.groupby("year").mil.mean().values), [4.42, 4.19, 4.60])
     checkf("ch17 §17.4 항등식 오차 0", float((_co.age - (_co.year - _co.birth)).abs().max()), 0.0, tol=1e-9)
     _X = np.column_stack([np.ones(len(_co)), _co.age, _co.year, _co.birth])
     checkf("ch17 §17.4 설계행렬 rank(3 / 4 열)", float(np.linalg.matrix_rank(_X)), 3.0, tol=1e-9)
@@ -1251,6 +1374,9 @@ def main():
            [5.53, 5.33, 0.22, .038])
     bb, se, p, _ = ols(exp.mil.values, [exp.cond.values, exp.mil_t1.values])
     checkf("S1⑧ 공변인 조정(b·SE·p)", [bb[1], se[1], p[1]], [0.29, 0.11, .007])
+    # 2026-11-12d S1 ⑧ 조정 전 표준오차 0.13 (조정 후 0.11 과 견준다)
+    _bu1, _su1, _pu1, _ = ols(exp.mil.values, [exp.cond.values])
+    checkf("S1⑧ 조정 전(b·SE·p)", [_bu1[1], _su1[1], _pu1[1]], [0.28, 0.13, .028])
     t1c = exp.mil_t1 - exp.mil_t1.mean()
     bb, _, p, _ = ols(exp.mil.values,
                       [exp.cond.values, t1c.values, (exp.cond * t1c).values])
@@ -1371,6 +1497,26 @@ def main():
     checkf("S3⑨ 방향을 뒤집어도 R² 가 같다", [_r2a, _r2b], [.3953, .3953], tol=.00006)
     check("S3⑨ 방향을 뒤집어도 p 가 같다", bool(abs(_pa[1] - _pb[1]) < 1e-70), True)
     check("S3 위계 표본(성별 1·2만)", len(_s3), 554)
+    # 2026-11-12d 학습 부담 개선 (A1 ⑨ 기울기 = r × SD 비 · A2 ⑨ ✓ 문장의 구간 · A3 ⑦ 단순기울기 비)
+    _hc3s = (_s3.hjs - _s3.hjs.mean()).values
+    _rc3s = (_s3.refl - _s3.refl.mean()).values
+    _r9 = float(np.corrcoef(svy.hjs, svy.mil)[0, 1])
+    checkf("S3⑨ 기울기 = r × SD 비 (여정→의미 · 의미→여정)",
+           [_r9 * svy.mil.std(ddof=1) / svy.hjs.std(ddof=1),
+            _r9 * svy.hjs.std(ddof=1) / svy.mil.std(ddof=1)], [.978, .404], tol=.0006)
+    checkf("S3⑨ 본문 산식(반올림 입력) .63×1.25÷0.80 · .63×0.80÷1.25",
+           [.63 * 1.25 / 0.80, .63 * 0.80 / 1.25], [.98, .40], tol=.0051)
+    for _X9, _k9, _want9 in (([_s3.age.values, _fm, _s3.hjs.values], 3, "[0.88, 1.08]"),
+                             ([_s3.age.values, _fm, _hc3s, _rc3s, _hc3s * _rc3s], 5, "[0.12, 0.27]")):
+        _b9, _se9, _, _ = ols(_s3.mil.values, _X9)
+        _tc9 = stats.t.ppf(.975, len(_s3) - len(_X9) - 1)
+        check(f"S3⑨ ✓ 문장 b[{_k9}] 의 95% CI (원래 값에서 한 번 반올림)",
+              f"[{_b9[_k9] - _tc9 * _se9[_k9]:.2f}, {_b9[_k9] + _tc9 * _se9[_k9]:.2f}]", _want9)
+    _b37, *_ = ols(_s3.mil.values, [_s3.age.values, _fm, _hc3s, _rc3s, _hc3s * _rc3s])
+    _sd37 = _rc3s.std(ddof=1)
+    checkf("S3⑦ 단순기울기(−1SD · +1SD)와 비",
+           [_b37[3] - _b37[5] * _sd37, _b37[3] + _b37[5] * _sd37,
+            (_b37[3] + _b37[5] * _sd37) / (_b37[3] - _b37[5] * _sd37)], [.73, 1.25, 1.71], tol=.006)
 
     print("[S4] 패널 이탈·교차지연·코호트")
     nbw = pan.groupby("wave").size()
@@ -1647,6 +1793,15 @@ def main():
           _grid(_half), [False, True, True, True, False, True])
     check("ch21 §21.5 어느 시험도 셋을 다 못 잡는다(최고가 ④의 2/3)",
           max(sum(not _grid(f)[k] for f in (_no_int, _swap, _half)) for k in range(6)), 2)
+    # 2026-11-12d §21.4 ⑥ 판정 기준(섞은 기울기 평균의 절댓값 .05 미만)과 §21.5 A 가 ⑥ 에서 걸리는 까닭
+    def _null200(f):
+        gg = np.random.default_rng(73)
+        return np.array([f(_y21, gg.permutation(_x21)) for _ in range(200)])
+    _nok, _nai = _null200(_ols_slope), _null200(_no_int)
+    checkf("ch21 §21.4 ⑥ 바른 판 섞은 기울기 최소·최대·평균",
+           [_nok.min(), _nok.max(), _nok.mean()], [-.17, .18, .001], tol=.0051)
+    checkf("ch21 §21.5 ⑥ AI 판 섞은 기울기 평균", _nai.mean(), .95, tol=.0051)
+    checkf("ch21 §21.5 두 평균의 비 (Y 평균 ÷ X 평균)", _y21.mean() / _x21.mean(), .976, tol=.0006)
 
 
     print("[ch02·ch04·ch14·ch16] 배터리 밖에 있던 네 곳 (2026-09-06 등재)")

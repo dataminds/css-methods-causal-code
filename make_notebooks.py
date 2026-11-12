@@ -112,6 +112,32 @@ STEPS = {
   'panel = pd.read_csv("data/journey_panel.csv")\n'
   'w = panel.pivot(index="id", columns="wave", values="mil")\n'
   'print("2차 결측:", int(w[2].isna().sum()), " 3차 결측:", int(w[3].isna().sum()))'),
+ ("## 5. 기준을 하나씩 얹어 보기 (§3.3 상자)\n정제 기준 넷을 차례로 얹어 남는 인원과 여정–의미 상관을 봅니다. 인원은 590 → 517로 줄지만 상관은 거의 안 움직입니다.",
+  'raw = load("svy", clean=False)\n'
+  'items_r = [c for c in raw.columns if c.startswith("hjs_")]\n'
+  'sd_item = raw[items_r].std(axis=1)                 # 문항 사이 흩어짐 (0 에 가까우면 일자 응답)\n'
+  'rules = {"정제 없음":   raw.attn_1 > -1,\n'
+  '         "주의점검":     raw.attn_1 == 1,\n'
+  '         "+ 일자응답":   (raw.attn_1 == 1) & (sd_item >= 0.5),\n'
+  '         "+ 나이 19~65": (raw.attn_1 == 1) & (sd_item >= 0.5) & raw.age.between(19, 65)}\n'
+  'for lab, m in rules.items():\n'
+  '    sub = raw[m]\n'
+  '    print(lab, len(sub), round(sub.hjs.corr(sub.mil), 3))\n'
+  '# 정제 없음 590 0.635 / 주의점검 566 0.629 / + 일자응답 563 0.624 / + 나이 19~65 517 0.628'),
+ ("## 6. 표본이 작으면 기준 선택이 무거워진다 (실습 4)\n566명과 60명을 300번씩 뽑아, 네 기준이 내는 상관의 최대 격차를 봅니다. 먼저 60명이면 격차가 얼마나 커질지 예측해 적고 돌리세요.",
+  'rng = np.random.default_rng(73)\n'
+  'for n in (566, 60):\n'
+  '    격차 = []\n'
+  '    for _ in range(300):\n'
+  '        i = rng.choice(len(raw), n, replace=False)      # n명을 무작위로 뽑는다\n'
+  '        sub, sv = raw.iloc[i], sd_item.iloc[i]\n'
+  '        ms = [sub.attn_1 > -1, sub.attn_1 == 1, (sub.attn_1 == 1) & (sv >= 0.5),\n'
+  '              (sub.attn_1 == 1) & (sv >= 0.5) & sub.age.between(19, 65)]\n'
+  '        rs = [sub[m].hjs.corr(sub[m].mil) for m in ms]\n'
+  '        격차.append(max(rs) - min(rs))                   # 네 상관의 최대 격차\n'
+  '    print(n, round(np.mean(격차), 3), round(max(격차), 3))\n'
+  '# 566 0.011 0.014\n'
+  '# 60 0.028 0.111'),
 ],
 "ch04": [
  ("## 2. 신뢰도(크론바흐 알파)\n여정 척도 21문항의 내적 일관성. .93이 나옵니다.",
@@ -122,6 +148,13 @@ STEPS = {
   'for e,name in zip("psqactl", ["주인공","전환","소명","조력자","시련","변형","유산"]):\n'
   '    a = cronbach(svy[[f"hjs_{e}{j}" for j in (1,2,3)]].values)\n'
   '    print(f"{name}: α = {a:.2f}")'),
+ ("## 4. 요소 일곱의 평균 점수 사이 상관 (실습 7)\n요소마다 세 문항을 평균한 점수를 만들고 서로의 상관 표를 봅니다. 요소끼리 .44~.55로 함께 움직입니다.",
+  'tags = ["p", "s", "q", "a", "c", "t", "l"]\n'
+  'el = pd.DataFrame({t: svy[[f"hjs_{t}{i}" for i in (1, 2, 3)]].mean(axis=1) for t in tags})\n'
+  'R = el.corr()\n'
+  'print(R.round(2))\n'
+  'off = R.values[np.triu_indices(7, 1)]\n'
+  'print("최저", round(off.min(), 2), " 최고", round(off.max(), 2))   # 0.44 0.55'),
 ],
 "ch05": [
  ("## 2. 표 1 만들기\n논문의 첫 표. 주요 변수의 평균·표준편차.",
@@ -130,6 +163,23 @@ STEPS = {
   '    print(f"{v}: M={svy[v].mean():.2f}, SD={svy[v].std(ddof=1):.2f}")'),
  ("## 3. 상관: 이 책 내내 따라올 숫자\n여정과 의미의 상관 .63. 아직 아무 인과도 아닙니다(6·7장).",
   'print("r(여정, 의미) =", round(svy.hjs.corr(svy.mil), 2))'),
+ ("## 4. 분포를 그림으로 (실습 2 · 3 의 출발점)\n§5.1 의 히스토그램과 평균선, §5.2 의 성별 바이올린입니다. "
+  "⚠ 한글 축 이름이 네모로 나오면 글꼴을 지정하세요(부록 E 의 `plt.rcParams[\"font.family\"]` 안내).",
+  'import matplotlib.pyplot as plt\n'
+  'fig, ax = plt.subplots(figsize=(6, 3.2))\n'
+  'ax.hist(svy["mil"], bins=20)                       # 점수대별 사람 수\n'
+  'ax.axvline(svy["mil"].mean(), linestyle="--")      # 평균선\n'
+  'ax.set_xlabel("삶의 의미 (1~7점)")\n'
+  'ax.set_ylabel("사람 수")\n'
+  '\n'
+  'fig, ax = plt.subplots(figsize=(6, 3.2))\n'
+  'ax.violinplot([svy[svy.gender == 1]["mil"], svy[svy.gender == 2]["mil"]])   # 1 = 남, 2 = 여\n'
+  'ax.set_xticks([1, 2], ["남", "여"])'),
+ ("## 5. 값의 가짓수 (실습 5)\n세 열이 서로 다른 값을 몇 가지 갖는지 셉니다. 척도 수준을 가르는 단서입니다.",
+  'print(svy["gender"].nunique(),   # 성별\n'
+  '      svy["mil_1"].nunique(),    # 문항 하나\n'
+  '      svy["mil"].nunique())      # 4문항 평균\n'
+  '# 3 7 24'),
 ],
 "ch11": [
  ("## 2. 표집분포를 직접 생성\n566명을 모집단 삼아 50명씩 1,000번 뽑아 평균을 모읍니다.",
@@ -140,6 +190,14 @@ STEPS = {
   'print("표집분포 표준편차(표준오차):", round(means.std(ddof=1), 3))   # 0.175'),
  ("## 3. 공식은 시뮬레이션의 요약\nSD÷√n 이 시뮬레이션 값과 사실상 같습니다.",
   'print("공식 SD/√n =", round(pop.std(ddof=1)/np.sqrt(50), 3))     # 0.177'),
+ ("## 4. 표본을 네 배로 늘리면\n*n* = 25 와 100 에서 같은 일을 합니다. 왼쪽이 시뮬레이션, 오른쪽이 공식. 오차가 거의 절반이 됩니다.",
+  'for n in (25, 100):\n'
+  '    rng = np.random.default_rng(73)\n'
+  '    m = np.array([rng.choice(pop, size=n, replace=False).mean()\n'
+  '                  for _ in range(1000)])\n'
+  '    print(n, round(m.std(ddof=1), 3), round(pop.std(ddof=1) / n ** 0.5, 3))\n'
+  '# 25 0.235 0.25\n'
+  '# 100 0.116 0.125'),
 ],
 "ch12": [
  ("## 2. 뒤섞기 검정\n'효과 없는 세계'를 5,000번 지어 관찰 차이가 얼마나 드문지 봅니다.",
@@ -163,6 +221,12 @@ STEPS = {
   'print("95% 신뢰구간 =", [round(np.percentile(bd,2.5),2), round(np.percentile(bd,97.5),2)])  # [0.03, 0.54]'),
  ("## 3. 효과크기 d\n척도에 매이지 않는 크기. 작은 효과입니다.",
   'print("d =", round(cohen_d(exp[exp.cond==1].mil, exp[exp.cond==0].mil), 2))   # 0.23'),
+ ("## 4. 공식 경로로 다시 구한다 (독립 재계산)\n두 평균 차이의 표준오차에 1.96 을 곱해 구간을 폅니다. 2절의 부트스트랩 구간 [0.03, 0.54] 와 견주어 보세요.",
+  'tg, cg = exp[exp.cond == 1].mil, exp[exp.cond == 0].mil\n'
+  'se = np.sqrt(tg.std(ddof=1)**2 / len(tg) + cg.std(ddof=1)**2 / len(cg))\n'
+  'obs = tg.mean() - cg.mean()\n'
+  'print(round(se, 3), round(obs - 1.96 * se, 2), round(obs + 1.96 * se, 2))\n'
+  '# 0.128 0.03 0.53'),
 ],
 "ch14": [
  ("## 2. 회귀: 관계를 한 줄의 식으로\n기울기 0.98, 절편 -0.01, R² .40.",
@@ -188,11 +252,19 @@ STEPS = {
   'for sx,name in [(0,"암컷"),(1,"수컷")]:\n'
   '    g = zg[zg.sex==sx]\n'
   '    print(f"  {name} 기울기:", round(np.polyfit(g.dose, g.vigor,1)[0], 2))    # -1.72 / -1.66'),
- ("## 3. 극단값 시험\n성별의 기력 차이(+20)를 0으로 하면 전체 기울기가 진짜 값(-1.5쪽)으로 돌아옵니다.",
-  'zg2 = make_simpson(); import numpy as _np\n'
-  '# 성별 효과 제거: 수컷 기력에서 +20을 빼 균질화\n'
-  'zg2.loc[zg2.sex==1, "vigor"] = zg2.loc[zg2.sex==1, "vigor"] - 20\n'
-  'print("성별 효과 제거 후 전체 기울기:", round(np.polyfit(zg2.dose, zg2.vigor,1)[0], 2))'),
+ ("## 3. 극단값 시험: 다리 하나를 끊는다 (실습 2)\n성별 → 복용량은 그대로 두고 성별 → 기력(+20)만 0으로 끊어 세계를 다시 짓습니다. "
+  "**돌리기 전에** 전체 기울기가 어떻게 될지 예측해 적으세요.",
+  'def make2(seed=73, n=400, sexeff=20.0):        # 성별 → 기력 만 조절\n'
+  '    rng = np.random.default_rng(seed)\n'
+  '    sex = rng.integers(0, 2, n)\n'
+  '    dose = np.clip(rng.normal(2 + 4*sex, 1.5), 0, 10)\n'
+  '    vigor = 55 + sexeff*sex - 1.5*dose + rng.normal(0, 4, n)\n'
+  '    return pd.DataFrame({"sex": sex, "dose": dose.round(1), "vigor": vigor.round(1)})\n'
+  '\n'
+  'for e in (20.0, 0.0):\n'
+  '    print(e, round(np.polyfit(make2(sexeff=e).dose, make2(sexeff=e).vigor, 1)[0], 2))\n'
+  '# 20.0 1.7\n'
+  '# 0.0 -1.66'),
 ],
 "ch15": [
  ("## 2. 다중회귀 = 통계적 통제\n저그마을(8장): 성별을 통제하자 복용량 계수가 +1.70에서 -1.69로 뒤집힙니다.",
@@ -329,7 +401,15 @@ STEPS = {
   'print(round(pop.std(ddof=1) / np.sqrt(30), 3))                        # 공식 SD/sqrt(30)\n'
   '# 1.252 -0.306 / 0.222 -0.059 / 0.229\n'
   '# 흩어짐이 다섯 배 줄고 비뚤어짐도 펴진다. 그리고 공식이 시뮬레이션을 맞힌다.'),
- ("## 6. *t*분포가 정규로 수렴한다\n표본이 작을수록 꼬리가 두껍습니다. 자유도가 커지면 1.96으로 갑니다.",
+ ("## 6. 사람 수 셋을 직접 돌려 보기\n5명 · 30명 · 100명 평균 2,000개의 흩어짐과 치우침. 사람 수마다 씨앗을 73으로 다시 정합니다.",
+  'for n in (5, 30, 100):\n'
+  '    g = np.random.default_rng(73)\n'
+  '    means = np.array([g.choice(pop, n, replace=False).mean() for _ in range(2000)])\n'
+  '    print(n, round(means.std(ddof=1), 3), round(float(stats.skew(means)), 3))\n'
+  '# 5 0.574 -0.2\n'
+  '# 30 0.222 -0.059\n'
+  '# 100 0.116 -0.048'),
+ ("## 7. *t*분포가 정규로 수렴한다\n표본이 작을수록 꼬리가 두껍습니다. 자유도가 커지면 1.96으로 갑니다.",
   'for df in (5, 30, 200):\n'
   '    print(df, round(stats.t.ppf(.975, df), 3))\n'
   'print(round(stats.norm.ppf(.975), 3))\n'
@@ -345,7 +425,7 @@ STEPS = {
   'F, p = stats.f_oneway(*grp)\n'
   'print(round(F, 3), round(p, 4))\n'
   '# [110, 106, 109, 105] [4.9, 4.81, 4.95, 5.2] / 1.728 0.1605'),
- ("## 3. ⭐⭐ 전체는 유의하지 않은데 쌍별로는\n네 줄이 이 단위의 전부입니다. "
+ ("## 3. ⭐⭐ 전체는 유의하지 않은데 쌍별로는\n"
   "쌍이 여섯이면 그중 가장 작은 *p*는 그쯤 나옵니다.",
   'pairs = [(i, j) for i in range(4) for j in range(i + 1, 4)]\n'
   'ps = [stats.ttest_ind(grp[i], grp[j]).pvalue for i, j in pairs]\n'
@@ -372,7 +452,7 @@ STEPS = {
   '# 기울기가 소수 둘째 자리까지 같다. R2 도 둘 다 .395 다. 출력으로는 못 가른다.'),
  ("## 3. ⭐⭐ 불변식을 건다\n답이 얼마인지는 몰라도, **입력을 이렇게 바꾸면 출력이 저렇게 바뀌어야 한다**는 것은 압니다.",
   'def ai_기울기(yy, xx):    return ai_회귀(yy, xx)[0]\n'
-  'def 바른_기울기(yy, xx):                 # SE 없이 기울기만 (특이행렬 회피)\n'
+  'def 바른_기울기(yy, xx):                 # 절편 열을 붙이고 기울기만 구한다 ; 상수 입력에서도 돈다\n'
   '    yy = np.asarray(yy, float)\n'
   '    X = np.column_stack([np.ones(len(yy)), np.asarray(xx, float)])\n'
   '    return float(np.linalg.lstsq(X, yy, rcond=None)[0][1])\n'
@@ -405,6 +485,12 @@ STEPS = {
   'for nm, f in (("바른 판", 바른_기울기), ("A 절편없음", ai_기울기),\n'
   '              ("B X·Y뒤바꿈", 고장B), ("C 앞절반", 고장C)):\n'
   '    print(f"{nm:11s}", round(f(y, x), 3), 격자(f))\n'
+  '# ⑥ 의 판정 = X 를 200번 섞은 기울기의 평균이 0 둘레(절댓값 .05 미만)인가\n'
+  'for nm, f in (("바른 판", 바른_기울기), ("A 절편없음", ai_기울기)):\n'
+  '    gg = np.random.default_rng(73)\n'
+  '    널 = [f(y, gg.permutation(x)) for _ in range(200)]\n'
+  '    print(f"{nm:11s}", "⑥ 섞은 기울기 평균", round(float(np.mean(널)), 3))\n'
+  '# 바른 판 0.001 · A 절편없음 0.952 (본문 §21.4 · §21.5 의 0.001 · 0.95)\n'
   '# 어느 시험도 고장 셋을 다 못 잡는다. 고장마다 잡는 시험이 다르다.\n'
   '# 그러므로 시험 묶음은 개수가 아니라 다양성으로 산다.'),
  ("## 5. 익명 공개 점검\n심사에 낼 폴더에서 신원이 새는 곳을 훑습니다. "
@@ -498,6 +584,21 @@ STEPS = {
   '          f"t({df})={t:.2f} p={p:.3f} d={d:.2f} CI[{d-1.96*se_d:.2f}, {d+1.96*se_d:.2f}]")\n'
   'for v in ("mil", "hjs", "flr", "age", "mil_t1"):\n'
   '    보고(exp[exp.cond==1][v].values, exp[exp.cond==0][v].values, v)'),
+ ("## 5. 회귀 결과를 쓰는 문장의 수 (§19.3 상자 · 실습 7)\nS3 의 위계 회귀에서 2단계 여정 지각과 3단계 곱항의 *b* · *SE* · 95% 구간을 다시 뽑습니다. "
+  "성별 통제 분석이라 표본은 554명입니다.",
+  'svy = load("svy")\n'
+  's = svy[svy.gender.isin([1, 2])]                 # 성별 1 · 2 만 = 554명\n'
+  'fem = (s.gender == 2).astype(float)\n'
+  'h = s.hjs - s.hjs.mean(); r = s.refl - s.refl.mean()\n'
+  'def 구간(y, X, k):\n'
+  '    b, se, p, _ = ols(y, X)\n'
+  '    t = stats.t.ppf(.975, len(y) - len(X) - 1)\n'
+  '    print(round(b[k], 3), round(se[k], 3), round(b[k] - t*se[k], 2), round(b[k] + t*se[k], 2))\n'
+  '\n'
+  '구간(s.mil, [s.age, fem, s.hjs], 3)\n'
+  '구간(s.mil, [s.age, fem, h, r, h * r], 5)\n'
+  '# 0.981 0.052 0.88 1.08\n'
+  '# 0.193 0.04 0.12 0.27'),
 ],
 "s1": [
  ("## 2. ③ 균형 점검\n무작위가 **이 표본에서** 실제로 균형을 만들었는지 확인. 셋 다 차이가 없어야 한다.",
@@ -682,7 +783,7 @@ CR_FAMILIES = (
 # (제목, 의도+버그코드 markdown, 실행 셀) — 실행 셀은 버그판·정답판을 나란히 출력
 CODE_READING = [
  ("### 문제 1 · 집단",
-  "**의도**: 개입 집단(cond==1)과 **통제 집단(cond==0)** 의 삶의 의미(mil) 평균 차이를 구한다.\n\n"
+  "**의도**: 주의 점검을 통과한 사람(attn_1이 1)만으로, 개입 집단(cond==1)과 **통제 집단(cond==0)** 의 삶의 의미(mil) 평균 차이를 구한다.\n\n"
   "AI가 준 코드:\n\n"
   "```python\n"
   'exp = exp[exp.attn_1 == 1]\n'
@@ -891,7 +992,8 @@ def build(ch):
         cells.append(md(SIDEBAR))
     for m, c in STEPS[ch]:
         cells.append(md(m)); cells.append(code(c))
-    cells.append(md(BAKE))
+    # 마지막 번호는 장별 셀 수를 따라간다(2026-11-12 ; 구판은 「## 4」로 고정돼 셀이 넷 이상인 장에서 번호가 겹쳤다)
+    cells.append(md(BAKE.replace("## 4.", f"## {len(STEPS[ch]) + 2}.", 1)))
     return {"cells": cells,
             "metadata": {"colab": {"provenance": []},
                          "kernelspec": {"display_name": "Python 3", "name": "python3"},
