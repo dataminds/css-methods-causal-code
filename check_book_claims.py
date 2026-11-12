@@ -191,6 +191,9 @@ def main():
            [exp_raw[exp_raw.cond == 1].mil.mean() - exp_raw.mil.mean(),
             exp[exp.cond == 1].mil.mean() - exp[exp.cond == 0].mil.mean()],
            [.139, .283], tol=.0006)
+    # 2026-11-12g 실습 4 ⚠ = 코드 읽기 노트북 문제 1 은 정제된 자료로 돌아 틀린 판이 0.141
+    checkf("ch02 §2.5 실습 4 ⚠ 노트북판 틀린 값(정제 후 개입 - 전체)",
+           [exp[exp.cond == 1].mil.mean() - exp.mil.mean()], [.141], tol=.0006)
     # 2026-11-12d S0 §S0.4 = 평균 차이 0.28 은 집단 안 SD(1.18 · 1.27)의 4분의 1 에도 못 미친다
     _s0 = exp.groupby("cond").mil.agg(["mean", "std"])
     _d0 = exp[exp.cond == 1].mil.mean() - exp[exp.cond == 0].mil.mean()

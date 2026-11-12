@@ -342,7 +342,7 @@ def fig_ch12_perm(n_perm=5000, seed=73):
     return obs, p
 
 
-# ── ch07: 같은 세계, 표본마다 흔들리는 p값 ─────────────────────
+# ── ch07: 같은 세계, 표본마다 달라지는 p값 ─────────────────────
 def fig_ch12_pvar(n_draw=20, n_sub=100, seed=37):
     """§7.3 = p값은 자료의 성질이 아니라 이 표본의 성질이다.
 
@@ -728,7 +728,7 @@ def fig_ch15_collinear(seed=73):
     ax.axhline(b0[1], color=OI[7], linestyle="--", linewidth=1.2, label=f"단독 모형 {b0[1]:.2f}")
     ax.set_xlabel("두 변수의 상관"); ax.set_ylabel("hjs 계수 (95% 구간)")
     ax.legend(fontsize=8)
-    fig.suptitle("겹칠수록 계수가 흔들린다: 편향이 아니라 불안정 (씨앗 73)", y=1.02)
+    fig.suptitle("겹칠수록 계수가 표본마다 크게 달라진다: 편향이 아니라 불안정 (씨앗 73)", y=1.02)
     save(fig, "fig-ch15-collinear.png")
     return rows
 
@@ -1276,7 +1276,7 @@ def fig_ch02_seeds(planted=0.31, n=380, worlds=500):
 
 
 def fig_ch09_balance(seed=73, n=400, reps=2000):
-    """무작위는 편향되지 않았고 흔들릴 뿐이다. 블록은 그 흔들림을 줄인다."""
+    """무작위는 편향되지 않았고 판마다 달라질 뿐이다. 블록은 그 변동을 줄인다."""
     rng = np.random.default_rng(seed)
     base = rng.normal(0, 1, n)
     pre = base + rng.normal(0, 0.5, n)      # 사전검사 = 기저의 대리 지표
@@ -1302,7 +1302,7 @@ def fig_ch09_balance(seed=73, n=400, reps=2000):
     ax.axvline(0, color=OI[7], linestyle="--", linewidth=1.4, label="참 차이 = 0")
     ax.set_xlabel("한 번의 배정이 만든 기저 불균형 (d)"); ax.set_ylabel("빈도")
     ax.legend(fontsize=8)
-    fig.suptitle("무작위는 평균적으로 맞고, 한 번에서는 흔들린다 (씨앗 73)", y=1.02)
+    fig.suptitle("무작위는 평균적으로 맞지만, 한 판의 값은 판마다 다르다 (씨앗 73)", y=1.02)
     save(fig, "fig-ch09-balance.png")
     return simple, block
 

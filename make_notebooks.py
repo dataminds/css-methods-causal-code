@@ -213,7 +213,7 @@ STEPS = {
   'print(f"t = {tt.statistic:.2f}, p = {tt.pvalue:.3f}")             # 2.21, 0.028'),
 ],
 "ch13": [
- ("## 2. 부트스트랩 신뢰구간\n표본에서 다시 뽑아 추정치의 흔들림 폭을 구합니다.",
+ ("## 2. 부트스트랩 신뢰구간\n표본에서 다시 뽑아, 다른 표본이었다면 추정치가 얼마나 달라졌을지를 범위로 구합니다.",
   'exp = load("exp")\n'
   'tv = exp[exp.cond==1].mil.values; cv = exp[exp.cond==0].mil.values\n'
   'rng = np.random.default_rng(73)\n'
