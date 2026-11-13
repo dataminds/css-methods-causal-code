@@ -608,6 +608,29 @@ def main():
     checkf("ch12 §12.3 표본 20개 p 최소·최대", [ps20.min(), ps20.max()], [0.006, 0.792], tol=.0006)
     check("ch12 §12.3 표본 20개 중 유의", int((ps20 < .05).sum()), 5)
 
+    # 2026-11-13d §12.1 그림 = 1종 · 2종 오류 (정규 근사 · 양측 · SD 1.23 · d 0.22)
+    _sd, _eff = 1.23, 0.22 * 1.23
+    def _beta(n, a):
+        se = np.sqrt(2 * _sd ** 2 / n); c = stats.norm.ppf(1 - a / 2) * se
+        return stats.norm.cdf((c - _eff) / se) - stats.norm.cdf((-c - _eff) / se)
+    checkf("ch12 §12.1 그림 효과 있는 세계의 차이(점)", _eff, 0.27, tol=.006)
+    checkf("ch12 §12.1 2종 오류(183명 · .10 · .05 · .01)", [_beta(183, .10), _beta(183, .05), _beta(183, .01)],
+           [.32, .44, .68], tol=.006)
+    checkf("ch12 §12.1 2종 오류(366명 · .05)", _beta(366, .05), .15, tol=.006)
+    checkf("ch12 §12.1 검정력(183명 · .05)", 1 - _beta(183, .05), .56, tol=.006)
+    # §12.2 INWORKS 상자 = 원문 90% 구간에서 SE 되짚기(정규 근사)
+    for _lab, _e, _lo, _hi, _w in [("전체", .52, .27, .77, [.0003, .0006, .22, .82]),
+                                   ("0~50 mGy", 1.38, .20, 2.60, [.029, .059, -.05, 2.81])]:
+        _s = (_hi - _lo) / (2 * 1.645)
+        checkf(f"ch12 §12.2 INWORKS {_lab} 단측 · 양측 p · 95% 구간",
+               [stats.norm.sf(_e / _s), 2 * stats.norm.sf(_e / _s), _e - 1.96 * _s, _e + 1.96 * _s], _w, tol=.006)
+    # §12.3 S값 · 기저율 표(검정력 .557 · 1,000건)
+    checkf("ch12 §12.3 S값(p .028 · .05)", [-np.log2(.028), -np.log2(.05)], [5.2, 4.3], tol=.06)
+    _pw = 1 - _beta(183, .05)
+    for _br, _w in [(.10, [56, 45, .55]), (.25, [139, 38, .79]), (.50, [279, 25, .92])]:
+        _T, _F = 1000 * _br * _pw, 1000 * (1 - _br) * .05
+        checkf(f"ch12 §12.3 기저율 {_br:.0%} 참 유의 · 거짓 유의 · 비율", [_T, _F, _T / (_T + _F)], _w, tol=.6)
+
     exp_hi = exp.assign(high=(exp.mil >= exp.mil.median()).astype(int))
     tab = pd.crosstab(exp_hi.cond, exp_hi.high)
     chi2, p_chi, dof_chi, _ = stats.chi2_contingency(tab, correction=False)
@@ -772,6 +795,18 @@ def main():
     checkf("ch19 §19.3 회귀 판형 곱항 b·SE·CI", list(_c19[:4]), [.193, .040, .12, .27], tol=.0051)
     check("ch19 §19.3 회귀 판형 두 p < .001", [_a19[4] < .001, _c19[4] < .001], [True, True])
     check("ch19 §19.3 회귀 판형 n", len(_s19), 554)
+    # 2026-11-13f §19.3 끝 동등성 검정 = 설문판 성별 1 · 2 (차이 = 2 − 1 ; 경계 d ±0.2 ; 합동 SD)
+    _g = svy[svy.gender.isin([1, 2])]
+    check("ch19 §19.3 동등성 표본 수", len(_g), 554)
+    for _v, _w in [("mil", [-.02, -.23, .19, .82, .25, -.20, .15]), ("flr", [-.07, -.22, .08, .36, .18, -.19, .05])]:
+        _a, _b = _g[_g.gender == 1][_v], _g[_g.gender == 2][_v]
+        _na, _nb = len(_a), len(_b); _df = _na + _nb - 2
+        _sp = np.sqrt(((_na - 1) * _a.var() + (_nb - 1) * _b.var()) / _df)
+        _dd = _b.mean() - _a.mean(); _se = _sp * np.sqrt(1 / _na + 1 / _nb)
+        _t95, _t90 = stats.t.ppf(.975, _df), stats.t.ppf(.95, _df)
+        checkf(f"ch19 §19.3 동등성 {_v} 차이 · 95% 구간 · p · 경계 · 90% 구간",
+               [_dd, _dd - _t95 * _se, _dd + _t95 * _se, 2 * stats.t.sf(abs(_dd / _se), _df), .2 * _sp,
+                _dd - _t90 * _se, _dd + _t90 * _se], _w, tol=.006)
 
     print("[ch18] §14.2 같은 기계·잘못 고르기")
     _bb, _se, _p14, _ = ols(exp.mil.values, [exp.cond.values])
@@ -846,6 +881,14 @@ def main():
         h = 1.96 * x.std(ddof=1) / np.sqrt(50)
         hit += (x.mean() - h <= truth <= x.mean() + h)
     check("ch13 §13.2 커버리지(100개 중)", hit, 96)
+    # 2026-11-13d = 1.96 대신 t(49) 값 2.01 을 써도 96 그대로
+    r = np.random.default_rng(73); hit_t = 0; _tc = stats.t.ppf(.975, 49)
+    for _ in range(100):
+        x = r.choice(popm, size=50, replace=False)
+        h = _tc * x.std(ddof=1) / np.sqrt(50)
+        hit_t += (x.mean() - h <= truth <= x.mean() + h)
+    checkf("ch13 §13.2 t(49) 97.5% 지점", _tc, 2.01, tol=.006)
+    check("ch13 §13.2 커버리지 t판(100개 중)", hit_t, 96)
     checkf("ch13 §13.3 우월 확률", stats.norm.cdf(.23 / np.sqrt(2)), .5646, tol=.0006)
     if not FAST:
         inv = []

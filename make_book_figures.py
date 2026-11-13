@@ -380,6 +380,45 @@ def fig_ch12_pvar(n_draw=20, n_sub=100, seed=37):
     return ps
 
 
+def fig_ch12_alpha_beta(sd=1.23, d=0.22):
+    """§12.1 = 같은 표본에서는 1종 · 2종 오류를 함께 줄일 수 없다 (2026-11-13).
+
+    위 줄 = 효과가 없는 세계(영분포), 아래 줄 = 효과가 d 만큼 있는 세계. 같은 가로축 · 같은 문턱.
+    첫 세 칸 = 집단당 183명에서 α .10 · .05 · .01, 넷째 칸 = 집단당 366명에서 α .05.
+    정규 근사 · 양측. α .05 · 183명의 검정력 .557 은 13장 §13.4 시뮬레이션 57% 와 맞는다.
+    """
+    from scipy import stats
+    eff = d * sd
+    cells = [(183, .10), (183, .05), (183, .01), (366, .05)]
+    fig, axes = plt.subplots(2, 4, figsize=(11, 4.6), sharex=True)
+    x = np.linspace(-0.55, 0.85, 600)
+    out = []
+    for j, (n, a) in enumerate(cells):
+        se = np.sqrt(2 * sd ** 2 / n)
+        c = stats.norm.ppf(1 - a / 2) * se
+        beta = stats.norm.cdf((c - eff) / se) - stats.norm.cdf((-c - eff) / se)
+        out.append((n, a, round(c, 3), round(beta, 3)))
+        top, bot = axes[0, j], axes[1, j]
+        f0 = stats.norm.pdf(x, 0, se)
+        f1 = stats.norm.pdf(x, eff, se)
+        top.plot(x, f0, color=BW["color"][0], linewidth=1.3)
+        bot.plot(x, f1, color=BW["color"][1], linewidth=1.3, linestyle=BW["line"][1])
+        # 흑백 안전: 칠한 면을 색과 빗금 둘로 가른다.
+        top.fill_between(x, f0, where=np.abs(x) >= c, color=BW["color"][0], alpha=.55)
+        bot.fill_between(x, f1, where=np.abs(x) < c, color=BW["color"][1], alpha=.35, hatch="///",
+                         edgecolor=BW["color"][1])
+        for ax in (top, bot):
+            ax.axvline(c, color=OI[7], linewidth=1); ax.axvline(-c, color=OI[7], linewidth=1)
+            ax.set_yticks([])
+        top.set_title(f"집단당 {n}명 · α = {a:.2f}\n1종 오류 {a:.2f} · 2종 오류 {beta:.2f}", fontsize=9)
+        bot.set_xlabel("두 집단 평균 차이(점)", fontsize=8)
+    axes[0, 0].set_ylabel("효과 없는 세계", fontsize=9)
+    axes[1, 0].set_ylabel(f"효과 있는 세계\n(차이 {eff:.2f}점)", fontsize=9)
+    fig.suptitle("문턱을 옮기면 한 오류가 줄고 다른 오류가 는다. 둘을 함께 줄이려면 표본을 늘려야 한다", y=1.02)
+    save(fig, "fig-ch12-alpha-beta.png")
+    return out
+
+
 # ── ch08: 검정력 곡선 (시뮬레이션) ──────────────────────────────
 def fig_ch13_boot(n_rep=5000, seed=73):
     """부트스트랩 분포와 그 가운데 95%가 신뢰구간이다."""
@@ -1522,6 +1561,7 @@ if __name__ == "__main__":
     sk_pop, sk_mean = fig_ch11_clt()
     obs, p = fig_ch12_perm()
     ps20 = fig_ch12_pvar()
+    fig_ch12_alpha_beta()
     ci_lo, ci_hi = fig_ch13_boot()
     cover = fig_ch13_coverage()
     pw = fig_ch13_power()

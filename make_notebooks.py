@@ -211,9 +211,26 @@ STEPS = {
  ("## 3. 공식 검정은 빠른 근사\nt검정도 같은 결론을 줍니다(같은 논리의 요약).",
   'tt = stats.ttest_ind(tg, cg)\n'
   'print(f"t = {tt.statistic:.2f}, p = {tt.pvalue:.3f}")             # 2.21, 0.028'),
+ ("## 4. 1종 · 2종 오류는 같은 표본에서 함께 줄지 않는다 (§12.1 그림)\n"
+  "효과가 없는 세계와 효과가 있는 세계(d = 0.22)를 같은 가로축에 놓고 문턱을 옮겨 봅니다. "
+  "a 와 n 을 바꿔 다시 돌려 보세요. ⚠ 한글 글자가 네모로 나오면 부록 E 의 글꼴 안내를 따르세요.",
+  'import matplotlib.pyplot as plt\n'
+  'sd, eff = 1.23, 0.22 * 1.23                      # 집단 안 SD · 효과 있는 세계의 차이(점)\n'
+  'def show(n, a):\n'
+  '    se = np.sqrt(2 * sd**2 / n); c = stats.norm.ppf(1 - a/2) * se\n'
+  '    beta = stats.norm.cdf((c - eff)/se) - stats.norm.cdf((-c - eff)/se)\n'
+  '    x = np.linspace(-0.55, 0.85, 600)\n'
+  '    fig, (t, b) = plt.subplots(2, 1, figsize=(5, 3.4), sharex=True)\n'
+  '    t.plot(x, stats.norm.pdf(x, 0, se)); t.fill_between(x, stats.norm.pdf(x, 0, se), where=abs(x) >= c, alpha=.5)\n'
+  '    b.plot(x, stats.norm.pdf(x, eff, se), "--"); b.fill_between(x, stats.norm.pdf(x, eff, se), where=abs(x) < c, alpha=.35)\n'
+  '    for ax in (t, b): ax.axvline(c, color="k"); ax.axvline(-c, color="k"); ax.set_yticks([])\n'
+  '    t.set_title(f"n = {n} per group, alpha = {a}: type I {a:.2f}, type II {beta:.2f}")\n'
+  '    plt.show()\n'
+  '    return round(beta, 2)\n'
+  'print([show(183, a) for a in (.10, .05, .01)], show(366, .05))   # [0.32, 0.44, 0.68] 0.15'),
 ],
 "ch13": [
- ("## 2. 부트스트랩 신뢰구간\n표본에서 다시 뽑아, 다른 표본이었다면 추정치가 얼마나 달라졌을지를 범위로 구합니다.",
+ ("## 2. 부트스트랩 신뢰구간\n표본에서 다시 뽑아, 다른 표본이었다면 추정값이 얼마나 달라졌을지를 범위로 구합니다.",
   'exp = load("exp")\n'
   'tv = exp[exp.cond==1].mil.values; cv = exp[exp.cond==0].mil.values\n'
   'rng = np.random.default_rng(73)\n'
