@@ -503,7 +503,7 @@ def fig_ch14_resid():
     ax.scatter(pred, resid, s=10, color=BW["color"][0], alpha=.6)
     ax.axhline(0, color=OI[7], linewidth=1.2)
     ax.set_xlabel("예측값"); ax.set_ylabel("잔차 (실제 − 예측)")
-    ax.set_title(f"잔차에 무늬가 없어야 한다 (설문판 566명, 잔차 SD {resid.std(ddof=1):.2f})")
+    ax.set_title(f"잔차에 체계적인 형태가 없어야 한다 (설문판 566명, 잔차 SD {resid.std(ddof=1):.2f})")
     save(fig, "fig-ch14-resid.png")
     return resid.std(ddof=1)
 
@@ -1250,7 +1250,7 @@ def fig_ch03_missing():
 
 
 def fig_ch02_seeds(planted=0.31, n=380, worlds=500):
-    """같은 법칙으로 세계를 500 번 만들면 심은 값 주위로 흩어진다."""
+    """같은 법칙으로 세계를 500 번 만들면 참값 주위로 흩어진다."""
     def one(seed):
         r = np.random.default_rng(seed)
         cond = np.repeat([0, 1], n // 2)
@@ -1265,7 +1265,7 @@ def fig_ch02_seeds(planted=0.31, n=380, worlds=500):
                 color=BW["color"][1], hatch="///", edgecolor="white", linewidth=.4,
                 label=f"부호가 뒤집힌 세계 {len(neg)}개")
     ax.axvline(planted, color=OI[7], linestyle="--", linewidth=1.5,
-               label=f"심은 값 {planted:.2f}")
+               label=f"참값 {planted:.2f}")
     ax.axvline(diffs.mean(), color=BW["color"][2], linestyle=":", linewidth=1.5,
                label=f"500 세계 평균 {diffs.mean():.3f}")
     ax.set_xlabel("한 세계가 보여 준 집단 차이"); ax.set_ylabel("세계 수")
@@ -1424,7 +1424,7 @@ def fig_s2_cells():
                     capsize=4, linewidth=2, label=name)
     ax.set_xticks([0, 1], ["서사 연결 없음", "서사 연결 있음"])
     ax.set_ylabel("삶의 의미(사후, mil_t2)")
-    ax.set_title("2×2 셀 평균: 함께일 때만 오르는 무늬, 그러나 오차막대가 크다\n(요인판 430명, 씨앗 73 ; 막대 = 95% 신뢰구간)", fontsize=10)
+    ax.set_title("2×2 셀 평균: 함께일 때만 오르는 형태, 그러나 오차막대가 크다\n(요인판 430명, 씨앗 73 ; 막대 = 95% 신뢰구간)", fontsize=10)
     ax.legend(fontsize=9)
     save(fig, "fig-s2-cells.png")
 
