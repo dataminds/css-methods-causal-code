@@ -541,7 +541,7 @@ def fig_ch14_resid():
     fig, ax = plt.subplots(figsize=(6.5, 3.6))
     ax.scatter(pred, resid, s=10, color=BW["color"][0], alpha=.6)
     ax.axhline(0, color=OI[7], linewidth=1.2)
-    ax.set_xlabel("예측값"); ax.set_ylabel("잔차 (실제 − 예측)")
+    ax.set_xlabel("예측값"); ax.set_ylabel("잔차 (실제 - 예측)")
     ax.set_title(f"잔차에 체계적인 형태가 없어야 한다 (설문판 566명, 잔차 SD {resid.std(ddof=1):.2f})")
     save(fig, "fig-ch14-resid.png")
     return resid.std(ddof=1)
@@ -1354,9 +1354,9 @@ def fig_ch17_apc():
     b, *_ = np.linalg.lstsq(X, y, rcond=None)
     ages = np.linspace(co.age.min(), co.age.max(), 40)
     fig, ax = plt.subplots(figsize=(6.6, 3.9))
-    for k, (c, lab) in enumerate(((0.20, "나이가 크게 올린다"),
-                                  (0.00, "최소노름 해"),
-                                  (-0.05, "나이가 되레 내린다"))):
+    for k, (c, lab) in enumerate(((0.20, "c = +0.20 · 나이가 크게 올린다"),
+                                  (0.00, "c = 0 · lstsq 가 고른 풀이"),
+                                  (-0.05, "c = -0.05 · 나이가 되레 내린다"))):
         ba = b[1] + c
         ax.plot(ages, ba * (ages - ages.mean()), color=BW["color"][k],
                 linestyle=BW["line"][k], marker=BW["marker"][k], markevery=8,

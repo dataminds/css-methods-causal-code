@@ -889,6 +889,82 @@ def main():
         hit_t += (x.mean() - h <= truth <= x.mean() + h)
     checkf("ch13 §13.2 t(49) 97.5% 지점", _tc, 2.01, tol=.006)
     check("ch13 §13.2 커버리지 t판(100개 중)", hit_t, 96)
+    # 2026-11-13g 「먼저」 절 = Rogers et al. (2023) 연구 5 보고값에서 되짚은 수 (차이 0.31 · t(378) 2.16 · d .22)
+    _se_r = (5.14 - 4.83) / 2.16; _tc_r = stats.t.ppf(.975, 378)
+    checkf("ch13 먼저 Rogers 주 결과 SE · 95% 구간",
+           [_se_r, .31 - _tc_r * _se_r, .31 + _tc_r * _se_r], [.14, .03, .59], tol=.006)
+    def _pw_r(d, m):
+        df_ = 2 * m - 2; c_ = stats.t.ppf(.975, df_); nc_ = d * np.sqrt(m / 2)
+        return 1 - stats.nct.cdf(c_, df_, nc_) + stats.nct.cdf(-c_, df_, nc_)
+    checkf("ch13 먼저 Rogers 검정력(.22 · 190명씩) · .44 · 83명씩",
+           [_pw_r(.22, 190), _pw_r(.44, 83)], [.57, .80], tol=.006)
+    from scipy import optimize as _opt
+    checkf("ch13 먼저 Rogers 190명씩 검정력 .80 최소 검출 d",
+           _opt.brentq(lambda d: _pw_r(d, 190) - .8, .05, .8), .29, tol=.006)
+    checkf("ch13 먼저 d .22 의 우위 확률", stats.norm.cdf(.22 / np.sqrt(2)), .56, tol=.006)
+    # 2026-11-13i [논문에서 읽기] 상자 = Rogers et al. (2023) 원고판 보고값에서 다시 계산
+    _se_s0 = .69 * np.sqrt(2 / 120); _tc_s0 = stats.t.ppf(.975, 238)
+    checkf("S0.5 논문 상자 연구 4 d · t · p · 95% 구간",
+           [.20 / .69, .20 / _se_s0, 2 * stats.t.sf(.20 / _se_s0, 238), .20 - _tc_s0 * _se_s0, .20 + _tc_s0 * _se_s0],
+           [.29, 2.25, .026, .02, .38], tol=.006)
+    _a7 = np.mean([.86, .80, .90, .75, .82, .86, .89]); _r7 = _a7 / (3 - 2 * _a7)
+    checkf("ch04 §4.3 논문 상자 요소 α 평균 · 21문항 스피어만-브라운 예측", [_a7, 21 * _r7 / (1 + 20 * _r7)], [.84, .97], tol=.006)
+    checkf("ch05 먼저 연령 평균 ± 표준편차 (46.09 ± 16.06)", [46.09 - 16.06, 46.09 + 16.06], [30, 62], tol=.2)
+    checkf("B2 먼저 조건 넷의 쌍 수 · 비교 다섯의 본페로니 문턱", [4 * 3 / 2, .05 / 5], [6, .01], tol=.0006)
+    # 17장 · S5 「먼저」 = Braghieri, Levy & Makarin (2022) 표 1 열 3 (0.085, SE 0.033) · 응답률 37%
+    checkf("17장 먼저 0.085/0.033 ≈ 2.6 · 95% 신뢰구간 대략 0.02~0.15",
+           [.085 / .033, .085 - 1.96 * .033, .085 + 1.96 * .033], [2.6, .02, .15], tol=.026)
+    checkf("S5 먼저 응답률 37% → 응답하지 않은 63%", [1 - .37], [.63], tol=.0006)
+    # 2026-11-14 최종 점검 A 반영분 (final-review-2026-11-13/00-종합.md §3)
+    _svy = load("svy")
+    checkf("ch05 검산 한 줄 = 정제본 mil 평균 4.891 · 원자료 4.878",
+           [_svy.mil.mean(), load("svy", clean=False).mil.mean()], [4.891, 4.878], tol=.0006)
+    _b, *_ = ols(_svy.mil.values, [_svy.hjs.values])
+    _sx, _sy = _svy.hjs.std(ddof=1), _svy.mil.std(ddof=1)
+    _r = _b[1] * _sx / _sy
+    _adj = [(_r - p * p) / (1 - p * p) * _sy / _sx for p in (.3, .5, .7)]
+    checkf("ch15 §15.6 편향(분모 1−ρ² 포함) · 편향을 뺀 계수 · 0 으로 만드는 ρ",
+           [_b[1] - _adj[0], _adj[0], _b[1] - _adj[1], _adj[1], _b[1] - _adj[2], _adj[2], np.sqrt(_r)],
+           [.057, .921, .193, .786, .555, .423, .793], tol=.0006)
+    _cd = load("coding"); _cats = list(range(-2, 3)); _ix = {c: i for i, c in enumerate(_cats)}
+    _O = np.zeros((5, 5))
+    for _a, _bb in zip(_cd.coder1_p.values, _cd.coder2_p.values):
+        _O[_ix[_a], _ix[_bb]] += 1
+    _O /= _O.sum(); _E = np.outer(_O.sum(1), _O.sum(0))
+    checkf("S6 주인공 일치율 .43 · 무가중 카파 .26",
+           [np.trace(_O), (np.trace(_O) - np.trace(_E)) / (1 - np.trace(_E))], [.43, .26], tol=.0051)
+    _p = pd.read_csv(os.path.join(DATA, "journey_panel.csv")).dropna(subset=["hjs", "mil"])
+    _c = lambda d, v: d[v] - d.groupby("id")[v].transform("mean")
+    _rng = np.random.default_rng(73); _q = _p.copy(); _q["id"] = _rng.permutation(_q["id"].values)
+    checkf("S4 실습 2 · 3 = 둘 다 중심화 .056 · 한쪽만 .030 · .029 · id 뒤섞기 .33",
+           [np.corrcoef(_c(_p, "hjs"), _c(_p, "mil"))[0, 1], np.corrcoef(_c(_p, "hjs"), _p.mil)[0, 1],
+            np.corrcoef(_p.hjs, _c(_p, "mil"))[0, 1], np.corrcoef(_c(_q, "hjs"), _c(_q, "mil"))[0, 1]],
+           [.056, .030, .029, .33], tol=.0051)
+    checkf("ch03 §3.3 논문 상자 제외 비율(연구 1 · 연구 5 · 우리 실험판)", [48 / 640, 3 / 384, 14 / 380], [.075, .008, .037], tol=.0006)
+    checkf("ch11 §11.1 논문 상자 β .74 의 무작위 표본 표준오차", np.sqrt((1 - .74 ** 2) / 590), .028, tol=.0006)
+    checkf("ch09 §9.1 논문 상자 배정 전 이탈 · 배정 뒤 제외", [28 / 275, 7 / 247], [.102, .028], tol=.0006)
+    checkf("ch05 §5.4 논문 상자 감쇠 교정 역산(신뢰도 곱 · SWLS α)", [(.62 / .78) ** 2, (.62 / .78) ** 2 / .72], [.63, .88], tol=.006)
+    checkf("S4 논문 상자 두 모형 χ² 차이 · 자유도 차", [66.18 - 9.85, 11 - 8], [56.33, 3], tol=.006)
+    checkf("S2 논문 상자 F 에서 부분 η²(4.93 · 6.06) · 자유도 449 − 4", [4.93 / (4.93 + 445), 6.06 / (6.06 + 445), 449 - 4],
+           [.011, .013, 445], tol=.0006)
+    _t445 = stats.t.ppf(.975, 445)
+    _se19a = (5.73 - 5.46) / 1.68; _se19b = (5.73 - 5.49) / 1.48
+    checkf("ch19 §19.3 논문 상자 유의하지 않은 두 비교의 95% 구간 · .54/.16",
+           [.27 - _t445 * _se19a, .27 + _t445 * _se19a, .24 - _t445 * _se19b, .24 + _t445 * _se19b, .54 / .16],
+           [-.05, .59, -.08, .56, 3.38], tol=.006)
+    checkf("ch16 §16.5 논문 상자 간접효과 대칭 구간 · 평균 차이", [.31 - 1.96 * .12, .31 + 1.96 * .12, 5.14 - 4.83], [.07, .55, .31], tol=.006)
+    # ch20 §20.2 논문 상자 = 150명에서 보고, 유의하지 않으면 450명으로 늘려 다시 보는 규칙의 위양성률 (효과 없음 · 씨앗 73)
+    _g20 = np.random.default_rng(73); _R20 = 20000
+    _x = _g20.standard_normal((_R20, 450)); _y = _g20.standard_normal((_R20, 450))
+    def _rp(a, b):
+        a = a - a.mean(1, keepdims=True); b = b - b.mean(1, keepdims=True)
+        r = (a * b).sum(1) / np.sqrt((a * a).sum(1) * (b * b).sum(1)); n = a.shape[1]
+        return 2 * stats.t.sf(np.abs(r) * np.sqrt((n - 2) / (1 - r ** 2)), n - 2)
+    _p1 = _rp(_x[:, :150], _y[:, :150]); _p2 = _rp(_x, _y)
+    checkf("ch20 §20.2 논문 상자 두 번 들여다보기 위양성률", ((_p1 < .05) | (_p2 < .05)).mean(), .09, tol=.006)
+    _tr = lambda r: r * np.sqrt(590) / np.sqrt(1 - r ** 2)
+    checkf("ch14 §14.2 논문 상자 b/SE · t 범위 · β → t(중앙 · 범위)",
+           [.14 / .03, .135 / .035, .145 / .025, _tr(.74), _tr(.735), _tr(.745)], [4.67, 3.9, 5.8, 26.7, 26.3, 27.1], tol=.06)
     checkf("ch13 §13.3 우월 확률", stats.norm.cdf(.23 / np.sqrt(2)), .5646, tol=.0006)
     if not FAST:
         inv = []
