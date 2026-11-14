@@ -3,3 +3,4 @@ numpy==2.4.4
 pandas==3.0.3
 scipy==1.18.0
 matplotlib==3.11.0
+statsmodels==0.15.0   # 부록 A 의 R 대응 코드 블록 (2026-11-14 CI 첫 실행이 빠진 것을 잡았다)
