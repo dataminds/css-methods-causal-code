@@ -70,4 +70,11 @@ traps <- local({
   out
 })
 for (k in names(traps)) local({ kk <- k; calc(paste0("b3.trap_", kk), function() traps[[kk]]) })
+
+# §B3.4 「논문의 상관행렬 읽기」 (평균 · 표준편차 · 변수 쌍의 r 은 ch05.* 를 다시 쓴다)
+calc("b3.alpha_flr", function() cronbach(S()[, paste0("flr_", 1:8)]))
+calc("b3.alpha_swl", function() cronbach(S()[, paste0("swl_", 1:5)]))
+for (v in c("hjs", "mil", "flr", "swl")) local({ vv <- v; calc(paste0("b3.r_age_", vv), function() cor(S()$age, S()[[vv]])) })
+calc("b3.r_age_absmax", function() max(abs(sapply(c("hjs", "mil", "flr", "swl"), function(v) cor(S()$age, S()[[v]])))))
+calc("b3.r_crit05", function() { df <- nrow(S()) - 2; t <- qt(.975, df); t / sqrt(t^2 + df) })
 })

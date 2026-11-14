@@ -100,3 +100,16 @@ def _traps():
 
 for _k in ("u", "out_without", "out_with", "range_all", "range_cut", "range_n", "mix_all", "mix_g0", "mix_g1"):
     calc(f"b3.trap_{_k}")(lambda k=_k: _traps()[k])
+
+
+# §B3.4 「논문의 상관행렬 읽기」 = 설문판 정제본. 평균 · 표준편차 · 변수 쌍의 r 은 5장 계산(ch05.*)을 다시 쓴다.
+from common import cronbach  # noqa: E402
+
+_ITEMS = {"flr": [f"flr_{i}" for i in range(1, 9)], "swl": [f"swl_{i}" for i in range(1, 6)]}
+for _v, _cols in _ITEMS.items():
+    calc(f"b3.alpha_{_v}")(lambda cols=_cols: cronbach(S()[cols]))
+for _v in ("hjs", "mil", "flr", "swl"):
+    calc(f"b3.r_age_{_v}")(lambda v=_v: np.corrcoef(S().age, S()[v])[0, 1])
+calc("b3.r_age_absmax")(lambda: max(abs(np.corrcoef(S().age, S()[v])[0, 1]) for v in ("hjs", "mil", "flr", "swl")))
+# |r| 이 이 값을 넘으면 양측 p < .05 (df = n − 2)
+calc("b3.r_crit05")(lambda: (lambda t, df: t / np.sqrt(t * t + df))(stats.t.ppf(.975, len(S()) - 2), len(S()) - 2))

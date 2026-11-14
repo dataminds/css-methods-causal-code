@@ -96,4 +96,22 @@ calc("ch05.mil1_nunique", function() length(table(S()$mil_1)))
 
 calc("ch05.cl_reliab_product", function() (0.62 / 0.78)^2)
 calc("ch05.cl_swls_alpha", function() exp(2 * log(0.62 / 0.78)) / 0.72)
+
+# §5.3 「남의 표 1 읽기」 = 실험판 집단별 표 (정제본 366명)
+E <- function() load_data("exp")
+for (cc in c(1, 0)) local({
+  c0 <- cc
+  g <- if (c0 == 1) "int" else "ctl"
+  for (v in c("age", "mil_t1", "hjs", "mil", "flr")) local({
+    vv <- v
+    calc(paste0("ch05.exp_", g, "_", vv, "_mean"), function() mean(E()[E()$cond == c0, vv]))
+    calc(paste0("ch05.exp_", g, "_", vv, "_sd"), function() sd(E()[E()$cond == c0, vv]))
+  })
+  calc(paste0("ch05.exp_", g, "_n"), function() sum(E()$cond == c0))
+  calc(paste0("ch05.exp_", g, "_women_n"), function() sum(E()$gender[E()$cond == c0] == 2))
+  calc(paste0("ch05.exp_", g, "_women_pct"), function() 100 * mean(E()$gender[E()$cond == c0] == 2))
+})
+calc("ch05.exp_women_pct_gap", function() { e <- E(); 100 * (mean(e$gender[e$cond == 0] == 2) - mean(e$gender[e$cond == 1] == 2)) })
+calc("ch05.exp_raw_n", function() nrow(load_data("exp", clean = FALSE)))
+calc("ch05.exp_n", function() nrow(E()))
 })

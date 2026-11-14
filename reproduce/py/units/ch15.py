@@ -153,3 +153,40 @@ calc("ch15.paper_df")(lambda: 592 - 10 - 1)
 calc("ch15.paper_osf_gain")(lambda: .6361 - .5910)
 calc("ch15.paper_osf_ratio_pct")(lambda: (.6361 - .5910) / .5910 * 100)
 calc("ch15.paper_osf_new_2dp")(lambda: round(.6361, 2))
+
+
+# §15.1 「논문의 위계적 회귀 표 읽기」 = 설문판 가운데 성별을 남 · 여로 응답한 554명 (S3 ⑦ 과 같은 표본)
+def _ht():
+    if "ht" not in _c:
+        from scipy import stats
+        s = S()[S().gender.isin([1, 2])]
+        fem = (s.gender == 2).astype(float)
+        z = lambda v: (v - v.mean()) / v.std(ddof=1)
+        out = {"n": len(s)}
+        for k, X, Xz in ((1, [s.age, fem], [z(s.age), z(fem)]), (2, [s.age, fem, s.hjs], [z(s.age), z(fem), z(s.hjs)])):
+            b, se, _, r2 = ols(s.mil, X)
+            bz, *_ = ols(z(s.mil), Xz)
+            out[k] = (b, se, bz, r2)
+        df = len(s) - 4
+        out["dr2"] = out[2][3] - out[1][3]
+        out["F"] = out["dr2"] / ((1 - out[2][3]) / df)
+        out["df"] = df
+        out["p"] = stats.f.sf(out["F"], 1, df)
+        _c["ht"] = out
+    return _c["ht"]
+
+
+calc("ch15.ht_n")(lambda: _ht()["n"])
+for _k in (1, 2):
+    for _j, _nm in enumerate(("int", "age", "fem", "hjs")):
+        if _k == 1 and _nm == "hjs":
+            continue
+        calc(f"ch15.ht{_k}_b_{_nm}")(lambda k=_k, j=_j: _ht()[k][0][j])
+        calc(f"ch15.ht{_k}_se_{_nm}")(lambda k=_k, j=_j: _ht()[k][1][j])
+        if _nm != "int":
+            calc(f"ch15.ht{_k}_beta_{_nm}")(lambda k=_k, j=_j: _ht()[k][2][j])
+    calc(f"ch15.ht{_k}_r2")(lambda k=_k: _ht()[k][3])
+calc("ch15.ht_dr2")(lambda: _ht()["dr2"])
+calc("ch15.ht_F")(lambda: _ht()["F"])
+calc("ch15.ht_df")(lambda: _ht()["df"])
+calc("ch15.ht_p_lt001")(lambda: float(_ht()["p"] < .001))

@@ -61,3 +61,21 @@ calc("b2.n_sig")(lambda: sum(q < .05 for q in pair_ps()))
 calc("b2.min_p")(lambda: min(pair_ps()))
 calc("b2.bonf6")(lambda: .05 / len(pair_ps()))
 calc("b2.n_sig_bonf")(lambda: sum(q < .05 / len(pair_ps()) for q in pair_ps()))
+
+
+# §B2.1 「논문의 분산분석 표 읽기」 = 네 칸 일원배치의 제곱합 분해
+def _aov():
+    g = [FAC()[(FAC().elem == e) & (FAC().frame == f)].mil_t2.values for e in (0, 1) for f in (0, 1)]
+    a = np.concatenate(g)
+    ssb = sum(len(x) * (x.mean() - a.mean()) ** 2 for x in g)
+    ssw = sum(((x - x.mean()) ** 2).sum() for x in g)
+    dfb, dfw = len(g) - 1, len(a) - len(g)
+    return {"ssb": ssb, "ssw": ssw, "sst": ((a - a.mean()) ** 2).sum(), "dfb": dfb, "dfw": dfw, "dft": len(a) - 1,
+            "msb": ssb / dfb, "msw": ssw / dfw, "F": (ssb / dfb) / (ssw / dfw), "eta2": ssb / (ssb + ssw), "n": len(a)}
+
+
+for _k in ("ssb", "ssw", "sst", "dfb", "dfw", "dft", "msb", "msw", "F", "eta2", "n"):
+    calc(f"b2.aov_{_k}")(lambda k=_k: _aov()[k])
+calc("b2.aov_eta2_pct")(lambda: _aov()["eta2"] * 100)
+calc("b2.aov_p")(lambda: stats.f.sf(_aov()["F"], _aov()["dfb"], _aov()["dfw"]))
+calc("b2.aov_msb_over_msw_rounded")(lambda: round(_aov()["msb"], 2) / round(_aov()["msw"], 2))

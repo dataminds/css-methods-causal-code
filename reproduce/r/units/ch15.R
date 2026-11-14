@@ -101,4 +101,32 @@ calc("ch15.paper_df", function() 592 - (9 + 1) - 1)
 calc("ch15.paper_osf_gain", function() .6361 - .5910)
 calc("ch15.paper_osf_ratio_pct", function() 100 * (.6361 / .5910 - 1))
 calc("ch15.paper_osf_new_2dp", function() round(.6361, 2))
+
+# §15.1 「논문의 위계적 회귀 표 읽기」 = 성별 남 · 여 554명 (S3 ⑦ 과 같은 표본)
+HT <- function() { s <- S(); s <- s[s$gender %in% c(1, 2), ]; s$fem <- as.numeric(s$gender == 2); s }
+ht_fit <- function(k) {
+  s <- HT()
+  f <- if (k == 1) mil ~ age + fem else mil ~ age + fem + hjs
+  m <- lm(f, data = s)
+  zs <- as.data.frame(scale(s[, c("mil", "age", "fem", "hjs")]))
+  mz <- lm(f, data = zs)
+  list(b = coef(m), se = sqrt(diag(vcov(m))), beta = coef(mz), r2 = summary(m)$r.squared, m = m)
+}
+calc("ch15.ht_n", function() nrow(HT()))
+for (k in 1:2) local({
+  kk <- k
+  nms <- if (kk == 1) c("int", "age", "fem") else c("int", "age", "fem", "hjs")
+  for (j in seq_along(nms)) local({
+    jj <- j; nm <- nms[jj]
+    calc(paste0("ch15.ht", kk, "_b_", nm), function() unname(ht_fit(kk)$b[jj]))
+    calc(paste0("ch15.ht", kk, "_se_", nm), function() unname(ht_fit(kk)$se[jj]))
+    if (nm != "int") calc(paste0("ch15.ht", kk, "_beta_", nm), function() unname(ht_fit(kk)$beta[jj]))
+  })
+  calc(paste0("ch15.ht", kk, "_r2"), function() ht_fit(kk)$r2)
+})
+ht_cmp <- function() anova(ht_fit(1)$m, ht_fit(2)$m)
+calc("ch15.ht_dr2", function() ht_fit(2)$r2 - ht_fit(1)$r2)
+calc("ch15.ht_F", function() ht_cmp()$F[2])
+calc("ch15.ht_df", function() ht_cmp()$Res.Df[2])
+calc("ch15.ht_p_lt001", function() as.numeric(ht_cmp()$`Pr(>F)`[2] < .001))
 })

@@ -161,3 +161,28 @@ calc("ch16.conf04_abu", function() memo("conf04", function() conf(0.4))$abu)
 
 # 2026-11-14h 상자 = 다섯째 자리 반올림 합 (R 의 round 는 IEC 60559 반올림 ; 경계값 아님)
 local({ calc("ch16.med_rounded5_sum", function() round(CALCS[["ch16.med_cp"]](), 5) + round(CALCS[["ch16.med_ab"]](), 5)) })
+
+# §16.2 「논문의 조절 회귀 표 읽기」 = 중심화 모형 (lm · confint)
+local({
+mt <- local({ cache <- NULL; function() {
+  if (is.null(cache)) {
+    s <- load_data("svy")
+    s$h <- s$hjs - mean(s$hjs); s$r <- s$refl - mean(s$refl)
+    m <- lm(mil ~ h + r + h:r, data = s)
+    cache <<- list(co = summary(m)$coefficients, ci = confint(m), r2 = summary(m)$r.squared, n = nrow(s))
+  }
+  cache
+} })
+nms <- c("int", "hjs", "refl", "xy")
+for (j in 1:4) local({
+  jj <- j; nm <- nms[jj]
+  calc(paste0("ch16.mt_b_", nm), function() mt()$co[jj, 1])
+  calc(paste0("ch16.mt_se_", nm), function() mt()$co[jj, 2])
+  calc(paste0("ch16.mt_t_", nm), function() mt()$co[jj, 3])
+  calc(paste0("ch16.mt_p_", nm), function() mt()$co[jj, 4])
+  calc(paste0("ch16.mt_lo_", nm), function() mt()$ci[jj, 1])
+  calc(paste0("ch16.mt_hi_", nm), function() mt()$ci[jj, 2])
+})
+calc("ch16.mt_r2", function() mt()$r2)
+calc("ch16.mt_n", function() mt()$n)
+})

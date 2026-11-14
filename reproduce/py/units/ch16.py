@@ -194,3 +194,25 @@ from common import CALCS as CALCS_REF
 
 # 2026-11-14h 상자 = 다섯째 자리로 반올림한 c′ 과 a×b 의 합
 calc("ch16.med_rounded5_sum")(lambda: round(float(CALCS_REF["ch16.med_cp"]()), 5) + round(float(CALCS_REF["ch16.med_ab"]()), 5))
+
+
+# §16.2 「논문의 조절 회귀 표 읽기」 = 중심화 모형의 t · p · 95% CI · R²
+def _mt():
+    if "mt" not in _c:
+        h = S().hjs - S().hjs.mean()
+        r = S().refl - S().refl.mean()
+        b, se, p, r2 = ols(S().mil, [h, r, h * r])
+        tc = stats.t.ppf(.975, len(S()) - 4)
+        _c["mt"] = {"b": b, "se": se, "p": p, "r2": r2, "lo": b - tc * se, "hi": b + tc * se}
+    return _c["mt"]
+
+
+for _j, _nm in enumerate(("int", "hjs", "refl", "xy")):
+    calc(f"ch16.mt_b_{_nm}")(lambda j=_j: _mt()["b"][j])
+    calc(f"ch16.mt_se_{_nm}")(lambda j=_j: _mt()["se"][j])
+    calc(f"ch16.mt_t_{_nm}")(lambda j=_j: _mt()["b"][j] / _mt()["se"][j])
+    calc(f"ch16.mt_p_{_nm}")(lambda j=_j: _mt()["p"][j])
+    calc(f"ch16.mt_lo_{_nm}")(lambda j=_j: _mt()["lo"][j])
+    calc(f"ch16.mt_hi_{_nm}")(lambda j=_j: _mt()["hi"][j])
+calc("ch16.mt_r2")(lambda: _mt()["r2"])
+calc("ch16.mt_n")(lambda: len(S()))

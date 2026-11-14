@@ -115,3 +115,16 @@ calc("ch05.mil1_nunique")(lambda: S().mil_1.nunique())
 # §5.4 논문 상자 = Cheung & Lucas (2014) 감쇠 교정 역산
 calc("ch05.cl_reliab_product")(lambda: (.62 / .78) ** 2)
 calc("ch05.cl_swls_alpha")(lambda: (.62 / .78) ** 2 / .72)
+
+# §5.3 「남의 표 1 읽기」 = 실험판 집단별 표 (정제본 366명 ; cond 1 = 개입 · 0 = 통제)
+E = lambda: load("exp")
+for _c, _g in ((1, "int"), (0, "ctl")):
+    for _v in ("age", "mil_t1", "hjs", "mil", "flr"):
+        calc(f"ch05.exp_{_g}_{_v}_mean")(lambda c=_c, v=_v: E()[E().cond == c][v].mean())
+        calc(f"ch05.exp_{_g}_{_v}_sd")(lambda c=_c, v=_v: E()[E().cond == c][v].std(ddof=1))
+    calc(f"ch05.exp_{_g}_n")(lambda c=_c: int((E().cond == c).sum()))
+    calc(f"ch05.exp_{_g}_women_n")(lambda c=_c: int((E()[E().cond == c].gender == 2).sum()))
+    calc(f"ch05.exp_{_g}_women_pct")(lambda c=_c: (E()[E().cond == c].gender == 2).mean() * 100)
+calc("ch05.exp_women_pct_gap")(lambda: ((E()[E().cond == 0].gender == 2).mean() - (E()[E().cond == 1].gender == 2).mean()) * 100)
+calc("ch05.exp_raw_n")(lambda: len(load("exp", clean=False)))
+calc("ch05.exp_n")(lambda: len(E()))
