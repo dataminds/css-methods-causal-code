@@ -82,34 +82,6 @@ ch11.s4.pow,ch11,0.5,,fixed,,제곱근 = 0.5 제곱 (정의)
 ch11.s4.formula.sd,ch11,1.25,ch11.mil_sd,data,,정제본 mil 표준편차
 ch11.s4.formula,ch11,0.177,ch11.se_formula50,data,,공식 SE (n = 50)
 ch11.s4.formula.sim,ch11,0.175,ch11.means_sd,sim,0.016,평균 1000개의 표준편차
-ch11.s4.sim25,ch11,0.235,ch11.sim_se25,sim,0.023,"n = 25 · 씨앗 73 · 1,000번 ; 기댓값 0.245(보정 포함) · 몬테카를로 표준편차 0.245 ÷ √1998 = 0.0055 → 0.023"
-ch11.s4.sim100,ch11,0.116,ch11.sim_se100,sim,0.011,n = 100 · 씨앗 73 ; 기댓값 0.114 · 몬테카를로 표준편차 0.0025 → 0.011
-ch11.s4.f25,ch11,0.25,ch11.se_formula25,data,,1.25 ÷ √25
-ch11.s4.f100,ch11,0.125,ch11.se_formula100,data,,1.25 ÷ √100
-ch11.box.sim50,ch11,0.175,ch11.sim_se50,sim,0.016,상자 코드 n = 50 (씨앗 73 ; §11.3 의 0.175 와 같은 수)
-ch11.box.sim200,ch11,0.073,ch11.sim_se200,sim,0.007,n = 200 · 씨앗 73 ; 기댓값 0.0712(보정) · 몬테카를로 표준편차 0.0016 → 0.007
-ch11.box.eight.25,ch11,0.235,ch11.sim_se25,sim,0.023,n = 25
-ch11.box.eight.200,ch11,0.073,ch11.sim_se200,sim,0.007,n = 200
-ch11.box.eight.ratio,ch11,3.2,ch11.sim25_over_sim200,sim,0.46,시뮬레이션 SE 비(25 ÷ 200) ; R 기댓값 3.44 · 상대 몬테카를로 오차 √(2 ÷ 1998) = 0.032 → 표준편차 0.11 → 3 × √2 × 0.11 ≈ 0.46
-ch11.box.sqrt8,ch11,2.83,ch11.sqrt8,data,,√8
-ch11.box.gap.sim,ch11,0.073,ch11.sim_se200,sim,0.007,n = 200
-ch11.box.gap.f,ch11,0.089,ch11.se_formula200,data,,1.25 ÷ √200
-ch11.box.20pct,ch11,20,ch11.formula_over_sim200_pct,sim,12,(공식 ÷ 시뮬레이션 − 1) × 100 = 20.4 ; R 기댓값 24.3 · 표준편차 2.8 → 3 × √2 × 2.8 ≈ 12
-ch11.box.pop,ch11,566,ch11.svy_n,data,,정제본 사람 수
-ch11.box.9pct,ch11,9,ch11.frac50_pct,data,,50 ÷ 566 = 8.8%
-ch11.box.fpc50,ch11,0.169,ch11.se_fpc50,data,,공식 SE × √((566 − 50) ÷ 565)
-ch11.box.f50,ch11,0.177,ch11.se_formula50,data,,1.25 ÷ √50
-ch11.box.shrink,ch11,4,ch11.fpc50_shrink_pct,data,,(1 − 보정계수) × 100 = 4.4 (「남짓」)
-ch11.box.35pct,ch11,35,ch11.frac200_pct,data,,200 ÷ 566 = 35.3%
-ch11.box.fpc200,ch11,0.071,ch11.se_fpc200,data,,공식 SE × √((566 − 200) ÷ 565)
-ch11.box.f200,ch11,0.089,ch11.se_formula200,data,,1.25 ÷ √200
-ch11.box.sim200b,ch11,0.073,ch11.sim_se200,sim,0.007,n = 200
-ch11.box.f100,ch11,0.125,ch11.se_formula100,data,,1.25 ÷ √100
-ch11.box.sim100,ch11,0.116,ch11.sim_se100,sim,0.011,n = 100
-ch11.box.n100,ch11,100,,fixed,,상자의 표본 크기 (설계)
-ch11.box.pop100,ch11,566,ch11.svy_n,data,,정제본 사람 수
-ch11.box.18pct,ch11,18,ch11.frac100_pct,data,,100 ÷ 566 = 17.7%
-ch11.box.fpc100,ch11,0.114,ch11.se_fpc100,data,,공식 SE × √((566 − 100) ÷ 565)
 ch11.s5.b1skew,ch11,−0.31,ch11.mil_skew,data,,B1 §B1.4 정제본 mil 치우침(scipy.stats.skew 기본 = 편향 포함 g1) −0.306
 ch11.s5.n40,ch11,40,,fixed,,§11.5 모의시행 설계의 표본 크기
 ch11.s5.fig,ch11,1.94,ch11.clt_skew_pop,sim,0.26,지수분포 2만 명 모집단 치우침(pandas .skew) ; 이론값 2 · 몬테카를로 표준편차 0.062 (mcsd.py) → 0.26
@@ -140,3 +112,12 @@ ch11.ex3.flat,ch11,0.0,ch11.flat_sd,data,,전원 5점 모집단 = 어떤 난수�
 ch11.chk.mean,ch11,4.89,ch11.mil_mean,data,,정제본 mil 평균
 ch11.chk.se,ch11,0.18,ch11.se_formula50,data,,공식 SE 0.177 의 둘째 자리 (§11.4 의 잘못 보고된 문장)
 ch11.chk.gender,ch11,0.02,ch11.men_minus_women,data,,남 − 여 mil 평균 차이
+ch11.s4.f25b,ch11,0.25,ch11.se_formula25,data,,1.25 ÷ √25 (2026-11-14 11장 축소로 시연 코드를 빼고 공식 값만 남김)
+ch11.s4.n25b,ch11,25,,fixed,,표본 크기 예시 (실습 2 와 같은 값)
+ch11.s4.n100b,ch11,100,,fixed,,표본 크기 예시 = 25 의 네 배
+ch11.s4.f100b,ch11,0.125,ch11.se_formula100,data,,1.25 ÷ √100
+ch11.box2.pop,ch11,566,ch11.svy_n,data,,§11.4 유한모집단 상자 (2026-11-14 축소판) = 모집단으로 선언한 정제본 566명
+ch11.box2.n,ch11,200,,fixed,,표본 크기 예시 (그림 fig-ch11-n 의 셋째 크기)
+ch11.box2.frac,ch11,35,ch11.frac200_pct,data,,200 ÷ 566 × 100
+ch11.box2.sim,ch11,0.073,ch11.sim_se200,sim,0.007,n = 200 시뮬레이션 표준오차 (ch11.ex2.s200 과 같은 수 ; 허용폭도 같다)
+ch11.box2.f,ch11,0.089,ch11.se_formula200,data,,1.25 ÷ √200

@@ -141,4 +141,79 @@ calc("ch14.ts_naive_narrow_pct", function() {
   })
   100 * (sd(boot) / se_naive - 1)
 })
+
+# §14.2 · §14.3 · 실습 6 = 점 여섯 개 (2026-11-14 신설) ; lm · anova 로 따로 계산
+LX <- 1:6; LY <- c(2, 4, 3, 6, 5, 7)
+lsm <- lm(LY ~ LX)
+av <- anova(lsm)                                    # 행 1 = 회귀제곱합 · 행 2 = 잔차제곱합
+ssr_line <- function(a, b) sum((LY - (a + b * LX))^2)
+calc("ch14.ls_xbar", function() mean(LX))
+calc("ch14.ls_ybar", function() mean(LY))
+calc("ch14.ls_sxy", function() cov(LX, LY) * (length(LX) - 1))
+calc("ch14.ls_sxx", function() var(LX) * (length(LX) - 1))
+calc("ch14.ls_slope", function() unname(coef(lsm)[2]))
+calc("ch14.ls_intercept", function() unname(coef(lsm)[1]))
+calc("ch14.ls_intercept_rounded", function() 4.5 - 0.886 * 3.5)
+calc("ch14.ls_sst", function() sum(av[["Sum Sq"]]))
+calc("ch14.ls_ssr_mean", function() ssr_line(mean(LY), 0))
+calc("ch14.ls_ssr_steep", function() ssr_line(0, 1.3))
+calc("ch14.ls_ssr", function() deviance(lsm))
+calc("ch14.ls_ssreg", function() av[["Sum Sq"]][1])
+calc("ch14.ls_r2", function() summary(lsm)$r.squared)
+calc("ch14.ls_resid_sum", function() sum(residuals(lsm)))
+for (i in 1:6) local({ ii <- i; calc(paste0("ch14.ls_resid", ii), function() unname(residuals(lsm)[ii])) })
+calc("ch14.ls_fit4", function() unname(fitted(lsm)[4]))
+calc("ch14.ls_dev4", function() LY[4] - mean(LY))
+calc("ch14.ls_expl4", function() unname(fitted(lsm)[4]) - mean(LY))
+calc("ch14.slope_from_rounded", function() 0.63 * 1.25 / 0.80)
+
+# §14.3 잔차 크기만 다른 세 자료 = 같은 설계를 R 난수로 (set.seed(73) ; x 한 번 · 잡음 셋을 차례로)
+noise <- local({
+  set.seed(73)
+  x <- runif(100, 1, 7)
+  lapply(c(0.3, 1.0, 2.0), function(s) {
+    y <- 1.0 + 0.8 * x + rnorm(100, 0, s)
+    m <- lm(y ~ x)
+    c(unname(coef(m)[2]), summary(m)$r.squared)
+  })
+})
+nm <- c("03", "10", "20")
+for (j in 1:3) local({
+  jj <- j
+  calc(paste0("ch14.noise_slope_sd", nm[jj]), function() noise[[jj]][1])
+  calc(paste0("ch14.noise_r2_sd", nm[jj]), function() noise[[jj]][2])
+})
+
+# §14.3 과소적합 · 적합 · 과적합 = 같은 설계를 R 난수로 (set.seed(73) ; 30명에 맞추고 새 1,000명에 적용)
+# 다항식은 lm(y ~ poly(x, d)) 직교 다항식 (numpy polyfit 과 같은 모형 공간 ; 계산 경로는 다르다).
+tru <- function(x) 1 + 1.6 * x - 0.16 * x^2
+r2f <- function(y, f) 1 - sum((y - f)^2) / sum((y - mean(y))^2)
+fit_world <- function() {
+  x30 <- runif(30, 0, 10); y30 <- tru(x30) + rnorm(30)
+  x1k <- runif(1000, 0, 10); y1k <- tru(x1k) + rnorm(1000)
+  d30 <- data.frame(x = x30, y = y30); d1k <- data.frame(x = x1k)
+  out <- lapply(c(1, 2, 12), function(d) {
+    m <- lm(y ~ poly(x, d), data = d30)
+    c(r2f(y30, fitted(m)), r2f(y1k, predict(m, newdata = d1k)))
+  })
+  names(out) <- c("1", "2", "12")
+  out$true <- r2f(y1k, tru(x1k))
+  out
+}
+fitres <- local({
+  set.seed(73)
+  one <- fit_world()
+  set.seed(73)
+  many <- replicate(300, { w <- fit_world(); c(w[["1"]][2], w[["2"]][2], w[["12"]][2]) })
+  list(one = one, many = many)
+})
+for (j in 1:3) local({
+  jj <- j
+  d <- c("1", "2", "12")[jj]
+  calc(paste0("ch14.fit_in_d", d), function() fitres$one[[d]][1])
+  calc(paste0("ch14.fit_out_d", d), function() fitres$one[[d]][2])
+  calc(paste0("ch14.fit300_neg_pct_d", d), function() 100 * mean(fitres$many[jj, ] < 0))
+  calc(paste0("ch14.fit300_med_d", d), function() median(fitres$many[jj, ]))
+})
+calc("ch14.fit_true_out", function() fitres$one$true)
 })

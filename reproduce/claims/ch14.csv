@@ -18,19 +18,8 @@ ch14.first.care.b,ch14,.14,,paper,,Rogers 외 2023 연구 2 p. 760
 ch14.0.r,ch14,.63,ch14.r,data,,§14.0 설문판 hjs–mil 상관
 ch14.0.slope,ch14,0.98,ch14.slope,data,,§14.0
 ch14.1.fig.n,ch14,566,ch14.n_svy,data,,§14.1 그림 설명
-ch14.1.r,ch14,.63,ch14.r,data,,§14.1
-ch14.1.r.sq,ch14,.63,ch14.r,data,,§14.1
-ch14.1.r2,ch14,.40,ch14.r2,data,,§14.1 = 반올림 전 r² .3953
-ch14.1.shapes.ask.lo,ch14,.63,ch14.shapes_r_min,sim,0.16,§14.1 네 세계(make_book_figures.fig_ch14_shapes 와 같은 생성기 · 씨앗 73) 가운데 가장 작은 r. 모수를 씨앗 73 의 r 에 맞춰 풀었으므로 R 난수에서는 넷의 최솟값이 평균 약 .585 · 표준편차 .037(파이썬 2000 번 모의) → 허용 3 × √2 × .037 ≈ .16
-ch14.1.shapes.ask.hi,ch14,.63,ch14.shapes_r_max,sim,0.15,§14.1 네 세계 가운데 가장 큰 r. R 난수에서 최댓값 평균 약 .673 · 표준편차 .033 → 허용 3 × √2 × .033 ≈ .14 (올려 .15)
-ch14.1.shapes.fig.lo,ch14,.63,ch14.shapes_r_min,sim,0.16,§14.1 그림 설명 ; 허용 근거 = ch14.1.shapes.ask.lo
-ch14.1.shapes.fig.hi,ch14,.63,ch14.shapes_r_max,sim,0.15,§14.1 그림 설명 ; 허용 근거 = ch14.1.shapes.ask.hi
-ch14.1.shapes.all.lo,ch14,.63,ch14.shapes_r_min,sim,0.16,§14.1 ; 허용 근거 = ch14.1.shapes.ask.lo
-ch14.1.shapes.all.hi,ch14,.63,ch14.shapes_r_max,sim,0.15,§14.1 ; 허용 근거 = ch14.1.shapes.ask.hi
-ch14.1.outlier.rest,ch14,190,ch14.shapes_outlier_rest,data,,§14.1 외딴 점 세계 = 그림 생성기(make_book_figures.fig_ch14_shapes) 의 n = 200 · k = 10 → 나머지 190. 원고의 556 은 설문판 566 − 10 으로 보인다 ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch14.1.outlier.k,ch14,10,,fixed,,§14.1 외딴 점 세계에 넣은 외딴 점 수 k = 10 (make_book_figures.fig_ch14_shapes) ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch14.1.ci.95a,ch14,95,,fixed,,신뢰수준의 정의 (명목 95%)
-ch14.1.ci.95b,ch14,95,,fixed,,신뢰수준의 정의 (명목 95%) ; 같은 조각의 둘째 95
+ch14.1.r.sq,ch14,.63,ch14.r,data,,§14.1 ; 2026-11-14i 14장 분리로 문장을 새로 써 다시 묶음
+ch14.1.r2,ch14,.40,ch14.r2,data,,§14.1 = 반올림 전 r² .3953 ; 2026-11-14i 14장 분리로 문장을 새로 써 다시 묶음
 ch14.2.eq.b0,ch14,−0.01,ch14.intercept,data,,§14.2 회귀식
 ch14.2.eq.b1,ch14,0.98,ch14.slope,data,,§14.2 회귀식
 ch14.2.read.b1,ch14,0.98,ch14.slope,data,,§14.2 계수 읽기
@@ -159,3 +148,89 @@ ch14.8.r2,ch14,.40,ch14.r2,data,,§14.8 점검
 ch14.8.shapes.lo,ch14,.63,ch14.shapes_r_min,sim,0.16,§14.8 점검 ; 허용 근거 = ch14.1.shapes.ask.lo
 ch14.8.shapes.hi,ch14,.63,ch14.shapes_r_max,sim,0.15,§14.8 점검 ; 허용 근거 = ch14.1.shapes.ask.hi
 ch14.next.b1,ch14,0.98,ch14.slope,data,,다음 장으로
+ch14.1.beta,ch14,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758 (표준화 계수 β)
+ch14.ls.cand.sst,ch14,17.50,ch14.ls_ssr_mean,data,,§14.2 점 여섯 개 = 평균 수평선의 잔차제곱합 (= 총제곱합 17.5 ; make_book_figures.fig_ch14_ls_candidates)
+ch14.ls.cand.steep,ch14,6.79,ch14.ls_ssr_steep,data,,§14.2 「가파른 선」 = 절편 0 · 기울기 1.3 (그림 생성기의 후보선)
+ch14.ls.cand.ls,ch14,3.77,ch14.ls_ssr,data,,§14.2 최소제곱선의 잔차제곱합 (3.7714 ; R = deviance(lm))
+ch14.ls.eq.a,ch14,1.40,ch14.ls_intercept,data,,§14.2 최소제곱 절편 (정확히 1.4 ; R = lm)
+ch14.ls.eq.b,ch14,0.886,ch14.ls_slope,data,,§14.2 최소제곱 기울기 15.5 ÷ 17.5 = 0.88571
+ch14.ls.res1,ch14,−0.29,ch14.ls_resid1,data,,§14.2 잔차 (X = 1)
+ch14.ls.res2,ch14,+0.83,ch14.ls_resid2,data,,§14.2 잔차 (X = 2)
+ch14.ls.res3,ch14,−1.06,ch14.ls_resid3,data,,§14.2 잔차 (X = 3)
+ch14.ls.res4,ch14,+1.06,ch14.ls_resid4,data,,§14.2 잔차 (X = 4)
+ch14.ls.res5,ch14,−0.83,ch14.ls_resid5,data,,§14.2 잔차 (X = 5)
+ch14.ls.res6,ch14,+0.29,ch14.ls_resid6,data,,§14.2 잔차 (X = 6)
+ch14.ls.res.sum,ch14,0,ch14.ls_resid_sum,data,,§14.2 잔차의 합 (절편이 있는 최소제곱이면 0)
+ch14.ls.sq.ls,ch14,3.77,ch14.ls_ssr,data,,§14.2 정사각형 넓이의 합 = 잔차제곱합
+ch14.ls.sq.steep,ch14,6.79,ch14.ls_ssr_steep,data,,§14.2 가파른 선 (절편 0 · 기울기 1.3)
+ch14.ls.hand.xbar,ch14,3.5,ch14.ls_xbar,data,,§14.2 손계산
+ch14.ls.hand.ybar,ch14,4.5,ch14.ls_ybar,data,,§14.2 손계산
+ch14.ls.hand.sxy,ch14,15.5,ch14.ls_sxy,data,,§14.2 손계산 (R = cov × (n − 1))
+ch14.ls.hand.sxx,ch14,17.5,ch14.ls_sxx,data,,§14.2 손계산 (R = var × (n − 1))
+ch14.ls.hand.b.sxy,ch14,15.5,ch14.ls_sxy,data,,§14.2 손계산
+ch14.ls.hand.b.sxx,ch14,17.5,ch14.ls_sxx,data,,§14.2 손계산
+ch14.ls.hand.b,ch14,0.886,ch14.ls_slope,data,,§14.2 손계산 (0.88571)
+ch14.ls.hand.a.ybar,ch14,4.5,ch14.ls_ybar,data,,§14.2 손계산
+ch14.ls.hand.a.b,ch14,0.886,ch14.ls_slope,data,,§14.2 손계산
+ch14.ls.hand.a.xbar,ch14,3.5,ch14.ls_xbar,data,,§14.2 손계산
+ch14.ls.hand.a,ch14,1.40,ch14.ls_intercept_rounded,data,,§14.2 문장이 적은 반올림 산술 그대로 = 4.5 − 0.886 × 3.5 = 1.399 (정확한 절편 1.4 도 같은 표기 ; ch14.ls.eq.a)
+ch14.ls.rsd.r,ch14,.63,ch14.r,data,,§14.2 설문판 hjs–mil 상관
+ch14.ls.rsd.sdx,ch14,0.80,ch14.hjs_sd,data,,§14.2 hjs 표준편차
+ch14.ls.rsd.sdy,ch14,1.25,ch14.mil_sd,data,,§14.2 mil 표준편차
+ch14.ls.rsd.b.r,ch14,0.63,ch14.r,data,,§14.2
+ch14.ls.rsd.b.sdy,ch14,1.25,ch14.mil_sd,data,,§14.2
+ch14.ls.rsd.b.sdx,ch14,0.80,ch14.hjs_sd,data,,§14.2
+ch14.ls.rsd.b,ch14,0.98,ch14.slope,data,,§14.2 「≈ 0.98」 = 반올림 전 r × sd(mil) ÷ sd(hjs) = 회귀 기울기 그 자체 (0.98x). 반올림한 입력의 산술은 0.984 (ch14.slope_from_rounded) 이고 그것도 0.98 로 반올림된다
+ch14.ls.rsd.b.rounded,ch14,0.98,ch14.slope_from_rounded,data,,§14.2 같은 문장을 적힌 반올림 산술로 = 0.63 × 1.25 ÷ 0.80 = 0.984 → 0.98
+ch14.ls.dec.ybar,ch14,4.5,ch14.ls_ybar,data,,§14.3 Y 평균
+ch14.ls.dec.dev,ch14,1.50,ch14.ls_dev4,data,,§14.3 넷째 점 전체 편차 6 − 4.5
+ch14.ls.dec.expl,ch14,0.44,ch14.ls_expl4,data,,§14.3 4.9429 − 4.5 = 0.4429
+ch14.ls.dec.fit,ch14,4.94,ch14.ls_fit4,data,,§14.3 넷째 점 적합값 (R = fitted(lm))
+ch14.ls.dec.ybar2,ch14,4.5,ch14.ls_ybar,data,,§14.3 Y 평균
+ch14.ls.dec.res,ch14,1.06,ch14.ls_resid4,data,,§14.3 넷째 점 잔차
+ch14.ls.ss.tot,ch14,17.50,ch14.ls_sst,data,,§14.3 총제곱합 (R = anova 제곱합의 합)
+ch14.ls.ss.reg,ch14,13.73,ch14.ls_ssreg,data,,§14.3 회귀제곱합 (13.729 ; R = anova 행 1)
+ch14.ls.ss.res,ch14,3.77,ch14.ls_ssr,data,,§14.3 잔차제곱합
+ch14.ls.ss.eq.tot,ch14,17.50,ch14.ls_sst,data,,§14.3
+ch14.ls.ss.eq.reg,ch14,13.73,ch14.ls_ssreg,data,,§14.3
+ch14.ls.ss.eq.res,ch14,3.77,ch14.ls_ssr,data,,§14.3
+ch14.ls.r2.reg,ch14,13.73,ch14.ls_ssreg,data,,§14.3
+ch14.ls.r2.tot,ch14,17.50,ch14.ls_sst,data,,§14.3
+ch14.ls.r2,ch14,.784,ch14.ls_r2,data,,§14.3 R² = 0.78449 (R = summary(lm)$r.squared)
+ch14.noise.cap.slope,ch14,0.8,,fixed,,§14.3 그림 설명 = 모의시행에 심은 참 기울기 (make_book_figures.fig_ch14_ls_noise)
+ch14.noise.cap.n,ch14,100,,fixed,,§14.3 그림 설명 = 자료마다 n = 100 (설계)
+ch14.noise.cap.seed,ch14,73,,fixed,,§14.3 그림 설명 = 씨앗 73
+ch14.noise.slope.true,ch14,0.8,,fixed,,§14.3 모의시행에 심은 참 기울기 (절편 1.0)
+ch14.noise.sd03,ch14,0.3,,fixed,,§14.3 모의시행에 심은 잔차 표준편차
+ch14.noise.sd10,ch14,1.0,,fixed,,§14.3 모의시행에 심은 잔차 표준편차
+ch14.noise.sd20,ch14,2.0,,fixed,,§14.3 모의시행에 심은 잔차 표준편차
+ch14.noise.r2.03,ch14,.96,ch14.noise_r2_sd03,sim,0.035,§14.3 잔차 SD 0.3 의 R² (파이썬 .9601 ; 기댓값 약 .955). R 은 같은 설계를 set.seed(73) 로. 파이썬 3000 번 모의 표준편차 .0075 → 허용 3 × √2 × .0075 ≈ .032 (올려 .035)
+ch14.noise.r2.10,ch14,.62,ch14.noise_r2_sd10,sim,0.22,§14.3 잔차 SD 1.0 의 R² (파이썬 .6158 ; 기댓값 약 .659). 모의 표준편차 .050 → 허용 3 × √2 × .050 ≈ .21 (올려 .22)
+ch14.noise.r2.20,ch14,.41,ch14.noise_r2_sd20,sim,0.31,§14.3 잔차 SD 2.0 의 R² (파이썬 .4150 ; 기댓값 약 .327). 모의 표준편차 .072 → 허용 3 × √2 × .072 ≈ .31
+ch14.noise.b.03,ch14,0.80,ch14.noise_slope_sd03,sim,0.075,§14.3 잔차 SD 0.3 의 추정 기울기 (파이썬 0.7994). 모의 표준편차 .0175 → 허용 3 × √2 × .0175 ≈ .074 (올려 .075)
+ch14.noise.b.10,ch14,0.71,ch14.noise_slope_sd10,sim,0.25,§14.3 잔차 SD 1.0 의 추정 기울기 (파이썬 0.7079). 모의 표준편차 .057 → 허용 3 × √2 × .057 ≈ .24 (올려 .25)
+ch14.noise.b.20,ch14,0.91,ch14.noise_slope_sd20,sim,0.50,§14.3 잔차 SD 2.0 의 추정 기울기 (파이썬 0.9113). 모의 표준편차 .116 → 허용 3 × √2 × .116 ≈ .49 (올려 .50)
+ch14.noise.b.near,ch14,0.8,,fixed,,§14.3 「언저리」의 기준 = 심은 참 기울기 0.8
+ch14.7.ex6.b,ch14,0.886,ch14.ls_slope,data,,실습 6
+ch14.7.ex6.a,ch14,1.40,ch14.ls_intercept,data,,실습 6
+ch14.7.ex6.ssr,ch14,3.77,ch14.ls_ssr,data,,실습 6
+ch14.7.ex6.sst,ch14,17.50,ch14.ls_sst,data,,실습 6
+ch14.7.ex6.r2,ch14,.784,ch14.ls_r2,data,,실습 6
+ch14.7.ex6.sxx,ch14,17.5,ch14.ls_sxx,data,,실습 6 막히는 곳
+ch14.7.ex6.syy,ch14,17.5,ch14.ls_sst,data,,실습 6 막히는 곳 = Y 편차의 제곱합 (총제곱합)
+ch14.fit.n30,ch14,30,,fixed,,§14.3 과적합 소절 모의시행 설계 = 맞추는 자료 n = 30 (make_book_figures.fig_ch14_fit · 원고 코드 블록)
+ch14.fit.n1k,ch14,"1,000",,fixed,,§14.3 과적합 소절 모의시행 설계 = 새 자료 n = 1000
+ch14.fit.code.n30,ch14,30,,fixed,,§14.3 과적합 소절 모의시행 설계 = n = 30
+ch14.fit.code.n1k,ch14,"1,000",,fixed,,§14.3 과적합 소절 모의시행 설계 = n = 1000
+ch14.fit.out1,ch14,−0.07,ch14.fit_out_d1,sim,0.46,§14.3 씨앗 73 세계의 1차 모형 새 자료 R² (파이썬 −0.0708). R 은 같은 설계를 set.seed(73) 로. 파이썬 3000 세계(씨앗 37) 표준편차 .108 → 허용 3 × √2 × .108 ≈ .46
+ch14.fit.in2,ch14,.71,ch14.fit_in_d2,sim,0.46,§14.3 2차 모형 지금 자료 R². 3000 세계 표준편차 .108 → 3 × √2 × .108 ≈ .46
+ch14.fit.out2,ch14,.53,ch14.fit_out_d2,sim,0.21,§14.3 2차 모형 새 자료 R². 3000 세계 표준편차 .048 → 3 × √2 × .048 ≈ .20 (올려 .21)
+ch14.fit.true,ch14,.60,ch14.fit_true_out,sim,0.09,§14.3 참 관계로 예측한 새 자료 R² (파이썬 .5967 ; 기댓값 약 .586 = 참 분산 몫). 3000 세계 표준편차 .019 → 3 × √2 × .019 ≈ .081 (올려 .09)
+ch14.fit.in12,ch14,.85,ch14.fit_in_d12,sim,0.37,§14.3 12차 모형 지금 자료 R². 3000 세계 표준편차 .087 → 3 × √2 × .087 ≈ .37
+ch14.fit.out12,ch14,.21,ch14.fit_out_d12,sim,inf,§14.3 씨앗 73 세계의 12차 모형 새 자료 R² (파이썬 .2054). ⚠ 독립 난수 대조 불가 = 3000 세계 분포의 2.5% 분위가 약 −5만(외삽에서 곡선이 튐) → mc_tol = inf = 파이썬 재현 대조만. 설계 대조는 ch14.fit300.neg12 · med12 행이 맡는다
+ch14.fit.n30b,ch14,30,,fixed,,§14.3 과적합 소절 모의시행 설계 = n = 30
+ch14.fit300.neg12,ch14,72,ch14.fit300_neg_pct_d12,sim,11,§14.3 300개 세계 가운데 12차 모형 새 자료 R² < 0 비율(%) (파이썬 72.0 ; 3000 세계 기댓값 약 76.6). 300 세계 비율의 부트스트랩 표준편차 2.44 %p → 3 × √2 × 2.44 ≈ 10.4 (올려 11)
+ch14.fit300.med12,ch14,−2.54,ch14.fit300_med_d12,sim,6.0,§14.3 300개 세계의 12차 모형 새 자료 R² 중앙값 (파이썬 −2.54 ; 3000 세계 중앙값 약 −4.3). 300 세계 중앙값의 부트스트랩 표준편차 1.39 → 3 × √2 × 1.39 ≈ 5.9 (올려 6.0)
+ch14.fit.out12b,ch14,.21,ch14.fit_out_d12,sim,inf,§14.3 ch14.fit.out12 와 같은 수의 재언급 = 같은 이유로 파이썬 재현 대조만
+ch14.fit.adj.a,ch14,.59,,paper,,Rogers 외 2023 연구 1 p. 758 (ch15.first.r2a 와 같은 수)
+ch14.fit.adj.b,ch14,.63,,paper,,Rogers 외 2023 연구 1 p. 758 (OSF 재계산 .636 = 원문은 버림 ; book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md)

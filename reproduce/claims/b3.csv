@@ -1,0 +1,96 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch14.1.r,b3,.63,ch14.r,data,,§14.1 ; 2026-11-14i 14장 분리로 문장을 새로 써 다시 묶음
+ch14.1.shapes.ask.lo,b3,.63,ch14.shapes_r_min,sim,0.16,§14.1 네 세계(make_book_figures.fig_ch14_shapes 와 같은 생성기 · 씨앗 73) 가운데 가장 작은 r. 모수를 씨앗 73 의 r 에 맞춰 풀었으므로 R 난수에서는 넷의 최솟값이 평균 약 .585 · 표준편차 .037(파이썬 2000 번 모의) → 허용 3 × √2 × .037 ≈ .16 ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.shapes.ask.hi,b3,.63,ch14.shapes_r_max,sim,0.15,§14.1 네 세계 가운데 가장 큰 r. R 난수에서 최댓값 평균 약 .673 · 표준편차 .033 → 허용 3 × √2 × .033 ≈ .14 (올려 .15) ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.shapes.fig.lo,b3,.63,ch14.shapes_r_min,sim,0.16,§14.1 그림 설명 ; 허용 근거 = ch14.1.shapes.ask.lo ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.shapes.fig.hi,b3,.63,ch14.shapes_r_max,sim,0.15,§14.1 그림 설명 ; 허용 근거 = ch14.1.shapes.ask.hi ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.shapes.all.lo,b3,.63,ch14.shapes_r_min,sim,0.16,§14.1 ; 허용 근거 = ch14.1.shapes.ask.lo ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.shapes.all.hi,b3,.63,ch14.shapes_r_max,sim,0.15,§14.1 ; 허용 근거 = ch14.1.shapes.ask.hi ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.outlier.rest,b3,190,ch14.shapes_outlier_rest,data,,§14.1 외딴 점 세계 = 그림 생성기(make_book_figures.fig_ch14_shapes) 의 n = 200 · k = 10 → 나머지 190. 원고의 556 은 설문판 566 − 10 으로 보인다 ; 2026-11-14h 원고 정정에 맞춰 옮김 ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.outlier.k,b3,10,,fixed,,§14.1 외딴 점 세계에 넣은 외딴 점 수 k = 10 (make_book_figures.fig_ch14_shapes) ; 2026-11-14h 원고 정정에 맞춰 옮김 ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.ci.95a,b3,95,,fixed,,신뢰수준의 정의 (명목 95%) ; 2026-11-14i 14장 분리로 B3 로 옮김
+ch14.1.ci.95b,b3,95,,fixed,,신뢰수준의 정의 (명목 95%) ; 같은 조각의 둘째 95 ; 2026-11-14i 14장 분리로 B3 로 옮김
+b3.goal.r3,b3,.3,,fixed,,학습목표 ① 예시값 (§B3.1 격자의 r = .30 칸 · Cohen 1988 「중간」 기준)
+b3.first.n,b3,60,,paper,,Rogers 외 2023 연구 3 p. 761 (출판본 원문 raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 「random convenience sample of 60」)
+b3.first.r,b3,.38,,paper,,Rogers 외 2023 연구 3 p. 761 (구원 서사 ⊥ 영웅의 여정 영차 상관 「r = .38」)
+b3.first.p,b3,.003,,paper,,Rogers 외 2023 연구 3 p. 761 (「p = .003」)
+b3.first.r42,b3,.42,,paper,,Rogers 외 2023 연구 3 p. 761 (challenge · transformation 둘 다 「r = .42」)
+b3.first.tab.r,b3,.38,,paper,,Rogers 외 2023 연구 3 p. 761
+b3.first.tab.p,b3,.003,,paper,,Rogers 외 2023 연구 3 p. 761
+b3.first.tab.n,b3,60,,paper,,Rogers 외 2023 연구 3 p. 761 (표본 60)
+b3.first.tab.n2,b3,60,,paper,,Rogers 외 2023 연구 3 p. 761 ; 같은 행의 둘째 60
+b3.first.tab.r42,b3,.42,,paper,,Rogers 외 2023 연구 3 p. 761
+b3.first.miss.r,b3,.38,,paper,,Rogers 외 2023 연구 3 p. 761
+b3.0.r,b3,.63,b3.r,data,,§B3.0 설문판 hjs–mil 상관 (.6288)
+b3.1.grid.n,b3,200,,fixed,,§B3.1 격자 설계 = 칸마다 n = 200 (make_book_figures.fig_b3_grid)
+b3.1.grid.cap.n,b3,200,,fixed,,§B3.1 그림 설명 = 격자 설계 n = 200
+b3.1.grid.cap.seed,b3,73,,fixed,,§B3.1 그림 설명 = 씨앗 73 (책의 기본 씨앗)
+b3.1.grid.90,b3,.90,b3.grid_r90,data,,§B3.1 격자 칸 = 표본 상관을 목표값에 정확히 맞춘 구성(make_book_figures._pair_exact_r) → 난수와 무관하게 .9 ; R 은 같은 구성을 회귀 잔차로 따로 짰다
+b3.1.grid.50,b3,.50,b3.grid_r50,data,,§B3.1 격자 칸 (구성상 정확히 .5)
+b3.1.grid.30,b3,.30,b3.grid_r30,data,,§B3.1 격자 칸 (구성상 정확히 .3)
+b3.1.paper.r3,b3,.3,,fixed,,§B3.1 예시값 = 사회과학 논문에 흔한 크기 (격자의 .30 칸)
+b3.1.ours.n,b3,566,b3.n_svy,data,,§B3.1 그림 설명 = 설문판 정제본
+b3.1.ours.grid50,b3,.50,b3.grid_r50,data,,§B3.1 격자 칸 (구성상 정확히 .5)
+b3.1.ours.grid70,b3,.70,b3.grid_r70,data,,§B3.1 격자 칸 (구성상 정확히 .7)
+b3.2.five.xbar,b3,3,b3.five_xbar,data,,§B3.2 다섯 사람 X 평균
+b3.2.five.ybar,b3,4,b3.five_ybar,data,,§B3.2 다섯 사람 Y 평균
+b3.2.tab.sum,b3,15,b3.five_sumprod,data,,§B3.2 표 합계 행 = 편차의 곱의 합
+b3.2.sumprod,b3,15,b3.five_sumprod,data,,§B3.2
+b3.2.cov,b3,3.75,b3.five_cov,data,,§B3.2 공분산 (n − 1)
+b3.2.sdx,b3,1.58,b3.five_sdx,data,,§B3.2 = √2.5
+b3.2.sdy,b3,3.16,b3.five_sdy,data,,§B3.2 = √10
+b3.2.sdprod,b3,5,b3.five_sdprod,data,,§B3.2 = √2.5 × √10 = 5 (반올림 전 값의 곱 ; 1.58 × 3.16 = 4.99)
+b3.2.r.cov,b3,3.75,b3.five_cov,data,,§B3.2
+b3.2.r.sd,b3,5,b3.five_sdprod,data,,§B3.2
+b3.2.r,b3,.75,b3.five_r,data,,§B3.2 상관 (R = cor)
+b3.2.prod4,b3,−2,b3.five_prod4,data,,§B3.2 넷째 사람의 편차의 곱
+b3.2.prod5,b3,10,b3.five_prod5,data,,§B3.2 다섯째 사람의 편차의 곱
+b3.3.shapes.seed,b3,73,,fixed,,§B3.3 그림 설명 = 씨앗 73 (make_book_figures.fig_ch14_shapes)
+b3.3.traps.seed,b3,73,,fixed,,§B3.3 그림 설명 = 씨앗 73 (make_book_figures.fig_b3_traps)
+b3.3.u,b3,−0.01,b3.trap_u,sim,0.11,§B3.3 (가) x = −3 ~ 3 고른 200점 · y = x² + N(0 · 1) (fig_b3_traps 씨앗 73 ; 파이썬 −0.0102). R 은 같은 설계를 set.seed(73) 난수로. 모집단 r = 0 · 파이썬 3000 번 모의 표준편차 .025 → 허용 3 × √2 × .025 ≈ .11
+b3.3.out.without,b3,0.03,b3.trap_out_without,sim,0.80,§B3.3 (나) 독립 정규 30쌍의 r (파이썬 0.0332). 30쌍의 r 은 표준편차 .188(3000 번 모의) → 허용 3 × √2 × .188 ≈ .80 (표본이 작아 허용폭이 넓다)
+b3.3.out.n,b3,31,,fixed,,§B3.3 (나) 설계 = 30명 + 극단점 (6 · 6) 하나
+b3.3.out.with,b3,0.52,b3.trap_out_with,sim,0.41,§B3.3 (나) 극단점을 더한 31명의 r (파이썬 0.5245). 3000 번 모의 표준편차 .096 → 허용 3 × √2 × .096 ≈ .41
+b3.3.out.ten,b3,10,b3.five_prod5,data,,§B3.3 (나) = §B3.2 표 다섯째 사람의 편차의 곱
+b3.3.range.n,b3,300,,fixed,,§B3.3 (다) 설계 = 300명 (fig_b3_traps _pair_with_r .6 · 300)
+b3.3.range.all,b3,0.56,b3.trap_range_all,sim,0.16,§B3.3 (다) 모집단 r = .6 · 파이썬 0.5625. 3000 번 모의 표준편차 .037 → 허용 3 × √2 × .037 ≈ .16
+b3.3.range.cutn,b3,66,b3.trap_range_n,sim,31,§B3.3 (다) X > 0.8 인 사람 수 (파이썬 66 ; 기댓값 300 × P(Z > 0.8) = 63.6). 이항 표준편차 7.2 → 허용 3 × √2 × 7.2 ≈ 31
+b3.3.range.cut,b3,0.32,b3.trap_range_cut,sim,0.50,§B3.3 (다) X > 0.8 만 남긴 r (파이썬 0.3234). 3000 번 모의 표준편차 .118 → 허용 3 × √2 × .118 ≈ .50
+b3.3.mix.all,b3,0.72,b3.trap_mix_all,sim,0.11,§B3.3 (라) 두 집단 합친 r (파이썬 0.7197 ; 모집단 2.616 ÷ √(2.89 × 4.5904) = .718). 3000 번 모의 표준편차 .025 → 허용 3 × √2 × .025 ≈ .11
+b3.3.mix.g0,b3,−0.58,b3.trap_mix_g0,sim,0.27,§B3.3 (라) 첫 집단 안 r (파이썬 −0.5783 ; 모집단 −.384 ÷ √(.64 × .5904) = −.625). 3000 번 모의 표준편차 .063 → 허용 3 × √2 × .063 ≈ .27
+b3.3.mix.g1,b3,−0.55,b3.trap_mix_g1,sim,0.27,§B3.3 (라) 둘째 집단 안 r (파이썬 −0.5529 ; 모집단 −.625). 허용 근거 = b3.3.mix.g0
+b3.4.cohen.1,b3,.1,,paper,,Cohen (1988) 상관계수 관례 기준 작다 ; 쪽 미확인
+b3.4.cohen.3,b3,.3,,paper,,Cohen (1988) 상관계수 관례 기준 중간 ; 쪽 미확인
+b3.4.cohen.5,b3,.5,,paper,,Cohen (1988) 상관계수 관례 기준 크다 ; 쪽 미확인
+b3.4.r3,b3,.3,,fixed,,§B3.4 예시값 (Cohen 「중간」)
+b3.4.r3sq,b3,.09,b3.r3_sq,data,,§B3.4 산술 .3² = .09
+b3.4.r3sq.pct,b3,9,b3.r3_sq_pct,data,,§B3.4 산술 .09 × 100
+b3.4.grid30,b3,.30,b3.grid_r30,data,,§B3.1 격자 칸 (구성상 정확히 .3)
+b3.4.ours.r,b3,.63,b3.r,data,,§B3.4 설문판 hjs–mil
+b3.4.ours.r2,b3,.40,b3.r2,data,,§B3.4 = .6288² = .3953 (R 은 lm 의 R²)
+b3.4.ours.pct,b3,40,b3.r2_pct,data,,§B3.4 = 39.5%
+b3.4.ours.r2b,b3,.40,b3.r2,data,,§B3.4
+b3.4.ours.pct2,b3,40,b3.r2_pct,data,,§B3.4
+b3.5.r,b3,.63,b3.r,data,,§B3.5 설문판 hjs–mil
+b3.5.p,b3,.003,,paper,,Rogers 외 2023 연구 3 p. 761
+b3.5.n,b3,60,,paper,,Rogers 외 2023 연구 3 p. 761 (표본 60)
+b3.5.r38,b3,.38,,paper,,Rogers 외 2023 연구 3 p. 761
+b3.6.n,b3,566,b3.n_svy,data,,§B3.6 정제 후 인원
+b3.6.wrong.r,b3,.3,,fixed,,§B3.6 AI 오류 예시값
+b3.6.wrong.pct,b3,30,b3.r3_wrong_pct,data,,§B3.6 AI 오류 예시 = r 을 몫으로 잘못 읽은 값 (.3 × 100)
+b3.6.wrong.r2,b3,.09,b3.r3_sq,data,,§B3.6 산술 .3² = .09
+b3.7.ex1.sum,b3,15,b3.five_sumprod,data,,실습 1
+b3.7.ex1.cov,b3,3.75,b3.five_cov,data,,실습 1
+b3.7.ex1.r,b3,.75,b3.five_r,data,,실습 1
+b3.7.ex2.n,b3,566,b3.n_svy,data,,실습 2 정제 후
+b3.7.ex2.nraw,b3,590,b3.n_raw,data,,실습 2 정제 전 (load clean=False)
+b3.7.ex2.r,b3,.629,b3.r,data,,실습 2 정제 후 r (.62876)
+b3.7.ex2.rraw,b3,.635,b3.r_raw,data,,실습 2 정제 전 r (.63468)
+b3.7.ex3.n,b3,312,b3.hjs5_n,data,,실습 3 hjs ≥ 5 인원
+b3.7.ex3.r,b3,.36,b3.hjs5_r,data,,실습 3 hjs ≥ 5 의 r (.3598)
+b3.7.ex3.ntot,b3,566,b3.n_svy,data,,실습 3 전체 인원
+b3.7.ex3.rtot,b3,.63,b3.r,data,,실습 3 전체 r
+b3.7.ex4.rho,b3,.626,b3.spearman,data,,실습 4 스피어만 ρ (.6258 ; R = cor method spearman)
+b3.7.ex4.r,b3,.629,b3.r,data,,실습 4 피어슨 r
+b3.8.q.r3,b3,.3,,fixed,,복습 물음 예시값
+b3.8.q.r3sq,b3,.3,,fixed,,복습 물음 예시값

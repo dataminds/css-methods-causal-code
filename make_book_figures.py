@@ -563,6 +563,265 @@ def fig_ch14_reg():
     return b0, b1
 
 
+# ── B3 · 상관 (2026-11-14 14장 분리) ─────────────────────────────
+def _pair_with_r(rng, r, n):
+    """표준정규 두 변수를 모집단 상관 r 로 뽑는다."""
+    x = rng.normal(0, 1, n)
+    y = r * x + np.sqrt(1 - r ** 2) * rng.normal(0, 1, n)
+    return x, y
+
+
+def _pair_exact_r(rng, r, n):
+    """표본 상관이 정확히 r 이 되게 만든다 (둘째 변수에서 첫째의 몫을 걷어 낸 뒤 섞는다)."""
+    x = rng.normal(0, 1, n); z = rng.normal(0, 1, n)
+    zx = (x - x.mean()) / x.std(ddof=1)
+    zz = z - z.mean(); zz = zz - (zz @ zx) / (zx @ zx) * zx; zz = zz / zz.std(ddof=1)
+    return zx, r * zx + np.sqrt(1 - r ** 2) * zz
+
+
+def fig_b3_grid(seed=73, n=200):
+    """상관의 크기와 부호를 눈으로: r 여덟 개 · 칸마다 200명.
+    표본 상관을 목표값에 정확히 맞췄다(그림의 요점은 크기별 모양이라 표본 흔들림을 뺐다).
+    ⭐ r = .3 칸을 굵은 테두리로 = 사회과학에서 흔한 크기인데 눈으로는 잘 안 보인다."""
+    rng = np.random.default_rng(seed)
+    targets = [.9, .7, .5, .3, 0, -.3, -.7, -.9]
+    fig, axes = plt.subplots(2, 4, figsize=(9.6, 5.0), sharex=True, sharey=True)
+    got = []
+    for ax, r in zip(axes.ravel(), targets):
+        x, y = _pair_exact_r(rng, r, n)
+        rr = np.corrcoef(x, y)[0, 1]
+        got.append(rr)
+        ax.scatter(x, y, s=7, color=BW["color"][0], alpha=.55)
+        ax.set_title(f"r = {rr + 0.0:.2f}".replace("-0.00", "0.00"), fontsize=10)
+        ax.set_xticks([]); ax.set_yticks([])
+        if r == .3:
+            for sp in ax.spines.values():
+                sp.set_linewidth(2.4)
+    fig.suptitle("상관의 크기와 부호: 점이 직선 둘레에 얼마나 모였나 (칸마다 200명, 씨앗 73)", y=1.01)
+    save(fig, "fig-b3-grid.png")
+    return targets, got
+
+
+def fig_b3_ours():
+    """우리 설문판의 hjs 와 mil = 선 없이 점만 (회귀선은 14장)."""
+    svy = load_clean("svy")
+    r = np.corrcoef(svy.hjs, svy.mil)[0, 1]
+    fig, ax = plt.subplots(figsize=(6.0, 4.0))
+    ax.scatter(svy.hjs, svy.mil, s=13, alpha=.35, color=BW["color"][0], edgecolors="none")
+    ax.set_xlabel("영웅의 여정 (hjs)"); ax.set_ylabel("삶의 의미 (mil)")
+    ax.set_title(f"우리 설문판의 두 변수: r = {r:.2f} (566명)")
+    save(fig, "fig-b3-ours.png")
+    return r
+
+
+def fig_b3_traps(seed=73):
+    """r 만 보면 속는 넷: 곡선 · 극단점 하나 · 범위 제한 · 두 집단 섞임."""
+    rng = np.random.default_rng(seed)
+    out = {}
+    fig, axes = plt.subplots(2, 2, figsize=(8.6, 6.4))
+    # (가) U자 곡선
+    x = np.linspace(-3, 3, 200); y = x ** 2 + rng.normal(0, 1, 200)   # x 를 고르게 펼쳐 대칭으로
+    out["u"] = np.corrcoef(x, y)[0, 1]
+    ax = axes[0, 0]; ax.scatter(x, y, s=8, color=BW["color"][0], alpha=.6)
+    ax.set_title(f"(가) 관계가 뚜렷한 U자인데\nr = {out['u']:.2f}", fontsize=9.5)
+    # (나) 극단점 하나
+    x = rng.normal(0, 1, 30); y = rng.normal(0, 1, 30)
+    out["out_without"] = np.corrcoef(x, y)[0, 1]
+    xo, yo = np.append(x, 6.0), np.append(y, 6.0)
+    out["out_with"] = np.corrcoef(xo, yo)[0, 1]
+    ax = axes[0, 1]; ax.scatter(x, y, s=12, color=BW["color"][0], alpha=.7)
+    ax.scatter([6.0], [6.0], s=60, facecolors="none", edgecolors=OI[7], linewidths=1.5)
+    ax.set_title(f"(나) 점 하나가 만든 상관\n31명 r = {out['out_with']:.2f} · 그 점을 빼면 {out['out_without']:.2f}", fontsize=9.5)
+    # (다) 범위 제한
+    x, y = _pair_with_r(rng, .6, 300)
+    keep = x > 0.8
+    out["range_all"] = np.corrcoef(x, y)[0, 1]
+    out["range_cut"] = np.corrcoef(x[keep], y[keep])[0, 1]
+    out["range_n"] = int(keep.sum())
+    ax = axes[1, 0]
+    ax.scatter(x[~keep], y[~keep], s=8, facecolors="none", edgecolors="0.6", linewidths=.6)
+    ax.scatter(x[keep], y[keep], s=9, color=BW["color"][0], alpha=.8)
+    ax.axvline(0.8, color=OI[7], linestyle="--", linewidth=1)
+    ax.set_title(f"(다) X 가 높은 사람만 뽑으면 줄어든다\n전체 r = {out['range_all']:.2f} · 오른쪽 {out['range_n']}명 r = {out['range_cut']:.2f}", fontsize=9.5)
+    # (라) 두 집단 섞임
+    xs, ys, gs = [], [], []
+    for k, (mx, my) in enumerate(((0, 0), (3, 4))):
+        xa = rng.normal(mx, .8, 100)
+        ya = my - 0.6 * (xa - mx) + rng.normal(0, .6, 100)
+        xs.append(xa); ys.append(ya); gs.append(np.full(100, k))
+    x, y, g = np.concatenate(xs), np.concatenate(ys), np.concatenate(gs)
+    out["mix_all"] = np.corrcoef(x, y)[0, 1]
+    out["mix_g0"] = np.corrcoef(x[g == 0], y[g == 0])[0, 1]
+    out["mix_g1"] = np.corrcoef(x[g == 1], y[g == 1])[0, 1]
+    ax = axes[1, 1]
+    for k in (0, 1):
+        ax.scatter(x[g == k], y[g == k], s=9, color=BW["color"][k], marker=BW["marker"][k], alpha=.7)
+    ax.set_title(f"(라) 두 집단을 합치면 뒤집힌다\n합친 r = {out['mix_all']:.2f} · 집단 안 {out['mix_g0']:.2f} · {out['mix_g1']:.2f}", fontsize=9.5)
+    for ax in axes.ravel():
+        ax.set_xticks([]); ax.set_yticks([])
+    fig.suptitle("상관계수 하나만 보면 속는 네 경우 (씨앗 73)", y=1.00)
+    save(fig, "fig-b3-traps.png")
+    return out
+
+
+# ── 14장 · 회귀: 최소제곱 그림 (2026-11-14 14장 분리 ; 점 여섯 개) ──
+LS_X = np.array([1, 2, 3, 4, 5, 6], float)
+LS_Y = np.array([2, 4, 3, 6, 5, 7], float)
+
+
+def _ls_fit(x=LS_X, y=LS_Y):
+    b = ((x - x.mean()) * (y - y.mean())).sum() / ((x - x.mean()) ** 2).sum()
+    return y.mean() - b * x.mean(), b
+
+
+def _ssr(a, b, x=LS_X, y=LS_Y):
+    return float(((y - (a + b * x)) ** 2).sum())
+
+
+def fig_ch14_ls_candidates():
+    """그림 1: 후보 직선 셋과 각 잔차제곱합 = 기준이 있어야 「가장 잘 맞는 선」을 고른다."""
+    a, b = _ls_fit()
+    cands = [("평균에 그은 수평선", LS_Y.mean(), 0.0),
+             ("가파른 선", 0.0, 1.3),
+             ("최소제곱선", a, b)]
+    fig, axes = plt.subplots(1, 3, figsize=(9.6, 3.4), sharey=True)
+    xs = np.linspace(0.5, 6.5, 20)
+    out = []
+    for ax, (lab, aa, bb) in zip(axes, cands):
+        s = _ssr(aa, bb); out.append((lab, aa, bb, s))
+        ax.plot(xs, aa + bb * xs, color=OI[7], linewidth=1.4)
+        for xi, yi in zip(LS_X, LS_Y):
+            ax.plot([xi, xi], [yi, aa + bb * xi], color=OI[5], linewidth=1.1, linestyle=":")
+        ax.scatter(LS_X, LS_Y, s=30, color=BW["color"][0], zorder=3)
+        ax.set_title(f"{lab}\n잔차제곱합 = {s:.2f}", fontsize=9.5)
+        ax.set_xlim(0.5, 6.5); ax.set_ylim(0.5, 8.5)
+    fig.suptitle("가장 잘 맞는 선은 잔차제곱합이 가장 작은 선이다 (점 여섯 개)", y=1.03)
+    save(fig, "fig-ch14-ls-candidates.png")
+    return out
+
+
+def fig_ch14_ls_fitted():
+    """그림 2 · 3: 측정값과 적합값, 그 사이의 잔차(부호 포함)."""
+    a, b = _ls_fit()
+    fit = a + b * LS_X
+    fig, axes = plt.subplots(1, 2, figsize=(9.0, 3.8), sharey=True)
+    xs = np.linspace(0.5, 6.5, 20)
+    for ax in axes:
+        ax.plot(xs, a + b * xs, color=OI[7], linewidth=1.3)
+        ax.scatter(LS_X, LS_Y, s=34, color=BW["color"][0], zorder=3, label="측정값 Y")
+        ax.scatter(LS_X, fit, s=34, facecolors="white", edgecolors=OI[7], marker="s", zorder=3, label=r"적합값 $\hat{Y}$ = a + bX")
+        ax.set_xlim(0.5, 6.5); ax.set_ylim(0.5, 8.5)
+    axes[0].set_title("측정값과 적합값 (적합값은 직선 위에 있다)", fontsize=9.5)
+    axes[0].legend(fontsize=8, loc="upper left")
+    for xi, yi, fi in zip(LS_X, LS_Y, fit):
+        axes[1].plot([xi, xi], [fi, yi], color=OI[5], linewidth=1.6)
+        axes[1].annotate(f"{yi - fi:+.2f}", (xi, (yi + fi) / 2), xytext=(4, 0),
+                         textcoords="offset points", fontsize=8, va="center")
+    axes[1].set_title("잔차 = 측정값 - 적합값 (위는 +, 아래는 -)", fontsize=9.5)
+    fig.suptitle(f"적합값과 잔차 (최소제곱선 " + r"$\hat{Y}$" + f" = {a:.2f} + {b:.3f}X)", y=1.02)
+    save(fig, "fig-ch14-ls-fitted.png")
+    return fit, LS_Y - fit
+
+
+def fig_ch14_ls_squares():
+    """그림 4: 잔차를 한 변으로 하는 정사각형 = 「제곱」은 넓이다."""
+    from matplotlib.patches import Rectangle
+    a, b = _ls_fit()
+    alt = (0.0, 1.3)
+    fig, axes = plt.subplots(1, 2, figsize=(9.0, 4.4))
+    xs = np.linspace(0.5, 8.5, 20)
+    for ax, (aa, bb, lab) in zip(axes, ((a, b, "최소제곱선"), (alt[0], alt[1], "가파른 선"))):
+        ax.plot(xs, aa + bb * xs, color=OI[7], linewidth=1.3)
+        for xi, yi in zip(LS_X, LS_Y):
+            e = yi - (aa + bb * xi)
+            y0 = min(yi, aa + bb * xi)
+            ax.add_patch(Rectangle((xi, y0), abs(e), abs(e), facecolor=BW["color"][1],
+                                   alpha=.35, edgecolor=OI[7], linewidth=.8, hatch="///"))
+        ax.scatter(LS_X, LS_Y, s=26, color=BW["color"][0], zorder=3)
+        ax.set_aspect("equal"); ax.set_xlim(0.5, 8.5); ax.set_ylim(0.5, 8.5)
+        ax.set_title(f"{lab}: 정사각형 넓이의 합 = {_ssr(aa, bb):.2f}", fontsize=9.5)
+    fig.suptitle("잔차의 제곱은 그 잔차를 한 변으로 하는 정사각형의 넓이다", y=1.0)
+    save(fig, "fig-ch14-ls-squares.png")
+
+
+def fig_ch14_ls_decomp():
+    """그림 5: 한 점의 편차 = 직선이 설명한 몫 + 잔차 → 총제곱합 = 회귀제곱합 + 잔차제곱합."""
+    a, b = _ls_fit()
+    fit = a + b * LS_X
+    ybar = LS_Y.mean()
+    sst = float(((LS_Y - ybar) ** 2).sum())
+    ssreg = float(((fit - ybar) ** 2).sum())
+    ssres = float(((LS_Y - fit) ** 2).sum())
+    k = 3                                    # 넷째 점 (X = 4, Y = 6)
+    fig, ax = plt.subplots(figsize=(6.6, 4.4))
+    xs = np.linspace(0.5, 6.5, 20)
+    ax.plot(xs, a + b * xs, color=OI[7], linewidth=1.3, label="최소제곱선")
+    ax.axhline(ybar, color="0.4", linestyle="--", linewidth=1, label=f"Y 의 평균 {ybar:.1f}")
+    ax.scatter(LS_X, LS_Y, s=30, color=BW["color"][0], zorder=3)
+    xi, yi, fi = LS_X[k], LS_Y[k], fit[k]
+    ax.plot([xi - .12, xi - .12], [ybar, yi], color=OI[5], linewidth=2.2)
+    ax.text(xi - .25, (ybar + yi) / 2, f"전체 편차 {yi - ybar:+.2f}", fontsize=8.5,
+            ha="right", va="center")
+    ax.plot([xi + .12, xi + .12], [ybar, fi], color=OI[4], linewidth=2.2)
+    ax.text(xi + .25, ybar - 0.35, f"직선이 설명한 몫 {fi - ybar:+.2f}", fontsize=8.5,
+            ha="left", va="center")
+    ax.plot([xi + .12, xi + .12], [fi, yi], color=OI[0], linewidth=2.2, linestyle=":")
+    ax.text(xi + .25, (fi + yi) / 2 + 0.15, f"잔차 {yi - fi:+.2f}", fontsize=8.5,
+            ha="left", va="center")
+    ax.set_xlim(0.5, 6.5); ax.set_ylim(0.5, 8.5); ax.legend(fontsize=8, loc="upper left")
+    ax.set_title(f"총제곱합 {sst:.2f} = 회귀제곱합 {ssreg:.2f} + 잔차제곱합 {ssres:.2f}"
+                 f"\nR² = {ssreg:.2f} ÷ {sst:.2f} = {ssreg / sst:.3f}", fontsize=9.5)
+    save(fig, "fig-ch14-ls-decomp.png")
+    return sst, ssreg, ssres
+
+
+def fig_ch14_ls_noise(seed=73, n=100):
+    """그림 6: 같은 직선, 잔차 크기만 다른 세 자료 = 잔차가 커지면 R² 가 준다."""
+    rng = np.random.default_rng(seed)
+    x = rng.uniform(1, 7, n)
+    fig, axes = plt.subplots(1, 3, figsize=(9.6, 3.4), sharey=True)
+    out = []
+    for ax, sd in zip(axes, (0.3, 1.0, 2.0)):
+        y = 1.0 + 0.8 * x + rng.normal(0, sd, n)
+        b1, b0 = np.polyfit(x, y, 1)
+        r2 = np.corrcoef(x, y)[0, 1] ** 2
+        out.append((sd, b0, b1, r2))
+        ax.scatter(x, y, s=9, color=BW["color"][0], alpha=.6)
+        xs = np.linspace(1, 7, 20); ax.plot(xs, b0 + b1 * xs, color=OI[7], linewidth=1.3)
+        ax.set_title(f"잔차 SD {sd}\n기울기 {b1:.2f} · R² = {r2:.2f}", fontsize=9.5)
+    fig.suptitle(f"같은 관계(참 기울기 0.8)라도 잔차가 크면 R² 가 작다 (각 {n}명, 씨앗 73)", y=1.03)
+    save(fig, "fig-ch14-ls-noise.png")
+    return out
+
+
+def fig_ch14_fit(seed=73):
+    """과소적합 · 적합 · 과적합 (2026-11-14 ; 사용자 「과적합 과소적합 적합 설명 추가 장단점」).
+    참 관계 = 완만한 곡선. 30명에 1차 · 2차 · 12차를 맞추고 같은 세계의 새 1,000명에 적용한다.
+    난수 순서는 원고 §14.3 코드와 같다(지금 자료 30명 → 새 자료 1,000명)."""
+    true = lambda x: 1 + 1.6 * x - 0.16 * x ** 2
+    r2 = lambda y, f: 1 - ((y - f) ** 2).sum() / ((y - y.mean()) ** 2).sum()
+    g = np.random.default_rng(seed)
+    x30 = g.uniform(0, 10, 30); y30 = true(x30) + g.normal(0, 1, 30)
+    x1k = g.uniform(0, 10, 1000); y1k = true(x1k) + g.normal(0, 1, 1000)
+    xs = np.linspace(0, 10, 400)
+    fig, axes = plt.subplots(1, 3, figsize=(9.8, 3.6), sharey=True)
+    out = []
+    for ax, (d, lab) in zip(axes, ((1, "과소적합: 곧은 선(1차)"), (2, "적합: 2차 곡선"),
+                                   (12, "과적합: 12차 곡선"))):
+        c = np.polyfit(x30, y30, d)
+        a, b = r2(y30, np.polyval(c, x30)), r2(y1k, np.polyval(c, x1k))
+        out.append((d, a, b))
+        ax.plot(xs, true(xs), color="0.55", linestyle="--", linewidth=1.2, label="참 관계")
+        ax.plot(xs, np.polyval(c, xs), color=OI[7], linewidth=1.5, label="맞춘 선")
+        ax.scatter(x30, y30, s=22, color=BW["color"][0], zorder=3, label="지금 자료 30명")
+        ax.set_ylim(-2.5, 8.5)
+        ax.set_title(f"{lab}\n지금 자료 R² = {a:.2f} · 새 자료 R² = {b:.2f}".replace("-", "-"), fontsize=9.5)
+    axes[0].legend(fontsize=7.5, loc="upper left")
+    fig.suptitle("선을 얼마나 구부릴 것인가: 과소적합 · 적합 · 과적합 (씨앗 73)", y=1.04)
+    save(fig, "fig-ch14-fit.png")
+    return out
+
+
 # ── ch10: 심슨의 역설 재시연 (저그마을 보양제 ; 씨앗 73) ─────────
 def make_simpson(seed=73, n=400):
     """전체(+)가 성별 통제 시 (-)로 반전하는 모의 자료."""
@@ -1576,6 +1835,10 @@ if __name__ == "__main__":
     fig_ch14_shapes()
     rsd = fig_ch14_resid()
     b0, b1 = fig_ch14_reg()
+    # 2026-11-14 14장 분리 = B3 · 상관 그림 셋 + 14장 최소제곱 그림 다섯
+    fig_b3_grid(); fig_b3_ours(); fig_b3_traps()
+    fig_ch14_ls_candidates(); fig_ch14_ls_fitted(); fig_ch14_ls_squares()
+    fig_ch14_ls_decomp(); fig_ch14_ls_noise(); fig_ch14_fit()
     b_all, slopes = fig_ch08_simpson()
     fig_ch08_dag()
     fig_ch08_unrolled()

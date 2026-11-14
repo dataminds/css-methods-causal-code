@@ -2,59 +2,67 @@
  "unit": "ch14-상관과-회귀.md",
  "blocks": [
   [
-   106,
+   135,
    "import numpy as np\nfrom scipy import stats\n\ndef ols(y, X):                    # 절편 포함 최소제곱 → (계수, 표준오차, p, R²)\n    y = np.asarray(y, float)\n    X1 = np.column_stack([np.ones(len(y))] + [np.asarray(x, float) for x in X])\n    b, *_ = np.linalg.lstsq(X1, y, rcond=None)\n    resid = y - X1 @ b\n    n, k = X1.shape\n    se = np.sqrt(np.diag(resid @ resid / (n - k) * np.linalg.inv(X1.T @ X1)))\n    p = 2 * stats.t.sf(np.abs(b / se), n - k)\n    r2 = 1 - (resid @ resid) / ((y - y.mean()) @ (y - y.mean()))\n    return b, se, p, r2\n\nsvy = load(\"svy\")\nb, se, p, r2 = ols(svy.mil, [svy.hjs])\nprint(round(b[0], 2), round(b[1], 2), round(r2, 2))\n# -0.01 0.98 0.4"
   ],
   [
-   153,
+   182,
    "b, se, p, r2 = ols(svy.mil, [svy.hjs])\nprint(round(se[1], 3), round(b[1] / se[1], 1),\n      [float(round(b[1] - 1.96 * se[1], 2)), float(round(b[1] + 1.96 * se[1], 2))])\n# 0.051 19.2 [0.88, 1.08]"
   ],
   [
-   172,
+   221,
    "x, y = svy.hjs.values, svy.mil.values         # 이 절 내내 쓰는 두 변수\nresid = y - (b[0] + b[1] * x)\nss_res = resid @ resid\nss_tot = (y - y.mean()) @ (y - y.mean())\nprint(round(1 - ss_res / ss_tot, 4), round(np.corrcoef(x, y)[0, 1] ** 2, 4))\n# 0.3953 0.3953"
   ],
   [
-   191,
+   240,
    "print(round(y.std(ddof=1), 2), round(resid.std(ddof=1), 2),\n      round((1 - resid.std(ddof=1) / y.std(ddof=1)) * 100, 1))\n# 1.25 0.97 22.2"
   ],
   [
-   207,
+   256,
    "pred = b[0] + b[1] * x\nprint(round(resid.mean(), 6), round(np.corrcoef(pred, resid)[0, 1], 6))\n# -0.0 0.0"
   ],
   [
-   223,
+   272,
    "i = np.argmax(np.abs(x - x.mean()))           # 평균에서 가장 먼 점\nkeep = np.ones(len(x), bool); keep[i] = False\nprint(round(x[i], 2), round(b[1], 4),\n      round(np.polyfit(x[keep], y[keep], 1)[0], 4))\n# 2.33 0.9782 0.9724"
   ],
   [
-   237,
+   286,
    "print(round(b[0] + b[1] * 6, 2),\n      round(b[0] + b[1] * 6 - resid.std(ddof=1), 2),\n      round(b[0] + b[1] * 6 + resid.std(ddof=1), 2))\n# 5.86 4.89 6.83"
   ],
   [
-   260,
+   305,
+   "g = np.random.default_rng(73)\n참 = lambda x: 1 + 1.6 * x - 0.16 * x ** 2                       # 참 관계 = 완만한 곡선\nx30 = g.uniform(0, 10, 30);   y30 = 참(x30) + g.normal(0, 1, 30)     # 지금 자료 30명\nx1k = g.uniform(0, 10, 1000); y1k = 참(x1k) + g.normal(0, 1, 1000)   # 새 자료 1,000명\nR2 = lambda y, f: 1 - ((y - f) ** 2).sum() / ((y - y.mean()) ** 2).sum()\nfor 차수 in (1, 2, 12):\n    c = np.polyfit(x30, y30, 차수)\n    print(차수, round(R2(y30, np.polyval(c, x30)), 2), round(R2(y1k, np.polyval(c, x1k)), 2))\nprint(round(R2(y1k, 참(x1k)), 2))\n# 1 0.07 -0.07\n# 2 0.71 0.53\n# 12 0.85 0.21\n# 0.6"
+  ],
+  [
+   327,
+   "g = np.random.default_rng(73)\n새R2 = {1: [], 2: [], 12: []}\nfor _ in range(300):                                              # 세계를 300번 새로 짓는다\n    x30 = g.uniform(0, 10, 30);   y30 = 참(x30) + g.normal(0, 1, 30)\n    x1k = g.uniform(0, 10, 1000); y1k = 참(x1k) + g.normal(0, 1, 1000)\n    for 차수 in 새R2:\n        c = np.polyfit(x30, y30, 차수)\n        새R2[차수].append(R2(y1k, np.polyval(c, x1k)))\nfor 차수, v in 새R2.items():\n    v = np.array(v)\n    print(차수, round(float(np.mean(v < 0)), 2), round(float(np.median(v)), 2))\n# 1 0.97 -0.05\n# 2 0.0 0.55\n# 12 0.72 -2.54"
+  ],
+  [
+   377,
    "exp = load(\"exp\")                               # 실험판 366명 (3장)\nbc, sec, pc, _ = ols(exp.mil, [exp.cond])\nprint(round(bc[0], 2), round(bc[1], 3), round(pc[1], 3))\n# 4.98 0.283 0.028"
   ],
   [
-   312,
+   429,
    "def 위양성(뽑기, 검정, R=2000, seed=73):\n    g = np.random.default_rng(seed)\n    hits = 0\n    for _ in range(R):\n        x, y = 뽑기(g)\n        hits += 검정(x, y) < .05\n    return round(hits / R, 3)\n\nt검정 = lambda x, y: stats.ttest_ind(x, y).pvalue\n\ndef 뒤섞기(x, y, B=500):\n    g = np.random.default_rng(37)\n    obs = abs(x.mean() - y.mean())\n    pool = np.concatenate([x, y]); n = len(x)\n    c = 0\n    for _ in range(B):\n        p = g.permutation(pool)\n        c += abs(p[:n].mean() - p[n:].mean()) >= obs\n    return c / B\n\nfor n in (10, 30, 100):\n    치우침 = lambda g, n=n: (g.exponential(1, n), g.exponential(1, n))\n    print(n, 위양성(치우침, t검정), 위양성(치우침, 뒤섞기))\n# 10 0.042 0.046\n# 30 0.044 0.044\n# 100 0.055 0.056"
   ],
   [
-   343,
+   460,
    "웰치 = lambda x, y: stats.ttest_ind(x, y, equal_var=False).pvalue\n\n세계 = {\"큰 분산이 작은 집단\": lambda g: (g.normal(0, 3, 20), g.normal(0, 1, 60)),\n        \"큰 분산이 큰 집단\":   lambda g: (g.normal(0, 1, 20), g.normal(0, 3, 60))}\nfor 이름, 뽑기 in 세계.items():\n    print(이름, 위양성(뽑기, t검정), 위양성(뽑기, 웰치), 위양성(뽑기, 뒤섞기, R=500))\n# 큰 분산이 작은 집단 0.222 0.058 0.22\n# 큰 분산이 큰 집단 0.002 0.052 0.004"
   ],
   [
-   396,
+   513,
    "from scipy import stats\nt, c = exp[exp.cond == 1].mil.values, exp[exp.cond == 0].mil.values\nprint(round(stats.ttest_ind(t, c).pvalue, 4),\n      round(stats.mannwhitneyu(t, c).pvalue, 4))\n# 0.028 0.0398"
   ],
   [
-   410,
+   527,
    "g = np.random.default_rng(73)\nw1 = w2 = 0\nfor _ in range(2000):\n    u = g.standard_t(2, 40) + 0.8      # 꼬리가 아주 두꺼운 분포\n    v = g.standard_t(2, 40)\n    w1 += stats.ttest_ind(u, v).pvalue < .05\n    w2 += stats.mannwhitneyu(u, v).pvalue < .05\nprint(round(w1 / 2000, 3), round(w2 / 2000, 3))\n# 0.375 0.691"
   ],
   [
-   457,
+   576,
    "zx = (x - x.mean()) / x.std(ddof=1)\nzy = (y - y.mean()) / y.std(ddof=1)\nbz, *_ = ols(zy, [zx])\nprint(round(bz[1], 4), round(np.corrcoef(x, y)[0, 1], 4))\n# 0.6288 0.6288"
   ],
   [
-   478,
+   597,
    "np.polyfit(svy.mil, svy.hjs, 1)[0]   # → 0.40   (인자 순서가 뒤바뀜)\nnp.polyfit(svy.hjs, svy.mil, 1)[0]   # → 0.98   (바른 형태)"
   ]
  ]

@@ -203,3 +203,96 @@ def _ts_narrow():
 
 # 블록 표준오차가 소박한 표준오차보다 몇 % 큰가 (0.084 ÷ 0.070 − 1)
 calc("ch14.ts_naive_narrow_pct")(lambda: (_ts_narrow()[1] / _ts_narrow()[0] - 1) * 100)
+
+
+# ── §14.2 · §14.3 · 실습 6 = 점 여섯 개 최소제곱 (2026-11-14 14장 분리로 신설) ──
+# make_book_figures.LS_X · LS_Y · _ls_fit · _ssr 와 같은 식. 그림 파일을 쓰지 않으려고 생성기를 불러오지 않는다.
+_LX = np.array([1, 2, 3, 4, 5, 6], float)
+_LY = np.array([2, 4, 3, 6, 5, 7], float)
+_dx, _dy = _LX - _LX.mean(), _LY - _LY.mean()
+_lb = (_dx * _dy).sum() / (_dx ** 2).sum()
+_la = _LY.mean() - _lb * _LX.mean()
+_lfit = _la + _lb * _LX
+_lres = _LY - _lfit
+_ssr = lambda a, b: float(((_LY - (a + b * _LX)) ** 2).sum())
+
+calc("ch14.ls_xbar")(lambda: _LX.mean())
+calc("ch14.ls_ybar")(lambda: _LY.mean())
+calc("ch14.ls_sxy")(lambda: (_dx * _dy).sum())
+calc("ch14.ls_sxx")(lambda: (_dx ** 2).sum())
+calc("ch14.ls_slope")(lambda: _lb)
+calc("ch14.ls_intercept")(lambda: _la)
+calc("ch14.ls_intercept_rounded")(lambda: 4.5 - 0.886 * 3.5)     # 원고의 반올림 산술 그대로 (1.399)
+calc("ch14.ls_sst")(lambda: (_dy ** 2).sum())                     # 총제곱합 = 평균 수평선의 잔차제곱합
+calc("ch14.ls_ssr_mean")(lambda: _ssr(_LY.mean(), 0.0))
+calc("ch14.ls_ssr_steep")(lambda: _ssr(0.0, 1.3))                 # 그림의 「가파른 선」 = 절편 0 · 기울기 1.3
+calc("ch14.ls_ssr")(lambda: _ssr(_la, _lb))
+calc("ch14.ls_ssreg")(lambda: float(((_lfit - _LY.mean()) ** 2).sum()))
+calc("ch14.ls_r2")(lambda: float(((_lfit - _LY.mean()) ** 2).sum()) / (_dy ** 2).sum())
+calc("ch14.ls_resid_sum")(lambda: _lres.sum())
+for _i in range(6):
+    calc(f"ch14.ls_resid{_i + 1}")(lambda i=_i: _lres[i])
+calc("ch14.ls_fit4")(lambda: _lfit[3])
+calc("ch14.ls_dev4")(lambda: _LY[3] - _LY.mean())
+calc("ch14.ls_expl4")(lambda: _lfit[3] - _LY.mean())
+# §14.2 「0.63 × 1.25 ÷ 0.80 ≈ 0.98」의 반올림 산술 (0.984) ; 정확한 값은 ch14.slope
+calc("ch14.slope_from_rounded")(lambda: 0.63 * 1.25 / 0.80)
+
+
+# §14.3 잔차 크기만 다른 세 자료 = make_book_figures.fig_ch14_ls_noise (씨앗 73 · n = 100 · 참 기울기 0.8 · 절편 1.0)
+def _noise():
+    if "noise" not in _c:
+        rng = np.random.default_rng(73)
+        x = rng.uniform(1, 7, 100)
+        out = {}
+        for sd in (0.3, 1.0, 2.0):
+            y = 1.0 + 0.8 * x + rng.normal(0, sd, 100)
+            out[sd] = (np.polyfit(x, y, 1)[0], np.corrcoef(x, y)[0, 1] ** 2)
+        _c["noise"] = out
+    return _c["noise"]
+
+
+for _sd, _nm in ((0.3, "03"), (1.0, "10"), (2.0, "20")):
+    calc(f"ch14.noise_slope_sd{_nm}")(lambda s=_sd: _noise()[s][0])
+    calc(f"ch14.noise_r2_sd{_nm}")(lambda s=_sd: _noise()[s][1])
+
+
+# §14.3 과소적합 · 적합 · 과적합 = 원고 코드 블록과 같은 난수 순서 (씨앗 73 ; 30명에 맞추고 새 1,000명에 적용)
+# 참 관계 1 + 1.6x − 0.16x² · 잡음 SD 1 · x ~ 균등(0, 10). 300개 세계는 씨앗 73 을 다시 걸고 같은 순서로 이어 뽑는다.
+_true = lambda x: 1 + 1.6 * x - 0.16 * x ** 2
+_r2 = lambda y, f: 1 - ((y - f) ** 2).sum() / ((y - y.mean()) ** 2).sum()
+
+
+def _fit_world(g):
+    x30 = g.uniform(0, 10, 30); y30 = _true(x30) + g.normal(0, 1, 30)
+    x1k = g.uniform(0, 10, 1000); y1k = _true(x1k) + g.normal(0, 1, 1000)
+    out = {}
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")          # 12차 = numpy RankWarning (원고 코드도 같은 경고를 낸다)
+        for d in (1, 2, 12):
+            c = np.polyfit(x30, y30, d)
+            out[d] = (_r2(y30, np.polyval(c, x30)), _r2(y1k, np.polyval(c, x1k)))
+    out["true"] = _r2(y1k, _true(x1k))
+    return out
+
+
+def _overfit():
+    if "overfit" not in _c:
+        one = _fit_world(np.random.default_rng(73))
+        g = np.random.default_rng(73)
+        many = {1: [], 2: [], 12: []}
+        for _ in range(300):
+            w = _fit_world(g)
+            for d in many:
+                many[d].append(w[d][1])
+        _c["overfit"] = (one, {d: np.array(v) for d, v in many.items()})
+    return _c["overfit"]
+
+
+for _d in (1, 2, 12):
+    calc(f"ch14.fit_in_d{_d}")(lambda d=_d: _overfit()[0][d][0])
+    calc(f"ch14.fit_out_d{_d}")(lambda d=_d: _overfit()[0][d][1])
+    calc(f"ch14.fit300_neg_pct_d{_d}")(lambda d=_d: 100 * float(np.mean(_overfit()[1][d] < 0)))
+    calc(f"ch14.fit300_med_d{_d}")(lambda d=_d: float(np.median(_overfit()[1][d])))
+calc("ch14.fit_true_out")(lambda: _overfit()[0]["true"])
