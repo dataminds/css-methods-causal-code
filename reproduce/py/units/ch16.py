@@ -216,3 +216,6 @@ for _j, _nm in enumerate(("int", "hjs", "refl", "xy")):
     calc(f"ch16.mt_hi_{_nm}")(lambda j=_j: _mt()["hi"][j])
 calc("ch16.mt_r2")(lambda: _mt()["r2"])
 calc("ch16.mt_n")(lambda: len(S()))
+# §16.4 [다른 논문에서는] Miller & Krosnick (2000) 곱항 .31 (SE .18) 의 공식 구간 (이 책의 계산 ; 2026-11-15 14장에서 옮김)
+calc("ch16.mk_ci_lo")(lambda: .31 - 1.96 * .18)
+calc("ch16.mk_ci_hi")(lambda: .31 + 1.96 * .18)

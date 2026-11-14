@@ -185,4 +185,6 @@ for (j in 1:4) local({
 })
 calc("ch16.mt_r2", function() mt()$r2)
 calc("ch16.mt_n", function() mt()$n)
+calc("ch16.mk_ci_lo", function() .31 - 1.96 * .18)
+calc("ch16.mk_ci_hi", function() .31 + 1.96 * .18)
 })

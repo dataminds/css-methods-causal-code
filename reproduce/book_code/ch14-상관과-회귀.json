@@ -2,47 +2,47 @@
  "unit": "ch14-상관과-회귀.md",
  "blocks": [
   [
-   481,
+   458,
    "import numpy as np\nfrom scipy import stats\n\ndef ols(y, X):                    # 절편 포함 최소제곱 → (계수, 표준오차, p, R²)\n    y = np.asarray(y, float)\n    X1 = np.column_stack([np.ones(len(y))] + [np.asarray(x, float) for x in X])\n    b, *_ = np.linalg.lstsq(X1, y, rcond=None)\n    resid = y - X1 @ b\n    n, k = X1.shape\n    se = np.sqrt(np.diag(resid @ resid / (n - k) * np.linalg.inv(X1.T @ X1)))\n    p = 2 * stats.t.sf(np.abs(b / se), n - k)\n    r2 = 1 - (resid @ resid) / ((y - y.mean()) @ (y - y.mean()))\n    return b, se, p, r2\n\nsvy = load(\"svy\")\nb, se, p, r2 = ols(svy.mil, [svy.hjs])\nprint(round(b[0], 2), round(b[1], 2), round(r2, 2))\n# -0.01 0.98 0.4"
   ],
   [
-   506,
+   483,
    "b, se, p, r2 = ols(svy.mil, [svy.hjs])\nprint(round(se[1], 3), round(b[1] / se[1], 1),\n      [float(round(b[1] - 1.96 * se[1], 2)), float(round(b[1] + 1.96 * se[1], 2))])\n# 0.051 19.2 [0.88, 1.08]"
   ],
   [
-   519,
+   496,
    "x, y = svy.hjs.values, svy.mil.values         # 이 묶음 내내 쓰는 두 변수\nresid = y - (b[0] + b[1] * x)\nss_res = resid @ resid\nss_tot = (y - y.mean()) @ (y - y.mean())\nprint(round(1 - ss_res / ss_tot, 4), round(np.corrcoef(x, y)[0, 1] ** 2, 4))\n# 0.3953 0.3953"
   ],
   [
-   532,
+   509,
    "print(round(y.std(ddof=1), 2), round(resid.std(ddof=1), 2),\n      round((1 - resid.std(ddof=1) / y.std(ddof=1)) * 100, 1))\n# 1.25 0.97 22.2"
   ],
   [
-   542,
-   "pred = b[0] + b[1] * x\nprint(round(resid.mean(), 6) + 0.0, round(np.corrcoef(pred, resid)[0, 1], 6) + 0.0)\n# 0.0 0.0"
+   519,
+   "pred = b[0] + b[1] * x\nprint(round(resid.mean(), 6) + 0.0,            # + 0.0 = 아주 작은 계산 오차로 찍히는 -0.0 을 0.0 으로\n      round(np.corrcoef(pred, resid)[0, 1], 6) + 0.0)\n# 0.0 0.0"
   ],
   [
-   552,
+   530,
    "i = np.argmax(np.abs(x - x.mean()))           # 평균에서 가장 먼 점\nkeep = np.ones(len(x), bool); keep[i] = False\nprint(round(x[i], 2), round(b[1], 4),\n      round(np.polyfit(x[keep], y[keep], 1)[0], 4))\n# 2.33 0.9782 0.9724"
   ],
   [
-   564,
+   542,
    "print(round(b[0] + b[1] * 6, 2),\n      round(b[0] + b[1] * 6 - resid.std(ddof=1), 2),\n      round(b[0] + b[1] * 6 + resid.std(ddof=1), 2))\n# 5.86 4.89 6.83"
   ],
   [
-   577,
+   555,
    "exp = load(\"exp\")                               # 실험판 366명 (3장)\nbc, sec, pc, _ = ols(exp.mil, [exp.cond])\nprint(round(bc[0], 2), round(bc[1], 3), round(pc[1], 3))\n# 4.98 0.283 0.028"
   ],
   [
-   588,
-   "from scipy import stats\nt, c = exp[exp.cond == 1].mil.values, exp[exp.cond == 0].mil.values\nprint(round(stats.ttest_ind(t, c).pvalue, 4),\n      round(stats.mannwhitneyu(t, c).pvalue, 4))\n# 0.028 0.0398"
+   566,
+   "from scipy import stats\ntreat, ctrl = exp[exp.cond == 1].mil.values, exp[exp.cond == 0].mil.values\nprint(round(stats.ttest_ind(treat, ctrl).pvalue, 4),\n      round(stats.mannwhitneyu(treat, ctrl).pvalue, 4))\n# 0.028 0.0398"
   ],
   [
-   635,
+   613,
    "zx = (x - x.mean()) / x.std(ddof=1)\nzy = (y - y.mean()) / y.std(ddof=1)\nbz, *_ = ols(zy, [zx])\nprint(round(bz[1], 4), round(np.corrcoef(x, y)[0, 1], 4))\n# 0.6288 0.6288"
   ],
   [
-   656,
+   634,
    "np.polyfit(svy.mil, svy.hjs, 1)[0]   # → 0.40   (인자 순서가 뒤바뀜)\nnp.polyfit(svy.hjs, svy.mil, 1)[0]   # → 0.98   (바른 형태)"
   ]
  ]

@@ -79,8 +79,7 @@ calc("ch14.exp_mw_p")(lambda: stats.mannwhitneyu(E().mil[E().cond == 1].values,
                                                  E().mil[E().cond == 0].values).pvalue)   # 코드 9
 calc("ch14.n_svy_raw")(lambda: len(load("svy", clean=False)))       # 정제 전 590
 calc("ch14.n_svy_minus1")(lambda: len(S()) - 1)                     # 코드 6 의 한 사람 뺀 인원
-calc("ch14.mk_ci_lo")(lambda: .31 - 1.96 * .18)                     # Miller & Krosnick 곱항 .31 (SE .18) 의 공식 구간
-calc("ch14.mk_ci_hi")(lambda: .31 + 1.96 * .18)
+calc("ch14.mw_are_loss_pct")(lambda: 100 * (1 - 3 / np.pi))         # 정규분포에서 맨-휘트니의 점근 상대 효율 손실 (%)
 calc("ch14.choi_err_red_dhl")(lambda: 100 * (1 - (1 - .255) ** 0.5))   # 최은진 외 R² .255 → 예측 오차 감소 %
 calc("ch14.choi_err_red_hl")(lambda: 100 * (1 - (1 - .156) ** 0.5))    # R² .156
 

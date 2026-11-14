@@ -12,10 +12,8 @@ ch14.first.tab.beta,ch14,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758
 ch14.first.tab.b,ch14,.14,,paper,,Rogers 외 2023 연구 2 p. 760
 ch14.first.tab.b2,ch14,0.14,,paper,,Rogers 외 2023 연구 2 p. 760 (같은 값을 읽는 문장)
 ch14.first.tab.se,ch14,.03,,paper,,Rogers 외 2023 연구 1 · 2 (둘 다 .03) pp. 757–758 · 760
-ch14.first.tab.t,ch14,4.91,,paper,,Rogers 외 2023 연구 2 p. 760
 ch14.first.care.beta,ch14,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758
 ch14.first.care.b,ch14,.14,,paper,,Rogers 외 2023 연구 2 p. 760
-ch14.0.r,ch14,.63,ch14.r,data,,§14.0 설문판 hjs–mil 상관
 ch14.0.slope,ch14,0.98,ch14.slope,data,,§14.0
 ch14.1.fig.n,ch14,566,ch14.n_svy,data,,§14.1 그림 설명
 ch14.1.r.sq,ch14,.63,ch14.r,data,,§14.1 ; 2026-11-14i 14장 분리로 문장을 새로 써 다시 묶음
@@ -38,8 +36,6 @@ ch14.2.box.se.lo,ch14,.025,,fixed,,.03 의 반올림 범위 아래 끝
 ch14.2.box.se.hi,ch14,.035,,fixed,,.03 의 반올림 범위 위 끝
 ch14.2.box.t.min,ch14,3.9,ch14.paper_t_min,data,,논문 상자 ③ 산술 .135 ÷ .035
 ch14.2.box.t.max,ch14,5.8,ch14.paper_t_max,data,,논문 상자 ③ 산술 .145 ÷ .025
-ch14.2.box.beta2,ch14,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758
-ch14.2.box.betat,ch14,26.7,ch14.paper_beta_t,data,,논문 상자 ③ 산술 t = r√590 ÷ √(1 − r²) · r = .74
 ch14.2.box.beta.lo,ch14,.735,,fixed,,.74 의 반올림 범위 아래 끝
 ch14.2.box.beta.hi,ch14,.745,,fixed,,.74 의 반올림 범위 위 끝
 ch14.2.box.betat.lo,ch14,26.3,ch14.paper_beta_t_lo,data,,논문 상자 ③ 산술 r = .735
@@ -78,11 +74,8 @@ ch14.3.far.hjs,ch14,2.33,ch14.far_hjs,data,,§14.3 평균에서 가장 먼 점 (
 ch14.3.far.b,ch14,0.978,ch14.slope,data,,§14.3
 ch14.3.far.b1,ch14,0.972,ch14.slope_drop1,data,,§14.3 한 점을 뺀 기울기
 ch14.3.pred6,ch14,5.86,ch14.pred6,data,,§14.3 hjs = 6 의 예측값
-ch14.3.pred6.lo,ch14,4.89,ch14.pred6_lo,data,,§14.3 예측값 − 잔차 SD
-ch14.3.pred6.hi,ch14,6.83,ch14.pred6_hi,data,,§14.3 예측값 + 잔차 SD
 ch14.3.r2.22.r2,ch14,.40,ch14.r2,data,,§14.3
 ch14.3.r2.22.pct,ch14,22,ch14.err_reduction_pct,data,,§14.3
-ch14.3.perm.5,ch14,5,,fixed,,명목 유의수준 .05
 ch14.4.exp.n,ch14,366,ch14.exp_n,data,,§14.4 실험판 정제 후
 ch14.4.exp.b0,ch14,4.98,ch14.exp_b0,data,,§14.4 통제 집단 평균
 ch14.4.exp.b1,ch14,0.283,ch14.exp_b1,data,,§14.4 평균 차이
@@ -105,7 +98,6 @@ ch14.4.norm.txt.30,ch14,.044,ch14.fp_skew30_t,sim,0.021,§14.4
 ch14.4.norm.txt.100,ch14,.055,ch14.fp_skew100_t,sim,0.021,§14.4
 ch14.4.norm.txt.5,ch14,5,,fixed,,명목 유의수준
 ch14.4.var.5,ch14,5,,fixed,,명목 유의수준
-ch14.4.var.22,ch14,22,ch14.fp_smallvar_t_pct,sim,3.9,§14.4 큰 분산이 작은 집단 t검정 위양성률 × 100 (파이썬 22.2). R 독립 난수 · 이항 표준편차 √(.22 × .78 ÷ 2000) = .0093 → 3 × √2 × .93 ≈ 3.9 (%포인트)
 ch14.4.var.n20,ch14,20,,fixed,,모의시행 설계 = 작은 집단 20명
 ch14.4.var.n60,ch14,60,,fixed,,모의시행 설계 = 큰 집단 60명
 ch14.4.vtab.small.t,ch14,.222,ch14.fp_smallvar_t,sim,0.039,§14.4 (2000 번) ; 이항 표준편차 .0093 → 3 × √2 × .0093 ≈ .039
@@ -122,17 +114,10 @@ ch14.4.read2.big,ch14,.052,ch14.fp_bigvar_welch,sim,0.021,§14.4 ②
 ch14.4.read2.5,ch14,5,,fixed,,명목 유의수준
 ch14.4.read3.small,ch14,.220,ch14.fp_smallvar_perm,sim,0.079,§14.4 ③
 ch14.4.read3.big,ch14,.004,ch14.fp_bigvar_perm,sim,0.012,§14.4 ③
-ch14.4.read3.5,ch14,5,,fixed,,명목 유의수준
 ch14.4.indep.20,ch14,20,ch14.ts_naive_narrow_pct,sim,8,§14.4 = 웹 부록 S5 의 블록 다시 뽑기(여덟 주 토막 · 2000 번 · 씨앗 73) 표준오차 0.0842 가 소박한 표준오차 0.0697 보다 19.5% 크다 (0.084 ÷ 0.070 − 1). R 독립 난수 · 파이썬 200 번 모의 표준편차 1.86 %포인트 → 3 × √2 × 1.86 ≈ 7.9
-ch14.5.mw.half,ch14,0.5,,fixed,,맨-휘트니 귀무가설의 정의값
 ch14.5.exp.n,ch14,366,ch14.exp_n,data,,§14.5 실험판 정제 후
-ch14.5.power.mw,ch14,.691,ch14.power_mw,sim,0.044,§14.5 t분포(자유도 2) 세계 2000 번 · 맨-휘트니 검정력 ; R 독립 난수(정규 근사 · 연속성 수정 = scipy 기본) · 이항 표준편차 .0103 → 3 × √2 × .0103 ≈ .044
-ch14.5.power.t,ch14,.375,ch14.power_t,sim,0.046,§14.5 t검정 검정력 ; 이항 표준편차 .0108 → 3 × √2 × .0108 ≈ .046
 ch14.5.box.n40,ch14,40,,fixed,,모의시행 설계 = 집단당 40명
 ch14.5.box.shift,ch14,0.8,,fixed,,모의시행 설계 = 참값으로 정한 이동 0.8
-ch14.5.box.t,ch14,.375,ch14.power_t,sim,0.046,§14.5 상자 ; 허용 근거 = ch14.5.power.t
-ch14.5.box.mw,ch14,.691,ch14.power_mw,sim,0.044,§14.5 상자 ; 허용 근거 = ch14.5.power.mw
-ch14.5.ai.perm,ch14,.220,ch14.fp_smallvar_perm,sim,0.079,§14.5 상자 ; 허용 근거 = ch14.4.vtab.small.p
 ch14.7.ex1.b1,ch14,0.98,ch14.slope,data,,실습 1
 ch14.7.ex1.r2,ch14,.40,ch14.r2,data,,실습 1
 ch14.7.ex2.sd,ch14,0.97,ch14.resid_sd,data,,실습 2
@@ -145,11 +130,7 @@ ch14.8.b1,ch14,0.98,ch14.slope,data,,§14.8 점검
 ch14.8.r2,ch14,.40,ch14.r2,data,,§14.8 점검
 ch14.8.shapes.lo,ch14,.63,ch14.shapes_r_min,sim,0.16,§14.8 점검 ; 허용 근거 = ch14.1.shapes.ask.lo
 ch14.8.shapes.hi,ch14,.63,ch14.shapes_r_max,sim,0.15,§14.8 점검 ; 허용 근거 = ch14.1.shapes.ask.hi
-ch14.next.b1,ch14,0.98,ch14.slope,data,,다음 장으로
 ch14.1.beta,ch14,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758 (표준화 계수 β)
-ch14.ls.cand.sst,ch14,17.50,ch14.ls_ssr_mean,data,,§14.2 점 여섯 개 = 평균 수평선의 잔차제곱합 (= 총제곱합 17.5 ; make_book_figures.fig_ch14_ls_candidates)
-ch14.ls.cand.steep,ch14,6.79,ch14.ls_ssr_steep,data,,§14.2 「가파른 선」 = 절편 0 · 기울기 1.3 (그림 생성기의 후보선)
-ch14.ls.cand.ls,ch14,3.77,ch14.ls_ssr,data,,§14.2 최소제곱선의 잔차제곱합 (3.7714 ; R = deviance(lm))
 ch14.ls.eq.a,ch14,1.40,ch14.ls_intercept,data,,§14.2 최소제곱 절편 (정확히 1.4 ; R = lm)
 ch14.ls.eq.b,ch14,0.886,ch14.ls_slope,data,,§14.2 최소제곱 기울기 15.5 ÷ 17.5 = 0.88571
 ch14.ls.res1,ch14,−0.29,ch14.ls_resid1,data,,§14.2 잔차 (X = 1)
@@ -228,10 +209,6 @@ ch14.fit.n30b,ch14,30,,fixed,,§14.3 과적합 소절 모의시행 설계 = n = 
 ch14.fit300.neg12,ch14,72,ch14.fit300_neg_pct_d12,sim,11,§14.3 300개 세계 가운데 12차 모형 새 자료 R² < 0 비율(%) (파이썬 72.0 ; 3000 세계 기댓값 약 76.6). 300 세계 비율의 부트스트랩 표준편차 2.44 %p → 3 × √2 × 2.44 ≈ 10.4 (올려 11)
 ch14.fit300.med12,ch14,−2.54,ch14.fit300_med_d12,sim,6.0,§14.3 300개 세계의 12차 모형 새 자료 R² 중앙값 (파이썬 −2.54 ; 3000 세계 중앙값 약 −4.3). 300 세계 중앙값의 부트스트랩 표준편차 1.39 → 3 × √2 × 1.39 ≈ 5.9 (올려 6.0)
 ch14.fit.out12b,ch14,.21,ch14.fit_out_d12,sim,inf,§14.3 ch14.fit.out12 와 같은 수의 재언급 = 같은 이유로 파이썬 재현 대조만
-ch14.fit.adj.a,ch14,.59,,paper,,Rogers 외 2023 연구 1 p. 758 (ch15.first.r2a 와 같은 수)
-ch14.fit.adj.b,ch14,.63,,paper,,Rogers 외 2023 연구 1 p. 758 (OSF 재계산 .636 = 원문은 버림 ; book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md)
-ch14.r4.L96.1.0.98,ch14,0.98,ch14.slope,data,,§14.2 절 머리 = 기울기 ; 2026-11-15 네 부분 개편
-ch14.r4.L96.2.0.98,ch14,0.98,ch14.slope,data,,§14.2 절 머리 = 기울기 ; 2026-11-15 네 부분 개편
 ch14.r4.L137.1.566,ch14,566,ch14.n_svy,data,,2026-11-15 네 부분 개편
 ch14.r4.L137.1.m0.01,ch14,−0.01,ch14.intercept,data,,2026-11-15 네 부분 개편
 ch14.r4.L137.1.0.98,ch14,0.98,ch14.slope,data,,2026-11-15 네 부분 개편
@@ -243,21 +220,7 @@ ch14.r4.L161.1.19.2,ch14,19.2,ch14.slope_t,data,,2026-11-15 네 부분 개편
 ch14.r4.L161.1.0.88,ch14,0.88,ch14.ci_lo,data,,2026-11-15 네 부분 개편
 ch14.r4.L161.1.1.08,ch14,1.08,ch14.ci_hi,data,,2026-11-15 네 부분 개편
 ch14.r4.L163.1.95,ch14,95,,fixed,,신뢰수준의 정의 ; 2026-11-15 네 부분 개편
-ch14.r4.L167.1.287,ch14,287,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 표의 N ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.1.286,ch14,286,,paper,,"Miller & Krosnick 2000, p. 304 본문 인원 ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.1..24,ch14,.24,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 정당 일체감 계수 ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.1..04,ch14,.04,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 정당 일체감 SE ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.1..31,ch14,.31,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 쟁점 평가 × 노출 곱항 ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.1..18,ch14,.18,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 곱항 SE ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.1..08,ch14,.08,,paper,,"Miller & Krosnick 2000, p. 305 본문 b = .31, p < .08 ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.2..24,ch14,.24,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 정당 일체감 계수 ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.1..33,ch14,.33,,paper,,"Miller & Krosnick 2000, pp. 304–305 지지 척도 부호화 0 · .33 · .66 · 1 ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.2..31,ch14,.31,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 쟁점 평가 × 노출 곱항 ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.2..18,ch14,.18,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 곱항 SE ; 2026-11-15 네 부분 개편"
-ch14.r4.L167.1.m0.04,ch14,−0.04,ch14.mk_ci_lo,data,,이 책의 계산 .31 − 1.96 × .18 ; 2026-11-15 네 부분 개편
-ch14.r4.L167.1.0.66,ch14,0.66,ch14.mk_ci_hi,data,,이 책의 계산 .31 + 1.96 × .18 ; 2026-11-15 네 부분 개편
 ch14.r4.L172.1.40,ch14,40,ch14.r2_pct,data,,2026-11-15 네 부분 개편
-ch14.r4.L198.1..3953,ch14,.3953,ch14.r2,data,,2026-11-15 네 부분 개편
 ch14.r4.L206.1.1.25,ch14,1.25,ch14.mil_sd,data,,2026-11-15 네 부분 개편
 ch14.r4.L206.1.0.97,ch14,0.97,ch14.resid_sd,data,,2026-11-15 네 부분 개편
 ch14.r4.L206.1.22.2,ch14,22.2,ch14.err_reduction_pct,data,,2026-11-15 네 부분 개편
@@ -271,9 +234,6 @@ ch14.r4.L226.1.m.02,ch14,−.02,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 
 ch14.r4.L226.1.193,ch14,193,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 인원 p. 88 ; 2026-11-15 네 부분 개편"
 ch14.r4.L226.2.m.02,ch14,−.02,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 영차 상관 ; 2026-11-15 네 부분 개편"
 ch14.r4.L226.1.m.22,ch14,−.22,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 제곱항 β ; 2026-11-15 네 부분 개편"
-ch14.r4.L226.1..01,ch14,.01,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; p < .01 ; 2026-11-15 네 부분 개편"
-ch14.r4.L226.1..10,ch14,.10,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 2 단계 R² ; 2026-11-15 네 부분 개편"
-ch14.r4.L226.1..14,ch14,.14,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 3 단계 R² ; 2026-11-15 네 부분 개편"
 ch14.r4.L248.1.30,ch14,30,,fixed,,§14.3 과적합 모의시행 설계 = n = 30 ; 2026-11-15 네 부분 개편
 ch14.r4.L248.1.1000,ch14,"1,000",,fixed,,§14.3 과적합 모의시행 설계 = n = 1000 ; 2026-11-15 네 부분 개편
 ch14.r4.L252.1.0.07,ch14,0.07,ch14.fit_in_d1,sim,0.27,§14.3 1차 모형 지금 자료 R² (파이썬 .07). 3000 세계(씨앗 37) 표준편차 .064 → 3 × √2 × .064 ≈ .27 ; 2026-11-15 네 부분 개편
@@ -292,8 +252,6 @@ ch14.r4.L267.1.m2.54,ch14,−2.54,ch14.fit300_med_d12,sim,6.0,§14.3 표 = ch14.
 ch14.r4.L303.1.4.98,ch14,4.98,ch14.exp_b0,data,,2026-11-15 네 부분 개편
 ch14.r4.L303.1.0.283,ch14,0.283,ch14.exp_b1,data,,2026-11-15 네 부분 개편
 ch14.r4.L303.1..028,ch14,.028,ch14.exp_p,data,,2026-11-15 네 부분 개편
-ch14.r4.L365.1..52,ch14,.52,,paper,,"Behr & Iyengar 1985, 표 1 p. 45 (정독 노트 readings/agenda-setting/Behr-Iyengar-1985-…md) ; 에너지 총 보도 식의 rho ; 2026-11-15 네 부분 개편"
-ch14.r4.L365.1..14,ch14,.14,,paper,,"Behr & Iyengar 1985, 표 1 p. 45 (정독 노트 readings/agenda-setting/Behr-Iyengar-1985-…md) ; rho 의 표준오차 ; 2026-11-15 네 부분 개편"
 ch14.r4.L393.1..028,ch14,.028,ch14.exp_p,data,,§14.5 t검정 p = 회귀 기울기 p ; 2026-11-15 네 부분 개편
 ch14.r4.L393.1..0398,ch14,.0398,ch14.exp_mw_p,data,,§14.5 맨-휘트니 p (scipy 기본 = 정규 근사 · 연속성 보정 ; R wilcox.test exact = FALSE) ; 2026-11-15 네 부분 개편
 ch14.r4.L399.1.96,ch14,96,,paper,,"Draxler 외 2024, 표 4 p. 22 (프리프린트 쪽 ; 정독 노트 readings/hmc/Draxler-et-al-2024-…md) ; 분석 인원 p. 21 ; 2026-11-15 네 부분 개편"
@@ -301,14 +259,7 @@ ch14.r4.L399.1..043,ch14,.043,,paper,,"Draxler 외 2024, 표 4 p. 22 (프리프�
 ch14.r4.L399.1..018,ch14,.018,,paper,,"Draxler 외 2024, 표 4 p. 22 (프리프린트 쪽 ; 정독 노트 readings/hmc/Draxler-et-al-2024-…md) ; 윌콕슨 ; 2026-11-15 네 부분 개편"
 ch14.r4.L443.1.0.98,ch14,0.98,ch14.slope,data,,2026-11-15 네 부분 개편
 ch14.r4.L443.1.0.40,ch14,0.40,ch14.rev_slope,data,,2026-11-15 네 부분 개편
-ch14.r4.L461.1.0.88,ch14,0.88,ch14.ci_lo,data,,2026-11-15 네 부분 개편
-ch14.r4.L461.1.1.08,ch14,1.08,ch14.ci_hi,data,,2026-11-15 네 부분 개편
-ch14.r4.L461.2.0.88,ch14,0.88,ch14.ci_lo,data,,2026-11-15 네 부분 개편
 ch14.r4.L475.1.40,ch14,40,ch14.r2_pct,data,,코드 4 읽는 법의 소절 제목 ; 2026-11-15 네 부분 개편
-ch14.r4.L481.1.m0.0,ch14,-0.0,,fixed,,부동소수 음의 0 표기 설명 (계산값 아님) ; 2026-11-15 네 부분 개편
-ch14.r4.L481.1.0.0,ch14,0.0,,fixed,,부동소수 0 표기 설명 (계산값 아님) ; 2026-11-15 네 부분 개편
-ch14.r4.L481.2.m0.0,ch14,-0.0,,fixed,,부동소수 음의 0 표기 설명 (계산값 아님) ; 2026-11-15 네 부분 개편
-ch14.r4.L481.2.0.0,ch14,0.0,,fixed,,부동소수 0 표기 설명 (계산값 아님) ; 2026-11-15 네 부분 개편
 ch14.r4.L487.1.565,ch14,565,ch14.n_svy_minus1,data,,2026-11-15 네 부분 개편
 ch14.r4.L515.1.0.98,ch14,0.98,ch14.slope,data,,2026-11-15 네 부분 개편
 ch14.r4.L515.1.0.40,ch14,0.40,ch14.rev_slope,data,,2026-11-15 네 부분 개편
@@ -360,3 +311,29 @@ ch14.tab.L680.0.0_05,ch14,0.05,ch14.slope_se,data,,§14.2 「논문의 단순 �
 ch14.tab.L680.0.0_98,ch14,0.98,ch14.slope,data,,§14.2 「논문의 단순 회귀 표 읽기」 (2026-11-15b) 기울기
 ch14.tab.L680.0.19_20,ch14,19.20,ch14.slope_t,data,,§14.2 「논문의 단순 회귀 표 읽기」 (2026-11-15b) 기울기 t
 ch14.tab.L680.0.19_6,ch14,19.6,ch14.t_from_rounded_se,data,,§14.2 「논문의 단순 회귀 표 읽기」 (2026-11-15b) 반올림된 표의 수로 다시 나눈 t = 0.98 ÷ 0.05
+ch14.r5.L45.1.4.91,ch14,4.91,,paper,,Rogers 외 2023 연구 2 p. 760
+ch14.r5.L61.1..63,ch14,.63,ch14.r,data,,§14.0 hjs · mil 상관 (B3)
+ch14.r5.L99.1.0.98,ch14,0.98,ch14.slope,data,,§14.2 절 머리 = 기울기
+ch14.r5.L99.2.0.98,ch14,0.98,ch14.slope,data,,§14.2 절 머리 = 기울기
+ch14.r5.L105.1.17.50,ch14,17.50,ch14.ls_sst,data,,§14.2 점 여섯 개 = 수평선(평균)의 잔차제곱합 = 총제곱합
+ch14.r5.L105.1.6.79,ch14,6.79,ch14.ls_ssr_steep,data,,§14.2 「가파른 선」 = 절편 0 · 기울기 1.3 (그림 생성기의 후보선)
+ch14.r5.L105.1.3.77,ch14,3.77,ch14.ls_ssr,data,,§14.2 최소제곱선의 잔차제곱합 (3.7714 ; R = deviance(lm))
+ch14.r5.L152.1..74,ch14,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758
+ch14.r5.L152.1.26.7,ch14,26.7,ch14.paper_beta_t,data,,논문 상자 ③ 산술 t = r√590 ÷ √(1 − r²) · r = .74
+ch14.r5.L221.1..3953,ch14,.3953,ch14.r2,data,,2026-11-15 네 부분 개편
+ch14.r5.L249.1..10,ch14,.10,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 2 단계 R² ; 2026-11-15 네 부분 개편"
+ch14.r5.L249.1..14,ch14,.14,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 3 단계 R² ; 2026-11-15 네 부분 개편"
+ch14.r5.L261.1.4.89,ch14,4.89,ch14.pred6_lo,data,,§14.3 예측값 − 잔차 SD
+ch14.r5.L261.1.6.83,ch14,6.83,ch14.pred6_hi,data,,§14.3 예측값 + 잔차 SD
+ch14.r5.L346.1..22,ch14,.22,ch14.fp_smallvar_t,sim,0.039,§14.4 큰 분산이 작은 집단 세계의 t검정 위양성률 (12장 §12.4 가 미리 든 수 ; 표의 .222 를 둘째 자리로) ; 허용폭은 ch14.4.vtab.small.t 와 같음
+ch14.r5.L380.1..52,ch14,.52,,paper,,"Behr & Iyengar 1985, 표 1 p. 45 (정독 노트 readings/agenda-setting/Behr-Iyengar-1985-…md) ; 에너지 총 보도 식의 rho ; 2026-11-15 네 부분 개편"
+ch14.r5.L380.1..14,ch14,.14,,paper,,"Behr & Iyengar 1985, 표 1 p. 45 (정독 노트 readings/agenda-setting/Behr-Iyengar-1985-…md) ; 에너지 총 보도 식 rho 의 표준오차 ; 2026-11-15 점검 반영"
+ch14.r5.L404.1.0.5,ch14,0.5,,fixed,,맨-휘트니 귀무가설의 정의값
+ch14.r5.L412.1..375,ch14,.375,ch14.power_t,sim,0.046,§14.5 t검정 검정력 ; 이항 표준편차 .0108 → 3 × √2 × .0108 ≈ .046
+ch14.r5.L412.1..691,ch14,.691,ch14.power_mw,sim,0.044,§14.5 t분포(자유도 2) 세계 2000 번 · 맨-휘트니 검정력 ; R 독립 난수(정규 근사 · 연속성 수정 = scipy 기본) · 이항 표준편차 .0103 → 3 × √2 × .0103 ≈ .044
+ch14.r5.L412.1.5,ch14,5,ch14.mw_are_loss_pct,data,,§14.5 상자 = 정규분포에서 맨-휘트니의 점근 상대 효율 3/π ≈ .955 → 손실 4.5% (이론값 ; Hodges & Lehmann 1956) ; 2026-11-15 점검 반영
+ch14.r5.L419.1..220,ch14,.220,ch14.fp_smallvar_perm,sim,0.079,§14.5 상자 ; 허용 근거 = ch14.4.vtab.small.p
+ch14.r5.L460.1.0.88,ch14,0.88,ch14.ci_lo,data,,2026-11-15 네 부분 개편
+ch14.r5.L460.1.1.08,ch14,1.08,ch14.ci_hi,data,,2026-11-15 네 부분 개편
+ch14.r5.L519.1..05,ch14,.05,,fixed,,유의수준
+ch14.r5.L519.1.5,ch14,5,,fixed,,명목 유의수준 .05

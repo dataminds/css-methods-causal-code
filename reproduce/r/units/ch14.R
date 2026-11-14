@@ -53,8 +53,7 @@ calc("ch14.exp_mw_p", function() suppressWarnings(wilcox.test(E()$mil[E()$cond =
                                                                 exact = FALSE, correct = TRUE)$p.value))
 calc("ch14.n_svy_raw", function() nrow(load_data("svy", clean = FALSE)))
 calc("ch14.n_svy_minus1", function() nrow(S()) - 1)
-calc("ch14.mk_ci_lo", function() .31 - 1.96 * .18)
-calc("ch14.mk_ci_hi", function() .31 + 1.96 * .18)
+calc("ch14.mw_are_loss_pct", function() 100 * (1 - 3 / pi))
 calc("ch14.choi_err_red_dhl", function() 100 * (1 - sqrt(1 - .255)))
 calc("ch14.choi_err_red_hl", function() 100 * (1 - sqrt(1 - .156)))
 

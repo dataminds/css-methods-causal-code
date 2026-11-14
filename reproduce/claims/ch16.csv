@@ -232,3 +232,15 @@ ch16.mt.read2.1,ch16,0.19,ch16.mt_b_xy,data,,§16.2 「논문의 조절 회귀 �
 ch16.mt.read2.2,ch16,0.12,ch16.mt_lo_xy,data,,§16.2 「논문의 조절 회귀 표 읽기」 중심화 모형 (2026-11-15)
 ch16.mt.read2.3,ch16,0.27,ch16.mt_hi_xy,data,,§16.2 「논문의 조절 회귀 표 읽기」 중심화 모형 (2026-11-15)
 ch16.mt.read4.1,ch16,.178,ch16.mt_p_refl,data,,§16.2 「논문의 조절 회귀 표 읽기」 중심화 모형 (2026-11-15)
+ch16.mk.L128.1.95,ch16,95,,fixed,,신뢰수준 관례 95%
+ch16.mk.L140.1.0.19,ch16,0.19,ch16.mt_b_xy,data,,§16.2 「논문의 조절 회귀 표 읽기」 곱항 계수 (2026-11-15)
+ch16.mk.L197.1..31,ch16,.31,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 (정독 노트 readings/agenda-setting/Miller-Krosnick-2000-…md) ; 쟁점 수행 평가 × 노출 곱항 ; 2026-11-15 14장에서 옮김"
+ch16.mk.L197.1..18,ch16,.18,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 ; 곱항 SE"
+ch16.mk.L197.1..08,ch16,.08,,paper,,"Miller & Krosnick 2000, p. 305 본문 b = .31, p < .08"
+ch16.mk.L197.1.287,ch16,287,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 의 N"
+ch16.mk.L197.1.286,ch16,286,,paper,,"Miller & Krosnick 2000, p. 304 본문 인원 (주 1)"
+ch16.mk.L197.1.m0.04,ch16,−0.04,ch16.mk_ci_lo,data,,이 책의 계산 .31 − 1.96 × .18
+ch16.mk.L197.1.0.66,ch16,0.66,ch16.mk_ci_hi,data,,이 책의 계산 .31 + 1.96 × .18
+ch16.mk.L197.1..33,ch16,.33,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 ; 쟁점 수행 평가(Issue Performance) 주효과 .33"
+ch16.mk.L387.1.0.99,ch16,0.99,ch16.mt_b_hjs,data,,§16.8 점검 = §16.2 조절 회귀 표의 hjs 줄
+ch16.mk.L387.1.0.19,ch16,0.19,ch16.mt_b_xy,data,,§16.8 점검 = §16.2 조절 회귀 표의 곱항 줄
