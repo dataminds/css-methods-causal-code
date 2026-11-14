@@ -39,6 +39,15 @@ calc("ch14.exp_n", function() nrow(E()))
 calc("ch14.exp_b0", function() mean(E()$mil[E()$cond == 0]))
 calc("ch14.exp_b1", function() mean(E()$mil[E()$cond == 1]) - mean(E()$mil[E()$cond == 0]))
 calc("ch14.exp_p", function() t.test(E()$mil[E()$cond == 1], E()$mil[E()$cond == 0], var.equal = TRUE)$p.value)
+# 2026-11-15 네 부분 개편에서 산문으로 올라온 수
+calc("ch14.exp_mw_p", function() suppressWarnings(wilcox.test(E()$mil[E()$cond == 1], E()$mil[E()$cond == 0],
+                                                                exact = FALSE, correct = TRUE)$p.value))
+calc("ch14.n_svy_raw", function() nrow(load_data("svy", clean = FALSE)))
+calc("ch14.n_svy_minus1", function() nrow(S()) - 1)
+calc("ch14.mk_ci_lo", function() .31 - 1.96 * .18)
+calc("ch14.mk_ci_hi", function() .31 + 1.96 * .18)
+calc("ch14.choi_err_red_dhl", function() 100 * (1 - sqrt(1 - .255)))
+calc("ch14.choi_err_red_hl", function() 100 * (1 - sqrt(1 - .156)))
 
 # 논문 상자 산술 (t = √(r² · df ÷ (1 − r²)))
 tr <- function(r, df = 590) sqrt(r^2 * df / (1 - r^2))

@@ -65,6 +65,15 @@ calc("ch14.exp_n")(lambda: len(E()))
 calc("ch14.exp_b0")(lambda: ols(E().mil, [E().cond])[0][0])
 calc("ch14.exp_b1")(lambda: ols(E().mil, [E().cond])[0][1])
 calc("ch14.exp_p")(lambda: ols(E().mil, [E().cond])[2][1])
+# 2026-11-15 네 부분 개편에서 산문으로 올라온 수
+calc("ch14.exp_mw_p")(lambda: stats.mannwhitneyu(E().mil[E().cond == 1].values,
+                                                 E().mil[E().cond == 0].values).pvalue)   # 코드 9
+calc("ch14.n_svy_raw")(lambda: len(load("svy", clean=False)))       # 정제 전 590
+calc("ch14.n_svy_minus1")(lambda: len(S()) - 1)                     # 코드 6 의 한 사람 뺀 인원
+calc("ch14.mk_ci_lo")(lambda: .31 - 1.96 * .18)                     # Miller & Krosnick 곱항 .31 (SE .18) 의 공식 구간
+calc("ch14.mk_ci_hi")(lambda: .31 + 1.96 * .18)
+calc("ch14.choi_err_red_dhl")(lambda: 100 * (1 - (1 - .255) ** 0.5))   # 최은진 외 R² .255 → 예측 오차 감소 %
+calc("ch14.choi_err_red_hl")(lambda: 100 * (1 - (1 - .156) ** 0.5))    # R² .156
 
 # 「먼저」 · 논문 상자 ③ 의 산술 (보고값 .14 · .03 · .74 와 반올림 범위로 계산)
 _t_from_r = lambda r, df=590: r * np.sqrt(df) / np.sqrt(1 - r * r)
