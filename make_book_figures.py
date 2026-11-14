@@ -1316,13 +1316,21 @@ def fig_ch02_seeds(planted=0.31, n=380, worlds=500):
 
 def fig_ch09_balance(seed=73, n=400, reps=2000):
     """무작위는 편향되지 않았고 판마다 달라질 뿐이다. 블록은 그 변동을 줄인다."""
+    # ⭐ 원고 §9.1 코드와 같은 난수 순서 = 본문 표(0.098 · 0.048)와 같은 2,000판을 그린다.
+    #    (2026-11-14 전에는 새 rng 로 뽑아 범례 SD 0.100 · 0.040 이 본문 표와 달랐다.)
     rng = np.random.default_rng(seed)
+    _age = rng.normal(35, 10, n); _sex = rng.integers(0, 2, n)      # §9.1 첫 코드가 쓴 몫
+    _opt = rng.normal(0, 1, n); _grit = rng.normal(0, 1, n)
+    _z = rng.integers(0, 2, n)
+    _zs = (rng.random(n) < 1 / (1 + np.exp(-1.2 * _opt))).astype(int)
     base = rng.normal(0, 1, n)
     pre = base + rng.normal(0, 0.5, n)      # 사전검사 = 기저의 대리 지표
 
-    def d(v, g):
+    def d(v, g):                            # 원고와 같은 cohen_d (합동 분산)
         a_, b_ = v[g == 1], v[g == 0]
-        return (a_.mean() - b_.mean()) / np.sqrt((a_.var(ddof=1) + b_.var(ddof=1)) / 2)
+        sp = np.sqrt(((len(a_) - 1) * a_.var(ddof=1) + (len(b_) - 1) * b_.var(ddof=1))
+                     / (len(a_) + len(b_) - 2))
+        return (a_.mean() - b_.mean()) / sp
 
     simple, block = [], []
     order = np.argsort(pre)

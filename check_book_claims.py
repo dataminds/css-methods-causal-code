@@ -284,7 +284,7 @@ def main():
     _g = np.random.default_rng(73)
     checkf("B1 §B1.1 동전 비율(10·100·1000·10000)",
            [_g.integers(0, 2, k).mean() for k in (10, 100, 1000, 10000)],
-           [.500, .420, .497, .499])
+           [.500, .420, .497, .4995])
     _g = np.random.default_rng(73)
     _nb = 5000
     _uni = _g.uniform(0, 10, _nb); _nor = _g.normal(5, 1.5, _nb); _exp = _g.exponential(5, _nb)
@@ -509,7 +509,7 @@ def main():
            [.31, 37, 1.64, 5], tol=.6)
     checkf("ch05 §5.3 표 1 중앙값(age·hjs·mil·flr·swl)",
            [float(svy[c].median()) for c in ("age", "hjs", "mil", "flr", "swl")],
-           [46.0, 5.09, 5.00, 5.25, 4.60], tol=.006)
+           [46.0, 5.10, 5.00, 5.25, 4.60], tol=.006)
 
     print("[ch11] §6.2~6.4 표집분포(씨앗 73)")
     pop = svy.mil.values
@@ -754,7 +754,7 @@ def main():
            [_md, _md - _tc*_sed, _md + _tc*_sed], [.283, .031, .535], tol=.0006)
     checkf("ch19 §19.4 오차 막대 세 종의 폭(SD·SE·95%CI 반폭)",
            [_x15.std(ddof=1), _x15.std(ddof=1)/np.sqrt(len(_x15)),
-            _tc * _x15.std(ddof=1)/np.sqrt(len(_x15))], [1.180, .087, .171], tol=.0006)
+            _tc * _x15.std(ddof=1)/np.sqrt(len(_x15))], [1.180, .087, .1716], tol=.0006)   # 원고 0.172 (실제 0.17155 ; 옛 기대값 .171 은 허용폭에 가려져 있었다)
     checkf("ch19 §19.4 95% 구간 막대는 겹치는데 검정은 유의하다",
            [_x15.mean() - _tc*_x15.std(ddof=1)/np.sqrt(len(_x15)),
             _y15.mean() + _tc*_y15.std(ddof=1)/np.sqrt(len(_y15)), _p15],
@@ -985,7 +985,7 @@ def main():
                     a_ = a_ + r.normal(0, nz, 190); b_ = b_ + r.normal(0, nz, 190)
                 h2 += stats.ttest_ind(a_, b_).pvalue < .05
             noi.append(h2 / 2000)
-        checkf("ch13 §13.4 측정 잡음이 갉는 검정력", noi, [.56, .52, .41])
+        checkf("ch13 §13.4 측정 잡음이 갉는 검정력", noi, [.5585, .517, .415], tol=.00005)
 
     # 2026-10-06d: §13.4 「참여자를 160명 넘게 더 모으는 것보다 싸다」 (구 「수십 명」 정정)
     # 두 집단에 같은 잡음 → 관찰 d = 참 d × √신뢰도 ; 검정력 .57(집단당 190명)을 되찾는 집단당 n
@@ -1365,16 +1365,17 @@ def main():
         _base = _r.normal(0, 1, _n); _pre = _base + _r.normal(0, .5, _n)
         _ord = np.argsort(_pre); _si, _bl = [], []
         for _ in range(2000):
-            _g = _r.integers(0, 2, _n); _si.append(_d(_base, _g))
+            # 원고 코드와 같은 cohen_d(합동 분산). 2026-11-14 전에는 단순 평균 분산 _d 로 셌다.
+            _g = _r.integers(0, 2, _n); _si.append(cohen_d(_base[_g == 1], _base[_g == 0]))
             _g2 = np.zeros(_n, int)
             for _i in range(0, _n, 2):
                 _g2[_ord[_i:_i + 2][_r.integers(0, 2)]] = 1
-            _bl.append(_d(_base, _g2))
+            _bl.append(cohen_d(_base[_g2 == 1], _base[_g2 == 0]))
         _si, _bl = np.array(_si), np.array(_bl)
         checkf("ch09 §9.1 단순 대 블록(평균·SD·|d|>0.2 비율)",
                [_si.mean(), _bl.mean(), _si.std(ddof=1), _bl.std(ddof=1),
                 np.mean(np.abs(_si) > .2), np.mean(np.abs(_bl) > .2)],
-               [-.001, -.001, .101, .040, .042, .000], tol=.011)
+               [.001, .000, .098, .048, .034, .000], tol=.0006)
     # §13.2 이중차분: 평행 추세를 사면 / 못 사면
     def _did(par):
         rr = np.random.default_rng(73); cell = []
@@ -1765,7 +1766,7 @@ def main():
            _out6, [.893, .474, .123, .914, .469, .126], tol=.0016)
     checkf("S6⑤ 존재 비율(7요소)",
            [float((((cod[f"coder1_{t}"] + cod[f"coder2_{t}"]) / 2) > 0).mean()) for t in _tags6],
-           [.42, .42, .38, .44, .38, .44, .39], tol=.006)
+           [.415, .425, .38, .44, .385, .44, .39], tol=.0006)
     _tv6 = ((cod.coder1_t + cod.coder2_t) / 2 > 0).astype(int)
     _lv6 = ((cod.coder1_l + cod.coder2_l) / 2 > 0).astype(int)
     _ct6 = pd.crosstab(_tv6, _lv6)
