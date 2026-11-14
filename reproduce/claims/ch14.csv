@@ -62,7 +62,6 @@ ch14.3.unexpl,ch14,60,ch14.unexpl_pct,data,,§14.3 = 100 − 39.53
 ch14.3.quote40,ch14,40,ch14.r2_pct,data,,§14.3 오독 예문
 ch14.3.sd.mil,ch14,1.25,ch14.mil_sd,data,,§14.3 mil 표준편차
 ch14.3.sd.resid,ch14,0.97,ch14.resid_sd,data,,§14.3 잔차 표준편차
-ch14.3.reduce,ch14,22,ch14.err_reduction_pct,data,,§14.3 (1 − 0.973 ÷ 1.252) × 100 = 22.24
 ch14.3.quote40b,ch14,40,ch14.r2_pct,data,,§14.3
 ch14.3.unit.40,ch14,40,ch14.r2_pct,data,,§14.3 ; 2026-11-14h 원고 정정에 맞춰 옮김
 ch14.3.unit.r2,ch14,.3953,ch14.r2,data,,§14.3 ; 2026-11-14h 원고 정정에 맞춰 옮김
@@ -74,8 +73,6 @@ ch14.3.far.hjs,ch14,2.33,ch14.far_hjs,data,,§14.3 평균에서 가장 먼 점 (
 ch14.3.far.b,ch14,0.978,ch14.slope,data,,§14.3
 ch14.3.far.b1,ch14,0.972,ch14.slope_drop1,data,,§14.3 한 점을 뺀 기울기
 ch14.3.pred6,ch14,5.86,ch14.pred6,data,,§14.3 hjs = 6 의 예측값
-ch14.3.r2.22.r2,ch14,.40,ch14.r2,data,,§14.3
-ch14.3.r2.22.pct,ch14,22,ch14.err_reduction_pct,data,,§14.3
 ch14.4.exp.n,ch14,366,ch14.exp_n,data,,§14.4 실험판 정제 후
 ch14.4.exp.b0,ch14,4.98,ch14.exp_b0,data,,§14.4 통제 집단 평균
 ch14.4.exp.b1,ch14,0.283,ch14.exp_b1,data,,§14.4 평균 차이
@@ -220,16 +217,10 @@ ch14.r4.L161.1.19.2,ch14,19.2,ch14.slope_t,data,,2026-11-15 네 부분 개편
 ch14.r4.L161.1.0.88,ch14,0.88,ch14.ci_lo,data,,2026-11-15 네 부분 개편
 ch14.r4.L161.1.1.08,ch14,1.08,ch14.ci_hi,data,,2026-11-15 네 부분 개편
 ch14.r4.L163.1.95,ch14,95,,fixed,,신뢰수준의 정의 ; 2026-11-15 네 부분 개편
-ch14.r4.L172.1.40,ch14,40,ch14.r2_pct,data,,2026-11-15 네 부분 개편
-ch14.r4.L206.1.1.25,ch14,1.25,ch14.mil_sd,data,,2026-11-15 네 부분 개편
-ch14.r4.L206.1.0.97,ch14,0.97,ch14.resid_sd,data,,2026-11-15 네 부분 개편
-ch14.r4.L206.1.22.2,ch14,22.2,ch14.err_reduction_pct,data,,2026-11-15 네 부분 개편
 ch14.r4.L214.1..255,ch14,.255,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
 ch14.r4.L214.1.939,ch14,939,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 분석 인원 ; 2026-11-15 네 부분 개편"
 ch14.r4.L214.2..255,ch14,.255,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
 ch14.r4.L214.1..156,ch14,.156,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
-ch14.r4.L214.1.14,ch14,14,ch14.choi_err_red_dhl,data,,이 책의 계산 1 − √(1 − .255) ; 2026-11-15 네 부분 개편
-ch14.r4.L214.1.8,ch14,8,ch14.choi_err_red_hl,data,,이 책의 계산 1 − √(1 − .156) ; 2026-11-15 네 부분 개편
 ch14.r4.L226.1.m.02,ch14,−.02,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 영차 상관 ; 2026-11-15 네 부분 개편"
 ch14.r4.L226.1.193,ch14,193,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 인원 p. 88 ; 2026-11-15 네 부분 개편"
 ch14.r4.L226.2.m.02,ch14,−.02,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 영차 상관 ; 2026-11-15 네 부분 개편"
@@ -337,3 +328,15 @@ ch14.r5.L460.1.0.88,ch14,0.88,ch14.ci_lo,data,,2026-11-15 네 부분 개편
 ch14.r5.L460.1.1.08,ch14,1.08,ch14.ci_hi,data,,2026-11-15 네 부분 개편
 ch14.r5.L519.1..05,ch14,.05,,fixed,,유의수준
 ch14.r5.L519.1.5,ch14,5,,fixed,,명목 유의수준 .05
+ch14.r6.L195.1.40,ch14,40,ch14.r2_pct,data,,§14.3 절 머리 = R² 40%
+ch14.r6.L199.1.40,ch14,40,ch14.r2_pct,data,,§14.3 설명력 40% = R² .40
+ch14.r6.L199.1..40,ch14,.40,ch14.r2,data,,§14.3
+ch14.r6.L229.1.566,ch14,566,ch14.n_svy,data,,§14.1 그림 설명
+ch14.r6.L231.1.1.25,ch14,1.25,ch14.mil_sd,data,,2026-11-15 네 부분 개편
+ch14.r6.L231.1.0.97,ch14,0.97,ch14.resid_sd,data,,2026-11-15 네 부분 개편
+ch14.r6.L231.1.22.2,ch14,22.2,ch14.err_reduction_pct,data,,2026-11-15 네 부분 개편
+ch14.r6.L233.1.22,ch14,22,ch14.err_reduction_pct,data,,§14.3 (1 − 0.973 ÷ 1.252) × 100 = 22.24
+ch14.r6.L237.1.14,ch14,14,ch14.choi_err_red_dhl,data,,이 책의 계산 1 − √(1 − .255) ; 2026-11-15 네 부분 개편
+ch14.r6.L237.1.8,ch14,8,ch14.choi_err_red_hl,data,,이 책의 계산 1 − √(1 − .156) ; 2026-11-15 네 부분 개편
+ch14.r6.L265.1..40,ch14,.40,ch14.r2,data,,§14.3
+ch14.r6.L265.1.22,ch14,22,ch14.err_reduction_pct,data,,§14.3 (1 − 0.973 ÷ 1.252) × 100 = 22.24
