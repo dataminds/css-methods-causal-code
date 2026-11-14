@@ -1,0 +1,29 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch01.res.mil.t,ch01,5.14,,paper,,Rogers 외 2023 연구 5 Results p. 765 (M = 5.14)
+ch01.res.mil.c,ch01,4.83,,paper,,Rogers 외 2023 연구 5 Results p. 765 (M = 4.83)
+ch01.res.mil.d,ch01,0.22,,paper,,Rogers 외 2023 연구 5 Results p. 765 (d = .22)
+ch01.res.hjs.d,ch01,0.27,,paper,,Rogers 외 2023 연구 5 Results p. 765 (HJS d = .27)
+ch01.res.flr.d,ch01,0.26,,paper,,Rogers 외 2023 연구 5 Results p. 765 (flourishing d = .26)
+ch01.tab.mil.t,ch01,5.14,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.tab.mil.c,ch01,4.83,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.tab.mil.diff,ch01,0.31,ch01.paper_mil_diff,data,,5.14 − 4.83 (논문 값으로 한 산술)
+ch01.tab.d.a,ch01,0.22,,paper,,Rogers 외 2023 연구 5 p. 765 (첫째 칸)
+ch01.tab.d.b,ch01,0.22,,paper,,Rogers 외 2023 연구 5 p. 765 (셋째 칸 「0.22배」)
+ch01.tab.d.hjs,ch01,0.27,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.tab.d.flr,ch01,0.26,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.q3.t,ch01,5.14,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.q3.c,ch01,4.83,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.q4.d,ch01,0.22,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.ans.t,ch01,5.14,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.ans.c,ch01,4.83,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.ans.d,ch01,0.22,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.ex.d,ch01,0.22,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.sim.diff,ch01,0.283,ch01.exp_mil_diff,data,,§1.1 실험판 정제본(366명) 개입 − 통제 mil 평균 차이
+ch01.sim.sp,ch01,1.23,ch01.exp_mil_pooled_sd,data,,§1.1 합동 표준편차 (두 집단 안 흩어짐)
+ch01.sim.d,ch01,0.23,ch01.exp_mil_d,data,,§1.1 Cohen d
+ch01.abs.d,ch01,0.22,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.map.hjs.d,ch01,0.27,,paper,,Rogers 외 2023 연구 5 p. 765 (조작 점검 = HJS d = .27)
+ch01.map.mil.d,ch01,0.22,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.q.rel.t,ch01,5.14,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.q.rel.c,ch01,4.83,,paper,,Rogers 외 2023 연구 5 p. 765
+ch01.q.size.d,ch01,0.22,,paper,,Rogers 외 2023 연구 5 p. 765

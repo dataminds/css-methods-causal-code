@@ -1,0 +1,36 @@
+# 책 수치 재현 검증 = push 마다 파이썬과 R 두 엔진으로 돈다.
+# 정전은 monorepo 의 materials/reproduce/ci/verify.yml 이고, sync_code_repo.py 가 .github/workflows/ 로 옮긴다.
+name: verify-book-numbers
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.3.3"
+      - name: 파이썬 패키지
+        run: pip install -r reproduce/requirements.txt
+      - name: 1층 코드 출력 대조
+        run: python reproduce/doctest_book.py --json doctest.json
+        env:
+          PYTHONIOENCODING: utf-8
+      - name: 2층 산문 수치 대조 (파이썬 · R)
+        run: python reproduce/verify.py --out report.md
+        env:
+          PYTHONIOENCODING: utf-8
+      - name: 보고서 올리기
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-report
+          path: |
+            report.md
+            doctest.json

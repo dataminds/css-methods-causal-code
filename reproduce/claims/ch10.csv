@@ -1,0 +1,8 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch10.s3.n,ch10,412,,fixed,,§10.3 대표 묶음 = 판정 훈련용으로 지은 가상 초록의 인원 (실제 연구 아님)
+ch10.s3.r,ch10,.28,,fixed,,§10.3 가상 초록의 상관 (예시 숫자)
+ch10.s3.b,ch10,0.19,,fixed,,§10.3 가상 초록의 회귀 계수 (예시 숫자)
+ch10.s4.r,ch10,.70,,fixed,,§10.4 한 줄 사례의 예시 숫자
+ch10.s4.tv.light,ch10,2,,paper,,Hughes 1980 Public Opinion Quarterly 44(3) p. 295 표 주 = 0 · 1 · 2시간 light (원 연구 Gerbner 외 1978a 의 구분)
+ch10.s4.tv.medium,ch10,3,,paper,,Hughes 1980 p. 295 표 주 = 3시간 medium
+ch10.s4.tv.heavy,ch10,4,,paper,,Hughes 1980 p. 295 표 주 = 4시간 이상 heavy

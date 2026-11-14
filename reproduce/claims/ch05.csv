@@ -1,0 +1,166 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch05.t1.age.m,ch05,45.9,ch05.age_mean,data,,§5.3 표 1
+ch05.t1.age.sd,ch05,12.4,ch05.age_sd,data,,§5.3 표 1
+ch05.t1.age.min,ch05,18,ch05.age_min,data,,§5.3 표 1 범위
+ch05.t1.age.max,ch05,75,ch05.age_max,data,,§5.3 표 1 범위
+ch05.t1.hjs.m,ch05,5.01,ch05.hjs_mean,data,,§5.3 표 1
+ch05.t1.hjs.sd,ch05,0.80,ch05.hjs_sd,data,,§5.3 표 1
+ch05.t1.mil.m,ch05,4.89,ch05.mil_mean,data,,§5.3 표 1
+ch05.t1.mil.sd,ch05,1.25,ch05.mil_sd,data,,§5.3 표 1
+ch05.t1.flr.m,ch05,5.23,ch05.flr_mean,data,,§5.3 표 1
+ch05.t1.flr.sd,ch05,0.88,ch05.flr_sd,data,,§5.3 표 1
+ch05.t1.swl.m,ch05,4.60,ch05.swl_mean,data,,§5.3 표 1
+ch05.t1.swl.sd,ch05,1.10,ch05.swl_sd,data,,§5.3 표 1
+ch05.t1.n,ch05,566,ch05.svy_n,data,,§5.3 표 1 주
+ch05.t1.excl,ch05,24,ch05.svy_excluded,data,,§5.3 표 1 주
+ch05.t1.men.n,ch05,270,ch05.men_n,data,,§5.3 표 1 주
+ch05.t1.men.pct,ch05,47.7,ch05.men_pct,data,,§5.3 표 1 주
+ch05.t1.women.n,ch05,284,ch05.women_n,data,,§5.3 표 1 주
+ch05.t1.women.pct,ch05,50.2,ch05.women_pct,data,,§5.3 표 1 주
+ch05.t1.other.n,ch05,12,ch05.other_n,data,,§5.3 표 1 주
+ch05.t1.other.pct,ch05,2.1,ch05.other_pct,data,,§5.3 표 1 주
+ch05.violin.men.m,ch05,4.90,ch05.men_mil_mean,data,,§5.2
+ch05.violin.men.sd,ch05,1.25,ch05.men_mil_sd,data,,§5.2
+ch05.violin.women.m,ch05,4.88,ch05.women_mil_mean,data,,§5.2
+ch05.violin.women.sd,ch05,1.27,ch05.women_mil_sd,data,,§5.2
+ch05.violin.diff,ch05,0.02,ch05.men_minus_women_mil,data,,§5.2
+ch05.median.mil,ch05,5.0,ch05.mil_median,data,,§5.1
+ch05.median.mil.mean,ch05,4.89,ch05.mil_mean,data,,§5.1
+ch05.ceiling.mil,ch05,13.6,ch05.mil_ge65_pct,data,,§5.8 점검
+ch05.ceiling.hjs,ch05,1.1,ch05.hjs_ge65_pct,data,,§5.1
+ch05.ceiling.hjs.max,ch05,6.86,ch05.hjs_max,data,,§5.1
+ch05.sd1.hjs.lo,ch05,4.21,ch05.hjs_mean_minus_sd,data,,§5.1
+ch05.sd1.hjs.hi,ch05,5.81,ch05.hjs_mean_plus_sd,data,,§5.1
+ch05.sd1.age.lo,ch05,34,ch05.age_mean_minus_sd,data,,§5.1
+ch05.sd1.age.hi,ch05,58,ch05.age_mean_plus_sd,data,,§5.1
+ch05.raw.mil,ch05,4.878,ch05.raw_mil_mean,data,,§5.3 ⚠
+ch05.raw.diff,ch05,0.013,ch05.clean_minus_raw_mil,data,,§5.3 ⚠
+ch05.ex1.age.m,ch05,45.87,ch05.age_mean,data,,실습 1
+ch05.ex1.age.sd,ch05,12.37,ch05.age_sd,data,,실습 1
+ch05.ex3.flr.hi,ch05,8.8,ch05.flr_ge65_pct,data,,실습 3
+ch05.ex3.flr.lo,ch05,0.0,ch05.flr_le15_pct,data,,실습 3
+ch05.ex3.flr.max,ch05,7.0,ch05.flr_max,data,,실습 3
+ch05.nunique.mil,ch05,24,ch05.mil_nunique,data,,§5.4
+ch05.nunique.hjs,ch05,79,ch05.hjs_nunique,data,,§5.4
+ch05.gender.mean,ch05,1.54,ch05.raw_gender_mean,data,,§5.4 (원자료 590명)
+ch05.alpha.mil,ch05,.93,ch05.mil_alpha,data,,실습 5
+ch05.likert.equal,ch05,−0.10,ch05.likert_equal_diff,data,,§5.4 산술
+ch05.likert.weighted,ch05,−0.45,ch05.likert_weighted_diff,data,,§5.4 산술
+ch05.likert.rescaled,ch05,−0.20,ch05.likert_weighted_rescaled,data,,§5.4 산술
+ch05.sim.median.lo,ch05,4.54,ch05.sim_median_min,sim,0.2,§5.1 네 분포 ; R = 독립 난수 · 중앙값 표준오차 약 0.07
+ch05.sim.median.hi,ch05,4.95,ch05.sim_median_max,sim,0.2,§5.1 네 분포
+ch05.sim.max.lo,ch05,7.16,ch05.sim_max_min,sim,0.3,§5.1 고른 분포 최댓값 = 모의 2000 번 평균 7.048 · 표준편차 0.066 → 두 엔진 차이 허용 3 × √2 × 0.066 ≈ 0.28
+ch05.sim.max.hi,ch05,11.67,ch05.sim_max_max,sim,5,§5.1 치우친 분포 최댓값 = 표준편차 약 1.6 이라 R 대조는 약하다
+ch05.sim.big.diff,ch05,0.38,ch05.sim_big_diff,sim,0.31,§5.2 표준오차 0.102
+ch05.sim.small.diff,ch05,0.41,ch05.sim_small_diff,sim,0.061,§5.2 표준오차 0.020
+ch05.sim.big.over,ch05,37,ch05.sim_big_over_pct,sim,12,§5.2 이론값 Φ(−0.32) = 37.4%
+ch05.sim.small.over,ch05,5,ch05.sim_small_over_pct,sim,5,§5.2 이론값 Φ(−1.6) = 5.5%
+ch05.sim.big.d,ch05,0.31,ch05.sim_big_d,sim,0.25,§5.2 모집단 d = 0.32
+ch05.sim.small.d,ch05,1.64,ch05.sim_small_d,sim,0.3,§5.2 모집단 d = 1.6
+ch05.paper.age,ch05,46.09,,paper,,Rogers 외 2023 연구 1 p. 757 ; OSF 재계산 46.0895 (final-review-2026-11-13/rogers-osf-checks-2026-11-14.md)
+ch05.paper.age.sd,ch05,16.06,,paper,,Rogers 외 2023 연구 1 p. 757
+ch05.paper.white,ch05,71.62,,paper,,Rogers 외 2023 연구 1 p. 757 ; OSF 재계산 424/592
+ch05.paper.n,ch05,592,,paper,,Rogers 외 2023 연구 1 Participants p. 756 (published txt 쪽 머리 대조)
+ch05.paper.male,ch05,283,,paper,,Rogers 외 2023 연구 1 p. 756 (「283 male」 ; 쪽 끝)
+ch05.paper.female,ch05,300,,paper,,Rogers 외 2023 연구 1 p. 757 (「300 female」 ; 쪽 머리)
+ch05.paper.other,ch05,9,,paper,,Rogers 외 2023 연구 1 p. 757 = nonbinary/third gender 7 + other or did not say 2 의 합 (원고가 둘을 묶었다)
+ch05.paper.s5.m,ch05,5.14,,paper,,Rogers 외 2023 연구 5 Results p. 765
+ch05.paper.s5.sd,ch05,1.40,,paper,,Rogers 외 2023 연구 5 Results p. 765
+ch05.ptab.age.m,ch05,46.09,,paper,,Rogers 외 2023 연구 1 p. 757 (먼저 절 표)
+ch05.ptab.age.sd,ch05,16.06,,paper,,Rogers 외 2023 연구 1 p. 757 (먼저 절 표)
+ch05.ptab.age.lo,ch05,30,ch05.paper_age_minus_sd,data,,46.09 − 16.06 = 30.03 (논문 값으로 한 산술)
+ch05.ptab.age.hi,ch05,62,ch05.paper_age_plus_sd,data,,46.09 + 16.06 = 62.15 (논문 값으로 한 산술)
+ch05.ptab.white,ch05,71.62,,paper,,Rogers 외 2023 연구 1 p. 757 (먼저 절 표)
+ch05.ptab.n,ch05,592,,paper,,Rogers 외 2023 연구 1 p. 756 (먼저 절 표)
+ch05.ptab.s5.m,ch05,5.14,,paper,,Rogers 외 2023 연구 5 p. 765 (먼저 절 표)
+ch05.ptab.s5.sd,ch05,1.40,,paper,,Rogers 외 2023 연구 5 p. 765 (먼저 절 표)
+ch05.ptab.s5.sd.r,ch05,1.4,,paper,,Rogers 외 2023 연구 5 p. 765 SD 1.40 을 한 자리로 줄인 값 (「쯤」)
+ch05.ptab.mid,ch05,4,,fixed,,1~7 척도의 가운데 값 (정의)
+ch05.first.pct71a,ch05,71,,paper,,Rogers 외 2023 연구 1 p. 757 백인 71.62% 를 정수로 줄인 값
+ch05.first.pct71b,ch05,71,,paper,,Rogers 외 2023 연구 1 p. 757 백인 71.62% 를 정수로 줄인 값
+ch05.s1.n,ch05,566,,fixed,,§5.1 네 분포 모의시행의 표본 크기 = 설문판 정제본 인원에 맞춘 설계값
+ch05.s1.fit.m,ch05,4.89,,fixed,,§5.1 모의시행 fit 의 목표 평균 (설계값 ; 설문판 mil 평균에 맞춤)
+ch05.s1.fit.sd,ch05,1.25,,fixed,,§5.1 모의시행 fit 의 목표 표준편차 (설계값 ; 설문판 mil SD 에 맞춤)
+ch05.s1.tail12,ch05,12,ch05.sim_max_max,sim,5,§5.1 치우친 분포 최댓값 11.67 을 정수로 ; R 대조는 약하다 (최댓값 표준편차 약 1.6)
+ch05.s1.skew.m,ch05,4.89,ch05.sim_skew_mean,sim,0.001,§5.1 치우친 분포 평균 = fit 이 맞춘 값이라 두 엔진 모두 정확히 4.89
+ch05.s1.skew.med,ch05,4.54,ch05.sim_skew_median,sim,0.13,§5.1 치우친 분포 중앙값 ; 모의 4000 번 표준편차 0.030 → 3 × √2 × 0.030 ≈ 0.13 (이론값 4.89 + (ln2 − 1) × 1.25 = 4.506)
+ch05.svy.n.a,ch05,566,ch05.svy_n,data,,§5.1
+ch05.svy.n.fig,ch05,566,ch05.svy_n,data,,§5.1 그림 설명
+ch05.dist.hjs.m,ch05,5.0,ch05.hjs_mean,data,,§5.1 그림 읽기 (평균 5.01)
+ch05.dist.hjs.sd,ch05,0.80,ch05.hjs_sd,data,,§5.1 그림 읽기
+ch05.dist.mil.m,ch05,4.89,ch05.mil_mean,data,,§5.1 그림 읽기
+ch05.dist.mil.sd,ch05,1.25,ch05.mil_sd,data,,§5.1 그림 읽기
+ch05.ceil.thr.a,ch05,6.5,,fixed,,§5.1 천장 판정 문턱 (설계값)
+ch05.ceil.thr.b,ch05,1.5,,fixed,,§5.1 바닥 판정 문턱 (설계값)
+ch05.ceil.thr.c,ch05,6.5,,fixed,,§5.1 천장 판정 문턱 (설계값)
+ch05.ceil.thr.d,ch05,6.5,,fixed,,§5.1 천장 판정 문턱 (설계값)
+ch05.ceil.thr.e,ch05,6.5,,fixed,,§5.1 천장 판정 문턱 (설계값)
+ch05.ceil.mil.a,ch05,13.6,ch05.mil_ge65_pct,data,,§5.1
+ch05.ceil.mil.b,ch05,13.6,ch05.mil_ge65_pct,data,,§5.1
+ch05.sd1.hjs.sd,ch05,0.80,ch05.hjs_sd,data,,§5.1
+ch05.sd1.age.sd,ch05,12.4,ch05.age_sd,data,,§5.1
+ch05.sd1.mil.sd,ch05,1.25,ch05.mil_sd,data,,§5.1
+ch05.sd1.normal,ch05,68,ch05.normal_within1sd_pct,data,,정규분포 이론값 Φ(1) − Φ(−1) = 68.27% (두 엔진의 분포함수로 계산)
+ch05.sd1.skew,ch05,84,ch05.sim_skew_within1sd_pct,sim,12,§5.1 치우친 분포(씨앗 73 표본)에서 평균 ±1SD 안 비율 ; 모의 4000 번 평균 84.8 · 표준편차 2.8 → 3 × √2 × 2.8 ≈ 12 ; 지수분포 모집단 이론값 1 − e⁻² = 86.5% ; 2026-11-14h 원고 정정에 맞춰 옮김
+ch05.violin.diff.b,ch05,0.02,ch05.men_minus_women_mil,data,,§5.2
+ch05.violin.men.n,ch05,270,ch05.men_n,data,,§5.2
+ch05.violin.women.n,ch05,284,ch05.women_n,data,,§5.2
+ch05.two.diff,ch05,0.4,,fixed,,§5.2 모의시행 설계 = 모평균 5.0 − 4.6
+ch05.two.n,ch05,300,,fixed,,§5.2 모의시행 표본 크기 (설계값)
+ch05.cor.row.hjs.mil,ch05,.63,ch05.r_hjs_mil,data,,§5.2 상관 표
+ch05.cor.row.hjs.flr,ch05,.39,ch05.r_hjs_flr,data,,§5.2 상관 표
+ch05.cor.row.hjs.swl,ch05,.38,ch05.r_hjs_swl,data,,§5.2 상관 표
+ch05.cor.row.mil.flr,ch05,.60,ch05.r_mil_flr,data,,§5.2 상관 표
+ch05.cor.row.mil.swl,ch05,.54,ch05.r_mil_swl,data,,§5.2 상관 표
+ch05.cor.row.flr.swl,ch05,.33,ch05.r_flr_swl,data,,§5.2 상관 표
+ch05.cor.read.hjs.mil,ch05,.63,ch05.r_hjs_mil,data,,§5.2
+ch05.cor.read.mil.flr,ch05,.60,ch05.r_mil_flr,data,,§5.2
+ch05.cor.read.mil.swl,ch05,.54,ch05.r_mil_swl,data,,§5.2
+ch05.cor.read.flr.swl,ch05,.33,ch05.r_flr_swl,data,,§5.2
+ch05.cor.read.vs.a,ch05,.63,ch05.r_hjs_mil,data,,§5.2
+ch05.cor.read.vs.b,ch05,.33,ch05.r_flr_swl,data,,§5.2
+ch05.cor.read.vs.c,ch05,.63,ch05.r_hjs_mil,data,,§5.2
+ch05.cor.read.vs.d,ch05,.33,ch05.r_flr_swl,data,,§5.2
+ch05.cor.follow.a,ch05,.63,ch05.r_hjs_mil,data,,§5.2
+ch05.cor.follow.b,ch05,.63,ch05.r_hjs_mil,data,,§5.2
+ch05.t1out.hjs.max,ch05,6.86,ch05.hjs_max,data,,§5.3
+ch05.t1out.mil.m,ch05,4.89,ch05.mil_mean,data,,§5.3
+ch05.t1out.mil.med,ch05,5.00,ch05.mil_median,data,,§5.3
+ch05.raw.tab,ch05,4.89,ch05.mil_mean,data,,§5.3 ⚠
+ch05.raw.round,ch05,0.0005,,fixed,,§5.3 소수 셋째 자리 반올림의 최대 오차 = 0.5 × 10⁻³ (정의)
+ch05.myth.fit.m,ch05,4.89,,fixed,,§5.1 모의시행 fit 목표값 (설계값)
+ch05.myth.fit.sd,ch05,1.25,,fixed,,§5.1 모의시행 fit 목표값 (설계값)
+ch05.likert.equal.b,ch05,−0.10,ch05.likert_equal_diff,data,,§5.4 산술
+ch05.nuniq.v1,ch05,1.00,,fixed,,4문항 평균이 가질 수 있는 값 = k/4 (정의)
+ch05.nuniq.v2,ch05,1.25,,fixed,,4문항 평균이 가질 수 있는 값 = k/4 (정의)
+ch05.nuniq.v3,ch05,1.50,,fixed,,4문항 평균이 가질 수 있는 값 = k/4 (정의)
+ch05.nuniq.step,ch05,0.25,,fixed,,4문항 평균의 간격 = 1/4 (정의)
+ch05.cl.n.wa,ch05,"13,064",,paper,,Cheung & Lucas 2014 초록 p. 2809 (Quality of Life Research 23(10) 2809–2818 ; 쪽 = 원문 txt 의 쪽 머리로 산정)
+ch05.cl.n.or,ch05,"2,277",,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.n.de,ch05,"1,312",,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.r.lo,ch05,.62,,paper,,Cheung & Lucas 2014 초록 p. 2809 (zero-order r = 0.62–0.64)
+ch05.cl.r.hi,ch05,.64,,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.dr.lo,ch05,.78,,paper,,Cheung & Lucas 2014 초록 p. 2809 (disattenuated r = 0.78–0.80)
+ch05.cl.dr.hi,ch05,.80,,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.diff.lo,ch05,.015,,paper,,Cheung & Lucas 2014 초록 p. 2809 (average difference = 0.015–0.042)
+ch05.cl.diff.hi,ch05,.042,,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.rel.m,ch05,.72,,paper,,Cheung & Lucas 2014 p. 2812 (Lucas & Donnellan 의 평균 신뢰도 0.72)
+ch05.cl.rel.lo,ch05,.68,,paper,,Cheung & Lucas 2014 p. 2810 (estimates ranging from 0.68 to 0.74)
+ch05.cl.rel.hi,ch05,.74,,paper,,Cheung & Lucas 2014 p. 2810
+ch05.cl.back.r,ch05,.62,,paper,,Cheung & Lucas 2014 p. 2809 · 2812 (워싱턴 zero-order 0.62)
+ch05.cl.back.dr,ch05,.78,,paper,,Cheung & Lucas 2014 p. 2809 · 2812 (워싱턴 disattenuated 0.78)
+ch05.cl.eq.r,ch05,.62,,paper,,Cheung & Lucas 2014 p. 2809
+ch05.cl.eq.dr,ch05,.78,,paper,,Cheung & Lucas 2014 p. 2809
+ch05.cl.eq.prod,ch05,.63,ch05.cl_reliab_product,data,,(.62 ÷ .78)² = 0.6318 (산술)
+ch05.cl.eq2.prod,ch05,.63,ch05.cl_reliab_product,data,,(.62 ÷ .78)² = 0.6318 (산술)
+ch05.cl.eq2.rel,ch05,.72,,paper,,Cheung & Lucas 2014 p. 2812
+ch05.cl.eq2.alpha,ch05,.88,ch05.cl_swls_alpha,data,,(.62 ÷ .78)² ÷ .72 = 0.8775 (반올림 전 곱으로 ; 반올림한 .63 ÷ .72 = 0.875 도 .88)
+ch05.ex4.thr.a,ch05,6.5,,fixed,,실습 4 천장 문턱 (설계값)
+ch05.ex4.med.lo,ch05,4.54,ch05.sim_median_min,sim,0.2,실습 4 = §5.1 네 분포 중앙값 최소
+ch05.ex4.med.hi,ch05,4.95,ch05.sim_median_max,sim,0.2,실습 4 = §5.1 네 분포 중앙값 최대
+ch05.ex4.thr.b,ch05,6.5,,fixed,,실습 4 천장 문턱 (설계값)
+ch05.ex5.gender.mean,ch05,1.54,ch05.raw_gender_mean,data,,실습 5 (원자료 590명)
+ch05.ex5.gender.k,ch05,3,ch05.gender_nunique,data,,실습 5 (정제본)
+ch05.ex5.mil1.k,ch05,7,ch05.mil1_nunique,data,,실습 5 (정제본)
+ch05.mine.thr,ch05,6.5,,fixed,,§5.7 천장 문턱 (설계값)
+ch05.mine.pct,ch05,15,,fixed,,§5.7 천장 비율 경고선 (저자가 정한 어림 기준)

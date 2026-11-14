@@ -1,0 +1,133 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch04.p.el.lo,ch04,.75,,paper,,Rogers 외 2023 연구 1 Measures p. 757 (ally α = .75)
+ch04.p.el.hi,ch04,.90,,paper,,Rogers 외 2023 연구 1 p. 757 (quest α = .90)
+ch04.p.el.m,ch04,.84,ch04.paper_elem_alpha_mean,data,,Rogers 외 2023 연구 1 p. 757 요소 알파 일곱(.86 · .80 · .90 · .75 · .82 · .86 · .89)의 평균 = 원 논문에 없는 값이라 산술로 확인
+ch04.p.all,ch04,.92,,paper,,Rogers 외 2023 연구 1 p. 757 (overall HJS α .92)
+ch04.p.mil,ch04,.94,,paper,,Rogers 외 2023 연구 1 p. 757 (Costin & Vignoles 4문항 α = .94)
+ch04.ptab.s5,ch04,5.14,,paper,,Rogers 외 2023 연구 5 Results p. 765
+ch04.ptab.a.hjs,ch04,.92,,paper,,Rogers 외 2023 연구 1 p. 757
+ch04.ptab.a.mil,ch04,.94,,paper,,Rogers 외 2023 연구 1 p. 757
+ch04.rel.half,ch04,.5,,fixed,,신뢰도 정의의 예 (참 점수 몫 1/2)
+ch04.cx.fwd,ch04,.72,ch04.cx_alpha,sim,0.083,§4.2 반례 알파 ; 모의 2000 번 평균 .738 · 표준편차 .020 → 3 × √2 × .020 ≈ .083
+ch04.conv.9,ch04,.9,,fixed,,알파 관례 기준 (관례값)
+ch04.conv.8,ch04,.8,,fixed,,알파 관례 기준 (관례값)
+ch04.conv.7,ch04,.7,,fixed,,알파 관례 기준 (관례값)
+ch04.n.a,ch04,566,ch04.svy_n,data,,§4.2
+ch04.a21,ch04,.93,ch04.alpha_hjs21,data,,§4.2
+ch04.a21.pct,ch04,93,ch04.alpha_hjs21_pct,data,,§4.2 α × 100
+ch04.a.mil,ch04,.93,ch04.alpha_mil,data,,§4.2
+ch04.a.flr,ch04,.92,ch04.alpha_flr,data,,§4.2
+ch04.a.swl,ch04,.89,ch04.alpha_swl,data,,§4.2
+ch04.a.gen,ch04,.83,ch04.alpha_gen,data,,§4.2
+ch04.el.p,ch04,.85,ch04.alpha_el_p,data,,§4.2 요소 표 주인공
+ch04.el.s,ch04,.77,ch04.alpha_el_s,data,,§4.2 요소 표 전환
+ch04.el.q,ch04,.88,ch04.alpha_el_q,data,,§4.2 요소 표 소명
+ch04.el.a,ch04,.71,ch04.alpha_el_a,data,,§4.2 요소 표 조력자
+ch04.el.c,ch04,.80,ch04.alpha_el_c,data,,§4.2 요소 표 시련
+ch04.el.t,ch04,.84,ch04.alpha_el_t,data,,§4.2 요소 표 변형
+ch04.el.l,ch04,.86,ch04.alpha_el_l,data,,§4.2 요소 표 유산
+ch04.el.a.low,ch04,.71,ch04.alpha_el_a,data,,§4.2
+ch04.itc.in,ch04,.56,ch04.itc_a1_incl,data,,§4.2 hjs_a1 문항-총점 상관(자기 포함)
+ch04.itc.out,ch04,.50,ch04.itc_a1_excl,data,,§4.2 수정된 문항-총점 상관
+ch04.itc.out.b,ch04,.50,ch04.itc_a1_excl,data,,§4.2
+ch04.itc.gap,ch04,.045,ch04.itc_mean_inflation,data,,§4.2 [더 나아가기] 21문항 평균
+ch04.p.ally,ch04,.75,,paper,,Rogers 외 2023 연구 1 p. 757 (ally α = .75 ; 일곱 가운데 최저)
+ch04.itc.low,ch04,.3,,fixed,,낮은 문항-총점 상관의 예시값
+ch04.rev.a,ch04,.931,ch04.alpha_hjs21,data,,§4.2 역채점
+ch04.rev.b,ch04,.912,ch04.alpha_rev21,data,,§4.2 역채점 미처리 21문항 알파
+ch04.rev.itc.a,ch04,−.50,ch04.itc_rev_a1,data,,§4.2 역채점 미처리 hjs_a1 수정 문항-총점 상관
+ch04.rev.itc.b,ch04,.48,ch04.itc_rev_a2,data,,§4.2 같은 판 hjs_a2
+ch04.rev3.a,ch04,.708,ch04.alpha_el_a,data,,§4.2 조력자 3문항
+ch04.rev3.b,ch04,−.664,ch04.alpha_rev3,data,,§4.2 조력자 3문항 역채점 미처리
+ch04.drop.a,ch04,.71,ch04.alpha_el_a,data,,§4.2
+ch04.drop.b,ch04,.62,ch04.alpha_a_drop1,data,,§4.2 hjs_a1 을 뺀 2문항 알파
+ch04.sb.in,ch04,.816,ch04.alpha_el_mean,data,,§4.2 요소 알파 일곱의 평균
+ch04.sb.m,ch04,.82,ch04.alpha_el_mean,data,,§4.2
+ch04.sb.pred,ch04,.97,ch04.sb_pred,data,,§4.2 스피어만-브라운 7배 예측 (요소 알파 평균으로)
+ch04.sb.act,ch04,.93,ch04.alpha_hjs21,data,,§4.2
+ch04.r.within,ch04,.60,ch04.item_r_within,data,,§4.2 같은 요소 안 문항 쌍 상관 평균
+ch04.r.between,ch04,.37,ch04.item_r_between,data,,§4.2 다른 요소 문항 쌍 상관 평균
+ch04.cx.q,ch04,.70,,fixed,,알파 관례 기준 (관례값)
+ch04.cx.n,ch04,566,,fixed,,§4.2 반례 모의시행 표본 크기 (설계값)
+ch04.cx.alpha,ch04,.72,ch04.cx_alpha,sim,0.083,§4.2 반례 ; 허용폭 근거 = ch04.cx.fwd
+ch04.cx.r,ch04,−0.03,ch04.cx_r,sim,0.18,§4.2 반례 두 뭉치 평균 상관 ; 모의 표준편차 .042 → 3 × √2 × .042 ≈ .18 (이론값 0)
+ch04.form.a,ch04,.93,ch04.alpha_hjs21,data,,§4.2 판형
+ch04.form.lo,ch04,.71,ch04.alpha_el_min,data,,§4.2 판형
+ch04.form.hi,ch04,.88,ch04.alpha_el_max,data,,§4.2 판형
+ch04.bad.72,ch04,.72,,fixed,,나쁜 보고 문장의 예시값 (§4.2 반례 알파를 빌려 씀)
+ch04.elr.lo,ch04,.44,ch04.elem_score_r_min,data,,§4.2 요소 점수 일곱 사이 상관 최솟값
+ch04.elr.hi,ch04,.55,ch04.elem_score_r_max,data,,§4.2 요소 점수 일곱 사이 상관 최댓값
+ch04.fa.cx,ch04,.72,ch04.cx_alpha,sim,0.083,§4.3 ; 허용폭 근거 = ch04.cx.fwd
+ch04.fa.ev1,ch04,2.65,ch04.cx_ev1,sim,0.27,§4.3 첫째 고유값 ; 모의 표준편차 .064 → 3 × √2 × .064 ≈ .27 (이론값 2.6) ; 2026-11-14h 원고 정정에 맞춰 옮김
+ch04.fa.ev2,ch04,2.52,ch04.cx_ev2,sim,0.28,§4.3 둘째 고유값 ; 모의 표준편차 .065 → 3 × √2 × .065 ≈ .28 ; 2026-11-14h 원고 정정에 맞춰 옮김
+ch04.fa.rest.max,ch04,0.2,ch04.cx_ev_rest_max,sim,0.05,§4.3 나머지 넷 가운데 최대 (0.238) ; 모의 표준편차 약 .01 → .05 ; 2026-11-14h 원고 정정에 맞춰 옮김
+ch04.fa.rest.min,ch04,0.2,ch04.cx_ev_rest_min,sim,0.05,§4.3 나머지 넷 가운데 최소 (0.191 = 엄밀히는 0.2대가 아니나 한 자리 반올림은 0.2) ; 모의 표준편차 .010 → .05 ; 2026-11-14h 원고 정정에 맞춰 옮김
+ch04.pb.title,ch04,.92,,paper,,Rogers 외 2023 연구 1 p. 757 (상자 제목)
+ch04.pb.lo,ch04,.75,,paper,,Rogers 외 2023 연구 1 p. 757
+ch04.pb.hi,ch04,.90,,paper,,Rogers 외 2023 연구 1 p. 757
+ch04.pb.m,ch04,.84,ch04.paper_elem_alpha_mean,data,,요소 알파 일곱의 평균 (산술)
+ch04.pb.all,ch04,.92,,paper,,Rogers 외 2023 연구 1 p. 757
+ch04.pb.re.m,ch04,.84,ch04.paper_elem_alpha_mean,data,,요소 알파 일곱의 평균 (산술)
+ch04.pb.re.sb,ch04,.97,ch04.paper_sb_pred,data,,스피어만-브라운 = 7 × .84 ÷ (1 + 6 × .84) (산술)
+ch04.pb.re.rep,ch04,.92,,paper,,Rogers 외 2023 연구 1 p. 757
+ch04.pb.can,ch04,.92,,paper,,Rogers 외 2023 연구 1 p. 757
+ch04.load.40,ch04,.40,,fixed,,요인 적재량 관례 기준 (관례값)
+ch04.load.50,ch04,.50,,fixed,,요인 적재량 관례 기준 (관례값)
+ch04.conv.legacy,ch04,.34,ch04.r_legacy_gen,data,,§4.4 유산 요소 점수(3문항 평균)와 gen 의 상관
+ch04.gong.lo,ch04,0.6,,paper,,Gong 외 2023 공개 자료 재분석값 (원저자 보고값 아님 ; 연구 1 고각성 0.58) ; 근거 = book/gong-2023-concept-operation-case-plan-2026-11-12.md ; 원자료가 이 저장소에 없어 계산 대조 못 함 ; 쪽 해당 없음
+ch04.gong.hi,ch04,0.7,,paper,,Gong 외 2023 공개 자료 재분석값 (저각성 0.73) ; 근거 위와 같음
+ch04.gong.nl,ch04,3.59,,paper,,Gong 외 2023 공개 자료 재분석값 (연구 1) ; 근거 위와 같음
+ch04.gong.ph,ch04,3.17,,paper,,Gong 외 2023 공개 자료 재분석값 (연구 1) ; 근거 위와 같음
+ch04.att.true,ch04,.60,,fixed,,§4.5 모의시행에 정한 참 상관 (설계값)
+ch04.att.rel.hi,ch04,1.0,,fixed,,§4.5 신뢰도 범위 (설계값)
+ch04.att.rel.lo,ch04,.5,,fixed,,§4.5 신뢰도 범위 (설계값)
+ch04.att.ex.true,ch04,.60,,fixed,,§4.5 참 상관 (설계값)
+ch04.att.ex.rel,ch04,.7,,fixed,,§4.5 신뢰도 (설계값)
+ch04.att.ex.obs,ch04,.42,ch04.att_obs_07,sim,0.02,§4.5 씨앗 73 · 5만 명 모의에서 신뢰도 .7 의 관찰 상관 (0.416) ; 상관의 표준오차 약 .004 → 3 × √2 × .004 ≈ .02 (이론값 .42)
+ch04.att.still.obs,ch04,.42,ch04.att_pred_07,data,,참 상관 × 신뢰도 = .60 × .7 (산술)
+ch04.att.still.true,ch04,.60,,fixed,,§4.5 참 상관 (설계값)
+ch04.att.back.obs,ch04,.42,,fixed,,감쇠 교정 예시의 입력값 (앞 문단의 관찰값을 받음)
+ch04.att.back.rel,ch04,.7,,fixed,,감쇠 교정 예시의 신뢰도 (설계값)
+ch04.att.back.res,ch04,.60,ch04.att_back,data,,.42 ÷ .7 (산술)
+ch04.manip.d,ch04,0.27,,paper,,Rogers 외 2023 연구 5 Results p. 765 (HJS d = .27)
+ch04.cm.0,ch04,−.01,ch04.cm_00,sim,0.19,§4.6 방법 몫 0 ; n = 500 상관 표준오차 약 .045 → 3 × √2 × .045 ≈ .19
+ch04.cm.w5,ch04,0.5,,fixed,,§4.6 방법 몫 (설계값)
+ch04.cm.r5,ch04,.20,ch04.cm_05,sim,0.19,§4.6 방법 몫 0.5 ; 허용폭 근거 = ch04.cm.0
+ch04.cm.w7,ch04,0.7,,fixed,,§4.6 방법 몫 (설계값)
+ch04.cm.r7,ch04,.34,ch04.cm_07,sim,0.19,§4.6 방법 몫 0.7 ; 허용폭 근거 = ch04.cm.0
+ch04.ex1.a,ch04,.93,ch04.alpha_hjs21,data,,실습 1
+ch04.ex1.exp.a,ch04,.931,ch04.alpha_hjs21,data,,실습 1
+ch04.ex1.exp.lo,ch04,.708,ch04.alpha_el_min,data,,실습 1
+ch04.ex1.exp.hi,ch04,.884,ch04.alpha_el_max,data,,실습 1
+ch04.ex1.n,ch04,566,ch04.svy_n,data,,실습 1
+ch04.ex1.raw,ch04,590,ch04.svy_raw_n,data,,실습 1 (원자료 알파 .9318 → .932 ; 정제본 .931)
+ch04.ex2.in,ch04,.555,ch04.itc_a1_incl,data,,실습 2
+ch04.ex2.out,ch04,.502,ch04.itc_a1_excl,data,,실습 2
+ch04.ex2.gap,ch04,.05,ch04.itc_a1_inflation,data,,실습 2 (.555 − .502)
+ch04.ex2.a3,ch04,.708,ch04.alpha_el_a,data,,실습 2
+ch04.ex2.a2,ch04,.617,ch04.alpha_a_drop1,data,,실습 2
+ch04.ex3.true,ch04,0.30,,fixed,,실습 3 참 상관 (설계값)
+ch04.ex3.rel,ch04,.7,,fixed,,실습 3 신뢰도 (설계값)
+ch04.ex3.obs,ch04,.21,ch04.att30_obs_07,sim,0.02,실습 3 = §4.5 코드에서 참 상관만 0.30 (씨앗 73 ; 0.208) ; 허용폭 근거 = ch04.att.ex.obs (이론값 .21)
+ch04.ex5.a21,ch04,.931,ch04.alpha_hjs21,data,,실습 5
+ch04.ex5.rev21,ch04,.912,ch04.alpha_rev21,data,,실습 5
+ch04.ex5.itc.a,ch04,−.502,ch04.itc_rev_a1,data,,실습 5
+ch04.ex5.itc.b,ch04,.479,ch04.itc_rev_a2,data,,실습 5
+ch04.ex5.a3,ch04,.708,ch04.alpha_el_a,data,,실습 5
+ch04.ex5.rev3,ch04,−.664,ch04.alpha_rev3,data,,실습 5
+ch04.ex5.pass,ch04,.912,ch04.alpha_rev21,data,,실습 5
+ch04.ex7.lo,ch04,.44,ch04.elem_score_r_min,data,,실습 7
+ch04.ex7.hi,ch04,.55,ch04.elem_score_r_max,data,,실습 7
+ch04.ex7.alo,ch04,.71,ch04.alpha_el_min,data,,실습 7
+ch04.ex7.ahi,ch04,.88,ch04.alpha_el_max,data,,실습 7
+ch04.mine.90,ch04,.90,,fixed,,§4.8 예시값 (가상의 척도 개발 논문 알파)
+ch04.mine.70,ch04,.70,,fixed,,§4.8 예시값
+ch04.mine.cx,ch04,.72,ch04.cx_alpha,sim,0.083,§4.8 ; 허용폭 근거 = ch04.cx.fwd
+ch04.chk.cx,ch04,.72,ch04.cx_alpha,sim,0.083,§4.9 점검 ; 허용폭 근거 = ch04.cx.fwd
+ch04.chk.att.true,ch04,.60,,fixed,,§4.9 참 상관 (설계값)
+ch04.chk.att.rel,ch04,.7,,fixed,,§4.9 신뢰도 (설계값)
+ch04.chk.att.obs,ch04,.42,ch04.att_pred_07,data,,.60 × .7 (산술)
+ch04.chk.back.obs,ch04,.42,ch04.att_pred_07,data,,.60 × .7 (산술)
+ch04.chk.back.true,ch04,.60,,fixed,,§4.9 참 상관 (설계값)
+ch04.chk.rev.a,ch04,.93,ch04.alpha_hjs21,data,,§4.9
+ch04.chk.rev.b,ch04,.91,ch04.alpha_rev21,data,,§4.9

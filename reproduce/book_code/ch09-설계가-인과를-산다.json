@@ -1,0 +1,17 @@
+{
+ "unit": "ch09-설계가-인과를-산다.md",
+ "blocks": [
+  [
+   70,
+   "rng = np.random.default_rng(73)\nn = 400\nage  = rng.normal(35, 10, n); sex  = rng.integers(0, 2, n)   # 우리가 측정한 것\nopt  = rng.normal(0, 1, n);   grit = rng.normal(0, 1, n)     # 우리가 측정하지 못한 것\n\nz  = rng.integers(0, 2, n)                                    # (가) 동전이 정한다\np  = 1 / (1 + np.exp(-1.2 * opt))                             # (나) 낙관적인 사람이 스스로 고른다\nzs = (rng.random(n) < p).astype(int)\n\nfor lab, g in [(\"무작위\", z), (\"자기선택\", zs)]:\n    print(lab, [float(round(cohen_d(v[g == 1], v[g == 0]), 2)) for v in (age, sex, opt, grit)])\n# 무작위  [-0.02, -0.08, -0.05, -0.11]\n# 자기선택 [-0.18, 0.04, 1.03, -0.12]"
+  ],
+  [
+   103,
+   "base = rng.normal(0, 1, n)                    # 기저 의미감 (참값)\npre  = base + rng.normal(0, 0.5, n)           # 사전검사 = 그 대리 지표\norder = np.argsort(pre)\nsimple, block = [], []\nfor _ in range(2000):\n    z = rng.integers(0, 2, n)\n    simple.append(cohen_d(base[z == 1], base[z == 0]))\n    g = np.zeros(n, int)\n    for i in range(0, n, 2):                  # 사전검사가 비슷한 둘씩 짝지어 하나만 처치\n        g[order[i:i + 2][rng.integers(0, 2)]] = 1\n    block.append(cohen_d(base[g == 1], base[g == 0]))\nfor lab, v in [(\"단순\", simple), (\"블록\", block)]:\n    v = np.array(v)\n    print(lab, round(v.mean(), 3), round(v.std(ddof=1), 3), round(np.mean(np.abs(v) > 0.2), 3))\n# 단순 0.001 0.098 0.034\n# 블록 0.0 0.048 0.0"
+  ],
+  [
+   227,
+   "def 시차_세계(seed=73, n=5000):\n    g = np.random.default_rng(seed)\n    e = lambda s=1: g.normal(0, s, n)\n    x1 = e(); y1 = .3*x1 + e(); x2 = .6*x1 + e(.8); y2 = .5*y1 + .3*x1 + e(.8)\n    A = (x1, y1, x2, y2)                            # 여정이 다음 의미를 바꾼다\n    y1 = e(); x1 = .3*y1 + e(); y2 = .6*y1 + e(.8); x2 = .5*x1 + .3*y1 + e(.8)\n    B = (x1, y1, x2, y2)                            # 의미가 다음 여정을 바꾼다\n    T = e()                                         # 사람마다 안정된 성향\n    C = tuple(.64*T + e() for _ in range(4))        # 성향이 넷을 함께 움직인다. 서로는 영향 없음\n    return {\"A 여정→의미\": A, \"B 의미→여정\": B, \"C 성향만\": C}\n\ndef 시차(앞_자기, 원인, 뒤):                       # 앞 시점 자기 값이 비슷한 사람끼리 구한 기울기\n    q = pd.qcut(앞_자기, 10, labels=False)          # 앞 시점 자기 값을 열 층으로\n    return float(np.mean([np.polyfit(원인[q == k], 뒤[q == k], 1)[0] for k in range(10)]))\n\nfor name, (x1, y1, x2, y2) in 시차_세계().items():\n    print(name, round(np.corrcoef(x1, y1)[0, 1], 2),\n          round(시차(y1, x1, y2), 2), round(시차(x1, y1, x2), 2))\n# A 여정→의미 0.23 0.31 -0.0\n# B 의미→여정 0.28 0.01 0.31\n# C 성향만 0.29 0.23 0.22"
+  ]
+ ]
+}

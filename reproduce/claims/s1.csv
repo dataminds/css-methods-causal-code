@@ -1,0 +1,158 @@
+id,unit,printed,calc,kind,mc_tol,note
+s1.goal.power,s1,.57,s1.power,data,,학습목표 ③ ; 검정력 = d 0.22 · 집단당 190명 · 양측 .05 의 비중심 t 해석해(파이썬 scipy nct · R power.t.test strict) ; 13장 §13.4 의 모의 2000 회 값과 같은 .57
+s1.paper.n450,s1,450,,paper,,Rogers et al. (2023) JPSP 125(4) Study 5 Participants ; 출판본 764쪽 (원고판 39쪽)
+s1.paper.n384,s1,384,,paper,,Rogers et al. (2023) Study 5 Participants ; 출판본 764쪽
+s1.paper.excl3,s1,3,,paper,,Rogers et al. (2023) Study 5 Participants (excluded three) ; 출판본 764쪽
+s1.paper.n381,s1,381,,paper,,Rogers et al. (2023) Study 5 final sample ; 출판본 764쪽
+s1.paper.df378,s1,378,,paper,,Rogers et al. (2023) Study 5 Results ; 출판본 765쪽 (원고판 41쪽)
+s1.paper.t216,s1,2.16,,paper,,Rogers et al. (2023) Study 5 Results 주 결과 ; 출판본 765쪽
+s1.paper.p031,s1,.031,,paper,,Rogers et al. (2023) Study 5 Results ; 출판본 765쪽
+s1.paper.d22,s1,.22,,paper,,Rogers et al. (2023) Study 5 Results ; 출판본 765쪽
+s1.paper.b26,s1,.26,,paper,,Rogers et al. (2023) Study 5 공변인 조정 계수 (b = .26 · SE = .09) ; 출판본 765쪽 ⚠ 8장 변경 이력 2026-11-14e 가 공개 자료 재계산 .27 · 보고 .26 과 t 3.09 불일치를 기록 ; 여기서는 보고값 인용
+s1.paper.ind31,s1,.31,,paper,,Rogers et al. (2023) Study 5 간접효과 (indirect effect = .31 · SE = .12) ; 출판본 765쪽
+s1.paper.ci95,s1,95,,fixed,,신뢰수준 (관례 95%)
+s1.paper.ci08,s1,.08,,paper,,Rogers et al. (2023) Study 5 간접효과 95% CI ; 출판본 765쪽
+s1.paper.ci53,s1,.53,,paper,,Rogers et al. (2023) Study 5 간접효과 95% CI ; 출판본 765쪽
+s1.paper.flow450,s1,450,,paper,,Rogers et al. (2023) Study 5 ; 출판본 764쪽
+s1.paper.flow384,s1,384,,paper,,Rogers et al. (2023) Study 5 ; 출판본 764쪽
+s1.paper.flow381,s1,381,,paper,,Rogers et al. (2023) Study 5 ; 출판본 764쪽
+s1.stage.diff,s1,0.283,s1.obs_diff,data,,무대 ; 정제 366명 사후 mil 평균 차이
+s1.stage.power,s1,.57,s1.power,data,,무대 ; 해석해 검정력
+s1.design.n380,s1,380,s1.raw_n,data,,② 원자료 행 수
+s1.design.d22,s1,0.22,,paper,,Rogers et al. (2023) Study 5 d = .22 ; 출판본 765쪽
+s1.design.N380,s1,380,s1.raw_n,data,,② 설계 표본 = 원자료 380행
+s1.design.n190,s1,190,s1.raw_n_per_group,data,,② 원자료의 개입 조건 인원 (통제도 190)
+s1.design.power,s1,.57,s1.power,data,,② 해석해 검정력
+s1.design.power2,s1,.57,s1.power,data,,②
+s1.clean.raw380,s1,380,s1.raw_n,data,,③
+s1.clean.excl14,s1,14,s1.excluded,data,,③ attn_1 = 0
+s1.clean.n366,s1,366,s1.n,data,,③
+s1.clean.nt,s1,183,s1.n_treat,data,,③ 개입 인원
+s1.clean.nc,s1,183,s1.n_ctrl,data,,③ 통제 인원
+s1.bal.head.t,s1,183,s1.n_treat,data,,③ 균형 표 머리
+s1.bal.head.c,s1,183,s1.n_ctrl,data,,③ 균형 표 머리
+s1.bal.age.mt,s1,36.9,s1.age_m_t,data,,③ 균형 표
+s1.bal.age.st,s1,10.5,s1.age_sd_t,data,,③ 균형 표
+s1.bal.age.mc,s1,37.5,s1.age_m_c,data,,③ 균형 표
+s1.bal.age.sc,s1,11.3,s1.age_sd_c,data,,③ 균형 표
+s1.bal.age.d,s1,−0.06,s1.age_d,data,,③ 균형 표 ; R 은 lm 잔차 표준편차를 분모로
+s1.bal.t1.mt,s1,4.80,s1.mil_t1_m_t,data,,③ 균형 표
+s1.bal.t1.st,s1,1.21,s1.mil_t1_sd_t,data,,③ 균형 표
+s1.bal.t1.mc,s1,4.82,s1.mil_t1_m_c,data,,③ 균형 표
+s1.bal.t1.sc,s1,1.27,s1.mil_t1_sd_c,data,,③ 균형 표
+s1.bal.t1.d,s1,−0.01,s1.mil_t1_d,data,,③ 균형 표
+s1.bal.fem.t,s1,45.9,s1.female_pct_t,data,,③ 균형 표 (gender == 2)
+s1.bal.fem.c,s1,53.0,s1.female_pct_c,data,,③ 균형 표
+s1.bal.fem.p,s1,.32,s1.chi_p,data,,③ 조건 × 성별 세 범주 카이제곱 (연속성 보정 없음 ; 자유도 2)
+s1.bal.df,s1,2,s1.chi_df,data,,③ 카이제곱 자유도
+s1.excl.14a,s1,14,s1.excluded,data,,③ 제외자
+s1.excl.14b,s1,14,s1.excluded,data,,③
+s1.excl.7t,s1,7,s1.excl_treat,data,,③ 제외자 중 개입
+s1.excl.7c,s1,7,s1.excl_ctrl,data,,③ 제외자 중 통제
+s1.bal.gap,s1,7,s1.female_gap_pp,data,,③ 53.0 − 45.9 (반올림 전 값으로 계산)
+s1.bal.hist,s1,−0.19,,fixed,,9장 §9.1 의 생성 이력 = 배포 전 단순 무작위 판(현재 블록 무작위화로 다시 만든 배포 자료에는 없다) ; 배포 자료로 재현할 수 없는 과거 관측
+s1.meas.items,s1,21,s1.hjs_items,data,,④ hjs_ 문항 수
+s1.meas.alpha,s1,.93,s1.hjs_alpha,data,,④ 실험판 hjs 21문항 알파 (.928) ; R 은 공분산 행렬 경로
+s1.meas.svymil,s1,.93,s1.svy_mil_alpha,data,,④ 설문판(정제 566) mil 4문항 알파
+s1.meas.svyflr,s1,.92,s1.svy_flr_alpha,data,,④ 설문판(정제 566) flr 8문항 알파
+s1.meas.alpha2,s1,.93,s1.hjs_alpha,data,,④
+s1.desc.t1.mt,s1,4.80,s1.mil_t1_m_t,data,,⑤ 기술 표
+s1.desc.t1.st,s1,1.21,s1.mil_t1_sd_t,data,,⑤ 기술 표
+s1.desc.t1.mc,s1,4.82,s1.mil_t1_m_c,data,,⑤ 기술 표
+s1.desc.t1.sc,s1,1.27,s1.mil_t1_sd_c,data,,⑤ 기술 표
+s1.desc.hjs.mt,s1,5.27,s1.hjs_m_t,data,,⑤ 기술 표
+s1.desc.hjs.st,s1,0.75,s1.hjs_sd_t,data,,⑤ 기술 표
+s1.desc.hjs.mc,s1,5.06,s1.hjs_m_c,data,,⑤ 기술 표
+s1.desc.hjs.sc,s1,0.78,s1.hjs_sd_c,data,,⑤ 기술 표
+s1.desc.mil.mt,s1,5.26,s1.mil_m_t,data,,⑤ 기술 표
+s1.desc.mil.st,s1,1.18,s1.mil_sd_t,data,,⑤ 기술 표
+s1.desc.mil.mc,s1,4.98,s1.mil_m_c,data,,⑤ 기술 표
+s1.desc.mil.sc,s1,1.27,s1.mil_sd_c,data,,⑤ 기술 표
+s1.desc.flr.mt,s1,5.53,s1.flr_m_t,data,,⑤ 기술 표
+s1.desc.flr.st,s1,0.89,s1.flr_sd_t,data,,⑤ 기술 표
+s1.desc.flr.mc,s1,5.33,s1.flr_m_c,data,,⑤ 기술 표
+s1.desc.flr.sc,s1,0.95,s1.flr_sd_c,data,,⑤ 기술 표
+s1.desc.skew,s1,−0.4,s1.skew_min,data,,⑤ 네 변수(정제 366명 합침) 치우침의 최솟값 = flr −0.40 (scipy skew 기본 = 편향 g1) ; 위끝 0 은 범위 경계라 묶지 않음
+s1.ceil.thr,s1,6.5,,fixed,,천장 판정 문턱 (5장 §5.1 과 같은 기준)
+s1.ceil.t,s1,21.3,s1.ceil_t_pct,data,,⑤ 개입 mil ≥ 6.5
+s1.ceil.c,s1,14.8,s1.ceil_c_pct,data,,⑤ 통제 mil ≥ 6.5
+s1.ceil.diff,s1,0.283,s1.obs_diff,data,,⑤
+s1.box.max,s1,7.00,s1.mil_max,data,,⑤ 상자 ; 정제 366명 사후 mil 최댓값
+s1.box.thr,s1,6.5,,fixed,,천장 판정 문턱
+s1.box.n366,s1,366,s1.n,data,,⑤ 상자
+s1.box.thr2,s1,6.5,,fixed,,천장 판정 문턱
+s1.box.all,s1,18.0,s1.ceil_all_pct,data,,⑤ 상자 ; 정제 366명 전체
+s1.box.svy,s1,13.6,s1.svy_ceil_pct,data,,⑤ 상자 ; 설문판 정제 566명 mil ≥ 6.5 (ch05.mil_ge65_pct 와 같은 수)
+s1.box.full7,s1,7.00,,fixed,,척도 끝값 (1~7)
+s1.box.full38,s1,38,s1.mil_full_n,data,,⑤ 상자 ; mil == 7 인원
+s1.manip.mt,s1,5.27,s1.hjs_m_t,data,,⑥ 조작 점검
+s1.manip.mc,s1,5.06,s1.hjs_m_c,data,,⑥ 조작 점검
+s1.manip.d,s1,0.27,s1.hjs_d,data,,⑥ 조작 점검
+s1.manip.t,s1,2.58,s1.hjs_t,data,,⑥ 등분산 t
+s1.manip.p,s1,.010,s1.hjs_p,data,,⑥
+s1.manip.paper,s1,0.27,,paper,,Rogers et al. (2023) Study 5 조작 점검 (HJS d = .27 · t(378) = 2.67) ; 출판본 765쪽 (원고판 40쪽)
+s1.main.mt,s1,5.26,s1.mil_m_t,data,,⑦
+s1.main.mc,s1,4.98,s1.mil_m_c,data,,⑦
+s1.main.diff,s1,0.283,s1.obs_diff,data,,⑦
+s1.perm.reps,s1,"5,000",,fixed,,⑦ 뒤섞기 횟수 (설계)
+s1.perm.obs,s1,0.283,s1.obs_diff,data,,⑦
+s1.perm.pct,s1,3.0,s1.perm_pct,sim,1.1,⑦ 뒤섞기 5000 회 (파이썬 = 책 코드 난수 순서 default_rng(73)) ; 씨앗 200 개 모의에서 p 의 표준편차 0.0024 → 3 × √2 × 0.24%p ≈ 1.0%p
+s1.perm.p,s1,.030,s1.perm_p,sim,0.011,⑦ 뒤섞기 p ; 표준편차 0.0024 → 3 × √2 × 0.0024 ≈ 0.010
+s1.tt.df,s1,364,s1.t_df,data,,⑦ 자유도 = 366 − 2
+s1.tt.t,s1,2.21,s1.mil_t,data,,⑦ 등분산 t
+s1.tt.p,s1,.028,s1.mil_p,data,,⑦
+s1.fig.reps,s1,"5,000",,fixed,,그림 설명 ; 뒤섞기 횟수 (설계)
+s1.fig.seed,s1,73,,fixed,,씨앗 규약 (73)
+s1.fig.obs,s1,0.283,s1.obs_diff,data,,⑦ 그림 설명
+s1.sec.mt,s1,5.53,s1.flr_m_t,data,,⑦ 이차 가설
+s1.sec.mc,s1,5.33,s1.flr_m_c,data,,⑦ 이차 가설
+s1.sec.d,s1,0.22,s1.flr_d,data,,⑦ 이차 가설 flr d
+s1.sec.p,s1,.038,s1.flr_p,data,,⑦ 이차 가설 flr t 검정 p
+s1.why.n366,s1,366,s1.n,data,,⑦
+s1.rob.diff,s1,0.283,s1.obs_diff,data,,⑧
+s1.rob.level,s1,95,,fixed,,신뢰수준 (관례 95%)
+s1.rob.lo,s1,0.03,s1.boot_lo,sim,0.022,⑧ 부트스트랩 5000 회 2.5 백분위 (파이썬 = 책 코드 난수 순서) ; 씨앗 200 개 모의 표준편차 0.0051 → 3 × √2 × 0.0051 ≈ 0.022
+s1.rob.hi,s1,0.54,s1.boot_hi,sim,0.022,⑧ 97.5 백분위 ; 모의 표준편차 0.0052 → ≈ 0.022
+s1.rob.d,s1,0.23,s1.mil_d,data,,⑧ 합동 표준편차 d
+s1.rob.adjb,s1,0.29,s1.adj_b,data,,⑧ mil ~ cond + mil_t1
+s1.rob.adjse,s1,0.11,s1.adj_se,data,,⑧
+s1.rob.adjp,s1,.007,s1.adj_p,data,,⑧
+s1.rob.unse,s1,0.13,s1.unadj_se,data,,⑧ mil ~ cond 의 cond 표준오차 0.1282
+s1.rob.b28,s1,0.28,s1.unadj_b,data,,⑧ 조정 전 계수 (= 차이 0.283)
+s1.rob.b29,s1,0.29,s1.adj_b,data,,⑧
+s1.rob.se13,s1,0.13,s1.unadj_se,data,,⑧
+s1.rob.se11,s1,0.11,s1.adj_se,data,,⑧
+s1.rob.p028,s1,.028,s1.mil_p,data,,⑧ 조정 전 p = t 검정 p 와 같다
+s1.rob.p007,s1,.007,s1.adj_p,data,,⑧
+s1.rob.intb,s1,0.02,s1.inter_b,data,,⑧ 중심화한 mil_t1 과 cond 의 곱항
+s1.rob.intp,s1,.797,s1.inter_p,data,,⑧
+s1.rep.d,s1,0.23,s1.mil_d,data,,⑨
+s1.rep.dage,s1,−0.06,s1.age_d,data,,⑨
+s1.rep.dt1,s1,−0.01,s1.mil_t1_d,data,,⑨
+s1.rep.7t,s1,7,s1.excl_treat,data,,⑨
+s1.rep.7c,s1,7,s1.excl_ctrl,data,,⑨
+s1.rep.n366,s1,366,s1.n,data,,⑨
+s1.rep.diff,s1,0.283,s1.obs_diff,data,,⑨ 보고 문장
+s1.rep.level,s1,95,,fixed,,신뢰수준 (관례 95%)
+s1.rep.lo,s1,0.03,s1.boot_lo,sim,0.022,⑨ = ⑧ 부트스트랩 구간
+s1.rep.hi,s1,0.54,s1.boot_hi,sim,0.022,⑨ = ⑧ 부트스트랩 구간
+s1.rep.d2,s1,0.23,s1.mil_d,data,,⑨
+s1.truth.mil,s1,0.22,,fixed,,모의 세계 참값 = materials/make_data_family.py gen_exp 의 inject_d(mil_lat · .22)
+s1.truth.flr,s1,0.26,,fixed,,참값 = gen_exp inject_d(flr_lat · .26) ; 원 연구 flr d = .26 (Rogers et al. 2023 출판본 765쪽)
+s1.truth.hjs,s1,0.27,,fixed,,참값 = gen_exp inject_d(hjs_lat · .27)
+s1.truth.int,s1,0,,fixed,,참값 = gen_exp 에 상호작용 항 없음
+s1.est.mil,s1,0.23,s1.mil_d,data,,채점 ; mil d
+s1.est.flr,s1,0.22,s1.flr_d,data,,채점 ; flr d
+s1.est.hjs,s1,0.27,s1.hjs_d,data,,채점 ; hjs d
+s1.est.int,s1,0,s1.inter_b,data,,채점 ; 곱항 b = 0.02 → 정수 자리 0
+s1.truth.power,s1,.57,s1.power,data,,채점
+s1.truth.alpha,s1,.05,,fixed,,유의수준 관례
+s1.ex1.perm,s1,.030,s1.perm_p,sim,0.011,실습 1 ; ⑦ 뒤섞기 p
+s1.ex1.t,s1,.028,s1.mil_p,data,,실습 1
+s1.ex3.alpha,s1,.05,,fixed,,유의수준 관례
+s1.ex3.seeds,s1,5,,fixed,,실습 설계 (씨앗 수)
+s1.ex3.power,s1,.57,s1.power,data,,실습 3
+s1.ex3.power2,s1,.57,s1.power,data,,실습 3 통과 기준
+s1.chk.gap,s1,7,s1.female_gap_pp,data,,점검
+s1.read.n381,s1,381,,paper,,Rogers et al. (2023) Study 5 ; 출판본 764쪽
+s1.read.d22,s1,0.22,,paper,,Rogers et al. (2023) Study 5 ; 출판본 765쪽

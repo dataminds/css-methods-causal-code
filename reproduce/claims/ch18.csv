@@ -1,0 +1,42 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch18.2.exp.n,ch18,366,ch18.exp_n,data,,§18.2 실험판 정제 후
+ch18.2.reg.t,ch18,2.206,ch18.reg_t,data,,§18.2 cond 회귀의 t = 합동분산 t검정의 t
+ch18.2.reg.p,ch18,.028,ch18.reg_p,data,,§18.2
+ch18.2.reg.n,ch18,366,ch18.exp_n,data,,§18.2
+ch18.2.reg.df,ch18,364,ch18.exp_df,data,,§18.2 자유도
+ch18.2.perm.p,ch18,.029,ch18.perm_p,sim,0.0075,§18.2 뒤섞기 1만 번 (씨앗 73 ; 파이썬 .0292). R 독립 난수 · 이항 표준편차 √(.029 × .971 ÷ 10000) = .0017 → 3 × √2 × .0017 ≈ .0071
+ch18.2.perm.t,ch18,.028,ch18.reg_p,data,,§18.2
+ch18.2.f.df,ch18,364,ch18.exp_df,data,,§18.2 F 의 둘째 자유도
+ch18.2.f,ch18,4.864,ch18.f_two,data,,§18.2 두 집단 일원배치 F
+ch18.2.f2,ch18,4.864,ch18.f_two,data,,§18.2 (같은 조각의 둘째 4.864)
+ch18.2.f.t,ch18,2.206,ch18.reg_t,data,,§18.2
+ch18.2.f.p,ch18,.028,ch18.f_two_p,data,,§18.2 F 의 p
+ch18.2.fac.df,ch18,426,ch18.fac_df2,data,,§18.2 상자 요인판 네 칸 (정제 후 430 − 4)
+ch18.2.fac.f,ch18,1.728,ch18.fac_F,data,,§18.2 상자 칸 표시 변수 셋을 넣은 회귀 전체의 F
+ch18.2.code.lo,ch18,−.5,,fixed,,효과 부호화의 정의값
+ch18.2.code.hi,ch18,.5,,fixed,,효과 부호화의 정의값
+ch18.2.pan.n,ch18,350,ch18.pan_n,data,,§18.2 패널판 세 시점 응답자
+ch18.2.pan.tp,ch18,−2.21,ch18.pan_t_pair,data,,§18.2 짝지은 t
+ch18.2.pan.ti,ch18,−1.64,ch18.pan_t_ind,data,,§18.2 독립 두 집단 t
+ch18.2.z,ch18,1.96,ch18.z975,data,,표준정규 97.5% 분위수
+ch18.2.pan.r,ch18,.453,ch18.pan_r,data,,§18.2 1차–3차 mil 상관
+ch18.5.p13,ch18,1.3,,fixed,,범위 밖 예측값의 예시 숫자
+ch18.5.odds.p05,ch18,0.5,,fixed,,예시 확률
+ch18.5.odds.o1,ch18,1,ch18.odds_p05,data,,산술 .5 ÷ .5
+ch18.5.odds.p08,ch18,0.8,,fixed,,예시 확률
+ch18.5.odds.o4,ch18,4,ch18.odds_p08,data,,산술 .8 ÷ .2
+ch18.5.p0.01,ch18,.01,,fixed,,예시로 고른 기저 확률
+ch18.5.p0.20,ch18,.20,,fixed,,예시로 고른 기저 확률
+ch18.5.p0.40,ch18,.40,,fixed,,예시로 고른 기저 확률
+ch18.5.p0.50,ch18,.50,,fixed,,예시로 고른 기저 확률
+ch18.5.rare.p0,ch18,.01,,fixed,,예시 기저 확률
+ch18.5.rare.ratio,ch18,1.98,ch18.or2_ratio_01,data,,오즈비 2 를 적용한 확률의 배수 (.0198 ÷ .01)
+ch18.5.common.p40,ch18,.40,,fixed,,예시 기저 확률
+ch18.5.common.r40,ch18,1.43,ch18.or2_ratio_40,data,,오즈비 2 의 확률 배수 (.5714 ÷ .40)
+ch18.5.common.p50,ch18,.50,,fixed,,예시 기저 확률
+ch18.5.common.r50,ch18,1.33,ch18.or2_ratio_50,data,,오즈비 2 의 확률 배수 (.6667 ÷ .50)
+ch18.5.box.23,ch18,23,,fixed,,AI 오류 예시 문장의 숫자 (계산값 아님)
+ch18.5.box.lo,ch18,.2,,fixed,,맥패든 유사 R² 관례 범위 (출처 미표기 · 관례 서술)
+ch18.5.box.hi,ch18,.4,,fixed,,맥패든 유사 R² 관례 범위
+ch18.5.box.n,ch18,"1,000",,fixed,,사건 수 설명의 예시 숫자
+ch18.5.box.events,ch18,12,,fixed,,사건 수 설명의 예시 숫자

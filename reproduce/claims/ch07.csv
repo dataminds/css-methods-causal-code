@@ -1,0 +1,25 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch07.first.n,ch07,592,,paper,,Rogers 외 2023 연구 1 p. 757 (640명 모집 → 592명 분석) ; OSF 재계산 592 (final-review-2026-11-13/rogers-osf-checks-2026-11-14.md §1a)
+ch07.first.beta,ch07,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758 ; OSF 재계산 β = .7444
+ch07.first.se,ch07,.03,,paper,,Rogers 외 2023 연구 1 pp. 757–758 ; OSF 재계산 SE = .0275
+ch07.first.df,ch07,590,,paper,,Rogers 외 2023 연구 1 pp. 757–758 (자유도 = 592 − 2)
+ch07.first.t,ch07,27.08,,paper,,Rogers 외 2023 연구 1 pp. 757–758 ; OSF 재계산 t = 27.0802
+ch07.first.p,ch07,.001,,paper,,Rogers 외 2023 연구 1 pp. 757–758 (보고 문턱 p < .001)
+ch07.table.beta1,ch07,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758 (값 표 첫 칸)
+ch07.table.beta2,ch07,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758 (값 표 풀이 칸)
+ch07.table.se,ch07,.03,,paper,,Rogers 외 2023 연구 1 pp. 757–758
+ch07.table.df,ch07,590,,paper,,Rogers 외 2023 연구 1 pp. 757–758
+ch07.table.t,ch07,27.08,,paper,,Rogers 외 2023 연구 1 pp. 757–758
+ch07.table.p,ch07,.001,,paper,,Rogers 외 2023 연구 1 pp. 757–758
+ch07.s1.diff,ch07,0.3,,fixed,,§7.1 가상 예시 = 세 연구가 같은 0.3점을 보고한다고 정한 설정
+ch07.s1.n,ch07,366,ch07.exp_n_clean,data,,§7.1 가상 연구 가의 인원 = 실험판 정제본(주의 점검 통과) 인원과 같다
+ch07.s1.q2,ch07,0.3,,fixed,,§7.1 가상 예시
+ch07.s2.one,ch07,0.3,,fixed,,§7.2 가상 예시
+ch07.s2.ga,ch07,0.3,,fixed,,§7.2 가상 예시
+ch07.s2.na,ch07,0.3,,fixed,,§7.2 가상 예시
+ch07.s3.diff,ch07,0.3,,fixed,,§7.3 가상 예시
+ch07.s4.eff.max,ch07,−2.7,ch07.sim_eff4_max,sim,8.8,§7.4 상자 = 6장 §6.2 모의 ; 모의 2000 번 표준편차 2.07 → 3 × √2 × 2.07 ≈ 8.8
+ch07.s4.eff.min,ch07,−10.8,ch07.sim_eff4_min,sim,9.1,§7.4 상자 = 6장 §6.2 모의 ; 표준편차 2.13 → 9.1
+ch07.box.beta,ch07,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758
+ch07.box.t,ch07,27.08,,paper,,Rogers 외 2023 연구 1 pp. 757–758
+ch07.check.diff,ch07,0.3,,fixed,,§7.8 점검 = §7.1 가상 예시

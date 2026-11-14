@@ -1,0 +1,93 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch09.first.t1,ch09,275,,paper,,Rogers 외 2023 연구 4 p. 762 Time 1 인원 (공개 자료에는 최종 240명만 있어 되짚을 수 없다 ; rogers-osf-checks-2026-11-14.md §4a)
+ch09.first.t2,ch09,247,,paper,,Rogers 외 2023 연구 4 p. 762 Time 2 인원
+ch09.first.excl,ch09,7,,paper,,Rogers 외 2023 연구 4 p. 762 배정 뒤 제외
+ch09.first.final,ch09,240,,paper,,Rogers 외 2023 연구 4 p. 762 ; OSF 자료 240행 (개입 121 · 통제 119)
+ch09.table.attr.from,ch09,275,,paper,,Rogers 외 2023 연구 4 p. 762
+ch09.table.attr.to,ch09,247,,paper,,Rogers 외 2023 연구 4 p. 762
+ch09.table.attr.n,ch09,28,ch09.attr_n,data,,산술 275 − 247
+ch09.table.excl,ch09,7,,paper,,Rogers 외 2023 연구 4 p. 762
+ch09.table.final1,ch09,240,,paper,,Rogers 외 2023 연구 4 p. 762 (값 표 첫 칸)
+ch09.table.final2,ch09,240,,paper,,Rogers 외 2023 연구 4 p. 762 (값 표 풀이 칸)
+ch09.notin.excl,ch09,7,,paper,,Rogers 외 2023 연구 4 p. 762
+ch09.s1.n1,ch09,400,,fixed,,§9.1 모의시행 설계 n = 400
+ch09.s1.n2,ch09,400,,fixed,,§9.1 모의시행 설계 n = 400
+ch09.s1.d.opt,ch09,1.03,ch09.sim_d_opt_self,sim,0.45,§9.1 자기선택의 낙관성 d ; 씨앗 1000~1039 모의 표준편차 0.106 → 3 × √2 × 0.106 ≈ 0.45
+ch09.s1.history.n,ch09,380,ch09.exp_n_raw,data,,§9.1 실험판 원자료 인원(주의 점검 전)
+ch09.s1.history.d,ch09,−0.19,,fixed,,§9.1 실험판 생성기 개발 때 단순 무작위 판이 낸 기저 불균형(개발 기록) ; 현행 생성기(make_data_family.py = 블록 무작위)와 배포 자료로는 다시 낼 수 없다 · 이 값을 남긴 기록 파일은 찾지 못했다(같은 수를 s1 §균형 표 문단이 다시 인용)
+ch09.s1.reps1,ch09,"2,000",,fixed,,§9.1 모의시행 반복 수
+ch09.s1.n3,ch09,400,,fixed,,§9.1 모의시행 설계 n = 400
+ch09.s1.reps2,ch09,"2,000",,fixed,,§9.1 모의시행 반복 수
+ch09.s1.thresh,ch09,0.2,,fixed,,§9.1 표 머리 = 작은 효과 크기 문턱
+ch09.s1.t.simple.mean,ch09,0.001,ch09.sim_simple_mean,sim,0.009,§9.1 표 ; 판 평균의 표준편차 0.0021 → 3 × √2 × 0.0021 ≈ 0.009
+ch09.s1.t.simple.sd,ch09,0.098,ch09.sim_simple_sd,sim,0.0051,§9.1 표 ; 씨앗 1000~1039 모의 표준편차 0.0012 → 0.0051 (이론값 √(4/400) = 0.100)
+ch09.s1.t.simple.over,ch09,0.034,ch09.sim_simple_over,sim,0.014,§9.1 표 ; R = 이론값 2 × P(t(398) < −2) = 0.046 (R 자기 모의는 0.0555 로 파이썬과 반대쪽 꼬리라 두 모의의 차이가 이항 잡음의 3 × √2 배를 넘었다) ; 판 2
+ch09.s1.t.block.mean,ch09,0.000,ch09.sim_block_mean,sim,0.0035,§9.1 표 ; 모의 표준편차 0.0008 → 0.0035
+ch09.s1.t.block.sd,ch09,0.048,ch09.sim_block_sd,sim,0.012,§9.1 표 ; 모의 표준편차 0.0028 → 0.012
+ch09.s1.t.block.over,ch09,0.000,ch09.sim_block_over,sim,0.001,§9.1 표 ; 블록은 |d| > 0.2 가 사실상 나오지 않는다(모의 표준편차 0.0001)
+ch09.s1.box.reps,ch09,"2,000",,fixed,,§9.1 상자 반복 수
+ch09.s1.mean.simple,ch09,0.001,ch09.sim_simple_mean,sim,0.009,§9.1 본문
+ch09.s1.mean.block,ch09,0.000,ch09.sim_block_mean,sim,0.0035,§9.1 본문
+ch09.s1.sd.simple,ch09,0.098,ch09.sim_simple_sd,sim,0.0051,§9.1 본문
+ch09.s1.sd.block,ch09,0.048,ch09.sim_block_sd,sim,0.012,§9.1 본문
+ch09.s1.per100,ch09,3,ch09.sim_simple_over_per100,sim,1.4,§9.1 본문 = 단순 무작위의 0.2 초과 비율 × 100 (파이썬 3.45) ; R = 이론값 4.6 ; 허용 3 × 0.47 ≈ 1.4
+ch09.s1.per100.thresh,ch09,0.2,,fixed,,§9.1 작은 효과 크기 문턱
+ch09.s1.internal.n1,ch09,380,ch09.exp_n_raw,data,,§9.1 실험판 원자료 인원
+ch09.s1.internal.n2,ch09,380,ch09.exp_n_raw,data,,§9.1 실험판 원자료 인원
+ch09.s1.internal.n3,ch09,380,ch09.exp_n_raw,data,,§9.1 실험판 원자료 인원
+ch09.box.flow.t1,ch09,275,,paper,,Rogers 외 2023 연구 4 p. 762
+ch09.box.flow.t2,ch09,247,,paper,,Rogers 외 2023 연구 4 p. 762
+ch09.box.flow.final,ch09,240,,paper,,Rogers 외 2023 연구 4 p. 762
+ch09.box.attr.n,ch09,28,ch09.attr_n,data,,산술 275 − 247
+ch09.box.attr.pct,ch09,10.2,ch09.attr_pct,data,,산술 28 ÷ 275
+ch09.box.excl.pct,ch09,2.8,ch09.excl_pct,data,,산술 7 ÷ 247
+ch09.box.excl.n,ch09,7,,paper,,Rogers 외 2023 연구 4 p. 762
+ch09.s2.did.policy,ch09,+8,ch09.did_policy,data,,§9.2 가상 수의 산술 58 − 50 (50 · 58 = 가상 예시)
+ch09.s2.did.comp,ch09,+5,ch09.did_comp,data,,§9.2 가상 수의 산술 53 − 48 (48 · 53 = 가상 예시)
+ch09.s2.did.effect,ch09,3,ch09.did_effect,data,,§9.2 산술 8 − 5
+ch09.s3.r.cross,ch09,.29,ch09.panel_r_w1,data,,§9.3 패널판 1 시점 hjs · mil 상관
+ch09.s3.r.within,ch09,.06,ch09.panel_r_within,data,,§9.3 패널판 사람 평균을 뺀 값끼리의 상관
+ch09.s3.lag.hm,ch09,.19,ch09.lag_hm12,data,,§9.3 = S4 교차지연 hjs1 → mil2 (세 시점 완결 사례 · 표준화 · 앞 시점 자기 값 통제)
+ch09.s3.lag.hm2,ch09,.21,ch09.lag_hm23,data,,§9.3 hjs2 → mil3
+ch09.s3.lag.mh,ch09,.11,ch09.lag_mh12,data,,§9.3 mil1 → hjs2 (같은 앵커의 .11 둘 = 1→2 · 2→3)
+ch09.s3.lag.mh2,ch09,.11,ch09.lag_mh23,data,,§9.3 mil2 → hjs3
+ch09.s3.n,ch09,"5,000",,fixed,,§9.3 모의시행 설계 n = 5000
+ch09.s3.t.A.cross,ch09,0.23,ch09.w73_A_cross,sim,0.07,§9.3 표 ; 모집단 상관 .3/√1.09 = .287 · 모의 표준편차 0.012 → 3 × √2 × 0.012 ≈ 0.05 인데 파이썬 씨앗 73 값(.233)이 모집단에서 4.5 표준편차 떨어진 드문 판이라 0.07 로 넓혔다
+ch09.s3.t.A.xy,ch09,0.31,ch09.w73_A_xy,sim,0.047,§9.3 표 ; 모의 표준편차 0.011 → 0.047
+ch09.s3.t.A.yx,ch09,−0.00,ch09.w73_A_yx,sim,0.049,§9.3 표 ; 모의 표준편차 0.0115 → 0.049
+ch09.s3.t.B.cross,ch09,0.28,ch09.w73_B_cross,sim,0.054,§9.3 표 ; 모의 표준편차 0.0127 → 0.054
+ch09.s3.t.B.xy,ch09,0.01,ch09.w73_B_xy,sim,0.050,§9.3 표 ; 모의 표준편차 0.0119 → 0.050
+ch09.s3.t.B.yx,ch09,0.31,ch09.w73_B_yx,sim,0.050,§9.3 표 ; 모의 표준편차 0.0117 → 0.050
+ch09.s3.t.C.cross,ch09,0.29,ch09.w73_C_cross,sim,0.053,§9.3 표 ; 모의 표준편차 0.0124 → 0.053
+ch09.s3.t.C.xy,ch09,0.23,ch09.w73_C_xy,sim,0.062,§9.3 표 ; 모의 표준편차 0.0146 → 0.062
+ch09.s3.t.C.yx,ch09,0.22,ch09.w73_C_yx,sim,0.060,§9.3 표 ; 모의 표준편차 0.0142 → 0.060
+ch09.s3.band.cross,ch09,0.2,ch09.w73_cross_band,sim,0.05,「0.2대」 = 세 횡단 상관의 소수 첫째 자리(버림)가 모두 0.2 인지 ; 파이썬 = 씨앗 73 모의 · R = 이론값 .287 · .287 · .291 의 버림 (모의값은 0.3 경계 근처라 버림 자리가 흔들린다)
+ch09.s3.ab.A,ch09,0.31,ch09.w73_A_xy,sim,0.047,§9.3
+ch09.s3.ab.B,ch09,0.31,ch09.w73_B_yx,sim,0.050,§9.3
+ch09.s3.band.C,ch09,0.2,ch09.w73_C_lag_band,sim,0.05,「0.2대」 = C 세계 두 시차의 버림 자리 ; R = 앞 자기 값을 선형 통제한 편회귀 이론값 .225 의 버림
+ch09.box.n,ch09,"5,000",,fixed,,§9.3 상자 모의시행 설계
+ch09.box.noise,ch09,"5,000",,fixed,,§9.3 상자 모의시행 설계
+ch09.box.diag,ch09,.3,,fixed,,§9.3 생성 규칙에 심은 교차 계수
+ch09.box.carry,ch09,.6,,fixed,,§9.3 생성 규칙에 심은 이월 계수
+ch09.box.asym.sd,ch09,0.5,,fixed,,§9.3 상자 바꾼 설계 = 의미 쪽 잡음 표준편차
+ch09.box.asym.line,ch09,.64,,fixed,,§9.3 상자 생성 규칙에 심은 성향 계수 (같은 줄의 .64 넷 · .5 둘을 이 줄이 묶는다)
+ch09.box.asym.line.half,ch09,.5,,fixed,,§9.3 상자 바꾼 설계 = 잡음 표준편차 0.5
+ch09.box.asym.xy,ch09,0.14,ch09.wasym_C_xy,sim,0.037,§9.3 상자 비대칭 C ; 모의 표준편차 0.0087 → 0.037
+ch09.box.asym.yx,ch09,0.52,ch09.wasym_C_yx,sim,0.087,§9.3 상자 비대칭 C ; 모의 표준편차 0.0204 → 0.087
+ch09.ex1.d,ch09,1.03,ch09.sim_d_opt_self,sim,0.45,실습 1
+ch09.ex2.mean.simple,ch09,0.001,ch09.sim_simple_mean,sim,0.009,실습 2
+ch09.ex2.mean.block,ch09,0.000,ch09.sim_block_mean,sim,0.0035,실습 2
+ch09.ex2.sd.simple,ch09,0.098,ch09.sim_simple_sd,sim,0.0051,실습 2
+ch09.ex2.sd.block,ch09,0.048,ch09.sim_block_sd,sim,0.012,실습 2
+ch09.ex4.A.cross,ch09,0.29,ch09.w37_A_cross,sim,0.050,실습 4 씨앗 37 ; 모의 표준편차 0.0118 → 0.050
+ch09.ex4.B.cross,ch09,0.31,ch09.w37_B_cross,sim,0.054,실습 4 씨앗 37
+ch09.ex4.C.cross,ch09,0.30,ch09.w37_C_cross,sim,0.053,실습 4 씨앗 37
+ch09.ex4.A.xy,ch09,0.30,ch09.w37_A_xy,sim,0.047,실습 4 씨앗 37
+ch09.ex4.A.yx,ch09,0.02,ch09.w37_A_yx,sim,0.049,실습 4 씨앗 37
+ch09.ex4.B.xy,ch09,−0.00,ch09.w37_B_xy,sim,0.050,실습 4 씨앗 37
+ch09.ex4.B.yx,ch09,0.30,ch09.w37_B_yx,sim,0.050,실습 4 씨앗 37
+ch09.ex4.C.xy,ch09,0.22,ch09.w37_C_xy,sim,0.062,실습 4 씨앗 37
+ch09.ex4.C.yx,ch09,0.20,ch09.w37_C_yx,sim,0.060,실습 4 씨앗 37
+ch09.ex4.print.A,ch09,0.3,ch09.w37_A_xy,sim,0.047,실습 4 = 씨앗 37 A 여정 → 다음 의미가 소수 한 자리로 찍힌 꼴
+ch09.ex4.print.B,ch09,-0.0,ch09.w37_B_xy,sim,0.050,실습 4 = 씨앗 37 B 여정 → 다음 의미가 소수 한 자리로 찍힌 꼴
+ch09.check.n,ch09,380,ch09.exp_n_raw,data,,§9.7 점검 = 실험판 원자료 인원

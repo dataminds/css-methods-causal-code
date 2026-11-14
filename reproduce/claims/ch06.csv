@@ -1,0 +1,33 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch06.first.diff,ch06,0.31,,paper,,Rogers 외 2023 연구 5 p. 765 개입 M = 5.14 − 통제 M = 4.83 ; OSF 재계산 5.1395 − 4.8272 = 0.312 (final-review-2026-11-13/rogers-osf-checks-2026-11-14.md §3)
+ch06.first.table.diff,ch06,0.31,,paper,,Rogers 외 2023 연구 5 p. 765 (위와 같은 값)
+ch06.s0.r,ch06,.63,ch06.r_hjs_mil,data,,§6.0 svy 정제본 566명 상관
+ch06.s1.r,ch06,.63,ch06.r_hjs_mil,data,,§6.1
+ch06.s1.chance.n,ch06,30,,fixed,,§6.1 모의시행 설계 = 쌍마다 30명 (코드 rng.normal(0 1 30))
+ch06.s1.chance.alpha,ch06,.05,,fixed,,유의수준 관례 문턱
+ch06.s1.chance.max,ch06,.42,ch06.sim_biggest,sim,0.34,§6.1 무관한 스무 쌍의 최대 |r| ; 씨앗 1000~2999 모의 2000 번 평균 0.394 · 표준편차 0.080 → 3 × √2 × 0.080 ≈ 0.34
+ch06.s1.box.hits,ch06,1,ch06.sim_hits,sim,4.2,§6.1 상자 ; 유의 쌍 수 ~ 이항(20 · .05) 표준편차 0.98 → 3 × √2 × 0.98 ≈ 4.2
+ch06.s1.box.max,ch06,.42,ch06.sim_biggest,sim,0.34,§6.1 상자
+ch06.s1.box.alpha1,ch06,.05,,fixed,,유의수준 관례 문턱 (코드 설명)
+ch06.s1.box.alpha2,ch06,.05,,fixed,,유의수준 관례 문턱
+ch06.s1.dir.approx,ch06,.5,ch06.two_world_rho,data,,§6.1 두 세계의 모집단 상관 = .6 ÷ √1.36 = .514 (생성 규칙의 산술 ; 「언저리」= 소수 첫째 자리)
+ch06.s1.select.r,ch06,.63,ch06.r_hjs_mil,data,,§6.1 넷째 후보
+ch06.s2.gap.63,ch06,−3,ch06.gapdol_eff_63,data,,§6.2 예시 산술 60 − 63
+ch06.s2.gap.55,ch06,+5,ch06.gapdol_eff_55,data,,§6.2 예시 산술 60 − 55
+ch06.s2.y1,ch06,41.6,ch06.sim_y1_1,sim,36,§6.2 저그 1번 먹은 세계 ; y1 ~ N(54 · √73) 표준편차 8.5 → 3 × √2 × 8.5 ≈ 36 (R 대조는 약하다)
+ch06.s2.y0,ch06,51.3,ch06.sim_y0_1,sim,34,§6.2 저그 1번 안 먹은 세계 ; y0 ~ N(60 · 8) → 3 × √2 × 8 ≈ 34 (R 대조는 약하다)
+ch06.s2.eff.max,ch06,−2.7,ch06.sim_eff4_max,sim,8.8,§6.2 앞 네 마리 개인 효과의 최댓값 ; 모의 2000 번 표준편차 2.07 → 8.8
+ch06.s2.eff.min,ch06,−10.8,ch06.sim_eff4_min,sim,9.1,§6.2 앞 네 마리 개인 효과의 최솟값 ; 모의 표준편차 2.13 → 9.1
+ch06.s2.eff.mean,ch06,−6.75,ch06.sim_eff_mean,sim,4.5,§6.2 여덟 마리 효과의 평균 ; 표준오차 3 ÷ √8 = 1.06 → 4.5
+ch06.s2.r,ch06,.63,ch06.r_hjs_mil,data,,§6.2
+ch06.s2.b,ch06,0.98,ch06.b_mil_on_hjs,data,,§6.2 svy 정제본 mil ~ hjs 회귀 기울기 (14장)
+ch06.box.diff,ch06,0.31,,paper,,Rogers 외 2023 연구 5 p. 765 평균 차 (5.14 − 4.83)
+ch06.ex1.hits,ch06,1,ch06.sim_hits,sim,4.2,실습 1
+ch06.ex1.max,ch06,.42,ch06.sim_biggest,sim,0.34,실습 1
+ch06.ex2.ab,ch06,.55,ch06.sim_r_ab,sim,0.14,실습 2 · §6.1 코드 출력 ; r 표준편차 0.032 (n = 500 · ρ = .51) → 3 × √2 × 0.033 ≈ 0.14
+ch06.ex2.ba,ch06,.48,ch06.sim_r_ba,sim,0.14,실습 2 ; 같은 설계라 모집단 상관 .514 (파이썬 .48 은 표준편차 1 배쯤 아래)
+ch06.ex3.max,ch06,−2.7,ch06.sim_eff4_max,sim,8.8,실습 3
+ch06.ex3.min,ch06,−10.8,ch06.sim_eff4_min,sim,9.1,실습 3
+ch06.ex3.mean,ch06,−6.75,ch06.sim_eff_mean,sim,4.5,실습 3
+ch06.check.r,ch06,.63,ch06.r_hjs_mil,data,,§6.6 점검
+ch06.next.03,ch06,0.3,,fixed,,7장 §7.1 의 가상 예시 숫자 (세 연구가 같은 0.3점을 보고한다고 정한 설정)

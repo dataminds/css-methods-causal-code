@@ -1,0 +1,83 @@
+id,unit,printed,calc,kind,mc_tol,note
+s4.box.b,s4,.26,,paper,,Rogers 외 2023 연구 5 기저 통제 효과(meaning) p. 765 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
+s4.box.se,s4,.09,,paper,,Rogers 외 2023 연구 5 p. 765
+s4.box.t,s4,3.09,,paper,,Rogers 외 2023 연구 5 p. 765
+s4.box.df,s4,378,,paper,,Rogers 외 2023 연구 5 p. 765
+s4.ham.ri1,s4,.240,,paper,,"Hamaker, Kuiper & Grasman 2015 Psychological Methods 20(1) p. 110 RI-CLPM 1→2 (.240 vs .212) ; raw/papers/comm-intervention/NRF-C1-RCT/Hamaker-et-al-2015-Critique-Cross-Lagged-Panel-Model.txt 에서 확인"
+s4.ham.ri2,s4,.212,,paper,,Hamaker 외 2015 p. 110
+s4.ham.cl1,s4,.239,,paper,,Hamaker 외 2015 p. 110 CLPM (.239 vs .139)
+s4.ham.cl2,s4,.139,,paper,,Hamaker 외 2015 p. 110
+s4.tab.b,s4,.26,,paper,,Rogers 외 2023 연구 5 p. 765 (행의 첫 .26)
+s4.tab.b2,s4,0.26,,paper,,Rogers 외 2023 연구 5 p. 765 (0.26점)
+s4.stage.n,s4,500,s4.n_wave1,data,,무대 = 패널판 1차 인원
+s4.stage.gap,s4,6,,fixed,,무대 설정(설계 추가) = 웨이브 간격은 자료에 없는 서사 설정
+s4.stage.waves,s4,3,s4.n_waves,data,,무대 = 웨이브 수
+s4.stage.co,s4,600,s4.cohort_n_per_year,data,,무대 = 코호트판 조사 연도별 인원(셋 모두 600)
+s4.att.n1,s4,500,s4.n_wave1,data,,③ 이탈
+s4.att.n2,s4,420,s4.n_wave2,data,,③ 이탈
+s4.att.n3,s4,350,s4.n_wave3,data,,③ 이탈
+s4.att.stay,s4,5.01,s4.stay_mil1,data,,③ 2차 잔류자의 1차 mil
+s4.att.left,s4,4.15,s4.left_mil1,data,,③ 2차 이탈자의 1차 mil
+s4.att.d,s4,0.86,s4.stay_left_d,data,,③ 잔류 − 이탈 cohen d
+s4.within.fig,s4,.06,s4.r_within,data,,⑦ 개인 평균 중심화 상관
+s4.cross.w1,s4,.29,s4.r_w1_all,data,,⑦ 1차 hjs·mil 상관(500명)
+s4.within.r,s4,.06,s4.r_within,data,,⑦
+s4.comp.n1,s4,350,s4.n_complete,data,,⑦ 완주자
+s4.comp.n2,s4,350,s4.n_complete,data,,⑦ 완주자
+s4.comp.all.n,s4,500,s4.n_wave1,data,,⑦
+s4.comp.all.r,s4,.286,s4.r_w1_all,data,,⑦ 1차 상관 전체
+s4.comp.c.n,s4,350,s4.n_complete,data,,⑦
+s4.comp.c.r,s4,.241,s4.r_w1_complete,data,,⑦ 1차 상관 완주자
+s4.cl.hm12,s4,.19,s4.beta_hm12,data,,⑦ 교차지연 표 (완주자 350명 표준화)
+s4.cl.hm12.p,s4,.001,s4.p_hm12_below_001,data,,문턱 주장 「p < .001」 (실제 p = 1.1e−4)
+s4.cl.hm23,s4,.21,s4.beta_hm23,data,,⑦ 교차지연 표
+s4.cl.hm23.p,s4,.001,s4.p_hm23_below_001,data,,문턱 주장 「p < .001」 (실제 p = 7.4e−7)
+s4.cl.mh12,s4,.11,s4.beta_mh12,data,,⑦ 교차지연 표 ; 2026-11-14h 원고 정정에 맞춰 옮김
+s4.cl.mh12.p,s4,.009,s4.p_mh12,data,,⑦ 교차지연 표 의미→여정 1→2 p (⚠ 계산값 0.00949 ; 같은 절 코드 출력은 0.009) ; 2026-11-14h 원고 정정에 맞춰 옮김
+s4.cl.mh23,s4,.11,s4.beta_mh23,data,,⑦ 교차지연 표 (0.105) ; 2026-11-14h 원고 정정에 맞춰 옮김
+s4.cl.mh23.p,s4,.021,s4.p_mh23,data,,⑦ 교차지연 표 ; 2026-11-14h 원고 정정에 맞춰 옮김
+s4.dropna.n,s4,350,s4.n_complete,data,,⑦ dropna
+s4.n420.n,s4,420,s4.n_stay_w2,data,,⑦
+s4.n420.b,s4,.211,s4.beta_hm12_n420,data,,⑦ 420명으로 여정→의미 1→2
+s4.chg.b,s4,0.18,s4.change_b,data,,⑦ 변화 점수(3차 − 1차) 회귀
+s4.chg.p,s4,.028,s4.change_p,data,,⑦ 변화 점수 p
+s4.hb.chi_ri,s4,9.85,,paper,,Hamaker 외 2015 p. 110 (RI-CLPM chi-square 9.85 · 8 df · RMSEA .024)
+s4.hb.df_ri,s4,8,,paper,,Hamaker 외 2015 p. 110
+s4.hb.rmsea_ri,s4,.024,,paper,,Hamaker 외 2015 p. 110
+s4.hb.chi_cl,s4,66.18,,paper,,Hamaker 외 2015 p. 110 (CLPM chi-square 66.18 · 11 df · RMSEA .113)
+s4.hb.df_cl,s4,11,,paper,,Hamaker 외 2015 p. 110
+s4.hb.rmsea_cl,s4,.113,,paper,,Hamaker 외 2015 p. 110
+s4.hb.re_cl,s4,66.18,,paper,,Hamaker 외 2015 p. 110
+s4.hb.re_ri,s4,9.85,,paper,,Hamaker 외 2015 p. 110
+s4.hb.diff,s4,56.33,s4.hamaker_chi_diff,data,,보고값 산술 (논문 p. 110 에도 56.33 · 3 df)
+s4.hb.dfd,s4,3,s4.hamaker_df_diff,data,,보고값 산술 11 − 8
+s4.hb.our.hm12,s4,.19,s4.beta_hm12,data,,논문 상자 ③
+s4.hb.our.hm23,s4,.21,s4.beta_hm23,data,,논문 상자 ③
+s4.hb.our.mh12,s4,.11,s4.beta_mh12,data,,논문 상자 ③
+s4.hb.our.mh23,s4,.11,s4.beta_mh23,data,,논문 상자 ③
+s4.co.mil15,s4,4.42,s4.mil_2015,data,,S4b 시기별 평균 mil
+s4.co.mil20,s4,4.19,s4.mil_2020,data,,S4b
+s4.co.mil25,s4,4.60,s4.mil_2025,data,,S4b
+s4.co.age15,s4,36.2,s4.age_2015,data,,S4b 연도별 평균 나이
+s4.co.age20,s4,40.7,s4.age_2020,data,,S4b
+s4.co.age25,s4,45.6,s4.age_2025,data,,S4b
+s4.co.slo,s4,+0.12,s4.age_slope10_min,data,,S4b 조사 연도 안 mil ~ age 기울기 × 10 의 최솟값(셋)
+s4.co.shi,s4,0.15,s4.age_slope10_max,data,,S4b 기울기 × 10 최댓값
+s4.co.period,s4,−0.3,,fixed,,materials/make_data_family.py gen_cohort 의 period = −0.30 (2020 ; 자료를 만들 때 정한 참값)
+s4.co.c1950,s4,4.76,s4.hjs_cohort1950,data,,S4b 코호트별 hjs 평균 (4.755 = 반올림 경계)
+s4.co.c2000,s4,5.26,s4.hjs_cohort2000,data,,S4b
+s4.ex1.all,s4,.286,s4.r_w1_all,data,,실습 1
+s4.ex1.comp,s4,.241,s4.r_w1_complete,data,,실습 1
+s4.ex2.title,s4,.06,s4.r_within,data,,실습 2 제목
+s4.ex2.both,s4,.056,s4.r_within,data,,실습 2
+s4.ex2.h,s4,.030,s4.r_within_hjs_only,data,,실습 2 = hjs 만 중심화
+s4.ex2.m,s4,.029,s4.r_within_mil_only,data,,실습 2 = mil 만 중심화
+s4.ex2.crit,s4,.056,s4.r_within,data,,실습 2 통과 기준
+s4.ex3.raw,s4,.33,s4.r_pooled_raw,data,,실습 3 = 패널판 1270행 전체 hjs·mil 상관 0.329 (id 를 섞은 가짜 개인 내 상관도 씨앗 73에서 0.329)
+s4.auto.cross,s4,.29,s4.r_w1_all,data,,자율 수행 2
+s4.auto.within,s4,.06,s4.r_within,data,,자율 수행 2
+s4.auto.c1950,s4,4.76,s4.hjs_cohort1950,data,,자율 수행 5
+s4.auto.c2000,s4,5.26,s4.hjs_cohort2000,data,,자율 수행 5
+s4.chk.d,s4,0.86,s4.stay_left_d,data,,점검
+s4.chk.cross,s4,.29,s4.r_w1_all,data,,점검
+s4.chk.within,s4,.06,s4.r_within,data,,점검

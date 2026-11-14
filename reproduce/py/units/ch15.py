@@ -1,0 +1,155 @@
+# -*- coding: utf-8 -*-
+"""15장 · 통제의 기술과 한계 — 파이썬 엔진."""
+import numpy as np
+import pandas as pd
+
+from common import calc, cronbach, load, ols
+
+S = lambda: load("svy")          # 정제본 566명
+E = lambda: load("exp")
+
+_c: dict = {}
+
+
+def _once(key, f):
+    if key not in _c:
+        _c[key] = f()
+    return _c[key]
+
+
+# ── 저그마을 = make_book_figures.make_simpson · 8장 §8.1 make2 와 같은 생성기 (씨앗 73, 400마리) ──
+def make2(seed=73, n=400, sexeff=20.0):
+    rng = np.random.default_rng(seed)
+    sex = rng.integers(0, 2, n)
+    dose = np.clip(rng.normal(2 + 4 * sex, 1.5), 0, 10)
+    vigor = 55 + sexeff * sex - 1.5 * dose + rng.normal(0, 4, n)
+    return pd.DataFrame({"sex": sex, "dose": dose.round(1), "vigor": vigor.round(1)})
+
+
+def _zg():
+    def f():
+        zg = make2()
+        b1 = ols(zg.vigor, [zg.dose])[0]
+        b2 = ols(zg.vigor, [zg.dose, zg.sex])[0]
+        sl = [np.polyfit(g.dose, g.vigor, 1)[0] for _, g in zg.groupby("sex")]
+        return dict(alone=b1[1], dose=b2[1], sex=b2[2], f=sl[0], m=sl[1], mean=np.mean(sl),
+                    nf=int((zg.sex == 0).sum()), nm=int((zg.sex == 1).sum()))
+    return _once("zg", f)
+
+
+calc("ch15.zg_b_alone")(lambda: _zg()["alone"])
+calc("ch15.zg_b_dose")(lambda: _zg()["dose"])
+calc("ch15.zg_b_sex")(lambda: _zg()["sex"])
+calc("ch15.zg_slope_f")(lambda: _zg()["f"])
+calc("ch15.zg_slope_m")(lambda: _zg()["m"])
+calc("ch15.zg_slope_mean")(lambda: _zg()["mean"])
+# 「셋째 자리에서 0.001 다르다」 = 원고에 찍힌 두 값(셋째 자리 반올림)의 차이
+calc("ch15.zg_mean_minus_ctrl_rounded")(lambda: abs(round(_zg()["mean"], 3) - round(_zg()["dose"], 3)))
+calc("ch15.zg_n_f")(lambda: _zg()["nf"])
+calc("ch15.zg_n_m")(lambda: _zg()["nm"])
+
+# §15.3 생략변수 편향 = 성별 → 기력 다리만 바꾼 세계에서 성별을 뺀 기울기
+for _e in (0, 10, 20):
+    calc(f"ch15.bias_e{_e}")(lambda e=_e: _once(("bias", e), lambda: np.polyfit(make2(sexeff=float(e)).dose,
+                                                                               make2(sexeff=float(e)).vigor, 1)[0]))
+
+
+# ── §15.2 세 구조 ──
+def _three_ch08():
+    """8장 §8.4 [더 나아가기] 의 나눠 보기 (씨앗 73, 2000명, 화살표 .8)."""
+    def f():
+        g = np.random.default_rng(73); n = 2000
+        C = g.normal(0, 1, n); X1 = .8 * C + g.normal(0, 1, n); Y1 = .8 * C + g.normal(0, 1, n)
+        X2 = g.normal(0, 1, n); M2 = .8 * X2 + g.normal(0, 1, n); Y2 = .8 * M2 + g.normal(0, 1, n)
+        X3 = g.normal(0, 1, n); Y3 = g.normal(0, 1, n); C3 = .8 * X3 + .8 * Y3 + g.normal(0, 1, n)
+
+        def diff(X, Y, keep=None):
+            m = np.median(X[keep]) if keep is not None else np.median(X)
+            sel = np.ones(len(X), bool) if keep is None else keep
+            return Y[sel & (X > m)].mean() - Y[sel & (X <= m)].mean()
+        out = {}
+        for name, (X, Y, Z) in (("conf", (X1, Y1, C)), ("chain", (X2, Y2, M2)), ("coll", (X3, Y3, C3))):
+            q = pd.qcut(Z, 10, labels=False)
+            out[name] = (diff(X, Y), float(np.mean([diff(X, Y, q == k) for k in range(10)])))
+        return out
+    return _once("three8", f)
+
+
+def _three_ch15():
+    """15장 §15.2 코드 (씨앗 73, 2000명, 사슬만 .7)."""
+    def f():
+        g = np.random.default_rng(73); n = 2000
+        C = g.normal(0, 1, n); X = .8 * C + g.normal(0, 1, n); Y = .8 * C + g.normal(0, 1, n)
+        X2 = g.normal(0, 1, n); M = .7 * X2 + g.normal(0, 1, n); Y2 = .7 * M + g.normal(0, 1, n)
+        X3 = g.normal(0, 1, n); Y3 = g.normal(0, 1, n); C3 = .8 * X3 + .8 * Y3 + g.normal(0, 1, n)
+        out = {}
+        for name, (a, b, c) in (("conf", (X, Y, C)), ("chain", (X2, Y2, M)), ("coll", (X3, Y3, C3))):
+            out[name] = (ols(b, [a])[0][1], ols(b, [a, c])[0][1])
+        return out
+    return _once("three15", f)
+
+
+for _nm in ("conf", "chain", "coll"):
+    calc(f"ch15.strat_{_nm}_raw")(lambda nm=_nm: _three_ch08()[nm][0])
+    calc(f"ch15.strat_{_nm}_ctrl")(lambda nm=_nm: _three_ch08()[nm][1])
+    calc(f"ch15.reg_{_nm}_raw")(lambda nm=_nm: _three_ch15()[nm][0])
+    calc(f"ch15.reg_{_nm}_ctrl")(lambda nm=_nm: _three_ch15()[nm][1])
+calc("ch15.chain_true")(lambda: .7 * .7)
+
+# ── §15.4 gen · age (설문판 자료) ──
+calc("ch15.gen_alpha")(lambda: cronbach(S()[["gen_1", "gen_2", "gen_3"]]))
+calc("ch15.b_hjs")(lambda: ols(S().mil, [S().hjs])[0][1])
+calc("ch15.se_hjs")(lambda: ols(S().mil, [S().hjs])[1][1])
+calc("ch15.b_hjs_gen")(lambda: ols(S().mil, [S().hjs, S().gen])[0][1])
+calc("ch15.b_gen_drop")(lambda: ols(S().mil, [S().hjs])[0][1] - ols(S().mil, [S().hjs, S().gen])[0][1])
+calc("ch15.b_hjs_age")(lambda: ols(S().mil, [S().hjs, S().age])[0][1])
+for _a, _b in (("hjs", "gen"), ("mil", "gen"), ("hjs", "age"), ("hjs", "swl"), ("mil", "swl"),
+               ("hjs", "flr"), ("mil", "flr"), ("hjs", "mil")):
+    calc(f"ch15.r_{_a}_{_b}")(lambda a=_a, b=_b: S()[a].corr(S()[b]))
+
+
+# 쌍둥이 척도 = 책 코드와 같은 난수 (씨앗 73)
+def _twin():
+    def f():
+        rng = np.random.default_rng(73)
+        twin = S().hjs + rng.normal(0, 0.15, len(S()))
+        b2, se2, *_ = ols(S().mil, [S().hjs, twin])
+        return dict(b_hjs=b2[1], b_twin=b2[2], se=se2[1], r=np.corrcoef(S().hjs, twin)[0, 1])
+    return _once("twin", f)
+
+
+calc("ch15.twin_b_hjs")(lambda: _twin()["b_hjs"])
+calc("ch15.twin_b_twin")(lambda: _twin()["b_twin"])
+calc("ch15.twin_b_sum")(lambda: _twin()["b_hjs"] + _twin()["b_twin"])
+calc("ch15.twin_se")(lambda: _twin()["se"])
+
+# ── §15.5 민감도 표 ──
+_SPECS = [[], ["age"], ["refl"], ["age", "refl"], ["age", "refl", "swl"]]
+
+
+def _sens():
+    return _once("sens", lambda: [ols(S().mil, [S().hjs] + [S()[c] for c in cols])[0][1] for cols in _SPECS])
+
+
+calc("ch15.sens_first4_max")(lambda: max(_sens()[:4]))
+calc("ch15.sens_first4_min")(lambda: min(_sens()[:4]))
+calc("ch15.sens_swl")(lambda: _sens()[4])
+calc("ch15.exp_diff")(lambda: E()[E().cond == 1].mil.mean() - E()[E().cond == 0].mil.mean())
+
+
+# ── §15.6 미측정 혼란 역산 ──
+def _rho0():
+    b = ols(S().mil.values, [S().hjs.values])[0][1]
+    r = b * S().hjs.std(ddof=1) / S().mil.std(ddof=1)
+    return np.sqrt(r)
+
+
+calc("ch15.rho_null")(_rho0)
+
+# ── 「먼저」 · 논문 상자 ③ 의 산술 (Rogers 외 2023 보고값 · OSF 재계산값으로) ──
+calc("ch15.paper_adjr2_gain_rounded")(lambda: .63 - .59)
+calc("ch15.paper_ratio_rounded_pct")(lambda: (.63 - .59) / .59 * 100)
+calc("ch15.paper_df")(lambda: 592 - 10 - 1)
+calc("ch15.paper_osf_gain")(lambda: .6361 - .5910)
+calc("ch15.paper_osf_ratio_pct")(lambda: (.6361 - .5910) / .5910 * 100)
+calc("ch15.paper_osf_new_2dp")(lambda: round(.6361, 2))

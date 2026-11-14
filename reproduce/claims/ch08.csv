@@ -1,0 +1,88 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch08.first.b,ch08,.26,,paper,,Rogers 외 2023 연구 5 p. 765 공변인 모형 (OSF 재계산 b = .2721 ; rogers-osf-checks-2026-11-14.md §7 ②)
+ch08.first.se,ch08,.09,,paper,,Rogers 외 2023 연구 5 p. 765 (OSF 재계산 SE = .0882)
+ch08.first.df,ch08,378,,paper,,Rogers 외 2023 연구 5 p. 765 (381명 − 계수 셋)
+ch08.first.t,ch08,3.09,,paper,,Rogers 외 2023 연구 5 p. 765 (OSF 재계산 t = 3.0851)
+ch08.first.p,ch08,.002,,paper,,Rogers 외 2023 연구 5 p. 765 (OSF 재계산 p = .0022)
+ch08.first.b.flr,ch08,.25,,paper,,Rogers 외 2023 연구 5 p. 765 번영 (OSF 재계산 b = .2523)
+ch08.first.diff,ch08,0.31,,paper,,Rogers 외 2023 연구 5 p. 765 평균 5.14 − 4.83 (OSF 재계산 0.312)
+ch08.table.b.cell,ch08,.26,,paper,,Rogers 외 2023 연구 5 p. 765 (값 표 첫 칸)
+ch08.table.b.read,ch08,0.26,,paper,,Rogers 외 2023 연구 5 p. 765
+ch08.table.b.osf,ch08,.27,,paper,,OSF 원자료 재계산 b = 0.2721 (원자료 재배포 불가 ; 기록 = book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md §7 ② · 스크립트 rogers-osf-checks-2026-11-14.R)
+ch08.table.se.osf,ch08,.088,,paper,,OSF 원자료 재계산 SE = 0.0882 (같은 기록 §7 ②)
+ch08.table.t,ch08,3.09,,paper,,Rogers 외 2023 연구 5 p. 765
+ch08.table.b.paren,ch08,.26,,paper,,Rogers 외 2023 연구 5 p. 765 (산술 괄호 안)
+ch08.table.se.paren,ch08,.09,,paper,,Rogers 외 2023 연구 5 p. 765 (산술 괄호 안)
+ch08.table.ratio,ch08,2.9,ch08.t_from_rounded,data,,산술 .26 ÷ .09 = 2.89
+ch08.table.test,ch08,0.26,,paper,,Rogers 외 2023 연구 5 p. 765
+ch08.table.before,ch08,0.31,,paper,,Rogers 외 2023 연구 5 p. 765 평균 차
+ch08.table.after,ch08,0.26,,paper,,Rogers 외 2023 연구 5 p. 765 공변인 모형 b
+ch08.s1.n,ch08,400,,fixed,,§8.1 모의시행 설계 n = 400
+ch08.s1.dose.plant,ch08,4,,fixed,,§8.1 생성 규칙에 심은 값 (2 + 4*sex)
+ch08.s1.vigor.plant,ch08,20,,fixed,,§8.1 생성 규칙에 심은 값 (20*sex)
+ch08.s1.true,ch08,1.5,,fixed,,§8.1 생성 규칙에 심은 참 효과
+ch08.s1.slope1,ch08,1.70,ch08.sim_slope_all,sim,0.50,§8.1 make_simpson 전체 기울기 ; 씨앗 1000~1299 모의 300 번 표준편차 0.118 → 3 × √2 × 0.118 ≈ 0.50
+ch08.s1.slope2,ch08,1.70,ch08.sim_slope_all,sim,0.50,§8.1 그림 설명
+ch08.s1.f,ch08,−1.72,ch08.sim_slope_f,sim,0.85,§8.1 암컷 기울기 ; 모의 표준편차 0.200 → 0.85
+ch08.s1.m,ch08,−1.66,ch08.sim_slope_m,sim,0.83,§8.1 수컷 기울기 ; 모의 표준편차 0.195 → 0.83
+ch08.s1.true2,ch08,−1.5,,fixed,,§8.1 생성 규칙에 심은 참 효과
+ch08.s1.dose.m,ch08,6.11,ch08.sim_dose_m,sim,0.47,§8.1 수컷 평균 복용량 ; 모의 표준편차 0.111 → 0.47
+ch08.s1.dose.f,ch08,2.21,ch08.sim_dose_f,sim,0.41,§8.1 암컷 평균 복용량 ; 모의 표준편차 0.095 → 0.41
+ch08.s1.vigor.m,ch08,65.4,ch08.sim_vigor_m,sim,1.3,§8.1 수컷 평균 기력 ; 모의 표준편차 0.306 → 1.3
+ch08.s1.vigor.f,ch08,51.8,ch08.sim_vigor_f,sim,1.43,§8.1 암컷 평균 기력 (코드 출력 51.83) ; 모의 표준편차 0.337 → 1.43
+ch08.s1.r.dose,ch08,.81,ch08.sim_r_sex_dose,sim,0.063,§8.1 성별·복용량 상관 ; 모의 표준편차 0.0148 → 0.063
+ch08.s1.r.vigor,ch08,.83,ch08.sim_r_sex_vigor,sim,0.050,§8.1 성별·기력 상관 ; 모의 표준편차 0.0117 → 0.050
+ch08.s1.cell.f02,ch08,53.4,ch08.sim_cell_f_0_2,sim,1.9,§8.1 구간표 암컷 (0 2] ; 모의 표준편차 0.444 → 1.9
+ch08.s1.cell.f68,ch08,45.8,ch08.sim_cell_f_6_8,sim,17,§8.1 구간표 암컷 (6 8] = 기대 0.7 마리라 칸이 자주 빈다(모의 300 번 중 137 번) → R 은 이론값 55 − 1.5 × E[복용량 | 6.05 < 복용량 ≤ 8.05] ≈ 45.4 ; 칸 평균 표준편차 4.0 → 3 × √2 × 4.0 ≈ 17 (R 대조는 약하다)
+ch08.s1.cell.m24,ch08,70.3,ch08.sim_cell_m_2_4,sim,4.5,§8.1 구간표 수컷 (2 4] ; 모의 표준편차 1.06 → 4.5
+ch08.s1.cell.m810,ch08,61.1,ch08.sim_cell_m_8_10,sim,4.3,§8.1 구간표 수컷 (8 10] ; 모의 표준편차 1.01 → 4.3
+ch08.s1.diag.lo,ch08,53.4,ch08.sim_cell_f_0_2,sim,1.9,§8.1 대각선
+ch08.s1.diag.hi,ch08,61.1,ch08.sim_cell_m_8_10,sim,4.3,§8.1 대각선
+ch08.s1.slope3,ch08,1.70,ch08.sim_slope_all,sim,0.50,§8.1
+ch08.s1.slope4,ch08,1.70,ch08.sim_slope_all,sim,0.50,§8.1
+ch08.s2.n,ch08,"2,000",,fixed,,§8.2 모의시행 설계 n = 2000
+ch08.s2.cut,ch08,1.8,,fixed,,§8.2 수상 문턱 (설계)
+ch08.s2.r.all,ch08,0.01,ch08.sim_coll_r_all,sim,0.10,§8.2 충돌 전체 상관 ; 모의 표준편차 0.024 → 0.10
+ch08.s2.n.win,ch08,225,ch08.sim_coll_n_win,sim,60,§8.2 수상자 수 ; 기대 2000 × P(Z > 1.8/√2) ≈ 203 · 모의 표준편차 14.1 → 60
+ch08.s2.r.win,ch08,−0.72,ch08.sim_coll_r_win,sim,0.19,§8.2 수상자 안 상관 ; 모의 표준편차 0.044 → 0.19
+ch08.s4.n,ch08,"2,000",,fixed,,§8.4 모의시행 설계 n = 2000
+ch08.s4.t.conf.pre,ch08,0.89,ch08.sim_conf_pre,sim,0.22,§8.4 표 ; 모의 표준편차 0.053 → 0.22
+ch08.s4.t.conf.post,ch08,0.10,ch08.sim_conf_post,sim,0.18,§8.4 표 ; 모의 표준편차 0.043 → 0.18
+ch08.s4.t.chain.pre,ch08,1.02,ch08.sim_chain_pre,sim,0.26,§8.4 표 ; 모의 표준편차 0.060 → 0.26
+ch08.s4.t.chain.post,ch08,0.03,ch08.sim_chain_post,sim,0.20,§8.4 표 ; 모의 표준편차 0.046 → 0.20
+ch08.s4.t.coll.pre,ch08,−0.11,ch08.sim_coll_pre,sim,0.20,§8.4 표 ; 모의 표준편차 0.046 → 0.20
+ch08.s4.t.coll.post,ch08,−0.58,ch08.sim_coll_post,sim,0.15,§8.4 표 ; 모의 표준편차 0.036 → 0.15
+ch08.s4.b.conf.pre,ch08,0.89,ch08.sim_conf_pre,sim,0.22,§8.4 풀이
+ch08.s4.b.conf.post,ch08,0.10,ch08.sim_conf_post,sim,0.18,§8.4 풀이
+ch08.s4.b.chain.pre,ch08,1.02,ch08.sim_chain_pre,sim,0.26,§8.4 풀이
+ch08.s4.b.chain.post,ch08,0.03,ch08.sim_chain_post,sim,0.20,§8.4 풀이
+ch08.s4.b.coll.pre,ch08,−0.11,ch08.sim_coll_pre,sim,0.20,§8.4 풀이
+ch08.s4.b.coll.post,ch08,−0.58,ch08.sim_coll_post,sim,0.15,§8.4 풀이
+ch08.s4.after.conf,ch08,0.10,ch08.sim_conf_post,sim,0.18,§8.4
+ch08.s4.after.chain,ch08,0.03,ch08.sim_chain_post,sim,0.20,§8.4
+ch08.s4.after.coll,ch08,−0.58,ch08.sim_coll_post,sim,0.15,§8.4
+ch08.s4.left,ch08,0.10,ch08.sim_conf_post,sim,0.18,§8.4
+ch08.s4.coef,ch08,.8,,fixed,,§8.4 생성 규칙에 심은 계수
+ch08.s5.groups,ch08,30,,fixed,,§8.5 모의시행 설계 = 집단 수
+ch08.s5.per,ch08,40,,fixed,,§8.5 모의시행 설계 = 집단당 인원
+ch08.s5.indiv,ch08,.24,ch08.sim_agg_indiv,sim,0.51,§8.5 개인 상관 (코드 출력 0.237) ; 집단 수가 30 이라 모의 표준편차 0.119 → 0.51
+ch08.s5.within,ch08,−.73,ch08.sim_agg_within,sim,0.061,§8.5 집단 안 상관 ; 모의 표준편차 0.0143 → 0.061
+ch08.s5.between,ch08,.97,ch08.sim_agg_between,sim,0.065,§8.5 집단 평균 상관 ; 모의 표준편차 0.0154 → 0.065
+ch08.ex1.all,ch08,1.70,ch08.sim_slope_all,sim,0.50,실습 1
+ch08.ex1.f,ch08,−1.72,ch08.sim_slope_f,sim,0.85,실습 1
+ch08.ex1.m,ch08,−1.66,ch08.sim_slope_m,sim,0.83,실습 1
+ch08.ex1b.all,ch08,1.70,ch08.sim_slope_all,sim,0.50,실습 1
+ch08.ex1b.f,ch08,−1.72,ch08.sim_slope_f,sim,0.85,실습 1
+ch08.ex1b.m,ch08,−1.66,ch08.sim_slope_m,sim,0.83,실습 1
+ch08.ex2.true,ch08,−1.5,,fixed,,실습 2 생성 규칙에 심은 참 효과
+ch08.ex2.cut,ch08,−1.66,ch08.sim_slope_cut_leg,sim,0.33,실습 2 성별 → 기력 다리를 끊은 세계(sexeff = 0)의 전체 기울기 ; 모의 표준편차 0.078 → 0.33
+ch08.ex2b.from,ch08,1.70,ch08.sim_slope_all,sim,0.50,실습 2 상자 (sexeff = 20 = make_simpson)
+ch08.ex2b.to,ch08,−1.66,ch08.sim_slope_cut_leg,sim,0.33,실습 2 상자
+ch08.ex2b.true,ch08,−1.5,,fixed,,실습 2 상자 = 심은 참 효과
+ch08.ex3.conf.pre,ch08,0.89,ch08.sim_conf_pre,sim,0.22,실습 3
+ch08.ex3.conf.post,ch08,0.10,ch08.sim_conf_post,sim,0.18,실습 3
+ch08.ex3.chain.pre,ch08,1.02,ch08.sim_chain_pre,sim,0.26,실습 3
+ch08.ex3.chain.post,ch08,0.03,ch08.sim_chain_post,sim,0.20,실습 3
+ch08.ex3.coll.pre,ch08,−0.11,ch08.sim_coll_pre,sim,0.20,실습 3
+ch08.ex3.coll.post,ch08,−0.58,ch08.sim_coll_post,sim,0.15,실습 3
+ch08.mydata.slope,ch08,1.70,ch08.sim_slope_all,sim,0.50,§8.7

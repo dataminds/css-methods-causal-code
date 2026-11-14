@@ -1,0 +1,179 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch03.p.s1.in,ch03,640,,paper,,Rogers 외 2023 연구 1 Participants p. 756
+ch03.p.s1.out,ch03,592,,paper,,Rogers 외 2023 연구 1 p. 756
+ch03.p.s5.in,ch03,384,,paper,,Rogers 외 2023 연구 5 Participants p. 764
+ch03.p.s5.excl,ch03,3,,paper,,Rogers 외 2023 연구 5 p. 764 (excluded three participants)
+ch03.p.s5.out,ch03,381,,paper,,Rogers 외 2023 연구 5 p. 764
+ch03.ptab.in,ch03,640,,paper,,Rogers 외 2023 연구 1 p. 756
+ch03.ptab.out,ch03,592,,paper,,Rogers 외 2023 연구 1 p. 756
+ch03.ptab.drop,ch03,48,ch03.paper_s1_dropped,data,,640 − 592 (논문 값으로 한 산술)
+ch03.ours.n,ch03,380,ch03.exp_raw_n,data,,먼저 절
+ch03.ours.fail,ch03,14,ch03.exp_attn_fail,data,,먼저 절
+ch03.intro.fail,ch03,14,ch03.exp_attn_fail,data,,§3.0
+ch03.rows.svy,ch03,590,ch03.svy_raw_n,data,,§3.1 (행과 사람 두 번 나오는 590 을 한 줄로 ; 같은 수)
+ch03.rows.svy.b,ch03,590,ch03.svy_raw_ids,data,,§3.1 서로 다른 id 수
+ch03.rows.panel,ch03,"1,270",ch03.panel_rows,data,,§3.1
+ch03.rows.panel.n,ch03,500,ch03.panel_ids,data,,§3.1 서로 다른 id 수
+ch03.rows.panel.n.b,ch03,500,ch03.panel_ids,data,,§3.1
+ch03.rows.panel.b,ch03,"1,270",ch03.panel_rows,data,,§3.1
+ch03.gender.f,ch03,295,ch03.raw_gender2_n,data,,§3.2 원자료 590명 value_counts
+ch03.gender.m,ch03,282,ch03.raw_gender1_n,data,,§3.2
+ch03.gender.o,ch03,13,ch03.raw_gender3_n,data,,§3.2
+ch03.gender.mean.a,ch03,1.54,ch03.raw_gender_mean,data,,§3.2 원자료 590명의 gender 평균
+ch03.gender.mean.b,ch03,1.54,ch03.raw_gender_mean,data,,§3.2
+ch03.clean.fail.a,ch03,14,ch03.exp_attn_fail,data,,§3.3
+ch03.clean.fail.b,ch03,14,ch03.exp_attn_fail,data,,§3.3
+ch03.clean.exp.raw,ch03,380,ch03.exp_raw_n,data,,§3.3
+ch03.clean.exp,ch03,366,ch03.exp_n,data,,§3.3
+ch03.clean.svy.raw,ch03,590,ch03.svy_raw_n,data,,§3.3
+ch03.clean.svy,ch03,566,ch03.svy_n,data,,§3.3
+ch03.always.exp,ch03,366,ch03.exp_n,data,,§3.3
+ch03.always.svy,ch03,566,ch03.svy_n,data,,§3.3
+ch03.report.raw,ch03,590,ch03.svy_raw_n,data,,§3.3 보고 문장
+ch03.report.excl,ch03,24,ch03.svy_excluded,data,,§3.3 보고 문장
+ch03.report.pct,ch03,4.1,ch03.svy_excluded_pct,data,,§3.3 보고 문장 (24 ÷ 590 = 4.07%)
+ch03.report.n,ch03,566,ch03.svy_n,data,,§3.3 보고 문장
+ch03.q.fail,ch03,14,ch03.exp_attn_fail,data,,§3.3
+ch03.cmp.raw,ch03,380,ch03.exp_raw_n,data,,§3.3
+ch03.cmp.clean,ch03,366,ch03.exp_n,data,,§3.3
+ch03.cmp.diff.raw,ch03,0.278,ch03.exp_raw_diff,data,,§3.3 원자료 개입 − 통제 mil
+ch03.cmp.diff.clean,ch03,0.283,ch03.exp_clean_diff,data,,§3.3 정제본 개입 − 통제 mil
+ch03.rule.n0,ch03,590,ch03.rule_n_0,data,,§3.3 네 기준 인원
+ch03.rule.n1,ch03,566,ch03.rule_n_1,data,,§3.3
+ch03.rule.n2,ch03,563,ch03.rule_n_2,data,,§3.3 (문항 사이 SD ≥ 0.5)
+ch03.rule.n3,ch03,517,ch03.rule_n_3,data,,§3.3
+ch03.rule.r0,ch03,.635,ch03.rule_r_0,data,,§3.3
+ch03.rule.r1,ch03,.629,ch03.rule_r_1,data,,§3.3
+ch03.rule.r2,ch03,.624,ch03.rule_r_2,data,,§3.3
+ch03.rule.r3,ch03,.628,ch03.rule_r_3,data,,§3.3
+ch03.rule.r0.note,ch03,.635,ch03.rule_r_0,data,,§3.3 표기 설명
+ch03.rule.r0.code,ch03,0.635,ch03.rule_r_0,data,,§3.3 표기 설명
+ch03.rule.range.hi,ch03,.635,ch03.rule_r_0,data,,§3.3
+ch03.rule.range.lo,ch03,.624,ch03.rule_r_2,data,,§3.3
+ch03.sub.pop,ch03,590,ch03.svy_raw_n,data,,§3.3 [더 나아가기]
+ch03.sub.n566,ch03,566,,fixed,,§3.3 [더 나아가기] 뽑는 표본 크기 (설계값)
+ch03.sub.n60,ch03,60,,fixed,,§3.3 [더 나아가기] 뽑는 표본 크기 (설계값)
+ch03.sub.reps,ch03,300,,fixed,,§3.3 [더 나아가기] 반복 수 (설계값)
+ch03.sub.566.m,ch03,.011,ch03.sub566_mean,sim,0.0003,§3.3 씨앗 73 ; R = 같은 설계 R 난수 ; 모의 20 판 표준편차 0.00006 → 3 × √2 × 0.00006 ≈ 0.00025
+ch03.sub.60.m,ch03,.028,ch03.sub60_mean,sim,0.0063,§3.3 모의 20 판 표준편차 0.0015 → 3 × √2 × 0.0015 ≈ 0.0063
+ch03.sub.60.max,ch03,.111,ch03.sub60_max,sim,0.09,§3.3 300 번 가운데 최댓값 ; 모의 20 판 평균 .120 · 표준편차 .021 → 3 × √2 × .021 ≈ .09
+ch03.box.s1.in,ch03,640,,paper,,Rogers 외 2023 연구 1 p. 756
+ch03.box.s1.out,ch03,592,,paper,,Rogers 외 2023 연구 1 p. 756
+ch03.box.s5.in,ch03,384,,paper,,Rogers 외 2023 연구 5 p. 764
+ch03.box.s5.out,ch03,381,,paper,,Rogers 외 2023 연구 5 p. 764
+ch03.box.s1.drop,ch03,48,ch03.paper_s1_dropped,data,,640 − 592 (산술)
+ch03.box.s1.den,ch03,640,,paper,,Rogers 외 2023 연구 1 p. 756
+ch03.box.s1.pct,ch03,7.5,ch03.paper_s1_drop_pct,data,,(640 − 592) ÷ 640 (산술)
+ch03.box.s5.drop,ch03,3,,paper,,Rogers 외 2023 연구 5 p. 764
+ch03.box.s5.den,ch03,384,,paper,,Rogers 외 2023 연구 5 p. 764
+ch03.box.s5.pct,ch03,0.8,ch03.paper_s5_drop_pct,data,,3 ÷ 384 = 0.78% (산술)
+ch03.box.ours.fail,ch03,14,ch03.exp_attn_fail,data,,실험판 주의 점검 실패
+ch03.box.ours.n,ch03,380,ch03.exp_raw_n,data,,실험판 원자료
+ch03.box.ours.pct,ch03,3.7,ch03.exp_fail_pct,data,,14 ÷ 380 = 3.68%
+ch03.axis.n,ch03,566,ch03.svy_n,data,,§3.4
+ch03.recalc.n,ch03,566,ch03.svy_n,data,,§3.4
+ch03.recalc.max,ch03,0.000476,ch03.hjs_recalc_maxdiff,data,,§3.4 정제본 566명 (원자료 590명도 같은 값)
+ch03.recalc.stored,ch03,4.571,ch03.row1_hjs_stored,data,,§3.4 1번 응답자 저장 hjs
+ch03.recalc.mine,ch03,4.571429,ch03.row1_hjs_mine,data,,§3.4 1번 응답자 21문항 합 ÷ 21
+ch03.recalc.bound,ch03,0.0005,,fixed,,소수 셋째 자리 반올림의 최대 오차 = 0.5 × 10⁻³ (정의)
+ch03.recalc.seen,ch03,0.000476,ch03.hjs_recalc_maxdiff,data,,§3.4
+ch03.recalc.small,ch03,0.0004,,fixed,,크기 비교 예시값 (반올림 수준)
+ch03.recalc.big,ch03,0.4,,fixed,,크기 비교 예시값 (오류 수준)
+ch03.rev.ok,ch03,5.01,ch03.hjs_items_mean,data,,§3.4 정제본 21문항 평균의 평균
+ch03.rev.bad,ch03,4.892,ch03.hjs_items_mean_rev,data,,§3.4 hjs_a1 을 8 에서 뺀 판
+ch03.rev.gap,ch03,0.12,ch03.hjs_rev_gap,data,,§3.4 (5.010 − 4.892 = 0.118)
+ch03.rev.gap.b,ch03,0.12,ch03.hjs_rev_gap,data,,§3.4
+ch03.wide.shape.n,ch03,500,ch03.panel_ids,data,,§3.5 wide 행 수
+ch03.wide.shape.k,ch03,3,ch03.panel_waves,data,,§3.5 wide 열 수 = 시점 수
+ch03.wide.na2,ch03,80,ch03.na_w2,data,,§3.5
+ch03.wide.na3,ch03,150,ch03.na_w3,data,,§3.5
+ch03.wide.left1,ch03,500,ch03.panel_ids,data,,§3.5
+ch03.wide.left2,ch03,420,ch03.n_w2,data,,§3.5
+ch03.wide.left3,ch03,350,ch03.n_w3,data,,§3.5
+ch03.pat.111,ch03,350,ch03.pat_111,data,,§3.5 참여 패턴
+ch03.pat.100,ch03,80,ch03.pat_100,data,,§3.5 참여 패턴
+ch03.pat.110,ch03,70,ch03.pat_110,data,,§3.5 참여 패턴
+ch03.drop.kept,ch03,350,ch03.n_w3,data,,§3.5
+ch03.drop.all,ch03,500,ch03.panel_ids,data,,§3.5
+ch03.miss.lw12.n,ch03,350,ch03.lw_n,data,,§3.6 표
+ch03.miss.lw12.r,ch03,.439,ch03.lw_r12,data,,§3.6 표
+ch03.miss.pw12.n,ch03,420,ch03.pw_n12,data,,§3.6 표
+ch03.miss.pw12.r,ch03,.456,ch03.pw_r12,data,,§3.6 표
+ch03.miss.im12.n,ch03,500,ch03.panel_ids,data,,§3.6 표
+ch03.miss.im12.r,ch03,.395,ch03.im_r12,data,,§3.6 표
+ch03.miss.lw13.n,ch03,350,ch03.lw_n,data,,§3.6 표
+ch03.miss.lw13.r,ch03,.453,ch03.lw_r13,data,,§3.6 표
+ch03.miss.pw13.n,ch03,350,ch03.pw_n13,data,,§3.6 표
+ch03.miss.pw13.r,ch03,.453,ch03.pw_r13,data,,§3.6 표
+ch03.miss.im13.n,ch03,500,ch03.panel_ids,data,,§3.6 표
+ch03.miss.im13.r,ch03,.363,ch03.im_r13,data,,§3.6 표
+ch03.miss.lw23.n,ch03,350,ch03.lw_n,data,,§3.6 표
+ch03.miss.lw23.r,ch03,.625,ch03.lw_r23,data,,§3.6 표
+ch03.miss.pw23.n,ch03,350,ch03.pw_n23,data,,§3.6 표
+ch03.miss.pw23.r,ch03,.625,ch03.pw_r23,data,,§3.6 표
+ch03.miss.im23.n,ch03,500,ch03.panel_ids,data,,§3.6 표
+ch03.miss.im23.r,ch03,.564,ch03.im_r23,data,,§3.6 표
+ch03.read.pw12,ch03,420,ch03.pw_n12,data,,§3.6
+ch03.read.pw13,ch03,350,ch03.pw_n13,data,,§3.6
+ch03.read.drop,ch03,350,ch03.pw_n23,data,,§3.6
+ch03.read.imp.n,ch03,500,ch03.panel_ids,data,,§3.6
+ch03.read.lw12,ch03,.439,ch03.lw_r12,data,,§3.6
+ch03.read.im12,ch03,.395,ch03.im_r12,data,,§3.6
+ch03.read.lw13,ch03,.453,ch03.lw_r13,data,,§3.6
+ch03.read.im13,ch03,.363,ch03.im_r13,data,,§3.6
+ch03.imp.filled,ch03,150,ch03.na_w3,data,,§3.6 3차 빈칸 수
+ch03.imp.sd.raw,ch03,1.091,ch03.sd_w3,data,,§3.6 3차 mil 표준편차 (관찰 350명)
+ch03.imp.sd.imp,ch03,0.912,ch03.sd_w3_imp,data,,§3.6 평균 대치 뒤 3차 표준편차 (500명)
+ch03.imp.box.a,ch03,150,ch03.na_w3,data,,§3.6 [더 나아가기]
+ch03.imp.box.n,ch03,500,ch03.panel_ids,data,,§3.6 [더 나아가기]
+ch03.imp.box.b,ch03,150,ch03.na_w3,data,,§3.6 [더 나아가기]
+ch03.lw.bias.drop.n,ch03,150,ch03.na_w3,data,,§3.6
+ch03.lw.bias.drop.m,ch03,4.458,ch03.w1_mean_dropped,data,,§3.6
+ch03.lw.bias.kept.n,ch03,350,ch03.n_w3,data,,§3.6
+ch03.lw.bias.kept.m,ch03,5.056,ch03.w1_mean_kept,data,,§3.6
+ch03.lw.bias.n,ch03,350,ch03.lw_n,data,,§3.6
+ch03.lw.bias.all,ch03,4.876,ch03.w1_mean_all,data,,§3.6
+ch03.lw.bias.gap,ch03,0.18,ch03.w1_lw_gap,data,,§3.6 (5.056 − 4.876)
+ch03.flow.w1,ch03,500,ch03.panel_ids,data,,§3.6 표본 흐름
+ch03.flow.w2,ch03,420,ch03.n_w2,data,,§3.6 표본 흐름
+ch03.flow.w3,ch03,350,ch03.n_w3,data,,§3.6 표본 흐름
+ch03.flow.lw,ch03,350,ch03.lw_n,data,,§3.6 표본 흐름
+ch03.flow.pct,ch03,70.0,ch03.lw_pct,data,,§3.6 350 ÷ 500
+ch03.flow.warn.a,ch03,350,ch03.lw_n,data,,§3.6
+ch03.flow.warn.b,ch03,500,ch03.panel_ids,data,,§3.6
+ch03.ex1.n,ch03,566,ch03.svy_n,data,,실습 1
+ch03.ex1.raw,ch03,590,ch03.svy_raw_n,data,,실습 1
+ch03.ex1.clean,ch03,566,ch03.svy_n,data,,실습 1
+ch03.ex1.excl,ch03,24,ch03.svy_excluded,data,,실습 1
+ch03.ex1.pct,ch03,4.1,ch03.svy_excluded_pct,data,,실습 1
+ch03.ex2.max,ch03,0.000476,ch03.hjs_recalc_maxdiff,data,,실습 2
+ch03.ex3.na,ch03,80,ch03.na_w2,data,,실습 3
+ch03.ex3.na.b,ch03,150,ch03.na_w3,data,,실습 3
+ch03.ex3.exp.1,ch03,0,ch03.na_w1,data,,실습 3
+ch03.ex3.exp.2,ch03,80,ch03.na_w2,data,,실습 3
+ch03.ex3.exp.3,ch03,150,ch03.na_w3,data,,실습 3
+ch03.ex4.n,ch03,60,,fixed,,실습 4 표본 크기 (설계값)
+ch03.ex4.reps,ch03,300,,fixed,,실습 4 반복 수 (설계값)
+ch03.ex4.cmp,ch03,566,,fixed,,실습 4 비교 표본 크기 (설계값)
+ch03.ex4.566.n,ch03,566,,fixed,,실습 4 표본 크기 (설계값)
+ch03.ex4.566.m,ch03,.011,ch03.sub566_mean,sim,0.0003,실습 4 ; 허용폭 근거 = ch03.sub.566.m
+ch03.ex4.60.n,ch03,60,,fixed,,실습 4 표본 크기 (설계값)
+ch03.ex4.60.m,ch03,.028,ch03.sub60_mean,sim,0.0063,실습 4 ; 허용폭 근거 = ch03.sub.60.m
+ch03.ex4.60.max,ch03,.111,ch03.sub60_max,sim,0.09,실습 4 ; 허용폭 근거 = ch03.sub.60.max
+ch03.ex5.want,ch03,566,ch03.svy_n,data,,실습 5
+ch03.ex5.got,ch03,21,ch03.axis0_len,data,,실습 5 axis=0 결과 길이 = 문항 수
+ch03.ex5.pass.a,ch03,566,ch03.svy_n,data,,실습 5
+ch03.ex5.pass.b,ch03,21,ch03.axis0_len,data,,실습 5
+ch03.ex6.lw.n,ch03,350,ch03.lw_n,data,,실습 6
+ch03.ex6.lw.r,ch03,.439,ch03.lw_r12,data,,실습 6
+ch03.ex6.pw.n,ch03,420,ch03.pw_n12,data,,실습 6
+ch03.ex6.pw.r,ch03,.456,ch03.pw_r12,data,,실습 6
+ch03.ex6.im.n,ch03,500,ch03.panel_ids,data,,실습 6
+ch03.ex6.im.r,ch03,.395,ch03.im_r12,data,,실습 6
+ch03.ex7.bad,ch03,4.892,ch03.hjs_items_mean_rev,data,,실습 7
+ch03.ex7.ok,ch03,5.01,ch03.hjs_items_mean,data,,실습 7
+ch03.ex7.gap,ch03,0.12,ch03.hjs_rev_gap,data,,실습 7
+ch03.mine.n,ch03,566,ch03.svy_n,data,,§3.8
+ch03.chk.60,ch03,60,,fixed,,§3.9 가정 표본 크기 (§3.3 의 60명 설계)
+ch03.chk.500,ch03,500,ch03.panel_ids,data,,§3.9
+ch03.chk.gap,ch03,0.12,ch03.hjs_rev_gap,data,,§3.9

@@ -1,0 +1,25 @@
+{
+ "unit": "apx-e-코드-지도와-설치.md",
+ "blocks": [
+  [
+   30,
+   "import pandas as pd, numpy as np\nfrom scipy import stats\n\ndef load(name, clean=True):                 # 3장 §3.3\n    df = pd.read_csv(f\"data/journey_{name}.csv\")\n    return df[df.attn_1 == 1] if clean and \"attn_1\" in df else df\n\ndef ols(y, X):                              # 14장 §14.2 → (계수, 표준오차, p, R²)\n    y = np.asarray(y, float)\n    X1 = np.column_stack([np.ones(len(y))] + [np.asarray(x, float) for x in X])\n    b, *_ = np.linalg.lstsq(X1, y, rcond=None)\n    resid = y - X1 @ b\n    n, k = X1.shape\n    se = np.sqrt(np.diag(resid @ resid / (n - k) * np.linalg.inv(X1.T @ X1)))\n    p = 2 * stats.t.sf(np.abs(b / se), n - k)\n    r2 = 1 - (resid @ resid) / ((y - y.mean()) @ (y - y.mean()))\n    return b, se, p, r2\n\ndef cohen_d(a, b):                          # 13장 §13.3\n    sp = np.sqrt(((len(a)-1)*a.std(ddof=1)**2 + (len(b)-1)*b.std(ddof=1)**2)\n                 / (len(a)+len(b)-2))\n    return (a.mean() - b.mean()) / sp\n\ndef cronbach(items):                        # 4장 §4.2\n    items = np.asarray(items, float); k = items.shape[1]\n    return k/(k-1) * (1 - items.var(axis=0, ddof=1).sum() / items.sum(axis=1).var(ddof=1))"
+  ],
+  [
+   181,
+   "# ① 데이터 경로. load() 는 \"data/\" 아래를 본다\nimport os\nprint(os.path.exists(\"data/journey_svy.csv\"))     # False 면 폴더 구조부터"
+  ],
+  [
+   187,
+   "# ② 정제 여부. 본문 수치는 전부 정제 후 표본이다\nprint(len(load(\"svy\")), len(load(\"svy\", clean=False)))\n# 566 590"
+  ],
+  [
+   193,
+   "# ③ 한글 글꼴. 그림의 한글이 네모로 나오면\nimport matplotlib.pyplot as plt\nplt.rcParams[\"font.family\"] = \"Malgun Gothic\"     # 맥은 \"AppleGothic\"\nplt.rcParams[\"axes.unicode_minus\"] = False        # 음수 기호가 깨지는 것도 함께 막는다"
+  ],
+  [
+   200,
+   "# ④ 씨앗. 본문 수치를 재현하려면 73, 요동 체험은 아무 수나\nrng = np.random.default_rng(73)"
+  ]
+ ]
+}

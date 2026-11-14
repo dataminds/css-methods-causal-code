@@ -1,0 +1,76 @@
+id,unit,printed,calc,kind,mc_tol,note
+s6.box.icc,s6,.81,,paper,,Rogers 외 2023 연구 2 코더 ICC(absolute agreement) = 0.81 p. 759 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
+s6.box.icc.t1,s6,.81,,paper,,Rogers 외 2023 연구 2 p. 759 (행의 첫 .81)
+s6.box.icc.t2,s6,.81,,paper,,Rogers 외 2023 연구 2 p. 759 (행의 둘째 .81)
+s6.n,s6,200,s6.n_stories,data,,무대 = 코딩표 행 수
+s6.diff.lo,s6,38,s6.present_pct_min,data,,차이표 = 일곱 요소 존재 비율(두 코더 평균 > 0)의 최솟값
+s6.diff.hi,s6,44,s6.present_pct_max,data,,차이표 = 존재 비율 최댓값
+s6.n2,s6,200,s6.n_stories,data,,④
+s6.p.exact,s6,43,s6.exact_pct_p,data,,④ 주인공 정확 일치율
+s6.p.wk,s6,.70,s6.wkappa_p,data,,④ 주인공 가중 카파
+s6.p.uk,s6,.26,s6.kappa_unweighted_p,data,,④ 주인공 무가중(코언) 카파
+s6.t.p,s6,.70,s6.wkappa_p,data,,④ 표
+s6.t.s,s6,.69,s6.wkappa_s,data,,④ 표
+s6.t.q,s6,.70,s6.wkappa_q,data,,④ 표
+s6.t.a,s6,.28,s6.wkappa_a,data,,④ 표
+s6.t.c,s6,.76,s6.wkappa_c,data,,④ 표
+s6.t.t,s6,.77,s6.wkappa_t,data,,④ 표
+s6.t.l,s6,.69,s6.wkappa_l,data,,④ 표
+s6.conv.lo,s6,.60,,fixed,,가중 카파의 관례 수용 기준 범위(저자 설정)
+s6.conv.hi,s6,.70,,fixed,,가중 카파의 관례 수용 기준 범위(저자 설정)
+s6.a.again,s6,.28,s6.wkappa_a,data,,④
+s6.r.tot,s6,.89,s6.total_r7,data,,④ 두 코더 7요소 평균의 상관
+s6.r.fig,s6,.89,s6.total_r7,data,,④ 그림 설명
+s6.a.fig,s6,.28,s6.wkappa_a,data,,④ 그림 설명
+s6.drop.r7,s6,.893,s6.total_r7,data,,④ (b) 7요소 총점 상관
+s6.drop.r6,s6,.914,s6.total_r6,data,,④ (b) 조력자 뺀 6요소
+s6.drop.b7,s6,0.474,s6.b7,data,,④ (b) 7요소 총점 → mil 기울기
+s6.drop.b6,s6,0.469,s6.b6,data,,④ (b) 6요소
+s6.drop.r2_7,s6,.123,s6.r2_7,data,,④ (b) 7요소 R²
+s6.drop.r2_6,s6,.126,s6.r2_6,data,,④ (b) 6요소 R²
+s6.box2.icc,s6,.81,,paper,,Rogers 외 2023 연구 2 p. 759
+s6.box2.t1,s6,.77,,paper,,Rogers 외 2023 연구 4 코더 HJS 신뢰도 α Time 1 = .77 p. 763 ; 출판본 txt 에서 확인
+s6.box2.t2,s6,.75,,paper,,Rogers 외 2023 연구 4 α Time 2 = .75 p. 763
+s6.box3.icc,s6,.81,,paper,,Rogers 외 2023 연구 2 p. 759
+s6.box3.t1,s6,.77,,paper,,Rogers 외 2023 연구 4 p. 763
+s6.box3.t2,s6,.75,,paper,,Rogers 외 2023 연구 4 p. 763
+s6.box3.crit,s6,.70,,fixed,,신뢰도 관례 기준의 예시(저자 설정)
+s6.pres.lo,s6,38,s6.present_pct_min,data,,⑤ 존재 비율 최솟값
+s6.pres.hi,s6,44,s6.present_pct_max,data,,⑤ 존재 비율 최댓값
+s6.ct.r0a,s6,87,s6.ct_t0l0,data,,⑦ 교차표
+s6.ct.r0b,s6,25,s6.ct_t0l1,data,,⑦ 교차표
+s6.ct.r1a,s6,35,s6.ct_t1l0,data,,⑦ 교차표
+s6.ct.r1b,s6,53,s6.ct_t1l1,data,,⑦ 교차표
+s6.chi,s6,28.2,s6.chi2_yates,data,,⑦ 연속성 보정 카이제곱
+s6.chi.p,s6,.001,s6.chi2_p_below_001,data,,문턱 주장 「p < .001」 = p 가 .001 아래면 .001 을 돌려준다 (실제 p = 1.1e−7)
+s6.cond.yes,s6,60,s6.legacy_pct_if_transform,data,,⑦ 변형 있음 중 유산 있음 비율
+s6.cond.no,s6,22,s6.legacy_pct_if_no_transform,data,,⑦ 변형 없음 중 유산 있음 비율
+s6.chi.noy,s6,29.8,s6.chi2_noyates,data,,⑦ 보정 없는 카이제곱
+s6.reg.b,s6,0.47,s6.b7,data,,⑦ 코더 여정 점수 → mil
+s6.reg.p,s6,.001,s6.p7_below_001,data,,문턱 주장 「p < .001」
+s6.reg.r2,s6,.12,s6.r2_7,data,,⑦ R²
+s6.s3r,s6,.63,s6.s3_r_hjs_mil,data,,S3 = 설문판 정제본 566명 r(hjs · mil)
+s6.pilot.lo,s6,10,,fixed,,예비 코딩 비율 권고(저자 설정)
+s6.pilot.hi,s6,20,,fixed,,예비 코딩 비율 권고(저자 설정)
+s6.ex2.exact,s6,28,s6.exact_pct_a,data,,실습 2 조력자 정확 일치율
+s6.ex2.w1,s6,67,s6.within1_pct_a,data,,실습 2 조력자 ±1 일치율 = 133/200 = 66.5% (반올림 경계)
+s6.ex2.klo,s6,.28,s6.wkappa_min,data,,실습 2 가중 카파 최솟값
+s6.ex2.khi,s6,.77,s6.wkappa_max,data,,실습 2 가중 카파 최댓값
+s6.ex2.ka,s6,.28,s6.wkappa_a,data,,실습 2 조력자
+s6.ex2.elo,s6,28,s6.exact_pct_min,data,,실습 2 정확 일치율 최솟값
+s6.ex2.ehi,s6,52,s6.exact_pct_max,data,,실습 2 정확 일치율 최댓값
+s6.ex2.wlo,s6,66,s6.within1_pct_min,data,,실습 2 ±1 일치율 최솟값 = 조력자 66.5% (반올림 경계 ; 같은 수를 앞 문장은 67 로 적었다)
+s6.ex2.whi,s6,96,s6.within1_pct_max,data,,실습 2 ±1 일치율 최댓값
+s6.ex3.b,s6,0.47,s6.b7,data,,실습 3
+s6.ex3.k1,s6,1.00,s6.wkappa_self_min,data,,실습 3 극단값 시험 = 코더 1 을 자기 자신과 견준 가중 카파(일곱 요소 최솟값)
+s6.ex3.k2,s6,1.00,s6.wkappa_self_min,data,,실습 3
+s6.ex4.r7,s6,.893,s6.total_r7,data,,실습 4
+s6.ex4.r6,s6,.914,s6.total_r6,data,,실습 4
+s6.ex4.b7,s6,0.474,s6.b7,data,,실습 4
+s6.ex4.b6,s6,0.469,s6.b6,data,,실습 4
+s6.ex4.r2_7,s6,.123,s6.r2_7,data,,실습 4
+s6.ex4.r2_6,s6,.126,s6.r2_6,data,,실습 4
+s6.ex5.y,s6,28.2,s6.chi2_yates,data,,실습 5
+s6.ex5.n,s6,29.8,s6.chi2_noyates,data,,실습 5
+s6.check.r,s6,.89,s6.total_r7,data,,점검
+s6.read.b,s6,0.43,,paper,,Rogers 외 2023 연구 2 코더 HJS → 삶의 의미 b = 0.43 (SE .12 · t(412) = 3.48) p. 760 ; 출판본 txt 에서 확인

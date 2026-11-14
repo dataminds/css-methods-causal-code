@@ -1,0 +1,5 @@
+# 검증을 통과한 판 (2026-11-14). 다른 판에서 출력 표기가 달라지면 doctest_book.py 가 잡는다.
+numpy==2.4.4
+pandas==3.0.3
+scipy==1.18.0
+matplotlib==3.11.0

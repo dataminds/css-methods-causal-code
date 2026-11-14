@@ -1,0 +1,108 @@
+id,unit,printed,calc,kind,mc_tol,note
+b1.goal.68,b1,68,b1.normal_1sd_pct,data,,표준정규 ±1 SD 안 비율 68.27%
+b1.goal.95,b1,95,b1.normal_2sd_pct,data,,표준정규 ±2 SD 안 비율 95.45%
+b1.goal.997,b1,99.7,b1.normal_3sd_pct,data,,표준정규 ±3 SD 안 비율 99.73%
+b1.s1.half,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
+b1.s1.half2,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
+b1.s1.half3,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
+b1.s1.c100,b1,0.42,b1.coin100,sim,0.15,§B1.1 씨앗 73 · 10번 다음 100번의 앞면 비율 ; R = 이항 기댓값 0.5 (R 자기 난수 한 번은 0.63 이라 3 × √2 × SD 를 넘었다) · 표준편차 √(.25 ÷ 100) = 0.05 → 3 × 0.05 = 0.15
+b1.s1.far,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
+b1.s1.c10000,b1,0.4995,b1.coin10000,sim,0.015,"§B1.1 10,000번 비율 (앞면 4,995개 ; 넷째 자리로 찍어 반올림 경계를 피했다) ; R = 이항 기댓값 0.5 · 표준편차 0.005 → 3 × 0.005 = 0.015"
+b1.s1.c10,b1,0.5,b1.coin10,sim,0.47,§B1.1 씨앗 73 첫 10번 비율 ; R = 이항 기댓값 0.5 · 표준편차 0.158 → 3 × 0.158 ≈ 0.47 (R 대조는 형식뿐)
+b1.s1.c10b,b1,0.5,b1.coin10,sim,0.47,위와 같다
+b1.s2.unif,b1,2.89,b1.unif_sd,sim,0.08,"§B1.2 균등(0, 10) 5,000개 표준편차 ; 이론값 10 ÷ √12 = 2.887 · 몬테카를로 표준편차 0.019 → 0.08"
+b1.s2.expmean,b1,4.95,b1.exp_mean,sim,0.30,"§B1.2 지수(척도 5) 5,000개 평균 ; 이론값 5 · 표준편차 5 ÷ √5000 = 0.071 → 0.30"
+b1.s2.expmed,b1,3.40,b1.exp_median,sim,0.29,§B1.2 지수 중앙값 ; 이론값 5 ln 2 = 3.47 · 몬테카를로 표준편차 0.069 → 0.29
+b1.s2.expskew,b1,1.91,b1.exp_skew,sim,0.47,§B1.2 지수 치우침(scipy.stats.skew) ; 이론값 2 · 몬테카를로 표준편차 0.11 → 0.47
+b1.s2.expmean2,b1,4.95,b1.exp_mean,sim,0.30,위 4.95 와 같다
+b1.s3.rule68,b1,68,b1.normal_1sd_pct,data,,표준정규 ±1 SD 안 68.27%
+b1.s3.rule95,b1,95,b1.normal_2sd_pct,data,,표준정규 ±2 SD 안 95.45%
+b1.s3.rule997,b1,99.7,b1.normal_3sd_pct,data,,표준정규 ±3 SD 안 99.73%
+b1.s3.name68,b1,68,b1.normal_1sd_pct,data,,표준정규 ±1 SD
+b1.s3.name95,b1,95,b1.normal_2sd_pct,data,,표준정규 ±2 SD
+b1.s3.name997,b1,99.7,b1.normal_3sd_pct,data,,표준정규 ±3 SD
+b1.s3.mean,b1,4.89,b1.mil_mean,data,,정제본 mil 평균
+b1.s3.sd,b1,1.25,b1.mil_sd,data,,정제본 mil 표준편차(ddof=1)
+b1.s3.lo1,b1,3.64,b1.mean_minus_sd,data,,평균 − SD
+b1.s3.hi1,b1,6.14,b1.mean_plus_sd,data,,평균 + SD
+b1.s3.obs64,b1,64,b1.within_1sd_pct,data,,정제본 mil 가운데 |값 − 평균| ≤ SD 인 비율 64.3%
+b1.s3.lo2,b1,2.39,b1.mean_minus_2sd,data,,평균 − 2 SD = 2.388
+b1.s3.per100,b1,100,,fixed,,비율을 말하는 분모 (정규 아래 꼬리 2.3% = 100명에 두세 명)
+b1.s3.approx,b1,99.7,b1.normal_3sd_pct,data,,표준정규 ±3 SD
+b1.s3.approx68,b1,68,b1.normal_1sd_pct,data,,표준정규 ±1 SD
+b1.s3.approx95,b1,95,b1.normal_2sd_pct,data,,표준정규 ±2 SD
+b1.s3.z1,b1,0.681,b1.z_within1,sim,0.0063,§B1.3 씨앗 73 표준정규 10만 개 ; 이항 표준편차 √(.683 × .317 ÷ 100000) = 0.0015 → 0.0063
+b1.s3.z2,b1,0.954,b1.z_within2,sim,0.0028,이항 표준편차 0.00066 → 0.0028
+b1.s3.z3,b1,0.997,b1.z_within3,sim,0.0007,이항 표준편차 0.00016 → 0.0007
+b1.s3.z68,b1,68,b1.normal_1sd_pct,data,,표준정규 ±1 SD
+b1.s3.z95,b1,95,b1.normal_2sd_pct,data,,표준정규 ±2 SD
+b1.s3.hi2,b1,7.39,b1.mean_plus_2sd,data,,평균 + 2 SD = 7.395
+b1.s3.top,b1,7,,fixed,,척도 끝값 (1~7 리커트)
+b1.s4.stat30,b1,30,,fixed,,예시 표본 크기 (§B1.4 설계)
+b1.s4.pop,b1,566,b1.svy_n,data,,정제본 사람 수
+b1.s4.draw30,b1,30,,fixed,,§B1.4 설계의 표본 크기
+b1.s4.choice.pop,b1,566,b1.svy_n,data,,정제본 사람 수
+b1.s4.choice.n,b1,30,,fixed,,§B1.4 설계의 표본 크기
+b1.s4.out.pop,b1,566,b1.svy_n,data,,정제본 사람 수
+b1.t1.data.n,b1,566,b1.svy_n,data,,§B1.4 첫 표
+b1.t1.data.sd,b1,1.252,b1.mil_sd,data,,정제본 mil 표준편차(ddof=1)
+b1.t1.data.sk,b1,−0.306,b1.mil_skew,data,,정제본 mil 치우침(scipy.stats.skew = 편향 포함 g1)
+b1.t1.stat.n,b1,30,,fixed,,§B1.4 설계의 표본 크기
+b1.t1.stat.sd,b1,0.222,b1.means_sd30,sim,0.015,"씨앗 73 · 30명 평균 2,000개 표준편차 ; 기댓값 0.222 · 몬테카를로 표준편차 0.0034 (mcsd.py) → 0.015"
+b1.t1.stat.sk,b1,−0.059,b1.means_skew30,sim,0.23,"30명 평균 2,000개 치우침 ; 몬테카를로 표준편차 0.055 → 0.23"
+b1.s4.narrow,b1,30,,fixed,,§B1.4 설계의 표본 크기
+b1.s4.sk.data,b1,−0.31,b1.mil_skew,data,,정제본 mil 치우침 −0.306
+b1.s4.sk.stat,b1,−0.06,b1.means_skew30,sim,0.23,30명 평균 2000개 치우침 −0.059
+b1.s4.n5,b1,5,,fixed,,§B1.4 둘째 표 설계
+b1.s4.n30,b1,30,,fixed,,§B1.4 둘째 표 설계
+b1.s4.n100,b1,100,,fixed,,§B1.4 둘째 표 설계
+b1.t2.data.n,b1,566,b1.svy_n,data,,§B1.4 둘째 표
+b1.t2.data.sd,b1,1.252,b1.mil_sd,data,,정제본 mil 표준편차
+b1.t2.data.sk,b1,−0.306,b1.mil_skew,data,,정제본 mil 치우침
+b1.t2.n5,b1,5,,fixed,,§B1.4 둘째 표 설계
+b1.t2.sd5,b1,0.574,b1.means_sd5,sim,0.036,"씨앗 73 · 5명 평균 2,000개 ; 기댓값 0.557 · 몬테카를로 표준편차 0.0084 → 0.036"
+b1.t2.sk5,b1,−0.200,b1.means_skew5,sim,0.21,5명 평균 치우침 ; 기댓값 −0.14 · 몬테카를로 표준편차 0.049 → 0.21
+b1.t2.n30,b1,30,,fixed,,§B1.4 둘째 표 설계
+b1.t2.sd30,b1,0.222,b1.means_sd30,sim,0.015,30명 평균 2000개 표준편차
+b1.t2.sk30,b1,−0.059,b1.means_skew30,sim,0.23,30명 평균 2000개 치우침
+b1.t2.n100,b1,100,,fixed,,§B1.4 둘째 표 설계
+b1.t2.sd100,b1,0.116,b1.means_sd100,sim,0.008,"100명 평균 2,000개 ; 기댓값 0.114 · 몬테카를로 표준편차 0.0018 → 0.008"
+b1.t2.sk100,b1,−0.048,b1.means_skew100,sim,0.23,100명 평균 치우침 ; 몬테카를로 표준편차 0.055 → 0.23
+b1.s4.left5,b1,5,,fixed,,§B1.4 둘째 표 설계
+b1.s4.near0.30,b1,30,,fixed,,§B1.4 둘째 표 설계
+b1.s4.near0.100,b1,100,,fixed,,§B1.4 둘째 표 설계
+b1.s4.s37.5,b1,−0.091,b1.means_skew5_seed37,sim,0.21,씨앗 37 · 5명 ; R = set.seed(37) 독립 난수 · 몬테카를로 표준편차 0.049 → 0.21
+b1.s4.s37.30,b1,0.002,b1.means_skew30_seed37,sim,0.23,씨앗 37 · 30명 ; 몬테카를로 표준편차 0.055 → 0.23
+b1.s4.s37.100,b1,0.023,b1.means_skew100_seed37,sim,0.23,씨앗 37 · 100명 ; 몬테카를로 표준편차 0.055 → 0.23
+b1.s4.s37.n5,b1,5,,fixed,,§B1.4 설계
+b1.s4.s37.n30,b1,30,,fixed,,§B1.4 설계
+b1.s4.seeddiff,b1,0.1,b1.skew_seed_maxdiff,sim,0.20,씨앗 73 대 37 치우침 차이의 최댓값(세 사람 수 가운데 ; 5명에서 0.109) ; R = 자기 씨앗 73 · 37 · 몬테카를로 평균 0.10 · 표준편차 0.047 → 0.20
+b1.s4.seeddiff.30,b1,30,,fixed,,§B1.4 설계
+b1.s4.seeddiff.100,b1,100,,fixed,,§B1.4 설계
+b1.s4.bigger.n,b1,566,b1.svy_n,data,,정제본 사람 수
+b1.s4.bigger.x10,b1,"5,660",,fixed,,예시 숫자 = 566의 열 배
+b1.s4.se,b1,0.222,b1.means_sd30,sim,0.015,30명 평균 2000개 표준편차
+b1.s4.formula,b1,0.229,b1.se_formula30,data,,1.252 ÷ √30
+b1.s5.cut95,b1,95,,fixed,,설계 = 가운데 95% (0.975 분위)
+b1.s5.cut95b,b1,95,,fixed,,설계 = 가운데 95%
+b1.s5.z,b1,1.96,b1.z975,data,,표준정규 0.975 분위
+b1.s5.t5,b1,2.571,b1.t975_df5,data,,t(5) 0.975 분위
+b1.s5.t200,b1,1.972,b1.t975_df200,data,,t(200) 0.975 분위
+b1.s6.exact68,b1,68,b1.normal_1sd_pct,data,,표준정규 ±1 SD
+b1.s6.exact95,b1,95,b1.normal_2sd_pct,data,,표준정규 ±2 SD
+b1.s6.exact997,b1,99.7,b1.normal_3sd_pct,data,,표준정규 ±3 SD
+b1.s6.z1,b1,0.681,b1.z_within1,sim,0.0063,§B1.3 씨앗 73
+b1.s6.z2,b1,0.954,b1.z_within2,sim,0.0028,§B1.3 씨앗 73
+b1.s6.z3,b1,0.997,b1.z_within3,sim,0.0007,§B1.3 씨앗 73
+b1.ex1.c100,b1,0.42,b1.coin100,sim,0.15,§B1.1 100번 비율 ; R = 이항 기댓값
+b1.ex1.lo,b1,0.4,b1.coin100_lo95,data,,100번 비율의 가운데 95% 범위 하한 0.5 − 1.96 × 0.05 = 0.402 (정규 근사)
+b1.ex1.hi,b1,0.6,b1.coin100_hi95,data,,상한 0.598
+b1.ex1.never,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
+b1.ex2.mean,b1,4.95,b1.exp_mean,sim,0.30,§B1.2 지수 평균
+b1.ex2.med,b1,3.40,b1.exp_median,sim,0.29,§B1.2 지수 중앙값
+b1.ex3.sqrt10,b1,3.2,b1.sqrt10,data,,√10 = 3.16
+b1.chk.half,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
+b1.chk.half2,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
+b1.chk.rule68,b1,68,b1.normal_1sd_pct,data,,표준정규 ±1 SD
+b1.chk.rule95,b1,95,b1.normal_2sd_pct,data,,표준정규 ±2 SD
+b1.chk.rule997,b1,99.7,b1.normal_3sd_pct,data,,표준정규 ±3 SD

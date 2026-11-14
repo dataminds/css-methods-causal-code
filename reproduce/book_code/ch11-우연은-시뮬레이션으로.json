@@ -1,0 +1,45 @@
+{
+ "unit": "ch11-우연은-시뮬레이션으로.md",
+ "blocks": [
+  [
+   95,
+   "import numpy as np\nimport pandas as pd\n\nsvy = load(\"svy\")                      # 3장의 정제 함수 (566명)\npop = svy[\"mil\"].values                # 566명을 모집단으로 선언\n\nrng = np.random.default_rng(73)\nfor _ in range(3):\n    print(round(rng.choice(pop, size=50, replace=False).mean(), 3), end=\" \")\n# 4.82 5.135 4.69"
+  ],
+  [
+   116,
+   "rng = np.random.default_rng(73)\nmeans = np.array([rng.choice(pop, size=50, replace=False).mean()\n                  for _ in range(1000)])          # 50명 표본 1,000개의 평균\nprint(len(means), round(means.min(), 3), round(means.max(), 3))\n# 1000 4.33 5.435"
+  ],
+  [
+   132,
+   "print(round(means.mean(), 3), round(means.std(ddof=1), 3))\n# 4.892 0.175"
+  ],
+  [
+   143,
+   "print(round(pop.std(ddof=1), 4), round(pop.std(), 4))   # n−1 로 · n 으로\n# 1.2518 1.2507"
+  ],
+  [
+   164,
+   "print(round(pop.std(ddof=1), 2), round(means.std(ddof=1), 3))\n# 1.25 0.175"
+  ],
+  [
+   196,
+   "print(round(pop.std(ddof=1) / 50 ** 0.5, 3))\n# 0.177"
+  ],
+  [
+   205,
+   "for n in (25, 100):\n    rng = np.random.default_rng(73)\n    m = np.array([rng.choice(pop, size=n, replace=False).mean()\n                  for _ in range(1000)])\n    print(n, round(m.std(ddof=1), 3), round(pop.std(ddof=1) / n ** 0.5, 3))\n# 25 0.235 0.25\n# 100 0.116 0.125"
+  ],
+  [
+   222,
+   "for n in (25, 50, 200):\n    rng = np.random.default_rng(73)\n    m = np.array([rng.choice(pop, size=n, replace=False).mean()\n                  for _ in range(1000)])\n    print(n, round(m.std(ddof=1), 3), round(pop.std(ddof=1) / n ** 0.5, 3))\n# 25 0.235 0.25\n# 50 0.175 0.177\n# 200 0.073 0.089"
+  ],
+  [
+   241,
+   "rng = np.random.default_rng(73)\nskew_pop = rng.exponential(1.0, 20000)          # 오른쪽으로 길게 끌린 세계\n\nrng2 = np.random.default_rng(73)\nsm = np.array([rng2.choice(skew_pop, size=40, replace=False).mean()\n               for _ in range(2000)])\nprint(round(pd.Series(skew_pop).skew(), 2), round(pd.Series(sm).skew(), 2))\n# 1.94 0.38"
+  ],
+  [
+   284,
+   "flat = np.full(566, 5.0)                     # 566명 전원이 5점\nrng = np.random.default_rng(73)\nmf = np.array([rng.choice(flat, size=50, replace=False).mean()\n               for _ in range(1000)])\nprint(round(mf.std(ddof=1), 3))\n# 0.0"
+  ]
+ ]
+}

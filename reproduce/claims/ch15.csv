@@ -1,0 +1,162 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch15.first.beta,ch15,.42,,paper,,Rogers 외 2023 연구 1 p. 758 (출판본 원문 raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt)
+ch15.first.se,ch15,.05,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.df,ch15,581,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.t,ch15,8.55,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.r2a,ch15,.59,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.r2b,ch15,.63,,paper,,Rogers 외 2023 연구 1 p. 758 (OSF 재계산 .636 = 원문은 버림 ; book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md)
+ch15.first.pct,ch15,7.63,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.tab.b1,ch15,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758
+ch15.first.tab.b2,ch15,.42,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.tab.b1b,ch15,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758 (같은 행의 둘째 .74)
+ch15.first.tab.b2b,ch15,.42,,paper,,Rogers 외 2023 연구 1 p. 758 (같은 행의 둘째 .42)
+ch15.first.tab.r2a,ch15,.59,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.tab.r2b,ch15,.63,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.tab.gain,ch15,.04,ch15.paper_adjr2_gain_rounded,data,,보고값 산술 .63 − .59
+ch15.first.tab.pct,ch15,7.63,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.first.tab.gain2,ch15,.04,ch15.paper_adjr2_gain_rounded,data,,보고값 산술 .63 − .59
+ch15.first.tab.osfgain,ch15,.045,,paper,,Rogers 외 2023 OSF 공개 자료 재계산 조정 R² .591046 → .636096 (차 .0451) ; book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md §2
+ch15.1.tab.alone,ch15,1.70,ch15.zg_b_alone,sim,0.5,§15.1 저그마을(씨앗 73 · 400마리 ; make_simpson) 통제 없는 기울기 (파이썬 1.6994). R 독립 난수 · 파이썬 500 번 모의 표준편차 .116 → 3 × √2 × .116 ≈ .49
+ch15.1.tab.dose,ch15,−1.69,ch15.zg_b_dose,sim,0.6,§15.1 성별 통제 복용량 계수 ; 모의 표준편차 .139 → .59
+ch15.1.tab.sex,ch15,20.14,ch15.zg_b_sex,sim,2.8,§15.1 성별 계수 ; 모의 표준편차 .652 → 2.77
+ch15.1.common,ch15,−1.69,ch15.zg_b_dose,sim,0.6,§15.1 ; 허용 근거 = ch15.1.tab.dose
+ch15.1.ch8.f,ch15,−1.72,ch15.zg_slope_f,sim,0.85,§15.1 암컷 층 기울기 ; 모의 표준편차 .199 → .85
+ch15.1.ch8.m,ch15,−1.66,ch15.zg_slope_m,sim,0.83,§15.1 수컷 층 기울기 ; 모의 표준편차 .195 → .83
+ch15.1.cmp.f,ch15,−1.716,ch15.zg_slope_f,sim,0.85,§15.1 ; 허용 근거 = ch15.1.ch8.f
+ch15.1.cmp.m,ch15,−1.660,ch15.zg_slope_m,sim,0.83,§15.1 ; 허용 근거 = ch15.1.ch8.m
+ch15.1.cmp.mean,ch15,−1.688,ch15.zg_slope_mean,sim,0.6,§15.1 ; 모의 표준편차 .140 → .59
+ch15.1.cmp.ctrl,ch15,−1.687,ch15.zg_b_dose,sim,0.6,§15.1 ; 허용 근거 = ch15.1.tab.dose
+ch15.1.cmp.diff,ch15,0.001,ch15.zg_mean_minus_ctrl_rounded,sim,0.05,§15.1 = 셋째 자리로 반올림한 두 값 −1.688 · −1.687 의 차이 (반올림 전 차이는 0.0010) ; 모의 표준편차 .011 → .047
+ch15.1.n.f,ch15,204,ch15.zg_n_f,sim,43,§15.1 암컷 수 ; 이항 표준편차 10 → 3 × √2 × 10 ≈ 42
+ch15.1.n.m,ch15,196,ch15.zg_n_m,sim,43,§15.1 수컷 수 ; 허용 근거 = ch15.1.n.f
+ch15.1.flip.alone,ch15,1.70,ch15.zg_b_alone,sim,0.5,§15.1 ; 허용 근거 = ch15.1.tab.alone
+ch15.1.flip.dose,ch15,−1.69,ch15.zg_b_dose,sim,0.6,§15.1
+ch15.1.true.dose,ch15,−1.5,,fixed,,참값으로 정한 복용량 효과 (make_simpson 의 −1.5 * dose)
+ch15.1.true.sex,ch15,20,,fixed,,참값으로 정한 성별 차이 (make_simpson 의 20 * sex)
+ch15.1.rec.dose,ch15,−1.69,ch15.zg_b_dose,sim,0.6,§15.1
+ch15.1.rec.true,ch15,−1.5,,fixed,,참값으로 정한 복용량 효과
+ch15.1.rec.sex,ch15,20.14,ch15.zg_b_sex,sim,2.8,§15.1 ; 허용 근거 = ch15.1.tab.sex
+ch15.1.rec.truesex,ch15,20,,fixed,,참값으로 정한 성별 차이 20
+ch15.1.n400,ch15,400,,fixed,,모의시행 설계 = 400마리
+ch15.2.ch8.conf.raw,ch15,0.89,ch15.strat_conf_raw,sim,0.24,8장 §8.4 나눠 보기 (씨앗 73 · 2000명 · 열 층). R 독립 난수 · 파이썬 300 번 모의 표준편차 .057 → 3 × √2 × .057 ≈ .24
+ch15.2.ch8.conf.ctrl,ch15,0.10,ch15.strat_conf_ctrl,sim,0.19,8장 §8.4 ; 모의 표준편차 .043 → .18
+ch15.2.ch8.chain.raw,ch15,1.02,ch15.strat_chain_raw,sim,0.25,8장 §8.4 ; 모의 표준편차 .057 → .24
+ch15.2.ch8.chain.ctrl,ch15,0.03,ch15.strat_chain_ctrl,sim,0.19,8장 §8.4 ; 모의 표준편차 .044 → .19
+ch15.2.ch8.coll.raw,ch15,−0.11,ch15.strat_coll_raw,sim,0.18,8장 §8.4 ; 모의 표준편차 .042 → .18
+ch15.2.ch8.coll.ctrl,ch15,−0.58,ch15.strat_coll_ctrl,sim,0.15,8장 §8.4 ; 모의 표준편차 .035 → .15
+ch15.2.arrow.8,ch15,.8,,fixed,,모의시행 설계 = 8장 사슬의 화살표 세기
+ch15.2.arrow.7,ch15,.7,,fixed,,모의시행 설계 = 15장 사슬의 화살표 세기
+ch15.2.conf.raw,ch15,0.43,ch15.reg_conf_raw,sim,0.09,§15.2 회귀판 (씨앗 73 · 2000명). R 독립 난수 · 파이썬 300 번 모의 표준편차 .021 → 3 × √2 × .021 ≈ .088
+ch15.2.conf.ctrl,ch15,0.03,ch15.reg_conf_ctrl,sim,0.1,§15.2 ; 모의 표준편차 .023 → .097
+ch15.2.chain.true,ch15,0.49,ch15.chain_true,data,,설계 산술 .7 × .7
+ch15.2.chain.true.a,ch15,.7,,fixed,,모의시행 설계 = 화살표 세기
+ch15.2.chain.true.b,ch15,.7,,fixed,,모의시행 설계 = 화살표 세기
+ch15.2.chain.raw,ch15,0.49,ch15.reg_chain_raw,sim,0.12,§15.2 ; 모의 표준편차 .027 → .113
+ch15.2.chain.ctrl,ch15,−0.04,ch15.reg_chain_ctrl,sim,0.12,§15.2 ; 모의 표준편차 .027 → .115
+ch15.2.coll.raw,ch15,−0.06,ch15.reg_coll_raw,sim,0.09,§15.2 ; 모의 표준편차 .020 → .084
+ch15.2.coll.ctrl,ch15,−0.43,ch15.reg_coll_ctrl,sim,0.09,§15.2 ; 모의 표준편차 .019 → .082
+ch15.2.after.conf,ch15,0.03,ch15.reg_conf_ctrl,sim,0.1,§15.2
+ch15.2.after.chain,ch15,−0.04,ch15.reg_chain_ctrl,sim,0.12,§15.2
+ch15.2.after.coll,ch15,−0.43,ch15.reg_coll_ctrl,sim,0.09,§15.2
+ch15.3.alone,ch15,1.70,ch15.zg_b_alone,sim,0.5,§15.3 ; 허용 근거 = ch15.1.tab.alone
+ch15.3.range.e0,ch15,−1.66,ch15.bias_e0,sim,0.35,§15.3 성별 → 기력 다리 0 (make2 · 씨앗 73) ; 모의 표준편차 .081 → .34
+ch15.3.range.e20,ch15,1.70,ch15.bias_e20,sim,0.5,§15.3 다리 20 = 원래 세계 ; 허용 근거 = ch15.1.tab.alone
+ch15.3.true,ch15,−1.5,,fixed,,참값으로 정한 복용량 효과
+ch15.3.ends.e0,ch15,−1.66,ch15.bias_e0,sim,0.35,§15.3
+ch15.3.ends.e20,ch15,1.70,ch15.bias_e20,sim,0.5,§15.3
+ch15.3.flip,ch15,1.70,ch15.bias_e20,sim,0.5,§15.3
+ch15.3.true2,ch15,−1.5,,fixed,,참값으로 정한 복용량 효과
+ch15.3.e10,ch15,0.02,ch15.bias_e10,sim,0.39,§15.3 다리 10 ; 모의 표준편차 .091 → .39
+ch15.3.true3,ch15,−1.5,,fixed,,참값으로 정한 복용량 효과
+ch15.4.gen.alpha,ch15,.83,ch15.gen_alpha,data,,gen 세 문항 크론바흐 알파
+ch15.4.tab.b,ch15,0.98,ch15.b_hjs,data,,§15.4 표
+ch15.4.tab.bgen,ch15,0.86,ch15.b_hjs_gen,data,,§15.4 표
+ch15.4.drop.b,ch15,0.98,ch15.b_hjs,data,,§15.4
+ch15.4.drop.bgen,ch15,0.86,ch15.b_hjs_gen,data,,§15.4
+ch15.4.ask,ch15,0.86,ch15.b_hjs_gen,data,,§15.4
+ch15.4.answer,ch15,0.98,ch15.b_hjs,data,,§15.4
+ch15.4.bias,ch15,0.114,ch15.b_gen_drop,data,,§15.4 = 0.978 − 0.864
+ch15.4.which.b,ch15,0.98,ch15.b_hjs,data,,§15.4
+ch15.4.which.bgen,ch15,0.86,ch15.b_hjs_gen,data,,§15.4
+ch15.4.age.b,ch15,0.978,ch15.b_hjs,data,,§15.4
+ch15.4.age.bage,ch15,0.977,ch15.b_hjs_age,data,,§15.4 age 통제
+ch15.4.age.bgen,ch15,0.864,ch15.b_hjs_gen,data,,§15.4
+ch15.4.r.hg,ch15,.42,ch15.r_hjs_gen,data,,§15.4 상관
+ch15.4.r.mg,ch15,.41,ch15.r_mil_gen,data,,§15.4 상관
+ch15.4.r.ha,ch15,.05,ch15.r_hjs_age,data,,§15.4 상관
+ch15.4.twin.b,ch15,0.98,ch15.b_hjs,data,,§15.4 쌍둥이 척도
+ch15.4.twin.bh,ch15,0.63,ch15.twin_b_hjs,sim,1.1,§15.4 쌍둥이 척도(씨앗 73 잡음 SD .15) 를 함께 넣은 hjs 계수 (파이썬 .627). R 독립 난수 · 파이썬 500 번 모의 표준편차 .259 → 3 × √2 × .259 ≈ 1.10 (공선성 그 자체 때문에 대조가 약하다)
+ch15.4.twin.bt,ch15,0.35,ch15.twin_b_twin,sim,1.1,§15.4 twin 계수 ; 모의 표준편차 .258 → 1.10
+ch15.4.twin.sum,ch15,0.98,ch15.twin_b_sum,sim,0.01,§15.4 두 계수의 합 (파이썬 .9808) ; 모의 표준편차 .0022 → .0093
+ch15.4.twin.se1,ch15,0.051,ch15.se_hjs,data,,§15.4 단독 모형 hjs 표준오차
+ch15.4.twin.se2,ch15,0.28,ch15.twin_se,sim,0.04,§15.4 쌍둥이 모형 hjs 표준오차 (파이썬 .2789) ; 모의 표준편차 .0088 → .037
+ch15.4.box.beta,ch15,.42,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.4.box.r2a,ch15,.59,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.4.box.r2b,ch15,.63,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.4.box.df,ch15,581,ch15.paper_df,data,,논문 상자 ③ 산술 592 − 10 − 1
+ch15.4.box.n,ch15,592,,paper,,Rogers 외 2023 연구 1 분석 표본 N = 592 (p. 756 Participants 절 · 사전 등록 제외 뒤)
+ch15.4.box.k,ch15,10,,paper,,Rogers 외 2023 연구 1 예측변수 수 = 공변인 아홉 + HJS (p. 758)
+ch15.4.box.gain,ch15,.04,ch15.paper_adjr2_gain_rounded,data,,보고값 산술 .63 − .59
+ch15.4.box.base,ch15,.59,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.4.box.ratio,ch15,6.8,ch15.paper_ratio_rounded_pct,data,,보고값 산술 (.63 − .59) ÷ .59 = 6.78%
+ch15.4.box.rep,ch15,7.63,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.4.box.osf1,ch15,.5910,,paper,,Rogers 외 2023 OSF 공개 자료 재계산 조정 R² .591046 ; book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md §2
+ch15.4.box.osf2,ch15,.6361,,paper,,Rogers 외 2023 OSF 공개 자료 재계산 조정 R² .636096 ; 같은 문서 §2
+ch15.4.box.osfpct,ch15,7.63,ch15.paper_osf_ratio_pct,data,,산술 (.6361 − .5910) ÷ .5910 = 7.631%
+ch15.4.box.gain2,ch15,.04,ch15.paper_adjr2_gain_rounded,data,,보고값 산술 .63 − .59
+ch15.4.box.osfgain,ch15,.045,,paper,,Rogers 외 2023 OSF 공개 자료 재계산 (.636096 − .591046 = .0451) ; book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md §2
+ch15.4.box.osf3,ch15,.6361,,paper,,Rogers 외 2023 OSF 공개 자료 재계산 ; 같은 문서 §2
+ch15.4.box.round,ch15,.64,ch15.paper_osf_new_2dp,data,,산술 round(.6361 · 2)
+ch15.4.box.trunc,ch15,.63,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.4.box.beta2,ch15,.42,,paper,,Rogers 외 2023 연구 1 p. 758
+ch15.5.can,ch15,0.98,ch15.b_hjs,data,,§15.5 문장 예
+ch15.5.sens.hi,ch15,0.98,ch15.sens_first4_max,data,,§15.5 민감도 표 앞 넷의 최댓값 (0.978)
+ch15.5.sens.lo,ch15,0.96,ch15.sens_first4_min,data,,§15.5 앞 넷의 최솟값 (0.957)
+ch15.5.swl,ch15,0.75,ch15.sens_swl,data,,§15.5 swl 포함 모형 (0.746)
+ch15.5.swl2,ch15,0.75,ch15.sens_swl,data,,§15.5
+ch15.5.swl3,ch15,0.75,ch15.sens_swl,data,,§15.5
+ch15.5.four,ch15,0.98,ch15.b_hjs,data,,§15.5 네 물음
+ch15.5.four.tab,ch15,0.98,ch15.b_hjs,data,,§15.5 네 물음 표 머리
+ch15.5.exp,ch15,0.283,ch15.exp_diff,data,,12장 §12.5 실험판 평균 차이
+ch15.6.b,ch15,0.978,ch15.b_hjs,data,,§15.6
+ch15.6.r,ch15,.63,ch15.r_hjs_mil,data,,§15.6
+ch15.6.rho3,ch15,.3,,fixed,,예시로 고른 ρ 값
+ch15.6.rho5,ch15,.5,,fixed,,예시로 고른 ρ 값
+ch15.6.rho7,ch15,.7,,fixed,,예시로 고른 ρ 값
+ch15.6.ans,ch15,0.79,ch15.rho_null,data,,§15.6 √r = √.6288
+ch15.6.ans2,ch15,.79,ch15.rho_null,data,,§15.6
+ch15.6.ans3,ch15,.79,ch15.rho_null,data,,§15.6
+ch15.6.tab.gen.h,ch15,.42,ch15.r_hjs_gen,data,,§15.6 표
+ch15.6.tab.gen.m,ch15,.41,ch15.r_mil_gen,data,,§15.6 표
+ch15.6.tab.swl.h,ch15,.38,ch15.r_hjs_swl,data,,§15.6 표
+ch15.6.tab.swl.m,ch15,.54,ch15.r_mil_swl,data,,§15.6 표
+ch15.6.tab.flr.h,ch15,.39,ch15.r_hjs_flr,data,,§15.6 표
+ch15.6.tab.flr.m,ch15,.60,ch15.r_mil_flr,data,,§15.6 표
+ch15.6.tab.u.h,ch15,.79,ch15.rho_null,data,,§15.6 표 (여정 지각과)
+ch15.6.tab.u.m,ch15,.79,ch15.rho_null,data,,§15.6 표 (삶의 의미와 ; 같은 ρ)
+ch15.6.max,ch15,.60,ch15.r_mil_flr,data,,§15.6
+ch15.6.need,ch15,.79,ch15.rho_null,data,,§15.6
+ch15.6.tmpl.u,ch15,.79,ch15.rho_null,data,,§15.6 판형 문장
+ch15.6.tmpl.max,ch15,.60,ch15.r_mil_flr,data,,§15.6 판형 문장
+ch15.7.gen,ch15,0.86,ch15.b_hjs_gen,data,,§15.7
+ch15.7.b,ch15,0.98,ch15.b_hjs,data,,§15.7
+ch15.7.right,ch15,0.98,ch15.b_hjs,data,,§15.7
+ch15.8.ex1.f,ch15,−1.716,ch15.zg_slope_f,sim,0.85,실습 1 ; 허용 근거 = ch15.1.ch8.f
+ch15.8.ex1.m,ch15,−1.660,ch15.zg_slope_m,sim,0.83,실습 1
+ch15.8.ex1.mean,ch15,−1.688,ch15.zg_slope_mean,sim,0.6,실습 1
+ch15.8.ex1.ctrl,ch15,−1.687,ch15.zg_b_dose,sim,0.6,실습 1
+ch15.8.ex1.nf,ch15,204,ch15.zg_n_f,sim,43,실습 1 ; 허용 근거 = ch15.1.n.f
+ch15.8.ex1.nm,ch15,196,ch15.zg_n_m,sim,43,실습 1
+ch15.8.ex2.gen,ch15,0.864,ch15.b_hjs_gen,data,,실습 2
+ch15.8.ex2.age,ch15,0.977,ch15.b_hjs_age,data,,실습 2
+ch15.8.ex2.r,ch15,.05,ch15.r_hjs_age,data,,실습 2 통과 기준
+ch15.8.ex3,ch15,1.70,ch15.zg_b_alone,sim,0.5,실습 3 ; 허용 근거 = ch15.1.tab.alone
+ch15.8.ex4.lo,ch15,0.96,ch15.sens_first4_min,data,,실습 4
+ch15.8.ex4.hi,ch15,0.98,ch15.sens_first4_max,data,,실습 4
+ch15.8.ex4.swl,ch15,0.75,ch15.sens_swl,data,,실습 4
+ch15.9.b,ch15,0.98,ch15.b_hjs,data,,§15.9 점검
+ch15.9.bgen,ch15,0.86,ch15.b_hjs_gen,data,,§15.9 점검
+ch15.9.twin.bh,ch15,0.63,ch15.twin_b_hjs,sim,1.1,§15.9 ; 허용 근거 = ch15.4.twin.bh
+ch15.9.twin.bt,ch15,0.35,ch15.twin_b_twin,sim,1.1,§15.9
+ch15.9.twin.se1,ch15,0.051,ch15.se_hjs,data,,§15.9
+ch15.9.twin.se2,ch15,0.28,ch15.twin_se,sim,0.04,§15.9

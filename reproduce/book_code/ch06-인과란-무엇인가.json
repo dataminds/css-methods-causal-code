@@ -1,0 +1,17 @@
+{
+ "unit": "ch06-인과란-무엇인가.md",
+ "blocks": [
+  [
+   82,
+   "rng = np.random.default_rng(73)\nhits, biggest = 0, 0\nfor _ in range(20):\n    a, b = rng.normal(0, 1, 30), rng.normal(0, 1, 30)\n    r = np.corrcoef(a, b)[0, 1]\n    t = abs(r) * np.sqrt(28 / (1 - r ** 2))\n    hits += 2 * stats.t.sf(t, 28) < .05\n    biggest = max(biggest, abs(r))\nprint(hits, round(biggest, 2))\n# 1 0.42"
+  ],
+  [
+   103,
+   "rng = np.random.default_rng(73)\nA = rng.normal(0, 1, 500); B = .6 * A + rng.normal(0, 1, 500)      # A → B 로 지음\nB2 = rng.normal(0, 1, 500); A2 = .6 * B2 + rng.normal(0, 1, 500)   # B → A 로 지음\nprint(round(np.corrcoef(A, B)[0, 1], 2), round(np.corrcoef(A2, B2)[0, 1], 2))\n# 0.55 0.48"
+  ],
+  [
+   135,
+   "rng = np.random.default_rng(73)\ny0 = rng.normal(60, 8, 8).round(1)              # 안 먹은 세계의 기력\neff = rng.normal(-6, 3, 8).round(1)             # 그 사람의 개인 효과\ny1 = (y0 + eff).round(1)                        # 먹은 세계의 기력\n\nfor i in range(4):\n    print(i + 1, y0[i], y1[i], round(y1[i] - y0[i], 1))\nprint(\"평균\", round(eff.mean(), 2))\n# 1 51.3 41.6 -9.7\n# 2 66.2 63.5 -2.7\n# 3 56.9 46.1 -10.8\n# 4 62.4 51.6 -10.8\n# 평균 -6.75"
+  ]
+ ]
+}

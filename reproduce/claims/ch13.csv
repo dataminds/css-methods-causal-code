@@ -1,0 +1,285 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch13.power_190_pct.1,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.fixed.1,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.power_190_pct.2,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.paper.1,ch13,5.14,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.2,ch13,1.40,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.3,ch13,4.83,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.4,ch13,1.42,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.5,ch13,378,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.6,ch13,2.16,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.7,ch13,.031,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.8,ch13,.22,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.9,ch13,.31,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.10,ch13,.12,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.fixed.2,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.paper.11,ch13,.08,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.12,ch13,.53,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.13,ch13,.44,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.paper.14,ch13,.80,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.paper.15,ch13,.22,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.rg_diff.1,ch13,0.31,ch13.rg_diff,data,,Rogers 보고 평균 5.14 − 4.83
+ch13.rg_sd_pooled.1,ch13,1.4,ch13.rg_sd_pooled,data,,Rogers 보고 SD 1.40 · 1.42 의 합동(같은 크기)
+ch13.paper.16,ch13,0.22,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.rg_ps_pct.1,ch13,56%,ch13.rg_ps_pct,data,,Φ(.22/√2) = 우월 확률
+ch13.fixed.3,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.paper.17,ch13,.08,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.18,ch13,.53,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.fixed.4,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.paper.19,ch13,.08,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.20,ch13,.53,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.paper.21,ch13,.80,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.paper.22,ch13,.44,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.paper.23,ch13,.44,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.rg_diff.2,ch13,0.31,ch13.rg_diff,data,,Rogers 보고 평균 5.14 − 4.83
+ch13.paper.24,ch13,2.16,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.rg_se.1,ch13,0.14,ch13.rg_se,data,,0.31 ÷ t 2.16
+ch13.fixed.5,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.rg_ci_lo.1,ch13,0.03,ch13.rg_ci_lo,data,,0.31 − t(378) 97.5% × SE
+ch13.rg_ci_hi.1,ch13,0.59,ch13.rg_ci_hi,data,,0.31 + t(378) 97.5% × SE
+ch13.rg_ci_lo.2,ch13,0.03,ch13.rg_ci_lo,data,,0.31 − t(378) 97.5% × SE
+ch13.rg_ci_hi.2,ch13,0.59,ch13.rg_ci_hi,data,,0.31 + t(378) 97.5% × SE
+ch13.paper.25,ch13,.4,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.paper.26,ch13,.80,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.paper.27,ch13,.44,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.paper.28,ch13,.80,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.paper.29,ch13,.22,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.rg_n_for_44.1,ch13,83,ch13.rg_n_for_44,data,,d .44 를 검정력 .80 으로 잡는 최소 집단당 n (비중심 t ; R = power.t.test)
+ch13.paper.30,ch13,.44,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80 ; 전 연구 .44 이상 검정력 ≥ .80) ; 같은 파일로 확인
+ch13.rg_pw_44_83.1,ch13,.80,ch13.rg_pw_44_83,data,,집단당 83명 · d .44 의 검정력
+ch13.rg_n_per.1,ch13,190,ch13.rg_n_per,data,,(378 + 2) ÷ 2
+ch13.paper.31,ch13,378,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.rg_n_total.1,ch13,380,ch13.rg_n_total,data,,378 + 2
+ch13.paper.32,ch13,381,,paper,,Rogers et al. (2023) 연구 5 최종 표본 381명 p. 764 (같은 파일 ; book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md 4b)
+ch13.fixed.6,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
+ch13.rg_mdes_190.1,ch13,.29,ch13.rg_mdes_190,data,,집단당 190명에서 검정력 .80 의 최소 검출 d
+ch13.paper.33,ch13,.22,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.pw_22_190.1,ch13,.57,ch13.pw_22_190,data,,d .22 · 집단당 190명 검정력 (해석)
+ch13.power_190_pct.3,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.fixed.7,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
+ch13.p_t.1,ch13,.03,ch13.p_t,data,,등분산 t 검정 p (12장 p .03)
+ch13.obs.1,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.obs.2,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.n_clean.1,ch13,366,ch13.n_clean,data,,정제본 인원
+ch13.obs.3,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.fixed.8,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.obs.4,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.n_t.1,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.n_t.2,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.fixed.9,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.10,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.11,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.n_t.3,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.n_t.4,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.fixed.12,ch13,2.5,,fixed,,95% 구간의 아래 자르는 백분위 ; 정의
+ch13.fixed.13,ch13,97.5,,fixed,,95% 구간의 위 자르는 백분위 ; 정의
+ch13.fixed.14,ch13,2.5%,,fixed,,백분위 ; 정의
+ch13.fixed.15,ch13,97.5%,,fixed,,백분위 ; 정의
+ch13.fixed.16,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.17,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.boot_mean.1,ch13,0.285,ch13.boot_mean,sim,0.0078,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 평균 ; mc_tol = 3√2 × 0.13/√5000"
+ch13.obs.5,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.boot_sd.1,ch13,0.130,ch13.boot_sd,sim,0.0055,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; SD ; mc_tol = 3√2 × 0.13/√10000"
+ch13.perm_sd.1,ch13,0.130,ch12.perm_sd,sim,0.0055,12장 §12.2 뒤섞기 영분포 SD (ch12 계산을 그대로 쓴다)
+ch13.boot_width.1,ch13,0.51,ch13.boot_width,sim,0.0294,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 구간 폭 ; mc_tol = 3√2 × √2 × 0.0049"
+ch13.boot_lo.1,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.1,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.p_t.2,ch13,.03,ch13.p_t,data,,등분산 t 검정 p (12장 p .03)
+ch13.fixed.18,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.boot_lo.2,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.2,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.fixed.19,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.20,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.boot_lo.3,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.3,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.fixed.21,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.22,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.z975.1,ch13,1.96,ch13.z975,data,,표준정규 97.5% 지점
+ch13.z975.2,ch13,1.96,ch13.z975,data,,표준정규 97.5% 지점
+ch13.fixed.23,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.24,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.25,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.26,ch13,100,,fixed,,표본 · 구간 개수 ; 설계
+ch13.cover.1,ch13,96,ch13.cover,sim,9.2466,§13.2 커버리지 (씨앗 73 · 50명 표본 100개) ; R 자기 난수 ; mc_tol = 3√2 × √(100 × .95 × .05)
+ch13.fixed.27,ch13,100,,fixed,,표본 · 구간 개수 ; 설계
+ch13.cover.2,ch13,96,ch13.cover,sim,9.2466,§13.2 커버리지 (씨앗 73 · 50명 표본 100개) ; R 자기 난수 ; mc_tol = 3√2 × √(100 × .95 × .05)
+ch13.cover_miss.1,ch13,4,ch13.cover_miss,sim,9.2466,100 − 커버리지 (같은 모의시행)
+ch13.fixed.28,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.29,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.cover.3,ch13,96,ch13.cover,sim,9.2466,§13.2 커버리지 (씨앗 73 · 50명 표본 100개) ; R 자기 난수 ; mc_tol = 3√2 × √(100 × .95 × .05)
+ch13.z975.3,ch13,1.96,ch13.z975,data,,표준정규 97.5% 지점
+ch13.fixed.30,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.31,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.z975.4,ch13,1.96,ch13.z975,data,,표준정규 97.5% 지점
+ch13.z975.5,ch13,1.96,ch13.z975,data,,표준정규 97.5% 지점
+ch13.fixed.32,ch13,50,,fixed,,표본 크기 50 ; 설계
+ch13.t975_49.1,ch13,2.01,ch13.t975_49,data,,t(49) 97.5% 지점
+ch13.fixed.33,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.t975_49.2,ch13,2.01,ch13.t975_49,data,,t(49) 97.5% 지점
+ch13.cover_t.1,ch13,96,ch13.cover_t,sim,9.2466,1.96 대신 t(49) 값으로 같은 모의시행
+ch13.sd_t.1,ch13,1.18,ch13.sd_t,data,,개입 mil SD
+ch13.sd_c.1,ch13,1.27,ch13.sd_c,data,,통제 mil SD
+ch13.n_t.5,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.sd_t.2,ch13,1.18,ch13.sd_t,data,,개입 mil SD
+ch13.sd_c.2,ch13,1.27,ch13.sd_c,data,,통제 mil SD
+ch13.n_t.6,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.n_t.7,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.se_rounded_sd.1,ch13,0.128,ch13.se_rounded_sd,data,,본문 식 √(1.18²/183 + 1.27²/183)
+ch13.z975.6,ch13,1.96,ch13.z975,data,,표준정규 97.5% 지점
+ch13.obs.6,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.se.1,ch13,0.128,ch13.se,data,,두 평균 차이의 표준오차
+ch13.boot_sd.2,ch13,0.130,ch13.boot_sd,sim,0.0055,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; SD ; mc_tol = 3√2 × 0.13/√10000"
+ch13.ci_lo.1,ch13,0.03,ch13.ci_lo,data,,공식 구간 아래끝 = 차이 − 1.96 SE
+ch13.ci_hi.1,ch13,0.53,ch13.ci_hi,data,,공식 구간 위끝 = 차이 + 1.96 SE
+ch13.boot_lo.4,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.4,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.obs.7,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.se.2,ch13,0.128,ch13.se,data,,두 평균 차이의 표준오차
+ch13.se.3,ch13,0.128,ch13.se,data,,두 평균 차이의 표준오차
+ch13.obs_over_se.1,ch13,2.21,ch13.obs_over_se,data,,차이 ÷ 표준오차
+ch13.cover.4,ch13,96,ch13.cover,sim,9.2466,§13.2 커버리지 (씨앗 73 · 50명 표본 100개) ; R 자기 난수 ; mc_tol = 3√2 × √(100 × .95 × .05)
+ch13.cover_miss.2,ch13,4,ch13.cover_miss,sim,9.2466,100 − 커버리지 (같은 모의시행)
+ch13.fixed.34,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.fixed.35,ch13,90%,,fixed,,신뢰수준 90% ; 정의
+ch13.fixed.36,ch13,90%,,fixed,,신뢰수준 90% ; 정의
+ch13.fixed.37,ch13,.05,,fixed,,한쪽 유의수준 .05 ; 정의
+ch13.fixed.38,ch13,90%,,fixed,,신뢰수준 90% ; 정의
+ch13.obs.8,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.d.1,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.d.2,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.ps_pct.1,ch13,56%,ch13.ps_pct,data,,우월 확률 Φ(0.23/√2)
+ch13.ps_pct.2,ch13,56%,ch13.ps_pct,data,,우월 확률 Φ(0.23/√2)
+ch13.fixed.39,ch13,50%,,fixed,,무효과일 때 우월 확률 ; 정의
+ch13.ps_pct.3,ch13,56%,ch13.ps_pct,data,,우월 확률 Φ(0.23/√2)
+ch13.d.3,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.paper.34,ch13,0.2,,paper,,Cohen (1988) 관례 어림 작음 0.2 · 중간 0.5 · 큼 0.8 ; 쪽 미확인 (저장소에 정독 노트 · 원문 없음)
+ch13.paper.35,ch13,0.5,,paper,,Cohen (1988) 관례 어림 작음 0.2 · 중간 0.5 · 큼 0.8 ; 쪽 미확인 (저장소에 정독 노트 · 원문 없음)
+ch13.paper.36,ch13,0.8,,paper,,Cohen (1988) 관례 어림 작음 0.2 · 중간 0.5 · 큼 0.8 ; 쪽 미확인 (저장소에 정독 노트 · 원문 없음)
+ch13.fixed.40,ch13,0.2,,fixed,,관례 「작음」 어림을 예로 든 값
+ch13.paper.37,ch13,0.22,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
+ch13.d.4,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.fixed.41,ch13,0.8,,fixed,,환산 예시 d ; 관례 「큼」
+ch13.eta2_08.1,ch13,.14,ch13.eta2_08,data,,η² = r²
+ch13.eta2_08_pct.1,ch13,14%,ch13.eta2_08_pct,data,,η² 백분율
+ch13.fixed.42,ch13,0.2,,fixed,,환산표의 d 열 ; 설계
+ch13.fixed.43,ch13,0.5,,fixed,,환산표의 d 열 ; 설계
+ch13.fixed.44,ch13,0.8,,fixed,,환산표의 d 열 ; 설계
+ch13.r_02.1,ch13,.10,ch13.r_02,data,,d → r = d/√(d²+4)
+ch13.r_05.1,ch13,.24,ch13.r_05,data,,d → r
+ch13.r_08.1,ch13,.37,ch13.r_08,data,,d → r
+ch13.eta2_02.1,ch13,.01,ch13.eta2_02,data,,η² = r²
+ch13.eta2_05.1,ch13,.06,ch13.eta2_05,data,,η² = r²
+ch13.eta2_08.2,ch13,.14,ch13.eta2_08,data,,η² = r²
+ch13.or_02.1,ch13,1.44,ch13.or_02,data,,d → 오즈비 = exp(πd/√3)
+ch13.or_05.1,ch13,2.48,ch13.or_05,data,,d → 오즈비
+ch13.or_08.1,ch13,4.27,ch13.or_08,data,,d → 오즈비
+ch13.fixed.45,ch13,.30,,fixed,,환산 예시 r
+ch13.d_from_r30.1,ch13,0.63,ch13.d_from_r30,data,,r → d = 2r/√(1−r²)
+ch13.fixed.46,ch13,.63,,fixed,,14장 모의 세계에 맞춘 상관 .63 (14장 §14.1 네 세계를 상관 .63 에 맞춰 지었다) ; 설계
+ch13.d_from_r63.1,ch13,1.62,ch13.d_from_r63,data,,r → d = 2r/√(1−r²)
+ch13.obs.9,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.obs.10,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.perm_p.1,ch13,.030,ch12.perm_p,sim,0.0102,12장 §12.2 뒤섞기 양측 p (ch12 계산을 그대로 쓴다)
+ch13.obs.11,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.fixed.47,ch13,95%,,fixed,,신뢰수준 95% ; 정의
+ch13.boot_lo.5,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.5,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.d.5,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.ps_pct.4,ch13,56%,ch13.ps_pct,data,,우월 확률 Φ(0.23/√2)
+ch13.boot_lo.6,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.6,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.paper.38,ch13,"309,932",,paper,,Richardson et al. (2023) BMJ 382:e074520 초록 p. 1 (309 932 workers · 10.7 million person years) ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 쪽 머리말로 확인
+ch13.paper.39,ch13,"1,070",,paper,,Richardson et al. (2023) BMJ 382:e074520 초록 p. 1 (309 932 workers · 10.7 million person years) ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 쪽 머리말로 확인
+ch13.paper.40,ch13,20.9,,paper,,Richardson et al. (2023) 표 1 p. 5 (평균 누적 선량 20.9 mGy) ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 쪽 머리말로 확인
+ch13.paper.41,ch13,90%,,paper,,"Richardson et al. (2023) 결과 p. 4 (0-20 mGy 1.30 (−1.33 to 4.06) per Gy, 90% CI) ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 쪽 머리말로 확인"
+ch13.paper.42,ch13,−1.33,,paper,,"Richardson et al. (2023) 결과 p. 4 (0-20 mGy 1.30 (−1.33 to 4.06) per Gy, 90% CI) ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 쪽 머리말로 확인"
+ch13.paper.43,ch13,4.06,,paper,,"Richardson et al. (2023) 결과 p. 4 (0-20 mGy 1.30 (−1.33 to 4.06) per Gy, 90% CI) ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 쪽 머리말로 확인"
+ch13.fixed.48,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.fixed.49,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.fixed.50,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.n_assigned_t.1,ch13,190,ch13.n_assigned_t,data,,정제 전 배정 인원 (cond 1 ; 통제도 190)
+ch13.fixed.51,ch13,90%,,fixed,,독자 어림 보기 ; 예시
+ch13.fixed.52,ch13,70%,,fixed,,독자 어림 보기 ; 예시
+ch13.n_raw.1,ch13,380,ch13.n_raw,data,,모집 인원
+ch13.n_assigned_t.2,ch13,190,ch13.n_assigned_t,data,,정제 전 배정 인원 (cond 1 ; 통제도 190)
+ch13.n_t.8,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.n_t.9,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.n_assigned_t.3,ch13,190,ch13.n_assigned_t,data,,정제 전 배정 인원 (cond 1 ; 통제도 190)
+ch13.pw_22_183.1,ch13,.56,ch13.pw_22_183,data,,d .22 · 집단당 183명 검정력 (해석)
+ch13.pw_22_190.2,ch13,.57,ch13.pw_22_190,data,,d .22 · 집단당 190명 검정력 (해석)
+ch13.fixed.53,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.fixed.54,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.fixed.55,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.fixed.56,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.fixed.57,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.fixed.58,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.fixed.59,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.fixed.60,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.fixed.61,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.fixed.62,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.power_50.1,ch13,.19,ch13.power_50,sim,0.0263,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_100.1,ch13,.34,ch13.power_100,sim,0.0318,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_190.1,ch13,.57,ch13.power_190,sim,0.0332,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_300.1,ch13,.76,ch13.power_300,sim,0.0286,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_500.1,ch13,.94,ch13.power_500,sim,0.0159,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_800.1,ch13,.99,ch13.power_800,sim,0.0054,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.fixed.63,ch13,190,,fixed,,검정력 표의 집단 크기 ; 설계
+ch13.power_190_pct.4,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.fixed.64,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
+ch13.fixed.65,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
+ch13.n_for_80_gt300.1,ch13,300,ch13.n_for_80_gt300,data,,부등식 주장 「.80 에 집단당 300명 넘게」 = 필요 n 326 ; 넘으면 300 을 돌려준다
+ch13.fixed.66,ch13,100,,fixed,,12장 부분표본 크기 ; 설계
+ch13.fixed.67,ch13,100,,fixed,,12장 부분표본 크기 ; 설계
+ch13.fixed.68,ch13,50,,fixed,,100명을 두 집단으로 나눈 어림 ; 설계
+ch13.power_50.2,ch13,.19,ch13.power_50,sim,0.0263,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_190_pct.5,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.fixed.69,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.power_190_pct.6,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_190_pct.7,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.fixed.70,ch13,0.4,,fixed,,역산 예시의 최소 관심 효과 d 0.4 ; 설계
+ch13.fixed.71,ch13,110,,fixed,,역산 눈금 ; 설계
+ch13.fixed.72,ch13,0.4,,fixed,,역산 예시의 최소 관심 효과 d 0.4 ; 설계
+ch13.fixed.73,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
+ch13.inv_first_n80.1,ch13,100,ch13.inv_first_n80,sim,10,§13.4 역산 (d 0.4 · n 마다 씨앗 73) ; .80 을 넘는 첫 n ; R = power.t.test 해석값(n 100 에서 .8036) ; mc_tol 10 = 눈금 한 칸 (n 100 의 검정력 MC SD .009 라 모의시행이 110 을 고를 수 있다)
+ch13.inv_first_n80.2,ch13,100,ch13.inv_first_n80,sim,10,§13.4 역산 (d 0.4 · n 마다 씨앗 73) ; .80 을 넘는 첫 n ; R = power.t.test 해석값(n 100 에서 .8036) ; mc_tol 10 = 눈금 한 칸 (n 100 의 검정력 MC SD .009 라 모의시행이 110 을 고를 수 있다)
+ch13.fixed.74,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.fixed.75,ch13,190,,fixed,,모의시행 집단 크기 ; 설계
+ch13.fixed.76,ch13,.70,,fixed,,신뢰도 예시 값 ; 설계
+ch13.noise_10.1,ch13,.56,ch13.noise_10,sim,0.0333,"§13.4 상자 신뢰도 1.0 (씨앗 73 · 2,000회) ; R = power.t.test 해석값 ; mc_tol = 3 × 이항 SD"
+ch13.noise_07.1,ch13,.42,ch13.noise_07,sim,0.0331,§13.4 상자 신뢰도 .70 (실측 0.415 = 반올림 경계) ; R = power.t.test(d = 0.22 √.7) 해석값 ; mc_tol = 3 × 이항 SD
+ch13.fixed.77,ch13,1.0,,fixed,,신뢰도 예시 값 ; 설계
+ch13.fixed.78,ch13,.9,,fixed,,신뢰도 예시 값 ; 설계
+ch13.fixed.79,ch13,.7,,fixed,,신뢰도 예시 값 ; 설계
+ch13.fixed.80,ch13,.70,,fixed,,신뢰도 예시 값 ; 설계
+ch13.pw_22_190.3,ch13,.57,ch13.pw_22_190,data,,d .22 · 집단당 190명 검정력 (해석)
+ch13.fixed.81,ch13,190,,fixed,,모의시행 집단 크기 ; 설계
+ch13.rel07_n.1,ch13,272,ch13.rel07_n,data,,"신뢰도 .70 에서 검정력 pw(.22, 190) 을 되찾는 최소 집단당 n"
+ch13.fixed.82,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.rel07_d.1,ch13,0.18,ch13.rel07_d,data,,관찰 d = 0.22 × √.70
+ch13.rel07_extra_gt160.1,ch13,160,ch13.rel07_extra_gt160,data,,부등식 주장 「160명 넘게 더」 = 2 × (272 − 190) = 164 ; 넘으면 160 을 돌려준다
+ch13.fixed.83,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.d.6,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.pop_mean.1,ch13,4.89,ch13.pop_mean,data,,설문판 mil 평균 (모집단으로 선언)
+ch13.fixed.84,ch13,100,,fixed,,표본 · 구간 개수 ; 설계
+ch13.cover.5,ch13,96,ch13.cover,sim,9.2466,§13.2 커버리지 (씨앗 73 · 50명 표본 100개) ; R 자기 난수 ; mc_tol = 3√2 × √(100 × .95 × .05)
+ch13.boot_lo.7,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.7,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_lo.8,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.8,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_mean.2,ch13,0.285,ch13.boot_mean,sim,0.0078,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 평균 ; mc_tol = 3√2 × 0.13/√5000"
+ch13.obs.12,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
+ch13.boot_width.2,ch13,0.51,ch13.boot_width,sim,0.0294,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 구간 폭 ; mc_tol = 3√2 × √2 × 0.0049"
+ch13.d.7,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.d.8,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.fixed.85,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
+ch13.fixed.86,ch13,0.4,,fixed,,역산 예시의 최소 관심 효과 d 0.4 ; 설계
+ch13.fixed.87,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
+ch13.inv_first_n80.3,ch13,100,ch13.inv_first_n80,sim,10,§13.4 역산 (d 0.4 · n 마다 씨앗 73) ; .80 을 넘는 첫 n ; R = power.t.test 해석값(n 100 에서 .8036) ; mc_tol 10 = 눈금 한 칸 (n 100 의 검정력 MC SD .009 라 모의시행이 110 을 고를 수 있다)
+ch13.fixed.88,ch13,100,,fixed,,실습 통과 기준의 n ; 설계
+ch13.fixed.89,ch13,.80,,fixed,,실습 통과 기준 (관례 .80 언저리) ; 설계
+ch13.cover.6,ch13,96,ch13.cover,sim,9.2466,§13.2 커버리지 (씨앗 73 · 50명 표본 100개) ; R 자기 난수 ; mc_tol = 3√2 × √(100 × .95 × .05)
+ch13.boot_lo.9,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.9,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.power_190_pct.8,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.fixed.90,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.d.9,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)

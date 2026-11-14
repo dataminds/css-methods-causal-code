@@ -1,0 +1,79 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch02.p.t1,ch02,450,,paper,,Rogers 외 2023 연구 5 Participants p. 764 (Four hundred fifty)
+ch02.p.t2,ch02,384,,paper,,Rogers 외 2023 연구 5 p. 764
+ch02.p.excl,ch02,3,,paper,,Rogers 외 2023 연구 5 p. 764 (excluded three participants)
+ch02.p.final,ch02,381,,paper,,Rogers 외 2023 연구 5 p. 764
+ch02.p.chain.a,ch02,450,,paper,,Rogers 외 2023 연구 5 p. 764
+ch02.p.chain.b,ch02,384,,paper,,Rogers 외 2023 연구 5 p. 764
+ch02.p.chain.c,ch02,381,,paper,,Rogers 외 2023 연구 5 p. 764
+ch02.ours.n,ch02,380,ch02.exp_raw_n,data,,먼저 절 = 실험판 원자료 인원
+ch02.ours.fail,ch02,14,ch02.exp_attn_fail,data,,먼저 절 = attn_1 == 0 인원
+ch02.orig.t,ch02,5.14,,paper,,Rogers 외 2023 연구 5 Results p. 765
+ch02.orig.c,ch02,4.83,,paper,,Rogers 외 2023 연구 5 Results p. 765
+ch02.ours.t,ch02,5.26,ch02.exp_mil_treat,data,,§2.2 실험판 정제본 개입 집단 mil 평균 (S0 · 12장)
+ch02.ours.c,ch02,4.98,ch02.exp_mil_ctrl,data,,§2.2 실험판 정제본 통제 집단 mil 평균
+ch02.tab.exp,ch02,380,ch02.rows_exp,data,,§2.2 표 = 파일 행 수
+ch02.tab.fac,ch02,448,ch02.rows_fac,data,,§2.2 표 = 파일 행 수
+ch02.tab.svy,ch02,590,ch02.rows_svy,data,,§2.2 표 = 파일 행 수
+ch02.tab.panel,ch02,"1,270",ch02.rows_panel,data,,§2.2 표 = 파일 행 수
+ch02.tab.cohort,ch02,"1,800",ch02.rows_cohort,data,,§2.2 표 = 파일 행 수
+ch02.tab.ts.wk,ch02,104,ch02.rows_ts,data,,§2.2 표 = 주 수 (행 하나 = 한 주)
+ch02.tab.ts,ch02,104,ch02.rows_ts,data,,§2.2 표 = 파일 행 수
+ch02.tab.coding.n,ch02,200,ch02.rows_coding,data,,§2.2 표 = 이야기 수 (행 하나 = 이야기 하나)
+ch02.tab.coding,ch02,200,ch02.rows_coding,data,,§2.2 표 = 파일 행 수
+ch02.cols.svy,ch02,51,ch02.cols_svy,data,,§2.2 열 수
+ch02.cols.ts,ch02,3,ch02.cols_ts,data,,§2.2 열 수
+ch02.seed.base,ch02,73,,fixed,,기본 씨앗 (설계값)
+ch02.seed.cross,ch02,37,,fixed,,교차 씨앗 (설계값)
+ch02.seed.p73,ch02,21,ch02.prime_index_73,data,,73 이 몇째 소수인가 (산술)
+ch02.seed.p37,ch02,12,ch02.prime_index_37,data,,37 이 몇째 소수인가 (산술)
+ch02.make.fix,ch02,0.31,,fixed,,§2.3 make 에 정한 참 효과 (설계값 = 원 논문 5.14 − 4.83)
+ch02.make.n.c,ch02,190,,fixed,,§2.3 make 의 집단 크기 (설계값)
+ch02.make.base,ch02,4.83,,fixed,,§2.3 make 의 통제 평균 (설계값 = 원 논문 통제 평균)
+ch02.make.add,ch02,0.31,,fixed,,§2.3 make 에 정한 참 효과 (설계값)
+ch02.make.s73,ch02,2026,,fixed,,§2.3 씨앗 셋 가운데 셋째 (설계값)
+ch02.make.v73,ch02,0.40,ch02.make_73,sim,0.46,§2.3 make(73) ; 차이의 표준편차 1.05 × √(2/190) = 0.108 → 3 × √2 × 0.108 ≈ 0.46 ; R = set.seed(73) 같은 설계
+ch02.make.v37,ch02,0.28,ch02.make_37,sim,0.46,§2.3 make(37) ; 허용폭 근거 위와 같음
+ch02.make.v2026,ch02,0.25,ch02.make_2026,sim,0.46,§2.3 make(2026) ; 허용폭 근거 위와 같음
+ch02.make.not,ch02,0.31,,fixed,,§2.3 참 효과 (설계값)
+ch02.make.true,ch02,0.31,,fixed,,§2.3 참 효과 (설계값)
+ch02.q500.true,ch02,0.31,,fixed,,§2.3 참 효과 (설계값)
+ch02.q500.n,ch02,500,,fixed,,§2.3 모의시행 반복 수 (설계값)
+ch02.fig.true,ch02,0.31,,fixed,,§2.3 그림 설명 = 참 효과 (설계값)
+ch02.w500.mean,ch02,0.303,ch02.make500_mean,sim,0.02,§2.3 씨앗 1~500 ; 평균의 표준오차 0.108 ÷ √500 = 0.0048 → 3 × √2 × 0.0048 ≈ 0.02
+ch02.w500.true,ch02,0.31,,fixed,,§2.3 참 효과 (설계값)
+ch02.w500.min,ch02,−0.07,ch02.make500_min,sim,0.17,§2.3 500 개 가운데 최솟값 ; 최솟값의 모의 표준편차 약 0.04 → 3 × √2 × 0.04 ≈ 0.17
+ch02.w500.max,ch02,0.62,ch02.make500_max,sim,0.17,§2.3 500 개 가운데 최댓값 ; 허용폭 근거 위와 같음
+ch02.w500.min.b,ch02,−0.07,ch02.make500_min,sim,0.17,§2.3
+ch02.w500.true.b,ch02,0.31,,fixed,,§2.3 참 효과 (설계값)
+ch02.rerun.free,ch02,0.02,,fixed,,§2.4 씨앗 없는 실행의 한 번 결과 = 일부러 재현되지 않게 보인 예시값 (책도 「여러분이 돌리면 다른 수」라고 밝힌다)
+ch02.rerun.free.b,ch02,−0.65,,fixed,,§2.4 씨앗 없는 실행의 한 번 결과 = 재현되지 않는 예시값
+ch02.rerun.seed,ch02,−0.013,ch02.rerun_73,sim,1.9,§2.4 default_rng(73) 정규난수 5 개 평균 ; R = set.seed(73) 의 rnorm(5) 평균 ; 평균의 표준편차 1/√5 = 0.45 → 3 × √2 × 0.45 ≈ 1.9 (R 대조는 형식뿐)
+ch02.first.shape.n,ch02,380,ch02.exp_raw_n,data,,§2.5
+ch02.first.shape.k,ch02,30,ch02.exp_ncol,data,,§2.5
+ch02.first.age,ch02,36,ch02.row1_age,data,,§2.5 첫 행
+ch02.first.milt1,ch02,3.75,ch02.row1_mil_t1,data,,§2.5 첫 행
+ch02.first.hjs,ch02,4.86,ch02.row1_hjs,data,,§2.5 첫 행 (저장값 4.857)
+ch02.first.mil,ch02,2.75,ch02.row1_mil,data,,§2.5 첫 행
+ch02.ex1.shape.n,ch02,380,ch02.exp_raw_n,data,,실습 1
+ch02.ex1.shape.k,ch02,30,ch02.exp_ncol,data,,실습 1
+ch02.ex2.ans,ch02,14,ch02.exp_attn_fail,data,,실습 2
+ch02.ex2.extreme,ch02,0,ch02.exp_attn_fail_allpass,data,,실습 2 극단값 시험 = attn_1 을 전부 1 로 바꾼 사본의 실패자 수
+ch02.ex2.next,ch02,14,ch02.exp_attn_fail,data,,실습 2
+ch02.ex2.exp,ch02,14,ch02.exp_attn_fail,data,,실습 2 예상
+ch02.ex2.exp0,ch02,0,ch02.exp_attn_fail_allpass,data,,실습 2 예상 (극단값 판)
+ch02.ex3.n,ch02,100,,fixed,,실습 3 반복 수 (설계값)
+ch02.ex3.eff,ch02,0.31,,fixed,,실습 3 참 효과 (설계값)
+ch02.ex3.zero,ch02,0.0,,fixed,,실습 3 효과를 없앤 판 (설계값)
+ch02.ex3.exp.eff,ch02,0.31,,fixed,,실습 3 참 효과 (설계값) ; 2026-11-14h 원고 정정에 맞춰 옮김
+ch02.ex3.exp.m,ch02,0.31,ch02.make100_mean,sim,0.046,실습 3 예상 = 씨앗 1~100 의 make 평균 (「안팎」 어림) ; 평균 표준오차 0.108 ÷ 10 → 3 × √2 × 0.0108 ≈ 0.046 ; 2026-11-14h 원고 정정에 맞춰 옮김
+ch02.ex3.exp.zero.m,ch02,0,ch02.make100_mean_null,sim,0.046,실습 3 예상 = 참 효과 0 판의 씨앗 1~100 평균 ; 허용폭 근거 위와 같음
+ch02.ex4.wrong,ch02,0.139,ch02.ex4_wrong,data,,실습 4 = 원자료 개입 평균 − 원자료 전체 평균
+ch02.ex4.right,ch02,0.283,ch02.ex4_right,data,,실습 4 = 정제본 개입 − 통제
+ch02.ex4.wrong.b,ch02,0.139,ch02.ex4_wrong,data,,실습 4
+ch02.ex4.nb.wrong,ch02,0.141,ch02.ex4_nb_wrong,data,,실습 4 ⚠ 노트북판 = 정제본 개입 평균 − 정제본 전체 평균
+ch02.ex4.nb.right,ch02,0.283,ch02.ex4_right,data,,실습 4 ⚠
+ch02.mine.panel,ch02,"1,270",ch02.rows_panel,data,,§2.6
+ch02.chk.svy,ch02,51,ch02.cols_svy,data,,§2.7 점검
+ch02.chk.ts,ch02,3,ch02.cols_ts,data,,§2.7 점검
+ch02.next.n,ch02,14,ch02.exp_attn_fail,data,,다음 장으로

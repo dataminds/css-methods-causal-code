@@ -1,0 +1,86 @@
+id,unit,printed,calc,kind,mc_tol,note
+s2.paper.f1df,s2,445,,paper,,Rogers et al. (2023) JPSP Study 6 Results (element reflection F(1 · 445)) ; 출판본 766쪽
+s2.paper.f1,s2,4.93,,paper,,Rogers et al. (2023) Study 6 element reflection 주효과 ; 출판본 766쪽
+s2.paper.p1,s2,.027,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.paper.f2,s2,6.06,,paper,,Rogers et al. (2023) Study 6 heroic frame 주효과 ; 출판본 766쪽
+s2.paper.p2,s2,.014,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.paper.eta,s2,.01,,paper,,Rogers et al. (2023) Study 6 η²p = .01 (두 주효과) ; 출판본 766쪽 ; 공개 자료 재계산 .0110 · .0134 (book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md)
+s2.paper.f3,s2,0.01,,paper,,Rogers et al. (2023) Study 6 상호작용 F ; 출판본 766쪽
+s2.paper.p3,s2,.914,,paper,,Rogers et al. (2023) Study 6 상호작용 p ; 출판본 766쪽
+s2.tab.f1,s2,4.93,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.tab.f2,s2,6.06,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.tab.f3,s2,0.01,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.tab.p3,s2,.914,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.tab.eta,s2,.01,,paper,,Rogers et al. (2023) Study 6 η²p ; 출판본 766쪽 ; 공개 자료 재계산 .0110 · .0134
+s2.tab.pct,s2,1,,fixed,,.01 을 백분율로 옮긴 말 (η²p = .01 = 1%)
+s2.tab.df1,s2,1,,fixed,,분자 자유도 = 두 수준 요인의 1 (정의)
+s2.tab.df445,s2,445,,paper,,Rogers et al. (2023) Study 6 F 의 분모 자유도 ; 출판본 766쪽 (= 449 − 4)
+s2.tab.n449,s2,449,,paper,,Rogers et al. (2023) Study 6 Participants (sample of 449) ; 출판본 766쪽
+s2.cells.min,s2,105,s2.cell_n_min,data,,셀 크기 최솟값 (정제 430명)
+s2.cells.max,s2,110,s2.cell_n_max,data,,셀 크기 최댓값
+s2.tab.m00,s2,4.90,s2.m00,data,,셀 평균 표 (elem 0 · frame 0)
+s2.tab.m01,s2,4.81,s2.m01,data,,셀 평균 표 (elem 0 · frame 1)
+s2.tab.m10,s2,4.95,s2.m10,data,,셀 평균 표 (elem 1 · frame 0)
+s2.tab.m11,s2,5.20,s2.m11,data,,셀 평균 표 (elem 1 · frame 1)
+s2.fig.seed,s2,73,,fixed,,씨앗 규약 (73)
+s2.shape.elem,s2,0.05,s2.diff_elem_only,data,,셀 elem1·frame0 − elem0·frame0 ; 반올림 전 평균으로 계산
+s2.shape.frame,s2,−0.09,s2.diff_frame_only,data,,셀 elem0·frame1 − elem0·frame0
+s2.shape.both,s2,0.29,s2.diff_both,data,,셀 elem1·frame1 − elem0·frame0 = 5.1952 − 4.9023 = 0.2930 → 0.29 ⚠ 원고 0.30 은 반올림한 표 값(5.20 − 4.90)으로 뺀 값 = 원고 확인 대상 ; 2026-11-14h 원고 정정에 맞춰 옮김
+s2.res.b3,s2,0.34,s2.b3,data,,mil_t2 ~ elem + frame + elem×frame 의 곱항 계수 (0.337)
+s2.res.level,s2,95,,fixed,,신뢰수준 (관례 95%)
+s2.res.lo,s2,−0.15,s2.ci_lo,data,,t(426) 기준 95% 구간 (19장 §19.3 의 회귀 구간 규약 · R = confint) ; 1.96 을 써도 같은 표기 ; 2026-11-14h 원고 정정에 맞춰 옮김
+s2.res.hi,s2,0.83,s2.ci_hi,data,,t(426) 기준 95% 구간 = 0.8251 → 0.83 ⚠ 원고 0.82 는 1.96 근사(0.8238)로 낸 값 = 원고 확인 대상 ; 2026-11-14h 원고 정정에 맞춰 옮김
+s2.res.p,s2,.176,s2.p3,data,,곱항 p ; 2026-11-14h 원고 정정에 맞춰 옮김
+s2.anova.t2,s2,1.837,s2.t3_sq,data,,파이썬 = 곱항 t 의 제곱 ; R = anova() 의 상호작용 F (독립 경로)
+s2.anova.df,s2,426,s2.resid_df,data,,잔차 자유도 = 430 − 4
+s2.anova.F,s2,1.837,s2.t3_sq,data,,이원 분산분석 상호작용 F
+s2.anova.p,s2,.176,s2.p3,data,,
+s2.truth.b3,s2,0.38,s2.truth_b3,sim,0.06,§교훈 = gen_fac(default_rng(73) · n = 120000) 의 곱항 계수 (심은 잠재 효과 .30 × 1.18 이 4문항 리커트 척도에서 나타나는 크기) ; R = 같은 생성 구조를 R 로 짜 set.seed(73) · n = 120000 ; n = 120000 에서도 곱항 표준오차 0.0142 (파이썬 씨앗 73 · 74 · 75 = .378 · .400 · .415) → 3 × √2 × 0.0142 ≈ 0.06 ⚠ 「참값」은 씨앗 하나의 추정이라 둘째 자리가 씨앗에 따라 달라진다
+s2.truth.est,s2,0.34,s2.b3,data,,
+s2.ideal.N896,s2,896,,fixed,,모의시행 설계 표본 크기
+s2.ideal.inter,s2,0.66,s2.ideal_inter_896,sim,0.035,이상화된 2×2 (계수 0.38 · 잡음 SD 1.2 · 2000 회 · |t| > 1.96 ; 파이썬 = make_book_figures.py fig_s2_power 난수 순서) ; R = 비중심 t 해석해 ; 파이썬 모의 표준오차 √(.66×.34/2000) = 0.011 → 3 × 0.011 ≈ 0.032
+s2.ideal.N448,s2,448,,fixed,,모의시행 설계 표본 크기
+s2.ideal.main,s2,0.67,s2.ideal_main_448,sim,0.035,0/1 부호화 e 계수(단순효과)의 검정력 ; R = 비중심 t 해석해 ; 표준오차 0.011 → 0.032
+s2.pow.r448,s2,448,,fixed,,모의시행 설계 총 N
+s2.pow.c112,s2,112,,fixed,,셀당 = 448 ÷ 4
+s2.pow.p448,s2,.45,s2.fac_power_448,sim,0.11,gen_fac(default_rng(1000 + i)) 400 회 · 주의 점검 제외 뒤 곱항 p < .05 비율 (구 배터리와 같은 씨앗) ; R = 같은 생성 구조를 R 로 · set.seed(73) · 400 회 ; 표준오차 √(.45×.55/400) = 0.025 → 3 × √2 × 0.025 ≈ 0.105
+s2.pow.r896,s2,896,,fixed,,모의시행 설계 총 N
+s2.pow.c224,s2,224,,fixed,,셀당
+s2.pow.p896,s2,.72,s2.fac_power_896,sim,0.1,표준오차 √(.72×.28/400) = 0.022 → 3 × √2 × 0.022 ≈ 0.095
+s2.pow.r1792,s2,"1,792",,fixed,,모의시행 설계 총 N
+s2.pow.c448,s2,448,,fixed,,셀당
+s2.pow.p1792,s2,.93,s2.fac_power_1792,sim,0.06,표준오차 √(.93×.07/400) = 0.013 → 3 × √2 × 0.013 ≈ 0.054
+s2.rep.b,s2,0.34,s2.b3,data,,보고 문장
+s2.rep.level,s2,95,,fixed,,신뢰수준 (관례 95%) ; 2026-11-14h 원고 정정에 맞춰 옮김
+s2.rep.lo,s2,−0.15,s2.ci_lo,data,,보고 문장 ; 2026-11-14h 원고 정정에 맞춰 옮김
+s2.rep.hi,s2,0.83,s2.ci_hi,data,,보고 문장 ; 2026-11-14h 원고 정정에 맞춰 옮김
+s2.rep.pow,s2,.45,s2.fac_power_448,sim,0.11,보고 문장 = 표의 448 행
+s2.box.f1,s2,4.93,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.box.df1,s2,445,,paper,,Rogers et al. (2023) Study 6 분모 자유도 ; 출판본 766쪽
+s2.box.eta1,s2,.011,s2.eta_elem,data,,산술 4.93 ÷ 449.93 = .01096
+s2.box.f2,s2,6.06,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.box.df2,s2,445,,paper,,Rogers et al. (2023) Study 6 ; 출판본 766쪽
+s2.box.eta2,s2,.013,s2.eta_frame,data,,산술 6.06 ÷ 451.06 = .01344
+s2.box.eta,s2,.01,,paper,,Rogers et al. (2023) Study 6 η²p ; 출판본 766쪽
+s2.trap.pre,s2,4.78,s2.int_pre,data,,함정 ; 개입 셀 elem1·frame1 사전 평균
+s2.trap.post,s2,5.20,s2.int_post,data,,함정 ; 개입 셀 사후 평균
+s2.trap.t,s2,3.93,s2.int_t,data,,함정 ; 짝지은 t (R = t.test paired)
+s2.trap.p,s2,.0002,s2.int_p,data,,함정 ; 짝지은 p
+s2.trap.cpre,s2,4.75,s2.ctl_pre,data,,함정 ; 통제 셀 elem0·frame0 사전
+s2.trap.cpost,s2,4.90,s2.ctl_post,data,,함정 ; 통제 셀 사후
+s2.trap.gain,s2,0.15,s2.ctl_gain,data,,통제 셀 사후 − 사전
+s2.trap.cp,s2,.216,s2.ctl_p,data,,통제 셀 짝지은 p (0.2164)
+s2.corr,s2,.59,s2.r_prepost,data,,mil_t1 · mil_t2 상관 (정제 430명)
+s2.ex1.b,s2,0.34,s2.b3,data,,실습 1
+s2.ex1.p,s2,.176,s2.p3,data,,실습 1
+s2.ex1.did,s2,0.337,s2.did,data,,실습 1 ; 셀 평균 넷의 차이의 차이 (= 곱항 계수)
+s2.ex2.t,s2,3.93,s2.int_t,data,,실습 2
+s2.ex2.p,s2,.0002,s2.int_p,data,,실습 2
+s2.ex2.ct,s2,1.24,s2.ctl_t,data,,실습 2 ; 통제 셀 짝지은 t
+s2.ex2.cp,s2,.216,s2.ctl_p,data,,실습 2
+s2.ex4.reps,s2,20,,fixed,,실습 설계 (반복 수)
+s2.ex4.alpha,s2,.05,,fixed,,유의수준 관례
+s2.ex4.pow,s2,.45,s2.fac_power_448,sim,0.11,실습 4 = 표의 448 행
+s2.ex4.pow2,s2,.45,s2.fac_power_448,sim,0.11,실습 4 통과 기준
+s2.ex4.reps2,s2,20,,fixed,,실습 설계 (반복 수)
+s2.ex5.ratio,s2,1.414,s2.se_ratio,data,,실습 5 ; 곱항 SE ÷ e 계수 SE = √2 (균형 2×2 설계 행렬로 정해지는 값 ; 잔차 분산이 약분돼 난수와 무관 → 두 엔진이 같은 값)

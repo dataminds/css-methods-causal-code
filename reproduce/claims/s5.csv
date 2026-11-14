@@ -1,0 +1,42 @@
+id,unit,printed,calc,kind,mc_tol,note
+s5.box.waves,s5,17,,paper,,"Braghieri, Levy & Makarin 2022 AER 112(11) p. 3667 (seventeen consecutive waves of the NCHA) ; raw/papers/social-media-youth/Braghieri-Levy-Makarin-2022-Social-Media-Mental-Health-AER.txt"
+s5.box.n,s5,43,,paper,,"Braghieri, Levy & Makarin 2022 p. 3667 (more than 430,000 responses)"
+s5.box.resp,s5,37,,paper,,"Braghieri, Levy & Makarin 2022 p. 3668 (average response rate … is 37 percent)"
+s5.tab.waves,s5,17,,paper,,"Braghieri, Levy & Makarin 2022 p. 3667"
+s5.tab.n,s5,43,,paper,,"Braghieri, Levy & Makarin 2022 p. 3667"
+s5.tab.resp,s5,37,,paper,,"Braghieri, Levy & Makarin 2022 p. 3668"
+s5.nonresp,s5,63,s5.nonresp_pct,data,,100 − 논문 응답률 37
+s5.weeks,s5,104,s5.n_weeks,data,,무대 = 시계열판 행 수
+s5.start,s5,53,s5.first_campaign_week,data,,무대 = campaign 이 1 이 되는 첫 주
+s5.pre.m,s5,4.78,s5.pre_mean,data,,⑤~⑦ 도입 전 평균
+s5.pre.n,s5,52,s5.n_pre,data,,⑤~⑦ 도입 전 주 수 (anchor 의 첫 52)
+s5.post.m,s5,5.09,s5.post_mean,data,,⑤~⑦ 도입 후 평균
+s5.post.n,s5,52,s5.n_post,data,,⑤~⑦ 도입 후 주 수 (anchor 의 둘째 52)
+s5.diff,s5,+0.30,s5.post_minus_pre,data,,⑤~⑦ 전후 평균차
+s5.b1,s5,0.000,s5.b_week,data,,분할회귀 주차 계수
+s5.p1,s5,.97,s5.p_week,data,,분할회귀 주차 계수 p
+s5.b2,s5,0.31,s5.b_campaign,data,,분할회귀 캠페인 계수
+s5.p2,s5,.001,s5.p_campaign_below_001,data,,문턱 주장 「p < .001」 = 계산은 p 가 .001 아래면 .001 을 돌려준다 (실제 p = 3.2e−5)
+s5.true,s5,+0.30,,fixed,,materials/make_data_family.py gen_ts 의 수준 이동 0.30 (자료를 만들 때 정한 참값)
+s5.trend,s5,0.64,s5.trend_world_diff,sim,0.15,17장 §17.3 추세 세계(씨앗 73 ; 주당 +0.012 · 잡음 SD .25) 전후 평균차 ; R = 이론값(기댓값) 0.012 × 52 = 0.624 ; 표본값의 표준편차 .25 × √(2/52) = 0.049 → 3 × 0.049 ≈ 0.15 (R 이 이론값이라 √2 없음)
+s5.pl26.b,s5,−0.01,s5.placebo26_b,data,,⑧ 위약 26주 (도입 전 52주만)
+s5.pl26.p,s5,.79,s5.placebo26_p,data,,⑧ 위약 26주 p
+s5.ac,s5,.23,s5.resid_autocorr,data,,⑧ 분할회귀 잔차의 1차 자기상관
+s5.se.naive,s5,0.070,s5.se_campaign_naive,data,,⑧ 캠페인 계수의 OLS 표준오차
+s5.se.block,s5,0.084,s5.block_se,sim,0.006,⑧ 블록 다시 뽑기(씨앗 73 · 2000번 · 8주 토막) 표준편차 ; 반복 200번 모의로 본 표준편차 0.0013 → 3 × √2 × 0.0013 ≈ 0.0055
+s5.se.pct,s5,20,s5.block_over_naive_pct,sim,8,⑧ (블록 SE ÷ 소박한 SE − 1) × 100 = 19.5 ; 「쯤」 ; MC 표준편차 100 × 0.0013 / 0.070 ≈ 1.8 → 3 × √2 × 1.8 ≈ 7.8
+s5.b2.again,s5,0.31,s5.b_campaign,data,,⑧
+s5.hypo,s5,0.15,,fixed,,가정의 예시 값 = 1.96 × 0.070 ≈ 0.137 과 1.96 × 0.084 ≈ 0.165 사이 (「쯤」 ; 실습 5 의 0.165 산술)
+s5.hypo.pct,s5,20,s5.block_over_naive_pct,sim,8,⑧ 같은 20%
+s5.codebook,s5,0.31,s5.b_campaign,data,,남의 자료 둘째
+s5.ex3.13,s5,−0.084,s5.placebo13_b,data,,실습 3 위약 13주
+s5.ex3.26,s5,−0.013,s5.placebo26_b,data,,실습 3 위약 26주
+s5.ex3.39,s5,+0.032,s5.placebo39_b,data,,실습 3 위약 39주
+s5.ex4.b,s5,+0.024,s5.perm_b2,sim,0.39,실습 4 wellbeing 뒤섞기(씨앗 73) b2 ; 뒤섞기 분포 표준편차 0.091 → 3 × √2 × 0.091 ≈ 0.39
+s5.ex4.p,s5,.79,s5.perm_p2,sim,1,실습 4 뒤섞기 p ; 영가설에서 p 는 0~1 균등이라 R 독립 모의는 범위 확인뿐(허용 1) ; 파이썬이 책의 난수 순서로 정확히 재현한다
+s5.ex5.naive,s5,0.070,s5.se_campaign_naive,data,,실습 5
+s5.ex5.block,s5,0.084,s5.block_se,sim,0.006,실습 5 = ⑧ 블록 다시 뽑기
+s5.ex5.x,s5,0.084,s5.block_se,sim,0.006,실습 5 산술의 입력 = 블록 SE
+s5.ex5.z,s5,1.96,,fixed,,정규분포 97.5% 분위수(양측 95% 구간)
+s5.ex5.prod,s5,0.165,s5.block_se_x196,data,,인쇄된 0.084 × 1.96 = 0.16464
+s5.check.ac,s5,.23,s5.resid_autocorr,data,,점검

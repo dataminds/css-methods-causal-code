@@ -1,0 +1,17 @@
+{
+ "unit": "s5-시나리오-2차자료-자연실험.md",
+ "blocks": [
+  [
+   80,
+   "ts = load(\"ts\")                                   # 행이 사람이 아니라 주다\npre, post = ts[ts.campaign == 0], ts[ts.campaign == 1]\nprint(round(pre.wellbeing.mean(), 3), round(post.wellbeing.mean(), 3))\n# 4.784 5.088\nb, se, p, _ = ols(ts.wellbeing, [ts.week, ts.campaign])\nprint(round(b[1], 4), round(b[2], 3), round(se[2], 3), f\"{p[2]:.1e}\")\n# -0.0 0.306 0.07 3.2e-05"
+  ],
+  [
+   98,
+   "pre = ts[ts.campaign == 0]                        # 도입 전 52주만\nfor cut in (13, 26, 39):\n    fake = (pre.week >= cut + 1).astype(float)\n    b, se, p, _ = ols(pre.wellbeing, [fake])\n    print(cut, round(b[1], 3), round(float(p[1]), 2))\n# 13 -0.084 0.14\n# 26 -0.013 0.79\n# 39 0.032 0.58"
+  ],
+  [
+   121,
+   "b, se, p, _ = ols(ts.wellbeing, [ts.week, ts.campaign])\nX1 = np.column_stack([np.ones(len(ts)), ts.week, ts.campaign])\nfit, resid = X1 @ b, ts.wellbeing.values - X1 @ b\nprint(round(float(np.corrcoef(resid[:-1], resid[1:])[0, 1]), 3))\n# 0.227                                    ← 잔차가 이웃과 닮은 정도\n\nrng = np.random.default_rng(73)\nboot = []\nfor _ in range(2000):\n    starts = rng.integers(0, len(ts) - 8, 13)     # 여덟 주짜리 토막 열셋\n    e = np.concatenate([resid[s:s + 8] for s in starts])[:len(ts)]\n    bb, *_ = np.linalg.lstsq(X1, fit + e, rcond=None)\n    boot.append(bb[2])\nprint(round(se[2], 3), round(float(np.std(boot, ddof=1)), 3))\n# 0.07 0.084"
+  ]
+ ]
+}

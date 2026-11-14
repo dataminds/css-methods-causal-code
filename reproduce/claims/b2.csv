@@ -1,0 +1,68 @@
+id,unit,printed,calc,kind,mc_tol,note
+b2.p.df,b2,445,,paper,,"Rogers et al. (2023) 연구 6 = 원고판 p. 46 「diff = .54, SE = .16, t(445) = 3.35, p < .001」 (raw/papers/pil 원고판 텍스트 1357~1359행) ; 출판본 쪽 미확인"
+b2.p.t,b2,3.35,,paper,,Rogers et al. (2023) 연구 6 = 원고판 p. 46 ; 출판본 쪽 미확인
+b2.p.p,b2,.001,,paper,,Rogers et al. (2023) 연구 6 = 원고판 p. 46 p < .001 ; 출판본 쪽 미확인
+b2.p.p1,b2,.094,,paper,,"Rogers et al. (2023) 연구 6 = 원고판 p. 46 (1361~1365행 ; 개입 대 무작위 순서 질문 t(445) = 1.68, p = .094) ; 출판본 쪽 미확인"
+b2.p.p2,b2,.140,,paper,,"연구 6 원고판 p. 46 (개입 대 영웅적 일화 t(445) = 1.48, p = .140)"
+b2.p.p3,b2,.098,,paper,,"연구 6 원고판 p. 46 (t(445) = 1.66, p = .098)"
+b2.p.p4,b2,.072,,paper,,"연구 6 원고판 p. 46 (통제 대 영웅적 일화 t(445) = 1.80, p = .072)"
+b2.tab.p1,b2,.094,,paper,,연구 6 원고판 p. 46
+b2.tab.p2,b2,.140,,paper,,연구 6 원고판 p. 46
+b2.tab.p3,b2,.098,,paper,,연구 6 원고판 p. 46
+b2.tab.p4,b2,.072,,paper,,연구 6 원고판 p. 46
+b2.tab.alpha,b2,.05,,fixed,,관례 유의수준
+b2.miss.alpha,b2,.05,,fixed,,관례 유의수준
+b2.miss.bonf,b2,.01,b2.bonf5,data,,.05 ÷ 보고된 비교 5
+b2.miss.p,b2,.001,,paper,,연구 6 원고판 p. 46 p < .001
+b2.s0.alpha,b2,5,,fixed,,관례 유의수준 5%
+b2.s0.95,b2,.95,,fixed,,1 − 유의수준 .05
+b2.s0.95b,b2,.95,,fixed,,1 − .05 (첫째)
+b2.s0.735,b2,.735,b2.p_none6,data,,.95⁶ = .7351
+b2.s0.735b,b2,.735,b2.p_none6,data,,.95⁶
+b2.s0.265,b2,.265,b2.p_any6,data,,1 − .95⁶ = .2649
+b2.s1.t,b2,2.21,b2.t_exp,data,,실험판 정제본 개입 대 통제 mil 등분산 t (12장)
+b2.s1.t2,b2,4.9,b2.t2_exp,data,,t² = 4.8645
+b2.s1.df,b2,364,b2.df2_exp,data,,366 − 2
+b2.s1.F,b2,4.864,b2.F_exp,data,,두 집단 일원배치 F
+b2.s1.t3,b2,2.206,b2.t_exp,data,,등분산 t
+b2.s1.t2b,b2,4.864,b2.t2_exp,data,,t²
+b2.s1.F4.df1,b2,3,b2.df1_4,data,,집단 수 − 1
+b2.s1.F4.df2,b2,426,b2.df2_4,data,,430 − 4
+b2.s1.F4,b2,1.728,b2.F4,data,,요인판(정제본) 네 칸 mil_t2 일원배치 F
+b2.s1.p4,b2,.161,b2.p4,data,,F 의 p = .1605
+b2.s1.N,b2,430,b2.fac_n,data,,요인판 정제본 사람 수
+b2.s1.k,b2,4,b2.k4,data,,칸 수
+b2.s1.lo,b2,4.81,b2.cell_min_mean,data,,가장 낮은 칸 평균 (elem 0 · frame 1)
+b2.s1.hi,b2,5.2,b2.cell_max_mean,data,,가장 높은 칸 평균 (elem 1 · frame 1)
+b2.s1.range,b2,0.39,b2.cell_range,data,,가장 높은 칸 − 가장 낮은 칸
+b2.s1.exp,b2,0.283,b2.exp_diff,data,,실험판 정제본 개입 − 통제 mil 평균 차이
+b2.s1.nmin,b2,105,b2.cell_n_min,data,,요인판 칸 사람 수 최소
+b2.s1.nmax,b2,110,b2.cell_n_max,data,,요인판 칸 사람 수 최대
+b2.s1.nexp,b2,183,b2.exp_group_n,data,,실험판 정제본 개입 집단 사람 수
+b2.s2.alpha,b2,.05,,fixed,,관례 유의수준
+b2.s2.alpha2,b2,.05,,fixed,,관례 유의수준
+b2.tab.F,b2,.161,b2.p4,data,,일원배치 F 의 p
+b2.tab.nsig,b2,1,b2.n_sig,data,,쌍별 등분산 t 여섯 가운데 p < .05 인 수
+b2.tab.minp,b2,.031,b2.min_p,data,,쌍별 최소 p = .0308
+b2.tab.bonf.alpha,b2,.05,,fixed,,관례 유의수준
+b2.tab.bonf.k,b2,6,b2.n_pairs,data,,쌍의 수
+b2.tab.bonf,b2,.0083,b2.bonf6,data,,.05 ÷ 6
+b2.tab.after,b2,0,b2.n_sig_bonf,data,,본페로니 문턱 아래 쌍의 수
+b2.s2.dig,b2,.031,b2.min_p,data,,쌍별 최소 p
+b2.ex1.df1,b2,3,b2.df1_4,data,,집단 수 − 1
+b2.ex1.df2,b2,426,b2.df2_4,data,,430 − 4
+b2.ex1.F,b2,1.728,b2.F4,data,,일원배치 F
+b2.ex1.p,b2,.161,b2.p4,data,,F 의 p
+b2.ex1.minp,b2,.031,b2.min_p,data,,쌍별 최소 p
+b2.ex2.alpha,b2,.05,,fixed,,관례 유의수준
+b2.ex2.report,b2,.031,b2.min_p,data,,쌍별 최소 p
+b2.ex3.k3,b2,3,b2.pairs3,data,,C(3 · 2)
+b2.ex3.b3,b2,.0167,b2.bonf3,data,,.05 ÷ 3
+b2.ex3.k15,b2,15,b2.pairs6,data,,C(6 · 2)
+b2.ex3.b15,b2,.0033,b2.bonf15,data,,.05 ÷ 15
+b2.ex3.95a,b2,.95,,fixed,,1 − .05 (첫째)
+b2.ex3.143,b2,.143,b2.p_any3,data,,1 − .95³ = .1426
+b2.ex3.95b,b2,.95,,fixed,,1 − .05 (둘째)
+b2.ex3.k15b,b2,15,b2.pairs6,data,,C(6 · 2)
+b2.ex3.537,b2,.537,b2.p_any15,data,,1 − .95¹⁵ = .5367
+b2.chk.031,b2,.031,b2.min_p,data,,쌍별 최소 p
