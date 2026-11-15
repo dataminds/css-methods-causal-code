@@ -1,33 +1,106 @@
 id,unit,printed,calc,kind,mc_tol,note
-ch21.box.t5,ch21,2.16,,paper,,"Rogers 외 2023 연구 5 결과(개입 → 삶의 의미, t(378) = 2.16, p = .031) p. 765 ; 출판본 raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인"
-ch21.null.crit,ch21,.05,,fixed,,§21.4 ⑥ 판정 기준 = 저자가 정한 문턱(섞은 기울기 200개 평균의 절댓값)
-ch21.null.ok.min,ch21,−0.17,ch21.null_ok_min,sim,0.11,§21.4 ⑥ 바른 판 X 200번 섞기(씨앗 73) 최솟값 ; 반복 300번 모의로 본 최솟값의 표준편차 0.026 → 3 × √2 × 0.026 ≈ 0.11
-ch21.null.ok.max,ch21,0.18,ch21.null_ok_max,sim,0.12,§21.4 ⑥ 바른 판 최댓값 ; 최댓값의 모의 표준편차 0.028 → 3 × √2 × 0.028 ≈ 0.12
-ch21.null.ok.mean,ch21,0.001,ch21.null_ok_mean,sim,0.02,§21.4 ⑥ 바른 판 섞은 기울기 평균 ; 모의 표준편차 0.0043 → 3 × √2 × 0.0043 ≈ 0.018
-ch21.orig.ok,ch21,0.978,ch21.slope_ok,data,,§21.4 바른 판 기울기 (mil ~ hjs ; 정제본 566명)
-ch21.out.ai,ch21,0.976,ch21.slope_ai,data,,§21.4 AI 판(절편 없음) 기울기
-ch21.out.ok,ch21,0.978,ch21.slope_ok,data,,§21.4 바른 판 기울기
-ch21.r2.ai,ch21,.395,ch21.r2_ai,data,,§21.4 AI 판 R² = 1 − 잔차 제곱합 / 평균 둘레 제곱합 (원점 둘레 R² 가 아니다)
-ch21.r2.ok,ch21,.395,ch21.r2_ok,data,,§21.4 바른 판 R²
-ch21.se.ratio,ch21,6.3,ch21.se_ratio,data,,§21.4 바른 판 표준오차 ÷ AI 판 표준오차
-ch21.inv3.from,ch21,0.976,ch21.slope_ai,data,,§21.4 불변식 ③ 전 AI 판 기울기
-ch21.inv3.to,ch21,1.949,ch21.ai_slope_y_plus5,data,,§21.4 불변식 ③ = Y + 5 뒤 AI 판 기울기
-ch21.inv4,ch21,0.778,ch21.ai_slope_y_const4,data,,§21.4 불변식 ④ = Y 를 상수 4로 만든 뒤 AI 판 기울기
-ch21.t.ok,ch21,0.978,ch21.slope_ok,data,,§21.5 표
-ch21.t.a,ch21,0.976,ch21.slope_ai,data,,§21.5 표 고장 A
-ch21.t.b,ch21,0.404,ch21.slope_swap,data,,§21.5 표 고장 B = hjs 를 mil 로 회귀한 기울기
-ch21.t.c,ch21,1.034,ch21.slope_half,data,,§21.5 표 고장 C = 정제본 파일 순서 앞 283명
-ch21.ratio,ch21,0.976,ch21.ymean_over_xmean,data,,§21.5 둘째 읽기 = mil 평균 ÷ hjs 평균
-ch21.null.ai.mean,ch21,0.95,ch21.null_ai_mean,sim,0.0006,§21.5 ⑥ AI 판 섞은 기울기 200개 평균(씨앗 73) ; 모의 표준편차 0.00012 → 3 × √2 × 0.00012 ≈ 0.0005
-ch21.three.b,ch21,0.404,ch21.slope_swap,data,,§21.5 셋째 읽기
-ch21.three.a,ch21,0.976,ch21.slope_ai,data,,§21.5 셋째 읽기
-ch21.three.c,ch21,1.034,ch21.slope_half,data,,§21.5 셋째 읽기
-ch21.three.ok,ch21,0.978,ch21.slope_ok,data,,§21.5 셋째 읽기
-ch21.three.c2,ch21,1.034,ch21.slope_half,data,,§21.5 셋째 읽기
-ch21.half.n,ch21,283,ch21.half_n,data,,§21.5 정제본 566명의 절반(내림)
-ch21.ex1.ai,ch21,0.976,ch21.slope_ai,data,,실습 1
-ch21.ex1.ok,ch21,0.978,ch21.slope_ok,data,,실습 1
-ch21.ex1.crit,ch21,.05,,fixed,,실습 1 = §21.4 ⑥ 판정 문턱(저자가 정한 값)
-ch21.ex1.null.ok,ch21,0.001,ch21.null_ok_mean,sim,0.02,실습 1 = §21.4 ⑥ 와 같은 계산
-ch21.ex1.null.ai,ch21,0.95,ch21.null_ai_mean,sim,0.0006,실습 1 = §21.5 ⑥ 와 같은 계산
-ch21.ex2.b,ch21,0.404,ch21.slope_swap,data,,실습 2 고장 B
+ch21.p.target1,ch21,150,,paper,,Rogers et al. (2023) JPSP 125(4) 연구 2 각주 9 「initial target sample size of 150」 p. 760 (출판본 PDF 쪽 대조)
+ch21.p.target2,ch21,450,,paper,,Rogers et al. (2023) 연구 2 각주 10 「preregistered target size of 450」 p. 760
+ch21.p.recv,ch21,481,,paper,,Rogers et al. (2023) 연구 2 Participants 「481 completed responses」 p. 760
+ch21.p.excl,ch21,67,,paper,,Rogers et al. (2023) 연구 2 p. 760 = 제외 62 + 4 + 1 (원문은 합계를 쓰지 않음 ; 481 − 414 와 같다)
+ch21.p.anal,ch21,414,,paper,,Rogers et al. (2023) 연구 2 「leaving a sample of 414」 p. 760
+ch21.tab.t1,ch21,150,,paper,,Rogers et al. (2023) 연구 2 p. 760
+ch21.tab.t2,ch21,450,,paper,,Rogers et al. (2023) 연구 2 p. 760
+ch21.tab.recv,ch21,481,,paper,,Rogers et al. (2023) 연구 2 p. 760
+ch21.tab.anal,ch21,414,,paper,,Rogers et al. (2023) 연구 2 p. 760
+ch21.p.first150,ch21,150,,paper,,Rogers et al. (2023) 연구 2 p. 760
+ch21.0.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.1.main,ch21,.346,ch21.main_p,sim,1.34,딱지 뒤섞기 (numpy 씨앗 73 순열) 주 분석 p ; R 은 자기 난수 순열 ; 영세계 p 는 대략 균등 → 순열 150개 MC SD .315 × 3√2 (R 대조는 형식만)
+ch21.1.opt.oc,ch21,2,,fixed,,갈래 설계 = 결과변수 2
+ch21.1.opt.trim,ch21,2.5,,fixed,,절사 기준 (설계)
+ch21.1.opt.excl,ch21,3,,fixed,,갈래 설계 = 표본 3
+ch21.1.opt.sub,ch21,5,,fixed,,갈래 설계 = 하위집단 5
+ch21.1.opt.cov,ch21,2,,fixed,,갈래 설계 = 공변인 2
+ch21.1.forks,ch21,60,ch21.fork_product,data,,2 × 3 × 5 × 2
+ch21.1.ask,ch21,.05,,fixed,,관례 유의수준
+ch21.1.out.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.1.h.alpha2,ch21,.05,,fixed,,관례 유의수준
+ch21.1.mul.base,ch21,0.95,,fixed,,1 − .05
+ch21.1.ind.alpha2,ch21,.05,,fixed,,관례 유의수준
+ch21.1.prod,ch21,60,ch21.fork_product,data,,곱셈
+ch21.1.paths,ch21,60,ch21.n_paths,sim,0,함수가 실제로 돈 갈래 수 (두 엔진 모두 60 이어야 한다)
+ch21.1.nsig.a,ch21,.05,,fixed,,관례 유의수준
+ch21.1.nsig,ch21,10,ch21.n_sig,sim,21.4,씨앗 73 순열의 유의 갈래 수 ; 영세계마다 SD 5.04(순열 150개 ; 씨앗 37 의 200세계는 4.55) × 3√2 (R 대조는 형식만)
+ch21.1.minp,ch21,.020,ch21.min_p,sim,0.28,60갈래 최소 p ; 순열 150개 MC SD .067 × 3√2
+ch21.1.dash,ch21,.346,ch21.main_p,sim,1.34,주 분석 p (위와 같음)
+ch21.1.ten,ch21,60,ch21.n_paths,sim,0,갈래 수
+ch21.1.tab.01,ch21,.020,ch21.p_flr_none_old_cov,sim,1.23,이름표가 가리키는 갈래 (flr · none · old · 공변인) 의 p = 이름표까지 대조 ; R 은 자기 순열 → 단일 갈래 p MC SD ≈ .29 × 3√2 (형식만)
+ch21.1.tab.02,ch21,.021,ch21.p_flr_attn_old_cov,sim,1.23,갈래 (flr · attn · old · 공변인)
+ch21.1.tab.03,ch21,.025,ch21.p_flr_trim_m_raw,sim,1.23,갈래 (flr · trim · m · 무보정)
+ch21.1.tab.04,ch21,.026,ch21.p_flr_attn_m_raw,sim,1.23,갈래 (flr · attn · m · 무보정)
+ch21.1.tab.05,ch21,.027,ch21.p_flr_none_m_raw,sim,1.23,갈래 (flr · none · m · 무보정)
+ch21.1.tab.06,ch21,.030,ch21.p_flr_trim_m_cov,sim,1.23,갈래 (flr · trim · m · 공변인)
+ch21.1.tab.07,ch21,.042,ch21.p_flr_none_m_cov,sim,1.23,갈래 (flr · none · m · 공변인)
+ch21.1.tab.08,ch21,.048,ch21.p_flr_trim_old_cov,sim,1.23,갈래 (flr · trim · old · 공변인)
+ch21.1.tab.09,ch21,.049,ch21.p_flr_attn_m_cov,sim,1.23,갈래 (flr · attn · m · 공변인)
+ch21.1.tab.10,ch21,.049,ch21.p_flr_none_all_cov,sim,1.23,갈래 (flr · none · all · 공변인)
+ch21.1.story.m,ch21,.027,ch21.p_flr_none_m_raw,sim,1.23,갈래 (flr · none · m · 무보정)
+ch21.1.story.old,ch21,.020,ch21.p_flr_none_old_cov,sim,1.23,갈래 (flr · none · old · 공변인)
+ch21.1.h.seed,ch21,37,,fixed,,교차 확인 씨앗
+ch21.1.h.reps,ch21,200,,fixed,,영세계 수
+ch21.1.h.mean,ch21,3.1,ch21.harvest_mean,sim,1.37,씨앗 37 의 200세계 평균 유의 건수 ; MC SD = 세계별 SD 4.55 / √200 = .32 × 3√2
+ch21.1.h.any,ch21,53,ch21.harvest_any_pct,sim,15,한 건 이상인 세계 비율(%) 52.5 ; MC SD √(.525 × .475 / 200) = 3.5%p × 3√2 ; ⚠ 52.5 는 반올림 경계
+ch21.1.h.alpha,ch21,5,,fixed,,관례 유의수준 5%
+ch21.1.ind.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.1.ind.keep,ch21,.95,,fixed,,1 − .05 (정의)
+ch21.1.ind.mult,ch21,.95,,fixed,,1 − .05
+ch21.1.ind.base,ch21,0.95,,fixed,,1 − .05
+ch21.1.ind.val,ch21,.954,ch21.indep_fwer,data,,독립 가정 묶음 위양성률 1 − .95^60
+ch21.1.ind.pct,ch21,95,ch21.indep_fwer_pct,data,,같은 값의 백분율 95.4
+ch21.1.ind.real,ch21,53,ch21.harvest_any_pct,sim,15,씨앗 37 200세계 (위와 같음)
+ch21.1.ind.not5,ch21,5,,fixed,,관례 유의수준 5%
+ch21.2.s1.power,ch21,.57,s1.power,data,,S1 의 해석해 검정력 (s1 대조표의 계산 s1.power 를 그대로 쓴다)
+ch21.2.ch12,ch21,14,ch12.fp_three_indep_pct,data,,"12장 §12.7 의 값을 옮김 = ch12 대조표의 계산 ch12.fp_three_outcomes_pct (구 배터리 절차 ; 씨앗 73 · 3,000회) 와 허용폭을 그대로 쓴다 ; 실측 12.63% 는 13 으로 반올림 ; 2026-11-14h 원고 정정에 맞춰 옮김"
+ch21.2.m.design,ch21,100,,fixed,,모의시행 집단 인원
+ch21.2.m.reps,ch21,"4,000",,fixed,,반복 횟수
+ch21.2.m.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.2.m.fwer,ch21,.235,ch21.multi_fwer,sim,0.028,§21.2 상자 (씨앗 73) ; MC SD √(p(1−p)/4000) = .0067 × 3√2
+ch21.2.m.fwer2,ch21,.235,ch21.multi_fwer,sim,0.028,같은 근거
+ch21.2.m.formula.base,ch21,0.95,,fixed,,1 − .05
+ch21.2.m.formula,ch21,.226,ch21.indep_fwer5,data,,1 − .95^5
+ch21.2.m.risk,ch21,5,,fixed,,관례 유의수준
+ch21.2.m.risk2,ch21,5,,fixed,,관례 유의수준
+ch21.2.b2.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.2.b2.k,ch21,6,,fixed,,B2 의 쌍 수 (네 집단의 쌍 4C2)
+ch21.2.bon.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.2.bon.k,ch21,5,,fixed,,검정 개수
+ch21.2.bon.cut,ch21,.01,ch21.bonf_cut,data,,.05 / 5
+ch21.2.bon.fwer,ch21,.047,ch21.multi_fwer_bon,sim,0.014,MC SD √(p(1−p)/4000) = .0033 × 3√2
+ch21.2.pow.d,ch21,0.4,,fixed,,모의시행에 정한 효과크기 (본문 · 상자 두 곳에 같은 조각)
+ch21.2.pow.reps,ch21,"4,000",,fixed,,반복 횟수
+ch21.2.box2.reps,ch21,"4,000",,fixed,,상자 반복 횟수
+ch21.2.box.reps,ch21,"4,000",,fixed,,상자 반복 횟수
+ch21.2.pow.a05,ch21,.05,,fixed,,문턱
+ch21.2.pow.p05,ch21,.804,ch21.multi_pow05,sim,0.027,MC SD .0063 × 3√2
+ch21.2.pow.a01,ch21,.01,ch21.bonf_cut,data,,.05 / 5
+ch21.2.pow.p01,ch21,.588,ch21.multi_pow01,sim,0.033,MC SD .0078 × 3√2
+ch21.2.pow.drop05,ch21,.804,ch21.multi_pow05,sim,0.027,같은 근거
+ch21.2.pow.drop01,ch21,.588,ch21.multi_pow01,sim,0.033,같은 근거
+ch21.2.pow.d2,ch21,0.4,,fixed,,정한 효과크기
+ch21.2.box.design,ch21,100,,fixed,,상자 = 설계 인원
+ch21.2.box.thr,ch21,.05,,fixed,,문턱 (두 곳)
+ch21.2.box.k,ch21,5,,fixed,,검정 개수
+ch21.2.box.base,ch21,0.95,,fixed,,1 − .05
+ch21.2.box2.thr,ch21,.05,,fixed,,문턱
+ch21.2.box2.cut,ch21,.01,ch21.bonf_cut,data,,.05 / 5
+ch21.2.paper.n,ch21,150,,paper,,Rogers et al. (2023) 연구 2 p. 760
+ch21.2.paper.n2,ch21,450,,paper,,Rogers et al. (2023) 연구 2 p. 760
+ch21.2.peek.n1,ch21,150,,fixed,,모의 규칙의 첫 표본 (원 연구 계획을 본뜬 설계값)
+ch21.2.peek.n2,ch21,450,,fixed,,모의 규칙의 둘째 표본
+ch21.2.peek.reps,ch21,"20,000",,fixed,,반복 횟수
+ch21.2.peek.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.2.peek.fwer,ch21,.09,ch21.peek_fwer,sim,0.0085,"원고에 코드 없음 = 구 배터리 절차(독립인 두 정규 변수의 상관 검정 ; 150 열에서 한 번 · 450 열 전체에서 한 번 ; 씨앗 73 · 20,000번) ; 파이썬 .0884 ; MC SD √(p(1−p)/20000) = .0020 × 3√2"
+ch21.2.limit.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.2.limit.n,ch21,150,,paper,,Rogers et al. (2023) 연구 2 p. 760
+ch21.6.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.7.q1.main,ch21,.346,ch21.main_p,sim,1.34,주 분석 p
+ch21.7.q1.paths,ch21,60,ch21.n_paths,sim,0,갈래 수
+ch21.7.q1.min,ch21,.020,ch21.min_p,sim,0.28,60갈래 최소 p
+ch21.7.q5.paths,ch21,60,ch21.n_paths,sim,0,갈래 수
+ch21.7.q5.ind,ch21,95,ch21.indep_fwer_pct,data,,1 − .95^60 = 95.4%
+ch21.7.q5.real,ch21,53,ch21.harvest_any_pct,sim,15,씨앗 37 200세계

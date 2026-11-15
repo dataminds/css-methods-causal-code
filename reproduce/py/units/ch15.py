@@ -49,7 +49,7 @@ calc("ch15.zg_n_f")(lambda: _zg()["nf"])
 calc("ch15.zg_n_m")(lambda: _zg()["nm"])
 
 # §15.3 생략변수 편향 = 성별 → 기력 다리만 바꾼 세계에서 성별을 뺀 기울기
-for _e in (0, 10, 20):
+for _e in (0, 5, 10, 20):
     calc(f"ch15.bias_e{_e}")(lambda e=_e: _once(("bias", e), lambda: np.polyfit(make2(sexeff=float(e)).dose,
                                                                                make2(sexeff=float(e)).vigor, 1)[0]))
 
@@ -145,6 +145,29 @@ def _rho0():
 
 
 calc("ch15.rho_null")(_rho0)
+
+
+# 2026-11-15 4단 전환 = 개념 절 결과 표 (민감도 표 다섯 행 · 역산 표 세 행)
+def _sens_full():
+    return _once("sens_full", lambda: [(lambda r: (r[0][1], r[1][1]))(ols(S().mil, [S().hjs] + [S()[c] for c in cols])) for cols in _SPECS])
+
+
+for _i, _nm in enumerate(("none", "age", "refl", "age_refl", "age_refl_swl")):
+    calc(f"ch15.sens_{_nm}_b")(lambda i=_i: _sens_full()[i][0])
+    calc(f"ch15.sens_{_nm}_se")(lambda i=_i: _sens_full()[i][1])
+
+
+def _rho_tab(rho):
+    b = ols(S().mil.values, [S().hjs.values])[0][1]
+    sdx, sdy = S().hjs.std(ddof=1), S().mil.std(ddof=1)
+    r = b * sdx / sdy
+    adj = (r - rho * rho) / (1 - rho * rho) * sdy / sdx
+    return b - adj, adj
+
+
+for _k, _rho in (("3", .3), ("5", .5), ("7", .7)):
+    calc(f"ch15.rho_bias_{_k}")(lambda rho=_rho: _rho_tab(rho)[0])
+    calc(f"ch15.rho_adj_{_k}")(lambda rho=_rho: _rho_tab(rho)[1])
 
 # ── 「먼저」 · 논문 상자 ③ 의 산술 (Rogers 외 2023 보고값 · OSF 재계산값으로) ──
 calc("ch15.paper_adjr2_gain_rounded")(lambda: .63 - .59)

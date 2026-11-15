@@ -74,7 +74,7 @@ def _sims():
     g = np.random.default_rng(73)
     b, _, p, _ = ols(g.permutation(ts.wellbeing.values), [ts.week, ts.campaign])
     _cache["perm_b2"], _cache["perm_p2"] = float(b[2]), float(p[2])
-    # 17장 §17.3 추세 세계 (씨앗 73) = 사건 효과 0 · 주당 +0.012
+    # 18장 §18.3 추세 세계 (씨앗 73) = 사건 효과 0 · 주당 +0.012
     rng = np.random.default_rng(73)
     wk = np.arange(1, 105)
     camp = (wk >= 53).astype(int)

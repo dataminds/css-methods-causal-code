@@ -60,7 +60,7 @@ calc("s3.mil_p_hjs2_lt")(lambda: _lt001(_fit("mil", 2)[2][3]))
 calc("s3.mil_p_int_lt")(lambda: _lt001(_fit("mil", 3)[2][5]))
 
 
-# 95% 구간 = t(n − k − 1) (19장 §19.3 의 회귀 구간과 같은 규약)
+# 95% 구간 = t(n − k − 1) (20장 §20.3 의 회귀 구간과 같은 규약)
 def _ci(stage, j, side):
     from scipy import stats
     b, se, _, _ = _fit("mil", stage)

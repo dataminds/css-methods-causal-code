@@ -1,286 +1,42 @@
 id,unit,printed,calc,kind,mc_tol,note
-ch19.paper.1,ch19,.54,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인 (difference = .54)
-ch19.paper.2,ch19,.16,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.3,ch19,445,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.4,ch19,3.35,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.5,ch19,.001,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인 (p < .001)
-ch19.paper.6,ch19,1.68,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.7,ch19,.094,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.8,ch19,1.48,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.9,ch19,.140,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.10,ch19,.54,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.11,ch19,.16,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.svy_n_raw.1,ch19,590,ch19.svy_n_raw,data,,S3 설문판 원자료
-ch19.svy_n.1,ch19,566,ch19.svy_n,data,,S3 정제본
-ch19.exp_n_raw.1,ch19,380,ch19.exp_n_raw,data,,S1 실험판 원자료
-ch19.exp_n.1,ch19,366,ch19.exp_n,data,,S1 정제본
-ch19.svy_n_raw.2,ch19,590,ch19.svy_n_raw,data,,표본 흐름 판형
-ch19.svy_n_excl.1,ch19,24,ch19.svy_n_excl,data,,주의 점검 실패
-ch19.svy_excl_pct.1,ch19,4.1,ch19.svy_excl_pct,data,,24 / 590
-ch19.svy_n.2,ch19,566,ch19.svy_n,data,,정제본
-ch19.hjs_n_items.1,ch19,21,ch19.hjs_n_items,data,,설문판 hjs 문항 열 수
-ch19.fixed.1,ch19,7,,fixed,,척도 끝값(1~7)
-ch19.hjs_alpha.1,ch19,.93,ch19.hjs_alpha,data,,설문판 정제본 hjs 21문항 크론바흐 α
-ch19.fixed.2,ch19,.05,,fixed,,나쁜 보고 예시 · 규칙 3 의 줄여 쓰기 예 (관례 문턱)
-ch19.fixed.3,ch19,.05,,fixed,,같은 앵커 둘째 자리(규칙 3)
-ch19.exp_mil_m0.1,ch19,4.98,ch19.exp_mil_m0,data,,✗ 예시 문장
-ch19.exp_mil_m1.1,ch19,5.26,ch19.exp_mil_m1,data,,✗ 예시 문장
-ch19.exp_mil_d.1,ch19,0.23,ch19.exp_mil_d,data,,✗ 예시 문장
-ch19.exp_mil_m1.2,ch19,5.26,ch19.exp_mil_m1,data,,✓ 문장 · §19.6 본보기 (두 곳 같은 조각)
-ch19.exp_mil_s1.1,ch19,1.18,ch19.exp_mil_s1,data,,같은 조각
-ch19.exp_mil_m0.2,ch19,4.98,ch19.exp_mil_m0,data,,같은 조각
-ch19.exp_mil_s0.1,ch19,1.27,ch19.exp_mil_s0,data,,같은 조각
-ch19.exp_mil_m1.3,ch19,5.26,ch19.exp_mil_m1,data,,§19.6 본보기 둘째 출현
-ch19.exp_mil_s1.2,ch19,1.18,ch19.exp_mil_s1,data,,둘째 출현
-ch19.exp_mil_m0.3,ch19,4.98,ch19.exp_mil_m0,data,,둘째 출현
-ch19.exp_mil_s0.2,ch19,1.27,ch19.exp_mil_s0,data,,둘째 출현
-ch19.exp_df.1,ch19,364,ch19.exp_df,data,,✓ 문장 자유도
-ch19.exp_mil_t.1,ch19,2.21,ch19.exp_mil_t,data,,✓ 문장
-ch19.exp_mil_p.1,ch19,.028,ch19.exp_mil_p,data,,✓ 문장
-ch19.exp_mil_d.2,ch19,0.23,ch19.exp_mil_d,data,,✓ 문장
-ch19.fixed.4,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.exp_mil_lo.1,ch19,0.02,ch19.exp_mil_lo,data,,d 구간 아래
-ch19.exp_mil_hi.1,ch19,0.44,ch19.exp_mil_hi,data,,d 구간 위
-ch19.exp_df.2,ch19,364,ch19.exp_df,data,,규칙 1
-ch19.exp_mil_t.2,ch19,2.21,ch19.exp_mil_t,data,,규칙 1
-ch19.exp_mil_p.2,ch19,.028,ch19.exp_mil_p,data,,규칙 3
-ch19.fixed.5,ch19,.001,,fixed,,보고 관례 문턱(규칙 3)
-ch19.exp_mil_p.3,ch19,.028,ch19.exp_mil_p,data,,규칙 4
-ch19.r_hjs_mil.1,ch19,.63,ch19.r_hjs_mil,data,,규칙 4 = 설문판 r(hjs · mil)
-ch19.exp_mil_d.3,ch19,0.23,ch19.exp_mil_d,data,,규칙 4
-ch19.paper.12,ch19,.74,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.13,ch19,.03,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.14,ch19,590,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.15,ch19,27.08,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.16,ch19,.001,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.17,ch19,.74,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.18,ch19,.03,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.19,ch19,590,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.20,ch19,27.08,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.21,ch19,.001,,paper,,Rogers 외 2023 연구 1 p. 758 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.exp_df.3,ch19,364,ch19.exp_df,data,,영문 예
-ch19.exp_mil_t.3,ch19,2.21,ch19.exp_mil_t,data,,영문 예
-ch19.exp_mil_p.4,ch19,.028,ch19.exp_mil_p,data,,영문 예
-ch19.exp_mil_m1.4,ch19,5.26,ch19.exp_mil_m1,data,,괄호 상자
-ch19.exp_mil_s1.3,ch19,1.18,ch19.exp_mil_s1,data,,괄호 상자
-ch19.exp_mil_m0.4,ch19,4.98,ch19.exp_mil_m0,data,,괄호 상자
-ch19.exp_mil_s0.3,ch19,1.27,ch19.exp_mil_s0,data,,괄호 상자
-ch19.fixed.6,ch19,40,,fixed,,16장 §16.1 모의 설계의 집단 크기
-ch19.ch16_p40.1,ch19,.091,ch19.ch16_p40,sim,1,16장 §16.1 모의(씨앗 73 ; 300명 다음 40명 ; 참 기울기 0.3) 40명의 p ; 영가설이 아닌데도 p 는 표본마다 크게 달라 R 독립 모의는 범위 확인뿐(허용 1)
-ch19.exp_mil_d.4,ch19,0.23,ch19.exp_mil_d,data,,✋ 물음
-ch19.fixed.7,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.boot_mdiff_lo.1,ch19,0.03,ch19.boot_mdiff_lo,sim,0.021,"평균차 구간 아래 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_hi.1,ch19,0.54,ch19.boot_mdiff_hi,sim,0.021,"평균차 구간 위 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.exp_mil_d.5,ch19,0.23,ch19.exp_mil_d,data,,규칙 6
-ch19.exp_mil_lo.2,ch19,0.02,ch19.exp_mil_lo,data,,규칙 6
-ch19.exp_mil_hi.2,ch19,0.44,ch19.exp_mil_hi,data,,규칙 6
-ch19.exp_mil_d.6,ch19,0.23,ch19.exp_mil_d,data,,규칙 6
-ch19.fixed.8,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.exp_mil_lo.3,ch19,0.02,ch19.exp_mil_lo,data,,규칙 6
-ch19.exp_mil_hi.3,ch19,0.44,ch19.exp_mil_hi,data,,규칙 6
-ch19.mil_mdiff.1,ch19,0.28,ch19.mil_mdiff,data,,규칙 6
-ch19.fixed.9,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.boot_mdiff_lo.2,ch19,0.03,ch19.boot_mdiff_lo,sim,0.021,"t(364) 구간 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_hi.2,ch19,0.54,ch19.boot_mdiff_hi,sim,0.021,"t(364) 구간 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_lo.3,ch19,0.03,ch19.boot_mdiff_lo,sim,0.021,"규칙 6 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_hi.3,ch19,0.54,ch19.boot_mdiff_hi,sim,0.021,"규칙 6 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.fixed.10,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.11,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.exp_mil_d.7,ch19,0.23,ch19.exp_mil_d,data,,규칙 6
-ch19.mil_mdiff.2,ch19,0.28,ch19.mil_mdiff,data,,규칙 6
-ch19.exp_mil_d.8,ch19,0.23,ch19.exp_mil_d,data,,규칙 6
-ch19.fixed.12,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.boot_mdiff_lo.4,ch19,0.03,ch19.boot_mdiff_lo,sim,0.021,"규칙 6 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_hi.4,ch19,0.54,ch19.boot_mdiff_hi,sim,0.021,"규칙 6 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_hi.5,ch19,0.54,ch19.boot_mdiff_hi,sim,0.021,"규칙 6 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.exp_mil_hi.4,ch19,0.44,ch19.exp_mil_hi,data,,규칙 6
-ch19.exp_mil_lo.4,ch19,0.025,ch19.exp_mil_lo,data,,d 구간 아래 셋째 자리
-ch19.fixed.13,ch19,0.03,,fixed,,이중 반올림의 예 = 인쇄된 0.025 를 다시 둘째 자리로 올린 틀린 값(원고가 틀렸다고 말하는 수)
-ch19.exp_mil_lo.5,ch19,0.02499,ch19.exp_mil_lo,data,,d 구간 아래 다섯째 자리
-ch19.exp_mil_lo.6,ch19,0.02,ch19.exp_mil_lo,data,,규칙 6
-ch19.exp_mil_lo.7,ch19,0.025,ch19.exp_mil_lo,data,,규칙 6
-ch19.mil_mdiff.3,ch19,0.28,ch19.mil_mdiff,data,,규칙 6 따로 쓰기
-ch19.fixed.14,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.boot_mdiff_lo.5,ch19,0.03,ch19.boot_mdiff_lo,sim,0.021,"13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_hi.6,ch19,0.54,ch19.boot_mdiff_hi,sim,0.021,"13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.exp_mil_d.9,ch19,0.23,ch19.exp_mil_d,data,,
-ch19.fixed.15,ch19,95,,fixed,,신뢰수준 95% (정의) (둘째)
-ch19.exp_mil_lo.8,ch19,0.02,ch19.exp_mil_lo,data,,
-ch19.exp_mil_hi.5,ch19,0.44,ch19.exp_mil_hi,data,,
-ch19.s3_dr2_2_pct.1,ch19,39,ch19.s3_dr2_2_pct,data,,S3 2단계 ΔR² × 100
-ch19.s3_dr2_2.1,ch19,.389,ch19.s3_dr2_2,data,,S3 2단계 ΔR²
-ch19.s3_b2.1,ch19,0.98,ch19.s3_b2,data,,2단계 hjs 계수
-ch19.s3_se2.1,ch19,0.05,ch19.s3_se2,data,,2단계 SE
-ch19.fixed.16,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.s3_lo2.1,ch19,0.88,ch19.s3_lo2,data,,t(550) 구간
-ch19.s3_hi2.1,ch19,1.08,ch19.s3_hi2,data,,t(550) 구간
-ch19.s3_p2_below_001.1,ch19,.001,ch19.s3_p2_below_001,data,,"문턱 주장 「p < .001」 = p 가 .001 아래면 .001, 아니면 −1"
-ch19.s3_n.1,ch19,554,ch19.s3_n,data,,성별 1 · 2
-ch19.s3_b3.1,ch19,0.19,ch19.s3_b3,data,,3단계 곱항
-ch19.s3_se3.1,ch19,0.04,ch19.s3_se3,data,,3단계 SE
-ch19.fixed.17,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.s3_lo3.1,ch19,0.12,ch19.s3_lo3,data,,t(548) 구간
-ch19.s3_hi3.1,ch19,0.27,ch19.s3_hi3,data,,t(548) 구간
-ch19.s3_p3_below_001.1,ch19,.001,ch19.s3_p3_below_001,data,,문턱 주장
-ch19.s3_dr2_3.1,ch19,.027,ch19.s3_dr2_3,data,,3단계 ΔR²
-ch19.s3_slo.1,ch19,0.73,ch19.s3_slo,data,,hjs 기울기 − 곱항 × SD(refl)
-ch19.s3_shi.1,ch19,1.25,ch19.s3_shi,data,,hjs 기울기 + 곱항 × SD(refl) = 1.248
-ch19.fixed.18,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.s2_b3.1,ch19,0.34,ch19.s2_b3,data,,S2 요인판 정제본 곱항 ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch19.fixed.19,ch19,95,,fixed,,신뢰수준 95% (정의) ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch19.s2_b3_lo.1,ch19,−0.15,ch19.s2_b3_lo,data,,S2 = b ± 1.96 SE ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch19.s2_b3_hi.1,ch19,0.83,s2.ci_hi,data,,S2 = b ± 1.96 SE ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch19.s1_power.1,ch19,.57,ch19.s1_power,data,,S1 ② = 집단당 190명 · d 0.22 · 양측 .05 비중심 t
-ch19.paper.22,ch19,5.73,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인 (M HJY)
-ch19.paper.23,ch19,5.46,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인 (random prompt M)
-ch19.box_diff_rp.1,ch19,0.27,ch19.box_diff_rp,data,,보고값 산술
-ch19.paper.24,ch19,1.68,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.box_se_rp.1,ch19,0.16,ch19.box_se_rp,data,,0.27 / 1.68
-ch19.fixed.20,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.box_lo_rp.1,ch19,−0.05,ch19.box_lo_rp,data,,t(445) 임계값
-ch19.box_hi_rp.1,ch19,0.59,ch19.box_hi_rp,data,,t(445) 임계값
-ch19.box_diff_he.1,ch19,0.24,ch19.box_diff_he,data,,5.73 − 5.49 (논문 p. 766)
-ch19.box_lo_he.1,ch19,−0.08,ch19.box_lo_he,data,,SE = 0.24 / 1.48 · t(445)
-ch19.box_hi_he.1,ch19,0.56,ch19.box_hi_he,data,,
-ch19.paper.25,ch19,.54,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.paper.26,ch19,.16,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.box_t_main.1,ch19,3.38,ch19.box_t_main,data,,.54 / .16 = 3.375 (반올림 경계)
-ch19.paper.27,ch19,3.35,,paper,,Rogers 외 2023 연구 6 p. 766 ; raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인
-ch19.box_lo_rp.2,ch19,−0.05,ch19.box_lo_rp,data,,
-ch19.box_hi_rp.2,ch19,0.59,ch19.box_hi_rp,data,,
-ch19.fixed.21,ch19,0.2,,fixed,,동등성 경계 d = ±0.2 = 저자가 정한 최소 관심 크기
-ch19.fixed.22,ch19,90,,fixed,,동등성 검정의 90% 구간 = 두 단측 검정 .05 (정의)
-ch19.fixed.23,ch19,90,,fixed,,동등성 검정의 90% 구간 = 두 단측 검정 .05 (정의)
-ch19.fixed.24,ch19,.05,,fixed,,유의수준(정의)
-ch19.eq_n.1,ch19,554,ch19.eq_n,data,,동등성 표본
-ch19.fixed.25,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.26,ch19,0.2,,fixed,,동등성 경계 d = ±0.2 = 저자가 정한 최소 관심 크기
-ch19.fixed.27,ch19,90,,fixed,,동등성 검정의 90% 구간 = 두 단측 검정 .05 (정의)
-ch19.eq_mil_diff.1,ch19,−0.02,ch19.eq_mil_diff,data,,동등성 표 = 성별 2 − 1
-ch19.eq_mil_lo95.1,ch19,−0.23,ch19.eq_mil_lo95,data,,t 95% 구간
-ch19.eq_mil_hi95.1,ch19,0.19,ch19.eq_mil_hi95,data,,
-ch19.eq_mil_p.1,ch19,.82,ch19.eq_mil_p,data,,양측 t 검정
-ch19.eq_mil_bound.1,ch19,0.25,ch19.eq_mil_bound,data,,0.2 × 합동 SD
-ch19.eq_mil_lo90.1,ch19,−0.20,ch19.eq_mil_lo90,data,,t 90% 구간
-ch19.eq_mil_hi90.1,ch19,0.15,ch19.eq_mil_hi90,data,,
-ch19.eq_flr_diff.1,ch19,−0.07,ch19.eq_flr_diff,data,,동등성 표 = 성별 2 − 1
-ch19.eq_flr_lo95.1,ch19,−0.22,ch19.eq_flr_lo95,data,,t 95% 구간
-ch19.eq_flr_hi95.1,ch19,0.08,ch19.eq_flr_hi95,data,,
-ch19.eq_flr_p.1,ch19,.36,ch19.eq_flr_p,data,,양측 t 검정
-ch19.eq_flr_bound.1,ch19,0.18,ch19.eq_flr_bound,data,,0.2 × 합동 SD
-ch19.eq_flr_lo90.1,ch19,−0.19,ch19.eq_flr_lo90,data,,t 90% 구간
-ch19.eq_flr_hi90.1,ch19,0.05,ch19.eq_flr_hi90,data,,
-ch19.eq_mil_diff.2,ch19,−0.02,ch19.eq_mil_diff,data,,
-ch19.fixed.28,ch19,0.2,,fixed,,동등성 경계 d = ±0.2 = 저자가 정한 최소 관심 크기
-ch19.eq_mil_bound.2,ch19,0.25,ch19.eq_mil_bound,data,,
-ch19.fixed.29,ch19,90,,fixed,,동등성 검정의 90% 구간 = 두 단측 검정 .05 (정의)
-ch19.eq_mil_lo90.2,ch19,−0.20,ch19.eq_mil_lo90,data,,
-ch19.eq_mil_hi90.2,ch19,0.15,ch19.eq_mil_hi90,data,,
-ch19.fixed.30,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.31,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.32,ch19,1.96,,fixed,,정규분포 97.5% 분위수 (「쯤」)
-ch19.bar_sd.1,ch19,1.18,ch19.bar_sd,data,,개입 집단 SD
-ch19.bar_se.1,ch19,0.087,ch19.bar_se,data,,SE
-ch19.bar_ci_half.1,ch19,0.172,ch19.bar_ci_half,data,,t(364) × SE = 0.17155
-ch19.fixed.33,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.bar_treat_lo.1,ch19,5.09,ch19.bar_treat_lo,data,,개입 평균 − t × SE
-ch19.bar_ctrl_hi.1,ch19,5.17,ch19.bar_ctrl_hi,data,,통제 평균 + t × SE
-ch19.exp_mil_p.5,ch19,.028,ch19.exp_mil_p,data,,
-ch19.fixed.34,ch19,95,,fixed,,신뢰수준 95% (정의) (§19.4)
-ch19.fixed.35,ch19,95,,fixed,,신뢰수준 95% (정의) (§19.7 여섯째 ; 같은 조각)
-ch19.fixed.36,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.37,ch19,0.22,,fixed,,S1 ② 의 기대 효과 = 원 연구(Rogers 외 2023 연구 5) d 이자 모의 세계 참값
-ch19.s1_power.2,ch19,.57,ch19.s1_power,data,,S1 ② 검정력
-ch19.s2_power448.1,ch19,.45,ch19.s2_power448,sim,0.11,S2 표 = 요인판 생성기(make_data_family.gen_fac)로 총 448명 400번(씨앗 1000 + i) 곱항 p < .05 비율 ; R = 생성기의 mil_t2 · 배정 · 주의 점검 부분을 R 로 따로 짜서 R 의 난수(씨앗 73)로 400번 ; 400번 추정의 표준오차 0.025 → 3 × √2 × 0.025 ≈ 0.11
-ch19.exp_gender_chi2_p.1,ch19,.32,ch19.exp_gender_chi2_p,data,,S1 코드 둘째 자리
-ch19.exp_gender_chi2_p.2,ch19,.320,ch19.exp_gender_chi2_p,data,,규칙 3 셋째 자리
-ch19.exp_n_raw.2,ch19,380,ch19.exp_n_raw,data,,
-ch19.exp_n_excl.1,ch19,14,ch19.exp_n_excl,data,,
-ch19.exp_n.2,ch19,366,ch19.exp_n,data,,
-ch19.exp_n_treat.1,ch19,183,ch19.exp_n_treat,data,,개입
-ch19.exp_n_ctrl.1,ch19,183,ch19.exp_n_ctrl,data,,통제
-ch19.exp_age_m1.1,ch19,36.9,ch19.exp_age_m1,data,,
-ch19.exp_age_m0.1,ch19,37.5,ch19.exp_age_m0,data,,
-ch19.exp_age_d.1,ch19,−0.06,ch19.exp_age_d,data,,
-ch19.exp_mil_t1_m1.1,ch19,4.80,ch19.exp_mil_t1_m1,data,,
-ch19.exp_mil_t1_m0.1,ch19,4.82,ch19.exp_mil_t1_m0,data,,
-ch19.exp_mil_t1_d.1,ch19,−0.01,ch19.exp_mil_t1_d,data,,
-ch19.exp_gender_chi2_df.1,ch19,2,ch19.exp_gender_chi2_df,data,,조건 × 성별(1 · 2 · 3) 자유도
-ch19.exp_gender_chi2.1,ch19,2.28,ch19.exp_gender_chi2,data,,
-ch19.exp_gender_chi2_p.3,ch19,.320,ch19.exp_gender_chi2_p,data,,
-ch19.exp_hjs_m1.1,ch19,5.27,ch19.exp_hjs_m1,data,,조작 점검
-ch19.exp_hjs_s1.1,ch19,0.75,ch19.exp_hjs_s1,data,,
-ch19.exp_hjs_m0.1,ch19,5.06,ch19.exp_hjs_m0,data,,
-ch19.exp_hjs_s0.1,ch19,0.78,ch19.exp_hjs_s0,data,,
-ch19.exp_df.4,ch19,364,ch19.exp_df,data,,
-ch19.exp_hjs_t.1,ch19,2.58,ch19.exp_hjs_t,data,,
-ch19.exp_hjs_p.1,ch19,.010,ch19.exp_hjs_p,data,,
-ch19.exp_hjs_d.1,ch19,0.27,ch19.exp_hjs_d,data,,
-ch19.fixed.38,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.exp_hjs_lo.1,ch19,0.06,ch19.exp_hjs_lo,data,,
-ch19.exp_hjs_hi.1,ch19,0.48,ch19.exp_hjs_hi,data,,
-ch19.mil_mdiff.4,ch19,0.28,ch19.mil_mdiff,data,,본보기 주 분석
-ch19.fixed.39,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.boot_mdiff_lo.6,ch19,0.03,ch19.boot_mdiff_lo,sim,0.021,"13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_hi.7,ch19,0.54,ch19.boot_mdiff_hi,sim,0.021,"13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.exp_df.5,ch19,364,ch19.exp_df,data,,
-ch19.exp_mil_t.4,ch19,2.21,ch19.exp_mil_t,data,,
-ch19.exp_mil_p.6,ch19,.028,ch19.exp_mil_p,data,,
-ch19.exp_mil_d.10,ch19,0.23,ch19.exp_mil_d,data,,
-ch19.fixed.40,ch19,95,,fixed,,신뢰수준 95% (정의) (둘째)
-ch19.exp_mil_lo.9,ch19,0.02,ch19.exp_mil_lo,data,,
-ch19.exp_mil_hi.6,ch19,0.44,ch19.exp_mil_hi,data,,
-ch19.s1_perm_p.1,ch19,.030,ch19.s1_perm_p,sim,0.011,"S1 ⑦ 뒤섞기 5,000번(씨앗 73) ; 몬테카를로 표준오차 √(.03 × .97 / 5000) = 0.0024 → 3 × √2 × 0.0024 ≈ 0.010"
-ch19.exp_flr_m1.1,ch19,5.53,ch19.exp_flr_m1,data,,
-ch19.exp_flr_s1.1,ch19,0.89,ch19.exp_flr_s1,data,,
-ch19.exp_flr_m0.1,ch19,5.33,ch19.exp_flr_m0,data,,
-ch19.exp_flr_s0.1,ch19,0.95,ch19.exp_flr_s0,data,,
-ch19.exp_df.6,ch19,364,ch19.exp_df,data,,
-ch19.exp_flr_t.1,ch19,2.08,ch19.exp_flr_t,data,,
-ch19.exp_flr_p.1,ch19,.038,ch19.exp_flr_p,data,,
-ch19.exp_flr_d.1,ch19,0.22,ch19.exp_flr_d,data,,
-ch19.fixed.41,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.exp_flr_lo.1,ch19,0.01,ch19.exp_flr_lo,data,,
-ch19.exp_flr_hi.1,ch19,0.42,ch19.exp_flr_hi,data,,
-ch19.ancova_b.1,ch19,0.29,ch19.ancova_b,data,,공변인 조정 (mil ~ cond + mil_t1)
-ch19.ancova_se.1,ch19,0.11,ch19.ancova_se,data,,
-ch19.ancova_p.1,ch19,.007,ch19.ancova_p,data,,
-ch19.inter_b.1,ch19,0.02,ch19.inter_b,data,,조건 × 중심화 기저
-ch19.inter_p.1,ch19,.797,ch19.inter_p,data,,
-ch19.exp_age_d.2,ch19,−0.06,ch19.exp_age_d,data,,
-ch19.exp_mil_t1_d.2,ch19,−0.01,ch19.exp_mil_t1_d,data,,
-ch19.s2_b3.2,ch19,0.34,ch19.s2_b3,data,,실습 2 ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch19.fixed.42,ch19,95,,fixed,,신뢰수준 95% (정의) ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch19.s2_b3_lo.2,ch19,−0.15,ch19.s2_b3_lo,data,, ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch19.s2_b3_hi.2,ch19,0.83,s2.ci_hi,data,, ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch19.gender_d_below_01.1,ch19,0.1,ch19.gender_d_below_01,data,,"문턱 주장 = 성별 1 · 2 의 |d| 최댓값(mil · hjs · flr)이 0.1 미만이면 0.1, 아니면 −1"
-ch19.fixed.43,ch19,0.2,,fixed,,동등성 경계 d = ±0.2 = 저자가 정한 최소 관심 크기
-ch19.fixed.44,ch19,90,,fixed,,동등성 검정의 90% 구간 = 두 단측 검정 .05 (정의)
-ch19.eq_mil_lo90.3,ch19,−0.20,ch19.eq_mil_lo90,data,,실습 4
-ch19.eq_mil_hi90.3,ch19,0.15,ch19.eq_mil_hi90,data,,
-ch19.eq_mil_bound.3,ch19,0.25,ch19.eq_mil_bound,data,,
-ch19.fixed.45,ch19,90,,fixed,,동등성 검정의 90% 구간 = 두 단측 검정 .05 (정의) (둘째)
-ch19.eq_flr_lo90.2,ch19,−0.19,ch19.eq_flr_lo90,data,,
-ch19.eq_flr_hi90.2,ch19,0.05,ch19.eq_flr_hi90,data,,
-ch19.eq_flr_neg_bound.1,ch19,−0.18,ch19.eq_flr_neg_bound,data,,
-ch19.svy_n_raw.3,ch19,590,ch19.svy_n_raw,data,,실습 7
-ch19.svy_n_excl.2,ch19,24,ch19.svy_n_excl,data,,
-ch19.svy_n.3,ch19,566,ch19.svy_n,data,,
-ch19.s3_n.2,ch19,554,ch19.s3_n,data,,실습 7
-ch19.svy_n.4,ch19,566,ch19.svy_n,data,,
-ch19.fixed.46,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.47,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.48,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.49,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.fixed.50,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.exp_mil_d.11,ch19,0.23,ch19.exp_mil_d,data,,점검
-ch19.fixed.51,ch19,95,,fixed,,신뢰수준 95% (정의)
-ch19.boot_mdiff_lo.7,ch19,0.03,ch19.boot_mdiff_lo,sim,0.021,"13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.boot_mdiff_hi.8,ch19,0.54,ch19.boot_mdiff_hi,sim,0.021,"13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
-ch19.ci.formula.lo,ch19,0.03,ch19.diff_ci_t_lo,data,,평균 차이의 t 구간 (합동 분산 · 자유도 364)
-ch19.ci.formula.hi,ch19,0.53,ch19.diff_ci_t_hi,data,,평균 차이의 t 구간 위끝 0.5349
-ch19.ci.formula.gap,ch19,0.01,ch19.diff_ci_hi_gap,data,,부트스트랩 표기 0.54 − 공식 표기 0.53
-ch19.bayes.bf15,ch19,15,,paper,,Wagenmakers 외 2018 p. 46 의 예시 값 (BF01 = 15 = evidence for absence)
-ch19.bayes.bf1_5,ch19,1.5,,paper,,Wagenmakers 외 2018 p. 46 의 예시 값 (BF01 = 1.5 = absence of evidence)
-ch19.bayes.bf1,ch19,1,,fixed,,BF = 1 = 자료가 두 가설을 똑같이 지지 (정의)
-ch19.bayes.prior30,ch19,0.32,ch11.bayes30_shift,data,,§19.3 끝 상자 1 = 11장 §11.6 앞 30명 평평한 사전분포 대 믿음 사전분포의 사후 평균 차 (2026-11-15g)
+ch19.2.exp.n,ch19,366,ch19.exp_n,data,,§19.2 실험판 정제 후
+ch19.2.reg.t,ch19,2.206,ch19.reg_t,data,,§19.2 cond 회귀의 t = 합동분산 t검정의 t
+ch19.2.reg.p,ch19,.028,ch19.reg_p,data,,§19.2
+ch19.2.reg.n,ch19,366,ch19.exp_n,data,,§19.2
+ch19.2.reg.df,ch19,364,ch19.exp_df,data,,§19.2 자유도
+ch19.2.perm.p,ch19,.029,ch19.perm_p,sim,0.0075,§19.2 뒤섞기 1만 번 (씨앗 73 ; 파이썬 .0292). R 독립 난수 · 이항 표준편차 √(.029 × .971 ÷ 10000) = .0017 → 3 × √2 × .0017 ≈ .0071
+ch19.2.perm.t,ch19,.028,ch19.reg_p,data,,§19.2
+ch19.2.f.df,ch19,364,ch19.exp_df,data,,§19.2 F 의 둘째 자유도
+ch19.2.f,ch19,4.864,ch19.f_two,data,,§19.2 두 집단 일원배치 F
+ch19.2.f2,ch19,4.864,ch19.f_two,data,,§19.2 (같은 조각의 둘째 4.864)
+ch19.2.f.t,ch19,2.206,ch19.reg_t,data,,§19.2
+ch19.2.f.p,ch19,.028,ch19.f_two_p,data,,§19.2 F 의 p
+ch19.2.fac.df,ch19,426,ch19.fac_df2,data,,§19.2 상자 요인판 네 칸 (정제 후 430 − 4)
+ch19.2.fac.f,ch19,1.728,ch19.fac_F,data,,§19.2 상자 칸 표시 변수 셋을 넣은 회귀 전체의 F
+ch19.2.code.lo,ch19,−.5,,fixed,,효과 부호화의 정의값
+ch19.2.code.hi,ch19,.5,,fixed,,효과 부호화의 정의값
+ch19.2.pan.n,ch19,350,ch19.pan_n,data,,§19.2 패널판 세 시점 응답자
+ch19.2.pan.tp,ch19,−2.21,ch19.pan_t_pair,data,,§19.2 짝지은 t
+ch19.2.pan.ti,ch19,−1.64,ch19.pan_t_ind,data,,§19.2 독립 두 집단 t
+ch19.2.z,ch19,1.96,ch19.z975,data,,표준정규 97.5% 분위수
+ch19.2.pan.r,ch19,.453,ch19.pan_r,data,,§19.2 1차–3차 mil 상관
+ch19.5.p13,ch19,1.3,,fixed,,범위 밖 예측값의 예시 숫자
+ch19.5.odds.p05,ch19,0.5,,fixed,,예시 확률
+ch19.5.odds.o1,ch19,1,ch19.odds_p05,data,,산술 .5 ÷ .5
+ch19.5.odds.p08,ch19,0.8,,fixed,,예시 확률
+ch19.5.odds.o4,ch19,4,ch19.odds_p08,data,,산술 .8 ÷ .2
+ch19.5.p0.01,ch19,.01,,fixed,,예시로 고른 기저 확률
+ch19.5.p0.20,ch19,.20,,fixed,,예시로 고른 기저 확률
+ch19.5.p0.40,ch19,.40,,fixed,,예시로 고른 기저 확률
+ch19.5.p0.50,ch19,.50,,fixed,,예시로 고른 기저 확률
+ch19.5.rare.p0,ch19,.01,,fixed,,예시 기저 확률
+ch19.5.rare.ratio,ch19,1.98,ch19.or2_ratio_01,data,,오즈비 2 를 적용한 확률의 배수 (.0198 ÷ .01)
+ch19.5.common.p40,ch19,.40,,fixed,,예시 기저 확률
+ch19.5.common.r40,ch19,1.43,ch19.or2_ratio_40,data,,오즈비 2 의 확률 배수 (.5714 ÷ .40)
+ch19.5.common.p50,ch19,.50,,fixed,,예시 기저 확률
+ch19.5.common.r50,ch19,1.33,ch19.or2_ratio_50,data,,오즈비 2 의 확률 배수 (.6667 ÷ .50)
+ch19.5.box.23,ch19,23,,fixed,,AI 오류 예시 문장의 숫자 (계산값 아님)
+ch19.5.box.lo,ch19,.2,,fixed,,맥패든 유사 R² 관례 범위 (출처 미표기 · 관례 서술)
+ch19.5.box.hi,ch19,.4,,fixed,,맥패든 유사 R² 관례 범위
+ch19.5.box.n,ch19,"1,000",,fixed,,사건 수 설명의 예시 숫자
+ch19.5.box.events,ch19,12,,fixed,,사건 수 설명의 예시 숫자

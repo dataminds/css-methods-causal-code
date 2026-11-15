@@ -1,84 +1,136 @@
 # -*- coding: utf-8 -*-
-"""21장 · 열어서 검증받기 — 파이썬 엔진.
-
-§21.4 · §21.5 = 삶의 의미(mil)를 여정 지각(hjs)으로 회귀하는 네 판(바른 판 · 고장 A 절편 없음 ·
-고장 B X·Y 뒤바꿈 · 고장 C 앞 절반만)과 불변식. 책 코드와 같은 계산(절편 열을 붙인 lstsq).
-"""
+"""21장 · 갈림길의 정원 — 파이썬 엔진."""
 import numpy as np
+from scipy import stats
 
-from common import calc, load
+from common import calc, load, ols
 
-S = lambda: load("svy")          # 3장 정제본 566명
+RAW = lambda: load("exp", clean=False)     # 책 §21.1 은 정제 전 실험판에서 시작한다
 
-
-def _xy():
-    s = S()
-    return s.hjs.values.astype(float), s.mil.values.astype(float)
+_c = {}
 
 
-def _ok(yy, xx):                 # 바른 판 = 절편 열을 붙인 최소제곱의 기울기
-    yy = np.asarray(yy, float)
-    X = np.column_stack([np.ones(len(yy)), np.asarray(xx, float)])
-    return float(np.linalg.lstsq(X, yy, rcond=None)[0][1])
+def memo(key, f):
+    if key not in _c:
+        _c[key] = f()
+    return _c[key]
 
 
-def _ai(yy, xx):                 # 고장 A = 절편 누락 (책의 ai_회귀)
-    yy = np.asarray(yy, float)
-    X = np.column_stack([np.asarray(xx, float)])
-    return float(np.linalg.lstsq(X, yy, rcond=None)[0][-1])
+def garden(df, cond):
+    """책 §21.1 함수 `갈림길` 그대로. 반환 = {(결과, 표본, 하위집단, 공변인): p} (책 순서 유지)."""
+    out = {}
+    d = df.copy(); d["cond"] = cond
+    for oc in ("mil", "flr"):
+        for excl in ("none", "attn", "trim"):
+            e = d
+            if excl == "attn":
+                e = d[d.attn_1 == 1]
+            elif excl == "trim":
+                z = (d[oc] - d[oc].mean()) / d[oc].std(ddof=1)
+                e = d[np.abs(z) <= 2.5]
+            for sub in ("all", "m", "f", "young", "old"):
+                s = e
+                if sub == "m":
+                    s = e[e.gender == 1]
+                elif sub == "f":
+                    s = e[e.gender == 2]
+                elif sub == "young":
+                    s = e[e.age <= e.age.median()]
+                elif sub == "old":
+                    s = e[e.age > e.age.median()]
+                for cov in (False, True):
+                    if cov:
+                        _, _, p, _ = ols(s[oc], [s.cond, s.mil_t1])
+                        out[(oc, excl, sub, cov)] = p[1]
+                    else:
+                        out[(oc, excl, sub, cov)] = stats.ttest_ind(s[s.cond == 1][oc], s[s.cond == 0][oc]).pvalue
+    return out
 
 
-def _se(yy, xx, intercept):
-    yy = np.asarray(yy, float)
-    cols = ([np.ones(len(yy))] if intercept else []) + [np.asarray(xx, float)]
-    X = np.column_stack(cols)
-    b, *_ = np.linalg.lstsq(X, yy, rcond=None)
-    resid = yy - X @ b
-    n, k = X.shape
-    return float(np.sqrt(np.diag(resid @ resid / (n - k) * np.linalg.inv(X.T @ X)))[-1])
+def _world():
+    exp = RAW()
+    rng = np.random.default_rng(73)
+    null_cond = rng.permutation(exp.cond.values)
+    d = exp.copy(); d["cond"] = null_cond
+    dc = d[d.attn_1 == 1]
+    main = stats.ttest_ind(dc[dc.cond == 1].mil, dc[dc.cond == 0].mil).pvalue
+    ps = garden(exp, null_cond)
+    return dict(main=main, ps=ps)
 
 
-def _r2(yy, xx, intercept):     # 결정계수 = 1 − 잔차 제곱합 / 평균 둘레 제곱합 (두 판 같은 정의)
-    yy = np.asarray(yy, float)
-    xx = np.asarray(xx, float)
-    if intercept:
-        b1 = _ok(yy, xx)
-        fit = yy.mean() + b1 * (xx - xx.mean())
-    else:
-        fit = _ai(yy, xx) * xx
-    return 1 - ((yy - fit) ** 2).sum() / ((yy - yy.mean()) ** 2).sum()
+calc("ch21.main_p")(lambda: memo("w", _world)["main"])
+calc("ch21.n_paths")(lambda: len(memo("w", _world)["ps"]))
+calc("ch21.n_sig")(lambda: sum(p < .05 for p in memo("w", _world)["ps"].values()))
+calc("ch21.min_p")(lambda: min(memo("w", _world)["ps"].values()))
+# 표의 열 행 = 이름표(결과 · 표본 · 하위집단 · 공변인)가 가리키는 갈래의 p (이름표까지 대조된다)
+ROWS = {"flr_none_old_cov": ("flr", "none", "old", True), "flr_attn_old_cov": ("flr", "attn", "old", True),
+        "flr_trim_m_raw": ("flr", "trim", "m", False), "flr_attn_m_raw": ("flr", "attn", "m", False),
+        "flr_none_m_raw": ("flr", "none", "m", False), "flr_trim_m_cov": ("flr", "trim", "m", True),
+        "flr_none_m_cov": ("flr", "none", "m", True), "flr_trim_old_cov": ("flr", "trim", "old", True),
+        "flr_attn_m_cov": ("flr", "attn", "m", True), "flr_none_all_cov": ("flr", "none", "all", True)}
+for nm, key in ROWS.items():
+    calc(f"ch21.p_{nm}")(lambda key=key: memo("w", _world)["ps"][key])
+# 유의한 갈래가 정확히 이 열인지 (표가 빠짐없이 다 실었는지) = 표에 없는 유의 갈래 수
+calc("ch21.sig_outside_table")(lambda: sum(p < .05 for k, p in memo("w", _world)["ps"].items()
+                                           if k not in ROWS.values()))
 
 
-calc("ch21.slope_ok")(lambda: _ok(_xy()[1], _xy()[0]))
-calc("ch21.slope_ai")(lambda: _ai(_xy()[1], _xy()[0]))
-calc("ch21.slope_swap")(lambda: _ok(_xy()[0], _xy()[1]))            # 고장 B = hjs 를 mil 로 회귀
-calc("ch21.slope_half")(lambda: _ok(_xy()[1][:len(_xy()[1]) // 2], _xy()[0][:len(_xy()[0]) // 2]))
-calc("ch21.half_n")(lambda: len(S()) // 2)
-calc("ch21.r2_ok")(lambda: _r2(_xy()[1], _xy()[0], True))
-calc("ch21.r2_ai")(lambda: _r2(_xy()[1], _xy()[0], False))
-calc("ch21.se_ratio")(lambda: _se(_xy()[1], _xy()[0], True) / _se(_xy()[1], _xy()[0], False))
-calc("ch21.ai_slope_y_plus5")(lambda: _ai(_xy()[1] + 5, _xy()[0]))
-calc("ch21.ai_slope_y_const4")(lambda: _ai(np.full(len(_xy()[1]), 4.0), _xy()[0]))
-calc("ch21.ymean_over_xmean")(lambda: _xy()[1].mean() / _xy()[0].mean())
+def _harvest():
+    """§21.1 영세계 200개 (교차 확인 씨앗 37)."""
+    exp = RAW()
+    rng = np.random.default_rng(37)
+    counts = [sum(p < .05 for p in garden(exp, rng.permutation(exp.cond.values)).values())
+              for _ in range(200)]
+    return np.array(counts)
 
 
-# ⑥ 짝 끊기 = X 만 200번 섞는다(씨앗 73). 두 판 모두 새 생성기에서 시작 (노트북 · 옛 배터리와 같은 순서).
-def _null200(f):
-    x, y = _xy()
+calc("ch21.harvest_mean")(lambda: memo("h", _harvest).mean())
+calc("ch21.harvest_any_pct")(lambda: (memo("h", _harvest) > 0).mean() * 100)
+
+# 갈림길 곱셈 (정해진 산술)
+calc("ch21.fork_product")(lambda: 2 * 3 * 5 * 2)
+calc("ch21.indep_fwer")(lambda: 1 - 0.95 ** 60)
+calc("ch21.indep_fwer_pct")(lambda: (1 - 0.95 ** 60) * 100)
+calc("ch21.indep_fwer5")(lambda: 1 - 0.95 ** 5)
+calc("ch21.bonf_cut")(lambda: .05 / 5)
+
+
+def _multi():
+    """§21.2 상자 = 책 코드 그대로 (씨앗 73 ; 다섯 검정 4,000번 · 검정력 4,000번)."""
     g = np.random.default_rng(73)
-    return np.array([f(y, g.permutation(x)) for _ in range(200)])
+    n, K, R = 100, 5, 4000
+    raw = bon = 0
+    for _ in range(R):
+        ps = [stats.ttest_ind(g.normal(0, 1, n), g.normal(0, 1, n)).pvalue for _ in range(K)]
+        raw += any(p < .05 for p in ps)
+        bon += any(p < .05 / K for p in ps)
+    out = dict(fwer=raw / R, fwer_bon=bon / R)
+    g = np.random.default_rng(73)
+    raw = bon = 0
+    for _ in range(R):
+        p = stats.ttest_ind(g.normal(0.4, 1, n), g.normal(0, 1, n)).pvalue
+        raw += p < .05
+        bon += p < .05 / K
+    out.update(pow05=raw / R, pow01=bon / R)
+    return out
 
 
-_cache = {}
+for k in ("fwer", "fwer_bon", "pow05", "pow01"):
+    calc(f"ch21.multi_{k}")(lambda k=k: memo("m", _multi)[k])
 
 
-def _null(name):
-    if name not in _cache:
-        _cache[name] = _null200(_ok if name == "ok" else _ai)
-    return _cache[name]
+def _peek():
+    """§21.2 [논문에서 읽기] = 150명에서 한 번, 유의하지 않으면 450명에서 다시 (효과 없음 ; 20,000번 ; 씨앗 73).
+    원고에 코드가 없어 구 배터리(check_book_claims.py)의 절차 그대로 = 독립인 두 변수의 상관 검정."""
+    g = np.random.default_rng(73); R = 20000
+    x = g.standard_normal((R, 450)); y = g.standard_normal((R, 450))
+
+    def rp(a, b):
+        a = a - a.mean(1, keepdims=True); b = b - b.mean(1, keepdims=True)
+        r = (a * b).sum(1) / np.sqrt((a * a).sum(1) * (b * b).sum(1)); n = a.shape[1]
+        return 2 * stats.t.sf(np.abs(r) * np.sqrt((n - 2) / (1 - r ** 2)), n - 2)
+    p1 = rp(x[:, :150], y[:, :150]); p2 = rp(x, y)
+    return ((p1 < .05) | (p2 < .05)).mean()
 
 
-calc("ch21.null_ok_min")(lambda: _null("ok").min())
-calc("ch21.null_ok_max")(lambda: _null("ok").max())
-calc("ch21.null_ok_mean")(lambda: _null("ok").mean())
-calc("ch21.null_ai_mean")(lambda: _null("ai").mean())
+calc("ch21.peek_fwer")(lambda: memo("peek", _peek))

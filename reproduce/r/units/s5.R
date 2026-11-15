@@ -46,7 +46,7 @@ d <- TS(); d$wb_perm <- sample(d$wellbeing)
 pc <- coef(summary(lm(wb_perm ~ week + campaign, data = d)))
 calc("s5.perm_b2", function() pc["campaign", "Estimate"])
 calc("s5.perm_p2", function() pc["campaign", "Pr(>|t|)"])
-# 17장 추세 세계의 전후 평균차 = 이론값(기댓값). 잡음의 기댓값이 0 이라 추세만 남는다 = 주당 0.012 × (뒤 구간 평균 주차 − 앞 구간 평균 주차)
+# 18장 추세 세계의 전후 평균차 = 이론값(기댓값). 잡음의 기댓값이 0 이라 추세만 남는다 = 주당 0.012 × (뒤 구간 평균 주차 − 앞 구간 평균 주차)
 wk <- 1:104; camp <- wk >= 53
 calc("s5.trend_world_diff", function() 0.012 * (mean(wk[camp]) - mean(wk[!camp])))
 })

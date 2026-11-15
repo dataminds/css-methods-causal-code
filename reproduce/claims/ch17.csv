@@ -1,117 +1,125 @@
 id,unit,printed,calc,kind,mc_tol,note
-ch17.p.colleges,ch17,775,,paper,,"Braghieri, Levy & Makarin (2022) AER 112(11) p. 3661 「775 US colleges」 (출판본 PDF 쪽 대조 ; p. 3666 에도)"
-ch17.p.waves,ch17,17,,paper,,Braghieri 외 (2022) p. 3661 「seventeen consecutive waves」 (p. 3667 에도)
-ch17.p.b3,ch17,0.085,,paper,,Braghieri 외 (2022) 표 1 열 3 (선호 모형) p. 3674
-ch17.p.se3,ch17,0.033,,paper,,Braghieri 외 (2022) 표 1 열 3 p. 3674
-ch17.p.n3,ch17,"359,827",,paper,,Braghieri 외 (2022) 표 1 열 3 관측 수 p. 3674
-ch17.p.b1,ch17,0.137,,paper,,Braghieri 외 (2022) 표 1 열 1 p. 3674
-ch17.p.se1,ch17,0.040,,paper,,Braghieri 외 (2022) 표 1 열 1 p. 3674
-ch17.p.b4,ch17,0.077,,paper,,Braghieri 외 (2022) 표 1 열 4 p. 3674
-ch17.p.se4,ch17,0.032,,paper,,Braghieri 외 (2022) 표 1 열 4 p. 3674
-ch17.tab.fe_reg,ch17,0.3,,fixed,,§17.2 모의 생성식에 정한 지역 차이
-ch17.tab.fe_time,ch17,0.2,,fixed,,§17.2 생성식의 시대 흐름
-ch17.tab.coef,ch17,0.085,,paper,,Braghieri 외 (2022) 표 1 열 3 p. 3674 (행 안 두 번)
-ch17.tab.se,ch17,0.033,,paper,,Braghieri 외 (2022) 표 1 열 3 p. 3674 (행 안 두 번)
-ch17.tab.se.b,ch17,0.085,,paper,,Braghieri 외 (2022) p. 3674
-ch17.tab.se.t,ch17,2.6,ch17.bl_t,data,,보고값 산술 0.085 / 0.033 = 2.58
-ch17.tab.se.lvl,ch17,95,,fixed,,신뢰수준
-ch17.tab.se.lo,ch17,0.02,ch17.bl_ci_lo,data,,0.085 − 1.96 × 0.033 = 0.020
-ch17.tab.se.hi,ch17,0.15,ch17.bl_ci_hi,data,,0.085 + 1.96 × 0.033 = 0.150
-ch17.tab.cols.b1,ch17,0.137,,paper,,Braghieri 외 (2022) 표 1 열 1 p. 3674
-ch17.tab.cols.b3,ch17,0.085,,paper,,표 1 열 3 p. 3674
-ch17.tab.cols.b4,ch17,0.077,,paper,,표 1 열 4 p. 3674
-ch17.p.b3b,ch17,0.085,,paper,,Braghieri 외 (2022) 표 1 열 3 p. 3674
-ch17.alpha,ch17,0.05,,fixed,,관례 유의수준
-ch17.0.ex.a,ch17,8,,fixed,,9장 §9.2 가상 예시 숫자
-ch17.0.ex.b,ch17,5,,fixed,,9장 예시
-ch17.0.ex.d,ch17,3,,fixed,,9장 예시 8 − 5
-ch17.1.cut,ch17,80,,fixed,,예시 문턱
-ch17.1.lo,ch17,79.9,,fixed,,예시 점수
-ch17.1.hi,ch17,80.1,,fixed,,예시 점수
-ch17.2.eff,ch17,0.50,,fixed,,생성식에 참값으로 정한 정책 효과
-ch17.2.gen.base,ch17,5.0,,fixed,,생성식 상수
-ch17.2.gen.reg,ch17,0.3,,fixed,,생성식 계수 (두 곳)
-ch17.2.gen.t,ch17,0.2,,fixed,,생성식 계수
-ch17.2.gen.eff,ch17,0.5,,fixed,,생성식 계수
-ch17.2.gen.drift,ch17,0.4,,fixed,,깨진 세계에 정한 사전 추세
-ch17.2.gen.noise,ch17,.02,,fixed,,생성식 잡음 SD
-ch17.2.tabA.pre,ch17,5.3,ch17.cell_A0,data,,평행 세계 네 칸 (잡음 없음)
-ch17.2.tabA.post,ch17,6.0,ch17.cell_A1_par,data,,평행 세계
-ch17.2.tabA.chg,ch17,0.7,ch17.dA_par,data,,평행 세계 A 변화
-ch17.2.tabB.pre,ch17,5.0,ch17.cell_B0,data,,B 행 (두 표에 같은 행)
-ch17.2.tabB.post,ch17,5.2,ch17.cell_B1,data,,B 행
-ch17.2.tabB.chg,ch17,0.2,ch17.dB,data,,B 변화
-ch17.2.tabA2.pre,ch17,5.3,ch17.cell_A0,data,,깨진 세계
-ch17.2.tabA2.post,ch17,6.4,ch17.cell_A1_brk,data,,깨진 세계
-ch17.2.tabA2.chg,ch17,1.1,ch17.dA_brk,data,,깨진 세계 A 변화
-ch17.2.didp.a,ch17,0.7,ch17.dA_par,data,,§17.2
-ch17.2.didp.b,ch17,0.2,ch17.dB,data,,§17.2
-ch17.2.didp.d,ch17,0.5,ch17.did_par_exact,data,,잡음 없는 이중차분
-ch17.2.didb.a,ch17,1.1,ch17.dA_brk,data,,§17.2
-ch17.2.didb.b,ch17,0.2,ch17.dB,data,,§17.2
-ch17.2.didb.d,ch17,0.9,ch17.did_brk_exact,data,,잡음 없는 이중차분
-ch17.2.out.par,ch17,0.476,ch17.did_par,sim,0.17,"칸마다 N(0, .02) 잡음 (씨앗 73) ; 이중차분 잡음 SD = .02 × √4 = .04 (해석값) × 3√2"
-ch17.2.out.brk,ch17,0.876,ch17.did_brk,sim,0.17,같은 근거
-ch17.2.erase.reg,ch17,0.3,,fixed,,생성식 계수
-ch17.2.erase.t,ch17,0.2,,fixed,,생성식 계수
-ch17.2.est.par,ch17,0.48,ch17.did_par,sim,0.17,잡음 SD .04 × 3√2
-ch17.2.est.true,ch17,0.50,,fixed,,참값으로 정한 정책 효과
-ch17.2.est.brk,ch17,0.88,ch17.did_brk,sim,0.17,잡음 SD .04 × 3√2
-ch17.2.gap,ch17,0.40,ch17.did_gap,data,,두 세계가 같은 잡음을 써서 차이는 난수와 무관하게 0.4 (두 엔진 같은 값)
-ch17.2.chg.par,ch17,0.7,ch17.dA_par,data,,§17.2
-ch17.2.chg.brk,ch17,1.1,ch17.dA_brk,data,,§17.2
-ch17.2.chg.gap,ch17,0.4,ch17.dA_gap,data,,§17.2
-ch17.2.gap2,ch17,0.4,ch17.did_gap,data,,§17.2
-ch17.3.weeks,ch17,104,ch17.ts_weeks,data,,시계열판 행 수
-ch17.3.start,ch17,53,ch17.ts_start,data,,첫 campaign = 1 주차
-ch17.3.pre,ch17,4.78,ch17.ts_pre,data,,§17.3
-ch17.3.post,ch17,5.09,ch17.ts_post,data,,§17.3
-ch17.3.shift,ch17,0.30,ch17.ts_diff,data,,전후 평균차 (같은 문단의 +0.303 과 같은 수) ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch17.3.true,ch17,0.30,,fixed,,make_data_family.py 생성식 wellbeing = 4.80 + 0.30 × campaign + e ; 2026-11-14h 원고 정정(「참값은」 → 「참값도」)에 맞춰 옮김
-ch17.3.trend,ch17,−0.0,ch17.ts_trend,data,,주당 추세 −0.0000455 (문장의 「소수 넷째 자리에서 반올림해도 0」도 성립: |b| < .00005)
-ch17.3.simple,ch17,0.303,ch17.ts_diff,data,,§17.3
-ch17.3.trendmod,ch17,0.306,ch17.ts_camp,data,,§17.3 campaign 계수
-ch17.3.tw.slope,ch17,0.012,,fixed,,생성식에 정한 주당 추세
-ch17.3.tw.weeks,ch17,104,,fixed,,설계 주 수
-ch17.3.tw.start,ch17,53,,fixed,,설계 시작 주
-ch17.3.tw.diff,ch17,0.64,ch17.tw_diff,sim,0.21,추세 세계 (씨앗 73) 전후 평균차 ; MC SD .049(씨앗 1000개) × 3√2 ; 기댓값 0.012 × 52 = .624
-ch17.3.tw.camp,ch17,−0.022,ch17.tw_camp,sim,0.43,캠페인 계수 MC SD .102 × 3√2
-ch17.3.tw.se,ch17,0.100,ch17.tw_se,sim,0.031,표준오차 MC SD .0072 × 3√2
-ch17.3.tw.se2,ch17,0.20,ch17.tw_se2,sim,0.062,2 × SE ; MC SD .0145 × 3√2
-ch17.3.tw.weeks2,ch17,104,,fixed,,설계 주 수
-ch17.3.trust,ch17,0.303,ch17.ts_diff,data,,§17.3
-ch17.4.n,ch17,"1,800",ch17.co_n,data,,코호트판 행 수
-ch17.4.c.p20,ch17,0.20,,fixed,,예시로 고른 이동 c
-ch17.4.c.m05,ch17,−0.05,,fixed,,예시로 고른 이동 c
-ch17.4.st1.age,ch17,0.21,ch17.apc_p20_age,data,,c = 0.20 나이 계수 (최소 노름 풀이 + c)
-ch17.4.st1.year,ch17,0.19,ch17.apc_p20_year_neg,data,,c = 0.20 조사 연도 계수 −0.192 의 크기 (「나빠지고」)
-ch17.4.st3.age,ch17,0.04,ch17.apc_m05_age_neg,data,,c = −0.05 나이 계수 −0.039 의 크기 (「줄고」)
-ch17.4.st3.year,ch17,0.06,ch17.apc_m05_year,data,,c = −0.05 조사 연도 계수
-ch17.6.ex1.pre,ch17,4.78,ch17.ts_pre,data,,실습 1
-ch17.6.ex1.post,ch17,5.09,ch17.ts_post,data,,실습 1
-ch17.6.ex1.keep,ch17,52,,fixed,,실습 설계 (53주차 전)
-ch17.6.ex1.fake,ch17,27,,fixed,,실습 설계 가짜 시작 주
-ch17.6.ex1.placebo,ch17,−0.013,ch17.ts_placebo,data,,1~52주 안에서 27주차 이후 − 이전 평균차
-ch17.6.ex1.se,ch17,0.07,ch17.ts_se,data,,§17.3 campaign 계수 SE
-ch17.6.ex1.se2,ch17,0.14,ch17.ts_se2,data,,2 × SE = 0.140
-ch17.6.ex2.cross,ch17,.29,ch17.panel_r_cross,data,,패널판 1차 시점 hjs-mil 상관
-ch17.6.ex2.within,ch17,.06,ch17.panel_r_within,data,,개인 평균 중심화 후 상관 (세 시점 전체)
-ch17.6.ex3.y15,ch17,4.42,ch17.co_mil_2015,data,,코호트판 2015 평균 mil
-ch17.6.ex3.y20,ch17,4.19,ch17.co_mil_2020,data,,2020
-ch17.6.ex3.y25,ch17,4.60,ch17.co_mil_2025,data,,2025
-ch17.6.ex4.coef,ch17,1.2,,fixed,,9장 §9.1 생성식 계수
-ch17.6.ex4.coef2,ch17,0.3,,fixed,,실습이 정한 계수
-ch17.6.ex4.d12,ch17,1.03,ch17.selfsel_d12,sim,0.46,9장 §9.1 자기선택 세계 (씨앗 73 ; 책 난수 순서) 낙관성 d ; MC SD .108(씨앗 1000개) × 3√2
-ch17.6.ex4.d03,ch17,0.3,ch17.selfsel_d03,sim,0.42,같은 세계에 계수 0.3 (같은 난수 순서) d = .32 ; MC SD .099 × 3√2 (기댓값 .29)
-ch17.6.ex4.d03b,ch17,0.3,ch17.selfsel_d03,sim,0.42,같은 근거
-ch17.6.ex5.c,ch17,−0.10,,fixed,,실습이 정한 이동 c
-ch17.6.ex5.rss,ch17,1790.588069,ch17.apc_m10_rss,data,,c = −0.10 잔차제곱합
-ch17.6.ex5.age,ch17,−0.089,ch17.apc_m10_age,data,,c = −0.10
-ch17.6.ex5.year,ch17,0.108,ch17.apc_m10_year,data,,c = −0.10
-ch17.6.ex5.birth,ch17,−0.102,ch17.apc_m10_birth,data,,c = −0.10
-ch17.6.ex7.n3,ch17,350,ch17.panel_n3,data,,패널판 3차 행 수
-ch17.6.ex7.n1,ch17,500,ch17.panel_n1,data,,패널판 1차 행 수
-ch17.6.ex7.left,ch17,150,ch17.panel_left,data,,1차에 있고 3차에 없는 id 수
-ch17.3.shift.post,ch17,5.088,ch17.ts_post,data,,도입 후 평균
-ch17.3.shift.pre,ch17,4.784,ch17.ts_pre,data,,도입 전 평균
-ch17.3.shift.diff,ch17,0.303,ch17.ts_diff,data,,전후 평균차
+ch17.p5.ind_mil,ch17,.31,,paper,,"Rogers et al. (2023) JPSP 125(4) 연구 5 간접효과(삶의 의미) effect = .31, p. 766 (출판본 PDF 쪽 대조) ; 2026-11-15 16장 분리로 새 17장에 복사"
+ch17.p5.ind_mil.se,ch17,.12,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.p5.ind_mil.ci95,ch17,95,,fixed,,신뢰수준 관례 95% ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.p5.ind_mil.lo,ch17,.08,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.p5.ind_mil.hi,ch17,.53,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.p5.ind_flr,ch17,.24,,paper,,Rogers et al. (2023) 연구 5 간접효과(번영) p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.p5.ind_flr.se,ch17,.09,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.p5.ind_flr.ci95,ch17,95,,fixed,,신뢰수준 관례 95% ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.p5.ind_flr.lo,ch17,.07,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.p5.ind_flr.hi,ch17,.42,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.c,ch17,0.283,ch17.med_c,data,,§16.5 실험판 정제본 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.tab.a,ch17,0.21,ch17.med_a,data,,§16.5 표 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.tab.b,ch17,0.65,ch17.med_b,data,,§16.5 표 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box.cp,ch17,0.15,ch17.med_cp,data,,§16.5 상자 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box.ab,ch17,0.13,ch17.med_ab,data,,§16.5 상자 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box.sum,ch17,0.28,ch17.rounded_cp_plus_ab,data,,표에 실은 반올림 수의 합 (산술) ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box.c,ch17,0.283,ch17.med_c,data,,§16.5 상자 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box.a,ch17,0.21,ch17.med_a,data,,§16.5 상자 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box.b,ch17,0.65,ch17.med_b,data,,§16.5 상자 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box.prod,ch17,0.14,ch17.rounded_a_times_b,data,,반올림 수의 곱 0.1365 (산술) ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box.ab2,ch17,0.13,ch17.med_ab,data,,§16.5 상자 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box4.cp,ch17,0.14934,ch17.med_cp,data,,§16.5 상자 네 자리 ; 2026-11-14h 원고 정정에 맞춰 옮김 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box4.a,ch17,0.20667,ch17.med_a,data,,§16.5 상자 ; 2026-11-14h 원고 정정에 맞춰 옮김 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box4.b,ch17,0.64567,ch17.med_b,data,,§16.5 상자 ; 2026-11-14h 원고 정정에 맞춰 옮김 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box4.ab,ch17,0.13344,ch17.med_ab,data,,§16.5 상자 ; 2026-11-14h 원고 정정에 맞춰 옮김 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box4.sum,ch17,0.28279,ch17.med_sum,data,,§16.5 상자 c′ + a×b ; 2026-11-14h 원고 정정에 맞춰 옮김 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.ab3,ch17,0.13,ch17.med_ab,data,,§16.5 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.boot.reps,ch17,"2,000",,fixed,,부트스트랩 반복 횟수 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.boot.lvl,ch17,95,,fixed,,신뢰수준 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.boot.q_lo,ch17,2.5,,fixed,,백분위 정의 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.boot.q_hi,ch17,97.5,,fixed,,백분위 정의 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.boot.ab,ch17,0.13,ch17.med_ab,data,,§16.5 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.conf.true,ch17,0.30,,fixed,,모의시행에 참값으로 정한 직접효과 (Y 생성식의 0.30) ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.conf.a,ch17,0.49,ch17.conf_a,sim,0.40,혼란 세계 (씨앗 73) ; a MC SD .095(씨앗 1000개 ; 기댓값 .60) × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.conf.b,ch17,0.71,ch17.conf_b,sim,0.15,b MC SD .035 × 3√2 (기댓값 .72) ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.conf.cp,ch17,−0.08,ch17.conf_cp,sim,0.30,c′ MC SD .070 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.conf.b2,ch17,0.71,ch17.conf_b,sim,0.15,b MC SD .035 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.conf.ab,ch17,0.35,ch17.conf_ab,sim,0.31,a×b MC SD .073 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.conf.c,ch17,0.274,ch17.conf_c,sim,0.40,총효과 MC SD .094 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.conf.c_true,ch17,0.30,,fixed,,참값으로 정한 총효과 (직접 0.30 + 간접 0) ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.ind,ch17,.31,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.z,ch17,1.96,,fixed,,정규 근사 95% 배수 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.se,ch17,.12,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.lo,ch17,.07,ch17.paper_sym_lo,data,,보고값으로 한 산술 .31 − 1.96 × .12 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.hi,ch17,.55,ch17.paper_sym_hi,data,,산술 .31 + 1.96 × .12 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.rep_lo,ch17,.08,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.rep_hi,ch17,.53,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.ind2,ch17,.31,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.m1,ch17,5.14,,paper,,Rogers et al. (2023) 연구 5 개입 집단 삶의 의미 M = 5.14 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.m0,ch17,4.83,,paper,,Rogers et al. (2023) 연구 5 통제 집단 M = 4.83 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.diff,ch17,0.31,ch17.paper_mean_diff,data,,보고 평균의 차 (산술) ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.head.ind,ch17,.31,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.head.lvl,ch17,95,,fixed,,신뢰수준 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.head.lo,ch17,.08,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.pbox.head.hi,ch17,.53,,paper,,Rogers et al. (2023) 연구 5 p. 766 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.tab.a1,ch17,.285,ch17.path_a1,data,,§16.6 모형 1 a (표준화) ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.tab.a2,ch17,.219,ch17.path_a2,data,,§16.6 모형 2 a ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.tab.b1,ch17,.043,ch17.path_b1,data,,§16.6 모형 1 b ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.tab.b2,ch17,.155,ch17.path_b2,data,,§16.6 모형 2 b ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.tab.c1,ch17,.616,ch17.path_c1,data,,§16.6 모형 1 c′ ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.tab.c2,ch17,.595,ch17.path_c2,data,,§16.6 모형 2 c′ ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.tab.rep1,ch17,.629,ch17.path_rep1,data,,§16.6 모형 1 재현 a×b + c′ ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.tab.rep2,ch17,.629,ch17.path_rep2,data,,§16.6 모형 2 재현 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.obs,ch17,.629,ch17.path_obs,data,,§16.6 관찰 상관 hjs-mil ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.vdb.n,ch17,574,,paper,,"Van den Bulck (2004) Eur J Commun 19(2) p. 243 「data of 574 respondents」 (표 3 머리 N = 574, p. 245) ; 2026-11-15 16장 분리로 새 17장에 복사"
+ch17.6.vdb.df_lo,ch17,85,,paper,,Van den Bulck (2004) 표 3 df (세 모형 85) p. 245 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.vdb.df_hi,ch17,87,,paper,,Van den Bulck (2004) 표 3 df (영모형 87) p. 245 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.vdb.caic_cult,ch17,426.8,,paper,,Van den Bulck (2004) 표 3 CAIC 426.77 p. 245 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.vdb.caic_mood,ch17,456.8,,paper,,Van den Bulck (2004) 표 3 CAIC 456.77 p. 245 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.vdb.caic_wd,ch17,468.4,,paper,,Van den Bulck (2004) 표 3 CAIC 468.42 p. 245 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.vdb.gap,ch17,30,ch17.vdb_caic_gap,data,,보고 CAIC 차 456.8 − 426.8 = 30.0 (원문 456.77 − 426.77 = 30.00) ; ⚠ 「넘게」는 정확히 30 이라 엄밀히는 맞지 않는다(칩거와는 41.6) ; 2026-11-14h 원고 정정에 맞춰 옮김 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.vdb.path_mood,ch17,.65,,paper,,Van den Bulck (2004) 표 3 central path λ .65 NS p. 245 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.vdb.path_cult,ch17,.74,,paper,,Van den Bulck (2004) 표 3 central path λ .74 * p. 245 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.mine.c,ch17,0.274,ch17.conf_c,sim,0.40,혼란 세계 총효과 MC SD .094 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.mine.c_true,ch17,0.30,,fixed,,참값으로 정한 총효과 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.6.mine.ab,ch17,0.35,ch17.conf_ab,sim,0.31,a×b MC SD .073 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex4.path,ch17,0.4,,fixed,,실습 4 설계 경로 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex4.before,ch17,0.35,ch17.conf_ab,sim,0.31,a×b MC SD .073 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex4.after,ch17,0.01,ch17.conf_abu,sim,0.133,U 통제 간접효과 a × b(U 통제) ; MC SD .031 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex4.path2,ch17,0.4,,fixed,,실습 4 설계 경로 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex4.recov,ch17,0.2,ch17.conf04_abu,sim,0.21,실습 4 세계(Y 에 0.4 × M ; 같은 난수 순서) U 통제 a × b = .206 ; MC SD .049 × 3√2 (기댓값 .24) ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex4.a,ch17,0.49,ch17.conf_a,sim,0.40,a MC SD .095 × 3√2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex4.path3,ch17,0.4,,fixed,,설계 경로 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex7.total,ch17,10,ch17.info4_total,data,,네 변수의 분산 · 공분산 수 = 4 × 5 / 2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex7.var,ch17,4,ch17.info4_var,data,,분산 수 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.7.ex7.cov,ch17,6,ch17.info4_cov,data,,공분산 수 = 4C2 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.5.box5.rsum,ch17,0.28278,ch17.med_rounded5_sum,data,,§16.5 상자 = 다섯째 자리로 반올림한 c′ 과 a×b 의 합 ; 2026-11-15 16장 분리로 새 17장에 복사
+ch17.first.tab.ind,ch17,.31,,paper,,Rogers et al. (2023) JPSP 125(4) 연구 5 p. 766 간접효과(삶의 의미)
+ch17.first.tab.se,ch17,.12,,paper,,Rogers et al. (2023) JPSP 125(4) 연구 5 p. 766
+ch17.first.tab.ci95,ch17,95,,fixed,,신뢰수준 관례 95%
+ch17.first.tab.lo,ch17,.08,,paper,,Rogers et al. (2023) JPSP 125(4) 연구 5 p. 766
+ch17.first.tab.hi,ch17,.53,,paper,,Rogers et al. (2023) JPSP 125(4) 연구 5 p. 766
+ch17.1.tab.cp,ch17,0.15,ch17.med_cp,data,,§17.1 표 직접효과
+ch17.1.tab.ab,ch17,0.13,ch17.med_ab,data,,§17.1 표 간접효과
+ch17.1.boot.95,ch17,95,,fixed,,부트스트랩 구간의 신뢰수준
+ch17.1.boot.lo,ch17,0.03,ch17.boot_lo,sim,0.014,§17.1 부트스트랩 2.5% 지점 (ch16 대조표의 허용폭)
+ch17.1.boot.hi,ch17,0.25,ch17.boot_hi,sim,0.019,§17.1 부트스트랩 97.5% 지점 (ch16 대조표의 허용폭)
+ch17.2.n,ch17,400,,fixed,,모의시행 설계 인원
+ch17.2.a,ch17,0.493,ch17.conf_a,sim,0.40,§17.2 혼란 세계 a (ch16 대조표의 허용폭)
+ch17.2.b,ch17,0.708,ch17.conf_b,sim,0.16,§17.2 혼란 세계 b ; 씨앗 1000~1199 의 200 세계 모의 표준편차 × 3√2 (2026-11-15) = .036 → .154 (올려 .16)
+ch17.2.cp,ch17,−0.075,ch17.conf_cp,sim,0.28,§17.2 혼란 세계 c′ ; 씨앗 1000~1199 의 200 세계 모의 표준편차 × 3√2 (2026-11-15) = .065 → .275 (올려 .28)
+ch17.2.ab,ch17,0.349,ch17.conf_ab,sim,0.31,§17.2 혼란 세계 간접효과 (ch16 대조표의 허용폭)
+ch17.2.bu,ch17,0.018,ch17.conf_bu,sim,0.24,§17.2 U 통제 b ; 씨앗 1000~1199 의 200 세계 모의 표준편차 × 3√2 (2026-11-15) = .055 → .231 (올려 .24)
+ch17.2.cpu,ch17,0.297,ch17.conf_cpu,sim,0.27,§17.2 U 통제 c′ ; 씨앗 1000~1199 의 200 세계 모의 표준편차 × 3√2 (2026-11-15) = .063 → .269 (올려 .27)
+ch17.2.cpu.true,ch17,0.30,,fixed,,모의시행에 참값으로 정한 직접효과 (Y 생성식의 0.30)
+ch17.ai.n.exp,ch17,366,ch14.exp_n,data,,실험판 정제 뒤 인원 (3장)
+ch17.ai.n.svy,ch17,566,ch14.n_svy,data,,설문판 정제 뒤 인원 (3장)
+ch17.ai.check.exp,ch17,366,ch14.exp_n,data,,실험판 정제 뒤 인원
+ch17.ai.check.svy,ch17,566,ch14.n_svy,data,,설문판 정제 뒤 인원
+ch17.code1.ab,ch17,0.13,ch17.med_ab,data,,코드 1 읽는 법 간접효과
+ch17.code2.n,ch17,366,ch14.exp_n,data,,실험판 인원 = 다시 뽑는 수
+ch17.code2.n2,ch17,366,ch14.exp_n,data,,실험판 인원
+ch17.log.n,ch17,366,ch14.exp_n,data,,검증 로그 본보기
+ch17.log.cp,ch17,0.149,ch17.med_cp,data,,검증 로그 본보기
+ch17.log.ab,ch17,0.133,ch17.med_ab,data,,검증 로그 본보기
+ch17.log.c,ch17,0.283,ch17.med_c,data,,검증 로그 본보기
+ch17.log.ind,ch17,0.13,ch17.med_ab,data,,검증 로그 본보기
+ch17.log.95,ch17,95,,fixed,,신뢰수준
+ch17.log.lo,ch17,0.03,ch17.boot_lo,sim,0.014,검증 로그 본보기
+ch17.log.hi,ch17,0.25,ch17.boot_hi,sim,0.019,검증 로그 본보기
+ch17.code4.n,ch17,400,,fixed,,모의시행 설계 인원
+ch17.code4.true,ch17,0.30,,fixed,,Y 생성식의 0.30
+ch17.code5.ab,ch17,0.349,ch17.conf_ab,sim,0.31,코드 5 읽는 법
+ch17.log.n2,ch17,366,ch14.exp_n,data,,검증 로그 본보기

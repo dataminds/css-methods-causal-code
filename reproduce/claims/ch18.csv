@@ -1,42 +1,117 @@
 id,unit,printed,calc,kind,mc_tol,note
-ch18.2.exp.n,ch18,366,ch18.exp_n,data,,§18.2 실험판 정제 후
-ch18.2.reg.t,ch18,2.206,ch18.reg_t,data,,§18.2 cond 회귀의 t = 합동분산 t검정의 t
-ch18.2.reg.p,ch18,.028,ch18.reg_p,data,,§18.2
-ch18.2.reg.n,ch18,366,ch18.exp_n,data,,§18.2
-ch18.2.reg.df,ch18,364,ch18.exp_df,data,,§18.2 자유도
-ch18.2.perm.p,ch18,.029,ch18.perm_p,sim,0.0075,§18.2 뒤섞기 1만 번 (씨앗 73 ; 파이썬 .0292). R 독립 난수 · 이항 표준편차 √(.029 × .971 ÷ 10000) = .0017 → 3 × √2 × .0017 ≈ .0071
-ch18.2.perm.t,ch18,.028,ch18.reg_p,data,,§18.2
-ch18.2.f.df,ch18,364,ch18.exp_df,data,,§18.2 F 의 둘째 자유도
-ch18.2.f,ch18,4.864,ch18.f_two,data,,§18.2 두 집단 일원배치 F
-ch18.2.f2,ch18,4.864,ch18.f_two,data,,§18.2 (같은 조각의 둘째 4.864)
-ch18.2.f.t,ch18,2.206,ch18.reg_t,data,,§18.2
-ch18.2.f.p,ch18,.028,ch18.f_two_p,data,,§18.2 F 의 p
-ch18.2.fac.df,ch18,426,ch18.fac_df2,data,,§18.2 상자 요인판 네 칸 (정제 후 430 − 4)
-ch18.2.fac.f,ch18,1.728,ch18.fac_F,data,,§18.2 상자 칸 표시 변수 셋을 넣은 회귀 전체의 F
-ch18.2.code.lo,ch18,−.5,,fixed,,효과 부호화의 정의값
-ch18.2.code.hi,ch18,.5,,fixed,,효과 부호화의 정의값
-ch18.2.pan.n,ch18,350,ch18.pan_n,data,,§18.2 패널판 세 시점 응답자
-ch18.2.pan.tp,ch18,−2.21,ch18.pan_t_pair,data,,§18.2 짝지은 t
-ch18.2.pan.ti,ch18,−1.64,ch18.pan_t_ind,data,,§18.2 독립 두 집단 t
-ch18.2.z,ch18,1.96,ch18.z975,data,,표준정규 97.5% 분위수
-ch18.2.pan.r,ch18,.453,ch18.pan_r,data,,§18.2 1차–3차 mil 상관
-ch18.5.p13,ch18,1.3,,fixed,,범위 밖 예측값의 예시 숫자
-ch18.5.odds.p05,ch18,0.5,,fixed,,예시 확률
-ch18.5.odds.o1,ch18,1,ch18.odds_p05,data,,산술 .5 ÷ .5
-ch18.5.odds.p08,ch18,0.8,,fixed,,예시 확률
-ch18.5.odds.o4,ch18,4,ch18.odds_p08,data,,산술 .8 ÷ .2
-ch18.5.p0.01,ch18,.01,,fixed,,예시로 고른 기저 확률
-ch18.5.p0.20,ch18,.20,,fixed,,예시로 고른 기저 확률
-ch18.5.p0.40,ch18,.40,,fixed,,예시로 고른 기저 확률
-ch18.5.p0.50,ch18,.50,,fixed,,예시로 고른 기저 확률
-ch18.5.rare.p0,ch18,.01,,fixed,,예시 기저 확률
-ch18.5.rare.ratio,ch18,1.98,ch18.or2_ratio_01,data,,오즈비 2 를 적용한 확률의 배수 (.0198 ÷ .01)
-ch18.5.common.p40,ch18,.40,,fixed,,예시 기저 확률
-ch18.5.common.r40,ch18,1.43,ch18.or2_ratio_40,data,,오즈비 2 의 확률 배수 (.5714 ÷ .40)
-ch18.5.common.p50,ch18,.50,,fixed,,예시 기저 확률
-ch18.5.common.r50,ch18,1.33,ch18.or2_ratio_50,data,,오즈비 2 의 확률 배수 (.6667 ÷ .50)
-ch18.5.box.23,ch18,23,,fixed,,AI 오류 예시 문장의 숫자 (계산값 아님)
-ch18.5.box.lo,ch18,.2,,fixed,,맥패든 유사 R² 관례 범위 (출처 미표기 · 관례 서술)
-ch18.5.box.hi,ch18,.4,,fixed,,맥패든 유사 R² 관례 범위
-ch18.5.box.n,ch18,"1,000",,fixed,,사건 수 설명의 예시 숫자
-ch18.5.box.events,ch18,12,,fixed,,사건 수 설명의 예시 숫자
+ch18.p.colleges,ch18,775,,paper,,"Braghieri, Levy & Makarin (2022) AER 112(11) p. 3661 「775 US colleges」 (출판본 PDF 쪽 대조 ; p. 3666 에도)"
+ch18.p.waves,ch18,17,,paper,,Braghieri 외 (2022) p. 3661 「seventeen consecutive waves」 (p. 3667 에도)
+ch18.p.b3,ch18,0.085,,paper,,Braghieri 외 (2022) 표 1 열 3 (선호 모형) p. 3674
+ch18.p.se3,ch18,0.033,,paper,,Braghieri 외 (2022) 표 1 열 3 p. 3674
+ch18.p.n3,ch18,"359,827",,paper,,Braghieri 외 (2022) 표 1 열 3 관측 수 p. 3674
+ch18.p.b1,ch18,0.137,,paper,,Braghieri 외 (2022) 표 1 열 1 p. 3674
+ch18.p.se1,ch18,0.040,,paper,,Braghieri 외 (2022) 표 1 열 1 p. 3674
+ch18.p.b4,ch18,0.077,,paper,,Braghieri 외 (2022) 표 1 열 4 p. 3674
+ch18.p.se4,ch18,0.032,,paper,,Braghieri 외 (2022) 표 1 열 4 p. 3674
+ch18.tab.fe_reg,ch18,0.3,,fixed,,§18.2 모의 생성식에 정한 지역 차이
+ch18.tab.fe_time,ch18,0.2,,fixed,,§18.2 생성식의 시대 흐름
+ch18.tab.coef,ch18,0.085,,paper,,Braghieri 외 (2022) 표 1 열 3 p. 3674 (행 안 두 번)
+ch18.tab.se,ch18,0.033,,paper,,Braghieri 외 (2022) 표 1 열 3 p. 3674 (행 안 두 번)
+ch18.tab.se.b,ch18,0.085,,paper,,Braghieri 외 (2022) p. 3674
+ch18.tab.se.t,ch18,2.6,ch18.bl_t,data,,보고값 산술 0.085 / 0.033 = 2.58
+ch18.tab.se.lvl,ch18,95,,fixed,,신뢰수준
+ch18.tab.se.lo,ch18,0.02,ch18.bl_ci_lo,data,,0.085 − 1.96 × 0.033 = 0.020
+ch18.tab.se.hi,ch18,0.15,ch18.bl_ci_hi,data,,0.085 + 1.96 × 0.033 = 0.150
+ch18.tab.cols.b1,ch18,0.137,,paper,,Braghieri 외 (2022) 표 1 열 1 p. 3674
+ch18.tab.cols.b3,ch18,0.085,,paper,,표 1 열 3 p. 3674
+ch18.tab.cols.b4,ch18,0.077,,paper,,표 1 열 4 p. 3674
+ch18.p.b3b,ch18,0.085,,paper,,Braghieri 외 (2022) 표 1 열 3 p. 3674
+ch18.alpha,ch18,0.05,,fixed,,관례 유의수준
+ch18.0.ex.a,ch18,8,,fixed,,9장 §9.2 가상 예시 숫자
+ch18.0.ex.b,ch18,5,,fixed,,9장 예시
+ch18.0.ex.d,ch18,3,,fixed,,9장 예시 8 − 5
+ch18.1.cut,ch18,80,,fixed,,예시 문턱
+ch18.1.lo,ch18,79.9,,fixed,,예시 점수
+ch18.1.hi,ch18,80.1,,fixed,,예시 점수
+ch18.2.eff,ch18,0.50,,fixed,,생성식에 참값으로 정한 정책 효과
+ch18.2.gen.base,ch18,5.0,,fixed,,생성식 상수
+ch18.2.gen.reg,ch18,0.3,,fixed,,생성식 계수 (두 곳)
+ch18.2.gen.t,ch18,0.2,,fixed,,생성식 계수
+ch18.2.gen.eff,ch18,0.5,,fixed,,생성식 계수
+ch18.2.gen.drift,ch18,0.4,,fixed,,깨진 세계에 정한 사전 추세
+ch18.2.gen.noise,ch18,.02,,fixed,,생성식 잡음 SD
+ch18.2.tabA.pre,ch18,5.3,ch18.cell_A0,data,,평행 세계 네 칸 (잡음 없음)
+ch18.2.tabA.post,ch18,6.0,ch18.cell_A1_par,data,,평행 세계
+ch18.2.tabA.chg,ch18,0.7,ch18.dA_par,data,,평행 세계 A 변화
+ch18.2.tabB.pre,ch18,5.0,ch18.cell_B0,data,,B 행 (두 표에 같은 행)
+ch18.2.tabB.post,ch18,5.2,ch18.cell_B1,data,,B 행
+ch18.2.tabB.chg,ch18,0.2,ch18.dB,data,,B 변화
+ch18.2.tabA2.pre,ch18,5.3,ch18.cell_A0,data,,깨진 세계
+ch18.2.tabA2.post,ch18,6.4,ch18.cell_A1_brk,data,,깨진 세계
+ch18.2.tabA2.chg,ch18,1.1,ch18.dA_brk,data,,깨진 세계 A 변화
+ch18.2.didp.a,ch18,0.7,ch18.dA_par,data,,§18.2
+ch18.2.didp.b,ch18,0.2,ch18.dB,data,,§18.2
+ch18.2.didp.d,ch18,0.5,ch18.did_par_exact,data,,잡음 없는 이중차분
+ch18.2.didb.a,ch18,1.1,ch18.dA_brk,data,,§18.2
+ch18.2.didb.b,ch18,0.2,ch18.dB,data,,§18.2
+ch18.2.didb.d,ch18,0.9,ch18.did_brk_exact,data,,잡음 없는 이중차분
+ch18.2.out.par,ch18,0.476,ch18.did_par,sim,0.17,"칸마다 N(0, .02) 잡음 (씨앗 73) ; 이중차분 잡음 SD = .02 × √4 = .04 (해석값) × 3√2"
+ch18.2.out.brk,ch18,0.876,ch18.did_brk,sim,0.17,같은 근거
+ch18.2.erase.reg,ch18,0.3,,fixed,,생성식 계수
+ch18.2.erase.t,ch18,0.2,,fixed,,생성식 계수
+ch18.2.est.par,ch18,0.48,ch18.did_par,sim,0.17,잡음 SD .04 × 3√2
+ch18.2.est.true,ch18,0.50,,fixed,,참값으로 정한 정책 효과
+ch18.2.est.brk,ch18,0.88,ch18.did_brk,sim,0.17,잡음 SD .04 × 3√2
+ch18.2.gap,ch18,0.40,ch18.did_gap,data,,두 세계가 같은 잡음을 써서 차이는 난수와 무관하게 0.4 (두 엔진 같은 값)
+ch18.2.chg.par,ch18,0.7,ch18.dA_par,data,,§18.2
+ch18.2.chg.brk,ch18,1.1,ch18.dA_brk,data,,§18.2
+ch18.2.chg.gap,ch18,0.4,ch18.dA_gap,data,,§18.2
+ch18.2.gap2,ch18,0.4,ch18.did_gap,data,,§18.2
+ch18.3.weeks,ch18,104,ch18.ts_weeks,data,,시계열판 행 수
+ch18.3.start,ch18,53,ch18.ts_start,data,,첫 campaign = 1 주차
+ch18.3.pre,ch18,4.78,ch18.ts_pre,data,,§18.3
+ch18.3.post,ch18,5.09,ch18.ts_post,data,,§18.3
+ch18.3.shift,ch18,0.30,ch18.ts_diff,data,,전후 평균차 (같은 문단의 +0.303 과 같은 수) ; 2026-11-14h 원고 정정에 맞춰 옮김
+ch18.3.true,ch18,0.30,,fixed,,make_data_family.py 생성식 wellbeing = 4.80 + 0.30 × campaign + e ; 2026-11-14h 원고 정정(「참값은」 → 「참값도」)에 맞춰 옮김
+ch18.3.trend,ch18,−0.0,ch18.ts_trend,data,,주당 추세 −0.0000455 (문장의 「소수 넷째 자리에서 반올림해도 0」도 성립: |b| < .00005)
+ch18.3.simple,ch18,0.303,ch18.ts_diff,data,,§18.3
+ch18.3.trendmod,ch18,0.306,ch18.ts_camp,data,,§18.3 campaign 계수
+ch18.3.tw.slope,ch18,0.012,,fixed,,생성식에 정한 주당 추세
+ch18.3.tw.weeks,ch18,104,,fixed,,설계 주 수
+ch18.3.tw.start,ch18,53,,fixed,,설계 시작 주
+ch18.3.tw.diff,ch18,0.64,ch18.tw_diff,sim,0.21,추세 세계 (씨앗 73) 전후 평균차 ; MC SD .049(씨앗 1000개) × 3√2 ; 기댓값 0.012 × 52 = .624
+ch18.3.tw.camp,ch18,−0.022,ch18.tw_camp,sim,0.43,캠페인 계수 MC SD .102 × 3√2
+ch18.3.tw.se,ch18,0.100,ch18.tw_se,sim,0.031,표준오차 MC SD .0072 × 3√2
+ch18.3.tw.se2,ch18,0.20,ch18.tw_se2,sim,0.062,2 × SE ; MC SD .0145 × 3√2
+ch18.3.tw.weeks2,ch18,104,,fixed,,설계 주 수
+ch18.3.trust,ch18,0.303,ch18.ts_diff,data,,§18.3
+ch18.4.n,ch18,"1,800",ch18.co_n,data,,코호트판 행 수
+ch18.4.c.p20,ch18,0.20,,fixed,,예시로 고른 이동 c
+ch18.4.c.m05,ch18,−0.05,,fixed,,예시로 고른 이동 c
+ch18.4.st1.age,ch18,0.21,ch18.apc_p20_age,data,,c = 0.20 나이 계수 (최소 노름 풀이 + c)
+ch18.4.st1.year,ch18,0.19,ch18.apc_p20_year_neg,data,,c = 0.20 조사 연도 계수 −0.192 의 크기 (「나빠지고」)
+ch18.4.st3.age,ch18,0.04,ch18.apc_m05_age_neg,data,,c = −0.05 나이 계수 −0.039 의 크기 (「줄고」)
+ch18.4.st3.year,ch18,0.06,ch18.apc_m05_year,data,,c = −0.05 조사 연도 계수
+ch18.6.ex1.pre,ch18,4.78,ch18.ts_pre,data,,실습 1
+ch18.6.ex1.post,ch18,5.09,ch18.ts_post,data,,실습 1
+ch18.6.ex1.keep,ch18,52,,fixed,,실습 설계 (53주차 전)
+ch18.6.ex1.fake,ch18,27,,fixed,,실습 설계 가짜 시작 주
+ch18.6.ex1.placebo,ch18,−0.013,ch18.ts_placebo,data,,1~52주 안에서 27주차 이후 − 이전 평균차
+ch18.6.ex1.se,ch18,0.07,ch18.ts_se,data,,§18.3 campaign 계수 SE
+ch18.6.ex1.se2,ch18,0.14,ch18.ts_se2,data,,2 × SE = 0.140
+ch18.6.ex2.cross,ch18,.29,ch18.panel_r_cross,data,,패널판 1차 시점 hjs-mil 상관
+ch18.6.ex2.within,ch18,.06,ch18.panel_r_within,data,,개인 평균 중심화 후 상관 (세 시점 전체)
+ch18.6.ex3.y15,ch18,4.42,ch18.co_mil_2015,data,,코호트판 2015 평균 mil
+ch18.6.ex3.y20,ch18,4.19,ch18.co_mil_2020,data,,2020
+ch18.6.ex3.y25,ch18,4.60,ch18.co_mil_2025,data,,2025
+ch18.6.ex4.coef,ch18,1.2,,fixed,,9장 §9.1 생성식 계수
+ch18.6.ex4.coef2,ch18,0.3,,fixed,,실습이 정한 계수
+ch18.6.ex4.d12,ch18,1.03,ch18.selfsel_d12,sim,0.46,9장 §9.1 자기선택 세계 (씨앗 73 ; 책 난수 순서) 낙관성 d ; MC SD .108(씨앗 1000개) × 3√2
+ch18.6.ex4.d03,ch18,0.3,ch18.selfsel_d03,sim,0.42,같은 세계에 계수 0.3 (같은 난수 순서) d = .32 ; MC SD .099 × 3√2 (기댓값 .29)
+ch18.6.ex4.d03b,ch18,0.3,ch18.selfsel_d03,sim,0.42,같은 근거
+ch18.6.ex5.c,ch18,−0.10,,fixed,,실습이 정한 이동 c
+ch18.6.ex5.rss,ch18,1790.588069,ch18.apc_m10_rss,data,,c = −0.10 잔차제곱합
+ch18.6.ex5.age,ch18,−0.089,ch18.apc_m10_age,data,,c = −0.10
+ch18.6.ex5.year,ch18,0.108,ch18.apc_m10_year,data,,c = −0.10
+ch18.6.ex5.birth,ch18,−0.102,ch18.apc_m10_birth,data,,c = −0.10
+ch18.6.ex7.n3,ch18,350,ch18.panel_n3,data,,패널판 3차 행 수
+ch18.6.ex7.n1,ch18,500,ch18.panel_n1,data,,패널판 1차 행 수
+ch18.6.ex7.left,ch18,150,ch18.panel_left,data,,1차에 있고 3차에 없는 id 수
+ch18.3.shift.post,ch18,5.088,ch18.ts_post,data,,도입 후 평균
+ch18.3.shift.pre,ch18,4.784,ch18.ts_pre,data,,도입 전 평균
+ch18.3.shift.diff,ch18,0.303,ch18.ts_diff,data,,전후 평균차

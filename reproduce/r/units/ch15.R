@@ -24,7 +24,7 @@ calc("ch15.zg_slope_mean", function() mean(sl))
 calc("ch15.zg_mean_minus_ctrl_rounded", function() abs(round(mean(sl), 3) - round(unname(m2["dose"]), 3)))
 calc("ch15.zg_n_f", function() sum(zg$sex == 0))
 calc("ch15.zg_n_m", function() sum(zg$sex == 1))
-for (e in c(0, 10, 20)) local({
+for (e in c(0, 5, 10, 20)) local({
   ee <- e
   calc(paste0("ch15.bias_e", ee), function() { z <- make2(sexeff = ee); unname(coef(lm(vigor ~ dose, data = z))[2]) })
 })
@@ -93,6 +93,26 @@ calc("ch15.exp_diff", function() { m <- tapply(E()$mil, E()$cond, mean); unname(
 
 # §15.6 계수를 0 으로 만드는 ρ = √r (r = 표준화 기울기 = 상관)
 calc("ch15.rho_null", function() sqrt(cor(S()$hjs, S()$mil)))
+
+# 2026-11-15 4단 전환 = 개념 절 결과 표 (민감도 표 다섯 행 · 역산 표 세 행)
+sens_forms <- list(none = mil ~ hjs, age = mil ~ hjs + age, refl = mil ~ hjs + refl,
+                   age_refl = mil ~ hjs + age + refl, age_refl_swl = mil ~ hjs + age + refl + swl)
+for (nm in names(sens_forms)) local({
+  f <- sens_forms[[nm]]; n <- nm
+  calc(paste0("ch15.sens_", n, "_b"), function() summary(lm(f, data = S()))$coefficients["hjs", 1])
+  calc(paste0("ch15.sens_", n, "_se"), function() summary(lm(f, data = S()))$coefficients["hjs", 2])
+})
+rho_tab <- function(rho) {
+  sdx <- sd(S()$hjs); sdy <- sd(S()$mil)
+  b <- unname(coef(lm(mil ~ hjs, data = S()))[2]); r <- b * sdx / sdy
+  adj <- (r - rho^2) / (1 - rho^2) * sdy / sdx
+  c(b - adj, adj)
+}
+for (k in c("3", "5", "7")) local({
+  kk <- k; rho <- as.numeric(paste0("0.", k))
+  calc(paste0("ch15.rho_bias_", kk), function() rho_tab(rho)[1])
+  calc(paste0("ch15.rho_adj_", kk), function() rho_tab(rho)[2])
+})
 
 # 논문 상자 산술
 calc("ch15.paper_adjr2_gain_rounded", function() .63 - .59)

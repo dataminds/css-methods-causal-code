@@ -1,21 +1,7 @@
 id,unit,printed,calc,kind,mc_tol,note
-ch16.p5.ind_mil,ch16,.31,,paper,,"Rogers et al. (2023) JPSP 125(4) 연구 5 간접효과(삶의 의미) effect = .31, p. 766 (출판본 PDF 쪽 대조)"
-ch16.p5.ind_mil.se,ch16,.12,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.p5.ind_mil.ci95,ch16,95,,fixed,,신뢰수준 관례 95%
-ch16.p5.ind_mil.lo,ch16,.08,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.p5.ind_mil.hi,ch16,.53,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.p5.ind_flr,ch16,.24,,paper,,Rogers et al. (2023) 연구 5 간접효과(번영) p. 766
-ch16.p5.ind_flr.se,ch16,.09,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.p5.ind_flr.ci95,ch16,95,,fixed,,신뢰수준 관례 95%
-ch16.p5.ind_flr.lo,ch16,.07,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.p5.ind_flr.hi,ch16,.42,,paper,,Rogers et al. (2023) 연구 5 p. 766
 ch16.p6.int_df,ch16,445,,paper,,"Rogers et al. (2023) 연구 6 상호작용 F(1, 445) = 0.01, p = .914, p. 767"
 ch16.p6.int_f,ch16,0.01,,paper,,Rogers et al. (2023) 연구 6 p. 767
 ch16.p6.int_p,ch16,.914,,paper,,Rogers et al. (2023) 연구 6 p. 767
-ch16.tab.ind,ch16,.31,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.tab.ci95,ch16,95,,fixed,,신뢰수준 관례 95%
-ch16.tab.lo,ch16,.08,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.tab.hi,ch16,.53,,paper,,Rogers et al. (2023) 연구 5 p. 766
 ch16.tab.f,ch16,0.01,,paper,,Rogers et al. (2023) 연구 6 p. 767
 ch16.tab.p,ch16,.914,,paper,,Rogers et al. (2023) 연구 6 p. 767
 ch16.0.slope,ch16,0.98,ch16.svy_slope,data,,§16.0 = 14장 §14.2 설문판 단순회귀 기울기
@@ -82,8 +68,8 @@ ch16.3.box.z_lo,ch16,−0.40,ch16.split_z_lo,data,,§16.3 상자 = 하위 집단
 ch16.3.box.z_hi,ch16,1.31,ch16.split_z_hi,data,,§16.3 상자
 ch16.4.rel10,ch16,1.0,,fixed,,§16.4 모의시행 설계 신뢰도
 ch16.4.design.eff,ch16,0.2,,fixed,,§16.4 모의시행에 참값으로 정한 효과
-ch16.4.design.rel_hi,ch16,1.0,,fixed,,설계 신뢰도
-ch16.4.design.rel_lo,ch16,0.6,,fixed,,설계 신뢰도
+ch16.4.design.rel_hi,ch16,1.0,,fixed,,설계 신뢰도 ; 2026-11-15n 4단 개편으로 문장을 바꿔 다시 묶음
+ch16.4.design.rel_lo,ch16,0.6,,fixed,,설계 신뢰도 ; 2026-11-15n 4단 개편으로 문장을 바꿔 다시 묶음
 ch16.4.design.seed,ch16,73,,fixed,,씨앗
 ch16.4.design.reps,ch16,800,,fixed,,반복 횟수
 ch16.4.design.crit,ch16,1.96,,fixed,,정규 근사 양측 5% 문턱
@@ -93,86 +79,13 @@ ch16.4.res.main10,ch16,0.97,ch16.pow10_main,sim,0.026,검정력(비율) MC SD �
 ch16.4.res.main06,ch16,0.83,ch16.pow06_main,sim,0.056,MC SD .0133 × 3√2
 ch16.4.res.int10,ch16,0.98,ch16.pow10_int,sim,0.021,MC SD .0049 × 3√2
 ch16.4.res.int06,ch16,0.63,ch16.pow06_int,sim,0.072,MC SD .0171 × 3√2
-ch16.4.prod.rels,ch16,0.8,,fixed,,설계 신뢰도
-ch16.4.prod.rels2,ch16,0.6,,fixed,,설계 신뢰도
+ch16.4.prod.rels,ch16,0.8,,fixed,,설계 신뢰도 ; 2026-11-15n 4단 개편으로 문장을 바꿔 다시 묶음
+ch16.4.prod.rels2,ch16,0.6,,fixed,,설계 신뢰도 ; 2026-11-15n 4단 개편으로 문장을 바꿔 다시 묶음
 ch16.4.prod.rel08,ch16,0.8,,fixed,,설계 신뢰도
 ch16.4.prod.xw08,ch16,0.64,ch16.prodrel08_xw,sim,0.0093,10만 명 (씨앗 73) ; MC SD .0022(씨앗 100개) × 3√2 ; 이론값 0.8² = .64
 ch16.4.prod.sq,ch16,0.8,,fixed,,설계 신뢰도
 ch16.4.prod.rel06,ch16,0.6,,fixed,,설계 신뢰도
 ch16.4.prod.xw06,ch16,0.35,ch16.prodrel06_xw,sim,0.016,씨앗 73 값 .3515 ; MC SD .0037 × 3√2 ; ⚠ 이론값은 0.6² = .36 (씨앗 100개 평균 .359) = 원고의 .35 는 씨앗 73 표본값
-ch16.5.c,ch16,0.283,ch16.med_c,data,,§16.5 실험판 정제본
-ch16.5.b4,ch16,0.6457,ch16.med_b,data,,§16.5
-ch16.5.cp4,ch16,0.1493,ch16.med_cp,data,,§16.5
-ch16.5.tab.a,ch16,0.21,ch16.med_a,data,,§16.5 표
-ch16.5.tab.b,ch16,0.65,ch16.med_b,data,,§16.5 표
-ch16.5.tab.cp,ch16,0.15,ch16.med_cp,data,,§16.5 표
-ch16.5.tab.ab,ch16,0.13,ch16.med_ab,data,,§16.5 표
-ch16.5.box.cp,ch16,0.15,ch16.med_cp,data,,§16.5 상자
-ch16.5.box.ab,ch16,0.13,ch16.med_ab,data,,§16.5 상자
-ch16.5.box.sum,ch16,0.28,ch16.rounded_cp_plus_ab,data,,표에 실은 반올림 수의 합 (산술)
-ch16.5.box.c,ch16,0.283,ch16.med_c,data,,§16.5 상자
-ch16.5.box.a,ch16,0.21,ch16.med_a,data,,§16.5 상자
-ch16.5.box.b,ch16,0.65,ch16.med_b,data,,§16.5 상자
-ch16.5.box.prod,ch16,0.14,ch16.rounded_a_times_b,data,,반올림 수의 곱 0.1365 (산술)
-ch16.5.box.ab2,ch16,0.13,ch16.med_ab,data,,§16.5 상자
-ch16.5.box4.cp,ch16,0.14934,ch16.med_cp,data,,§16.5 상자 네 자리 ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch16.5.box4.a,ch16,0.20667,ch16.med_a,data,,§16.5 상자 ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch16.5.box4.b,ch16,0.64567,ch16.med_b,data,,§16.5 상자 ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch16.5.box4.ab,ch16,0.13344,ch16.med_ab,data,,§16.5 상자 ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch16.5.box4.sum,ch16,0.28279,ch16.med_sum,data,,§16.5 상자 c′ + a×b ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch16.5.ab3,ch16,0.13,ch16.med_ab,data,,§16.5
-ch16.5.boot.reps,ch16,"2,000",,fixed,,부트스트랩 반복 횟수
-ch16.5.boot.lvl,ch16,95,,fixed,,신뢰수준
-ch16.5.boot.q_lo,ch16,2.5,,fixed,,백분위 정의
-ch16.5.boot.q_hi,ch16,97.5,,fixed,,백분위 정의
-ch16.5.boot.lo,ch16,0.03,ch16.boot_lo,sim,0.014,부트스트랩 2.5% 지점 (씨앗 73) ; 부트 씨앗 30개 MC SD .0032 × 3√2
-ch16.5.boot.hi,ch16,0.25,ch16.boot_hi,sim,0.019,부트 97.5% 지점 ; MC SD .0045 × 3√2
-ch16.5.boot.ab,ch16,0.13,ch16.med_ab,data,,§16.5
-ch16.5.conf.n,ch16,400,,fixed,,모의시행 설계 인원
-ch16.5.conf.true,ch16,0.30,,fixed,,모의시행에 참값으로 정한 직접효과 (Y 생성식의 0.30)
-ch16.5.conf.a,ch16,0.49,ch16.conf_a,sim,0.40,혼란 세계 (씨앗 73) ; a MC SD .095(씨앗 1000개 ; 기댓값 .60) × 3√2
-ch16.5.conf.b,ch16,0.71,ch16.conf_b,sim,0.15,b MC SD .035 × 3√2 (기댓값 .72)
-ch16.5.conf.cp,ch16,−0.08,ch16.conf_cp,sim,0.30,c′ MC SD .070 × 3√2
-ch16.5.conf.b2,ch16,0.71,ch16.conf_b,sim,0.15,b MC SD .035 × 3√2
-ch16.5.conf.ab,ch16,0.35,ch16.conf_ab,sim,0.31,a×b MC SD .073 × 3√2
-ch16.5.conf.c,ch16,0.274,ch16.conf_c,sim,0.40,총효과 MC SD .094 × 3√2
-ch16.5.conf.c_true,ch16,0.30,,fixed,,참값으로 정한 총효과 (직접 0.30 + 간접 0)
-ch16.5.pbox.ind,ch16,.31,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.5.pbox.z,ch16,1.96,,fixed,,정규 근사 95% 배수
-ch16.5.pbox.se,ch16,.12,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.5.pbox.lo,ch16,.07,ch16.paper_sym_lo,data,,보고값으로 한 산술 .31 − 1.96 × .12
-ch16.5.pbox.hi,ch16,.55,ch16.paper_sym_hi,data,,산술 .31 + 1.96 × .12
-ch16.5.pbox.rep_lo,ch16,.08,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.5.pbox.rep_hi,ch16,.53,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.5.pbox.ind2,ch16,.31,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.5.pbox.m1,ch16,5.14,,paper,,Rogers et al. (2023) 연구 5 개입 집단 삶의 의미 M = 5.14 p. 766
-ch16.5.pbox.m0,ch16,4.83,,paper,,Rogers et al. (2023) 연구 5 통제 집단 M = 4.83 p. 766
-ch16.5.pbox.diff,ch16,0.31,ch16.paper_mean_diff,data,,보고 평균의 차 (산술)
-ch16.5.pbox.head.ind,ch16,.31,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.5.pbox.head.lvl,ch16,95,,fixed,,신뢰수준
-ch16.5.pbox.head.lo,ch16,.08,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.5.pbox.head.hi,ch16,.53,,paper,,Rogers et al. (2023) 연구 5 p. 766
-ch16.6.tab.a1,ch16,.285,ch16.path_a1,data,,§16.6 모형 1 a (표준화)
-ch16.6.tab.a2,ch16,.219,ch16.path_a2,data,,§16.6 모형 2 a
-ch16.6.tab.b1,ch16,.043,ch16.path_b1,data,,§16.6 모형 1 b
-ch16.6.tab.b2,ch16,.155,ch16.path_b2,data,,§16.6 모형 2 b
-ch16.6.tab.c1,ch16,.616,ch16.path_c1,data,,§16.6 모형 1 c′
-ch16.6.tab.c2,ch16,.595,ch16.path_c2,data,,§16.6 모형 2 c′
-ch16.6.tab.rep1,ch16,.629,ch16.path_rep1,data,,§16.6 모형 1 재현 a×b + c′
-ch16.6.tab.rep2,ch16,.629,ch16.path_rep2,data,,§16.6 모형 2 재현
-ch16.6.obs,ch16,.629,ch16.path_obs,data,,§16.6 관찰 상관 hjs-mil
-ch16.6.vdb.n,ch16,574,,paper,,"Van den Bulck (2004) Eur J Commun 19(2) p. 243 「data of 574 respondents」 (표 3 머리 N = 574, p. 245)"
-ch16.6.vdb.df_lo,ch16,85,,paper,,Van den Bulck (2004) 표 3 df (세 모형 85) p. 245
-ch16.6.vdb.df_hi,ch16,87,,paper,,Van den Bulck (2004) 표 3 df (영모형 87) p. 245
-ch16.6.vdb.caic_cult,ch16,426.8,,paper,,Van den Bulck (2004) 표 3 CAIC 426.77 p. 245
-ch16.6.vdb.caic_mood,ch16,456.8,,paper,,Van den Bulck (2004) 표 3 CAIC 456.77 p. 245
-ch16.6.vdb.caic_wd,ch16,468.4,,paper,,Van den Bulck (2004) 표 3 CAIC 468.42 p. 245
-ch16.6.vdb.gap,ch16,30,ch16.vdb_caic_gap,data,,보고 CAIC 차 456.8 − 426.8 = 30.0 (원문 456.77 − 426.77 = 30.00) ; ⚠ 「넘게」는 정확히 30 이라 엄밀히는 맞지 않는다(칩거와는 41.6) ; 2026-11-14h 원고 정정에 맞춰 옮김
-ch16.6.vdb.path_mood,ch16,.65,,paper,,Van den Bulck (2004) 표 3 central path λ .65 NS p. 245
-ch16.6.vdb.path_cult,ch16,.74,,paper,,Van den Bulck (2004) 표 3 central path λ .74 * p. 245
-ch16.6.mine.c,ch16,0.274,ch16.conf_c,sim,0.40,혼란 세계 총효과 MC SD .094 × 3√2
-ch16.6.mine.c_true,ch16,0.30,,fixed,,참값으로 정한 총효과
-ch16.6.mine.ab,ch16,0.35,ch16.conf_ab,sim,0.31,a×b MC SD .073 × 3√2
 ch16.7.ex1.b3,ch16,0.19,ch16.mod_b3,data,,실습 1
 ch16.7.ex1.lo,ch16,0.73,ch16.mod_ss_lo,data,,실습 1
 ch16.7.ex1.hi,ch16,1.24,ch16.mod_ss_hi,data,,실습 1
@@ -186,13 +99,6 @@ ch16.7.ex2.b1c,ch16,0.99,ch16.mod_b1,data,,실습 2 예상
 ch16.7.ex2.b1r,ch16,0.12,ch16.mod_raw_b1,data,,실습 2 예상
 ch16.7.ex2.b2c,ch16,0.04,ch16.mod_b2,data,,실습 2 예상
 ch16.7.ex2.b2r,ch16,−0.92,ch16.mod_raw_b2,data,,실습 2 예상
-ch16.7.ex4.path,ch16,0.4,,fixed,,실습 4 설계 경로
-ch16.7.ex4.before,ch16,0.35,ch16.conf_ab,sim,0.31,a×b MC SD .073 × 3√2
-ch16.7.ex4.after,ch16,0.01,ch16.conf_abu,sim,0.133,U 통제 간접효과 a × b(U 통제) ; MC SD .031 × 3√2
-ch16.7.ex4.path2,ch16,0.4,,fixed,,실습 4 설계 경로
-ch16.7.ex4.recov,ch16,0.2,ch16.conf04_abu,sim,0.21,실습 4 세계(Y 에 0.4 × M ; 같은 난수 순서) U 통제 a × b = .206 ; MC SD .049 × 3√2 (기댓값 .24)
-ch16.7.ex4.a,ch16,0.49,ch16.conf_a,sim,0.40,a MC SD .095 × 3√2
-ch16.7.ex4.path3,ch16,0.4,,fixed,,설계 경로
 ch16.7.ex5.rel,ch16,0.7,,fixed,,설계 신뢰도
 ch16.7.ex5.n800,ch16,800,,fixed,,설계 인원
 ch16.7.ex5.n400,ch16,400,,fixed,,설계 인원 ; 2026-11-14h 원고 정정에 맞춰 옮김
@@ -200,10 +106,6 @@ ch16.7.ex5.p400,ch16,0.75,ch16.pow07_int,sim,0.065,MC SD .0153 × 3√2 ; 2026-1
 ch16.7.ex5.n800b,ch16,800,,fixed,,설계 인원 ; 2026-11-14h 원고 정정에 맞춰 옮김
 ch16.7.ex5.p800,ch16,0.97,ch16.pow07_int_n800,sim,0.028,§16.4 코드에 n = 800 (신뢰도 0.7 · 씨앗 73 · 800번) ; MC SD .0065 × 3√2 ; 2026-11-14h 원고 정정에 맞춰 옮김
 ch16.7.ex5.cost,ch16,400,,fixed,,실습 5 = 400 → 800 의 추가 인원
-ch16.7.ex7.total,ch16,10,ch16.info4_total,data,,네 변수의 분산 · 공분산 수 = 4 × 5 / 2
-ch16.7.ex7.var,ch16,4,ch16.info4_var,data,,분산 수
-ch16.7.ex7.cov,ch16,6,ch16.info4_cov,data,,공분산 수 = 4C2
-ch16.5.box5.rsum,ch16,0.28278,ch16.med_rounded5_sum,data,,§16.5 상자 = 다섯째 자리로 반올림한 c′ 과 a×b 의 합
 ch16.mt.int.1,ch16,4.83,ch16.mt_b_int,data,,§16.2 「논문의 조절 회귀 표 읽기」 중심화 모형 (2026-11-15)
 ch16.mt.int.2,ch16,0.04,ch16.mt_se_int,data,,§16.2 「논문의 조절 회귀 표 읽기」 중심화 모형 (2026-11-15)
 ch16.mt.int.3,ch16,115.58,ch16.mt_t_int,data,,§16.2 「논문의 조절 회귀 표 읽기」 중심화 모형 (2026-11-15)
@@ -253,3 +155,65 @@ ch16.ck.int,ch16,0.02,ch16.ck_int_cen,data,,중심화한 모형의 곱항 계수
 ch16.ck.scale1,ch16,1,,fixed,,척도 끝값
 ch16.ck.scale7,ch16,7,,fixed,,척도 끝값
 ch16.ck.mid,ch16,4,,fixed,,1~7 척도의 중간값 (정의)
+ch16n.1.split.n_lo,ch16,435,ch16.split_n_lo,data,,§16.1 쪼개기 = 코드 5 (2026-11-15n 코드를 4부로 옮기며 결과 문장으로)
+ch16n.1.split.b_lo,ch16,0.873,ch16.split_b_lo,data,,
+ch16n.1.split.n_hi,ch16,131,ch16.split_n_hi,data,,
+ch16n.1.split.b_hi,ch16,1.438,ch16.split_b_hi,data,,
+ch16n.2.head.b1,ch16,0.99,ch16.mod_b1,data,,§16.2 절 머리 「건너뛰면」 줄 = 중심화 모형 b1
+ch16n.2.coef.b0,ch16,4.833,ch16.mt_b_int,data,,§16.2 코드 1 의 결과 문장 = 중심화 모형 절편
+ch16n.2.coef.b1,ch16,0.987,ch16.mt_b_hjs,data,,
+ch16n.2.coef.b2,ch16,0.042,ch16.mt_b_refl,data,,
+ch16n.2.coef.b3,ch16,0.192,ch16.mt_b_xy,data,,
+ch16n.2.coef.se0,ch16,0.042,ch16.mt_se_int,data,,
+ch16n.2.coef.se1,ch16,0.052,ch16.mt_se_hjs,data,,
+ch16n.2.coef.se2,ch16,0.031,ch16.mt_se_refl,data,,
+ch16n.2.coef.se3,ch16,0.039,ch16.mt_se_xy,data,,
+ch16n.2.tab.b1raw,ch16,0.12,ch16.mod_raw_b1,data,,§16.2 중심화 전후 표 (코드 2)
+ch16n.2.tab.b1cen,ch16,0.99,ch16.mod_b1,data,,
+ch16n.2.tab.b2raw,ch16,−0.92,ch16.mod_raw_b2,data,,
+ch16n.2.tab.b2cen,ch16,0.04,ch16.mod_b2,data,,
+ch16n.2.tab.b3raw,ch16,0.192,ch16.mod_raw_b3,data,,중심화 전 곱항 (중심화 후도 같다 = ch16.mod_b3)
+ch16n.2.tab.se3raw,ch16,0.039,ch16.mod_raw_se3,data,,중심화 전 곱항 SE (중심화 후도 같다 = ch16.mod_se3)
+ch16n.2.tab.corraw,ch16,0.641,ch16.mod_cor_raw,data,,
+ch16n.2.tab.corcen,ch16,−0.117,ch16.mod_cor_cen,data,,
+ch16n.3.head.b3,ch16,0.19,ch16.mod_b3,data,,§16.3 절 머리 「건너뛰면」 줄
+ch16n.3.code.sd,ch16,1.338,ch16.mod_refl_sd,data,,§16.3 코드 4 의 결과 문장
+ch16n.3.code.lo,ch16,0.731,ch16.mod_ss_lo,data,,
+ch16n.3.code.mid,ch16,0.987,ch16.mod_b1,data,,평균(0)에서의 기울기 = b1
+ch16n.3.code.hi,ch16,1.244,ch16.mod_ss_hi,data,,
+ch16n.4.tab.r10,ch16,1.0,,fixed,,§16.4 검정력 표 = 모의시행에 심은 신뢰도
+ch16n.4.tab.m10,ch16,0.97,ch16.pow10_main,sim,0.026,검정력(비율) MC SD √(p(1−p)/800) × 3√2 (ch16.4.res.main10 과 같다)
+ch16n.4.tab.i10,ch16,0.98,ch16.pow10_int,sim,0.021,MC SD .0049 × 3√2
+ch16n.4.tab.r09,ch16,0.9,,fixed,,심은 신뢰도
+ch16n.4.tab.m09,ch16,0.95,ch16.pow09_main,sim,0.033,MC SD √(.95 × .05 / 800) = .0077 × 3√2 (2026-11-15n 신설)
+ch16n.4.tab.i09,ch16,0.94,ch16.pow09_int,sim,0.036,MC SD .0084 × 3√2 (2026-11-15n 신설)
+ch16n.4.tab.r08,ch16,0.8,,fixed,,심은 신뢰도
+ch16n.4.tab.m08,ch16,0.93,ch16.pow08_main,sim,0.038,MC SD .0090 × 3√2 (2026-11-15n 신설)
+ch16n.4.tab.i08,ch16,0.86,ch16.pow08_int,sim,0.052,MC SD .0123 × 3√2 (2026-11-15n 신설)
+ch16n.4.tab.r07,ch16,0.7,,fixed,,심은 신뢰도
+ch16n.4.tab.m07,ch16,0.88,ch16.pow07_main,sim,0.049,MC SD .0115 × 3√2 (2026-11-15n 신설)
+ch16n.4.tab.i07,ch16,0.75,ch16.pow07_int,sim,0.065,MC SD .0153 × 3√2
+ch16n.4.tab.r06,ch16,0.6,,fixed,,심은 신뢰도
+ch16n.4.tab.m06,ch16,0.83,ch16.pow06_main,sim,0.056,MC SD .0133 × 3√2
+ch16n.4.tab.i06,ch16,0.63,ch16.pow06_int,sim,0.072,MC SD .0171 × 3√2
+ch16n.ai.n1,ch16,566,ch16.mt_n,data,,3장 정제 설문판 인원
+ch16n.ai.n2,ch16,566,ch16.mt_n,data,,
+ch16n.ai.raw,ch16,0.12,ch16.mod_raw_b1,data,,중심화 전 b1
+ch16n.cr.chk,ch16,0.731,ch16.cm1_b1,data,,refl 을 −1SD 지점에서 뺀 모형의 hjs 계수 = 단순기울기 (2026-11-15n 신설 계산)
+ch16n.log.n,ch16,566,ch16.mt_n,data,,검증 로그 본보기
+ch16n.log.ss,ch16,0.73,ch16.cm1_b1,data,,
+ch16n.log.b3,ch16,0.19,ch16.mt_b_xy,data,,
+ch16n.log.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16n.log.lo,ch16,0.12,ch16.mt_lo_xy,data,,
+ch16n.log.hi,ch16,0.27,ch16.mt_hi_xy,data,,
+ch16n.log.ss_lo,ch16,0.73,ch16.mod_ss_lo,data,,
+ch16n.log.ss_mid,ch16,0.99,ch16.mod_b1,data,,
+ch16n.log.ss_hi,ch16,1.24,ch16.mod_ss_hi,data,,
+ch16n.ex4.b3,ch16,0.192,ch16.c4_b3,data,,실습 4 = 4점 기준 모형의 곱항 (−1SD 기준도 같다 = ch16.cm1_b3)
+ch16n.ex4.se3,ch16,0.039,ch16.cm1_se3,data,,−1SD 기준 모형의 곱항 SE (4점 기준도 같다 = ch16.c4_se3)
+ch16n.ex4.c4,ch16,0.888,ch16.c4_b1,data,,
+ch16n.ex4.cm1,ch16,0.731,ch16.cm1_b1,data,,
+ch16n.ex4.four,ch16,4,,fixed,,척도 중간값 4 (1~7 척도 ; 정의)
+ch16n.ex4.ss,ch16,0.73,ch16.mod_ss_lo,data,,
+ch16n.4.prod.x08,ch16,0.8,ch16.prodrel08_x,sim,0.0093,§16.4 곱의 신뢰도 표 가운데 열 = X 한 척도의 신뢰도 (10만 명 · 씨앗 73) ; 허용폭은 ch16.4.prod.xw08 과 같게
+ch16n.4.prod.x06,ch16,0.6,ch16.prodrel06_x,sim,0.016,같은 표 0.6 줄 X 한 척도 ; 허용폭은 ch16.4.prod.xw06 과 같게

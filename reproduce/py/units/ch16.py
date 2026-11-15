@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""16장 · 조건부 효과: 조절과 매개 — 파이썬 엔진."""
+"""16장 · 조절 — 파이썬 엔진. (매개 · 경로 계산은 2026-11-15 17장 단위로 옮김)"""
 import numpy as np
 from scipy import stats
 
@@ -53,48 +53,6 @@ for k in ("b1", "b2", "b3", "se3", "raw_b1", "raw_b2", "raw_b3", "raw_se3", "cor
           "refl_sd", "ss_lo", "ss_hi"):
     calc(f"ch16.mod_{k}")(lambda k=k: memo("mod", _mod)[k])
 calc("ch16.mod_refl_sd_neg")(lambda: -memo("mod", _mod)["refl_sd"])   # 표의 (−1.34)
-
-
-# §16.5 매개 3단계 (실험판)
-def _med():
-    e = E()
-    c = ols(e.mil, [e.cond])[0][1]
-    a = ols(e.hjs, [e.cond])[0][1]
-    bc = ols(e.mil, [e.hjs, e.cond])[0]
-    return dict(c=c, a=a, b=bc[1], cp=bc[2], ab=a * bc[1], sum=bc[2] + a * bc[1])
-
-
-for k in ("c", "a", "b", "cp", "ab", "sum"):
-    calc(f"ch16.med_{k}")(lambda k=k: memo("med", _med)[k])
-# 표에 실린 반올림 수로 검산 (§16.5 상자 ; 정해진 산술)
-calc("ch16.rounded_cp_plus_ab")(lambda: 0.15 + 0.13)
-calc("ch16.rounded_a_times_b")(lambda: 0.21 * 0.65)
-
-
-# §16.6 경로 두 모형 (설문판 표준화)
-def _paths():
-    s = S()
-    z = lambda v: (v - v.mean()) / v.std(ddof=1)
-    X, M, Y = z(s.hjs.values), z(s.refl.values), z(s.mil.values)
-    a1 = ols(M, [X])[0]; b1 = ols(Y, [M, X])[0]
-    a2 = ols(M, [Y])[0]; b2 = ols(X, [M, Y])[0]
-    return dict(a1=a1[1], b1=b1[1], c1=b1[2], a2=a2[1], b2=b2[1], c2=b2[2],
-                rep1=a1[1] * b1[1] + b1[2], rep2=a2[1] * b2[1] + b2[2], obs=np.corrcoef(X, Y)[0, 1])
-
-
-for k in ("a1", "b1", "c1", "a2", "b2", "c2", "rep1", "rep2", "obs"):
-    calc(f"ch16.path_{k}")(lambda k=k: memo("paths", _paths)[k])
-
-# 논문 상자 다시 계산 (Rogers 외 2023 보고값으로 하는 산술)
-calc("ch16.paper_sym_lo")(lambda: .31 - 1.96 * .12)
-calc("ch16.paper_sym_hi")(lambda: .31 + 1.96 * .12)
-calc("ch16.paper_mean_diff")(lambda: 5.14 - 4.83)
-# Van den Bulck (2004) CAIC 차이 (보고값 산술)
-calc("ch16.vdb_caic_gap")(lambda: 456.8 - 426.8)
-# 실습 7 = 네 변수의 정보 수
-calc("ch16.info4_var")(lambda: 4)
-calc("ch16.info4_cov")(lambda: 4 * 3 / 2)
-calc("ch16.info4_total")(lambda: 4 * 5 / 2)
 
 
 # ── 모의시행 (책 코드와 같은 난수 순서 ; 씨앗 73) ──
@@ -159,43 +117,6 @@ calc("ch16.prodrel06_x")(lambda: memo("pr", _prodrel)[0.6][0])
 calc("ch16.prodrel06_xw")(lambda: memo("pr", _prodrel)[0.6][1])
 
 
-def _boot():
-    """§16.5 부트스트랩 간접효과 (2,000 번)."""
-    e = E(); rng = np.random.default_rng(73); ind = []
-    for _ in range(2000):
-        s = e.iloc[rng.integers(0, len(e), len(e))]
-        aa = ols(s.hjs, [s.cond])[0]
-        bb = ols(s.mil, [s.hjs, s.cond])[0]
-        ind.append(aa[1] * bb[1])
-    return np.percentile(ind, [2.5, 97.5])
-
-
-calc("ch16.boot_lo")(lambda: memo("boot", _boot)[0])
-calc("ch16.boot_hi")(lambda: memo("boot", _boot)[1])
-
-
-def _conf(path=0.0):
-    """§16.5 혼란된 매개 세계 (400명). path = 실습 4 의 M → Y 경로."""
-    rng = np.random.default_rng(73); n = 400
-    cond = rng.integers(0, 2, n)
-    U = rng.normal(0, 1, n)
-    M = 0.60 * cond + 0.80 * U + rng.normal(0, .5, n)
-    Y = 0.30 * cond + path * M + 0.80 * U + rng.normal(0, .5, n)
-    a = ols(M, [cond])[0]; bc = ols(Y, [M, cond])[0]
-    bu = ols(Y, [M, cond, U])[0]; c = ols(Y, [cond])[0]
-    return dict(a=a[1], b=bc[1], cp=bc[2], ab=a[1] * bc[1], bu=bu[1], cpu=bu[2], c=c[1], abu=a[1] * bu[1])
-
-
-for k in ("a", "b", "cp", "ab", "bu", "cpu", "c", "abu"):
-    calc(f"ch16.conf_{k}")(lambda k=k: memo("conf", _conf)[k])
-calc("ch16.conf04_abu")(lambda: memo("conf04", lambda: _conf(0.4))["abu"])
-
-from common import CALCS as CALCS_REF
-
-# 2026-11-14h 상자 = 다섯째 자리로 반올림한 c′ 과 a×b 의 합
-calc("ch16.med_rounded5_sum")(lambda: round(float(CALCS_REF["ch16.med_cp"]()), 5) + round(float(CALCS_REF["ch16.med_ab"]()), 5))
-
-
 # §16.2 「논문의 조절 회귀 표 읽기」 = 중심화 모형의 t · p · 95% CI · R²
 def _mt():
     if "mt" not in _c:
@@ -237,3 +158,33 @@ calc("ch16.ck_cond_cen")(lambda: _ck()[2][1])
 calc("ch16.ck_p_cen")(lambda: _ck()[3][1])
 calc("ch16.ck_int_raw")(lambda: _ck()[0][3])
 calc("ch16.ck_int_cen")(lambda: _ck()[2][3])
+
+
+# 2026-11-15n §16.4 표 = 신뢰도 다섯 줄 전부 (pow10 · pow06 · pow07_int 는 위에서)
+for _rel, _lab in ((0.9, "09"), (0.8, "08")):
+    calc(f"ch16.pow{_lab}_main")(lambda rel=_rel: memo("pow", _power)[rel][0])
+    calc(f"ch16.pow{_lab}_int")(lambda rel=_rel: memo("pow", _power)[rel][1])
+calc("ch16.pow07_main")(lambda: memo("pow", _power)[0.7][0])
+
+
+# 2026-11-15n 실습 4 = refl 기준을 4점 · −1SD 로 옮긴 모형 (hjs 는 평균 중심화)
+def _cshift(v):
+    s = S(); h = s.hjs - s.hjs.mean(); r = s.refl - v
+    b, se, *_ = ols(s.mil, [h, r, h * r])
+    return b, se
+
+
+def _c4():
+    return memo("c4", lambda: _cshift(4))
+
+
+def _cm1():
+    return memo("cm1", lambda: _cshift(S().refl.mean() - S().refl.std(ddof=1)))
+
+
+calc("ch16.c4_b1")(lambda: _c4()[0][1])
+calc("ch16.c4_b3")(lambda: _c4()[0][3])
+calc("ch16.c4_se3")(lambda: _c4()[1][3])
+calc("ch16.cm1_b1")(lambda: _cm1()[0][1])
+calc("ch16.cm1_b3")(lambda: _cm1()[0][3])
+calc("ch16.cm1_se3")(lambda: _cm1()[1][3])

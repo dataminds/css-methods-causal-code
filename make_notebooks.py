@@ -30,10 +30,10 @@ SLUG = {
     "ch06": "ch06-인과란-무엇인가",
     "ch08": "ch08-제3변수-삼각형",
     "ch09": "ch09-설계가-인과를-산다", "ch15": "ch15-통제의-기술과-한계",
-    "ch16": "ch16-조건부-효과-조절과-매개", "ch17": "ch17-설계의-추정",
-    "ch18": "ch18-분석법-선택의-나무",
-    "ch19": "ch19-결과-절-쓰는-법", "ch20": "ch20-갈림길의-정원",
-    "ch21": "ch21-열어서-검증받기",
+    "ch16": "ch16-조건부-효과-조절과-매개", "ch17": "ch17-매개와-경로분석", "ch18": "ch18-설계의-추정",
+    "ch19": "ch19-분석법-선택의-나무",
+    "ch20": "ch20-결과-절-쓰는-법", "ch21": "ch21-갈림길의-정원",
+    "ch22": "ch22-열어서-검증받기",
     "b1": "b1-확률과-분포", "b2": "b2-세-집단-이상", "b3": "b3-상관", "b4": "b4-가정과-순위-검정",
     "s1": "s1-시나리오-두-집단-실험", "s2": "s2-시나리오-요인과-사전사후",
     "s3": "s3-시나리오-설문", "s4": "s4-시나리오-종단-패널과-코호트",
@@ -47,10 +47,10 @@ TITLE = {
     "ch06": "6장 · 인과란 무엇인가",
     "ch08": "8장 · 제3변수의 세 구조: 심슨의 역설",
     "ch09": "9장 · 인과 주장은 설계에 기댄다", "ch15": "15장 · 통제의 기술과 한계",
-    "ch16": "16장 · 조건부 효과: 조절과 매개", "ch17": "17장 · 설계의 추정",
-    "ch18": "18장 · 분석법 선택의 나무",
-    "ch19": "19장 · 방법과 결과 절 쓰는 법", "ch20": "20장 · 갈림길의 정원",
-    "ch21": "21장 · 열어서 검증받기: 읽지 않고 확인하기",
+    "ch16": "16장 · 조절: 효과가 누구에게서 다른가", "ch17": "17장 · 매개와 경로분석", "ch18": "18장 · 설계의 추정",
+    "ch19": "19장 · 분석법 선택의 나무",
+    "ch20": "20장 · 방법과 결과 절 쓰는 법", "ch21": "21장 · 갈림길의 정원",
+    "ch22": "22장 · 열어서 검증받기: 읽지 않고 확인하기",
     "b1": "기초 B1 · 확률과 분포", "b2": "기초 B2 · 세 집단 이상", "b3": "기초 B3 · 상관", "b4": "기초 B4 · 검정이 기대는 가정",
     "s1": "S1 · 두 집단 실험", "s2": "S2 · 요인과 사전사후",
     "s3": "S3 · 횡단 설문", "s4": "S4 · 종단 패널과 코호트",
@@ -380,15 +380,8 @@ STEPS = {
   'b,_,_,_ = ols(svy.mil.values, [hc.values, rc.values, (hc*rc).values])\n'
   'sd = rc.std(ddof=1)\n'
   'print("상호작용 b3 =", round(b[3],2))                                   # 0.19\n'
-  'print("단순기울기 -1SD/평균/+1SD:", [round(b[1]+b[3]*v,2) for v in (-sd,0,sd)])   # 0.73/0.99/1.24'),
- ("## 3. 매개: 총효과가 두 길로 쪼개진다\nc = c' + a×b 가 정확히 떨어집니다.",
-  'exp = load("exp")\n'
-  'a,_,_,_ = ols(exp.hjs.values, [exp.cond.values]); a = a[1]\n'
-  'bb,_,_,_ = ols(exp.mil.values, [exp.hjs.values, exp.cond.values]); b_path, cprime = bb[1], bb[2]\n'
-  'c,_,_,_ = ols(exp.mil.values, [exp.cond.values]); c = c[1]\n'
-  'print(f"a={a:.2f} b={b_path:.2f} c\'={cprime:.2f}  간접 a×b={a*b_path:.2f}")\n'
-  'print("c\' + a×b =", round(cprime+a*b_path,3), " = 총효과 c =", round(c,3))   # 0.283'),
- ("## 4. 유의 대 비유의는 차이가 아니다\n참 기울기가 같은 두 집단(0.3)을 인원만 300명과 40명으로 다르게 짓습니다. "
+  'print("단순기울기 -1SD/평균/+1SD:", [float(round(b[1]+b[3]*v,2)) for v in (-sd,0,sd)])   # 0.73/0.99/1.24'),
+ ("## 3. 유의 대 비유의는 차이가 아니다\n참 기울기가 같은 두 집단(0.3)을 인원만 300명과 40명으로 다르게 짓습니다. "
   "한쪽만 유의해도 두 기울기의 차이는 유의하지 않습니다.",
   'from scipy.stats import norm\n'
   'g = np.random.default_rng(73)\n'
@@ -401,6 +394,34 @@ STEPS = {
   'z = (res[0][0] - res[1][0]) / np.sqrt(res[0][1]**2 + res[1][1]**2)\n'
   'print(round(res[0][0] - res[1][0], 3), round(2 * norm.sf(abs(z)), 3))\n'
   '# 300 0.275 0.000 / 40 0.241 0.091 / 0.034 0.821'),
+ ("## 4. 측정 오차가 곱항의 검정력을 먼저 깎는다 (§16.4 표)\n"
+  "주효과와 상호작용을 똑같이 0.2로 정한 세계(n = 400)에서 X·W에 잡음을 섞어 신뢰도를 1.0에서 0.6까지 낮춥니다. "
+  "신뢰도마다 800번 모의 실험을 하고 |t| > 1.96으로 잡힌 비율(검정력)을 셉니다. 실습 3 = n 을 800으로 바꿔 다시 돌립니다(1~2분 걸립니다).",
+  'n = 400\n'
+  'for rel in (1.0, 0.9, 0.8, 0.7, 0.6):\n'
+  '    rng = np.random.default_rng(73)          # 신뢰도마다 같은 씨앗으로 시작한다\n'
+  '    sd_e = np.sqrt((1 - rel) / rel)          # 신뢰도 rel 이 되는 오차 크기\n'
+  '    hit_main = hit_int = 0\n'
+  '    for _ in range(800):\n'
+  '        X, W = rng.normal(0, 1, n), rng.normal(0, 1, n)\n'
+  '        Y = .2*X + .2*W + .2*X*W + rng.normal(0, 1, n)\n'
+  '        Xo, Wo = X + rng.normal(0, sd_e, n), W + rng.normal(0, sd_e, n)\n'
+  '        b, se, *_ = ols(Y, [Xo, Wo, Xo * Wo])\n'
+  '        hit_main += abs(b[1] / se[1]) > 1.96\n'
+  '        hit_int  += abs(b[3] / se[3]) > 1.96\n'
+  '    print(rel, round(hit_main / 800, 2), round(hit_int / 800, 2))\n'
+  '# 1.0 0.97 0.98 / 0.9 0.95 0.94 / 0.8 0.93 0.86 / 0.7 0.88 0.75 / 0.6 0.83 0.63'),
+ ("## 5. 곱의 신뢰도는 두 신뢰도의 곱 언저리 (§16.4 표)\n"
+  "서로 무관한 두 참점수 X·W에 오차를 섞어, X 한 척도의 신뢰도와 곱 X×W의 신뢰도를 구합니다(10만 명).",
+  'rng = np.random.default_rng(73)\n'
+  'n = 100_000\n'
+  'for rel in (0.8, 0.6):\n'
+  '    sd_e = np.sqrt((1 - rel) / rel)\n'
+  '    X, W = rng.normal(0, 1, n), rng.normal(0, 1, n)\n'
+  '    Xo, Wo = X + rng.normal(0, sd_e, n), W + rng.normal(0, sd_e, n)\n'
+  '    print(rel, round(np.corrcoef(X, Xo)[0, 1] ** 2, 2),\n'
+  '          round(np.corrcoef(X * W, Xo * Wo)[0, 1] ** 2, 2))\n'
+  '# 0.8 0.8 0.64 / 0.6 0.6 0.35'),
 ],
 "ch06": [
  ("## 2. 우연은 얼마나 흔한가\n아무 관계 없는 두 변수 쌍을 스무 번 만들면 그중 하나가 유의하게 나온다.",
@@ -449,6 +470,45 @@ STEPS = {
   '# A 0.23 0.31 -0.0 / B 0.28 0.01 0.31 / C 0.29 0.23 0.22'),
 ],
 "ch17": [
+ ("## 2. 매개: 총효과가 두 길로 쪼개진다\nc = c' + a×b 가 정확히 떨어집니다(§17.1).",
+  'exp = load("exp")\n'
+  'a,_,_,_ = ols(exp.hjs.values, [exp.cond.values]); a = a[1]\n'
+  'bb,_,_,_ = ols(exp.mil.values, [exp.hjs.values, exp.cond.values]); b_path, cprime = bb[1], bb[2]\n'
+  'c,_,_,_ = ols(exp.mil.values, [exp.cond.values]); c = c[1]\n'
+  'print(f"a={a:.2f} b={b_path:.2f} c\'={cprime:.2f}  간접 a×b={a*b_path:.2f}")\n'
+  'print("c\' + a×b =", round(cprime+a*b_path,3), " = 총효과 c =", round(c,3))   # 0.283'),
+ ("## 3. 간접효과의 부트스트랩 구간\n사람을 다시 뽑아 a와 b를 함께 새로 추정하고 그 곱 2,000개의 가운데 95%를 자릅니다(§17.1).",
+  'rng = np.random.default_rng(73)\n'
+  'ind = []\n'
+  'for _ in range(2000):\n'
+  '    s = exp.iloc[rng.integers(0, len(exp), len(exp))]\n'
+  '    aa,_,_,_ = ols(s.hjs.values, [s.cond.values])\n'
+  '    bb2,_,_,_ = ols(s.mil.values, [s.hjs.values, s.cond.values])\n'
+  '    ind.append(aa[1] * bb2[1])\n'
+  'print(np.percentile(ind, [2.5, 97.5]).round(3))   # [0.027 0.251]'),
+ ("## 4. 참 간접효과가 0인데 유의하게 나오는 세계\n매개변수에서 결과로 가는 화살표가 없는 세계입니다. "
+  "M과 Y를 함께 밀어 올리는 U를 모르면 간접효과가 0.35로 나오고, U를 통제하면 사라집니다(§17.2).",
+  'rng = np.random.default_rng(73)\n'
+  'n = 400\n'
+  'cond_w = rng.integers(0, 2, n)\n'
+  'U = rng.normal(0, 1, n)\n'
+  'M = 0.60 * cond_w + 0.80 * U + rng.normal(0, .5, n)\n'
+  'Y = 0.30 * cond_w + 0.80 * U + rng.normal(0, .5, n)     # M 이 없다\n'
+  'a_w,_,_,_ = ols(M, [cond_w]); bc_w,_,_,_ = ols(Y, [M, cond_w])\n'
+  'bu,_,_,_ = ols(Y, [M, cond_w, U])\n'
+  'print("U 모름: a b c\' a×b =", round(a_w[1],3), round(bc_w[1],3), round(bc_w[2],3), round(a_w[1]*bc_w[1],3))\n'
+  'print("U 통제: b c\' =", round(bu[1],3), round(bu[2],3))\n'
+  '# 0.493 0.708 -0.075 0.349 / 0.018 0.297'),
+ ("## 5. 방향을 뒤집어도 두 모형은 자료에 똑같이 맞는다\n세 변수 경로 모형은 자유도가 0이라, 화살표를 통째로 뒤집어도 같은 상관을 재현합니다(§17.4).",
+  'svy = load("svy")\n'
+  'z = lambda v: (v - v.mean()) / v.std(ddof=1)\n'
+  'X, Mv, Yv = z(svy.hjs.values), z(svy.refl.values), z(svy.mil.values)\n'
+  'a1,_,_,_ = ols(Mv, [X]); b1,_,_,_ = ols(Yv, [Mv, X])\n'
+  'a2,_,_,_ = ols(Mv, [Yv]); b2,_,_,_ = ols(X, [Mv, Yv])\n'
+  'print(round(a1[1]*b1[1] + b1[2], 3), round(a2[1]*b2[1] + b2[2], 3), round(np.corrcoef(X, Yv)[0, 1], 3))\n'
+  '# 0.629 0.629 0.629'),
+],
+"ch18": [
  ("## 2. 단절 시계열\n캠페인 도입(53주차) 전후로 수준이 이동했는가. 4.78 → 5.09.",
   'ts = pd.read_csv("data/journey_ts.csv")\n'
   'pre, post = ts[ts.campaign==0].wellbeing, ts[ts.campaign==1].wellbeing\n'
@@ -602,7 +662,7 @@ STEPS = {
   'print(round(w1 / 2000, 3), round(w2 / 2000, 3))\n'
   '# 0.375 0.691'),
 ],
-"ch21": [
+"ch22": [
  ("## 2. AI 가 준 코드. 읽지 않는다\n함수 하나로 취급하고 밖에서 조건만 겁니다. "
   "먼저 출력만 보고 구별할 수 있는지 확인하세요.",
   'def ai_회귀(y, x):\n'
@@ -658,7 +718,7 @@ STEPS = {
   '    gg = np.random.default_rng(73)\n'
   '    널 = [f(y, gg.permutation(x)) for _ in range(200)]\n'
   '    print(f"{nm:11s}", "⑥ 섞은 기울기 평균", round(float(np.mean(널)), 3))\n'
-  '# 바른 판 0.001 · A 절편없음 0.952 (본문 §21.4 · §21.5 의 0.001 · 0.95)\n'
+  '# 바른 판 0.001 · A 절편없음 0.952 (본문 §22.4 · §22.5 의 0.001 · 0.95)\n'
   '# 어느 시험도 고장 셋을 다 못 잡는다. 고장마다 잡는 시험이 다르다.\n'
   '# 그러므로 시험 묶음은 개수가 아니라 다양성으로 산다.'),
  ("## 5. 익명 공개 점검\n심사에 낼 폴더에서 신원이 새는 곳을 훑습니다. "
@@ -669,7 +729,7 @@ STEPS = {
   '                     capture_output=True, text=True, encoding="utf-8").stdout[:1200])\n'
   '# 걸린 것이 있으면 확실히 익명이 아니다. 통과가 익명을 증명하지는 않는다.'),
 ],
-"ch20": [
+"ch21": [
  ("## 2. 갈림길의 정원\n효과가 확실히 없는 세계(조건 딱지를 뒤섞음)에서, 분석 갈림길을 다 걸으면 '유의'가 수확됩니다.",
   'exp = pd.read_csv("data/journey_exp.csv")\n'
   'rng = np.random.default_rng(73)\n'
@@ -702,7 +762,7 @@ STEPS = {
   'print("갈림길:", len(ps), " p<.05 수확:", sum(p<.05 for p in ps), " 최소 p:", round(min(ps),3))\n'
   '# 사전 지정 하나(0.346)는 정직하지만, 60을 다 걸으면 그럴듯한 유의가 여럿 나온다.'),
 ],
-"ch18": [
+"ch19": [
  ("## 2. 같은 물음, 두 경로\n평균을 직접 빼는 것과 집단 표시를 넣은 회귀는 **같은 수**를 낸다. 소수 넷째 자리까지 같다.",
   'exp = load("exp")\n'
   'a, b = exp[exp.cond == 1].mil.values, exp[exp.cond == 0].mil.values\n'
@@ -724,7 +784,7 @@ STEPS = {
   'sp = np.sqrt((x1.var(ddof=1) + x3.var(ddof=1)) / 2)\n'
   'print("남남으로:", round((x3.mean()-x1.mean()) / (sp*np.sqrt(2/len(d))), 2))  # -1.64'),
 ],
-"ch19": [
+"ch20": [
  ("## 2. 구간은 무엇의 구간인가\n*d* 의 구간과 **평균 차이**의 구간은 다른 수다. 섞어 적는 것이 이 장의 대표 오류.",
   'exp = load("exp")\n'
   'x = exp[exp.cond == 1].mil.values; y = exp[exp.cond == 0].mil.values\n'
@@ -752,7 +812,7 @@ STEPS = {
   '          f"t({df})={t:.2f} p={p:.3f} d={d:.2f} CI[{d-1.96*se_d:.2f}, {d+1.96*se_d:.2f}]")\n'
   'for v in ("mil", "hjs", "flr", "age", "mil_t1"):\n'
   '    보고(exp[exp.cond==1][v].values, exp[exp.cond==0][v].values, v)'),
- ("## 5. 회귀 결과를 쓰는 문장의 수 (§19.3 상자 · 실습 7)\nS3 의 위계 회귀에서 2단계 여정 지각과 3단계 곱항의 *b* · *SE* · 95% 구간을 다시 뽑습니다. "
+ ("## 5. 회귀 결과를 쓰는 문장의 수 (§20.3 상자 · 실습 7)\nS3 의 위계 회귀에서 2단계 여정 지각과 3단계 곱항의 *b* · *SE* · 95% 구간을 다시 뽑습니다. "
   "성별 통제 분석이라 표본은 554명입니다.",
   'svy = load("svy")\n'
   's = svy[svy.gender.isin([1, 2])]                 # 성별 1 · 2 만 = 554명\n'

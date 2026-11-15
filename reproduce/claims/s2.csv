@@ -28,7 +28,7 @@ s2.shape.frame,s2,−0.09,s2.diff_frame_only,data,,셀 elem0·frame1 − elem0·
 s2.shape.both,s2,0.29,s2.diff_both,data,,셀 elem1·frame1 − elem0·frame0 = 5.1952 − 4.9023 = 0.2930 → 0.29 ⚠ 원고 0.30 은 반올림한 표 값(5.20 − 4.90)으로 뺀 값 = 원고 확인 대상 ; 2026-11-14h 원고 정정에 맞춰 옮김
 s2.res.b3,s2,0.34,s2.b3,data,,mil_t2 ~ elem + frame + elem×frame 의 곱항 계수 (0.337)
 s2.res.level,s2,95,,fixed,,신뢰수준 (관례 95%)
-s2.res.lo,s2,−0.15,s2.ci_lo,data,,t(426) 기준 95% 구간 (19장 §19.3 의 회귀 구간 규약 · R = confint) ; 1.96 을 써도 같은 표기 ; 2026-11-14h 원고 정정에 맞춰 옮김
+s2.res.lo,s2,−0.15,s2.ci_lo,data,,t(426) 기준 95% 구간 (20장 §20.3 의 회귀 구간 규약 · R = confint) ; 1.96 을 써도 같은 표기 ; 2026-11-14h 원고 정정에 맞춰 옮김
 s2.res.hi,s2,0.83,s2.ci_hi,data,,t(426) 기준 95% 구간 = 0.8251 → 0.83 ⚠ 원고 0.82 는 1.96 근사(0.8238)로 낸 값 = 원고 확인 대상 ; 2026-11-14h 원고 정정에 맞춰 옮김
 s2.res.p,s2,.176,s2.p3,data,,곱항 p ; 2026-11-14h 원고 정정에 맞춰 옮김
 s2.anova.t2,s2,1.837,s2.t3_sq,data,,파이썬 = 곱항 t 의 제곱 ; R = anova() 의 상호작용 F (독립 경로)

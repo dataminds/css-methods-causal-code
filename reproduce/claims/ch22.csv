@@ -1,0 +1,33 @@
+id,unit,printed,calc,kind,mc_tol,note
+ch22.box.t5,ch22,2.16,,paper,,"Rogers 외 2023 연구 5 결과(개입 → 삶의 의미, t(378) = 2.16, p = .031) p. 765 ; 출판본 raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 에서 확인"
+ch22.null.crit,ch22,.05,,fixed,,§22.4 ⑥ 판정 기준 = 저자가 정한 문턱(섞은 기울기 200개 평균의 절댓값)
+ch22.null.ok.min,ch22,−0.17,ch22.null_ok_min,sim,0.11,§22.4 ⑥ 바른 판 X 200번 섞기(씨앗 73) 최솟값 ; 반복 300번 모의로 본 최솟값의 표준편차 0.026 → 3 × √2 × 0.026 ≈ 0.11
+ch22.null.ok.max,ch22,0.18,ch22.null_ok_max,sim,0.12,§22.4 ⑥ 바른 판 최댓값 ; 최댓값의 모의 표준편차 0.028 → 3 × √2 × 0.028 ≈ 0.12
+ch22.null.ok.mean,ch22,0.001,ch22.null_ok_mean,sim,0.02,§22.4 ⑥ 바른 판 섞은 기울기 평균 ; 모의 표준편차 0.0043 → 3 × √2 × 0.0043 ≈ 0.018
+ch22.orig.ok,ch22,0.978,ch22.slope_ok,data,,§22.4 바른 판 기울기 (mil ~ hjs ; 정제본 566명)
+ch22.out.ai,ch22,0.976,ch22.slope_ai,data,,§22.4 AI 판(절편 없음) 기울기
+ch22.out.ok,ch22,0.978,ch22.slope_ok,data,,§22.4 바른 판 기울기
+ch22.r2.ai,ch22,.395,ch22.r2_ai,data,,§22.4 AI 판 R² = 1 − 잔차 제곱합 / 평균 둘레 제곱합 (원점 둘레 R² 가 아니다)
+ch22.r2.ok,ch22,.395,ch22.r2_ok,data,,§22.4 바른 판 R²
+ch22.se.ratio,ch22,6.3,ch22.se_ratio,data,,§22.4 바른 판 표준오차 ÷ AI 판 표준오차
+ch22.inv3.from,ch22,0.976,ch22.slope_ai,data,,§22.4 불변식 ③ 전 AI 판 기울기
+ch22.inv3.to,ch22,1.949,ch22.ai_slope_y_plus5,data,,§22.4 불변식 ③ = Y + 5 뒤 AI 판 기울기
+ch22.inv4,ch22,0.778,ch22.ai_slope_y_const4,data,,§22.4 불변식 ④ = Y 를 상수 4로 만든 뒤 AI 판 기울기
+ch22.t.ok,ch22,0.978,ch22.slope_ok,data,,§22.5 표
+ch22.t.a,ch22,0.976,ch22.slope_ai,data,,§22.5 표 고장 A
+ch22.t.b,ch22,0.404,ch22.slope_swap,data,,§22.5 표 고장 B = hjs 를 mil 로 회귀한 기울기
+ch22.t.c,ch22,1.034,ch22.slope_half,data,,§22.5 표 고장 C = 정제본 파일 순서 앞 283명
+ch22.ratio,ch22,0.976,ch22.ymean_over_xmean,data,,§22.5 둘째 읽기 = mil 평균 ÷ hjs 평균
+ch22.null.ai.mean,ch22,0.95,ch22.null_ai_mean,sim,0.0006,§22.5 ⑥ AI 판 섞은 기울기 200개 평균(씨앗 73) ; 모의 표준편차 0.00012 → 3 × √2 × 0.00012 ≈ 0.0005
+ch22.three.b,ch22,0.404,ch22.slope_swap,data,,§22.5 셋째 읽기
+ch22.three.a,ch22,0.976,ch22.slope_ai,data,,§22.5 셋째 읽기
+ch22.three.c,ch22,1.034,ch22.slope_half,data,,§22.5 셋째 읽기
+ch22.three.ok,ch22,0.978,ch22.slope_ok,data,,§22.5 셋째 읽기
+ch22.three.c2,ch22,1.034,ch22.slope_half,data,,§22.5 셋째 읽기
+ch22.half.n,ch22,283,ch22.half_n,data,,§22.5 정제본 566명의 절반(내림)
+ch22.ex1.ai,ch22,0.976,ch22.slope_ai,data,,실습 1
+ch22.ex1.ok,ch22,0.978,ch22.slope_ok,data,,실습 1
+ch22.ex1.crit,ch22,.05,,fixed,,실습 1 = §22.4 ⑥ 판정 문턱(저자가 정한 값)
+ch22.ex1.null.ok,ch22,0.001,ch22.null_ok_mean,sim,0.02,실습 1 = §22.4 ⑥ 와 같은 계산
+ch22.ex1.null.ai,ch22,0.95,ch22.null_ai_mean,sim,0.0006,실습 1 = §22.5 ⑥ 와 같은 계산
+ch22.ex2.b,ch22,0.404,ch22.slope_swap,data,,실습 2 고장 B
