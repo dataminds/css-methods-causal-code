@@ -126,3 +126,22 @@ def _partial_hm_r():                      # 회고 습관을 고정한 여정 �
 
 
 calc("ch17.partial_hm_r")(_partial_hm_r)
+
+
+# 2026-11-16b §17.2 횡단 설문의 매개 = 회고 습관 → 여정 지각 → 삶의 의미 와 원인 · 결과를 바꾼 순서 (코드 7 과 같은 난수 순서)
+def _xmed(x, m, y):
+    def f():
+        s = S(); X, M, Y = s[x].values, s[m].values, s[y].values
+        c = ols(Y, [X])[0][1]; a = ols(M, [X])[0][1]; b = ols(Y, [M, X])[0][1]
+        g = np.random.default_rng(73); n = len(X); ab = []
+        for _ in range(2000):
+            i = g.integers(0, n, n)
+            ab.append(ols(M[i], [X[i]])[0][1] * ols(Y[i], [M[i], X[i]])[0][1])
+        lo, hi = np.percentile(ab, [2.5, 97.5])
+        return dict(c=c, ab=a * b, lo=lo, hi=hi)
+    return memo(("xmed", x, m, y), f)
+
+
+for _nm, _t in {"fwd": ("refl", "hjs", "mil"), "rev": ("mil", "hjs", "refl")}.items():
+    for _k in ("c", "ab", "lo", "hi"):
+        calc(f"ch17.xmed_{_nm}_{_k}")(lambda t=_t, k=_k: _xmed(*t)[k])

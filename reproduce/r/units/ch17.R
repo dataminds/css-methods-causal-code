@@ -87,4 +87,17 @@ for (nm in names(chains)) local({ k <- nm; v <- chains[[k]]
 # 회고 습관을 고정한 여정 지각–삶의 의미 편상관 (회귀 잔차끼리의 상관으로 따로 계산)
 calc("ch17.partial_hm_r", function() { s <- S()
   cor(residuals(lm(hjs ~ refl, data = s)), residuals(lm(mil ~ refl, data = s))) })
+# 2026-11-16b §17.2 횡단 설문의 매개 (lm · R 난수 ; 구간 끝은 몬테카를로 허용폭으로 대조)
+xmed <- function(x, m, y) memo(paste("xmed", x, m, y), function() { s <- S()
+  d <- data.frame(X = s[[x]], M = s[[m]], Y = s[[y]])
+  a <- coef(lm(M ~ X, data = d))[["X"]]; b <- coef(lm(Y ~ M + X, data = d))[["M"]]
+  set.seed(73); n <- nrow(d)
+  ab <- replicate(2000, { k <- d[sample.int(n, n, replace = TRUE), ]
+    coef(lm(M ~ X, data = k))[["X"]] * coef(lm(Y ~ M + X, data = k))[["M"]] })
+  q <- unname(quantile(ab, c(.025, .975)))
+  list(c = coef(lm(Y ~ X, data = d))[["X"]], ab = a * b, lo = q[1], hi = q[2]) })
+xm <- list(fwd = c("refl", "hjs", "mil"), rev = c("mil", "hjs", "refl"))
+for (nm in names(xm)) for (k in c("c", "ab", "lo", "hi")) local({ n1 <- nm; k1 <- k; v <- xm[[n1]]
+  calc(paste0("ch17.xmed_", n1, "_", k1), function() xmed(v[1], v[2], v[3])[[k1]])
+})
 })

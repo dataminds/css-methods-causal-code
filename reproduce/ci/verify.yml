@@ -16,6 +16,10 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: "4.3.3"
+          use-public-rspm: true
+      # R 단위가 기본 R 밖에서 쓰는 패키지 (2026-11-15 = 17장 §17.4 적합도 계산의 lavaan)
+      - name: R 패키지
+        run: Rscript -e 'install.packages("lavaan", repos = "https://cloud.r-project.org")'
       - name: 파이썬 패키지
         run: pip install -r reproduce/requirements.txt
       - name: 1층 코드 출력 대조
