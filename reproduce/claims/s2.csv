@@ -84,3 +84,5 @@ s2.ex4.pow,s2,.45,s2.fac_power_448,sim,0.11,실습 4 = 표의 448 행
 s2.ex4.pow2,s2,.45,s2.fac_power_448,sim,0.11,실습 4 통과 기준
 s2.ex4.reps2,s2,20,,fixed,,실습 설계 (반복 수)
 s2.ex5.ratio,s2,1.414,s2.se_ratio,data,,실습 5 ; 곱항 SE ÷ e 계수 SE = √2 (균형 2×2 설계 행렬로 정해지는 값 ; 잔차 분산이 약분돼 난수와 무관 → 두 엔진이 같은 값)
+s2p5.ec.neg,s2,−0.5,,fixed,,효과 부호화 값 ; 정의 (2026-11-16d 5부 편입)
+s2p5.ec.pos,s2,0.5,,fixed,,효과 부호화 값 ; 정의

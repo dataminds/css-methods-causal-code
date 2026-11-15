@@ -215,6 +215,34 @@ calc("ch15.ht_df")(lambda: _ht()["df"])
 calc("ch15.ht_p_lt001")(lambda: float(_ht()["p"] < .001))
 
 
+# 2026-11-16c 석사생 관점 점검 반영 = 위계 표 95% CI · 조정 R² · Δ R² 반올림 · t · VIF (코드 11 · 보고 점검표)
+def _ht_ext():
+    if "htx" not in _c:
+        from scipy import stats
+        s = S()[S().gender.isin([1, 2])]
+        fem = (s.gender == 2).astype(float)
+        n = len(s)
+        b, se, _, r2 = ols(s.mil, [s.age, fem, s.hjs])
+        tc = stats.t.ppf(.975, n - 4)
+        r2_1 = ols(s.mil, [s.age, fem])[3]
+        X = np.column_stack([s.age, fem, s.hjs])
+        vif = []
+        for j in range(3):
+            others = [X[:, k] for k in range(3) if k != j]
+            vif.append(1 / (1 - ols(X[:, j], others)[3]))
+        _c["htx"] = {"lo": b - tc * se, "hi": b + tc * se, "t_hjs": b[3] / se[3],
+                     "adj1": 1 - (1 - r2_1) * (n - 1) / (n - 3), "adj2": 1 - (1 - r2) * (n - 1) / (n - 4),
+                     "vmin": min(vif), "vmax": max(vif), "dr2_rounded": round(r2, 3) - round(r2_1, 3)}
+    return _c["htx"]
+
+
+for _j, _nm in enumerate(("int", "age", "fem", "hjs")):
+    calc(f"ch15.ht2_lo_{_nm}")(lambda j=_j: _ht_ext()["lo"][j])
+    calc(f"ch15.ht2_hi_{_nm}")(lambda j=_j: _ht_ext()["hi"][j])
+for _k in ("t_hjs", "adj1", "adj2", "vmin", "vmax", "dr2_rounded"):
+    calc(f"ch15.ht_{_k}")(lambda k=_k: _ht_ext()[k])
+
+
 # 2026-11-15 §15.1 「명목 변수를 넣는 법」 = 성별 세 범주 더미 (기준 남성 · 여성) · 번호를 수로 넣은 잘못된 모형
 def _dm():
     if "dm" not in _c:

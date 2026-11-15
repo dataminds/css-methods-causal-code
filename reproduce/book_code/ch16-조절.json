@@ -2,32 +2,52 @@
  "unit": "ch16-조절.md",
  "blocks": [
   [
-   298,
+   415,
    "svy = load(\"svy\")\nh = svy.hjs - svy.hjs.mean()          # 평균 중심화\nr = svy.refl - svy.refl.mean()\nb, se, *_ = ols(svy.mil, [h, r, h * r])\nprint(b.round(3), se.round(3))\n# [4.833 0.987 0.042 0.192] [0.042 0.052 0.031 0.039]"
   ],
   [
-   311,
+   428,
    "b2, se2, *_ = ols(svy.mil, [svy.hjs, svy.refl, svy.hjs * svy.refl])\nprint(b2.round(3), se2.round(3))\n# [ 4.041  0.12  -0.92   0.192] [0.874 0.177 0.196 0.039]\nprint(round(np.corrcoef(svy.hjs, svy.hjs * svy.refl)[0, 1], 3),\n      round(np.corrcoef(h, h * r)[0, 1], 3))\n# 0.641 -0.117"
   ],
   [
-   324,
+   441,
    "exp = load(\"exp\")                                    # 3장의 실험판 (366명)\nk = exp.mil_t1 - exp.mil_t1.mean()                   # 기저 의미만 중심화\nbu, _, pu, _ = ols(exp.mil, [exp.cond, exp.mil_t1, exp.cond * exp.mil_t1])\nbc, _, pc, _ = ols(exp.mil, [exp.cond, k, exp.cond * k])\nprint(round(bu[1], 2), round(pu[1], 3), round(bu[3], 2))\nprint(round(bc[1], 2), round(pc[1], 3), round(bc[3], 2))\n# 0.18 0.667 0.02\n# 0.29 0.007 0.02"
   ],
   [
-   341,
+   458,
    "sd = svy.refl.std(ddof=1)\nprint(round(sd, 3), [float(round(b[1] + b[3] * v, 3)) for v in (-sd, 0, sd)])\n# 1.338 [0.731, 0.987, 1.244]"
   ],
   [
-   351,
+   464,
+   "tq = stats.t.ppf(.975, len(svy) - 4)   # 자유도 n − 4의 t 값\nfor v in (-sd, 0, sd):\n    rv = r - v                           # refl의 기준을 v로 옮긴다\n    bv, sev, *_ = ols(svy.mil, [h, rv, h * rv])\n    print(round(bv[1], 3), round(sev[1], 3),\n          round(bv[1] - tq * sev[1], 2), round(bv[1] + tq * sev[1], 2))\n# 0.731 0.069 0.59 0.87\n# 0.987 0.052 0.88 1.09\n# 1.244 0.078 1.09 1.4"
+  ],
+  [
+   480,
+   "xs = np.linspace(h.min(), h.max(), 50)                 # 자료에 있는 hjs 범위 (중심화한 값)\nfig, ax = plt.subplots(figsize=(5, 3.5))\nfor v, lab in [(-sd, \"회고 습관 −1SD\"), (0, \"평균\"), (sd, \"+1SD\")]:\n    ax.plot(xs + svy.hjs.mean(), b[0] + b[1] * xs + b[2] * v + b[3] * xs * v, label=lab)\nax.set_xlabel(\"여정 지각 (hjs)\")\nax.set_ylabel(\"삶의 의미 예측값 (mil)\")\nax.legend()"
+  ],
+  [
+   494,
    "med = svy.refl.median()\nfor lab, sub in [(\"하위\", svy[svy.refl <= med]), (\"상위\", svy[svy.refl > med])]:\n    bs, *_ = ols(sub.mil, [sub.hjs])\n    print(lab, len(sub), round(bs[1], 3))\n# 하위 435 0.873\n# 상위 131 1.438"
   ],
   [
-   364,
+   507,
    "med, sd, m = svy.refl.median(), svy.refl.std(ddof=1), svy.refl.mean()\nfor lab, sub in [(\"하위\", svy[svy.refl <= med]), (\"상위\", svy[svy.refl > med])]:\n    print(lab, round((sub.refl.mean() - m) / sd, 2))\n# 하위 -0.4\n# 상위 1.31"
   ],
   [
-   376,
+   519,
    "hi = (svy.refl > svy.refl.median()).astype(int)   # 상위 집단이면 1\nbg, seg, *_ = ols(svy.mil, [svy.hjs, hi, svy.hjs * hi])\nprint(bg.round(3), seg.round(3))\n# [ 0.494  0.873 -2.883  0.564] [0.281 0.056 0.71  0.135]"
+  ],
+  [
+   532,
+   "fac = load(\"fac\")                                      # 요인판 정제본 430명\ng = fac.groupby([\"elem\", \"frame\"]).mil_t2\nprint(g.size().tolist(), g.mean().round(2).tolist(), g.std().round(2).tolist())\nb01, *_ = ols(fac.mil_t2, [fac.elem, fac.frame, fac.elem * fac.frame])   # 0/1 부호화\nec, fc = fac.elem - .5, fac.frame - .5                                    # 효과 부호화\nbef, seef, *_ = ols(fac.mil_t2, [ec, fc, ec * fc])\nprint(b01.round(3), bef.round(3), round((bef[1] / seef[1]) ** 2, 2))\n# [110, 106, 109, 105] [4.9, 4.81, 4.95, 5.2] [1.3, 1.32, 1.27, 1.26]\n# [ 4.902  0.05  -0.093  0.337] [4.965 0.218 0.075 0.337] 3.08"
+  ],
+  [
+   548,
+   "import statsmodels.api as sm\nimport statsmodels.formula.api as smf\nfit = smf.ols(\"mil_t2 ~ C(elem, Sum) * C(frame, Sum)\", data=fac).fit()\nrows = [\"C(elem, Sum)\", \"C(frame, Sum)\", \"C(elem, Sum):C(frame, Sum)\"]\nfor typ in (2, 3):\n    print(typ, sm.stats.anova_lm(fit, typ=typ).loc[rows, \"F\"].round(2).tolist())\n# 2 [2.99, 0.36, 1.84]\n# 3 [3.08, 0.36, 1.84]"
+  ],
+  [
+   565,
+   "d2 = (svy.gender == 2).astype(int)                     # 여 (기준 = 남)\nd3 = (svy.gender == 3).astype(int)                     # 그 외\nx = svy.hjs\nr2_0 = ols(svy.mil, [x, d2, d3])[3]                    # 곱항 없는 모형\nr2_1 = ols(svy.mil, [x, d2, d3, x * d2, x * d3])[3]    # 곱항 둘을 더한 모형\nn = len(svy)\nF = ((r2_1 - r2_0) / 2) / ((1 - r2_1) / (n - 6))\nprint(round(r2_1 - r2_0, 4), round(F, 2), round(stats.f.sf(F, 2, n - 6), 3))\nfor g in (1, 2, 3):\n    s = svy[svy.gender == g]\n    bg3, seg3, *_ = ols(s.mil, [s.hjs])\n    tq = stats.t.ppf(.975, len(s) - 2)\n    print(g, len(s), round(bg3[1], 2), round(bg3[1] - tq * seg3[1], 2), round(bg3[1] + tq * seg3[1], 2))\n# 0.0001 0.06 0.941\n# 1 270 0.97 0.83 1.12\n# 2 284 0.99 0.84 1.14\n# 3 12 0.89 0.54 1.25"
   ]
  ]
 }

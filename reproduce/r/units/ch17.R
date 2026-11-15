@@ -100,4 +100,54 @@ xm <- list(fwd = c("refl", "hjs", "mil"), rev = c("mil", "hjs", "refl"))
 for (nm in names(xm)) for (k in c("c", "ab", "lo", "hi")) local({ n1 <- nm; k1 <- k; v <- xm[[n1]]
   calc(paste0("ch17.xmed_", n1, "_", k1), function() xmed(v[1], v[2], v[3])[[k1]])
 })
+# 2026-11-16c §17.4 「실제 도구로 맞추기」 · §17.1 「매개변수가 둘 이상일 때」 = lavaan (fixed.x = FALSE · 부트스트랩 5,000 · 백분위)
+pmod <- list(
+  m1 = "hjs ~ a*refl
+ mil ~ d*hjs
+ swl ~ b*mil + e*hjs
+ serial := a*d*b
+ viamil := d*b",
+  m2 = "mil ~ swl
+ hjs ~ mil + swl
+ refl ~ hjs",
+  m3 = "hjs ~ refl
+ mil ~ hjs + refl
+ swl ~ mil")
+pfit <- function(m) memo(paste0("pf_", m), function() lavaan::sem(pmod[[m]], data = S(), fixed.x = FALSE))
+fmn <- c(chi = "chisq", df = "df", p = "pvalue", cfi = "cfi", rmsea = "rmsea", rm_hi = "rmsea.ci.upper",
+         srmr = "srmr", aic = "aic", bic = "bic")
+for (m in names(pmod)) for (k in names(fmn)) local({ m1 <- m; k1 <- k
+  calc(paste0("ch17.pm_", m1, "_", k1), function() unname(lavaan::fitMeasures(pfit(m1), fmn[[k1]])))
+})
+pe1 <- function() memo("pe1", function() { pe <- lavaan::parameterEstimates(pfit("m1")); setNames(pe$est, ifelse(pe$label == "", paste(pe$lhs, pe$op, pe$rhs), pe$label)) })
+for (k in c("a", "d", "b", "e", "serial", "viamil")) local({ k1 <- k
+  calc(paste0("ch17.pm_m1_", if (k1 == "viamil") "viamil" else k1), function() unname(pe1()[[k1]]))
+})
+bootpe <- function() memo("bootpe", function() {
+  set.seed(73)
+  f1 <- lavaan::sem(pmod$m1, data = S(), se = "bootstrap", bootstrap = 5000)
+  p1 <- lavaan::parameterEstimates(f1, boot.ci.type = "perc")
+  pm <- "hjs ~ a1*refl + age
+ mil ~ a2*refl + age
+ swl ~ b1*hjs + b2*mil + c*refl + age
+ hjs ~~ mil
+   i1 := a1*b1
+ i2 := a2*b2
+ tot := a1*b1 + a2*b2
+ diff := a1*b1 - a2*b2"
+  set.seed(73)
+  fp <- lavaan::sem(pm, data = S(), se = "bootstrap", bootstrap = 5000)
+  p2 <- lavaan::parameterEstimates(fp, boot.ci.type = "perc")
+  pp <- rbind(p1[p1$label %in% c("serial", "viamil"), ], p2[p2$label != "", ])
+  list(est = setNames(pp$est, pp$label), lo = setNames(pp$ci.lower, pp$label), hi = setNames(pp$ci.upper, pp$label)) })
+for (k in c("a1", "a2", "b1", "b2", "c", "i1", "i2", "tot", "diff")) local({ k1 <- k
+  calc(paste0("ch17.par_", k1), function() unname(bootpe()$est[[k1]]))
+})
+for (k in c("serial", "viamil", "i1", "i2", "tot", "diff")) local({ k1 <- k
+  calc(paste0("ch17.bp_", k1, "_lo"), function() unname(bootpe()$lo[[k1]]))
+  calc(paste0("ch17.bp_", k1, "_hi"), function() unname(bootpe()$hi[[k1]]))
+})
+calc("ch17.pm_daic", function() unname(lavaan::fitMeasures(pfit("m3"), "aic") - lavaan::fitMeasures(pfit("m1"), "aic")))
+calc("ch17.n_raw", function() nrow(load_data("svy", clean = FALSE)))
+calc("ch17.n_drop", function() nrow(load_data("svy", clean = FALSE)) - nrow(S()))
 })

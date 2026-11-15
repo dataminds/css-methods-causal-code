@@ -149,6 +149,23 @@ calc("ch15.ht_dr2", function() ht_fit(2)$r2 - ht_fit(1)$r2)
 calc("ch15.ht_F", function() ht_cmp()$F[2])
 calc("ch15.ht_df", function() ht_cmp()$Res.Df[2])
 calc("ch15.ht_p_lt001", function() as.numeric(ht_cmp()$`Pr(>F)`[2] < .001))
+# 2026-11-16c 위계 표 95% CI · 조정 R² · Δ R² 반올림 · t · VIF (confint · summary · 보조 회귀)
+local({
+  nms <- c("int", "age", "fem", "hjs")
+  for (j in 1:4) local({
+    jj <- j
+    calc(paste0("ch15.ht2_lo_", nms[jj]), function() unname(confint(ht_fit(2)$m)[jj, 1]))
+    calc(paste0("ch15.ht2_hi_", nms[jj]), function() unname(confint(ht_fit(2)$m)[jj, 2]))
+  })
+})
+calc("ch15.ht_t_hjs", function() summary(ht_fit(2)$m)$coefficients["hjs", "t value"])
+calc("ch15.ht_adj1", function() summary(ht_fit(1)$m)$adj.r.squared)
+calc("ch15.ht_adj2", function() summary(ht_fit(2)$m)$adj.r.squared)
+ht_vif <- function() { s <- HT(); v <- c("age", "fem", "hjs")
+  sapply(v, function(x) 1 / (1 - summary(lm(reformulate(setdiff(v, x), x), data = s))$r.squared)) }
+calc("ch15.ht_vmin", function() min(ht_vif()))
+calc("ch15.ht_vmax", function() max(ht_vif()))
+calc("ch15.ht_dr2_rounded", function() round(ht_fit(2)$r2, 3) - round(ht_fit(1)$r2, 3))
 
 # 2026-11-15 §15.1 「명목 변수를 넣는 법」 = factor() 로 더미를 R 이 만든다 (기준 = 첫 수준)
 dm <- local({ cache <- NULL; function() {

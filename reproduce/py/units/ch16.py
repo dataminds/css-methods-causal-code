@@ -55,6 +55,31 @@ for k in ("b1", "b2", "b3", "se3", "raw_b1", "raw_b2", "raw_b3", "raw_se3", "cor
 calc("ch16.mod_refl_sd_neg")(lambda: -memo("mod", _mod)["refl_sd"])   # 표의 (−1.34)
 
 
+# §16.1 ④ · §16.3 (2026-11-16 개편) = 단순기울기의 SE · 95% CI (refl 기준을 옮겨 다시 맞춘 hjs 계수) · ΔR² · F
+def _ss():
+    s = S()
+    h, r = s.hjs - s.hjs.mean(), s.refl - s.refl.mean()
+    sd, n = s.refl.std(ddof=1), len(s)
+    tq = stats.t.ppf(.975, n - 4)
+    out = {}
+    for lab, v in (("lo", -sd), ("mid", 0.0), ("hi", sd)):
+        rr = r - v
+        b, se, *_ = ols(s.mil, [h, rr, h * rr])
+        out[f"b_{lab}"], out[f"se_{lab}"] = b[1], se[1]
+        out[f"cl_{lab}"], out[f"cu_{lab}"] = b[1] - tq * se[1], b[1] + tq * se[1]
+    r2a = ols(s.mil, [h, r])[3]
+    r2b = ols(s.mil, [h, r, h * r])[3]
+    out.update(r2a=r2a, r2b=r2b, dr2=r2b - r2a, f=(r2b - r2a) / ((1 - r2b) / (n - 4)), df2=n - 4)
+    pf = stats.f.sf(out["f"], 1, n - 4)
+    out["p_lt001"] = .001 if pf < .001 else pf          # 「< .001」 = 부등식 주장
+    return out
+
+
+for k in ("b_lo", "b_mid", "b_hi", "se_lo", "se_mid", "se_hi", "cl_lo", "cu_lo", "cl_mid", "cu_mid",
+          "cl_hi", "cu_hi", "r2a", "r2b", "dr2", "f", "df2", "p_lt001"):
+    calc(f"ch16.ss_{k}")(lambda k=k: memo("ss", _ss)[k])
+
+
 # ── 모의시행 (책 코드와 같은 난수 순서 ; 씨앗 73) ──
 def _gs():
     """§16.1 [더 나아가기] 상자 = 참 기울기 0.3, 인원 300 · 40."""
@@ -237,3 +262,61 @@ for _k in ("se_lo", "se_hi", "diff", "sd_diff", "b0", "b_hjs", "b_g", "b_int", "
 calc("ch16.grp_p_sep_lt001")(lambda: .001 if _grp()["p_sep"] < .001 else _grp()["p_sep"])
 calc("ch16.grp_p_int_lt001")(lambda: .001 if _grp()["p_int"] < .001 else _grp()["p_int"])
 calc("ch16.grp_rounded_sum")(lambda: 0.873 + 0.564)
+
+
+# §16.1 요인 실험(2 × 2) 소절 (2026-11-16d) = 요인판 셀 평균 · 0/1 ⊥ 효과 부호화 · 제곱합 유형 I·II ⊥ III · 부분 η²
+def _fac():
+    f = load("fac")
+    y, e, r = f.mil_t2.values, f.elem.values.astype(float), f.frame.values.astype(float)
+    n = len(y)
+    out = {"n": n, "df2": n - 4}
+    for i in (0, 1):
+        for j in (0, 1):
+            c = f[(f.elem == i) & (f.frame == j)].mil_t2
+            out[f"n{i}{j}"], out[f"m{i}{j}"], out[f"sd{i}{j}"] = len(c), c.mean(), c.std(ddof=1)
+    b0, se0, p0, _ = ols(y, [e, r, e * r])
+    ec, rc = e - .5, r - .5
+    b1, se1, p1, _ = ols(y, [ec, rc, ec * rc])
+    out.update(b01_elem=b0[1], b01_frame=b0[2], b01_int=b0[3], p01_elem=p0[1],
+               bef_elem=b1[1], bef_frame=b1[2], bef_int=b1[3], t_int=b1[3] / se1[3])
+    sse = lambda X: float(((y - np.column_stack([np.ones(n)] + X) @ np.linalg.lstsq(
+        np.column_stack([np.ones(n)] + X), y, rcond=None)[0]) ** 2).sum())
+    full = sse([ec, rc, ec * rc]); mse = full / (n - 4)
+    for k, idx in (("elem", 1), ("frame", 2), ("int", 3)):
+        t = b1[idx] / se1[idx]
+        out[f"F3_{k}"] = t ** 2                                   # 유형 III = 효과 부호화 t²
+        out[f"p3_{k}"] = 2 * stats.t.sf(abs(t), n - 4)
+        ss3 = t ** 2 * mse
+        out[f"eta_{k}"] = ss3 / (ss3 + full)                      # 부분 η² (유형 III 제곱합)
+    out["F2_elem"] = (sse([rc]) - sse([ec, rc])) / mse            # 유형 II = 상호작용 없는 모형에서 frame 뒤에 넣은 elem
+    return out
+
+
+for _k in ("n", "df2", "n00", "n01", "n10", "n11", "m00", "m01", "m10", "m11", "sd00", "sd01", "sd10", "sd11",
+           "b01_elem", "b01_frame", "b01_int", "p01_elem", "bef_elem", "bef_frame", "bef_int", "t_int",
+           "F3_elem", "F3_frame", "F3_int", "p3_elem", "p3_frame", "p3_int", "eta_elem", "eta_frame", "eta_int",
+           "F2_elem"):
+    calc(f"ch16.fac_{_k}")(lambda k=_k: memo("fac", _fac)[k])
+
+
+# §16.4 「집단이 셋 이상이면」 (2026-11-16e) = 성별 세 범주(1 남 · 2 여 · 3 그 외 ; 기준 = 남) × hjs, 곱항 둘을 묶은 F
+def _g3():
+    s = S(); n = len(s); x = s.hjs.values
+    d2, d3 = (s.gender == 2).astype(float).values, (s.gender == 3).astype(float).values
+    r0 = ols(s.mil, [x, d2, d3])[3]
+    b, se, p, r1 = ols(s.mil, [x, d2, d3, x * d2, x * d3])
+    F = ((r1 - r0) / 2) / ((1 - r1) / (n - 6))
+    out = dict(r2a=r0, r2b=r1, dr2=r1 - r0, F=F, p=stats.f.sf(F, 2, n - 6), df2=n - 6,
+               int2=b[4], int3=b[5])
+    for g in (1, 2, 3):
+        t = s[s.gender == g]
+        bb, ss, *_ = ols(t.mil, [t.hjs])
+        tq = stats.t.ppf(.975, len(t) - 2)
+        out.update({f"n{g}": len(t), f"b{g}": bb[1], f"se{g}": ss[1],
+                    f"cl{g}": bb[1] - tq * ss[1], f"cu{g}": bb[1] + tq * ss[1]})
+    return out
+
+
+for _k in ("r2a", "r2b", "dr2", "F", "p", "df2", "int2", "int3", "n1", "n2", "n3", "b1", "b2", "b3",
+           "se1", "se2", "se3", "cl1", "cu1", "cl2", "cu2", "cl3", "cu3"):
+    calc(f"ch16.g3_{_k}")(lambda k=_k: memo("g3", _g3)[k])

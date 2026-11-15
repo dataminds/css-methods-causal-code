@@ -265,10 +265,142 @@ ch16q.cr.hi,ch16,1.438,ch16.split_b_hi,data,,
 ch16q.cr.bg,ch16,−2.883,ch16.grp_b_g,data,,hjs = 0 에서의 집단 차이
 ch16q.tbl.hi,ch16,1.438,ch16.split_b_hi,data,,확인 표 7 행
 ch16q.tbl.lo,ch16,0.873,ch16.split_b_lo,data,,
-ch16.t15s.L216.1.0.87,ch16,0.87,ch16.split_b_lo,data,,§16.3
-ch16.t15s.L216.1.1.44,ch16,1.44,ch16.split_b_hi,data,,§16.3
+ch16.t15s.L216.1.0.87,ch16,0.87,ch16.split_b_lo,data,,§16.4 (2026-11-16 개편으로 §16.3 에서 옮김)
+ch16.t15s.L216.1.1.44,ch16,1.44,ch16.split_b_hi,data,,§16.4 (2026-11-16 개편으로 §16.3 에서 옮김)
 ch16.0b.yz.b15,ch16,.6,,paper,,"Yzerbyt, Muller, & Judd (2004) JESP 40(3) p. 427 모의시행 예 = b15"
 ch16.0b.yz.r,ch16,.80,,paper,,"Yzerbyt, Muller, & Judd (2004) JESP 40(3) p. 427 모의시행 예 = C · X1 상관"
 ch16.0b.yz.b24,ch16,.48,,paper,,"Yzerbyt, Muller, & Judd (2004) JESP 40(3) p. 427 모의시행 예 = 잘못 지정한 모형 b24 평균"
 ch16.0b.yz.t1,ch16,.508,,paper,,"Yzerbyt, Muller, & Judd (2004) JESP 40(3) p. 427 모의시행 예 = 1 종 오류율"
 ch16.0b.yz.pow,ch16,.349,,paper,,"Yzerbyt, Muller, & Judd (2004) JESP 40(3) p. 427 모의시행 예 = 바른 모형 CX2 검정력"
+ch16pp.ss.lo.b,ch16,0.73,ch16.ss_b_lo,data,,§16.1 ④ · §16.3 · §16.6 단순기울기 −1SD (2026-11-16 개편)
+ch16pp.ss.lo.cl,ch16,0.59,ch16.ss_cl_lo,data,,95% CI 하한 = refl 기준을 −1SD 로 옮긴 모형의 hjs 계수 구간 (t 자유도 562)
+ch16pp.ss.lo.cu,ch16,0.87,ch16.ss_cu_lo,data,,95% CI 상한
+ch16pp.ss.mid.b,ch16,0.99,ch16.ss_b_mid,data,,단순기울기 평균
+ch16pp.ss.mid.cl,ch16,0.88,ch16.ss_cl_mid,data,,95% CI 하한
+ch16pp.ss.mid.cu,ch16,1.09,ch16.ss_cu_mid,data,,95% CI 상한
+ch16pp.ss.hi.b,ch16,1.24,ch16.ss_b_hi,data,,단순기울기 +1SD
+ch16pp.ss.hi.cl,ch16,1.09,ch16.ss_cl_hi,data,,95% CI 하한
+ch16pp.ss.hi.cu,ch16,1.40,ch16.ss_cu_hi,data,,95% CI 상한
+ch16pp.rep.int.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16pp.rep.int.b,ch16,0.19,ch16.mt_b_xy,data,,§16.1 ④ 보고할 수 표
+ch16pp.rep.int.se,ch16,0.04,ch16.mt_se_xy,data,,§16.1 ④
+ch16pp.rep.int.lo,ch16,0.12,ch16.mt_lo_xy,data,,§16.1 ④
+ch16pp.rep.int.hi,ch16,0.27,ch16.mt_hi_xy,data,,§16.1 ④
+ch16pp.rep.ss.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16pp.rep.dr2,ch16,.025,ch16.ss_dr2,data,,§16.1 ④ 곱항 전후 R² 차이
+ch16pp.rep.df,ch16,562,ch16.ss_df2,data,,잔차 자유도 n − 4
+ch16pp.rep.f,ch16,24.65,ch16.ss_f,data,,R² 변화 F
+ch16pp.para.r2a,ch16,.397,ch16.ss_r2a,data,,곱항 없는 모형 R²
+ch16pp.para.r2b,ch16,.422,ch16.ss_r2b,data,,곱항 모형 R²
+ch16pp.para.dr2,ch16,.025,ch16.ss_dr2,data,,
+ch16pp.para.df,ch16,562,ch16.ss_df2,data,,
+ch16pp.para.f,ch16,24.65,ch16.ss_f,data,,
+ch16pp.para.p,ch16,.001,ch16.ss_p_lt001,data,,부등식 ; p 가 .001 보다 작으면 .001
+ch16pp.para.t,ch16,4.96,ch16.mt_t_xy,data,,F = t² (반올림 안에서)
+ch16pp.note.r2a,ch16,.397,ch16.ss_r2a,data,,§16.1 ⑤ 표 주
+ch16pp.note.dr2,ch16,.025,ch16.ss_dr2,data,,§16.1 ⑤ 표 주
+ch16pp.sst.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16pp.sst.lo.se,ch16,0.07,ch16.ss_se_lo,data,,§16.3 표 −1SD SE
+ch16pp.sst.lo.cl,ch16,0.59,ch16.ss_cl_lo,data,,
+ch16pp.sst.lo.cu,ch16,0.87,ch16.ss_cu_lo,data,,
+ch16pp.sst.mid.se,ch16,0.05,ch16.ss_se_mid,data,,§16.3 표 평균 SE
+ch16pp.sst.mid.cl,ch16,0.88,ch16.ss_cl_mid,data,,
+ch16pp.sst.mid.cu,ch16,1.09,ch16.ss_cu_mid,data,,
+ch16pp.sst.hi.se,ch16,0.08,ch16.ss_se_hi,data,,§16.3 표 +1SD SE
+ch16pp.sst.hi.cl,ch16,1.09,ch16.ss_cl_hi,data,,
+ch16pp.sst.hi.cu,ch16,1.40,ch16.ss_cu_hi,data,,
+ch16pp.code4.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16pp.code4.ci95b,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16pp.des.int,ch16,0.02,ch16.ck_int_cen,data,,§16.6 설계 표 ① = 실험판 개입 × 기저 의미 곱항
+ch16pp.ex.b,ch16,0.19,ch16.mt_b_xy,data,,§16.6 결과 단락 본보기
+ch16pp.ex.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16pp.ex.lo,ch16,0.12,ch16.mt_lo_xy,data,,
+ch16pp.ex.hi,ch16,0.27,ch16.mt_hi_xy,data,,
+ch16pp.ex.dr2,ch16,.025,ch16.ss_dr2,data,,
+ch16pp.ex.df,ch16,562,ch16.ss_df2,data,,
+ch16pp.ex.f,ch16,24.65,ch16.ss_f,data,,
+ch16pp.ex.p,ch16,.001,ch16.ss_p_lt001,data,,부등식
+ch16pp.form.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16pp.prac6.dr2,ch16,.025,ch16.ss_dr2,data,,실습 6 예상
+ch16f.n,ch16,430,ch16.fac_n,data,,§16.1 요인 실험 소절 = 요인판 정제본 (2026-11-16d)
+ch16f.c00.m,ch16,4.90,ch16.fac_m00,data,,"셀 (0, 0) 평균"
+ch16f.c00.sd,ch16,1.30,ch16.fac_sd00,data,,
+ch16f.c00.n,ch16,110,ch16.fac_n00,data,,
+ch16f.c01.m,ch16,4.81,ch16.fac_m01,data,,"셀 (0, 1)"
+ch16f.c01.sd,ch16,1.32,ch16.fac_sd01,data,,
+ch16f.c01.n,ch16,106,ch16.fac_n01,data,,
+ch16f.c10.m,ch16,4.95,ch16.fac_m10,data,,"셀 (1, 0)"
+ch16f.c10.sd,ch16,1.27,ch16.fac_sd10,data,,
+ch16f.c10.n,ch16,109,ch16.fac_n10,data,,
+ch16f.c11.m,ch16,5.20,ch16.fac_m11,data,,"셀 (1, 1)"
+ch16f.c11.sd,ch16,1.26,ch16.fac_sd11,data,,
+ch16f.c11.n,ch16,105,ch16.fac_n11,data,,
+ch16f.aov.elem.f,ch16,3.08,ch16.fac_F3_elem,data,,유형 III = 효과 부호화 t²
+ch16f.aov.elem.df,ch16,426,ch16.fac_df2,data,,잔차 자유도
+ch16f.aov.elem.p,ch16,.080,ch16.fac_p3_elem,data,,
+ch16f.aov.elem.eta,ch16,.007,ch16.fac_eta_elem,data,,부분 η² = SS / (SS + SS잔차)
+ch16f.aov.frame.f,ch16,0.36,ch16.fac_F3_frame,data,,
+ch16f.aov.frame.p,ch16,.546,ch16.fac_p3_frame,data,,
+ch16f.aov.frame.eta,ch16,.001,ch16.fac_eta_frame,data,,
+ch16f.aov.int.f,ch16,1.84,ch16.fac_F3_int,data,,
+ch16f.aov.int.p,ch16,.176,ch16.fac_p3_int,data,,
+ch16f.aov.int.eta,ch16,.004,ch16.fac_eta_int,data,,
+ch16f.did.m11,ch16,5.20,ch16.fac_m11,data,,
+ch16f.did.m10,ch16,4.95,ch16.fac_m10,data,,
+ch16f.did.m01,ch16,4.81,ch16.fac_m01,data,,
+ch16f.did.m00,ch16,4.90,ch16.fac_m00,data,,
+ch16f.did.b,ch16,0.337,ch16.fac_b01_int,data,,
+ch16f.did.t,ch16,1.355,ch16.fac_t_int,data,,
+ch16f.did.f,ch16,1.84,ch16.fac_F3_int,data,,
+ch16f.code.neg,ch16,−0.5,,fixed,,효과 부호화 값 ; 정의
+ch16f.code.pos,ch16,0.5,,fixed,,효과 부호화 값 ; 정의
+ch16f.tab.b01,ch16,0.050,ch16.fac_b01_elem,data,,0/1 부호화 elem 계수 = frame 0 의 단순효과
+ch16f.tab.neg,ch16,−0.5,,fixed,,정의
+ch16f.tab.pos,ch16,0.5,,fixed,,정의
+ch16f.tab.bef,ch16,0.218,ch16.fac_bef_elem,data,,효과 부호화 elem 계수 = 주효과
+ch16f.trap.b1,ch16,0.05,ch16.fac_b01_elem,data,,
+ch16f.trap.b2,ch16,0.05,ch16.fac_b01_elem,data,,
+ch16f.trap.f,ch16,3.08,ch16.fac_F3_elem,data,,
+ch16f.type.f2,ch16,2.99,ch16.fac_F2_elem,data,,유형 II (유형 I 과 같다 = frame 뒤에 elem)
+ch16f.type.f3,ch16,3.08,ch16.fac_F3_elem,data,,유형 III
+ch16f.read.b,ch16,0.337,ch16.fac_bef_int,data,,코드 8 읽는 법
+ch16f.read.b01,ch16,0.05,ch16.fac_b01_elem,data,,
+ch16f.read.bef,ch16,0.218,ch16.fac_bef_elem,data,,
+ch16r.hier.n,ch16,554,s3.n554,data,,§16.1 ④ 위계 3단 = 시나리오 S3 ⑦ 값 (2026-11-16e)
+ch16r.hier.r1,ch16,.002,s3.mil_r2_1,data,,S3 ⑦ 1단 R²
+ch16r.hier.r2,ch16,.392,s3.mil_r2_2,data,,S3 ⑦ 2단 R²
+ch16r.hier.d2,ch16,.389,s3.mil_dr2_2,data,,S3 ⑦ 2단 ΔR²
+ch16r.hier.r3,ch16,.419,s3.mil_r2_3,data,,S3 ⑦ 3단 R²
+ch16r.hier.d3,ch16,.027,s3.mil_dr2_3,data,,S3 ⑦ 3단 ΔR²
+ch16r.hier.d3b,ch16,.027,s3.mil_dr2_3,data,,
+ch16r.hier.d1,ch16,.025,ch16.ss_dr2,data,,§16.1 ④ 곱항만의 ΔR² (566명)
+ch16r.g3.dr2,ch16,.000,ch16.g3_dr2,data,,§16.4 세 범주 = 곱항 둘을 묶은 검정
+ch16r.g3.df,ch16,560,ch16.g3_df2,data,,
+ch16r.g3.f,ch16,0.06,ch16.g3_F,data,,
+ch16r.g3.p,ch16,.941,ch16.g3_p,data,,
+ch16r.g3.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16r.g3.n1,ch16,270,ch16.g3_n1,data,,
+ch16r.g3.b1,ch16,0.97,ch16.g3_b1,data,,
+ch16r.g3.l1,ch16,0.83,ch16.g3_cl1,data,,
+ch16r.g3.u1,ch16,1.12,ch16.g3_cu1,data,,
+ch16r.g3.n2,ch16,284,ch16.g3_n2,data,,
+ch16r.g3.b2,ch16,0.99,ch16.g3_b2,data,,
+ch16r.g3.l2,ch16,0.84,ch16.g3_cl2,data,,
+ch16r.g3.u2,ch16,1.14,ch16.g3_cu2,data,,
+ch16r.g3.n3,ch16,12,ch16.g3_n3,data,,
+ch16r.g3.b3,ch16,0.89,ch16.g3_b3,data,,
+ch16r.g3.l3,ch16,0.54,ch16.g3_cl3,data,,
+ch16r.g3.u3,ch16,1.25,ch16.g3_cu3,data,,
+ch16r.g3.n3b,ch16,12,ch16.g3_n3,data,,
+ch16r.g3.n3c,ch16,12,ch16.g3_n3,data,,코드 9 읽는 법
+ch16r.code9.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16r.pow.80,ch16,.80,,fixed,,관례 검정력 기준
+ch16r.pow.b,ch16,0.2,,fixed,,§16.5 [더 나아가기] 설계값
+ch16r.pow.rel,ch16,0.7,,fixed,,설계값
+ch16r.pow.n400,ch16,400,,fixed,,설계 인원
+ch16r.pow.p400,ch16,0.75,ch16.pow07_int,sim,0.065,MC SD .0153 × 3√2 (ch16.7.ex5.p400 과 같다)
+ch16r.pow.n800,ch16,800,,fixed,,설계 인원
+ch16r.pow.p800,ch16,0.97,ch16.pow07_int_n800,sim,0.028,ch16.7.ex5.p800 과 같은 허용폭
+ch16r.fig.lo,ch16,0.731,ch16.ss_b_lo,data,,확인 표 그림 행
+ch16r.fig.mid,ch16,0.987,ch16.ss_b_mid,data,,
+ch16r.fig.hi,ch16,1.244,ch16.ss_b_hi,data,,

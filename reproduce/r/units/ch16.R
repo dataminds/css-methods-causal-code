@@ -42,6 +42,31 @@ for (k in c("b1", "b2", "b3", "se3", "raw_b1", "raw_b2", "raw_b3", "raw_se3", "c
 })
 calc("ch16.mod_refl_sd_neg", function() -sd(S()$refl))
 
+# §16.1 ④ · §16.3 (2026-11-16 개편) = 단순기울기 SE · 95% CI (confint) · 곱항 전후 anova 의 ΔR² · F
+ssr <- function() {
+  d <- S(); d$hc <- d$hjs - mean(d$hjs); s <- sd(d$refl); out <- list()
+  for (lab in c("lo", "mid", "hi")) {
+    v <- c(lo = -s, mid = 0, hi = s)[[lab]]
+    d$rv <- d$refl - mean(d$refl) - v
+    f <- lm(mil ~ hc * rv, data = d)
+    ci <- confint(f)["hc", ]
+    out[[paste0("b_", lab)]] <- unname(coef(f)["hc"])
+    out[[paste0("se_", lab)]] <- summary(f)$coefficients["hc", 2]
+    out[[paste0("cl_", lab)]] <- unname(ci[1]); out[[paste0("cu_", lab)]] <- unname(ci[2])
+  }
+  d$rc <- d$refl - mean(d$refl)
+  f0 <- lm(mil ~ hc + rc, data = d); f1 <- lm(mil ~ hc * rc, data = d)
+  a <- anova(f0, f1)
+  out$r2a <- summary(f0)$r.squared; out$r2b <- summary(f1)$r.squared
+  out$dr2 <- out$r2b - out$r2a; out$f <- a$F[2]; out$df2 <- a$Res.Df[2]
+  pf <- a[["Pr(>F)"]][2]; out$p_lt001 <- if (pf < .001) .001 else pf   # 「< .001」 = 부등식 주장
+  out
+}
+for (k in c("b_lo", "b_mid", "b_hi", "se_lo", "se_mid", "se_hi", "cl_lo", "cu_lo", "cl_mid", "cu_mid",
+            "cl_hi", "cu_hi", "r2a", "r2b", "dr2", "f", "df2", "p_lt001")) local({
+  kk <- k; calc(paste0("ch16.ss_", kk), function() memo("ss", ssr)[[kk]])
+})
+
 # ── 모의시행 = R 의 난수로 같은 설계를 따로 돌린다 (씨앗 73) ──
 gs <- function() {
   set.seed(73)
@@ -201,4 +226,59 @@ for (k in c("se_lo", "se_hi", "diff", "sd_diff", "b0", "b_hjs", "b_g", "b_int", 
 calc("ch16.grp_p_sep_lt001", function() { p <- grp()$p_sep; if (p < .001) .001 else p })
 calc("ch16.grp_p_int_lt001", function() { p <- grp()$p_int; if (p < .001) .001 else p })
 calc("ch16.grp_rounded_sum", function() 0.873 + 0.564)
+
+# §16.1 요인 실험(2 × 2) 소절 (2026-11-16d) = 셀 평균 · 0/1 ⊥ 효과 부호화 · 유형 II (anova 순차) ⊥ 유형 III (contr.sum + drop1)
+facr <- function() {
+  d <- load_data("fac"); n <- nrow(d); out <- list(n = n, df2 = n - 4)
+  for (i in 0:1) for (j in 0:1) {
+    v <- d$mil_t2[d$elem == i & d$frame == j]; k <- paste0(i, j)
+    out[[paste0("n", k)]] <- length(v); out[[paste0("m", k)]] <- mean(v); out[[paste0("sd", k)]] <- sd(v)
+  }
+  f0 <- summary(lm(mil_t2 ~ elem * frame, data = d))$coefficients
+  out$b01_elem <- f0["elem", 1]; out$b01_frame <- f0["frame", 1]; out$b01_int <- f0["elem:frame", 1]
+  out$p01_elem <- f0["elem", 4]
+  d$E <- factor(d$elem); d$Fr <- factor(d$frame)
+  fit <- lm(mil_t2 ~ E * Fr, data = d, contrasts = list(E = "contr.sum", Fr = "contr.sum"))
+  # contr.sum 은 수준 0 = +1 · 1 = −1 → 효과 부호화(−0.5/+0.5) 계수 = −2 × 이 계수 (곱항은 4 배)
+  cf <- summary(fit)$coefficients
+  out$bef_elem <- -2 * cf["E1", 1]; out$bef_frame <- -2 * cf["Fr1", 1]; out$bef_int <- 4 * cf["E1:Fr1", 1]
+  out$t_int <- cf["E1:Fr1", 3]
+  t3 <- drop1(fit, . ~ ., test = "F")
+  rss <- sum(residuals(fit)^2)
+  for (kk in c("elem", "frame", "int")) {
+    row <- c(elem = "E", frame = "Fr", int = "E:Fr")[[kk]]
+    out[[paste0("F3_", kk)]] <- t3[row, "F value"]; out[[paste0("p3_", kk)]] <- t3[row, "Pr(>F)"]
+    ss <- t3[row, "Sum of Sq"]; out[[paste0("eta_", kk)]] <- ss / (ss + rss)
+  }
+  a2 <- anova(lm(mil_t2 ~ Fr + E + E:Fr, data = d))                # 순차 = frame 뒤 elem = 유형 II
+  out$F2_elem <- a2["E", "F value"]
+  out
+}
+for (k in c("n", "df2", "n00", "n01", "n10", "n11", "m00", "m01", "m10", "m11", "sd00", "sd01", "sd10", "sd11",
+            "b01_elem", "b01_frame", "b01_int", "p01_elem", "bef_elem", "bef_frame", "bef_int", "t_int",
+            "F3_elem", "F3_frame", "F3_int", "p3_elem", "p3_frame", "p3_int", "eta_elem", "eta_frame", "eta_int",
+            "F2_elem")) local({
+  kk <- k; calc(paste0("ch16.fac_", kk), function() memo("fac", facr)[[kk]])
+})
+
+# §16.4 「집단이 셋 이상이면」 (2026-11-16e) = 성별 세 범주 × hjs ; anova 로 곱항 둘을 묶은 F
+g3r <- function() {
+  d <- S(); d$G <- factor(d$gender, levels = c(1, 2, 3))
+  f0 <- lm(mil ~ hjs + G, data = d); f1 <- lm(mil ~ hjs * G, data = d); a <- anova(f0, f1)
+  cf <- coef(f1)
+  out <- list(r2a = summary(f0)$r.squared, r2b = summary(f1)$r.squared, F = a$F[2], p = a[["Pr(>F)"]][2],
+              df2 = a$Res.Df[2], int2 = unname(cf["hjs:G2"]), int3 = unname(cf["hjs:G3"]))
+  out$dr2 <- out$r2b - out$r2a
+  for (g in 1:3) {
+    f <- lm(mil ~ hjs, data = d[d$gender == g, ]); ci <- confint(f)["hjs", ]
+    out[[paste0("n", g)]] <- nrow(d[d$gender == g, ]); out[[paste0("b", g)]] <- unname(coef(f)["hjs"])
+    out[[paste0("se", g)]] <- summary(f)$coefficients["hjs", 2]
+    out[[paste0("cl", g)]] <- unname(ci[1]); out[[paste0("cu", g)]] <- unname(ci[2])
+  }
+  out
+}
+for (k in c("r2a", "r2b", "dr2", "F", "p", "df2", "int2", "int3", "n1", "n2", "n3", "b1", "b2", "b3",
+            "se1", "se2", "se3", "cl1", "cu1", "cl2", "cu2", "cl3", "cu3")) local({
+  kk <- k; calc(paste0("ch16.g3_", kk), function() memo("g3", g3r)[[kk]])
+})
 })
