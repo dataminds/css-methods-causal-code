@@ -187,4 +187,20 @@ calc("ch16.mt_r2", function() mt()$r2)
 calc("ch16.mt_n", function() mt()$n)
 calc("ch16.mk_ci_lo", function() .31 - 1.96 * .18)
 calc("ch16.mk_ci_hi", function() .31 + 1.96 * .18)
+
+# §16.2 「무엇을 중심화하나」 = 실험판 개입 × 기저 의미 (2026-11-15)
+ck <- local({ cache <- NULL; function() {
+  if (is.null(cache)) {
+    e <- load_data("exp"); e$k <- e$mil_t1 - mean(e$mil_t1)
+    cache <<- list(raw = summary(lm(mil ~ cond * mil_t1, data = e))$coefficients,
+                   cen = summary(lm(mil ~ cond * k, data = e))$coefficients)
+  }
+  cache
+} })
+calc("ch16.ck_cond_raw", function() ck()$raw["cond", 1])
+calc("ch16.ck_p_raw", function() ck()$raw["cond", 4])
+calc("ch16.ck_cond_cen", function() ck()$cen["cond", 1])
+calc("ch16.ck_p_cen", function() ck()$cen["cond", 4])
+calc("ch16.ck_int_raw", function() ck()$raw["cond:mil_t1", 1])
+calc("ch16.ck_int_cen", function() ck()$cen["cond:k", 1])
 })

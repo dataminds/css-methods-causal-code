@@ -237,4 +237,11 @@ for (j in 1:3) local({
   calc(paste0("ch14.fit300_med_d", d), function() median(fitres$many[jj, ]))
 })
 calc("ch14.fit_true_out", function() fitres$one$true)
+
+# §14.2 평균 중심화 = hjs 에서 평균을 빼고 같은 단순 회귀 (2026-11-15)
+cen <- function() { s <- S(); s$xc <- s$hjs - mean(s$hjs); unname(coef(lm(mil ~ xc, data = s))) }
+calc("ch14.cen_hjs_mean", function() mean(S()$hjs))
+calc("ch14.cen_intercept", function() cen()[1])
+calc("ch14.cen_slope", function() cen()[2])
+calc("ch14.cen_mil_mean", function() mean(S()$mil))
 })

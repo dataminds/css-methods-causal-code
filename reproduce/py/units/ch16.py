@@ -219,3 +219,21 @@ calc("ch16.mt_n")(lambda: len(S()))
 # §16.4 [다른 논문에서는] Miller & Krosnick (2000) 곱항 .31 (SE .18) 의 공식 구간 (이 책의 계산 ; 2026-11-15 14장에서 옮김)
 calc("ch16.mk_ci_lo")(lambda: .31 - 1.96 * .18)
 calc("ch16.mk_ci_hi")(lambda: .31 + 1.96 * .18)
+
+
+# §16.2 「무엇을 중심화하나」 = 실험판 개입 × 기저 의미, 기저 의미를 중심화하지 않음 ⊥ 함 (2026-11-15)
+def _ck():
+    def f():
+        e = E(); k = e.mil_t1 - e.mil_t1.mean()
+        bu, _, pu, _ = ols(e.mil, [e.cond, e.mil_t1, e.cond * e.mil_t1])
+        bc, _, pc, _ = ols(e.mil, [e.cond, k, e.cond * k])
+        return bu, pu, bc, pc
+    return memo("ck", f)
+
+
+calc("ch16.ck_cond_raw")(lambda: _ck()[0][1])
+calc("ch16.ck_p_raw")(lambda: _ck()[1][1])
+calc("ch16.ck_cond_cen")(lambda: _ck()[2][1])
+calc("ch16.ck_p_cen")(lambda: _ck()[3][1])
+calc("ch16.ck_int_raw")(lambda: _ck()[0][3])
+calc("ch16.ck_int_cen")(lambda: _ck()[2][3])

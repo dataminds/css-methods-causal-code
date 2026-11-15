@@ -244,3 +244,12 @@ ch16.mk.L197.1.0.66,ch16,0.66,ch16.mk_ci_hi,data,,이 책의 계산 .31 + 1.96 �
 ch16.mk.L197.1..33,ch16,.33,,paper,,"Miller & Krosnick 2000, 표 1 p. 306 ; 쟁점 수행 평가(Issue Performance) 주효과 .33"
 ch16.mk.L387.1.0.99,ch16,0.99,ch16.mt_b_hjs,data,,§16.8 점검 = §16.2 조절 회귀 표의 hjs 줄
 ch16.mk.L387.1.0.19,ch16,0.19,ch16.mt_b_xy,data,,§16.8 점검 = §16.2 조절 회귀 표의 곱항 줄
+ch16.ck.raw,ch16,0.18,ch16.ck_cond_raw,data,,§16.2 「무엇을 중심화하나」 = 실험판 mil ~ cond × mil_t1 (중심화 안 함) 의 cond 계수 (2026-11-15)
+ch16.ck.praw,ch16,.667,ch16.ck_p_raw,data,,같은 모형 cond 계수의 p
+ch16.ck.cen,ch16,0.29,ch16.ck_cond_cen,data,,mil_t1 을 평균 중심화한 모형의 cond 계수 (S1 ⑧ 공변인 조정 0.29 와 다른 모형 ; 곱항 포함)
+ch16.ck.pcen,ch16,.007,ch16.ck_p_cen,data,,같은 모형 cond 계수의 p
+ch16.ck.raw2,ch16,0.18,ch16.ck_cond_raw,data,,재언급
+ch16.ck.int,ch16,0.02,ch16.ck_int_cen,data,,중심화한 모형의 곱항 계수 (중심화 안 한 모형도 같다 = ch16.ck_int_raw)
+ch16.ck.scale1,ch16,1,,fixed,,척도 끝값
+ch16.ck.scale7,ch16,7,,fixed,,척도 끝값
+ch16.ck.mid,ch16,4,,fixed,,1~7 척도의 중간값 (정의)

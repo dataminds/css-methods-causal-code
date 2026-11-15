@@ -260,3 +260,9 @@ ch14.r6.L265.1..40,ch14,.40,ch14.r2,data,,§14.3
 ch14.r6.L265.1.22,ch14,22,ch14.err_reduction_pct,data,,§14.3 (1 − 0.973 ÷ 1.252) × 100 = 22.24
 ch14.t15f.L235.1..255,ch14,.255,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
 ch14.t15f.L235.1..156,ch14,.156,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
+ch14.cen.hjsmean,ch14,5.01,ch14.cen_hjs_mean,data,,§14.2 평균 중심화 = 설문판 hjs 평균 (2026-11-15)
+ch14.cen.slope,ch14,0.98,ch14.cen_slope,data,,중심화한 hjs 의 단순 회귀 기울기 (중심화 전과 같다)
+ch14.cen.int,ch14,4.89,ch14.cen_intercept,data,,중심화한 hjs 의 단순 회귀 절편
+ch14.cen.milmean,ch14,4.89,ch14.cen_mil_mean,data,,설문판 mil 평균 = 중심화 절편과 같다 (단순 회귀의 성질)
+ch14.t15g.L305.1.0.98,ch14,0.98,ch14.slope,data,,§14.2 기울기 ; 「AI에게 시키기」 판단 기준 문단의 예문 (2026-11-15g)
+ch14.t15g.L305.2.0.98,ch14,0.98,ch14.slope,data,,§14.2 기울기 ; 「AI에게 시키기」 판단 기준 문단의 예문 (2026-11-15g)

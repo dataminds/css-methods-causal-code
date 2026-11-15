@@ -318,3 +318,17 @@ for _d in (1, 2, 12):
     calc(f"ch14.fit300_neg_pct_d{_d}")(lambda d=_d: 100 * float(np.mean(_overfit()[1][d] < 0)))
     calc(f"ch14.fit300_med_d{_d}")(lambda d=_d: float(np.median(_overfit()[1][d])))
 calc("ch14.fit_true_out")(lambda: _overfit()[0]["true"])
+
+
+# §14.2 평균 중심화 = hjs 에서 평균을 빼고 같은 단순 회귀 (2026-11-15)
+def _cen():
+    if "cen" not in _c:
+        s = S(); x = s.hjs - s.hjs.mean()
+        _c["cen"] = ols(s.mil, [x])[0]
+    return _c["cen"]
+
+
+calc("ch14.cen_hjs_mean")(lambda: S().hjs.mean())
+calc("ch14.cen_intercept")(lambda: _cen()[0])
+calc("ch14.cen_slope")(lambda: _cen()[1])
+calc("ch14.cen_mil_mean")(lambda: S().mil.mean())
