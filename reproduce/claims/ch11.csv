@@ -133,11 +133,6 @@ ch11.tb.bf.1,ch11,3.03,,paper,,"Tobler et al. (2024) Learning and Instruction 92
 ch11.tb.t1.1,ch11,0.7,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; p. 7"
 ch11.tb.t1.2,ch11,0.2,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; p. 7"
 ch11.tb.t1.3,ch11,1.2,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; p. 7"
-ch11.tb.t2.1,ch11,−0.2,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; p. 7"
-ch11.tb.t2.2,ch11,−0.9,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; p. 7"
-ch11.tb.t2.3,ch11,0.4,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; p. 7"
-ch11.tb.t3.1,ch11,75.2%,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; p. 7"
-ch11.tb.t4.1,ch11,3.03,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; p. 7"
 ch11.tb.b2.1,ch11,75%,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 (CC BY) ; 정독 노트 readings/statistical-inference/Tobler-Sinha-Kohler-Kapur-2024-Telling-Stories-Bayesian-Transfer.md ; 75.2% 를 반올림"
 ch11.by.grid.1,ch11,"6,001",ch11.grid_n,data,,§11.6 격자 근사 (566명 · 평평한 사전분포 ; 2026-11-15)
 ch11.by.gridc.1,ch11,"6,001",ch11.grid_n,data,,§11.6 격자 근사 (566명 · 평평한 사전분포 ; 2026-11-15) 코드 주석
@@ -180,3 +175,56 @@ ch11.ex4.a.1,ch11,4.707,ch11.bayes30_wide,data,,§11.9 실습 4 · §11.10 점�
 ch11.ex4.p.1,ch11,4.418,ch11.bayes30_belief,data,,§11.9 실습 4 · §11.10 점검 (2026-11-15)
 ch11.ex4.p.2,ch11,4.707,ch11.bayes30_wide,data,,§11.9 실습 4 · §11.10 점검 (2026-11-15)
 ch11.ck.p.1,ch11,0.019,ch11.bayes566_pgt5,data,,§11.9 실습 4 · §11.10 점검 (2026-11-15)
+ch11.tb.bfodds.1,ch11,0.752,,paper,,Tobler et al. (2024) p. 7 방향 확률 75.2% (NEI–EI)
+ch11.tb.bfodds.2,ch11,0.248,,paper,,1 − 0.752
+ch11.tb.bfodds.3,ch11,3.03,,paper,,보고된 BF = 3.03 ; 산술 0.752/0.248 = 3.032
+ch11.tb.bfodds.4,ch11,2.12,,paper,,Tobler et al. (2024) p. 7 BF = 2.12 (NEI–NI) ; 산술 0.679/0.321 = 2.115
+ch11.tb.bfodds.5,ch11,0.679,,paper,,방향 확률 67.9% (NEI–NI)
+ch11.tb.bfodds.6,ch11,0.321,,paper,,1 − 0.679
+ch11.by.first50.1,ch11,4.605,ch11.bayes50_mean,data,,§11.6 앞 n명은 무작위 표본이 아님 (2026-11-15k)
+ch11.by.first50.2,ch11,4.891,ch11.mil_mean,data,,566명 평균
+ch11.tw.fpc,ch11,0.169,ch11.se_fpc50,data,,§11.7 왼쪽 그림 기댓값 = 공식 × 유한모집단 보정 (2026-11-15k)
+ch11.ck.pd.1,ch11,75.2%,,paper,,점검 문항 ; Tobler et al. (2024) p. 7
+ch11.ck.pd.2,ch11,3.03,,paper,,점검 문항 ; Tobler et al. (2024) p. 7
+ch11.fx.L11.6p1.1,ch11,6.1,,fixed,,frontmatter seam = 사회과학프로그래밍 6.1 절 번호
+ch11.fx.L60.95.1,ch11,95,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L66.95.1,ch11,95,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L66.95.2,ch11,95,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L78.95.1,ch11,95,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L79.75.1,ch11,75,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 p. 7 (보고값 ; 75 = 75.2 반올림)"
+ch11.fx.L82.3p03.1,ch11,3.03,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 p. 7 (보고값 ; 75 = 75.2 반올림)"
+ch11.fx.L82.75p2.1,ch11,75.2,,paper,,"Tobler et al. (2024) Learning and Instruction 92, 101944 p. 7 (보고값 ; 75 = 75.2 반올림)"
+ch11.fx.L229.566.1,ch11,566,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L239.1p000.1,ch11,1.000,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L239.7p000.1,ch11,7.000,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L239.0p001.1,ch11,0.001,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L239.566.1,ch11,566,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L239.95.1,ch11,95,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L243.p025.1,ch11,.025,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L243.p975.1,ch11,.975,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L243.95.1,ch11,95,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L250.30.1,ch11,30,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L251.95.1,ch11,95,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L256.4p0.1,ch11,4.0,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L256.0p5.1,ch11,0.5,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L256.4p0.2,ch11,4.0,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L256.0p25.1,ch11,0.25,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L256.30.1,ch11,30,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L256.30.2,ch11,30,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L256.566.1,ch11,566,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L260.30.1,ch11,30,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L260.566.1,ch11,566,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L264.566.1,ch11,566,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L264.50.1,ch11,50,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L264.50.2,ch11,50,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L266.50.1,ch11,50,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L266.50.2,ch11,50,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L269.50.1,ch11,50,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L282.30.1,ch11,30,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L326.0p25.1,ch11,0.25,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L326.1p0.1,ch11,1.0,,fixed,,설계값 (표본 크기 · 격자 · 사전분포 · 구간 수준 ; 2026-11-15l 묶음)
+ch11.fx.L60.95.2,ch11,95,,fixed,,구간 수준 (Tobler et al. 2024 표 5 주)
+ch11.fx.L66.95.3,ch11,95,,fixed,,구간 수준
+ch11.fx.L79.75.2,ch11,75,,paper,,Tobler et al. (2024) p. 7 방향 확률 75.2% 반올림
+ch11.p.se.bridge,ch11,.03,,paper,,Rogers et al. (2023) 연구 1 = 원고판 p. 18 SE = .03 ; 출판본 쪽 미확인 (ch11.p.se 와 같다)
+ch11.n.guide566,ch11,566,ch11.svy_n,data,,§11.0 길잡이 표 = 설문판 정제본 사람 수
