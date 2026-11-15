@@ -228,3 +228,4 @@ ch11.fx.L66.95.3,ch11,95,,fixed,,구간 수준
 ch11.fx.L79.75.2,ch11,75,,paper,,Tobler et al. (2024) p. 7 방향 확률 75.2% 반올림
 ch11.p.se.bridge,ch11,.03,,paper,,Rogers et al. (2023) 연구 1 = 원고판 p. 18 SE = .03 ; 출판본 쪽 미확인 (ch11.p.se 와 같다)
 ch11.n.guide566,ch11,566,ch11.svy_n,data,,§11.0 길잡이 표 = 설문판 정제본 사람 수
+ch11.t15i.L311.1.566,ch11,566,ch11.svy_n,data,,「AI에게 시키기」 받은 답 판단 = 3장 정제 결과 566명 (2026-11-15i)
