@@ -169,8 +169,6 @@ ch14.r4.L161.1.1.08,ch14,1.08,ch14.ci_hi,data,,2026-11-15 네 부분 개편
 ch14.r4.L163.1.95,ch14,95,,fixed,,신뢰수준의 정의 ; 2026-11-15 네 부분 개편
 ch14.r4.L214.1..255,ch14,.255,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
 ch14.r4.L214.1.939,ch14,939,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 분석 인원 ; 2026-11-15 네 부분 개편"
-ch14.r4.L214.2..255,ch14,.255,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
-ch14.r4.L214.1..156,ch14,.156,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
 ch14.r4.L226.1.m.02,ch14,−.02,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 영차 상관 ; 2026-11-15 네 부분 개편"
 ch14.r4.L226.1.193,ch14,193,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 인원 p. 88 ; 2026-11-15 네 부분 개편"
 ch14.r4.L226.2.m.02,ch14,−.02,,paper,,"Coroiu 외 2016, 표 2 p. 91 · 본문 pp. 90–91 (정독 노트 readings/pg/Coroiu-et-al-2016-…md) ; 영차 상관 ; 2026-11-15 네 부분 개편"
@@ -260,3 +258,5 @@ ch14.r6.L237.1.14,ch14,14,ch14.choi_err_red_dhl,data,,이 책의 계산 1 − �
 ch14.r6.L237.1.8,ch14,8,ch14.choi_err_red_hl,data,,이 책의 계산 1 − √(1 − .156) ; 2026-11-15 네 부분 개편
 ch14.r6.L265.1..40,ch14,.40,ch14.r2,data,,§14.3
 ch14.r6.L265.1.22,ch14,22,ch14.err_reduction_pct,data,,§14.3 (1 − 0.973 ÷ 1.252) × 100 = 22.24
+ch14.t15f.L235.1..255,ch14,.255,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
+ch14.t15f.L235.1..156,ch14,.156,,paper,,"최은진 · 천희란 · 곽우성 2022, p. 7 (정독 노트 readings/HealthLiteracy/Choi-Chun-Kwak-2022-…md) ; 2026-11-15 네 부분 개편"
