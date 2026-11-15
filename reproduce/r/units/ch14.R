@@ -51,6 +51,8 @@ calc("ch14.exp_p", function() t.test(E()$mil[E()$cond == 1], E()$mil[E()$cond ==
 # 2026-11-15 네 부분 개편에서 산문으로 올라온 수
 calc("ch14.exp_mw_p", function() suppressWarnings(wilcox.test(E()$mil[E()$cond == 1], E()$mil[E()$cond == 0],
                                                                 exact = FALSE, correct = TRUE)$p.value))
+calc("ch14.exp_n_treat", function() sum(E()$cond == 1))
+calc("ch14.exp_welch_p", function() t.test(E()$mil[E()$cond == 1], E()$mil[E()$cond == 0])$p.value)
 calc("ch14.n_svy_raw", function() nrow(load_data("svy", clean = FALSE)))
 calc("ch14.n_svy_minus1", function() nrow(S()) - 1)
 calc("ch14.mw_are_loss_pct", function() 100 * (1 - 3 / pi))
@@ -130,6 +132,8 @@ d_small <- function() list(rnorm(20, 0, 3), rnorm(60, 0, 1))
 d_big <- function() list(rnorm(20, 0, 1), rnorm(60, 0, 3))
 res$smallvar_t <- fp(d_small, t_p); res$smallvar_welch <- fp(d_small, w_p); res$smallvar_perm <- fp(d_small, perm_p, 500)
 res$bigvar_t <- fp(d_big, t_p); res$bigvar_welch <- fp(d_big, w_p); res$bigvar_perm <- fp(d_big, perm_p, 500)
+d_eq40 <- function() list(rnorm(40, 0, 3), rnorm(40, 0, 1))   # B4 실습 3
+res$equal40_t <- fp(d_eq40, t_p); res$equal40_welch <- fp(d_eq40, w_p)
 for (nm in names(res)) local({ k <- nm; calc(paste0("ch14.fp_", k), function() res[[k]]) })
 calc("ch14.fp_smallvar_t_pct", function() 100 * res$smallvar_t)
 

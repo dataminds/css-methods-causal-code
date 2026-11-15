@@ -34,7 +34,7 @@ SLUG = {
     "ch18": "ch18-분석법-선택의-나무",
     "ch19": "ch19-결과-절-쓰는-법", "ch20": "ch20-갈림길의-정원",
     "ch21": "ch21-열어서-검증받기",
-    "b1": "b1-확률과-분포", "b2": "b2-세-집단-이상", "b3": "b3-상관",
+    "b1": "b1-확률과-분포", "b2": "b2-세-집단-이상", "b3": "b3-상관", "b4": "b4-가정과-순위-검정",
     "s1": "s1-시나리오-두-집단-실험", "s2": "s2-시나리오-요인과-사전사후",
     "s3": "s3-시나리오-설문", "s4": "s4-시나리오-종단-패널과-코호트",
     "s5": "s5-시나리오-2차자료-자연실험", "s6": "s6-시나리오-내용분석",
@@ -51,7 +51,7 @@ TITLE = {
     "ch18": "18장 · 분석법 선택의 나무",
     "ch19": "19장 · 방법과 결과 절 쓰는 법", "ch20": "20장 · 갈림길의 정원",
     "ch21": "21장 · 열어서 검증받기: 읽지 않고 확인하기",
-    "b1": "기초 B1 · 확률과 분포", "b2": "기초 B2 · 세 집단 이상", "b3": "기초 B3 · 상관",
+    "b1": "기초 B1 · 확률과 분포", "b2": "기초 B2 · 세 집단 이상", "b3": "기초 B3 · 상관", "b4": "기초 B4 · 검정이 기대는 가정",
     "s1": "S1 · 두 집단 실험", "s2": "S2 · 요인과 사전사후",
     "s3": "S3 · 횡단 설문", "s4": "S4 · 종단 패널과 코호트",
     "s5": "S5 · 2차 자료와 자연실험", "s6": "S6 · 내용분석",
@@ -268,90 +268,6 @@ STEPS = {
   'z = lambda v:(v-v.mean())/v.std(ddof=1)\n'
   'bz,_,_,_ = ols(z(svy.mil).values, [z(svy.hjs).values])\n'
   'print("표준화 기울기 =", round(bz[1],3), " r =", round(svy.hjs.corr(svy.mil),3))   # 둘 다 .629'),
- ("## 4. (책이 원리를 보이려고 돌린 코드) 과소적합 · 적합 · 과적합 (책 §14.3)\n"
-  "참 관계가 완만한 곡선인 세계를 짓고(씨앗 73), 30명에게 1 · 2 · 12차 모형을 맞춘 뒤 같은 세계에서 새로 뽑은 1,000명에 적용합니다. "
-  "`np.polyfit(x, y, 차수)`는 차수만큼 구부러진 다항식을 최소제곱으로 맞추고(1차 = 곧은 선, 2차 = 포물선), `np.polyval`은 맞춘 식에 값을 넣어 적합값을 냅니다. "
-  "둘째 반복은 같은 설계로 세계를 300번 새로 지어, 새 자료의 R²가 0보다 낮았던 세계의 비율과 중앙값을 셉니다. "
-  "12차 모형은 numpy 가 조건이 나쁘다는 경고(RankWarning)를 낼 수 있습니다.",
-  'g = np.random.default_rng(73)\n'
-  '참 = lambda v: 1 + 1.6 * v - 0.16 * v ** 2                         # 참 관계 = 완만한 곡선\n'
-  'x30 = g.uniform(0, 10, 30);   y30 = 참(x30) + g.normal(0, 1, 30)     # 지금 자료 30명\n'
-  'x1k = g.uniform(0, 10, 1000); y1k = 참(x1k) + g.normal(0, 1, 1000)   # 새 자료 1,000명\n'
-  'R2 = lambda yy, f: 1 - ((yy - f) ** 2).sum() / ((yy - yy.mean()) ** 2).sum()\n'
-  'for 차수 in (1, 2, 12):\n'
-  '    c = np.polyfit(x30, y30, 차수)\n'
-  '    print(차수, round(R2(y30, np.polyval(c, x30)), 2), round(R2(y1k, np.polyval(c, x1k)), 2))\n'
-  'print(round(R2(y1k, 참(x1k)), 2))\n'
-  '# 1 0.07 -0.07\n'
-  '# 2 0.71 0.53\n'
-  '# 12 0.85 0.21\n'
-  '# 0.6\n'
-  '\n'
-  'g = np.random.default_rng(73)\n'
-  '새R2 = {1: [], 2: [], 12: []}\n'
-  'for _ in range(300):                                                # 세계를 300번 새로 짓는다\n'
-  '    x30 = g.uniform(0, 10, 30);   y30 = 참(x30) + g.normal(0, 1, 30)\n'
-  '    x1k = g.uniform(0, 10, 1000); y1k = 참(x1k) + g.normal(0, 1, 1000)\n'
-  '    for 차수 in 새R2:\n'
-  '        c = np.polyfit(x30, y30, 차수)\n'
-  '        새R2[차수].append(R2(y1k, np.polyval(c, x1k)))\n'
-  'for 차수, v in 새R2.items():\n'
-  '    v = np.array(v)\n'
-  '    print(차수, round(float(np.mean(v < 0)), 2), round(float(np.median(v)), 2))\n'
-  '# 1 0.97 -0.05\n'
-  '# 2 0.0 0.55\n'
-  '# 12 0.72 -2.54'),
- ("## 5. (책이 원리를 보이려고 돌린 코드) 위양성률을 직접 센다 (책 §14.4)\n"
-  "`위양성`은 세계를 2,000번 지어 p < .05가 나온 비율을 세고, `t검정`은 12장의 t검정, `뒤섞기`는 12장 §12.2의 뒤섞기 검정입니다. "
-  "`위양성(뽑기, 검정)`은 「세계를 짓는 함수」와 「검정하는 함수」를 인자로 받습니다. 함수도 값처럼 다른 함수에 넘길 수 있어서, 세계와 검정을 바꿔 끼우며 같은 셈을 되풀이할 수 있습니다. "
-  "첫 반복 = 치우친 자료(지수분포)에서 집단당 10 · 30 · 100명. 둘째 반복 = 큰 분산이 작은 집단 · 큰 집단에 있는 두 세계에서 t검정 · 웰치 · 뒤섞기(뒤섞기는 오래 걸려 500번). 몇 분 걸립니다.",
-  'from scipy import stats\n'
-  'def 위양성(뽑기, 검정, R=2000, seed=73):\n'
-  '    g = np.random.default_rng(seed)\n'
-  '    hits = 0\n'
-  '    for _ in range(R):\n'
-  '        a, b_ = 뽑기(g)\n'
-  '        hits += 검정(a, b_) < .05\n'
-  '    return round(hits / R, 3)\n'
-  '\n'
-  't검정 = lambda a, b_: stats.ttest_ind(a, b_).pvalue\n'
-  '웰치 = lambda a, b_: stats.ttest_ind(a, b_, equal_var=False).pvalue\n'
-  '\n'
-  'def 뒤섞기(a, b_, B=500):\n'
-  '    g = np.random.default_rng(37)\n'
-  '    obs = abs(a.mean() - b_.mean())\n'
-  '    pool = np.concatenate([a, b_]); n = len(a)\n'
-  '    c = 0\n'
-  '    for _ in range(B):\n'
-  '        p = g.permutation(pool)\n'
-  '        c += abs(p[:n].mean() - p[n:].mean()) >= obs\n'
-  '    return c / B\n'
-  '\n'
-  'for n in (10, 30, 100):\n'
-  '    치우침 = lambda g, n=n: (g.exponential(1, n), g.exponential(1, n))\n'
-  '    print(n, 위양성(치우침, t검정), 위양성(치우침, 뒤섞기))\n'
-  '# 10 0.042 0.046\n'
-  '# 30 0.044 0.044\n'
-  '# 100 0.055 0.056\n'
-  '\n'
-  '세계 = {"큰 분산이 작은 집단": lambda g: (g.normal(0, 3, 20), g.normal(0, 1, 60)),\n'
-  '        "큰 분산이 큰 집단":   lambda g: (g.normal(0, 1, 20), g.normal(0, 3, 60))}\n'
-  'for 이름, 뽑기 in 세계.items():\n'
-  '    print(이름, 위양성(뽑기, t검정), 위양성(뽑기, 웰치), 위양성(뽑기, 뒤섞기, R=500))\n'
-  '# 큰 분산이 작은 집단 0.222 0.058 0.22\n'
-  '# 큰 분산이 큰 집단 0.002 0.052 0.004'),
- ("## 6. (책이 원리를 보이려고 돌린 코드) 꼬리가 두꺼우면 비모수 검정의 검정력이 더 높다 (책 §14.5)\n"
-  "극단값이 자주 나오는 분포(자유도 2의 t분포)에서 집단당 40명을 뽑되 한 집단에만 0.8을 더하고, 이 세계를 2,000번 지어 t검정과 맨-휘트니가 각각 효과를 잡은 비율을 셉니다.",
-  'from scipy import stats\n'
-  'g = np.random.default_rng(73)\n'
-  'w1 = w2 = 0\n'
-  'for _ in range(2000):\n'
-  '    u = g.standard_t(2, 40) + 0.8      # 꼬리가 아주 두꺼운 분포\n'
-  '    v = g.standard_t(2, 40)\n'
-  '    w1 += stats.ttest_ind(u, v).pvalue < .05\n'
-  '    w2 += stats.mannwhitneyu(u, v).pvalue < .05\n'
-  'print(round(w1 / 2000, 3), round(w2 / 2000, 3))\n'
-  '# 0.375 0.691'),
 ],
 "ch08": [
  ("## 2. 심슨의 역설\n저그마을을 직접 짓습니다: 수컷은 보양제를 더 먹고 기력도 원래 높다(성별 = 공통 원인). 전체로 보면 양(+), 성별로 나누면 음(-).",
@@ -395,6 +311,39 @@ STEPS = {
   'svy = load("svy")\n'
   'b,_,_,_ = ols(svy.mil.values, [svy.hjs.values]); print("mil ~ hjs:", round(b[1],2))            # 0.98\n'
   'b,_,_,_ = ols(svy.mil.values, [svy.hjs.values, svy.gen.values]); print("+ gen:", round(b[1],2))  # 0.86'),
+ ("## 4. (책이 원리를 보이려고 돌린 코드) 과소적합 · 적합 · 과적합 (책 §15.1 끝 [선택] 소절)\n"
+  "참 관계가 완만한 곡선인 세계를 짓고(씨앗 73), 30명에게 1 · 2 · 12차 모형을 맞춘 뒤 같은 세계에서 새로 뽑은 1,000명에 적용합니다. "
+  "`np.polyfit(x, y, 차수)`는 차수만큼 구부러진 다항식을 최소제곱으로 맞추고(1차 = 곧은 선, 2차 = 포물선), `np.polyval`은 맞춘 식에 값을 넣어 적합값을 냅니다. "
+  "둘째 반복은 같은 설계로 세계를 300번 새로 지어, 새 자료의 R²가 0보다 낮았던 세계의 비율과 중앙값을 셉니다. "
+  "12차 모형은 numpy 가 조건이 나쁘다는 경고(RankWarning)를 낼 수 있습니다.",
+  'g = np.random.default_rng(73)\n'
+  '참 = lambda v: 1 + 1.6 * v - 0.16 * v ** 2                         # 참 관계 = 완만한 곡선\n'
+  'x30 = g.uniform(0, 10, 30);   y30 = 참(x30) + g.normal(0, 1, 30)     # 지금 자료 30명\n'
+  'x1k = g.uniform(0, 10, 1000); y1k = 참(x1k) + g.normal(0, 1, 1000)   # 새 자료 1,000명\n'
+  'R2 = lambda yy, f: 1 - ((yy - f) ** 2).sum() / ((yy - yy.mean()) ** 2).sum()\n'
+  'for 차수 in (1, 2, 12):\n'
+  '    c = np.polyfit(x30, y30, 차수)\n'
+  '    print(차수, round(R2(y30, np.polyval(c, x30)), 2), round(R2(y1k, np.polyval(c, x1k)), 2))\n'
+  'print(round(R2(y1k, 참(x1k)), 2))\n'
+  '# 1 0.07 -0.07\n'
+  '# 2 0.71 0.53\n'
+  '# 12 0.85 0.21\n'
+  '# 0.6\n'
+  '\n'
+  'g = np.random.default_rng(73)\n'
+  '새R2 = {1: [], 2: [], 12: []}\n'
+  'for _ in range(300):                                                # 세계를 300번 새로 짓는다\n'
+  '    x30 = g.uniform(0, 10, 30);   y30 = 참(x30) + g.normal(0, 1, 30)\n'
+  '    x1k = g.uniform(0, 10, 1000); y1k = 참(x1k) + g.normal(0, 1, 1000)\n'
+  '    for 차수 in 새R2:\n'
+  '        c = np.polyfit(x30, y30, 차수)\n'
+  '        새R2[차수].append(R2(y1k, np.polyval(c, x1k)))\n'
+  'for 차수, v in 새R2.items():\n'
+  '    v = np.array(v)\n'
+  '    print(차수, round(float(np.mean(v < 0)), 2), round(float(np.median(v)), 2))\n'
+  '# 1 0.97 -0.05\n'
+  '# 2 0.0 0.55\n'
+  '# 12 0.72 -2.54'),
 ],
 "ch16": [
  ("## 2. 조절: 단순기울기\n회고 습관이 높을수록 여정→의미 기울기가 가팔라집니다(.73 → 1.24).",
@@ -571,6 +520,59 @@ STEPS = {
  ("## 5. 순위 상관\n값을 순위로 바꿔 구한 스피어만 상관을 피어슨 상관과 견줍니다(14장 §14.5).",
   'print(round(stats.spearmanr(svy.hjs, svy.mil)[0], 3), round(svy.hjs.corr(svy.mil), 3))\n'
   '# 0.626 0.629'),
+],
+"b4": [
+ ("## 2. (책이 원리를 보이려고 돌린 코드) 위양성률을 직접 센다 (책 B4.1 · B4.2)\n"
+  "`위양성`은 세계를 2,000번 지어 p < .05가 나온 비율을 세고, `t검정`은 12장의 t검정, `뒤섞기`는 12장 §12.2의 뒤섞기 검정입니다. "
+  "`위양성(뽑기, 검정)`은 「세계를 짓는 함수」와 「검정하는 함수」를 인자로 받습니다. 함수도 값처럼 다른 함수에 넘길 수 있어서, 세계와 검정을 바꿔 끼우며 같은 셈을 되풀이할 수 있습니다. "
+  "첫 반복 = 치우친 자료(지수분포)에서 집단당 10 · 30 · 100명. 둘째 반복 = 큰 분산이 작은 집단 · 큰 집단에 있는 두 세계에서 t검정 · 웰치 · 뒤섞기(뒤섞기는 오래 걸려 500번). 몇 분 걸립니다.",
+  'from scipy import stats\n'
+  'def 위양성(뽑기, 검정, R=2000, seed=73):\n'
+  '    g = np.random.default_rng(seed)\n'
+  '    hits = 0\n'
+  '    for _ in range(R):\n'
+  '        a, b_ = 뽑기(g)\n'
+  '        hits += 검정(a, b_) < .05\n'
+  '    return round(hits / R, 3)\n'
+  '\n'
+  't검정 = lambda a, b_: stats.ttest_ind(a, b_).pvalue\n'
+  '웰치 = lambda a, b_: stats.ttest_ind(a, b_, equal_var=False).pvalue\n'
+  '\n'
+  'def 뒤섞기(a, b_, B=500):\n'
+  '    g = np.random.default_rng(37)\n'
+  '    obs = abs(a.mean() - b_.mean())\n'
+  '    pool = np.concatenate([a, b_]); n = len(a)\n'
+  '    c = 0\n'
+  '    for _ in range(B):\n'
+  '        p = g.permutation(pool)\n'
+  '        c += abs(p[:n].mean() - p[n:].mean()) >= obs\n'
+  '    return c / B\n'
+  '\n'
+  'for n in (10, 30, 100):\n'
+  '    치우침 = lambda g, n=n: (g.exponential(1, n), g.exponential(1, n))\n'
+  '    print(n, 위양성(치우침, t검정), 위양성(치우침, 뒤섞기))\n'
+  '# 10 0.042 0.046\n'
+  '# 30 0.044 0.044\n'
+  '# 100 0.055 0.056\n'
+  '\n'
+  '세계 = {"큰 분산이 작은 집단": lambda g: (g.normal(0, 3, 20), g.normal(0, 1, 60)),\n'
+  '        "큰 분산이 큰 집단":   lambda g: (g.normal(0, 1, 20), g.normal(0, 3, 60))}\n'
+  'for 이름, 뽑기 in 세계.items():\n'
+  '    print(이름, 위양성(뽑기, t검정), 위양성(뽑기, 웰치), 위양성(뽑기, 뒤섞기, R=500))\n'
+  '# 큰 분산이 작은 집단 0.222 0.058 0.22\n'
+  '# 큰 분산이 큰 집단 0.002 0.052 0.004'),
+ ("## 3. (책이 원리를 보이려고 돌린 코드) 꼬리가 두꺼우면 비모수 검정의 검정력이 더 높다 (책 B4.4)\n"
+  "극단값이 자주 나오는 분포(자유도 2의 t분포)에서 집단당 40명을 뽑되 한 집단에만 0.8을 더하고, 이 세계를 2,000번 지어 t검정과 맨-휘트니가 각각 효과를 잡은 비율을 셉니다.",
+  'from scipy import stats\n'
+  'g = np.random.default_rng(73)\n'
+  'w1 = w2 = 0\n'
+  'for _ in range(2000):\n'
+  '    u = g.standard_t(2, 40) + 0.8      # 꼬리가 아주 두꺼운 분포\n'
+  '    v = g.standard_t(2, 40)\n'
+  '    w1 += stats.ttest_ind(u, v).pvalue < .05\n'
+  '    w2 += stats.mannwhitneyu(u, v).pvalue < .05\n'
+  'print(round(w1 / 2000, 3), round(w2 / 2000, 3))\n'
+  '# 0.375 0.691'),
 ],
 "ch21": [
  ("## 2. AI 가 준 코드. 읽지 않는다\n함수 하나로 취급하고 밖에서 조건만 겁니다. "

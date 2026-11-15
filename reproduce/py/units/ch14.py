@@ -77,6 +77,8 @@ calc("ch14.exp_p")(lambda: ols(E().mil, [E().cond])[2][1])
 # 2026-11-15 네 부분 개편에서 산문으로 올라온 수
 calc("ch14.exp_mw_p")(lambda: stats.mannwhitneyu(E().mil[E().cond == 1].values,
                                                  E().mil[E().cond == 0].values).pvalue)   # 코드 9
+calc("ch14.exp_n_treat")(lambda: int((E().cond == 1).sum()))         # B4 실습 2 = 집단마다 183명
+calc("ch14.exp_welch_p")(lambda: stats.ttest_ind(E().mil[E().cond == 1], E().mil[E().cond == 0], equal_var=False).pvalue)
 calc("ch14.n_svy_raw")(lambda: len(load("svy", clean=False)))       # 정제 전 590
 calc("ch14.n_svy_minus1")(lambda: len(S()) - 1)                     # 코드 6 의 한 사람 뺀 인원
 calc("ch14.mw_are_loss_pct")(lambda: 100 * (1 - 3 / np.pi))         # 정규분포에서 맨-휘트니의 점근 상대 효율 손실 (%)
@@ -179,6 +181,9 @@ for _nm, _d in (("smallvar", _small_big), ("bigvar", _big_big)):
     calc(f"ch14.fp_{_nm}_welch")(lambda nm=_nm, d=_d: _fp_cached((nm, "w"), d, _welch))
     calc(f"ch14.fp_{_nm}_perm")(lambda nm=_nm, d=_d: _fp_cached((nm, "p"), d, _perm_p, R=500))
 calc("ch14.fp_smallvar_t_pct")(lambda: _fp_cached(("smallvar", "t"), _small_big, _t) * 100)
+_eq40 = lambda g: (g.normal(0, 3, 40), g.normal(0, 1, 40))           # B4 실습 3 = 인원만 40 · 40 으로
+calc("ch14.fp_equal40_t")(lambda: _fp_cached(("eq40", "t"), _eq40, _t))
+calc("ch14.fp_equal40_welch")(lambda: _fp_cached(("eq40", "w"), _eq40, _welch))
 
 
 # §14.5 두꺼운 꼬리의 검정력 = 책 코드와 같은 난수 순서
