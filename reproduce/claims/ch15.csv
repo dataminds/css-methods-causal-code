@@ -84,9 +84,6 @@ ch15.4.age.bgen,ch15,0.864,ch15.b_hjs_gen,data,,§15.4
 ch15.4.r.hg,ch15,.42,ch15.r_hjs_gen,data,,§15.4 상관
 ch15.4.r.mg,ch15,.41,ch15.r_mil_gen,data,,§15.4 상관
 ch15.4.r.ha,ch15,.05,ch15.r_hjs_age,data,,§15.4 상관
-ch15.4.twin.b,ch15,0.98,ch15.b_hjs,data,,§15.4 쌍둥이 척도
-ch15.4.twin.bh,ch15,0.63,ch15.twin_b_hjs,sim,1.1,§15.4 쌍둥이 척도(씨앗 73 잡음 SD .15) 를 함께 넣은 hjs 계수 (파이썬 .627). R 독립 난수 · 파이썬 500 번 모의 표준편차 .259 → 3 × √2 × .259 ≈ 1.10 (공선성 그 자체 때문에 대조가 약하다)
-ch15.4.twin.bt,ch15,0.35,ch15.twin_b_twin,sim,1.1,§15.4 twin 계수 ; 모의 표준편차 .258 → 1.10
 ch15.4.twin.sum,ch15,0.98,ch15.twin_b_sum,sim,0.01,§15.4 두 계수의 합 (파이썬 .9808) ; 모의 표준편차 .0022 → .0093
 ch15.4.twin.se1,ch15,0.051,ch15.se_hjs,data,,§15.4 단독 모형 hjs 표준오차
 ch15.4.twin.se2,ch15,0.28,ch15.twin_se,sim,0.04,§15.4 쌍둥이 모형 hjs 표준오차 (파이썬 .2789) ; 모의 표준편차 .0088 → .037
@@ -156,10 +153,6 @@ ch15.8.ex4.hi,ch15,0.98,ch15.sens_first4_max,data,,실습 4
 ch15.8.ex4.swl,ch15,0.75,ch15.sens_swl,data,,실습 4
 ch15.9.b,ch15,0.98,ch15.b_hjs,data,,§15.9 점검
 ch15.9.bgen,ch15,0.86,ch15.b_hjs_gen,data,,§15.9 점검
-ch15.9.twin.bh,ch15,0.63,ch15.twin_b_hjs,sim,1.1,§15.9 ; 허용 근거 = ch15.4.twin.bh
-ch15.9.twin.bt,ch15,0.35,ch15.twin_b_twin,sim,1.1,§15.9
-ch15.9.twin.se1,ch15,0.051,ch15.se_hjs,data,,§15.9
-ch15.9.twin.se2,ch15,0.28,ch15.twin_se,sim,0.04,§15.9
 ch15.ht.int.1,ch15,4.68,ch15.ht1_b_int,data,,§15.1 「논문의 위계적 회귀 표 읽기」 성별 남 · 여 554명 (S3 ⑦ 과 같은 표본 ; 2026-11-15)
 ch15.ht.int.2,ch15,0.22,ch15.ht1_se_int,data,,§15.1 「논문의 위계적 회귀 표 읽기」 성별 남 · 여 554명 (S3 ⑦ 과 같은 표본 ; 2026-11-15)
 ch15.ht.int.3,ch15,−0.09,ch15.ht2_b_int,data,,§15.1 「논문의 위계적 회귀 표 읽기」 성별 남 · 여 554명 (S3 ⑦ 과 같은 표본 ; 2026-11-15)
@@ -265,3 +258,37 @@ ch15.4p.ai.tb.1,ch15,−1.5,,fixed,,§ 4단 전환 개념 절 결과 표 (2026-1
 ch15.4p.ai.n590.1,ch15,590,,fixed,,§ 4단 전환 개념 절 결과 표 (2026-11-15n) ; 설계값 · 표본 수
 ch15.4p.ai.n590.2,ch15,566,,fixed,,§ 4단 전환 개념 절 결과 표 (2026-11-15n) ; 설계값 · 표본 수
 ch15.4p.ai.svy566,ch15,566,,fixed,,§ 4단 전환 AI 절 = 설문판 정제본 사람 수 (2026-11-15n)
+ch15.dm.fem1,ch15,−0.02,ch15.ht1_b_fem,data,,§15.1 더미 변수 소절 = 위계 표 1단계 여성 계수 (2026-11-15)
+ch15.dm.fem1abs,ch15,0.02,ch15.dm_ht1fem_abs,data,,위계 표 1단계 여성 계수의 크기 (부호는 문장의 「낮다」)
+ch15.dm.n1,ch15,270,ch15.dm_n1,data,,설문판 정제 566명 gender = 1
+ch15.dm.n2,ch15,284,ch15.dm_n2,data,,gender = 2
+ch15.dm.n3,ch15,12,ch15.dm_n3,data,,gender = 3
+ch15.dm.b0,ch15,4.902,ch15.dm_b0,data,,남성 기준 더미 둘 = 코드 10
+ch15.dm.bf,ch15,−0.024,ch15.dm_bf,data,,
+ch15.dm.bo,ch15,0.077,ch15.dm_bo,data,,
+ch15.dm.tab.p1,ch15,4.902,ch15.dm_p1,data,,범주별 예측값 = 기준 범주 평균
+ch15.dm.tab.p2a,ch15,4.902,ch15.dm_b0,data,,
+ch15.dm.tab.p2b,ch15,0.024,ch15.dm_bf_abs,data,,여성 계수의 크기 (식에서는 빼기)
+ch15.dm.tab.p2,ch15,4.878,ch15.dm_p2,data,,
+ch15.dm.tab.p3a,ch15,4.902,ch15.dm_b0,data,,
+ch15.dm.tab.p3b,ch15,0.077,ch15.dm_bo,data,,
+ch15.dm.tab.p3,ch15,4.979,ch15.dm_p3,data,,
+ch15.dm.wm,ch15,0.024,ch15.dm_wm,data,,여성 기준 모형
+ch15.dm.wo,ch15,0.102,ch15.dm_wo,data,,
+ch15.dm.n3b,ch15,12,ch15.dm_n3,data,,
+ch15.dm.seo,ch15,0.37,ch15.dm_se_o,data,,
+ch15.dm.num,ch15,−0.011,ch15.dm_num,data,,번호를 수로 그대로 넣은 잘못된 모형
+ch15.dm.numabs,ch15,0.011,ch15.dm_num_abs,data,,
+ch15.dm.ex.w0,ch15,4.878,ch15.dm_w0,data,,실습 6 = 여성 기준
+ch15.dm.ex.wm,ch15,0.024,ch15.dm_wm,data,,
+ch15.dm.ex.wo,ch15,0.102,ch15.dm_wo,data,,
+ch15.dm.ex.p1,ch15,4.902,ch15.dm_p1,data,,
+ch15.dm.ex.p2,ch15,4.878,ch15.dm_p2,data,,
+ch15.dm.ex.p3,ch15,4.979,ch15.dm_p3,data,,
+ch15.t15q.L260.1.0.98,ch15,0.98,ch15.b_hjs,data,,§15.4 쌍둥이 척도 = hjs 단독 계수 (2026-11-15q 문면 「나뉘었다」로 다시 묶음)
+ch15.t15q.L260.1.0.63,ch15,0.63,ch15.twin_b_hjs,sim,1.1,§15.4 쌍둥이 척도(씨앗 73 잡음 SD .15) 를 함께 넣은 hjs 계수 (파이썬 .627). R 독립 난수 · 파이썬 500 번 모의 표준편차 .259 → 3 × √2 × .259 ≈ 1.10 (공선성 그 자체 때문에 대조가 약하다)
+ch15.t15q.L260.1.0.35,ch15,0.35,ch15.twin_b_twin,sim,1.1,§15.4 twin 계수 ; 모의 표준편차 .258 → 1.10
+ch15.t15q.L510.1.0.63,ch15,0.63,ch15.twin_b_hjs,sim,1.1,§15.4 쌍둥이 척도(씨앗 73 잡음 SD .15) 를 함께 넣은 hjs 계수 (파이썬 .627). R 독립 난수 · 파이썬 500 번 모의 표준편차 .259 → 3 × √2 × .259 ≈ 1.10 (공선성 그 자체 때문에 대조가 약하다)
+ch15.t15q.L510.1.0.35,ch15,0.35,ch15.twin_b_twin,sim,1.1,§15.4 twin 계수 ; 모의 표준편차 .258 → 1.10
+ch15.t15q.L510.1.0.051,ch15,0.051,ch15.se_hjs,data,,§15.9 점검 = hjs 단독 표준오차
+ch15.t15q.L510.1.0.28,ch15,0.28,ch15.twin_se,sim,0.04,§15.9

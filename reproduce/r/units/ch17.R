@@ -71,4 +71,20 @@ for (k in c("a", "b", "cp", "ab", "bu", "cpu", "c", "abu")) local({
   kk <- k; calc(paste0("ch17.conf_", kk), function() memo("conf", conf)[[kk]])
 })
 calc("ch17.conf04_abu", function() memo("conf04", function() conf(0.4))$abu)
+
+# 2026-11-15q §17.4 「원인과 결과를 바꾼 모형의 적합도」 = lavaan 으로 사슬 A -> B -> C (직접 경로 없음)
+chain <- function(a, b, cc) memo(paste("chain", a, b, cc), function() {
+  m <- paste0(b, " ~ ", a, "
+", cc, " ~ ", b)
+  fit <- lavaan::sem(m, data = S()[, c(a, b, cc)])
+  lavaan::fitMeasures(fit, c("chisq", "pvalue")) })
+chains <- list(hrm = c("hjs", "refl", "mil"), mrh = c("mil", "refl", "hjs"), hmr = c("hjs", "mil", "refl"),
+               rmh = c("refl", "mil", "hjs"), rhm = c("refl", "hjs", "mil"), mhr = c("mil", "hjs", "refl"))
+for (nm in names(chains)) local({ k <- nm; v <- chains[[k]]
+  calc(paste0("ch17.chain_", k, "_chi"), function() unname(chain(v[1], v[2], v[3])["chisq"]))
+  calc(paste0("ch17.chain_", k, "_p"), function() unname(chain(v[1], v[2], v[3])["pvalue"]))
+})
+# 회고 습관을 고정한 여정 지각–삶의 의미 편상관 (회귀 잔차끼리의 상관으로 따로 계산)
+calc("ch17.partial_hm_r", function() { s <- S()
+  cor(residuals(lm(hjs ~ refl, data = s)), residuals(lm(mil ~ refl, data = s))) })
 })

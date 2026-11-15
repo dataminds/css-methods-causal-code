@@ -213,3 +213,24 @@ calc("ch15.ht_dr2")(lambda: _ht()["dr2"])
 calc("ch15.ht_F")(lambda: _ht()["F"])
 calc("ch15.ht_df")(lambda: _ht()["df"])
 calc("ch15.ht_p_lt001")(lambda: float(_ht()["p"] < .001))
+
+
+# 2026-11-15 §15.1 「명목 변수를 넣는 법」 = 성별 세 범주 더미 (기준 남성 · 여성) · 번호를 수로 넣은 잘못된 모형
+def _dm():
+    if "dm" not in _c:
+        s = S(); m, f, o = [(s.gender == k).astype(int) for k in (1, 2, 3)]
+        b, se, *_ = ols(s.mil, [f, o])
+        bw, sew, *_ = ols(s.mil, [m, o])
+        bn, *_ = ols(s.mil, [s.gender])
+        _c["dm"] = dict(n1=int(m.sum()), n2=int(f.sum()), n3=int(o.sum()), b0=b[0], bf=b[1], bo=b[2], se_o=se[2],
+                        w0=bw[0], wm=bw[1], wo=bw[2], num=bn[1],
+                        p1=b[0], p2=b[0] + b[1], p3=b[0] + b[2])
+    return _c["dm"]
+
+
+for _k in ("n1", "n2", "n3", "b0", "bf", "bo", "se_o", "w0", "wm", "wo", "num", "p1", "p2", "p3"):
+    calc(f"ch15.dm_{_k}")(lambda k=_k: _dm()[k])
+calc("ch15.dm_bf_abs")(lambda: abs(_dm()["bf"]))
+calc("ch15.dm_num_abs")(lambda: abs(_dm()["num"]))
+from common import CALCS as _CALCS
+calc("ch15.dm_ht1fem_abs")(lambda: abs(_CALCS["ch15.ht1_b_fem"]()))

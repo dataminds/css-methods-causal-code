@@ -188,3 +188,52 @@ calc("ch16.c4_se3")(lambda: _c4()[1][3])
 calc("ch16.cm1_b1")(lambda: _cm1()[0][1])
 calc("ch16.cm1_b3")(lambda: _cm1()[0][3])
 calc("ch16.cm1_se3")(lambda: _cm1()[1][3])
+
+
+# 2026-11-15p §16.2 「곱항을 넣기 전후의 계수 · 표준화 계수 β」
+def _noint():
+    s = S()
+    return memo("noint", lambda: ols(s.mil, [s.hjs - s.hjs.mean(), s.refl - s.refl.mean()])[0])
+
+
+_z = lambda v: (v - v.mean()) / v.std(ddof=1)
+
+
+def _beta():
+    def f():
+        s = S()
+        spss = ols(_z(s.mil), [_z(s.hjs), _z(s.refl), _z(s.hjs * s.refl)])[0]      # 원점수 곱을 만든 뒤 전부 표준화
+        good = ols(_z(s.mil), [_z(s.hjs), _z(s.refl), _z(s.hjs) * _z(s.refl)])[0]  # 먼저 표준화하고 곱한다
+        return spss, good
+    return memo("beta", f)
+
+
+calc("ch16.noint_b_hjs")(lambda: _noint()[1])
+calc("ch16.noint_b_refl")(lambda: _noint()[2])
+for _j, _nm in enumerate(("hjs", "refl", "xy"), start=1):
+    calc(f"ch16.beta_spss_{_nm}")(lambda j=_j: _beta()[0][j])
+    calc(f"ch16.beta_std_{_nm}")(lambda j=_j: _beta()[1][j])
+
+
+# 2026-11-15q §16.1 [더 나아가기] 상자 = 집단을 나눠 돌린 기울기 차이 ⊥ 한 모형의 곱항 (코드 7)
+def _grp():
+    def f():
+        s = S(); med = s.refl.median()
+        lo, hi = s[s.refl <= med], s[s.refl > med]
+        bl, sel, *_ = ols(lo.mil, [lo.hjs]); bh, seh, *_ = ols(hi.mil, [hi.hjs])
+        d = bh[1] - bl[1]; sd = np.sqrt(sel[1] ** 2 + seh[1] ** 2)
+        g = (s.refl > med).astype(int)
+        bg, seg, pg, _ = ols(s.mil, [s.hjs, g, s.hjs * g])
+        rl = lo.mil - (bl[0] + bl[1] * lo.hjs); rh = hi.mil - (bh[0] + bh[1] * hi.hjs)
+        return dict(se_lo=sel[1], se_hi=seh[1], diff=d, sd_diff=sd, p_sep=2 * stats.norm.sf(abs(d / sd)),
+                    b0=bg[0], b_hjs=bg[1], b_g=bg[2], b_int=bg[3], se0=seg[0], se_hjs=seg[1], se_g=seg[2],
+                    se_int=seg[3], p_int=pg[3], rsd_lo=rl.std(ddof=1), rsd_hi=rh.std(ddof=1))
+    return memo("grp", f)
+
+
+for _k in ("se_lo", "se_hi", "diff", "sd_diff", "b0", "b_hjs", "b_g", "b_int", "se0", "se_hjs", "se_g", "se_int",
+           "rsd_lo", "rsd_hi"):
+    calc(f"ch16.grp_{_k}")(lambda k=_k: _grp()[k])
+calc("ch16.grp_p_sep_lt001")(lambda: .001 if _grp()["p_sep"] < .001 else _grp()["p_sep"])
+calc("ch16.grp_p_int_lt001")(lambda: .001 if _grp()["p_int"] < .001 else _grp()["p_int"])
+calc("ch16.grp_rounded_sum")(lambda: 0.873 + 0.564)

@@ -94,3 +94,35 @@ def _conf(path=0.0):
 for k in ("a", "b", "cp", "ab", "bu", "cpu", "c", "abu"):
     calc(f"ch17.conf_{k}")(lambda k=k: memo("conf", _conf)[k])
 calc("ch17.conf04_abu")(lambda: memo("conf04", lambda: _conf(0.4))["abu"])
+
+
+# 2026-11-15q §17.4 「원인과 결과를 바꾼 모형의 적합도」 = 세 변수 사슬 A → B → C (직접 경로 없음 ; 자유도 1)
+# 최대우도 적합 함수 F = ln|Σ̂| − ln|S| + tr(S Σ̂⁻¹) − p, 검정 통계량 = N × F (lavaan 기본과 같은 N 배).
+from scipy import stats as _st
+
+
+def _chain_fit(a, b, c):
+    def f():
+        d = S()[[a, b, c]].values
+        Sm = np.cov(d, rowvar=False, bias=True)          # 최대우도 공분산 (N 으로 나눔)
+        Sh = Sm.copy()
+        Sh[0, 2] = Sh[2, 0] = Sm[0, 1] * Sm[1, 2] / Sm[1, 1]   # 사슬이 재현하는 A–C 공분산
+        F = np.log(np.linalg.det(Sh)) - np.log(np.linalg.det(Sm)) + np.trace(Sm @ np.linalg.inv(Sh)) - 3
+        chi = len(d) * F
+        return chi, _st.chi2.sf(chi, 1)
+    return memo(("chain", a, b, c), f)
+
+
+for _nm, (_a, _b, _c3) in {"hrm": ("hjs", "refl", "mil"), "mrh": ("mil", "refl", "hjs"),
+                          "hmr": ("hjs", "mil", "refl"), "rmh": ("refl", "mil", "hjs"),
+                          "rhm": ("refl", "hjs", "mil"), "mhr": ("mil", "hjs", "refl")}.items():
+    calc(f"ch17.chain_{_nm}_chi")(lambda a=_a, b=_b, c=_c3: _chain_fit(a, b, c)[0])
+    calc(f"ch17.chain_{_nm}_p")(lambda a=_a, b=_b, c=_c3: _chain_fit(a, b, c)[1])
+
+
+def _partial_hm_r():                      # 회고 습관을 고정한 여정 지각–삶의 의미 편상관 (§17.4)
+    s = S(); R = np.corrcoef([s.hjs, s.refl, s.mil])
+    return (R[0, 2] - R[0, 1] * R[1, 2]) / np.sqrt((1 - R[0, 1] ** 2) * (1 - R[1, 2] ** 2))
+
+
+calc("ch17.partial_hm_r")(_partial_hm_r)

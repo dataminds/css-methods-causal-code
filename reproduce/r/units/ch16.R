@@ -156,4 +156,49 @@ calc("ch16.ck_cond_cen", function() ck()$cen["cond", 1])
 calc("ch16.ck_p_cen", function() ck()$cen["cond", 4])
 calc("ch16.ck_int_raw", function() ck()$raw["cond:mil_t1", 1])
 calc("ch16.ck_int_cen", function() ck()$cen["cond:k", 1])
+
+# 2026-11-15p §16.2 「곱항을 넣기 전후의 계수 · 표준화 계수 β」 (lm 으로 따로 계산)
+# 이 local 블록에는 첫 블록의 S · memo 가 보이지 않으므로 따로 둔다.
+S <- function() load_data("svy")
+memo <- local({ store <- new.env(); function(key, f) {
+  if (!exists(key, envir = store, inherits = FALSE)) assign(key, f(), envir = store)
+  get(key, envir = store, inherits = FALSE)
+} })
+noint <- function() memo("noint", function() { s <- S()
+  s$h <- s$hjs - mean(s$hjs); s$r <- s$refl - mean(s$refl)
+  coef(lm(mil ~ h + r, data = s)) })
+calc("ch16.noint_b_hjs", function() unname(noint()["h"]))
+calc("ch16.noint_b_refl", function() unname(noint()["r"]))
+zz <- function(v) (v - mean(v)) / sd(v)
+beta <- function() memo("beta", function() { s <- S()
+  d1 <- data.frame(y = zz(s$mil), x = zz(s$hjs), w = zz(s$refl), p = zz(s$hjs * s$refl))
+  d2 <- data.frame(y = zz(s$mil), x = zz(s$hjs), w = zz(s$refl)); d2$p <- d2$x * d2$w
+  list(spss = coef(lm(y ~ x + w + p, data = d1)), good = coef(lm(y ~ x + w + p, data = d2))) })
+for (k in list(c("hjs", "x"), c("refl", "w"), c("xy", "p"))) local({ nm <- k[1]; cf <- k[2]
+  calc(paste0("ch16.beta_spss_", nm), function() unname(beta()$spss[cf]))
+  calc(paste0("ch16.beta_std_", nm), function() unname(beta()$good[cf]))
+})
+
+# 2026-11-15q §16.1 [더 나아가기] 상자 = 따로 돌린 두 회귀 ⊥ 한 모형의 곱항 (lm 의 곱 표기)
+grp <- local({ cache <- NULL; function() {
+  if (is.null(cache)) {
+    s <- S(); med <- median(s$refl); lo <- s[s$refl <= med, ]; hi <- s[s$refl > med, ]
+    cl <- summary(lm(mil ~ hjs, data = lo))$coefficients; ch <- summary(lm(mil ~ hjs, data = hi))$coefficients
+    d <- ch["hjs", 1] - cl["hjs", 1]; sdd <- sqrt(cl["hjs", 2]^2 + ch["hjs", 2]^2)
+    s$g <- as.integer(s$refl > med)
+    cg <- summary(lm(mil ~ hjs * g, data = s))$coefficients
+    cache <<- list(se_lo = cl["hjs", 2], se_hi = ch["hjs", 2], diff = d, sd_diff = sdd, p_sep = 2 * pnorm(-abs(d / sdd)),
+                   b0 = cg["(Intercept)", 1], b_hjs = cg["hjs", 1], b_g = cg["g", 1], b_int = cg["hjs:g", 1],
+                   se0 = cg["(Intercept)", 2], se_hjs = cg["hjs", 2], se_g = cg["g", 2], se_int = cg["hjs:g", 2],
+                   p_int = cg["hjs:g", 4], rsd_lo = sd(resid(lm(mil ~ hjs, data = lo))), rsd_hi = sd(resid(lm(mil ~ hjs, data = hi))))
+  }
+  cache
+} })
+for (k in c("se_lo", "se_hi", "diff", "sd_diff", "b0", "b_hjs", "b_g", "b_int", "se0", "se_hjs", "se_g", "se_int",
+            "rsd_lo", "rsd_hi")) local({
+  kk <- k; calc(paste0("ch16.grp_", kk), function() grp()[[kk]])
+})
+calc("ch16.grp_p_sep_lt001", function() { p <- grp()$p_sep; if (p < .001) .001 else p })
+calc("ch16.grp_p_int_lt001", function() { p <- grp()$p_int; if (p < .001) .001 else p })
+calc("ch16.grp_rounded_sum", function() 0.873 + 0.564)
 })

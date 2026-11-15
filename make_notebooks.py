@@ -470,7 +470,7 @@ STEPS = {
   '# A 0.23 0.31 -0.0 / B 0.28 0.01 0.31 / C 0.29 0.23 0.22'),
 ],
 "ch17": [
- ("## 2. 매개: 총효과가 두 길로 쪼개진다\nc = c' + a×b 가 정확히 떨어집니다(§17.1).",
+ ("## 2. 매개: 총효과가 두 길로 나뉜다\nc = c' + a×b 가 정확히 떨어집니다(§17.1).",
   'exp = load("exp")\n'
   'a,_,_,_ = ols(exp.hjs.values, [exp.cond.values]); a = a[1]\n'
   'bb,_,_,_ = ols(exp.mil.values, [exp.hjs.values, exp.cond.values]); b_path, cprime = bb[1], bb[2]\n'

@@ -123,3 +123,15 @@ ch17.code4.n,ch17,400,,fixed,,모의시행 설계 인원
 ch17.code4.true,ch17,0.30,,fixed,,Y 생성식의 0.30
 ch17.code5.ab,ch17,0.349,ch17.conf_ab,sim,0.31,코드 5 읽는 법
 ch17.log.n2,ch17,366,ch14.exp_n,data,,검증 로그 본보기
+ch17.t16a.L187.1.258.51,ch17,258.51,ch17.chain_hrm_chi,data,,§17.4 사슬 hjs→refl→mil χ²(1) (2026-11-16a)
+ch17.t16a.L187.1..001,ch17,.001,,fixed,,p 표기 기준 < .001
+ch17.t16a.L188.1.21.77,ch17,21.77,ch17.chain_hmr_chi,data,,§17.4 사슬 hjs→mil→refl χ²(1)
+ch17.t16a.L188.1..001,ch17,.001,,fixed,,p 표기 기준 < .001
+ch17.t16a.L189.1.1.62,ch17,1.62,ch17.chain_rhm_chi,data,,§17.4 사슬 refl→hjs→mil χ²(1)
+ch17.t16a.L189.1..203,ch17,.203,ch17.chain_rhm_p,data,,§17.4 사슬 refl→hjs→mil p
+ch17.t16a.L195.1.258.51,ch17,258.51,ch17.chain_hrm_chi,data,,§17.4 회고 습관이 가운데인 사슬 χ²
+ch17.t16a.L195.1.1.62,ch17,1.62,ch17.chain_rhm_chi,data,,§17.4 여정 지각이 가운데인 사슬 χ²
+ch17.t16a.L195.1..629,ch17,.629,ch17.path_obs,data,,설문판 hjs–mil 상관
+ch17.t16a.L195.1..606,ch17,.606,ch17.partial_hm_r,data,,회고 습관을 고정한 hjs–mil 편상관
+ch17.t16a.L284.1.0.0,ch17,0.0,,fixed,,코드 출력의 p 표기 (반올림 0.0)
+ch17.t16a.L284.1..001,ch17,.001,,fixed,,p 표기 기준 < .001

@@ -149,4 +149,27 @@ calc("ch15.ht_dr2", function() ht_fit(2)$r2 - ht_fit(1)$r2)
 calc("ch15.ht_F", function() ht_cmp()$F[2])
 calc("ch15.ht_df", function() ht_cmp()$Res.Df[2])
 calc("ch15.ht_p_lt001", function() as.numeric(ht_cmp()$`Pr(>F)`[2] < .001))
+
+# 2026-11-15 §15.1 「명목 변수를 넣는 법」 = factor() 로 더미를 R 이 만든다 (기준 = 첫 수준)
+dm <- local({ cache <- NULL; function() {
+  if (is.null(cache)) {
+    s <- S(); s$g <- factor(s$gender)
+    cm <- summary(lm(mil ~ g, data = s))$coefficients
+    s$g2 <- relevel(s$g, ref = "2")
+    cw <- coef(lm(mil ~ g2, data = s))
+    cn <- coef(lm(mil ~ gender, data = s))
+    tb <- table(s$gender)
+    cache <<- list(n1 = tb[["1"]], n2 = tb[["2"]], n3 = tb[["3"]], b0 = cm["(Intercept)", 1], bf = cm["g2", 1],
+                   bo = cm["g3", 1], se_o = cm["g3", 2], w0 = cw[["(Intercept)"]], wm = cw[["g21"]], wo = cw[["g23"]],
+                   num = cn[["gender"]], p1 = cm["(Intercept)", 1], p2 = cm["(Intercept)", 1] + cm["g2", 1],
+                   p3 = cm["(Intercept)", 1] + cm["g3", 1])
+  }
+  cache
+} })
+for (k in c("n1", "n2", "n3", "b0", "bf", "bo", "se_o", "w0", "wm", "wo", "num", "p1", "p2", "p3")) local({
+  kk <- k; calc(paste0("ch15.dm_", kk), function() dm()[[kk]])
+})
+calc("ch15.dm_bf_abs", function() abs(dm()$bf))
+calc("ch15.dm_num_abs", function() abs(dm()$num))
+calc("ch15.dm_ht1fem_abs", function() abs(CALCS[["ch15.ht1_b_fem"]]()))
 })
