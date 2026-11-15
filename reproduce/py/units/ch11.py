@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""11장 · 우연은 시뮬레이션으로 — 파이썬 엔진 (책 코드와 같은 난수 순서 ; 씨앗 73)."""
+"""11장 · 우연을 수로 나타내는 두 방법 — 파이썬 엔진 (책 코드와 같은 난수 순서 ; 씨앗 73)."""
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -111,3 +111,33 @@ calc("ch11.clt_skew_pop")(lambda: sims()["skew_pop"])
 calc("ch11.clt_skew_means")(lambda: sims()["skew_means"])
 calc("ch11.perm_p_gender")(lambda: sims()["perm_p"])
 calc("ch11.b1_coin100")(lambda: sims()["coin100"])
+
+
+# §11.6 · §11.7 베이즈의 답 = 격자 근사 (원고 코드와 같은 계산 ; 표본 = 정제본 파일의 앞 n명이라 두 엔진이 같은 표본을 쓴다)
+_GRID = np.round(np.arange(1, 7.0005, 0.001), 3)
+
+
+def _post(n, prior_sd=None):
+    x = POP()[:n]
+    p = stats.norm.pdf(x.mean(), _GRID, x.std(ddof=1) / np.sqrt(len(x)))
+    if prior_sd is not None:
+        p = p * stats.norm.pdf(_GRID, 4.0, prior_sd)
+    p = p / p.sum()
+    m = (_GRID * p).sum()
+    c = p.cumsum()
+    return {"mean": m, "sd": np.sqrt(((_GRID - m) ** 2 * p).sum()),
+            "lo": _GRID[c.searchsorted(.025)], "hi": _GRID[c.searchsorted(.975)], "pgt5": p[_GRID > 5].sum()}
+
+
+for _k in ("mean", "sd", "lo", "hi", "pgt5"):
+    calc(f"ch11.bayes566_{_k}")(lambda k=_k: _post(566)[k])
+calc("ch11.se566")(lambda: SD() / np.sqrt(566))
+calc("ch11.bayes30_flat")(lambda: _post(30)["mean"])
+calc("ch11.bayes30_belief")(lambda: _post(30, 0.25)["mean"])
+calc("ch11.bayes566_belief")(lambda: _post(566, 0.25)["mean"])
+calc("ch11.bayes30_shift")(lambda: _post(30)["mean"] - _post(30, 0.25)["mean"])
+calc("ch11.bayes566_shift")(lambda: _post(566)["mean"] - _post(566, 0.25)["mean"])
+calc("ch11.bayes30_wide")(lambda: _post(30, 1.0)["mean"])
+calc("ch11.bayes50_mean")(lambda: _post(50)["mean"])
+calc("ch11.bayes50_sd")(lambda: _post(50)["sd"])
+calc("ch11.grid_n")(lambda: len(_GRID))

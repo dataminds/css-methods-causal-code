@@ -283,3 +283,4 @@ ch19.ci.formula.gap,ch19,0.01,ch19.diff_ci_hi_gap,data,,부트스트랩 표기 0
 ch19.bayes.bf15,ch19,15,,paper,,Wagenmakers 외 2018 p. 46 의 예시 값 (BF01 = 15 = evidence for absence)
 ch19.bayes.bf1_5,ch19,1.5,,paper,,Wagenmakers 외 2018 p. 46 의 예시 값 (BF01 = 1.5 = absence of evidence)
 ch19.bayes.bf1,ch19,1,,fixed,,BF = 1 = 자료가 두 가설을 똑같이 지지 (정의)
+ch19.bayes.prior30,ch19,0.32,ch11.bayes30_shift,data,,§19.3 끝 상자 1 = 11장 §11.6 앞 30명 평평한 사전분포 대 믿음 사전분포의 사후 평균 차 (2026-11-15g)

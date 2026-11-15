@@ -74,4 +74,27 @@ calc("ch11.clt_skew_pop", function() G1(skew_pop))
 calc("ch11.clt_skew_means", function() G1(sm))
 calc("ch11.perm_p_gender", function() mean(abs(perm) >= abs(obs)))
 calc("ch11.b1_coin100", function() coin100)
+
+# §11.6 · §11.7 베이즈의 답 = 격자 근사 (표본 = 정제본 파일의 앞 n명)
+GRID <- round(seq(1, 7, by = 0.001), 3)
+post <- function(n, prior_sd = NULL) {
+  x <- POP()[seq_len(n)]
+  p <- dnorm(mean(x), GRID, sd(x) / sqrt(length(x)))
+  if (!is.null(prior_sd)) p <- p * dnorm(GRID, 4.0, prior_sd)
+  p <- p / sum(p)
+  m <- sum(GRID * p); cs <- cumsum(p)
+  list(mean = m, sd = sqrt(sum((GRID - m)^2 * p)),
+       lo = GRID[which(cs >= .025)[1]], hi = GRID[which(cs >= .975)[1]], pgt5 = sum(p[GRID > 5]))
+}
+for (k in c("mean", "sd", "lo", "hi", "pgt5")) local({ kk <- k; calc(paste0("ch11.bayes566_", kk), function() post(566)[[kk]]) })
+calc("ch11.se566", function() sd(POP()) / sqrt(566))
+calc("ch11.bayes30_flat", function() post(30)$mean)
+calc("ch11.bayes30_belief", function() post(30, 0.25)$mean)
+calc("ch11.bayes566_belief", function() post(566, 0.25)$mean)
+calc("ch11.bayes30_shift", function() post(30)$mean - post(30, 0.25)$mean)
+calc("ch11.bayes566_shift", function() post(566)$mean - post(566, 0.25)$mean)
+calc("ch11.bayes30_wide", function() post(30, 1.0)$mean)
+calc("ch11.bayes50_mean", function() post(50)$mean)
+calc("ch11.bayes50_sd", function() post(50)$sd)
+calc("ch11.grid_n", function() length(GRID))
 })

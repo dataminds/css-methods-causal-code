@@ -319,6 +319,39 @@ def fig_ch11_clt(n_rep=2000, n=40, seed=73):
     return pd.Series(pop).skew(), pd.Series(means).skew()
 
 
+def fig_ch11_two_answers(n_rep=1000, n=50, seed=73):
+    """같은 물음, 두 답 (11장 §11.7). 왼쪽 = 표집분포(모집단을 쥐고 되풀이해 뽑기) ·
+    오른쪽 = 앞 n명 한 표본과 평평한 사전분포로 고친 μ 의 사후분포(격자 근사 ; §11.6 코드와 같은 계산)."""
+    from scipy import stats
+    pop = load_clean("svy")["mil"].values
+    rng = np.random.default_rng(seed)
+    means = np.array([rng.choice(pop, size=n, replace=False).mean() for _ in range(n_rep)])
+    grid = np.round(np.arange(1, 7.0005, 0.001), 3)
+    x = pop[:n]                                            # 자료가 들어온 순서대로 앞 n명
+    p = stats.norm.pdf(x.mean(), grid, x.std(ddof=1) / n ** 0.5)
+    p = p / p.sum()
+    m = (grid * p).sum()
+    sd = np.sqrt(((grid - m) ** 2 * p).sum())
+    c = p.cumsum()
+    lo, hi = grid[c.searchsorted(.025)], grid[c.searchsorted(.975)]
+    fig, axes = plt.subplots(1, 2, figsize=(9, 3.4), sharex=True)
+    axes[0].hist(means, bins=30, color=OI[5], edgecolor="white")
+    axes[0].axvline(pop.mean(), color=OI[7], linestyle="--", linewidth=1.2, label="참값(모집단 평균)")
+    axes[0].set_title(f"빈도주의: 되풀이해 뽑은 표본 {n_rep}개의 평균\n가로축 = 표본 평균 · 표준편차 {means.std(ddof=1):.3f}")
+    axes[0].set_xlabel("표본 평균"); axes[0].set_ylabel("표본 수"); axes[0].legend(fontsize=8)
+    dens = p / 0.001                                       # 격자 간격으로 나눠 밀도로
+    axes[1].plot(grid, dens, color=OI[4], linewidth=1.8)
+    band = (grid >= lo) & (grid <= hi)
+    axes[1].fill_between(grid[band], dens[band], color=OI[4], alpha=0.25, label="95% 신용구간")
+    axes[1].axvline(x.mean(), color=OI[7], linestyle=":", linewidth=1.2, label="이 표본의 평균")
+    axes[1].set_title(f"베이즈: 앞 {n}명 한 표본으로 고친 μ에 대한 믿음\n가로축 = 모집단 평균 μ · 표준편차 {sd:.3f}")
+    axes[1].set_xlabel("모집단 평균 μ"); axes[1].set_ylabel("사후 밀도"); axes[1].legend(fontsize=8)
+    axes[1].set_xlim(4.0, 5.6)
+    fig.suptitle("생김새는 비슷해도 가로축에 놓인 것이 다르다 (씨앗 73 ; 설문판)", y=1.05)
+    save(fig, "fig-ch11-two-answers.png")
+    return means.std(ddof=1), m, sd
+
+
 # ── ch07: 뒤섞기 검정 영분포 ────────────────────────────────────
 def fig_ch12_perm(n_perm=5000, seed=73):
     exp = load_clean("exp")
@@ -1826,6 +1859,7 @@ if __name__ == "__main__":
     means = fig_ch11_sampling()
     fig_ch11_n()
     sk_pop, sk_mean = fig_ch11_clt()
+    fig_ch11_two_answers()   # 2026-11-15 11장 두 답 (빈도주의 ⊥ 베이즈)
     obs, p = fig_ch12_perm()
     ps20 = fig_ch12_pvar()
     fig_ch12_alpha_beta()

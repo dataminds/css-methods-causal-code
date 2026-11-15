@@ -18,23 +18,23 @@
    "tg, cg = exp[exp.cond == 1].mil, exp[exp.cond == 0].mil\nse = np.sqrt(tg.std(ddof=1)**2 / len(tg) + cg.std(ddof=1)**2 / len(cg))\nobs = tg.mean() - cg.mean()\nprint(round(se, 3), round(obs - 1.96 * se, 2), round(obs + 1.96 * se, 2))\n# 0.128 0.03 0.53"
   ],
   [
-   192,
+   183,
    "def cohen_d(a, b):\n    sp = np.sqrt(((len(a)-1)*a.std(ddof=1)**2 + (len(b)-1)*b.std(ddof=1)**2)\n                 / (len(a)+len(b)-2))\n    return (a.mean() - b.mean()) / sp\n\nprint(round(cohen_d(exp[exp.cond==1].mil, exp[exp.cond==0].mil), 2))\n# 0.23"
   ],
   [
-   212,
+   203,
    "from scipy.stats import norm\nprint(round(norm.cdf(0.23 / np.sqrt(2)), 4))\n# 0.5646"
   ],
   [
-   297,
+   288,
    "rng = np.random.default_rng(73)   # 씨앗은 n 여섯 개에 걸쳐 한 번만 : 표를 재현하려면 반복문 전체를 돌린다\npower = []\nfor n in (50, 100, 190, 300, 500, 800):\n    hits = sum(stats.ttest_ind(rng.standard_normal(n),\n                               rng.standard_normal(n) + 0.22).pvalue < .05\n               for _ in range(2000))\n    power.append(hits / 2000)\nprint(np.round(power, 2))\n# [0.19 0.34 0.57 0.76 0.94 0.99]"
   ],
   [
-   337,
+   328,
    "for n in (80, 90, 100, 110):\n    rng = np.random.default_rng(73)   # 앞 코드와 달리 n 마다 씨앗을 새로 심는다(실습 3)\n    hits = sum(stats.ttest_ind(rng.standard_normal(n),\n                               rng.standard_normal(n) + 0.4).pvalue < .05\n               for _ in range(2000))\n    print(n, round(hits / 2000, 2))\n# 80 0.7\n# 90 0.76\n# 100 0.81\n# 110 0.85"
   ],
   [
-   360,
+   351,
    "for rel in (1.00, 0.90, 0.70):                       # 척도의 신뢰도\n    rng = np.random.default_rng(73)\n    noise = np.sqrt((1 - rel) / rel) if rel < 1 else 0.0\n    hits = 0\n    for _ in range(2000):\n        a = rng.normal(0.22, 1, 190); b = rng.normal(0, 1, 190)\n        if noise:\n            a = a + rng.normal(0, noise, 190)        # 측정값 = 참값 + 잡음\n            b = b + rng.normal(0, noise, 190)\n        hits += stats.ttest_ind(a, b).pvalue < .05\n    print(rel, hits / 2000)                      # 2,000번 가운데 잡은 비율\n# 1.0 0.5585\n# 0.9 0.517\n# 0.7 0.415"
   ]
  ]
