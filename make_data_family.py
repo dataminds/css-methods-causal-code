@@ -212,7 +212,13 @@ def gen_panel(rng, n0=500, waves=3):
         flr = np.round(np.clip(5.2 + 0.70 * m_lat + rng.standard_normal(n0) * .55, 1, 7), 2)
         for i in np.flatnonzero(alive):
             rows.append((i + 1, t, hjs[i], mil[i], flr[i]))
+        for i in range(n0):                          # 빠지기 전 값(모의 세계에서만 있는 참값 ; B5)
+            COMPLETE_ROWS.append((i + 1, t, hjs[i], mil[i], flr[i]))
     return pd.DataFrame(rows, columns=["id", "wave", "hjs", "mil", "flr"])
+
+
+# gen_panel 이 이탈 전 전원 값을 여기에 모은다 (난수 순서는 그대로 ; 2026-11-18 B5 결측 단위의 참값)
+COMPLETE_ROWS: list = []
 
 
 def gen_cohort(rng, per_year=600):
@@ -396,6 +402,10 @@ def main():
         sys.exit(1)
 
     suffix = "" if strict else f"_seed{args.seed}"
+    # B5 참값 = 분석 자료가 아니므로 journey_*.csv 이름 규칙 밖에 둔다 (2장 §2.2 가 그 규칙으로 일곱 벌을 센다)
+    truth = pd.DataFrame(COMPLETE_ROWS, columns=["id", "wave", "hjs", "mil", "flr"])
+    truth.to_csv(os.path.join(OUT, f"truth_panel{suffix}.csv"), index=False, encoding="utf-8")
+    print("저장:", f"truth_panel{suffix}.csv", f"({len(truth)}행)")
     for name, df in d.items():
         path = os.path.join(OUT, f"journey_{name}{suffix}.csv")
         df.to_csv(path, index=False, encoding="utf-8")
@@ -417,6 +427,8 @@ def main():
 | journey_cohort.csv | S4b 반복 횡단(2015/2020/2025) | 1,800 |
 | journey_ts.csv | S5 단절 시계열(주간 집계) | 104 |
 | journey_coding.csv | S6 내용분석 코딩표(코더 2인) | 200 |
+
+참값 파일(분석 자료가 아님): `truth_panel.csv` = 패널판의 이탈 전 값 1,500행(500명 × 3차). 모의 세계라서 있는 값이며, 기초 B5가 결측 처리 방법의 추정을 참값과 견주는 데만 쓴다.
 """)
     print("\n[통과] 전 판 목표 구조 재현 → data/ 저장 완료.")
 

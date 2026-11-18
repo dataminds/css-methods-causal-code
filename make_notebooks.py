@@ -34,7 +34,7 @@ SLUG = {
     "ch19": "ch19-분석법-선택의-나무",
     "ch20": "ch20-결과-절-쓰는-법", "ch21": "ch21-갈림길의-정원",
     "ch22": "ch22-열어서-검증받기",
-    "b1": "b1-확률과-분포", "b2": "b2-세-집단-이상", "b3": "b3-상관", "b4": "b4-가정과-순위-검정",
+    "b1": "b1-확률과-분포", "b2": "b2-세-집단-이상", "b3": "b3-상관", "b4": "b4-가정과-순위-검정", "b5": "b5-결측",
     "s1": "s1-시나리오-두-집단-실험", "s2": "s2-시나리오-요인과-사전사후",
     "s3": "s3-시나리오-설문", "s4": "s4-시나리오-종단-패널과-코호트",
     "s5": "s5-시나리오-2차자료-자연실험", "s6": "s6-시나리오-내용분석",
@@ -51,7 +51,7 @@ TITLE = {
     "ch19": "19장 · 분석법 선택의 나무",
     "ch20": "20장 · 방법과 결과 절 쓰는 법", "ch21": "21장 · 갈림길의 정원",
     "ch22": "22장 · 열어서 검증받기: 읽지 않고 확인하기",
-    "b1": "기초 B1 · 확률과 분포", "b2": "기초 B2 · 세 집단 이상", "b3": "기초 B3 · 상관", "b4": "기초 B4 · 검정이 기대는 가정",
+    "b1": "기초 B1 · 확률과 분포", "b2": "기초 B2 · 세 집단 이상", "b3": "기초 B3 · 상관", "b4": "기초 B4 · 검정이 기대는 가정", "b5": "기초 B5 · 결측",
     "s1": "S1 · 두 집단 실험", "s2": "S2 · 요인과 사전사후",
     "s3": "S3 · 횡단 설문", "s4": "S4 · 종단 패널과 코호트",
     "s5": "S5 · 2차 자료와 자연실험", "s6": "S6 · 내용분석",
@@ -661,6 +661,71 @@ STEPS = {
   '    w2 += stats.mannwhitneyu(u, v).pvalue < .05\n'
   'print(round(w1 / 2000, 3), round(w2 / 2000, 3))\n'
   '# 0.375 0.691'),
+],
+"b5": [
+ ("## 2. (책이 원리를 보이려고 돌린 코드) 참값과 방법별 추정 (책 B5.3)\n"
+  "패널판은 모의 세계라서 생성기가 빈칸을 만들기 전의 값(`data/truth_panel.csv`)을 다시 만들어 두었습니다. "
+  "그 참값과, 빈칸이 있는 자료로 여러 방법을 써서 구한 3차 평균 · 1차–3차 상관 · 기울기를 견줍니다. "
+  "완전정보 최우추정은 R 의 lavaan 대신 같은 추정을 내는 EM 알고리즘으로 계산합니다.",
+  'def wide(df):\n'
+  '    m = df.pivot(index="id", columns="wave", values="mil")\n'
+  '    h = df.pivot(index="id", columns="wave", values="hjs")\n'
+  '    return pd.DataFrame({"m1": m[1], "m2": m[2], "m3": m[3], "h1": h[1], "h2": h[2]})\n'
+  'obs, true = wide(load("panel")), wide(pd.read_csv("data/truth_panel.csv"))   # 참값은 분석 자료가 아니라 이름이 다르다\n'
+  'def three(d):\n'
+  '    ok = d[["m1", "m3"]].dropna()\n'
+  '    b = np.cov(ok.m1, ok.m3)[0, 1] / ok.m1.var()\n'
+  '    return [float(round(v, 3)) for v in (d.m3.mean(), ok.m1.corr(ok.m3), b)]\n'
+  'print("참값      ", three(true))\n'
+  'print("목록별 삭제", three(obs.dropna(subset=["m3"])))\n'
+  'print("평균 대치  ", three(obs.assign(m3=obs.m3.fillna(obs.m3.mean()))))\n'
+  'r = obs.copy()\n'
+  'for y, xs in [("m2", ["m1", "h1"]), ("m3", ["m1", "m2", "h1"])]:   # 한 번 회귀 대치\n'
+  '    ok = obs[y].notna()\n'
+  '    bb, *_ = ols(r.loc[ok, y], [r.loc[ok, x] for x in xs])\n'
+  '    r.loc[~ok, y] = bb[0] + sum(bb[i + 1] * r.loc[~ok, x] for i, x in enumerate(xs))\n'
+  'print("회귀 대치  ", three(r))\n'
+  'Y = obs[["m1", "m2", "m3", "h1", "h2"]].values                    # EM = 완전정보 최우추정의 점추정\n'
+  'mu, S = np.nanmean(Y, 0), np.diag(np.nanvar(Y, 0))\n'
+  'for _ in range(2000):\n'
+  '    T1, T2 = np.zeros(5), np.zeros((5, 5))\n'
+  '    for row in Y:\n'
+  '        o = ~np.isnan(row); x = row.copy(); C = np.zeros((5, 5))\n'
+  '        if (~o).any():\n'
+  '            K = S[np.ix_(~o, o)] @ np.linalg.inv(S[np.ix_(o, o)])\n'
+  '            x[~o] = mu[~o] + K @ (row[o] - mu[o])\n'
+  '            C[np.ix_(~o, ~o)] = S[np.ix_(~o, ~o)] - K @ S[np.ix_(~o, o)].T\n'
+  '        T1 += x; T2 += np.outer(x, x) + C\n'
+  '    mu2 = T1 / len(Y); S2 = T2 / len(Y) - np.outer(mu2, mu2)\n'
+  '    done = np.abs(mu2 - mu).max() < 1e-13 and np.abs(S2 - S).max() < 1e-13\n'
+  '    mu, S = mu2, S2\n'
+  '    if done:\n'
+  '        break\n'
+  'print("완전정보 최우추정", [float(round(v, 3)) for v in (mu[2], S[0, 2] / np.sqrt(S[0, 0] * S[2, 2]), S[0, 2] / S[0, 0])])\n'
+  '# 참값       [4.774, 0.456, 0.481]\n'
+  '# 목록별 삭제 [4.926, 0.453, 0.493]\n'
+  '# 평균 대치   [4.926, 0.363, 0.317]\n'
+  '# 회귀 대치   [4.78, 0.538, 0.517]\n'
+  '# 완전정보 최우추정 [4.78, 0.486, 0.518]'),
+ ("## 3. (책이 원리를 보이려고 돌린 코드) 다중 대치는 대치할 때마다 얼마나 흔들리나 (책 B5.4 상자)\n"
+  "책 「AI가 준 코드 읽기」 코드 2 의 다중 대치를 함수로 만들어, 씨앗만 1 에서 100 까지 바꿔 돌립니다. "
+  "3차 평균 추정이 대치할 때마다 얼마나 흔들리는지(표준편차) 셉니다. 1분쯤 걸립니다.",
+  'def mi(seed, m=20):\n'
+  '    g = np.random.default_rng(seed); z0 = obs[["m1", "m2", "m3", "h1"]]; out = []\n'
+  '    for _ in range(m):\n'
+  '        z = z0.copy()\n'
+  '        for y, xs in [("m2", ["m1", "h1"]), ("m3", ["m1", "m2", "h1"])]:\n'
+  '            ok = z0[y].notna()\n'
+  '            X = np.column_stack([np.ones(ok.sum())] + [z.loc[ok, x] for x in xs])\n'
+  '            b = np.linalg.lstsq(X, z.loc[ok, y], rcond=None)[0]; e = z.loc[ok, y] - X @ b\n'
+  '            s2 = (e @ e) / g.chisquare(len(e) - len(b))\n'
+  '            bd = g.multivariate_normal(b, s2 * np.linalg.inv(X.T @ X))\n'
+  '            Xm = np.column_stack([np.ones((~ok).sum())] + [z.loc[~ok, x] for x in xs])\n'
+  '            z.loc[~ok, y] = Xm @ bd + g.normal(0, np.sqrt(s2), (~ok).sum())\n'
+  '        out.append(z.m3.mean())\n'
+  '    return np.mean(out)\n'
+  'print(round(np.std([mi(s) for s in range(1, 101)], ddof=1), 4))\n'
+  '# 0.0066'),
 ],
 "ch22": [
  ("## 2. AI 가 준 코드. 읽지 않는다\n함수 하나로 취급하고 밖에서 조건만 겁니다. "
