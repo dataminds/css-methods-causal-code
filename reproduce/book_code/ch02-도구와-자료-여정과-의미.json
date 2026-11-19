@@ -14,15 +14,15 @@
    "diffs = [make(s) for s in range(1, 501)]\nprint(round(np.mean(diffs), 3), round(min(diffs), 2), round(max(diffs), 2))\n# 0.303 -0.07 0.62"
   ],
   [
-   234,
+   240,
    "print(round(np.random.default_rng().normal(0, 1, 5).mean(), 3))     # 0.024\nprint(round(np.random.default_rng().normal(0, 1, 5).mean(), 3))     # -0.649\nprint(round(np.random.default_rng(73).normal(0, 1, 5).mean(), 3))   # -0.013\nprint(round(np.random.default_rng(73).normal(0, 1, 5).mean(), 3))   # -0.013"
   ],
   [
-   253,
+   259,
    "import pandas as pd\n\nexp = pd.read_csv(\"data/journey_exp.csv\")\nprint(exp.shape)\nprint(exp[[\"id\", \"age\", \"gender\", \"cond\", \"mil_t1\", \"hjs\", \"mil\"]].head(3))"
   ],
   [
-   287,
+   293,
    "exp = pd.read_csv(\"data/journey_exp.csv\")\ngap = exp[exp.cond==1].mil.mean() - exp.mil.mean()"
   ]
  ]

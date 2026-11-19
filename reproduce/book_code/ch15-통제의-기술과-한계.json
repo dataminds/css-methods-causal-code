@@ -2,55 +2,55 @@
  "unit": "ch15-통제의-기술과-한계.md",
  "blocks": [
   [
-   428,
+   442,
    "specs = [(\"없음\", []), (\"age\", [\"age\"]), (\"refl\", [\"refl\"]),\n         (\"age+refl\", [\"age\", \"refl\"]), (\"age+refl+swl\", [\"age\", \"refl\", \"swl\"])]\nfor name, cols in specs:\n    b, se, *_ = ols(svy.mil, [svy.hjs] + [svy[c] for c in cols])\n    print(name, round(b[1], 3), round(se[1], 3))\n# 없음 0.978 0.051\n# age 0.977 0.051\n# refl 0.959 0.053\n# age+refl 0.957 0.053\n# age+refl+swl 0.746 0.052"
   ],
   [
-   446,
+   460,
    "b1, *_ = ols(svy.mil, [svy.hjs])\nb2, *_ = ols(svy.mil, [svy.hjs, svy.gen])\nprint(round(b1[1], 3), round(b2[1], 3), round(b1[1] - b2[1], 3))\n# 0.978 0.864 0.114"
   ],
   [
-   456,
+   470,
    "for extra in (None, \"gen\", \"age\"):\n    cols = [svy.hjs] + ([svy[extra]] if extra else [])\n    b, *_ = ols(svy.mil, cols)\n    print(extra, round(b[1], 3))\n# None 0.978\n# gen 0.864\n# age 0.977\n\nprint(round(svy.hjs.corr(svy.gen), 2), round(svy.mil.corr(svy.gen), 2),\n      round(svy.hjs.corr(svy.age), 2))\n# 0.42 0.41 0.05"
   ],
   [
-   475,
+   489,
    "svy = load(\"svy\")\nb, *_ = ols(svy.mil.values, [svy.hjs.values])\nsdx, sdy = svy.hjs.std(ddof=1), svy.mil.std(ddof=1)\nr = b[1] * sdx / sdy                                   # 두 변수의 상관\nfor rho in (.3, .5, .7):\n    adj = (r - rho * rho) / (1 - rho * rho) * sdy / sdx  # U 를 함께 넣은 계수\n    print(rho, round(b[1] - adj, 3), round(adj, 3))     # 편향 · 편향을 뺀 계수\nprint(round(float(np.sqrt(r)), 3))                     # 계수를 0 으로 만드는 ρ\n# 0.3 0.057 0.921\n# 0.5 0.193 0.786\n# 0.7 0.555 0.423\n# 0.793"
   ],
   [
-   497,
+   511,
    "zg = make_simpson()                              # 8장 §8.1 의 생성기\nb1, *_ = ols(zg.vigor, [zg.dose])                # 통제 없음\nb2, *_ = ols(zg.vigor, [zg.dose, zg.sex])        # 성별 통제\nprint(round(b1[1], 2), round(b2[1], 2), round(b2[2], 2))\n# 1.7 -1.69 20.14"
   ],
   [
-   508,
+   522,
    "층별 = [np.polyfit(g.dose, g.vigor, 1)[0] for _, g in zg.groupby(\"sex\")]\nprint([float(round(v, 3)) for v in 층별], round(np.mean(층별), 3), round(b2[1], 3))\n# [-1.716, -1.66] -1.688 -1.687"
   ],
   [
-   517,
+   531,
    "def sim(seed=73, n=2000):\n    g = np.random.default_rng(seed)\n    C  = g.normal(0,1,n); X  = .8*C + g.normal(0,1,n); Y  = .8*C + g.normal(0,1,n)\n    X2 = g.normal(0,1,n); M  = .7*X2 + g.normal(0,1,n); Y2 = .7*M + g.normal(0,1,n)\n    X3 = g.normal(0,1,n); Y3 = g.normal(0,1,n); C3 = .8*X3 + .8*Y3 + g.normal(0,1,n)\n    return (X, Y, C), (X2, Y2, M), (X3, Y3, C3)\n\nfor name, (a, b, c) in zip((\"혼란\", \"사슬\", \"충돌\"), sim()):\n    print(name, round(ols(b, [a])[0][1], 2), round(ols(b, [a, c])[0][1], 2))\n# 혼란 0.43 0.03\n# 사슬 0.49 -0.04\n# 충돌 -0.06 -0.43"
   ],
   [
-   535,
+   549,
    "def bias(sexeff):                       # 성별 → 기력 다리의 세기만 바꾼다\n    z = make2(sexeff=sexeff)            # 8장 §8.1 의 변형 생성기\n    return np.polyfit(z.dose, z.vigor, 1)[0]\n\nfor e in (0, 5, 10, 20):\n    print(e, round(bias(e), 2))\n# 0 -1.66\n# 5 -0.82\n# 10 0.02\n# 20 1.7"
   ],
   [
-   551,
+   565,
    "rng = np.random.default_rng(73)\ntwin = svy.hjs + rng.normal(0, 0.15, len(svy))      # hjs 와 거의 같은 척도\n\nb1, se1, *_ = ols(svy.mil, [svy.hjs])\nb2, se2, *_ = ols(svy.mil, [svy.hjs, twin])\nprint(round(b1[1], 2), round(se1[1], 3))\nprint(round(b2[1], 2), round(b2[2], 2), round(se2[1], 2),\n      round(np.corrcoef(svy.hjs, twin)[0, 1], 3))\n# 0.98 0.051\n# 0.63 0.35 0.28 0.983"
   ],
   [
-   569,
+   583,
    "d_f = (svy.gender == 2).astype(int)      # 여성이면 1\nd_o = (svy.gender == 3).astype(int)      # 그 외 · 무응답이면 1 (남성 = 기준)\nb, se, *_ = ols(svy.mil, [d_f, d_o])\nprint(b.round(3), se.round(3))\nbn, *_ = ols(svy.mil, [svy.gender])      # ⛔ 번호를 수로 그대로\nprint(round(bn[1], 3))\n# [ 4.902 -0.024  0.077] [0.076 0.107 0.37 ]\n# -0.011"
   ],
   [
-   585,
+   599,
    "import statsmodels.formula.api as smf\nfrom statsmodels.stats.outliers_influence import variance_inflation_factor\ns = svy[svy.gender.isin([1, 2])].copy()               # 성별을 남 · 여로 응답한 554명\ns[\"female\"] = (s.gender == 2).astype(int)            # 여성 = 1, 남성 = 0 (기준)\nm1 = smf.ols(\"mil ~ age + female\", data=s).fit()        # 1단계: 통제변수만\nm2 = smf.ols(\"mil ~ age + female + hjs\", data=s).fit()  # 2단계: + 관심 변수\nprint(m2.summary().tables[1])\nprint(round(m1.rsquared, 4), round(m2.rsquared, 4), round(m2.rsquared_adj, 3))\nf, p, df = m2.compare_f_test(m1)                        # Δ R² 의 검정 (F 변화)\nprint(round(f, 2), int(df), int(m2.df_resid))\nX = m2.model.exog\nprint([round(float(variance_inflation_factor(X, i)), 3) for i in range(1, X.shape[1])])\n# ==============================================================================\n#                  coef    std err          t      P>|t|      [0.025      0.975]\n# ------------------------------------------------------------------------------\n# Intercept     -0.0911      0.306     -0.298      0.766      -0.691       0.509\n# age            0.0016      0.003      0.476      0.635      -0.005       0.008\n# female        -0.0265      0.084     -0.317      0.751      -0.191       0.138\n# hjs            0.9812      0.052     18.756      0.000       0.878       1.084\n# ==============================================================================\n# 0.0023 0.3915 0.388\n# 351.78 1 550\n# [1.006, 1.003, 1.003]"
   ],
   [
-   692,
+   706,
    "rng = np.random.default_rng(73)\nnoise = rng.normal(0, 1, len(zg))\nb, *_ = ols(zg.vigor, [zg.dose, noise])\nprint(round(b[1], 3), round(ols(zg.vigor, [zg.dose])[0][1], 3))\n# 1.699 1.699"
   ],
   [
-   707,
+   721,
    "b, *_ = ols(zg.vigor, [zg.dose])              # → +1.70  (sex 가 목록에 없다)\nb, *_ = ols(zg.vigor, [zg.dose, zg.sex])      # → -1.69  (바른 형태)"
   ]
  ]

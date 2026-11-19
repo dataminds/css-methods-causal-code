@@ -41,7 +41,7 @@ regimp <- function() {
   o$m3[is.na(o$m3)] <- predict(f3, newdata = as.data.frame(o)[is.na(o$m3), ])
   three(o$m1, o$m3)
 }
-mi <- function(seed = 73, m = 20, noise = TRUE, xs3 = c("m1", "m2", "h1")) {
+mi <- function(seed = 73, m = 20, noise = TRUE, xs3 = c("m1", "m2", "h1"), delta = 0) {
   set.seed(seed); base <- O(); out <- matrix(NA, m, 4)
   for (j in seq_len(m)) {
     o <- base
@@ -53,19 +53,21 @@ mi <- function(seed = 73, m = 20, noise = TRUE, xs3 = c("m1", "m2", "h1")) {
       bd <- b + t(chol(s2 * XtXi)) %*% rnorm(ncol(X))
       miss <- !ok; Xm <- cbind(1, do.call(cbind, o[xs])[miss, , drop = FALSE])
       o[[y]][miss] <- as.vector(Xm %*% bd) + (if (noise) rnorm(sum(miss), 0, sqrt(s2)) else 0)
+      if (y == "m3") o[[y]][miss] <- o[[y]][miss] + delta   # 실습 4 민감도 분석 ; 3차 대치값에만
     }
     out[j, ] <- c(mean(o$m3), cor(o$m1, o$m3), unname(coef(lm(o$m3 ~ o$m1))[2]), slope_se(o$m1, o$m3))
   }
   wv <- mean(out[, 4]^2); bv <- var(out[, 3])
-  c(colMeans(out[, 1:3]), sqrt(wv + (1 + 1 / m) * bv), sqrt(wv))
+  c(colMeans(out[, 1:3]), sqrt(wv + (1 + 1 / m) * bv), sqrt(wv), sqrt(bv))
 }
 em <- function() {
-  o <- O(); Y <- cbind(o$m1, o$m2, o$m3, o$h1, o$h2); n <- nrow(Y)
+  # 보조 변수를 다중 대치와 같게 = 1 · 2 · 3차 의미 + 1차 여정 (2026-11-19 ; 전에는 2차 여정까지 넣었다)
+  o <- O(); Y <- cbind(o$m1, o$m2, o$m3, o$h1); n <- nrow(Y); k <- ncol(Y)
   mu <- colMeans(Y, na.rm = TRUE); S <- diag(apply(Y, 2, function(v) mean((v - mean(v, na.rm = TRUE))^2, na.rm = TRUE)))
   for (it in 1:2000) {
-    T1 <- rep(0, 5); T2 <- matrix(0, 5, 5)
+    T1 <- rep(0, k); T2 <- matrix(0, k, k)
     for (i in 1:n) {
-      row <- Y[i, ]; ob <- !is.na(row); mi_ <- !ob; x <- row; C <- matrix(0, 5, 5)
+      row <- Y[i, ]; ob <- !is.na(row); mi_ <- !ob; x <- row; C <- matrix(0, k, k)
       if (any(mi_)) {
         K <- S[mi_, ob, drop = FALSE] %*% solve(S[ob, ob, drop = FALSE])
         x[mi_] <- mu[mi_] + K %*% (row[ob] - mu[ob])
@@ -96,6 +98,16 @@ calc("b5.mi_nonoise_se", function() memo("mi_nn", function() mi(noise = FALSE))[
 calc("b5.mi_nom1_b31", function() memo("mi_nm", function() mi(xs3 = c("m2", "h1")))[3])
 calc("b5.mi_mcsd_mean3", function() memo("mcsd", function() sd(sapply(1:100, function(s) mi(seed = s)[1]))))
 calc("b5.mi_se_within", function() memo("mi", mi)[5])
+calc("b5.mi_sd_between", function() memo("mi", mi)[6])
+calc("b5.sens_mean3", function() memo("mi_d", function() mi(delta = -0.3))[1])
+calc("b5.sens_b31", function() memo("mi_d", function() mi(delta = -0.3))[3])
+welch <- function(v) { o <- O(); gone <- is.na(o$m3); t.test(o[[v]][gone], o[[v]][!gone]) }   # 기본 = 웰치
+for (v in c("m1", "h1")) local({
+  vv <- v
+  calc(paste0("b5.welch_", vv, "_t"), function() unname(welch(vv)$statistic))
+  calc(paste0("b5.welch_", vv, "_df"), function() unname(welch(vv)$parameter))
+  calc(paste0("b5.welch_", vv, "_p"), function() welch(vv)$p.value)
+})
 calc("b5.lw_se", function() { o <- O(); ok <- !is.na(o$m3); slope_se(o$m1[ok], o$m3[ok]) })
 calc("b5.true_se", function() slope_se(Tr()$m1, Tr()$m3))
 calc("b5.lw_mean3_bias", function() three(O()$m1, O()$m3)[1] - three(Tr()$m1, Tr()$m3)[1])

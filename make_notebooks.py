@@ -394,7 +394,7 @@ STEPS = {
   'z = (res[0][0] - res[1][0]) / np.sqrt(res[0][1]**2 + res[1][1]**2)\n'
   'print(round(res[0][0] - res[1][0], 3), round(2 * norm.sf(abs(z)), 3))\n'
   '# 300 0.275 0.000 / 40 0.241 0.091 / 0.034 0.821'),
- ("## 4. 측정 오차가 곱항의 검정력을 먼저 깎는다 (§16.5 표)\n"
+ ("## 4. 측정 오차가 곱항의 검정력을 먼저 깎는다 (§16.6 표)\n"
   "주효과와 상호작용을 똑같이 0.2로 정한 세계(n = 400)에서 X·W에 잡음을 섞어 신뢰도를 1.0에서 0.6까지 낮춥니다. "
   "신뢰도마다 800번 모의 실험을 하고 |t| > 1.96으로 잡힌 비율(검정력)을 셉니다. 실습 3 = n 을 800으로 바꿔 다시 돌립니다(1~2분 걸립니다).",
   'n = 400\n'
@@ -411,7 +411,7 @@ STEPS = {
   '        hit_int  += abs(b[3] / se[3]) > 1.96\n'
   '    print(rel, round(hit_main / 800, 2), round(hit_int / 800, 2))\n'
   '# 1.0 0.97 0.98 / 0.9 0.95 0.94 / 0.8 0.93 0.86 / 0.7 0.88 0.75 / 0.6 0.83 0.63'),
- ("## 5. 곱의 신뢰도는 두 신뢰도의 곱 언저리 (§16.5 표)\n"
+ ("## 5. 곱의 신뢰도는 두 신뢰도의 곱 언저리 (§16.6 표)\n"
   "서로 무관한 두 참점수 X·W에 오차를 섞어, X 한 척도의 신뢰도와 곱 X×W의 신뢰도를 구합니다(10만 명).",
   'rng = np.random.default_rng(73)\n'
   'n = 100_000\n'
@@ -663,10 +663,30 @@ STEPS = {
   '# 0.375 0.691'),
 ],
 "b5": [
- ("## 2. (책이 원리를 보이려고 돌린 코드) 참값과 방법별 추정 (책 B5.3)\n"
+ ("## 2. 결측 세기와 빠진 사람 비교 (책 코드 1 · 실습 1)\n"
+  "앞 다섯 줄이 책 B5.7 의 코드 1 입니다. 그 아래가 실습 1 = 1차 영웅의 여정 지각도 같은 방식으로 견주고, "
+  "두 비교를 웰치 t검정(두 집단의 분산이 달라도 되는 t검정)으로 확인합니다. "
+  "차이가 뚜렷하면 완전 무작위 결측에 반하는 증거입니다. 무작위 결측인지 비무작위 결측인지는 이 비교로 알 수 없습니다.",
+  'panel = load("panel")\n'
+  'w = panel.pivot(index="id", columns="wave", values="mil")\n'
+  'print(w.notna().sum().tolist(), round(w[3].isna().mean() * 100, 1))\n'
+  'gone = w[3].isna()\n'
+  'print(round(w.loc[gone, 1].mean(), 3), round(w.loc[~gone, 1].mean(), 3))\n'
+  'h = panel.pivot(index="id", columns="wave", values="hjs")        # 실습 1 = 영웅의 여정 지각도 견준다\n'
+  'print(round(h.loc[gone, 1].mean(), 3), round(h.loc[~gone, 1].mean(), 3))\n'
+  'for 이름, v in (("삶의 의미", w[1]), ("영웅의 여정 지각", h[1])):\n'
+  '    r = stats.ttest_ind(v[gone], v[~gone], equal_var=False)     # 웰치 t검정\n'
+  '    print(이름, round(r.statistic, 2), f"{r.pvalue:.2g}")        # p 는 유효숫자 둘 (아주 작으면 e 표기)\n'
+  '# [500, 420, 350] 30.0\n'
+  '# 4.458 5.056\n'
+  '# 4.893 5.114\n'
+  '# 삶의 의미 -6.01 5.8e-09\n'
+  '# 영웅의 여정 지각 -3.11 0.002'),
+ ("## 3. (책이 원리를 보이려고 돌린 코드) 참값과 방법별 추정 (책 B5.3)\n"
   "패널판은 모의 세계라서 생성기가 빈칸을 만들기 전의 값(`data/truth_panel.csv`)을 다시 만들어 두었습니다. "
   "그 참값과, 빈칸이 있는 자료로 여러 방법을 써서 구한 3차 평균 · 1차–3차 상관 · 기울기를 견줍니다. "
-  "완전정보 최우추정은 R 의 lavaan 대신 같은 추정을 내는 EM 알고리즘으로 계산합니다.",
+  "완전정보 최우추정은 R 의 lavaan 대신 같은 추정을 내는 EM 알고리즘으로 계산합니다. "
+  "보조 변수는 다중 대치(셀 4)와 같게 2차 삶의 의미와 1차 영웅의 여정 지각 둘입니다.",
   'def wide(df):\n'
   '    m = df.pivot(index="id", columns="wave", values="mil")\n'
   '    h = df.pivot(index="id", columns="wave", values="hjs")\n'
@@ -685,12 +705,13 @@ STEPS = {
   '    bb, *_ = ols(r.loc[ok, y], [r.loc[ok, x] for x in xs])\n'
   '    r.loc[~ok, y] = bb[0] + sum(bb[i + 1] * r.loc[~ok, x] for i, x in enumerate(xs))\n'
   'print("회귀 대치  ", three(r))\n'
-  'Y = obs[["m1", "m2", "m3", "h1", "h2"]].values                    # EM = 완전정보 최우추정의 점추정\n'
+  'Y = obs[["m1", "m2", "m3", "h1"]].values                          # EM = 완전정보 최우추정의 점추정\n'
+  'k = Y.shape[1]\n'
   'mu, S = np.nanmean(Y, 0), np.diag(np.nanvar(Y, 0))\n'
   'for _ in range(2000):\n'
-  '    T1, T2 = np.zeros(5), np.zeros((5, 5))\n'
+  '    T1, T2 = np.zeros(k), np.zeros((k, k))\n'
   '    for row in Y:\n'
-  '        o = ~np.isnan(row); x = row.copy(); C = np.zeros((5, 5))\n'
+  '        o = ~np.isnan(row); x = row.copy(); C = np.zeros((k, k))\n'
   '        if (~o).any():\n'
   '            K = S[np.ix_(~o, o)] @ np.linalg.inv(S[np.ix_(o, o)])\n'
   '            x[~o] = mu[~o] + K @ (row[o] - mu[o])\n'
@@ -706,25 +727,48 @@ STEPS = {
   '# 목록별 삭제 [4.926, 0.453, 0.493]\n'
   '# 평균 대치   [4.926, 0.363, 0.317]\n'
   '# 회귀 대치   [4.78, 0.538, 0.517]\n'
-  '# 완전정보 최우추정 [4.78, 0.486, 0.518]'),
- ("## 3. (책이 원리를 보이려고 돌린 코드) 다중 대치는 대치할 때마다 얼마나 흔들리나 (책 B5.4 상자)\n"
-  "책 「AI가 준 코드 읽기」 코드 2 의 다중 대치를 함수로 만들어, 씨앗만 1 에서 100 까지 바꿔 돌립니다. "
-  "3차 평균 추정이 대치할 때마다 얼마나 흔들리는지(표준편차) 셉니다. 1분쯤 걸립니다.",
-  'def mi(seed, m=20):\n'
-  '    g = np.random.default_rng(seed); z0 = obs[["m1", "m2", "m3", "h1"]]; out = []\n'
-  '    for _ in range(m):\n'
-  '        z = z0.copy()\n'
-  '        for y, xs in [("m2", ["m1", "h1"]), ("m3", ["m1", "m2", "h1"])]:\n'
-  '            ok = z0[y].notna()\n'
+  '# 완전정보 최우추정 [4.78, 0.484, 0.517]'),
+ ("## 4. 다중 대치 (책 코드 2 · 실습 2 · 3 · 4)\n"
+  "책 B5.7 의 코드 2 를 함수 `mi` 로 감쌌습니다. 인자 셋이 실습에서 바꾸는 한 줄에 대응합니다. "
+  "`noise=False` = 실습 2(`g.normal(...)` 항을 뺀다) · `xs3=(\"m2\", \"h1\")` = 실습 3(3차 대치식에서 1차를 뺀다) · "
+  "`delta=-0.3` = 실습 4(민감도 분석 ; 빠진 사람의 3차 값이 대치값보다 0.3점 낮았다고 가정). "
+  "출력 = 3차 평균 · 1차–3차 상관 · 기울기 · 합친 표준오차 · 벌 안 표준오차. 30초쯤 걸립니다.",
+  'd = obs[["m1", "m2", "m3", "h1"]]\n'
+  'def mi(seed=73, m=20, noise=True, xs3=("m1", "m2", "h1"), delta=0.0):\n'
+  '    g = np.random.default_rng(seed); est = []\n'
+  '    for _ in range(m):                                            # 20벌을 만든다\n'
+  '        z = d.copy()\n'
+  '        for y, xs in [("m2", ["m1", "h1"]), ("m3", list(xs3))]:   # 빠진 값을 차례로 채운다\n'
+  '            ok = d[y].notna()\n'
   '            X = np.column_stack([np.ones(ok.sum())] + [z.loc[ok, x] for x in xs])\n'
-  '            b = np.linalg.lstsq(X, z.loc[ok, y], rcond=None)[0]; e = z.loc[ok, y] - X @ b\n'
-  '            s2 = (e @ e) / g.chisquare(len(e) - len(b))\n'
-  '            bd = g.multivariate_normal(b, s2 * np.linalg.inv(X.T @ X))\n'
+  '            b = np.linalg.lstsq(X, z.loc[ok, y], rcond=None)[0]\n'
+  '            r = z.loc[ok, y] - X @ b\n'
+  '            s2 = (r @ r) / g.chisquare(len(r) - len(b))            # 잔차 분산을 뽑는다\n'
+  '            bd = g.multivariate_normal(b, s2 * np.linalg.inv(X.T @ X))   # 계수를 뽑는다\n'
   '            Xm = np.column_stack([np.ones((~ok).sum())] + [z.loc[~ok, x] for x in xs])\n'
-  '            z.loc[~ok, y] = Xm @ bd + g.normal(0, np.sqrt(s2), (~ok).sum())\n'
-  '        out.append(z.m3.mean())\n'
-  '    return np.mean(out)\n'
-  'print(round(np.std([mi(s) for s in range(1, 101)], ddof=1), 4))\n'
+  '            잡음 = g.normal(0, np.sqrt(s2), (~ok).sum()) if noise else 0   # 실습 2 = 이 항을 뺀다\n'
+  '            z.loc[~ok, y] = Xm @ bd + 잡음\n'
+  '            if y == "m3":\n'
+  '                z.loc[~ok, y] += delta                            # 실습 4 = 3차 대치값을 옮긴다\n'
+  '        bz, sez, *_ = ols(z.m3, [z.m1])\n'
+  '        est.append([z.m3.mean(), z.m1.corr(z.m3), bz[1], sez[1]])\n'
+  '    e = np.array(est)\n'
+  '    within = np.mean(e[:, 3] ** 2)                                # 벌 안 분산\n'
+  '    between = np.var(e[:, 2], ddof=1)                             # 벌 사이 분산\n'
+  '    se = np.sqrt(within + (1 + 1 / m) * between)                  # 루빈 규칙\n'
+  '    return [float(round(v, 4)) for v in (*e[:, :3].mean(0), se, np.sqrt(within))]\n'
+  'print("코드 2           ", mi())\n'
+  'print("실습 2 잡음 뺌    ", mi(noise=False))\n'
+  'print("실습 3 1차 뺌     ", mi(xs3=("m2", "h1")))\n'
+  'print("실습 4 0.3점 낮게 ", mi(delta=-0.3))\n'
+  '# 코드 2            [4.7854, 0.4823, 0.515, 0.0545, 0.0419]\n'
+  '# 실습 2 잡음 뺌     [4.7803, 0.5333, 0.5114, 0.0389, 0.0363]\n'
+  '# 실습 3 1차 뺌      [4.8066, 0.4319, 0.4569, 0.051, 0.0427]\n'
+  '# 실습 4 0.3점 낮게  [4.6954, 0.4992, 0.5496, 0.0552, 0.0427]'),
+ ("## 5. (책이 원리를 보이려고 돌린 코드) 다중 대치는 대치할 때마다 얼마나 흔들리나 (책 B5.4 상자)\n"
+  "셀 4 의 `mi` 를 씨앗만 1 에서 100 까지 바꿔 돌립니다. "
+  "3차 평균 추정이 대치할 때마다 얼마나 흔들리는지(표준편차) 셉니다. 1분쯤 걸립니다.",
+  'print(round(np.std([mi(seed=s)[0] for s in range(1, 101)], ddof=1), 4))\n'
   '# 0.0066'),
 ],
 "ch22": [

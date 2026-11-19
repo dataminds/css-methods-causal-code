@@ -289,13 +289,15 @@ def _fac():
         ss3 = t ** 2 * mse
         out[f"eta_{k}"] = ss3 / (ss3 + full)                      # 부분 η² (유형 III 제곱합)
     out["F2_elem"] = (sse([rc]) - sse([ec, rc])) / mse            # 유형 II = 상호작용 없는 모형에서 frame 뒤에 넣은 elem
+    out["se_frame_e1"] = out["m11"] - out["m10"]                  # 단순효과 = 성찰 있는 칸들에서 연결의 효과 (2026-11-19 §16.6 승격)
+    out["se_frame_e0"] = out["m01"] - out["m00"]                  # 성찰 없는 칸들 (= 0/1 frame 계수)
     return out
 
 
 for _k in ("n", "df2", "n00", "n01", "n10", "n11", "m00", "m01", "m10", "m11", "sd00", "sd01", "sd10", "sd11",
            "b01_elem", "b01_frame", "b01_int", "p01_elem", "bef_elem", "bef_frame", "bef_int", "t_int",
            "F3_elem", "F3_frame", "F3_int", "p3_elem", "p3_frame", "p3_int", "eta_elem", "eta_frame", "eta_int",
-           "F2_elem"):
+           "F2_elem", "se_frame_e1", "se_frame_e0"):
     calc(f"ch16.fac_{_k}")(lambda k=_k: memo("fac", _fac)[k])
 
 

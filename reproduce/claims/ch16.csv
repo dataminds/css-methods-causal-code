@@ -194,8 +194,6 @@ ch16n.4.tab.i07,ch16,0.75,ch16.pow07_int,sim,0.065,MC SD .0153 × 3√2
 ch16n.4.tab.r06,ch16,0.6,,fixed,,심은 신뢰도
 ch16n.4.tab.m06,ch16,0.83,ch16.pow06_main,sim,0.056,MC SD .0133 × 3√2
 ch16n.4.tab.i06,ch16,0.63,ch16.pow06_int,sim,0.072,MC SD .0171 × 3√2
-ch16n.ai.n1,ch16,566,ch16.mt_n,data,,3장 정제 설문판 인원
-ch16n.ai.n2,ch16,566,ch16.mt_n,data,,
 ch16n.ai.raw,ch16,0.12,ch16.mod_raw_b1,data,,중심화 전 b1
 ch16n.cr.chk,ch16,0.731,ch16.cm1_b1,data,,refl 을 −1SD 지점에서 뺀 모형의 hjs 계수 = 단순기울기 (2026-11-15n 신설 계산)
 ch16n.log.n,ch16,566,ch16.mt_n,data,,검증 로그 본보기
@@ -404,3 +402,24 @@ ch16r.pow.p800,ch16,0.97,ch16.pow07_int_n800,sim,0.028,ch16.7.ex5.p800 과 같�
 ch16r.fig.lo,ch16,0.731,ch16.ss_b_lo,data,,확인 표 그림 행
 ch16r.fig.mid,ch16,0.987,ch16.ss_b_mid,data,,
 ch16r.fig.hi,ch16,1.244,ch16.ss_b_hi,data,,
+ch16s6.ex.e.df,ch16,426,ch16.fac_df2,data,,§16.6 결과 단락 본보기 (2026-11-19 독립절 승격)
+ch16s6.ex.e.f,ch16,3.08,ch16.fac_F3_elem,data,,
+ch16s6.ex.e.p,ch16,.080,ch16.fac_p3_elem,data,,
+ch16s6.ex.e.eta,ch16,.007,ch16.fac_eta_elem,data,,
+ch16s6.ex.f.f,ch16,0.36,ch16.fac_F3_frame,data,,
+ch16s6.ex.f.p,ch16,.546,ch16.fac_p3_frame,data,,
+ch16s6.ex.f.eta,ch16,.001,ch16.fac_eta_frame,data,,
+ch16s6.ex.i.f,ch16,1.84,ch16.fac_F3_int,data,,
+ch16s6.ex.i.p,ch16,.176,ch16.fac_p3_int,data,,
+ch16s6.ex.i.eta,ch16,.004,ch16.fac_eta_int,data,,
+ch16s6.se.e1,ch16,0.24,ch16.fac_se_frame_e1,data,,단순효과 = 성찰 있는 칸들의 연결 효과
+ch16s6.se.e1a,ch16,5.20,ch16.fac_m11,data,,
+ch16s6.se.e1b,ch16,4.95,ch16.fac_m10,data,,
+ch16s6.se.e0,ch16,−0.09,ch16.fac_se_frame_e0,data,,단순효과 = 성찰 없는 칸들
+ch16s6.se.e0a,ch16,4.81,ch16.fac_m01,data,,
+ch16s6.se.e0b,ch16,4.90,ch16.fac_m00,data,,
+ch16sw.fac.f,ch16,1.84,ch16.fac_F3_int,data,,§16.6 유의하지 않을 때 = 요인판 실례 (2026-11-19 절 순서 바꿈)
+ch16sw.fac.df,ch16,426,ch16.fac_df2,data,,
+ch16sw.fac.p,ch16,.176,ch16.fac_p3_int,data,,
+ch16.t19.L410.1.566,ch16,566,ch16.mt_n,data,,3장 정제 설문판 인원
+ch16.t19.L416.1.566,ch16,566,ch16.mt_n,data,,3장 정제 설문판 인원
