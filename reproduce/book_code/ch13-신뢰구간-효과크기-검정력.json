@@ -27,7 +27,7 @@
   ],
   [
    288,
-   "rng = np.random.default_rng(73)   # 씨앗은 n 여섯 개에 걸쳐 한 번만 : 표를 재현하려면 반복문 전체를 돌린다\npower = []\nfor n in (50, 100, 190, 300, 500, 800):\n    hits = sum(stats.ttest_ind(rng.standard_normal(n),\n                               rng.standard_normal(n) + 0.22).pvalue < .05\n               for _ in range(2000))\n    power.append(hits / 2000)\nprint(np.round(power, 2))\n# [0.19 0.34 0.57 0.76 0.94 0.99]"
+   "rng = np.random.default_rng(73)   # 씨앗은 n 여섯 개에 걸쳐 한 번만 : 표를 재현하려면 반복문 전체를 돌린다\npower = []\nfor n in (50, 100, 190, 300, 500, 800):\n    hits = sum(stats.ttest_ind(rng.standard_normal(n),\n                               rng.standard_normal(n) + 0.22).pvalue < .05\n               for _ in range(2000))\n    power.append(hits / 2000)\nprint([float(round(p, 4)) for p in power])   # 표보다 한 자리 더 (190명의 0.575 는 정확히 반에 걸린다)\n# [0.189, 0.3425, 0.575, 0.7585, 0.944, 0.9935]"
   ],
   [
    328,

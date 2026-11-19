@@ -62,6 +62,20 @@ for lab, (e, f) in (("int", (1, 1)), ("ctl", (0, 0))):
     for k, nm in enumerate(("pre", "post", "t", "p")):
         calc(f"s2.{lab}_{nm}")(lambda e=e, f=f, k=k: _paired(e, f)[k])
 calc("s2.ctl_gain")(lambda: _paired(0, 0)[1] - _paired(0, 0)[0])
+
+
+def _gain_diff():
+    # 함정 절 둘째 코드 : 두 셀의 변화 폭을 웰치 t 로 견준다
+    d = F()
+    g = [(c.mil_t2 - c.mil_t1).values for c in
+         (d[(d.elem == 1) & (d.frame == 1)], d[(d.elem == 0) & (d.frame == 0)])]
+    r = stats.ttest_ind(g[0], g[1], equal_var=False)
+    ci = r.confidence_interval(0.95)
+    return g[0].mean(), g[1].mean(), g[0].mean() - g[1].mean(), float(ci.low), float(ci.high), float(r.pvalue)
+
+
+for k, nm in enumerate(("int", "ctl", "diff", "lo", "hi", "p")):
+    calc(f"s2.gain_{nm}")(lambda k=k: _gain_diff()[k])
 calc("s2.r_prepost")(lambda: float(np.corrcoef(F().mil_t1, F().mil_t2)[0, 1]))
 
 # 「먼저」 상자의 되짚기 산술 (논문 F 에서 부분 η²)

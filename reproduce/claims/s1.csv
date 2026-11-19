@@ -150,9 +150,23 @@ s1.truth.alpha,s1,.05,,fixed,,유의수준 관례
 s1.ex1.perm,s1,.030,s1.perm_p,sim,0.011,실습 1 ; ⑦ 뒤섞기 p
 s1.ex1.t,s1,.028,s1.mil_p,data,,실습 1
 s1.ex3.alpha,s1,.05,,fixed,,유의수준 관례
-s1.ex3.seeds,s1,5,,fixed,,실습 설계 (씨앗 수)
 s1.ex3.power,s1,.57,s1.power,data,,실습 3
 s1.ex3.power2,s1,.57,s1.power,data,,실습 3 통과 기준
 s1.chk.gap,s1,7,s1.female_gap_pp,data,,점검
 s1.read.n381,s1,381,,paper,,Rogers et al. (2023) Study 5 ; 출판본 764쪽
 s1.read.d22,s1,0.22,,paper,,Rogers et al. (2023) Study 5 ; 출판본 765쪽
+s1.excl.diffraw,s1,0.278,s1.mil_diff_raw,data,,③ 원자료 380명 사후 mil 평균 차이
+s1.excl.diff,s1,0.283,s1.obs_diff,data,,③ 정제 366명
+s1.excl.n380,s1,380,s1.raw_n,data,,③
+s1.excl.n366,s1,366,s1.n,data,,③
+s1.rep.diffraw,s1,0.278,s1.mil_diff_raw,data,,⑨
+s1.rep.diffcl,s1,0.283,s1.obs_diff,data,,⑨
+s1.ex1.mc,s1,.005,,fixed,,실습 1 ; 뒤섞기 p 의 몬테카를로 표준편차 0.0024 (s1.perm.p 비고) 의 약 2 배
+s1.ex1.mc5000,s1,"5,000",,fixed,,실습 1 ; 뒤섞기 횟수
+s1.ex3.n183,s1,183,s1.n_treat,data,,실습 3
+s1.ex3.d,s1,0.22,,fixed,,실습 3 ; 13장 §13.4 모의 참값
+s1.ex3.reps,s1,"2,000",,fixed,,실습 3
+s1.ex3.seed,s1,73,,fixed,,실습 3
+s1.ex3.sim,s1,.56,s1.power_sim183,sim,0.047,실습 3 ; 파이썬 0.561 (씨앗 73 · 2
+s1.ex3.mc,s1,.02,,fixed,,실습 3 ; 표준편차 0.011 의 약 2 배
+s1.ex3.mc2000,s1,"2,000",,fixed,,실습 3

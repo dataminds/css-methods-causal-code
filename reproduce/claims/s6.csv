@@ -57,10 +57,10 @@ s6.ex2.w1,s6,67,s6.within1_pct_a,data,,실습 2 조력자 ±1 일치율 = 133/20
 s6.ex2.klo,s6,.28,s6.wkappa_min,data,,실습 2 가중 카파 최솟값
 s6.ex2.khi,s6,.77,s6.wkappa_max,data,,실습 2 가중 카파 최댓값
 s6.ex2.ka,s6,.28,s6.wkappa_a,data,,실습 2 조력자
-s6.ex2.elo,s6,28,s6.exact_pct_min,data,,실습 2 정확 일치율 최솟값
-s6.ex2.ehi,s6,52,s6.exact_pct_max,data,,실습 2 정확 일치율 최댓값
-s6.ex2.wlo,s6,66,s6.within1_pct_min,data,,실습 2 ±1 일치율 최솟값 = 조력자 66.5% (반올림 경계 ; 같은 수를 앞 문장은 67 로 적었다)
-s6.ex2.whi,s6,96,s6.within1_pct_max,data,,실습 2 ±1 일치율 최댓값
+s6.ex2.elo,s6,28,s6.exact_pct_min,data,,실습 2 정확 일치율 최솟값 ; 2026-11-19 공통 반올림 함수
+s6.ex2.ehi,s6,53,s6.exact_pct_max,data,,실습 2 정확 일치율 최댓값 ; 2026-11-19 공통 반올림 함수
+s6.ex2.wlo,s6,67,s6.within1_pct_min,data,,실습 2 ±1 일치율 최솟값 = 조력자 66.5% (반올림 경계 ; 같은 수를 앞 문장은 67 로 적었다) ; 2026-11-19 공통 반올림 함수
+s6.ex2.whi,s6,97,s6.within1_pct_max,data,,실습 2 ±1 일치율 최댓값 ; 2026-11-19 공통 반올림 함수
 s6.ex3.b,s6,0.47,s6.b7,data,,실습 3
 s6.ex3.k1,s6,1.00,s6.wkappa_self_min,data,,실습 3 극단값 시험 = 코더 1 을 자기 자신과 견준 가중 카파(일곱 요소 최솟값)
 s6.ex3.k2,s6,1.00,s6.wkappa_self_min,data,,실습 3

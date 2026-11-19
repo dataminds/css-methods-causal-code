@@ -13,6 +13,12 @@ calc("s1.n_treat", function() nrow(G(1)))
 calc("s1.n_ctrl", function() nrow(G(0)))
 calc("s1.excl_treat", function() { r <- RAW(); as.numeric(table(r$cond[r$attn_1 == 0])["1"]) })
 calc("s1.excl_ctrl", function() { r <- RAW(); as.numeric(table(r$cond[r$attn_1 == 0])["0"]) })
+calc("s1.mil_diff_raw", function() { r <- RAW(); m <- tapply(r$mil, r$cond, mean); m[["1"]] - m[["0"]] })
+calc("s1.power_sim183", function() {
+  # 실습 3 : 13장 §13.4 모의시행을 집단당 183명으로 (R 난수라 파이썬과 값이 다르다 ; 허용폭 대조)
+  set.seed(73)
+  mean(replicate(2000, t.test(rnorm(183), rnorm(183) + 0.22, var.equal = TRUE)$p.value < .05))
+})
 
 for (v in c("age", "mil_t1", "hjs", "mil", "flr")) local({
   vv <- v

@@ -92,8 +92,8 @@ ch18.6.ex1.post,ch18,5.09,ch18.ts_post,data,,실습 1
 ch18.6.ex1.keep,ch18,52,,fixed,,실습 설계 (53주차 전)
 ch18.6.ex1.fake,ch18,27,,fixed,,실습 설계 가짜 시작 주
 ch18.6.ex1.placebo,ch18,−0.013,ch18.ts_placebo,data,,1~52주 안에서 27주차 이후 − 이전 평균차
-ch18.6.ex1.se,ch18,0.07,ch18.ts_se,data,,§18.3 campaign 계수 SE
-ch18.6.ex1.se2,ch18,0.14,ch18.ts_se2,data,,2 × SE = 0.140
+ch18.6.ex1.se,ch18,0.07,ch18.ts_se,data,,§18.3 campaign 계수 SE ; 2026-11-19e 외부 점검 반영
+ch18.6.ex1.se2,ch18,0.10,ch18.ts_plse2,data,,2 × SE = 0.140 ; 2026-11-19e 외부 점검 반영
 ch18.6.ex2.cross,ch18,.29,ch18.panel_r_cross,data,,패널판 1차 시점 hjs-mil 상관
 ch18.6.ex2.within,ch18,.06,ch18.panel_r_within,data,,개인 평균 중심화 후 상관 (세 시점 전체)
 ch18.6.ex3.y15,ch18,4.42,ch18.co_mil_2015,data,,코호트판 2015 평균 mil
@@ -115,3 +115,10 @@ ch18.6.ex7.left,ch18,150,ch18.panel_left,data,,1차에 있고 3차에 없는 id 
 ch18.3.shift.post,ch18,5.088,ch18.ts_post,data,,도입 후 평균
 ch18.3.shift.pre,ch18,4.784,ch18.ts_pre,data,,도입 전 평균
 ch18.3.shift.diff,ch18,0.303,ch18.ts_diff,data,,전후 평균차
+ch18.3.ac.se,ch18,0.07,ch18.ts_se,data,,2026-11-19e 외부 점검 반영
+ch18.3.ac.lag1,ch18,.23,ch18.ts_lag1,data,,2026-11-19e 외부 점검 반영
+ch18.3.ac.se2,ch18,0.07,ch18.ts_se,data,,2026-11-19e 외부 점검 반영
+ch18.3.ac.camp,ch18,0.306,ch18.ts_camp,data,,2026-11-19e 외부 점검 반영
+ch18.3.ac.se3,ch18,0.07,ch18.ts_se,data,,2026-11-19e 외부 점검 반영
+ch18.6.ex1.pl2,ch18,−0.013,ch18.ts_placebo,data,,2026-11-19e 외부 점검 반영
+ch18.6.ex1.plse,ch18,0.05,ch18.ts_plse,data,,2026-11-19e 외부 점검 반영

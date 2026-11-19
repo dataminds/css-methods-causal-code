@@ -71,6 +71,10 @@ calc("ch03.sub60_max", function() .sub[["60"]][2])
 calc("ch03.hjs_recalc_maxdiff", function() max(abs(rowSums(S()[, H]) / length(H) - S()$hjs)))
 calc("ch03.row1_hjs_stored", function() S()$hjs[1])
 calc("ch03.row1_hjs_mine", function() sum(unlist(S()[1, H])) / 21)
+# §3.4 ⚠ · 실습 8 = 1번 응답자의 첫 문항(파일 순서)을 비운 행
+.row1_blank <- function() { r <- as.numeric(unlist(S()[1, H])); r[1] <- NA; r }
+calc("ch03.row1_blank_mean", function() mean(.row1_blank(), na.rm = TRUE))
+calc("ch03.row1_blank_sum21", function() sum(.row1_blank(), na.rm = TRUE) / 21)
 calc("ch03.axis0_len", function() length(colMeans(S()[, H])))
 .rev <- function() { X <- S()[, H]; X$hjs_a1 <- 8 - X$hjs_a1; X }
 calc("ch03.hjs_items_mean", function() mean(rowMeans(S()[, H])))

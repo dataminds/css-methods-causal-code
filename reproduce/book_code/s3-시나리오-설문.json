@@ -2,23 +2,23 @@
  "unit": "s3-시나리오-설문.md",
  "blocks": [
   [
-   100,
-   "svy = load(\"svy\")\ns = svy[svy.gender.isin([1, 2])]                      # 성별 통제 분석은 554명\nfem = (s.gender == 2).astype(float)\nh = s.hjs - s.hjs.mean()\nr = s.refl - s.refl.mean()\n\nprev = 0\nfor lab, X in [(\"1\", [s.age, fem]),\n               (\"2\", [s.age, fem, h]),\n               (\"3\", [s.age, fem, h, r, h * r])]:\n    b, se, p, r2 = ols(s.mil, X)\n    print(lab, round(r2, 4), round(r2 - prev, 4))\n    prev = r2\n# 1 0.0023 0.0023\n# 2 0.3915 0.3892\n# 3 0.4185 0.027"
+   101,
+   "svy = load(\"svy\")\ns = svy[svy.gender.isin([1, 2])]                      # 성별 통제 분석은 554명\nfem = (s.gender == 2).astype(float)\nh = s.hjs - s.hjs.mean()\nr = s.refl - s.refl.mean()\n\nprev = 0\nfor lab, X in [(\"1\", [s.age, fem]),\n               (\"2\", [s.age, fem, h]),\n               (\"3\", [s.age, fem, h, r]),\n               (\"4\", [s.age, fem, h, r, h * r])]:\n    b, se, p, r2 = ols(s.mil, X)\n    print(lab, round(r2, 4), round(r2 - prev, 4))\n    prev = r2\n# 1 0.0023 0.0023\n# 2 0.3915 0.3892\n# 3 0.3935 0.002\n# 4 0.4185 0.0251"
   ],
   [
-   133,
+   136,
    "prev = 0\nfor lab, X in [(\"1\", [s.age, fem]), (\"2\", [s.age, fem, h]),\n               (\"3\", [s.age, fem, h, r, h * r])]:\n    *_, r2 = ols(s.flr, X)\n    print(lab, round(r2, 4), round(r2 - prev, 4)); prev = r2\nb, se, p, _ = ols(s.flr, [s.age, fem, h, r, h * r])\nprint(round(b[3], 3), round(b[5], 3), round(p[5], 3))\n# 1 0.0028 0.0028\n# 2 0.1469 0.1441\n# 3 0.1604 0.0135\n# 0.425 0.097 0.004"
   ],
   [
-   151,
+   154,
    "b0, *_ = ols(s.mil, [h])                    # 통제 없음\nb1, *_ = ols(s.mil, [s.age, fem, h])        # 나이·성별 통제\nprint(round(b0[1], 3), round(b1[3], 3))\n# 0.982 0.981"
   ],
   [
-   162,
+   165,
    "b0, *_ = ols(s.mil, [s.hjs])              # 15장 §15.4에서 본 그것\nb1, *_ = ols(s.mil, [s.hjs, s.gen])\nprint(round(b0[1], 3), round(b1[1], 3))\n# 0.982 0.865"
   ],
   [
-   183,
+   186,
    "b1, se1, p1, r21 = ols(svy.mil, [svy.hjs])       # 의미를 여정으로 설명\nb2, se2, p2, r22 = ols(svy.hjs, [svy.mil])       # 여정을 의미로 설명\nprint(round(r21, 4), round(r22, 4))\nprint(f\"{p1[1]:.1e}\", f\"{p2[1]:.1e}\")\n# 0.3953 0.3953\n# 1.3e-63 1.3e-63"
   ]
  ]

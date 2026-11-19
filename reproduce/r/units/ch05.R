@@ -9,6 +9,12 @@ for (v in c("age", "hjs", "mil", "flr", "swl")) local({
   calc(paste0("ch05.", vv, "_mean"), function() mean(S()[[vv]]))
   calc(paste0("ch05.", vv, "_sd"), function() sd(S()[[vv]]))
 })
+for (v in c("hjs", "mil", "flr", "swl")) local({          # 표 1 관측 범위
+  vv <- v
+  calc(paste0("ch05.", vv, "_obs_min"), function() min(S()[[vv]]))
+  calc(paste0("ch05.", vv, "_obs_max"), function() max(S()[[vv]]))
+})
+calc("ch05.flr_eq7_pct", function() 100 * mean(S()$flr == 7))   # 실습 2 만점 비율
 calc("ch05.age_min", function() min(S()$age))
 calc("ch05.age_max", function() max(S()$age))
 calc("ch05.svy_n", function() nrow(S()))

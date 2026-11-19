@@ -81,6 +81,18 @@ calc("ch03.sub60_max")(lambda: sub()[60][1])
 calc("ch03.hjs_recalc_maxdiff")(lambda: (S()[H].mean(axis=1) - S().hjs).abs().max())
 calc("ch03.row1_hjs_stored")(lambda: float(S().hjs.iloc[0]))
 calc("ch03.row1_hjs_mine")(lambda: S()[H].iloc[0].sum() / 21)
+
+
+def _row1_blank():
+    """§3.4 ⚠ · 실습 8 = 1번 응답자의 첫 문항(파일 순서)을 비운 행."""
+    items = [c for c in S().columns if c.startswith("hjs_") and c != "hjs"]
+    row = S()[items].iloc[0].astype(float).copy()
+    row.iloc[0] = float("nan")
+    return row
+
+
+calc("ch03.row1_blank_mean")(lambda: _row1_blank().mean())        # 응답한 20문항으로 나눔
+calc("ch03.row1_blank_sum21")(lambda: _row1_blank().sum() / 21)   # 합 ÷ 21
 calc("ch03.axis0_len")(lambda: len(S()[H].mean(axis=0)))
 
 

@@ -418,7 +418,7 @@ def fig_ch12_alpha_beta(sd=1.23, d=0.22):
 
     위 줄 = 효과가 없는 세계(영분포), 아래 줄 = 효과가 d 만큼 있는 세계. 같은 가로축 · 같은 문턱.
     첫 세 칸 = 집단당 183명에서 α .10 · .05 · .01, 넷째 칸 = 집단당 366명에서 α .05.
-    정규 근사 · 양측. α .05 · 183명의 검정력 .557 은 13장 §13.4 시뮬레이션 57% 와 맞는다.
+    정규 근사 · 양측. α .05 · 183명의 검정력 .557 은 13장 §13.4 시뮬레이션 58% 와 맞는다.
     """
     from scipy import stats
     eff = d * sd
@@ -1020,15 +1020,20 @@ def fig_ch15_control():
     axes[0].scatter(zg.dose, zg.vigor, s=9, color=BW["color"][0], alpha=.55)
     axes[0].plot(xs, b_all[1] + b_all[0] * xs, color=OI[7], linewidth=1.6)
     axes[0].set_title(f"통제 없음: 하나의 선\n기울기 {b_all[0]:+.2f}")
+    # 2026-11-19 외부 점검 반영: 오른쪽 선 = 통제 모형(복용량 + 성별)이 그리는 공통 기울기 선.
+    #   층별로 따로 그은 기울기(−1.72 · −1.66)는 범례 괄호에만 써서 두 수를 구별한다.
+    Xc = np.column_stack([np.ones(len(zg)), zg.dose, zg.sex])
+    bc = np.linalg.lstsq(Xc, zg.vigor.values, rcond=None)[0]
     for i, (sx, lab) in enumerate(((0, "암컷"), (1, "수컷"))):
         d = zg[zg.sex == sx]
         b = np.polyfit(d.dose, d.vigor, 1)
         xs2 = np.linspace(d.dose.min(), d.dose.max(), 30)
         axes[1].scatter(d.dose, d.vigor, s=9, alpha=.55,
-                        color=BW["color"][i], marker=BW["marker"][i], label=f"{lab} {b[0]:+.2f}")
-        axes[1].plot(xs2, b[1] + b[0] * xs2, color=BW["color"][i],
+                        color=BW["color"][i], marker=BW["marker"][i],
+                        label=f"{lab} (따로 그으면 {b[0]:+.2f})")
+        axes[1].plot(xs2, bc[0] + bc[2] * sx + bc[1] * xs2, color=BW["color"][i],
                      linestyle=BW["line"][i], linewidth=1.6)
-    axes[1].set_title("성별 통제: 나란한 두 선\n(같은 기울기를 각자 갖는다)")
+    axes[1].set_title(f"성별 통제: 나란한 두 선\n(공통 기울기 {bc[1]:+.2f})")
     axes[1].legend(fontsize=8)
     for ax in axes:
         ax.set_xlabel("복용량")
@@ -1277,14 +1282,15 @@ def fig_s3_dag():
 
 
 def fig_s3_hier():
-    """위계 3단: 설명량이 어느 단계에서 오르나."""
+    """위계 4단: 설명량이 어느 단계에서 오르나."""
     svy = load_clean("svy")
     s = svy[svy.gender.isin([1, 2])]
     fem = (s.gender == 2).astype(float)
     h = s.hjs - s.hjs.mean(); r = s.refl - s.refl.mean()
     sets = [("1단계" + chr(10) + "나이·성별", [s.age, fem]),
             ("2단계" + chr(10) + "+ 여정 지각", [s.age, fem, h]),
-            ("3단계" + chr(10) + "+ 회고·곱항", [s.age, fem, h, r, h * r])]
+            ("3단계" + chr(10) + "+ 회고 습관", [s.age, fem, h, r]),
+            ("4단계" + chr(10) + "+ 곱항", [s.age, fem, h, r, h * r])]
     r2s = []
     for _, X in sets:
         X1 = np.column_stack([np.ones(len(s))] + [np.asarray(v, float) for v in X])
@@ -1301,7 +1307,7 @@ def fig_s3_hier():
         ax.text(i, r2 + .015, f"R² {r2:.3f}" + chr(10) + f"ΔR² {r2 - prev:.3f}",
                 ha="center", fontsize=8.5)
         prev = r2
-    ax.set_xticks(range(3)); ax.set_xticklabels([lab for lab, _ in sets], fontsize=9)
+    ax.set_xticks(range(len(sets))); ax.set_xticklabels([lab for lab, _ in sets], fontsize=9)
     ax.set_ylabel("설명된 몫 (R²)"); ax.set_ylim(0, .52)
     fig.suptitle("빗금이 그 단계가 새로 설명한 몫이다 (설문판, n = 554)", y=1.02)
     save(fig, "fig-s3-hier.png")
@@ -1457,8 +1463,8 @@ def fig_ch19_errorbars():
 def fig_ch18_tree():
     """세 질문이 도구를 지목한다 (결정 지도의 그림판)."""
     from matplotlib.patches import FancyBboxPatch
-    fig, ax = plt.subplots(figsize=(9.2, 5.6))
-    ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
+    fig, ax = plt.subplots(figsize=(9.2, 6.2))
+    ax.set_xlim(0, 10); ax.set_ylim(-1.1, 10); ax.axis("off")
 
     def box(x, y, w, h, text, fc, fs=8.5, bold=False):
         ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.08",
@@ -1478,7 +1484,7 @@ def fig_ch18_tree():
     # 2026-11-12 장 번호를 현행 장 체계로(구판 = 3단계 재편 전 번호 : 상관 9장 · DID 13장 · 뒤섞기 7·8장 …)
     #   근거 = 18장 §18.2 결정 지도 표의 「장」 열. 「격자」 → 「조사 연도별·출생 세대별 평균표」(같은 표의 낱말).
     H = .75
-    q1 = [("기술", 7.2), ("관계", 4.3), ("차이·인과", 1.35)]
+    q1 = [("기술", 7.2), ("관계", 4.3), ("차이·인과", 0.9)]
     for lab, y in q1:
         box(0.1, y, 2.3, H, lab, MID, 9, True)
 
@@ -1486,11 +1492,14 @@ def fig_ch18_tree():
         (7.2, [("무엇이든", 7.2, "분포·기술통계·표 1  (5장)")]),
         (4.3, [("횡단 관찰", 6.1, "상관·단순회귀  (14장)"),
                ("+ 제3변수", 5.15, "다중회귀 ; 통제는 DAG 로  (8·15장)"),
-               ("패널(같은 사람 반복)", 4.2, "교차지연·개인 평균 중심화  (9·17장)"),
-               ("반복 횡단", 3.25, "조사 연도별·출생 세대별 평균표  (17장)")]),
-        (1.35, [("무작위 배정 있음", 2.3, "뒤섞기·t·d·구간  (12·13장)"),
-                ("요인·사전사후", 1.35, "상호작용·공변인 조정  (16장·S1 ⑧·19장)"),
-                ("배정 없음", 0.4, "RDD·DID·단절 시계열  (17장)")]),
+               ("패널(같은 사람 반복)", 4.2, "교차지연·개인 평균 중심화  (9·18장)"),
+               ("반복 횡단", 3.25, "조사 연도별·출생 세대별 평균표  (18장)")]),
+        # 2026-11-19 외부 점검 반영: 장 번호 정정(18장) · 「배정 없음」에 설계 조건을 붙이고
+        #   「같은 사람 두 시점」 갈래를 더했다(통제군 없는 전후 비교 = 변화의 기술까지).
+        (0.9, [("무작위 배정 있음", 2.3, "뒤섞기·t·d·구간  (12·13장)"),
+               ("요인·사전사후", 1.35, "상호작용·공변인 조정  (16장·S1 ⑧)"),
+               ("같은 사람 두 시점\n(통제군 없음)", 0.4, "짝지은 t · 변화분  (19장 §19.2)\n인과 아님 = 변화의 기술"),
+               ("배정 없음 + 문턱 · 비교\n집단 · 긴 시계열", -0.55, "RDD·DID·단절 시계열  (18장)\n각 설계의 가정만큼")]),
     ]
     for y0, kids in rows:
         for lab, y, tool in kids:
@@ -1499,7 +1508,7 @@ def fig_ch18_tree():
             link(2.4, y0 + H / 2, 3.2, y + H / 2)
             link(5.5, y + H / 2, 6.3, y + H / 2)
 
-    ax.text(5.0, -0.35, "왼쪽이 오른쪽을 정한다. 거꾸로 타면 도구에 질문을 끼워 맞추게 된다.",
+    ax.text(5.0, -1.05, "왼쪽이 오른쪽을 정한다. 거꾸로 타면 도구에 질문을 끼워 맞추게 된다.",
             ha="center", fontsize=8.5, style="normal", color="#333333")
     fig.suptitle("분석법 선택의 나무: 세 질문이 도구를 지목한다", y=.99)
     save(fig, "fig-ch18-tree.png")

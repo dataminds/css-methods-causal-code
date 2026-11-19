@@ -86,3 +86,17 @@ s2.ex4.reps2,s2,20,,fixed,,실습 설계 (반복 수)
 s2.ex5.ratio,s2,1.414,s2.se_ratio,data,,실습 5 ; 곱항 SE ÷ e 계수 SE = √2 (균형 2×2 설계 행렬로 정해지는 값 ; 잔차 분산이 약분돼 난수와 무관 → 두 엔진이 같은 값)
 s2p5.ec.neg,s2,−0.5,,fixed,,효과 부호화 값 ; 정의 (2026-11-16d 5부 편입)
 s2p5.ec.pos,s2,0.5,,fixed,,효과 부호화 값 ; 정의
+s2.gain.int,s2,0.41,s2.gain_int,data,,함정 둘째 코드 ; 성찰+연결 셀 변화 폭 평균 (2026-11-20 0부 · 5부 점검 #2)
+s2.gain.ctl,s2,0.15,s2.gain_ctl,data,,함정 둘째 코드 ; 둘 다 없는 셀
+s2.gain.diff,s2,0.26,s2.gain_diff,data,,웰치 t
+s2.gain.level,s2,95,,fixed,,신뢰수준 (관례 95%)
+s2.gain.lo,s2,−0.06,s2.gain_lo,data,,웰치 95% 구간
+s2.gain.hi,s2,0.58,s2.gain_hi,data,,웰치 95% 구간
+s2.gain.p,s2,.113,s2.gain_p,data,,웰치 p
+s2.gain.level0,s2,95,,fixed,,신뢰수준 (관례 95%)
+s2.gain.b3,s2,0.34,s2.b3,data,,⑦ 곱항 (0.337)
+s2.ex2g.diff,s2,0.26,s2.gain_diff,data,,실습 2 이어서
+s2.ex2g.level,s2,95,,fixed,,신뢰수준
+s2.ex2g.lo,s2,−0.06,s2.gain_lo,data,,실습 2
+s2.ex2g.hi,s2,0.58,s2.gain_hi,data,,실습 2
+s2.ex2g.p,s2,.113,s2.gain_p,data,,실습 2

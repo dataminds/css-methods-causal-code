@@ -23,14 +23,18 @@
   ],
   [
    161,
-   "# 계수 크기를 둘 다 0.38 로 맞추고 N 을 늘리며 검정력을 계산한다\nfor N in (224, 448, 896, 1792):\n    ...    # 그림 생성 코드와 같다\n# N=224   주효과 0.40  상호작용 0.20\n# N=448   주효과 0.67  상호작용 0.37\n# N=896   주효과 0.92  상호작용 0.66\n# N=1792  주효과 1.00  상호작용 0.92"
+   "# 계수 크기를 둘 다 0.38 로 맞추고 N 을 늘리며 검정력을 계산한다\nfor N in (224, 448, 896, 1792):\n    ...    # 그림 생성 코드와 같다\n# N=224   단순효과 0.40  상호작용 0.20\n# N=448   단순효과 0.67  상호작용 0.37\n# N=896   단순효과 0.92  상호작용 0.66\n# N=1792  단순효과 1.00  상호작용 0.92"
   ],
   [
    197,
    "for lab, e, f_ in [(\"개입\", 1, 1), (\"통제\", 0, 0)]:\n    c = fac[(fac.elem == e) & (fac.frame == f_)]\n    d = c.mil_t2.values - c.mil_t1.values\n    t = d.mean() / (d.std(ddof=1) / np.sqrt(len(d)))\n    print(lab, round(c.mil_t1.mean(), 2), round(c.mil_t2.mean(), 2),\n          round(t, 2), round(float(2 * stats.t.sf(abs(t), len(d) - 1)), 4))\n# 개입 4.78 5.2 3.93 0.0002\n# 통제 4.75 4.9 1.24 0.2164"
   ],
   [
-   214,
+   212,
+   "c11 = fac[(fac.elem == 1) & (fac.frame == 1)]       # 성찰 + 연결\nc00 = fac[(fac.elem == 0) & (fac.frame == 0)]       # 둘 다 없음\nd11 = c11.mil_t2.values - c11.mil_t1.values\nd00 = c00.mil_t2.values - c00.mil_t1.values\nr = stats.ttest_ind(d11, d00, equal_var=False)\nci = r.confidence_interval(0.95)\nprint(round(d11.mean() - d00.mean(), 2), round(float(ci.low), 2),\n      round(float(ci.high), 2), round(float(r.pvalue), 3))\n# 0.26 -0.06 0.58 0.113"
+  ],
+  [
+   228,
    "print(round(float(np.corrcoef(fac.mil_t1, fac.mil_t2)[0, 1]), 3))\n# 0.589"
   ]
  ]

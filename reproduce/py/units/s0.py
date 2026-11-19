@@ -17,6 +17,8 @@ calc("s0.excluded")(lambda: len(RAW()) - len(E()))
 calc("s0.n")(lambda: len(E()))
 calc("s0.mean_t")(lambda: T().mean())
 calc("s0.mean_c")(lambda: C().mean())
+calc("s0.min_t")(lambda: T().min())     # S0.4 같은 칸 경계를 주는 까닭
+calc("s0.min_c")(lambda: C().min())
 calc("s0.sd_t")(lambda: T().std(ddof=1))
 calc("s0.sd_c")(lambda: C().std(ddof=1))
 calc("s0.diff")(lambda: T().mean() - C().mean())

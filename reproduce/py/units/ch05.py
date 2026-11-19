@@ -10,6 +10,10 @@ RAW = lambda: load("svy", clean=False)
 for v in ("age", "hjs", "mil", "flr", "swl"):
     calc(f"ch05.{v}_mean")(lambda v=v: S()[v].mean())
     calc(f"ch05.{v}_sd")(lambda v=v: S()[v].std(ddof=1))
+for v in ("hjs", "mil", "flr", "swl"):                    # 표 1 관측 범위 (2026-11-19 열 신설)
+    calc(f"ch05.{v}_obs_min")(lambda v=v: S()[v].min())
+    calc(f"ch05.{v}_obs_max")(lambda v=v: S()[v].max())
+calc("ch05.flr_eq7_pct")(lambda: (S().flr == 7).mean() * 100)   # 실습 2 만점 비율
 calc("ch05.age_min")(lambda: S().age.min())
 calc("ch05.age_max")(lambda: S().age.max())
 calc("ch05.svy_n")(lambda: len(S()))

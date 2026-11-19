@@ -181,4 +181,9 @@ ch03.dtype.32,ch03,32.0,,fixed,,§3.2 저장 형식 상자 = 손으로 만든 �
 ch03.na.350,ch03,350,ch03.n_w3,data,,§3.5 빈칸 상자
 ch03.na.mean,ch03,4.926,ch03.w3_mean,data,,§3.5 빈칸 상자 = 3차 삶의 의미 평균 (빈칸 뺌)
 ch03.na.mean_r,ch03,4.926,ch03.w3_mean,data,,§3.5 빈칸 상자 = R na.rm = TRUE
+ch03.blank.mean,ch03,4.600,ch03.row1_blank_mean,data,,§3.4 ⚠ 1번 응답자 첫 문항 비움 = 20문항 평균
+ch03.blank.sum,ch03,4.381,ch03.row1_blank_sum21,data,,§3.4 ⚠ 같은 행 합 ÷ 21
+ch03.ex8.mean,ch03,4.600,ch03.row1_blank_mean,data,,실습 8
+ch03.ex8.sum,ch03,4.381,ch03.row1_blank_sum21,data,,실습 8
+ch03.ex8.full,ch03,4.571,ch03.row1_hjs_mine,data,,실습 8 = 비우기 전 21문항 평균
 ch03.pat.70box,ch03,70,ch03.pat_110,data,,§3.5 더 나아가기 상자 (그동안 대조표에 빠져 있던 수)

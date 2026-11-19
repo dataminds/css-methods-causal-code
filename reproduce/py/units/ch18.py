@@ -61,13 +61,18 @@ def _ts():
     pre, post = ts[ts.campaign == 0], ts[ts.campaign == 1]
     b, se, *_ = ols(ts.wellbeing, [ts.week, ts.campaign])
     pr = ts[ts.week <= 52]                        # 실습 1 위약 검정
-    return dict(pre=pre.wellbeing.mean(), post=post.wellbeing.mean(),
+    e = ts.wellbeing.values - (b[0] + b[1] * ts.week.values + b[2] * ts.campaign.values)
+    fake = (pr.week >= 27).astype(float)
+    _, pse, *_ = ols(pr.wellbeing, [fake])        # 위약 분석을 같은 회귀로 돌린 표준오차
+    return dict(lag1=float(np.corrcoef(e[:-1], e[1:])[0, 1]), plse=pse[1], plse2=2 * pse[1],
+                pre=pre.wellbeing.mean(), post=post.wellbeing.mean(),
                 diff=post.wellbeing.mean() - pre.wellbeing.mean(), trend=b[1], camp=b[2], se=se[2],
                 se2=2 * se[2], weeks=len(ts), start=ts.week[ts.campaign == 1].min(),
                 placebo=pr[pr.week >= 27].wellbeing.mean() - pr[pr.week < 27].wellbeing.mean())
 
 
-for k in ("pre", "post", "diff", "trend", "camp", "se", "se2", "weeks", "start", "placebo"):
+for k in ("pre", "post", "diff", "trend", "camp", "se", "se2", "weeks", "start", "placebo",
+          "lag1", "plse", "plse2"):
     calc(f"ch18.ts_{k}")(lambda k=k: memo("ts", _ts)[k])
 
 

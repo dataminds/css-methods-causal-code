@@ -30,14 +30,14 @@ s3.tab2.r2,s3,.392,s3.mil_r2_2,data,,⑦ 2단계 R²
 s3.tab2.dr2,s3,.389,s3.mil_dr2_2,data,,⑦ 2단계 ΔR²
 s3.tab2.b,s3,0.98,s3.mil_b_hjs2,data,,⑦ 2단계 hjs 계수
 s3.tab2.p,s3,.001,s3.mil_p_hjs2_lt,data,,⑦ p < .001 문턱 판정 (p 가 .001 미만이면 계산이 .001 을 돌려준다 ; 아니면 실패)
-s3.tab3.r2,s3,.419,s3.mil_r2_3,data,,⑦ 3단계 R²
-s3.tab3.dr2,s3,.027,s3.mil_dr2_3,data,,⑦ 3단계 ΔR²
-s3.tab3.b,s3,0.19,s3.mil_b_int,data,,⑦ 중심화 곱항 계수
-s3.tab3.p,s3,.001,s3.mil_p_int_lt,data,,⑦ p < .001 문턱 판정 (실제 p = 1.5e−6)
+s3.tab3.r2,s3,.419,s3.mil_r2_3,data,,⑦ 3단계 R² ; 2026-11-19e 외부 점검 반영
+s3.tab3.dr2,s3,.025,s3.mil_dr2_int,data,,⑦ 3단계 ΔR² ; 2026-11-19e 외부 점검 반영
+s3.tab3.b,s3,0.19,s3.mil_b_int,data,,⑦ 중심화 곱항 계수 ; 2026-11-19e 외부 점검 반영
+s3.tab3.p,s3,.001,s3.mil_p_int_lt,data,,⑦ p < .001 문턱 판정 (실제 p = 1.5e−6) ; 2026-11-19e 외부 점검 반영
 s3.main.n2,s3,554,s3.n554,data,,⑦
 s3.fig.n,s3,554,s3.n554,data,,그림 설명
 s3.read.pp,s3,39,s3.mil_dr2_2_pp,data,,⑦ 읽기 ; ΔR² .3892 × 100
-s3.read.dr2,s3,.027,s3.mil_dr2_3,data,,⑦ 읽기
+s3.read.dr2,s3,.025,s3.mil_dr2_int,data,,⑦ 읽기 ; 2026-11-19e 외부 점검 반영
 s3.read.slo,s3,0.73,s3.slope_lo,data,,⑦ 단순기울기 (회고 −1SD) ; R = refl 을 옮겨 다시 중심화한 모형의 h 계수
 s3.read.shi,s3,1.25,s3.slope_hi,data,,⑦ 단순기울기 (회고 +1SD)
 s3.read.slo2,s3,0.73,s3.slope_lo,data,,⑦
@@ -80,14 +80,14 @@ s3.box.b,s3,0.40,s3.dir_b_rev,data,,⑨ 상자
 s3.ex1.n,s3,566,s3.n,data,,실습 1
 s3.ex1.a,s3,.93,s3.hjs_alpha,data,,실습 1
 s3.ex1.r,s3,.63,s3.r_hjs_mil,data,,실습 1
-s3.ex2.r1,s3,.002,s3.mil_r2_1,data,,실습 2
-s3.ex2.r2,s3,.392,s3.mil_r2_2,data,,실습 2
-s3.ex2.r3,s3,.419,s3.mil_r2_3,data,,실습 2
-s3.ex2.e1,s3,.0023,s3.mil_r2_1,data,,실습 2 (R² 1단계 ; ΔR² 1단계도 같은 값)
-s3.ex2.e2,s3,.3915,s3.mil_r2_2,data,,실습 2
-s3.ex2.e3,s3,.4185,s3.mil_r2_3,data,,실습 2
-s3.ex2.d2,s3,.3892,s3.mil_dr2_2,data,,실습 2
-s3.ex2.d3,s3,.0270,s3.mil_dr2_3,data,,실습 2 ; 0.027015
+s3.ex2.r1,s3,.002,s3.mil_r2_1,data,,실습 2 ; 2026-11-19e 외부 점검 반영
+s3.ex2.r2,s3,.392,s3.mil_r2_2,data,,실습 2 ; 2026-11-19e 외부 점검 반영
+s3.ex2.r3,s3,.419,s3.mil_r2_3,data,,실습 2 ; 2026-11-19e 외부 점검 반영
+s3.ex2.e1,s3,.0023,s3.mil_r2_1,data,,실습 2 (R² 1단계 ; ΔR² 1단계도 같은 값) ; 2026-11-19e 외부 점검 반영
+s3.ex2.e2,s3,.3915,s3.mil_r2_2,data,,실습 2 ; 2026-11-19e 외부 점검 반영
+s3.ex2.e3,s3,.4185,s3.mil_r2_3,data,,실습 2 ; 2026-11-19e 외부 점검 반영
+s3.ex2.d2,s3,.3892,s3.mil_dr2_2,data,,실습 2 ; 2026-11-19e 외부 점검 반영
+s3.ex2.d3,s3,.0251,s3.mil_dr2_int,data,,실습 2 ; 0.027015 ; 2026-11-19e 외부 점검 반영
 s3.ex3.lo,s3,0.73,s3.slope_lo,data,,실습 3
 s3.ex3.hi,s3,1.25,s3.slope_hi,data,,실습 3
 s3.ex3.lo2,s3,0.73,s3.slope_lo,data,,실습 3
@@ -97,7 +97,13 @@ s3.ex4.r2,s3,.1469,s3.flr_r2_2,data,,실습 4 ; 2026-11-14h 원고 정정에 맞
 s3.ex4.r3,s3,.1604,s3.flr_r2_3,data,,실습 4 ; 2026-11-14h 원고 정정에 맞춰 옮김
 s3.ex4.b,s3,0.42,s3.flr_b_hjs3,data,,실습 4 ; flr 3단계 hjs 계수 0.42497 → 0.42 ⚠ 원고 확인 대상 (s3.rob.b43 과 같은 수) ; 2026-11-14h 원고 정정에 맞춰 옮김
 s3.ex4.i,s3,0.10,s3.flr_b_int,data,,실습 4 ; 2026-11-14h 원고 정정에 맞춰 옮김
-s3.chk.dr2,s3,.027,s3.mil_dr2_3,data,,점검
+s3.chk.dr2,s3,.025,s3.mil_dr2_int,data,,점검 ; 2026-11-19e 외부 점검 반영
 s3.chk.r2,s3,.002,s3.mil_r2_1,data,,점검
 s3.read.n592,s3,592,,paper,,Rogers et al. (2023) Study 1 ; 출판본 756쪽
 s3.read.k9,s3,9,,paper,,Rogers et al. (2023) Study 1 수렴 타당도 변수 아홉 (자유도 t(581) = 592 − 1 − 10 과 맞는다) ; 출판본 758쪽
+s3.tab3w.r2,s3,.393,s3.mil_r2_w,data,,2026-11-19e 외부 점검 반영
+s3.tab3w.dr2,s3,.002,s3.mil_dr2_w,data,,2026-11-19e 외부 점검 반영
+s3.read.dr2w,s3,.002,s3.mil_dr2_w,data,,2026-11-19e 외부 점검 반영
+s3.ex2.rw,s3,.393,s3.mil_r2_w,data,,2026-11-19e 외부 점검 반영
+s3.ex2.ew,s3,.3935,s3.mil_r2_w,data,,2026-11-19e 외부 점검 반영
+s3.ex2.dw,s3,.0020,s3.mil_dr2_w,data,,2026-11-19e 외부 점검 반영

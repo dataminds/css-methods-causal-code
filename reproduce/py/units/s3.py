@@ -32,7 +32,8 @@ def _X(stage):
     fem = (s.gender == 2).astype(float)
     h = s.hjs - s.hjs.mean()
     r = s.refl - s.refl.mean()
-    return [[s.age, fem], [s.age, fem, h], [s.age, fem, h, r, h * r]][stage - 1]
+    # stage 4 = 조절변수 주효과까지 (2026-11-19 : 곱항만 마지막 단계에 넣는 4단 위계의 셋째 단계)
+    return [[s.age, fem], [s.age, fem, h], [s.age, fem, h, r, h * r], [s.age, fem, h, r]][stage - 1]
 
 
 def _fit(y, stage):
@@ -48,6 +49,9 @@ for y in ("mil", "flr"):
     calc(f"s3.{y}_b_hjs3")(lambda y=y: _fit(y, 3)[0][3])
     calc(f"s3.{y}_b_int")(lambda y=y: _fit(y, 3)[0][5])
     calc(f"s3.{y}_p_int")(lambda y=y: _fit(y, 3)[2][5])
+calc("s3.mil_r2_w")(lambda: _fit("mil", 4)[3])
+calc("s3.mil_dr2_w")(lambda: _fit("mil", 4)[3] - _fit("mil", 2)[3])
+calc("s3.mil_dr2_int")(lambda: _fit("mil", 3)[3] - _fit("mil", 4)[3])
 calc("s3.mil_dr2_2_pp")(lambda: (_fit("mil", 2)[3] - _fit("mil", 1)[3]) * 100)
 
 

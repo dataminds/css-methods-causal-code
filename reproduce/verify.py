@@ -17,7 +17,8 @@ claims/*.csv 의 한 줄 = 원고에 인쇄된 수 하나.
 판정 (허용폭을 따로 두지 않는다)
   1. anchor 가 원고에 있다          (원고 수를 바꾸면 여기서 걸린다 = 원고와 대조표가 함께 움직인다)
   2. printed 가 anchor 안에 있다
-  3. 파이썬 값을 printed 의 자릿수로 반올림하면 printed 다   (|값 − 표기| ≤ 0.5 × 10^−자릿수)
+  3. 파이썬 값을 공통 반올림 함수(half_up = 유효숫자 12 자리 정리 → 십진 반은 올림)로 printed 의 자릿수에 맞추면 printed 다
+     (2026-11-19 부터 ; 종전 |값 − 표기| ≤ 0.5 × 10^−자릿수 는 정확히 반에 걸린 값에서 두 표기를 모두 통과시켰다)
   4. data: R 값도 3 을 통과하고, 두 엔진 차이 ≤ 1e−8 (상대)
      sim : R 값과 파이썬 값의 차이 ≤ mc_tol
 실행: python verify.py [--no-r] [--out 보고.md]
@@ -33,6 +34,7 @@ import os
 import re
 import subprocess
 import sys
+from decimal import ROUND_HALF_UP, Decimal
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MAT = os.path.dirname(HERE)
@@ -79,9 +81,17 @@ def parse_printed(s):
     return float(t), d, pct
 
 
+def half_up(value, d):
+    """공통 반올림 함수 (반올림 지침 §2.1) = 유효숫자 12 자리로 정리한 뒤 소수 d 자리로 십진 「반은 올림」.
+    정리가 이진 저장 잡음(2.67499999999999982 → 2.675)을 걷어 두 엔진 · 함수가 같은 답을 낸다. 반은 0 에서 먼 쪽으로."""
+    return Decimal(f"{value:.12g}").quantize(Decimal(1).scaleb(-d), rounding=ROUND_HALF_UP)
+
+
 def rounds_to(value, printed):
+    """원고 표기 = 공통 반올림 함수의 답 (2026-11-19 ; 종전 = 계산값이 표기 ± 반 단위 안이면 통과.
+    종전 판정은 정확히 반에 걸린 값에서 두 표기를 모두 통과시켰다 = 5.135 의 5.13 · 5.14)."""
     p, d, _ = parse_printed(printed)
-    return abs(value - p) <= 0.5 * 10 ** (-d) + 1e-12
+    return half_up(value, d) == Decimal(f"{p:.{d}f}")
 
 
 def load_claims():

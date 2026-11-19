@@ -28,11 +28,13 @@
 
 ⚠ **1·7·10장에는 노트북이 없습니다.** 코드가 없는 장이라 그렇습니다. 2부(인과의 논리)는 평균과 나눠 보기만으로 가고, 그것이 이 책의 설계입니다.
 
-코랩에서 열려면 아래 주소의 `{장}`을 바꾸세요:
+코랩에서 열려면 아래 주소의 `{장}`을 바꾸세요(예: 5장은 `ch05`, 기초 B4는 `b4`, 시나리오 S1은 `s1`). 있는 노트북은 `notebooks/` 폴더 목록이 정확합니다:
 
 ```
-https://colab.research.google.com/github/dataminds/css-methods-causal-code/blob/main/notebooks/ch07.ipynb
+https://colab.research.google.com/github/dataminds/css-methods-causal-code/blob/main/notebooks/{장}.ipynb
 ```
+
+예: 5장 = https://colab.research.google.com/github/dataminds/css-methods-causal-code/blob/main/notebooks/ch05.ipynb
 
 **코드 읽기 노트북**(`notebooks/code_reading.ipynb`)은 이 책의 목적 — AI가 준 코드를 읽고 판단하기 — 을 직접 훈련합니다. AI 코드의 조용한 오류 여섯 가지(엉뚱한 집단·엉뚱한 열·표본 결측·경계 조건·부호 방향·통계 기본값)를 버그판·정답판 나란히 돌려 사냥합니다. 전부 crash 없이 그럴듯한 다른 숫자를 내는 오류라, 출력만으로는 안 걸리고 코드를 읽어야 잡힙니다.
 

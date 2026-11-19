@@ -1,7 +1,7 @@
 id,unit,printed,calc,kind,mc_tol,note
-ch13.power_190_pct.1,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_190_pct.1,ch13,58%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
 ch13.fixed.1,ch13,95%,,fixed,,신뢰수준 95% ; 정의
-ch13.power_190_pct.2,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_190_pct.2,ch13,58%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
 ch13.paper.1,ch13,5.14,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
 ch13.paper.2,ch13,1.40,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
 ch13.paper.3,ch13,4.83,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
@@ -55,7 +55,7 @@ ch13.fixed.6,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
 ch13.rg_mdes_190.1,ch13,.29,ch13.rg_mdes_190,data,,집단당 190명에서 검정력 .80 의 최소 검출 d
 ch13.paper.33,ch13,.22,,paper,,"Rogers et al. (2023) JPSP 125(4), 연구 5 결과 p. 765 (raw/papers/pil/Rogers-et-al-2023-JPSP-Hero-Journey-published.txt 쪽 머리말로 확인)"
 ch13.pw_22_190.1,ch13,.57,ch13.pw_22_190,data,,d .22 · 집단당 190명 검정력 (해석)
-ch13.power_190_pct.3,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_190_pct.3,ch13,58%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
 ch13.fixed.7,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
 ch13.p_t.1,ch13,.03,ch13.p_t,data,,등분산 t 검정 p (12장 p .03)
 ch13.obs.1,ch13,0.283,ch13.obs,data,,개입 − 통제 mil 평균 차이
@@ -217,14 +217,14 @@ ch13.fixed.59,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Ro
 ch13.fixed.60,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
 ch13.fixed.61,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
 ch13.fixed.62,ch13,0.22,,fixed,,"모의 세계에 참값으로 정한 d 0.22 (Rogers et al., 2023 연구 5 의 d .22)"
-ch13.power_50.1,ch13,.19,ch13.power_50,sim,0.0263,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.power_100.1,ch13,.34,ch13.power_100,sim,0.0318,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.power_190.1,ch13,.57,ch13.power_190,sim,0.0332,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.power_300.1,ch13,.76,ch13.power_300,sim,0.0286,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.power_500.1,ch13,.94,ch13.power_500,sim,0.0159,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.power_800.1,ch13,.99,ch13.power_800,sim,0.0054,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.fixed.63,ch13,190,,fixed,,검정력 표의 집단 크기 ; 설계
-ch13.power_190_pct.4,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_50.1,ch13,.19,ch13.power_50,sim,0.0263,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.power_100.1,ch13,.34,ch13.power_100,sim,0.0318,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.power_190.1,ch13,.58,ch13.power_190,sim,0.0332,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.power_300.1,ch13,.76,ch13.power_300,sim,0.0286,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.power_500.1,ch13,.94,ch13.power_500,sim,0.0159,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.power_800.1,ch13,.99,ch13.power_800,sim,0.0054,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.fixed.63,ch13,190,,fixed,,검정력 표의 집단 크기 ; 설계 ; 2026-11-19 공통 반올림 함수
+ch13.power_190_pct.4,ch13,58%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
 ch13.fixed.64,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
 ch13.fixed.65,ch13,.80,,fixed,,관례 검정력 기준 .80 ; 정의
 ch13.n_for_80_gt300.1,ch13,300,ch13.n_for_80_gt300,data,,부등식 주장 「.80 에 집단당 300명 넘게」 = 필요 n 326 ; 넘으면 300 을 돌려준다
@@ -232,10 +232,10 @@ ch13.fixed.66,ch13,100,,fixed,,12장 부분표본 크기 ; 설계
 ch13.fixed.67,ch13,100,,fixed,,12장 부분표본 크기 ; 설계
 ch13.fixed.68,ch13,50,,fixed,,100명을 두 집단으로 나눈 어림 ; 설계
 ch13.power_50.2,ch13,.19,ch13.power_50,sim,0.0263,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.power_190_pct.5,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_190_pct.5,ch13,58%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
 ch13.fixed.69,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
-ch13.power_190_pct.6,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.power_190_pct.7,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
+ch13.power_190_pct.6,ch13,58%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.power_190_pct.7,ch13,58%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
 ch13.fixed.70,ch13,0.4,,fixed,,역산 예시의 최소 관심 효과 d 0.4 ; 설계
 ch13.fixed.71,ch13,110,,fixed,,역산 눈금 ; 설계
 ch13.fixed.72,ch13,0.4,,fixed,,역산 예시의 최소 관심 효과 d 0.4 ; 설계
@@ -280,8 +280,8 @@ ch13.fixed.89,ch13,.80,,fixed,,실습 통과 기준 (관례 .80 언저리) ; 설
 ch13.cover.6,ch13,96,ch13.cover,sim,9.2466,§13.2 커버리지 (씨앗 73 · 50명 표본 100개) ; R 자기 난수 ; mc_tol = 3√2 × √(100 × .95 × .05)
 ch13.boot_lo.9,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
 ch13.boot_hi.9,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
-ch13.power_190_pct.8,ch13,57%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD"
-ch13.fixed.90,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
+ch13.power_190_pct.8,ch13,58%,ch13.power_190_pct,sim,3.32,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.fixed.90,ch13,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의 ; 2026-11-19 공통 반올림 함수
 ch13.d.9,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
 ch13.bayes.p,ch13,.03,ch12.perm_p,sim,0.0102,§13.2 빈도주의 · 베이즈 상자 = 12장 §12.2 뒤섞기 p .030 의 재언급 (허용폭은 ch12.perm_p.1 과 같다)
 ch13.bayes.97,ch13,97,ch12.perm_not_p_pct,sim,1.0235,§13.2 상자 = 12장 §12.3 「효과가 있을 확률 97%가 아니다」의 재언급

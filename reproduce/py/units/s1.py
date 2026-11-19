@@ -20,6 +20,17 @@ calc("s1.n_treat")(lambda: len(T()))
 calc("s1.n_ctrl")(lambda: len(C()))
 calc("s1.excl_treat")(lambda: int(((RAW().attn_1 == 0) & (RAW().cond == 1)).sum()))
 calc("s1.excl_ctrl")(lambda: int(((RAW().attn_1 == 0) & (RAW().cond == 0)).sum()))
+calc("s1.mil_diff_raw")(lambda: RAW()[RAW().cond == 1].mil.mean() - RAW()[RAW().cond == 0].mil.mean())
+
+
+def _power_sim183():
+    # 실습 3 : 13장 §13.4 의 모의시행을 정제 뒤 집단 크기 183명으로 (d 0.22 · 2,000번 · 씨앗 73)
+    rng = np.random.default_rng(73)
+    return sum(stats.ttest_ind(rng.standard_normal(183), rng.standard_normal(183) + 0.22).pvalue < .05
+               for _ in range(2000)) / 2000
+
+
+calc("s1.power_sim183")(_power_sim183)
 
 for v in ("age", "mil_t1", "hjs", "mil", "flr"):
     calc(f"s1.{v}_m_t")(lambda v=v: T()[v].mean())

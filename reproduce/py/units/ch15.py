@@ -32,7 +32,10 @@ def _zg():
         b1 = ols(zg.vigor, [zg.dose])[0]
         b2 = ols(zg.vigor, [zg.dose, zg.sex])[0]
         sl = [np.polyfit(g.dose, g.vigor, 1)[0] for _, g in zg.groupby("sex")]
+        # 가중치 = 집단 안 복용량 편차제곱합 (통제 계수 = 층별 기울기의 이 가중평균 ; 실습 1)
+        w = [((g.dose - g.dose.mean()) ** 2).sum() for _, g in zg.groupby("sex")]
         return dict(alone=b1[1], dose=b2[1], sex=b2[2], f=sl[0], m=sl[1], mean=np.mean(sl),
+                    wmean=np.average(sl, weights=w),
                     nf=int((zg.sex == 0).sum()), nm=int((zg.sex == 1).sum()))
     return _once("zg", f)
 
@@ -43,6 +46,7 @@ calc("ch15.zg_b_sex")(lambda: _zg()["sex"])
 calc("ch15.zg_slope_f")(lambda: _zg()["f"])
 calc("ch15.zg_slope_m")(lambda: _zg()["m"])
 calc("ch15.zg_slope_mean")(lambda: _zg()["mean"])
+calc("ch15.zg_slope_wmean")(lambda: _zg()["wmean"])
 # 「셋째 자리에서 0.001 다르다」 = 원고에 찍힌 두 값(셋째 자리 반올림)의 차이
 calc("ch15.zg_mean_minus_ctrl_rounded")(lambda: abs(round(_zg()["mean"], 3) - round(_zg()["dose"], 3)))
 calc("ch15.zg_n_f")(lambda: _zg()["nf"])

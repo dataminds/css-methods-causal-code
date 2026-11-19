@@ -7,7 +7,7 @@
   ],
   [
    103,
-   "base = rng.normal(0, 1, n)                    # 기저 의미감 (참값)\npre  = base + rng.normal(0, 0.5, n)           # 사전검사 = 그 대리 지표\norder = np.argsort(pre)\nsimple, block = [], []\nfor _ in range(2000):\n    z = rng.integers(0, 2, n)\n    simple.append(cohen_d(base[z == 1], base[z == 0]))\n    g = np.zeros(n, int)\n    for i in range(0, n, 2):                  # 사전검사가 비슷한 둘씩 짝지어 하나만 처치\n        g[order[i:i + 2][rng.integers(0, 2)]] = 1\n    block.append(cohen_d(base[g == 1], base[g == 0]))\nfor lab, v in [(\"단순\", simple), (\"블록\", block)]:\n    v = np.array(v)\n    print(lab, round(v.mean(), 3), round(v.std(ddof=1), 3), round(np.mean(np.abs(v) > 0.2), 3))\n# 단순 0.001 0.098 0.034\n# 블록 0.0 0.048 0.0"
+   "base = rng.normal(0, 1, n)                    # 기저 의미감 (참값)\npre  = base + rng.normal(0, 0.5, n)           # 사전검사 = 그 대리 지표\norder = np.argsort(pre)\nsimple, block = [], []\nfor _ in range(2000):\n    z = rng.integers(0, 2, n)\n    simple.append(cohen_d(base[z == 1], base[z == 0]))\n    g = np.zeros(n, int)\n    for i in range(0, n, 2):                  # 사전검사가 비슷한 둘씩 짝지어 하나만 처치\n        g[order[i:i + 2][rng.integers(0, 2)]] = 1\n    block.append(cohen_d(base[g == 1], base[g == 0]))\nfor lab, v in [(\"단순\", simple), (\"블록\", block)]:\n    v = np.array(v)\n    print(lab, round(v.mean(), 3), round(v.std(ddof=1), 3), round(np.mean(np.abs(v) > 0.2), 4))\n# 단순 0.001 0.098 0.0345\n# 블록 0.0 0.048 0.0"
   ],
   [
    227,

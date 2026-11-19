@@ -15,6 +15,8 @@ ch04.conv.7,ch04,.7,,fixed,,알파 관례 기준 (관례값)
 ch04.n.a,ch04,566,ch04.svy_n,data,,§4.2
 ch04.a21,ch04,.93,ch04.alpha_hjs21,data,,§4.2
 ch04.a21.pct,ch04,93,ch04.alpha_hjs21_pct,data,,§4.2 α × 100
+ch04.a21.pct2,ch04,93,ch04.alpha_hjs21_pct,data,,§4.2 ⚠ 타우 동등 문장
+ch04.a21.rep,ch04,.93,ch04.alpha_hjs21,data,,§4.2 ⚠ 보고 문장
 ch04.a.mil,ch04,.93,ch04.alpha_mil,data,,§4.2
 ch04.a.flr,ch04,.92,ch04.alpha_flr,data,,§4.2
 ch04.a.swl,ch04,.89,ch04.alpha_swl,data,,§4.2
@@ -118,8 +120,8 @@ ch04.ex5.rev3,ch04,−.664,ch04.alpha_rev3,data,,실습 5
 ch04.ex5.pass,ch04,.912,ch04.alpha_rev21,data,,실습 5
 ch04.ex7.lo,ch04,.44,ch04.elem_score_r_min,data,,실습 7
 ch04.ex7.hi,ch04,.55,ch04.elem_score_r_max,data,,실습 7
-ch04.ex7.alo,ch04,.71,ch04.alpha_el_min,data,,실습 7
-ch04.ex7.ahi,ch04,.88,ch04.alpha_el_max,data,,실습 7
+ch04.ex7.dlo,ch04,.57,ch04.elem_score_rdis_min,data,,실습 7 = 요소 사이 상관 ÷ √(두 요소 알파의 곱) 최솟값
+ch04.ex7.dhi,ch04,.67,ch04.elem_score_rdis_max,data,,실습 7 = 감쇠 교정 상관 최댓값
 ch04.mine.90,ch04,.90,,fixed,,§4.8 예시값 (가상의 척도 개발 논문 알파)
 ch04.mine.70,ch04,.70,,fixed,,§4.8 예시값
 ch04.mine.cx,ch04,.72,ch04.cx_alpha,sim,0.083,§4.8 ; 허용폭 근거 = ch04.cx.fwd

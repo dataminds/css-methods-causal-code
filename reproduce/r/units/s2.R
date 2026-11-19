@@ -40,6 +40,19 @@ for (k in 1:4) local({
   calc(paste0("s2.ctl_", labs[kk]), function() paired(0, 0)[kk])
 })
 calc("s2.ctl_gain", function() { x <- paired(0, 0); x[2] - x[1] })
+gain_diff <- function() {
+  # 함정 절 둘째 코드 : 두 셀의 변화 폭 (웰치 t ; t.test 기본값)
+  d <- FA()
+  a <- d[d$elem == 1 & d$frame == 1, ]; b <- d[d$elem == 0 & d$frame == 0, ]
+  ga <- a$mil_t2 - a$mil_t1; gb <- b$mil_t2 - b$mil_t1
+  tt <- t.test(ga, gb)
+  c(mean(ga), mean(gb), mean(ga) - mean(gb), tt$conf.int[1], tt$conf.int[2], tt$p.value)
+}
+gnames <- c("int", "ctl", "diff", "lo", "hi", "p")
+for (kk in seq_along(gnames)) local({
+  k <- kk
+  calc(paste0("s2.gain_", gnames[k]), function() gain_diff()[k])
+})
 calc("s2.r_prepost", function() cor(FA()$mil_t1, FA()$mil_t2))
 
 calc("s2.eta_elem", function() 4.93 / (4.93 + 445))

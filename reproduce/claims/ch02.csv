@@ -77,3 +77,8 @@ ch02.mine.panel,ch02,"1,270",ch02.rows_panel,data,,§2.6
 ch02.chk.svy,ch02,51,ch02.cols_svy,data,,§2.7 점검
 ch02.chk.ts,ch02,3,ch02.cols_ts,data,,§2.7 점검
 ch02.next.n,ch02,14,ch02.exp_attn_fail,data,,다음 장으로
+ch02.seed.fail,ch02,14,ch02.exp_attn_fail,data,,§2.3 씨앗 다음 점검 (2026-11-20 0부 · 5부 점검 #15)
+ch02.ex1.fmt1,ch02,7.0,,fixed,,표시 형식 예시
+ch02.ex1.fmt2,ch02,7.00,,fixed,,표시 형식 예시
+ch02.ex2.zero,ch02,0,,fixed,,극단값 판 = 전원 통과라 정의상 0
+ch02.ex2.ans2,ch02,14,ch02.exp_attn_fail,data,,실습 2 통과 기준

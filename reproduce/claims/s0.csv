@@ -63,3 +63,9 @@ s0.ex1.scale,s0,7,,fixed,,척도 끝값
 s0.ex2.raw,s0,380,s0.raw_rows,data,,원자료 사람 수
 s0.chk.gap,s0,0.28,s0.diff,data,,개입 − 통제
 s0.chk.n,s0,366,s0.n,data,,정제본 사람 수
+s0.hist.bins20,s0,20,,fixed,,matplotlib 인자 예시 (2026-11-20 0부 · 5부 점검 #11)
+s0.hist.min_t,s0,2.25,s0.min_t,data,,정제본 개입 mil 최솟값
+s0.hist.min_c,s0,1.00,s0.min_c,data,,정제본 통제 mil 최솟값
+s0.hist.unit,s0,0.25,,fixed,,네 문항 1~7 평균의 단위
+s0.hist.start,s0,0.875,,fixed,,칸 경계 시작 = 1 − 0.125
+s0.hist.step,s0,0.25,,fixed,,칸 너비

@@ -26,7 +26,7 @@
    "obs = t.mil.mean() - c.mil.mean()\nprint(round(obs, 3))\n# 0.283\n\nrng = np.random.default_rng(73)                     # 뒤섞기 (12장)\ndiffs = []\nfor _ in range(5000):\n    fake = rng.permutation(exp.cond.values)\n    diffs.append(exp.mil.values[fake == 1].mean() - exp.mil.values[fake == 0].mean())\ndiffs = np.array(diffs)\nprint(round((np.abs(diffs) >= abs(obs)).mean(), 4))\n# 0.0302\n\ntt = stats.ttest_ind(t.mil, c.mil)                  # t검정\nprint(round(tt.statistic, 2), round(tt.pvalue, 3))\n# 2.21 0.028"
   ],
   [
-   266,
+   268,
    "print(round(cohen_d(t.mil, c.mil), 2))                       # 13장\n# 0.23\n\ntv, cv = t.mil.values, c.mil.values                          # 부트스트랩 (13장)\nrng = np.random.default_rng(73)\nbd = np.array([rng.choice(tv, len(tv), replace=True).mean()\n               - rng.choice(cv, len(cv), replace=True).mean()\n               for _ in range(5000)])\nprint(np.percentile(bd, [2.5, 97.5]).round(2))\n# [0.03 0.54]\n\nb, se, p, _ = ols(exp.mil, [exp.cond, exp.mil_t1])           # 공변인 조정 (15장)\nprint(round(b[1], 2), round(se[1], 2), round(p[1], 3))\n# 0.29 0.11 0.007\n\nk = exp.mil_t1 - exp.mil_t1.mean()                           # 중심화 (16장)\nb, _, p, _ = ols(exp.mil, [exp.cond, k, exp.cond * k])\nprint(round(b[3], 2), round(p[3], 3))\n# 0.02 0.797"
   ]
  ]

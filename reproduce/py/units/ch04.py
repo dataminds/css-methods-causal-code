@@ -78,6 +78,19 @@ def _elem_r():
 
 calc("ch04.elem_score_r_min")(lambda: _elem_r().min())
 calc("ch04.elem_score_r_max")(lambda: _elem_r().max())
+
+
+def _elem_rdis():
+    """실습 7 = 요소 사이 상관을 두 요소 알파로 감쇠 교정 (r ÷ √(α_i α_j))."""
+    sc = np.column_stack([S()[EL[t]].mean(axis=1) for t in "psqactl"])
+    R = np.corrcoef(sc, rowvar=False)
+    a = np.array([cronbach(S()[EL[t]]) for t in "psqactl"])
+    D = R / np.sqrt(np.outer(a, a))
+    return D[np.triu_indices(7, 1)]
+
+
+calc("ch04.elem_score_rdis_min")(lambda: _elem_rdis().min())
+calc("ch04.elem_score_rdis_max")(lambda: _elem_rdis().max())
 calc("ch04.r_legacy_gen")(lambda: np.corrcoef(S()[EL["l"]].mean(axis=1), S().gen)[0, 1])
 
 

@@ -188,9 +188,9 @@ ch16n.4.tab.i09,ch16,0.94,ch16.pow09_int,sim,0.036,MC SD .0084 × 3√2 (2026-11
 ch16n.4.tab.r08,ch16,0.8,,fixed,,심은 신뢰도
 ch16n.4.tab.m08,ch16,0.93,ch16.pow08_main,sim,0.038,MC SD .0090 × 3√2 (2026-11-15n 신설)
 ch16n.4.tab.i08,ch16,0.86,ch16.pow08_int,sim,0.052,MC SD .0123 × 3√2 (2026-11-15n 신설)
-ch16n.4.tab.r07,ch16,0.7,,fixed,,심은 신뢰도
-ch16n.4.tab.m07,ch16,0.88,ch16.pow07_main,sim,0.049,MC SD .0115 × 3√2 (2026-11-15n 신설)
-ch16n.4.tab.i07,ch16,0.75,ch16.pow07_int,sim,0.065,MC SD .0153 × 3√2
+ch16n.4.tab.r07,ch16,0.7,,fixed,,심은 신뢰도 ; 2026-11-19 공통 반올림 함수
+ch16n.4.tab.m07,ch16,0.89,ch16.pow07_main,sim,0.049,MC SD .0115 × 3√2 (2026-11-15n 신설) ; 2026-11-19 공통 반올림 함수
+ch16n.4.tab.i07,ch16,0.75,ch16.pow07_int,sim,0.065,MC SD .0153 × 3√2 ; 2026-11-19 공통 반올림 함수
 ch16n.4.tab.r06,ch16,0.6,,fixed,,심은 신뢰도
 ch16n.4.tab.m06,ch16,0.83,ch16.pow06_main,sim,0.056,MC SD .0133 × 3√2
 ch16n.4.tab.i06,ch16,0.63,ch16.pow06_int,sim,0.072,MC SD .0171 × 3√2
@@ -368,10 +368,10 @@ ch16r.hier.n,ch16,554,s3.n554,data,,§16.1 ④ 위계 3단 = 시나리오 S3 ⑦
 ch16r.hier.r1,ch16,.002,s3.mil_r2_1,data,,S3 ⑦ 1단 R²
 ch16r.hier.r2,ch16,.392,s3.mil_r2_2,data,,S3 ⑦ 2단 R²
 ch16r.hier.d2,ch16,.389,s3.mil_dr2_2,data,,S3 ⑦ 2단 ΔR²
-ch16r.hier.r3,ch16,.419,s3.mil_r2_3,data,,S3 ⑦ 3단 R²
-ch16r.hier.d3,ch16,.027,s3.mil_dr2_3,data,,S3 ⑦ 3단 ΔR²
-ch16r.hier.d3b,ch16,.027,s3.mil_dr2_3,data,,
-ch16r.hier.d1,ch16,.025,ch16.ss_dr2,data,,§16.1 ④ 곱항만의 ΔR² (566명)
+ch16r.hier.r3,ch16,.419,s3.mil_r2_3,data,,S3 ⑦ 3단 R² ; 2026-11-19e 외부 점검 반영
+ch16r.hier.d3,ch16,.025,s3.mil_dr2_int,data,,S3 ⑦ 3단 ΔR² ; 2026-11-19e 외부 점검 반영
+ch16r.hier.d3b,ch16,.025,s3.mil_dr2_int,data,,2026-11-19e 외부 점검 반영
+ch16r.hier.d1,ch16,.027,s3.mil_dr2_3,data,,§16.1 ④ 곱항만의 ΔR² (566명) ; 2026-11-19e 외부 점검 반영
 ch16r.g3.dr2,ch16,.000,ch16.g3_dr2,data,,§16.4 세 범주 = 곱항 둘을 묶은 검정
 ch16r.g3.df,ch16,560,ch16.g3_df2,data,,
 ch16r.g3.f,ch16,0.06,ch16.g3_F,data,,
@@ -423,3 +423,7 @@ ch16sw.fac.df,ch16,426,ch16.fac_df2,data,,
 ch16sw.fac.p,ch16,.176,ch16.fac_p3_int,data,,
 ch16.t19.L410.1.566,ch16,566,ch16.mt_n,data,,3장 정제 설문판 인원
 ch16.t19.L416.1.566,ch16,566,ch16.mt_n,data,,3장 정제 설문판 인원
+ch16r.hier.r3w,ch16,.393,s3.mil_r2_w,data,,2026-11-19e 외부 점검 반영
+ch16r.hier.d3w,ch16,.002,s3.mil_dr2_w,data,,2026-11-19e 외부 점검 반영
+ch16r.hier.d3w2,ch16,.002,s3.mil_dr2_w,data,,2026-11-19e 외부 점검 반영
+ch16n.ex1.check,ch16,0.731,ch16.cm1_b1,data,,2026-11-19e 외부 점검 반영

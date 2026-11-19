@@ -154,13 +154,37 @@ STEPS = {
   'R = el.corr()\n'
   'print(R.round(2))\n'
   'off = R.values[np.triu_indices(7, 1)]\n'
-  'print("최저", round(off.min(), 2), " 최고", round(off.max(), 2))   # 0.44 0.55'),
+  'print("최저", round(off.min(), 2), " 최고", round(off.max(), 2))   # 0.44 0.55\n'
+  'al = np.array([cronbach(svy[[f"hjs_{t}{i}" for i in (1, 2, 3)]].values) for t in tags])\n'
+  'D = (R.values / np.sqrt(np.outer(al, al)))[np.triu_indices(7, 1)]   # 감쇠 교정 (§4.5)\n'
+  'print("감쇠 교정 최저", round(D.min(), 2), " 최고", round(D.max(), 2))   # 0.57 0.67'),
+ ("## 5. 문항 하나를 거꾸로 넣으면 (§4.2 역채점 · 실습)\n"
+  "조력자 첫 문항(`hjs_a1`)을 8에서 빼 되돌리지 않은 상태를 만들고, 두 잣대로 봅니다. "
+  "첫 줄 = 21문항 알파(되돌리지 않음 · 정상). 둘째 줄 = 문항-총점 상관(되돌리지 않은 문항 · 정상 문항). "
+  "셋째 줄 = 조력자 3문항 알파(정상 · 되돌리지 않음). 알파는 21문항에서 조금밖에 안 내려가지만, 문항-총점 상관은 부호가 뒤집힙니다.",
+  'X = svy[items].copy()\n'
+  'X["hjs_a1"] = 8 - X["hjs_a1"]                    # 되돌리지 않은 상태\n'
+  'tot = X.sum(axis=1)\n'
+  'print(round(cronbach(X.values), 3), round(cronbach(svy[items].values), 3))\n'
+  'print(round(X.hjs_a1.corr(tot - X.hjs_a1), 3), round(X.hjs_a2.corr(tot - X.hjs_a2), 3))\n'
+  'a3 = ["hjs_a1", "hjs_a2", "hjs_a3"]\n'
+  'print(round(cronbach(svy[a3].values), 3), round(cronbach(X[a3].values), 3))\n'
+  '# 0.912 0.931\n'
+  '# -0.502 0.479\n'
+  '# 0.708 -0.664'),
 ],
 "ch05": [
- ("## 2. 표 1 만들기\n논문의 첫 표. 주요 변수의 평균·표준편차.",
+ ("## 2. 표 1 만들기 (실습 1)\n논문의 첫 표. 주요 변수의 평균 · 표준편차 · 관측 최소 · 최대를 한 표로 찍습니다. "
+  "책 §5.3 표 1의 「관측 범위」 열과 맞춰 보세요. 「가능 범위」(1 ～ 7)는 코드가 아니라 척도의 설계에서 옵니다.",
   'svy = load("svy")\n'
-  'for v in ["age","hjs","mil","flr","swl"]:\n'
-  '    print(f"{v}: M={svy[v].mean():.2f}, SD={svy[v].std(ddof=1):.2f}")'),
+  'cols = ["age", "hjs", "mil", "flr", "swl"]\n'
+  'print(svy[cols].agg(["mean", "std", "min", "max"]).T.round(2))\n'
+  '#       mean    std    min    max\n'
+  '# age  45.87  12.37  18.00  75.00\n'
+  '# hjs   5.01   0.80   2.33   6.86\n'
+  '# mil   4.89   1.25   1.00   7.00\n'
+  '# flr   5.23   0.88   2.12   7.00\n'
+  '# swl   4.60   1.10   1.20   7.00'),
  ("## 3. 상관: 이 책 내내 따라올 숫자\n여정과 의미의 상관 .63. 아직 아무 인과도 아닙니다(6·7장).",
   'print("r(여정, 의미) =", round(svy.hjs.corr(svy.mil), 2))'),
  ("## 4. 분포를 그림으로 (실습 2 · 3 의 출발점)\n§5.1 의 히스토그램과 평균선, §5.2 의 성별 바이올린입니다. "
@@ -248,7 +272,8 @@ STEPS = {
   'print(f"개입 {tg.mean():.2f} vs 통제 {cg.mean():.2f}, 차이 {obs:.3f}")\n'
   'rng = np.random.default_rng(73); y = exp.mil.values; cond = exp.cond.values\n'
   'diffs = np.array([(y[(s:=rng.permutation(cond))==1].mean()-y[s==0].mean()) for _ in range(5000)])\n'
-  'print("뒤섞기 p =", round((np.abs(diffs)>=abs(obs)).mean(), 3))     # 0.030'),
+  'print("뒤섞기 p =", round((np.abs(diffs)>=abs(obs)).mean(), 3))     # 0.030\n'
+  'print("관찰 차이 이상인 세계 =", int((np.abs(diffs)>=abs(obs)).sum()), "/ 5000")   # 151 (실습 1 통과 기준)'),
  ("## 3. 공식 검정은 빠른 근사\nt검정도 같은 결론을 줍니다(같은 논리의 요약).",
   'tt = stats.ttest_ind(tg, cg)\n'
   'print(f"t = {tt.statistic:.2f}, p = {tt.pvalue:.3f}")             # 2.21, 0.028'),
@@ -285,6 +310,33 @@ STEPS = {
   'obs = tg.mean() - cg.mean()\n'
   'print(round(se, 3), round(obs - 1.96 * se, 2), round(obs + 1.96 * se, 2))\n'
   '# 0.128 0.03 0.53'),
+ ("## 5. 실습 3: d = 0.4를 잡으려면 집단당 몇 명이 필요한가 (§13.4)\n"
+  "효과가 d = 0.4인 세계에서 실험을 2,000번 되풀이해, 효과를 잡은 비율(검정력)을 집단 크기마다 셉니다. "
+  "§13.4의 검정력 표와 달리 n 마다 씨앗을 새로 심습니다. 수십 초 걸립니다.",
+  'for n in (80, 90, 100, 110):\n'
+  '    rng = np.random.default_rng(73)   # n 마다 씨앗을 새로 심는다\n'
+  '    hits = sum(stats.ttest_ind(rng.standard_normal(n),\n'
+  '                               rng.standard_normal(n) + 0.4).pvalue < .05\n'
+  '               for _ in range(2000))\n'
+  '    print(n, round(hits / 2000, 2))\n'
+  '# 80 0.7\n'
+  '# 90 0.76\n'
+  '# 100 0.81\n'
+  '# 110 0.85'),
+ ("## 6. 실습 4: 구간 100개 가운데 몇 개가 참값을 품나 (§13.2)\n"
+  "566명을 모집단으로 놓고 50명 표본으로 95% 구간을 100개 만들어, 참값을 품은 구간을 셉니다. "
+  "씨앗을 바꿔 다시 세어 보세요. 매번 같은 수가 나오지 않는 것 자체가 실습 4의 물음입니다.",
+  'pop = load("svy")["mil"].values\n'
+  'truth = pop.mean()                                   # 이 세계의 참값\n'
+  'def cover(seed):\n'
+  '    rng = np.random.default_rng(seed); hit = 0\n'
+  '    for _ in range(100):\n'
+  '        s = rng.choice(pop, size=50, replace=False)\n'
+  '        half = 1.96 * s.std(ddof=1) / np.sqrt(50)\n'
+  '        hit += s.mean() - half <= truth <= s.mean() + half\n'
+  '    return int(hit)\n'
+  'print([cover(s) for s in (73, 37, 2026, 1)])\n'
+  '# [96, 98, 93, 93]'),
 ],
 "ch14": [
  ("## 2. 회귀: 관계를 한 줄의 식으로\n기울기 0.98, 절편 -0.01, R² .40.",
@@ -409,8 +461,8 @@ STEPS = {
   '        b, se, *_ = ols(Y, [Xo, Wo, Xo * Wo])\n'
   '        hit_main += abs(b[1] / se[1]) > 1.96\n'
   '        hit_int  += abs(b[3] / se[3]) > 1.96\n'
-  '    print(rel, round(hit_main / 800, 2), round(hit_int / 800, 2))\n'
-  '# 1.0 0.97 0.98 / 0.9 0.95 0.94 / 0.8 0.93 0.86 / 0.7 0.88 0.75 / 0.6 0.83 0.63'),
+  '    print(rel, hit_main / 800, hit_int / 800)   # 반올림하지 않고 그대로 (800번 중 비율이라 정확히 반에 걸린 값이 있다)\n'
+  '# 1.0 0.96875 0.98125 / 0.9 0.95 0.935 / 0.8 0.93 0.8625 / 0.7 0.885 0.74875 / 0.6 0.8325 0.63'),
  ("## 5. 곱의 신뢰도는 두 신뢰도의 곱 언저리 (§16.6 표)\n"
   "서로 무관한 두 참점수 X·W에 오차를 섞어, X 한 척도의 신뢰도와 곱 X×W의 신뢰도를 구합니다(10만 명).",
   'rng = np.random.default_rng(73)\n'
@@ -513,6 +565,33 @@ STEPS = {
   'ts = pd.read_csv("data/journey_ts.csv")\n'
   'pre, post = ts[ts.campaign==0].wellbeing, ts[ts.campaign==1].wellbeing\n'
   'print(f"도입 전 {pre.mean():.2f} -> 도입 후 {post.mean():.2f}")'),
+ ("## 2-1. 이중차분: 평행 추세가 깨지면 얼마나 틀리나\n"
+  "두 세계에 똑같이 +0.50짜리 정책 효과를 넣었습니다. 깨진 세계에서는 정책 지역만 원래 0.4씩 오르고 있었습니다. "
+  "틀린 몫 0.40이 그대로 추정값에 더해집니다(§18.2).",
+  'def did(parallel):\n'
+  '    r = np.random.default_rng(73); cell = []\n'
+  '    for reg in (0, 1):                                   # 0 = 비교 지역, 1 = 정책 지역\n'
+  '        for t in (0, 1):                                 # 0 = 도입 전, 1 = 도입 후\n'
+  '            drift = 0 if parallel else 0.4 * reg * t     # 깨진 세계: A 만 원래 오르는 중\n'
+  '            cell.append(5.0 + 0.3*reg + 0.2*t + drift + 0.5*reg*t + r.normal(0, .02))\n'
+  '    비교전, 비교후, 정책전, 정책후 = cell\n'
+  '    return (정책후 - 정책전) - (비교후 - 비교전)\n'
+  'print(round(did(True), 3), round(did(False), 3))\n'
+  '# 0.476 0.876'),
+ ("## 2-2. 코호트: 나이 · 시기 · 세대는 셋을 다 가를 수 없다\n"
+  "나이 = 조사 연도 − 출생 연도라 세 열 가운데 하나가 나머지로 만들어집니다. "
+  "계수를 c만큼 옮겨도 잔차제곱합이 소수 여섯째 자리까지 같습니다(§18.4 ; 실습 5).",
+  'co = pd.read_csv("data/journey_cohort.csv")\n'
+  'X = np.column_stack([np.ones(len(co)), co.age, co.year, co.birth])\n'
+  'print(np.linalg.matrix_rank(X), X.shape[1])          # 3 4\n'
+  'b, *_ = np.linalg.lstsq(X, co.mil.values, rcond=None)\n'
+  'for c in (0.20, 0.0, -0.05):\n'
+  '    b2 = b + np.array([0, c, -c, c])\n'
+  '    print(round(b2[1], 3), round(b2[2], 3), round(b2[3], 3),\n'
+  '          round(float(((co.mil.values - X @ b2) ** 2).sum()), 6))\n'
+  '# 0.211 -0.192 0.198   1790.588069\n'
+  '# 0.011  0.008 -0.002  1790.588069\n'
+  '# -0.039 0.058 -0.052  1790.588069'),
  ("## 3. 패널: 개인 안에서 보면 관계가 줄어든다\n횡단 상관 .29가 개인 평균 중심화 후 .06으로. 대부분 안정 성향의 몫이었습니다.",
   'panel = pd.read_csv("data/journey_panel.csv")\n'
   'w1 = panel[panel.wave==1]\n'
@@ -608,8 +687,28 @@ STEPS = {
  ("## 5. 순위 상관\n값을 순위로 바꿔 구한 스피어만 상관을 피어슨 상관과 견줍니다(14장 §14.5).",
   'print(round(stats.spearmanr(svy.hjs, svy.mil)[0], 3), round(svy.hjs.corr(svy.mil), 3))\n'
   '# 0.626 0.629'),
+ ("## 6. 실습 4: 산점도로 세 가지를 확인한다 (§B3.1)\n"
+  "두 계수가 비슷하다는 것만으로는 관계가 직선인지, 퍼짐이 고른지 알 수 없습니다. 그림으로 봅니다. "
+  "직선적인가 · 퍼짐이 고른가 · 외딴 점이 있는가를 각각 한 줄로 적고, 두 계수를 견줘 알게 된 것은 따로 적으세요. "
+  "⚠ 한글 글자가 네모로 나오면 부록 E 의 글꼴 안내를 따르세요.",
+  'import matplotlib.pyplot as plt\n'
+  'jit = np.random.default_rng(73).uniform(-0.08, 0.08, (2, len(svy)))   # 같은 점수가 겹치지 않게 조금 흔든다\n'
+  'plt.figure(figsize=(4.5, 3.6))\n'
+  'plt.scatter(svy.hjs + jit[0], svy.mil + jit[1], s=8, alpha=.4)\n'
+  'plt.xlabel("hjs"); plt.ylabel("mil")\n'
+  'plt.show()'),
 ],
 "b4": [
+ ("## 2-0. 실습 1 · 2: 실험판 두 집단을 세 검정으로 (책 B4.4 코드 1)\n"
+  "등분산 t검정 · 웰치 t검정 · 맨-휘트니의 p를 나란히 찍습니다. 몇 초면 끝납니다. "
+  "두 집단이 183명씩 같으므로 등분산 t검정과 웰치가 같은 값을 냅니다(실습 2).",
+  'from scipy import stats\n'
+  'exp = load("exp")                               # 실험판 366명 (3장)\n'
+  'treat, ctrl = exp[exp.cond == 1].mil.values, exp[exp.cond == 0].mil.values\n'
+  'print(round(stats.ttest_ind(treat, ctrl).pvalue, 4),\n'
+  '      round(stats.ttest_ind(treat, ctrl, equal_var=False).pvalue, 4),\n'
+  '      round(stats.mannwhitneyu(treat, ctrl).pvalue, 4))\n'
+  '# 0.028 0.028 0.0398'),
  ("## 2. (책이 원리를 보이려고 돌린 코드) 위양성률을 직접 센다 (책 B4.1 · B4.2)\n"
   "`위양성`은 세계를 2,000번 지어 p < .05가 나온 비율을 세고, `t검정`은 12장의 t검정, `뒤섞기`는 12장 §12.2의 뒤섞기 검정입니다. "
   "`위양성(뽑기, 검정)`은 「세계를 짓는 함수」와 「검정하는 함수」를 인자로 받습니다. 함수도 값처럼 다른 함수에 넘길 수 있어서, 세계와 검정을 바꿔 끼우며 같은 셈을 되풀이할 수 있습니다. "
@@ -621,7 +720,7 @@ STEPS = {
   '    for _ in range(R):\n'
   '        a, b_ = 뽑기(g)\n'
   '        hits += 검정(a, b_) < .05\n'
-  '    return round(hits / R, 3)\n'
+  '    return round(hits / R, 4)                 # 책보다 한 자리 더 (정확히 반에 걸린 비율이 있다)\n'
   '\n'
   't검정 = lambda a, b_: stats.ttest_ind(a, b_).pvalue\n'
   '웰치 = lambda a, b_: stats.ttest_ind(a, b_, equal_var=False).pvalue\n'
@@ -639,16 +738,16 @@ STEPS = {
   'for n in (10, 30, 100):\n'
   '    치우침 = lambda g, n=n: (g.exponential(1, n), g.exponential(1, n))\n'
   '    print(n, 위양성(치우침, t검정), 위양성(치우침, 뒤섞기))\n'
-  '# 10 0.042 0.046\n'
-  '# 30 0.044 0.044\n'
+  '# 10 0.0415 0.0465\n'
+  '# 30 0.0435 0.044\n'
   '# 100 0.055 0.056\n'
   '\n'
   '세계 = {"큰 분산이 작은 집단": lambda g: (g.normal(0, 3, 20), g.normal(0, 1, 60)),\n'
   '        "큰 분산이 큰 집단":   lambda g: (g.normal(0, 1, 20), g.normal(0, 3, 60))}\n'
   'for 이름, 뽑기 in 세계.items():\n'
   '    print(이름, 위양성(뽑기, t검정), 위양성(뽑기, 웰치), 위양성(뽑기, 뒤섞기, R=500))\n'
-  '# 큰 분산이 작은 집단 0.222 0.058 0.22\n'
-  '# 큰 분산이 큰 집단 0.002 0.052 0.004'),
+  '# 큰 분산이 작은 집단 0.222 0.0575 0.22\n'
+  '# 큰 분산이 큰 집단 0.0025 0.0525 0.004'),
  ("## 3. (책이 원리를 보이려고 돌린 코드) 꼬리가 두꺼우면 비모수 검정의 검정력이 더 높다 (책 B4.4)\n"
   "극단값이 자주 나오는 분포(자유도 2의 t분포)에서 집단당 40명을 뽑되 한 집단에만 0.8을 더하고, 이 세계를 2,000번 지어 t검정과 맨-휘트니가 각각 효과를 잡은 비율을 셉니다.",
   'from scipy import stats\n'
@@ -989,14 +1088,14 @@ STEPS = {
   'print("  못 잡은 것과 없는 것은 다르다(8장). p=.176 은 「없다」가 아니라 「이 표본으로는 못 본다」.")'),
 ],
 "s3": [
- ("## 2. 위계 회귀: 무엇이 얼마를 더 설명하나\n블록을 쌓으며 R² 증분을 본다. 여정이 .389, 조절 항이 .027 을 더한다.",
+ ("## 2. 위계 회귀: 무엇이 얼마를 더 설명하나\n블록을 쌓으며 R² 증분을 본다. 여정이 .389, 회고 습관이 .002, 곱항이 .025 를 더한다. 곱항은 마지막 단계에 혼자 넣는다.",
   'svy = load("svy")\n'
   's = svy[svy.gender.isin([1, 2])]                 # 성별 통제 분석은 554명\n'
   'fem = (s.gender == 2).astype(float)\n'
   'h = s.hjs - s.hjs.mean(); r = s.refl - s.refl.mean()\n'
   'prev = 0\n'
   'for lab, X in [("1 인구학", [s.age, fem]), ("2 + 여정", [s.age, fem, h]),\n'
-  '               ("3 + 조절", [s.age, fem, h, r, h*r])]:\n'
+  '               ("3 + 회고 습관", [s.age, fem, h, r]), ("4 + 곱항", [s.age, fem, h, r, h*r])]:\n'
   '    b, se, p, r2 = ols(s.mil, X)\n'
   '    print(lab, round(r2, 4), " 증분", round(r2 - prev, 4)); prev = r2'),
  ("## 3. 충돌 통제 함정\n세대성(gen)을 통제하면 계수가 .982 에서 .865 로 **왜곡**된다. 통제가 언제나 좋은 것이 아니다(11장).",

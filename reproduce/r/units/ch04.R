@@ -57,6 +57,13 @@ calc("ch04.alpha_rev3", function() alpha(.rev()[, EL("a")]))
 .elr <- function() { sc <- sapply(.tags, function(t) rowMeans(S()[, EL(t)])); R <- cor(sc); R[upper.tri(R)] }
 calc("ch04.elem_score_r_min", function() min(.elr()))
 calc("ch04.elem_score_r_max", function() max(.elr()))
+# 실습 7 = 감쇠 교정 (r ÷ √(α_i α_j))
+.elrdis <- function() {
+  sc <- sapply(.tags, function(t) rowMeans(S()[, EL(t)])); R <- cor(sc)
+  a <- sapply(.tags, function(t) alpha(S()[, EL(t)])); D <- R / sqrt(outer(a, a)); D[upper.tri(D)]
+}
+calc("ch04.elem_score_rdis_min", function() min(.elrdis()))
+calc("ch04.elem_score_rdis_max", function() max(.elrdis()))
 calc("ch04.r_legacy_gen", function() cor(rowMeans(S()[, EL("l")]), S()$gen))
 
 # 모의시행 = 같은 설계, R 의 난수 (씨앗 73)

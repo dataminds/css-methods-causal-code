@@ -155,10 +155,8 @@ ch05.cl.eq.prod,ch05,.63,ch05.cl_reliab_product,data,,(.62 ÷ .78)² = 0.6318 (�
 ch05.cl.eq2.prod,ch05,.63,ch05.cl_reliab_product,data,,(.62 ÷ .78)² = 0.6318 (산술)
 ch05.cl.eq2.rel,ch05,.72,,paper,,Cheung & Lucas 2014 p. 2812
 ch05.cl.eq2.alpha,ch05,.88,ch05.cl_swls_alpha,data,,(.62 ÷ .78)² ÷ .72 = 0.8775 (반올림 전 곱으로 ; 반올림한 .63 ÷ .72 = 0.875 도 .88)
-ch05.ex4.thr.a,ch05,6.5,,fixed,,실습 4 천장 문턱 (설계값)
 ch05.ex4.med.lo,ch05,4.54,ch05.sim_median_min,sim,0.2,실습 4 = §5.1 네 분포 중앙값 최소
 ch05.ex4.med.hi,ch05,4.95,ch05.sim_median_max,sim,0.2,실습 4 = §5.1 네 분포 중앙값 최대
-ch05.ex4.thr.b,ch05,6.5,,fixed,,실습 4 천장 문턱 (설계값)
 ch05.ex5.gender.mean,ch05,1.54,ch05.raw_gender_mean,data,,실습 5 (원자료 590명)
 ch05.ex5.gender.k,ch05,3,ch05.gender_nunique,data,,실습 5 (정제본)
 ch05.ex5.mil1.k,ch05,7,ch05.mil1_nunique,data,,실습 5 (정제본)
@@ -198,3 +196,21 @@ ch05.tx.read3a.2,ch05,4.82,ch05.exp_ctl_mil_t1_mean,data,,§5.3 「남의 표 1 
 ch05.tx.read3b.1,ch05,5.26,ch05.exp_int_mil_mean,data,,§5.3 「남의 표 1 읽기」 실험판 집단별 표 (2026-11-15)
 ch05.tx.read3b.2,ch05,4.98,ch05.exp_ctl_mil_mean,data,,§5.3 「남의 표 1 읽기」 실험판 집단별 표 (2026-11-15)
 ch05.tx.read3c.1,ch05,7,ch05.exp_women_pct_gap,data,,§5.3 「남의 표 1 읽기」 실험판 집단별 표 (2026-11-15)
+ch05.t1.hjs.omin,ch05,2.33,ch05.hjs_obs_min,data,,§5.3 표 1 관측 범위 최소
+ch05.t1.hjs.omax,ch05,6.86,ch05.hjs_obs_max,data,,§5.3 표 1 관측 범위 최대
+ch05.t1.mil.omin,ch05,1.00,ch05.mil_obs_min,data,,§5.3 표 1 관측 범위 최소
+ch05.t1.mil.omax,ch05,7.00,ch05.mil_obs_max,data,,§5.3 표 1 관측 범위 최대
+ch05.t1.flr.omin,ch05,2.12,ch05.flr_obs_min,data,,§5.3 표 1 관측 범위 최소
+ch05.t1.flr.omax,ch05,7.00,ch05.flr_obs_max,data,,§5.3 표 1 관측 범위 최대
+ch05.t1.swl.omin,ch05,1.20,ch05.swl_obs_min,data,,§5.3 표 1 관측 범위 최소
+ch05.t1.swl.omax,ch05,7.00,ch05.swl_obs_max,data,,§5.3 표 1 관측 범위 최대
+ch05.c3.mix,ch05,.72,,fixed,,4장 §4.2 반례 알파 (대조 = claims/ch04.csv 의 반례 행 ; 단위 밖 계산이라 fixed)
+ch05.ex2.eq7,ch05,1.2,ch05.flr_eq7_pct,data,,실습 2 = 번영 만점 비율
+ch05.ex2.eq7b,ch05,1.2,ch05.flr_eq7_pct,data,,실습 2 통과 기준
+ch05.ex2.thr,ch05,6.5,,fixed,,실습 2 천장 문턱 (설계값)
+ch05.ex2.ge65,ch05,8.8,ch05.flr_ge65_pct,data,,실습 2 통과 기준
+ch05.ex4.skew.m,ch05,4.89,ch05.sim_skew_mean,sim,0.001,실습 4 = 치우친 분포 평균 (fit 이 맞춘 값)
+ch05.ex4.skew.med,ch05,4.54,ch05.sim_skew_median,sim,0.13,실습 4 = 치우친 분포 중앙값 (§5.1 행과 같은 허용폭)
+ch05.ex4.skew.max,ch05,11.67,ch05.sim_max_max,sim,5,실습 4 = 치우친 분포 최댓값 (§5.1 행과 같은 허용폭)
+ch05.ex5.med,ch05,5.00,ch05.mil_median,data,,실습 5 우수 기준
+ch05.ex5.mean,ch05,4.89,ch05.mil_mean,data,,실습 5 우수 기준

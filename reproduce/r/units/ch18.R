@@ -46,14 +46,19 @@ calc("ch18.did_gap", function() did(FALSE) - did(TRUE))
 tsr <- function() {
   ts <- load_data("ts")
   m <- tapply(ts$wellbeing, ts$campaign, mean)
-  f <- summary(lm(wellbeing ~ week + campaign, data = ts))$coefficients
+  fit <- lm(wellbeing ~ week + campaign, data = ts)
+  f <- summary(fit)$coefficients
+  e <- unname(resid(fit))
   pr <- ts[ts$week <= 52, ]
   pl <- t.test(wellbeing ~ I(week >= 27), data = pr)$estimate
-  list(pre = m[["0"]], post = m[["1"]], diff = m[["1"]] - m[["0"]], trend = f["week", 1],
+  pse <- summary(lm(wellbeing ~ I(as.numeric(week >= 27)), data = pr))$coefficients[2, 2]
+  list(lag1 = cor(e[-length(e)], e[-1]), plse = pse, plse2 = 2 * pse,
+       pre = m[["0"]], post = m[["1"]], diff = m[["1"]] - m[["0"]], trend = f["week", 1],
        camp = f["campaign", 1], se = f["campaign", 2], se2 = 2 * f["campaign", 2], weeks = nrow(ts),
        start = min(ts$week[ts$campaign == 1]), placebo = unname(pl[2] - pl[1]))
 }
-for (k in c("pre", "post", "diff", "trend", "camp", "se", "se2", "weeks", "start", "placebo")) local({
+for (k in c("pre", "post", "diff", "trend", "camp", "se", "se2", "weeks", "start", "placebo",
+            "lag1", "plse", "plse2")) local({
   kk <- k; calc(paste0("ch18.ts_", kk), function() memo("ts", tsr)[[kk]])
 })
 

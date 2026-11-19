@@ -19,7 +19,7 @@ ch15.first.tab.osfgain,ch15,.045,,paper,,Rogers 외 2023 OSF 공개 자료 재�
 ch15.1.tab.alone,ch15,1.70,ch15.zg_b_alone,sim,0.5,§15.1 저그마을(씨앗 73 · 400마리 ; make_simpson) 통제 없는 기울기 (파이썬 1.6994). R 독립 난수 · 파이썬 500 번 모의 표준편차 .116 → 3 × √2 × .116 ≈ .49
 ch15.1.tab.dose,ch15,−1.69,ch15.zg_b_dose,sim,0.6,§15.1 성별 통제 복용량 계수 ; 모의 표준편차 .139 → .59
 ch15.1.tab.sex,ch15,20.14,ch15.zg_b_sex,sim,2.8,§15.1 성별 계수 ; 모의 표준편차 .652 → 2.77
-ch15.1.common,ch15,−1.69,ch15.zg_b_dose,sim,0.6,§15.1 ; 허용 근거 = ch15.1.tab.dose
+ch15.1.common,ch15,−1.69,ch15.zg_b_dose,sim,0.6,§15.1 ; 허용 근거 = ch15.1.tab.dose ; 2026-11-19e 외부 점검 반영
 ch15.1.ch8.f,ch15,−1.72,ch15.zg_slope_f,sim,0.85,§15.1 암컷 층 기울기 ; 모의 표준편차 .199 → .85
 ch15.1.ch8.m,ch15,−1.66,ch15.zg_slope_m,sim,0.83,§15.1 수컷 층 기울기 ; 모의 표준편차 .195 → .83
 ch15.1.cmp.f,ch15,−1.716,ch15.zg_slope_f,sim,0.85,§15.1 ; 허용 근거 = ch15.1.ch8.f
@@ -27,8 +27,8 @@ ch15.1.cmp.m,ch15,−1.660,ch15.zg_slope_m,sim,0.83,§15.1 ; 허용 근거 = ch1
 ch15.1.cmp.mean,ch15,−1.688,ch15.zg_slope_mean,sim,0.6,§15.1 ; 모의 표준편차 .140 → .59
 ch15.1.cmp.ctrl,ch15,−1.687,ch15.zg_b_dose,sim,0.6,§15.1 ; 허용 근거 = ch15.1.tab.dose
 ch15.1.cmp.diff,ch15,0.001,ch15.zg_mean_minus_ctrl_rounded,sim,0.05,§15.1 = 셋째 자리로 반올림한 두 값 −1.688 · −1.687 의 차이 (반올림 전 차이는 0.0010) ; 모의 표준편차 .011 → .047
-ch15.1.n.f,ch15,204,ch15.zg_n_f,sim,43,§15.1 암컷 수 ; 이항 표준편차 10 → 3 × √2 × 10 ≈ 42
-ch15.1.n.m,ch15,196,ch15.zg_n_m,sim,43,§15.1 수컷 수 ; 허용 근거 = ch15.1.n.f
+ch15.1.n.f,ch15,204,ch15.zg_n_f,sim,43,§15.1 암컷 수 ; 이항 표준편차 10 → 3 × √2 × 10 ≈ 42 ; 2026-11-19e 외부 점검 반영
+ch15.1.n.m,ch15,196,ch15.zg_n_m,sim,43,§15.1 수컷 수 ; 허용 근거 = ch15.1.n.f ; 2026-11-19e 외부 점검 반영
 ch15.1.flip.alone,ch15,1.70,ch15.zg_b_alone,sim,0.5,§15.1 ; 허용 근거 = ch15.1.tab.alone
 ch15.1.flip.dose,ch15,−1.69,ch15.zg_b_dose,sim,0.6,§15.1
 ch15.1.true.dose,ch15,−1.5,,fixed,,참값으로 정한 복용량 효과 (make_simpson 의 −1.5 * dose)
@@ -354,3 +354,7 @@ ch15.t19.L395.1.566,ch15,566,,fixed,,§ 4단 전환 개념 절 결과 표 (2026-
 ch15.t19.L396.1.0.75,ch15,0.75,ch15.sens_swl,data,,§ 4단 전환 개념 절 결과 표 (2026-11-15n)
 ch15.t19.L417.1.95,ch15,95,,fixed,,95% 신뢰구간의 신뢰수준
 ch15.t19.L422.1.95,ch15,95,,fixed,,95% 신뢰구간의 신뢰수준
+ch15.1.legend.f,ch15,−1.72,ch15.zg_slope_f,sim,0.85,2026-11-19e 외부 점검 반영
+ch15.1.legend.m,ch15,−1.66,ch15.zg_slope_m,sim,0.83,2026-11-19e 외부 점검 반영
+ch15.1.wmean,ch15,−1.687,ch15.zg_slope_wmean,sim,0.6,2026-11-19e 외부 점검 반영
+ch15.8.ex1.wmean,ch15,−1.687,ch15.zg_slope_wmean,sim,0.6,2026-11-19e 외부 점검 반영

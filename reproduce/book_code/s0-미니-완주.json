@@ -2,27 +2,27 @@
  "unit": "s0-미니-완주.md",
  "blocks": [
   [
-   72,
+   74,
    "exp = load(\"exp\", clean=False)\nprint(exp.shape, exp.cond.value_counts().sort_index().tolist())\n# (380, 30) [190, 190]"
   ],
   [
-   88,
+   90,
    "exp = load(\"exp\")\nprint(len(exp), exp.groupby(\"cond\").mil.count().tolist())\n# 366 [183, 183]"
   ],
   [
-   106,
+   108,
    "요약 = exp.groupby(\"cond\").mil.agg([\"count\", \"mean\", \"std\"]).round(2)\nprint(요약)\n#       count  mean   std\n# cond\n# 0       183  4.98  1.27\n# 1       183  5.26  1.18"
   ],
   [
-   117,
+   119,
    "개입 = exp[exp.cond == 1].mil\n통제 = exp[exp.cond == 0].mil\nprint(round(개입.mean() - 통제.mean(), 3))\n# 0.283"
   ],
   [
-   134,
-   "import matplotlib.pyplot as plt\nfig, ax = plt.subplots(figsize=(6, 3.2))\nax.hist(통제, bins=20, histtype=\"step\", linestyle=\"--\", label=\"통제\")\nax.hist(개입, bins=20, histtype=\"step\", linestyle=\"-\", label=\"개입\")\nax.axvline(통제.mean(), linestyle=\"--\"); ax.axvline(개입.mean(), linestyle=\"-\")\nax.set_xlabel(\"삶의 의미\"); ax.set_ylabel(\"사람 수\"); ax.legend()"
+   136,
+   "import matplotlib.pyplot as plt\n칸 = np.arange(0.875, 7.25, 0.25)                    # 두 집단이 함께 쓰는 칸 경계\nfig, ax = plt.subplots(figsize=(6, 3.2))\nax.hist(통제, bins=칸, histtype=\"step\", linestyle=\"--\", label=\"통제\")\nax.hist(개입, bins=칸, histtype=\"step\", linestyle=\"-\", label=\"개입\")\nax.axvline(통제.mean(), linestyle=\"--\"); ax.axvline(개입.mean(), linestyle=\"-\")\nax.set_xlabel(\"삶의 의미\"); ax.set_ylabel(\"사람 수\"); ax.legend()"
   ],
   [
-   183,
+   186,
    "b = np.polyfit(exp.cond, exp.mil, 1)\nprint(round(b[0], 3))\n# 0.283"
   ]
  ]

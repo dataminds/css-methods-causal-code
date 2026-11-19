@@ -122,7 +122,7 @@ ch20.fixed.17,ch20,95,,fixed,,신뢰수준 95% (정의)
 ch20.s3_lo3.1,ch20,0.12,ch20.s3_lo3,data,,t(548) 구간
 ch20.s3_hi3.1,ch20,0.27,ch20.s3_hi3,data,,t(548) 구간
 ch20.s3_p3_below_001.1,ch20,.001,ch20.s3_p3_below_001,data,,문턱 주장
-ch20.s3_dr2_3.1,ch20,.027,ch20.s3_dr2_3,data,,3단계 ΔR²
+ch20.s3_dr2_3.1,ch20,.025,s3.mil_dr2_int,data,,3단계 ΔR² ; 2026-11-19e 외부 점검 반영
 ch20.s3_slo.1,ch20,0.73,ch20.s3_slo,data,,hjs 기울기 − 곱항 × SD(refl)
 ch20.s3_shi.1,ch20,1.25,ch20.s3_shi,data,,hjs 기울기 + 곱항 × SD(refl) = 1.248
 ch20.fixed.18,ch20,95,,fixed,,신뢰수준 95% (정의)
@@ -284,3 +284,4 @@ ch20.bayes.bf15,ch20,15,,paper,,Wagenmakers 외 2018 p. 46 의 예시 값 (BF01 
 ch20.bayes.bf1_5,ch20,1.5,,paper,,Wagenmakers 외 2018 p. 46 의 예시 값 (BF01 = 1.5 = absence of evidence)
 ch20.bayes.bf1,ch20,1,,fixed,,BF = 1 = 자료가 두 가설을 똑같이 지지 (정의)
 ch20.bayes.prior30,ch20,0.32,ch11.bayes30_shift,data,,§20.3 끝 상자 1 = 11장 §11.6 앞 30명 평평한 사전분포 대 믿음 사전분포의 사후 평균 차 (2026-11-15g)
+ch20.bal.age_d,ch20,−0.06,ch20.exp_age_d,data,,§20.3 균형 점검 문단이 본보기를 가리킴 (2026-11-20 0부 · 5부 점검 #13)
