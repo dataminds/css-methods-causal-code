@@ -177,3 +177,8 @@ ch03.mine.n,ch03,566,ch03.svy_n,data,,§3.8
 ch03.chk.60,ch03,60,,fixed,,§3.9 가정 표본 크기 (§3.3 의 60명 설계)
 ch03.chk.500,ch03,500,ch03.panel_ids,data,,§3.9
 ch03.chk.gap,ch03,0.12,ch03.hjs_rev_gap,data,,§3.9
+ch03.dtype.32,ch03,32.0,,fixed,,§3.2 저장 형식 상자 = 손으로 만든 세 사람 예 (23 · 모름 · 41 → (23 + 41) / 2) ; 원고 코드 블록이 출력으로 대조
+ch03.na.350,ch03,350,ch03.n_w3,data,,§3.5 빈칸 상자
+ch03.na.mean,ch03,4.926,ch03.w3_mean,data,,§3.5 빈칸 상자 = 3차 삶의 의미 평균 (빈칸 뺌)
+ch03.na.mean_r,ch03,4.926,ch03.w3_mean,data,,§3.5 빈칸 상자 = R na.rm = TRUE
+ch03.pat.70box,ch03,70,ch03.pat_110,data,,§3.5 더 나아가기 상자 (그동안 대조표에 빠져 있던 수)

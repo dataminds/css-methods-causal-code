@@ -124,4 +124,5 @@ calc("ch03.sd_w3_imp")(lambda: W().fillna(W().mean())[3].std())
 calc("ch03.w1_mean_dropped")(lambda: W()[1][W()[3].isna()].mean())
 calc("ch03.w1_mean_kept")(lambda: W()[1][W()[3].notna()].mean())
 calc("ch03.w1_mean_all")(lambda: W()[1].mean())
+calc("ch03.w3_mean")(lambda: W()[3].mean())   # §3.5 빈칸 상자 = pandas 는 빈칸을 빼고 평균
 calc("ch03.w1_lw_gap")(lambda: W().dropna()[1].mean() - W()[1].mean())
