@@ -2,11 +2,11 @@
  "unit": "b5-결측.md",
  "blocks": [
   [
-   203,
+   210,
    "panel = load(\"panel\")\nw = panel.pivot(index=\"id\", columns=\"wave\", values=\"mil\")\nprint(w.notna().sum().tolist(), round(w[3].isna().mean() * 100, 1))\ngone = w[3].isna()\nprint(round(w.loc[gone, 1].mean(), 3), round(w.loc[~gone, 1].mean(), 3))\n# [500, 420, 350] 30.0\n# 4.458 5.056"
   ],
   [
-   217,
+   224,
    "wm = panel.pivot(index=\"id\", columns=\"wave\", values=\"mil\")\nwh = panel.pivot(index=\"id\", columns=\"wave\", values=\"hjs\")\nd = pd.DataFrame({\"m1\": wm[1], \"m2\": wm[2], \"m3\": wm[3], \"h1\": wh[1]})\ng = np.random.default_rng(73)\nsteps = [(\"m2\", [\"m1\", \"h1\"]), (\"m3\", [\"m1\", \"m2\", \"h1\"])]   # 빠진 값을 차례로 채운다\nest = []\nfor _ in range(20):                                          # 20벌을 만든다\n    z = d.copy()\n    for y, xs in steps:\n        ok = d[y].notna()\n        X = np.column_stack([np.ones(ok.sum())] + [z.loc[ok, x] for x in xs])\n        b = np.linalg.lstsq(X, z.loc[ok, y], rcond=None)[0]\n        r = z.loc[ok, y] - X @ b\n        s2 = (r @ r) / g.chisquare(len(r) - len(b))          # 잔차 분산을 뽑는다\n        bd = g.multivariate_normal(b, s2 * np.linalg.inv(X.T @ X))   # 계수를 뽑는다\n        Xm = np.column_stack([np.ones((~ok).sum())] + [z.loc[~ok, x] for x in xs])\n        z.loc[~ok, y] = Xm @ bd + g.normal(0, np.sqrt(s2), (~ok).sum())   # 예측값 + 잡음\n    bz, sez, *_ = ols(z.m3, [z.m1])\n    est.append([z.m3.mean(), z.m1.corr(z.m3), bz[1], sez[1]])\ne = np.array(est)\nwithin = np.mean(e[:, 3] ** 2)                               # 벌 안 분산\nbetween = np.var(e[:, 2], ddof=1)                            # 벌 사이 분산\nse = np.sqrt(within + (1 + 1 / 20) * between)\nprint(e[:, :3].mean(0).round(3), round(se, 4), round(np.sqrt(within), 4))\n# [4.785 0.482 0.515] 0.0545 0.0419"
   ]
  ]
