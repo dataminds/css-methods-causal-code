@@ -267,3 +267,4 @@ ch12.p_t.7,ch12,.028,ch12.p_t,data,,등분산 t 검정 양측 p
 ch12.chi_p.2,ch12,.117,ch12.chi_p,data,,같은 카이제곱의 p
 ch12.three.indep.95,ch12,.95,,fixed,,검정 하나가 위양성을 내지 않을 확률 = 1 − α (α = .05)
 ch12.three.indep.14,ch12,.14,ch12.fp_three_indep_frac,data,,1 − .95³ = .142625 (2026-11-14h 원고 정정)
+ch12.19e.x.p05.0,ch12,.05,,fixed,,관례 유의수준

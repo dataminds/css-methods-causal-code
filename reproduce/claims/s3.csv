@@ -51,6 +51,8 @@ s3.rob.r15,s3,.15,s3.flr_r2_2,data,,⑧ flr 2단계 R² .1469
 s3.rob.i19,s3,0.19,s3.mil_b_int,data,,⑧
 s3.rob.i10,s3,0.10,s3.flr_b_int,data,,⑧ flr 곱항 계수 0.097
 s3.rob.r2,s3,.002,s3.mil_r2_1,data,,⑧
+s3.gen.b98,s3,0.98,s3.dir_b,data,,⑥ 세대성 구조 경고 (2026-11-20 0부 · 5부 점검 #10) = ⑧ 의 대조와 같은 수
+s3.gen.b86,s3,0.86,s3.b_hjs_gen566,data,,⑥ 세대성 구조 경고
 s3.rob.g98,s3,0.98,s3.dir_b,data,,⑧ 15장 §15.4 에서 본 대조 = mil ~ hjs (정제 566명) 0.978 ; 554명이면 0.982
 s3.rob.g86,s3,0.86,s3.b_hjs_gen566,data,,⑧ 15장 §15.4 = mil ~ hjs + gen (566명) 0.864 ; ⚠ 바로 뒤 코드 블록의 554명 판은 0.865 → 둘째 자리 0.87 (산문은 15장 값을 인용)
 s3.rob.n554,s3,554,s3.n554,data,,⑧

@@ -100,7 +100,16 @@ b1.ex1.hi,b1,0.6,b1.coin100_hi95,data,,상한 0.598
 b1.ex1.never,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
 b1.ex2.mean,b1,4.95,b1.exp_mean,sim,0.30,§B1.2 지수 평균
 b1.ex2.med,b1,3.40,b1.exp_median,sim,0.29,§B1.2 지수 중앙값
-b1.ex3.sqrt10,b1,3.2,b1.sqrt10,data,,√10 = 3.16
+b1.ex3.n5,b1,5,,fixed,,실습 3 설계 (§B1.4 둘째 표와 같은 크기)
+b1.ex3.n30,b1,30,,fixed,,실습 3 설계
+b1.ex3.n100,b1,100,,fixed,,실습 3 설계
+b1.ex3.x20,b1,20,,fixed,,100 ÷ 5
+b1.ex3.sqrt20,b1,4.5,b1.sqrt20,data,,√20 = 4.47
+b1.ex3.sd5,b1,0.574,b1.means_sd5,sim,0.036,§B1.4 둘째 표와 같은 값
+b1.ex3.sd100,b1,0.116,b1.means_sd100,sim,0.008,§B1.4 둘째 표와 같은 값
+b1.ex3.ratio,b1,4.9,b1.sd_ratio_5_100,sim,0.45,씨앗 73 실행 비 4.95 ; 유한모집단 보정 기댓값 4.91 ; 두 표준편차의 몬테카를로 흔들림으로 ±0.45
+b1.ex3.pop,b1,566,b1.svy_n,data,,정제본 사람 수
+b1.ex3.frac,b1,18,b1.frac100_pct,data,,100 ÷ 566 = 17.7%
 b1.chk.half,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
 b1.chk.half2,b1,0.5,,fixed,,공정한 동전의 앞면 확률 (정의)
 b1.chk.rule68,b1,68,b1.normal_1sd_pct,data,,표준정규 ±1 SD

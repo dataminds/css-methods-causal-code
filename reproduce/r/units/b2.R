@@ -54,4 +54,19 @@ calc("b2.aov_n", function() nrow(FAC()))
 calc("b2.aov_eta2_pct", function() 100 * fit4()[["Sum Sq"]][1] / sum(fit4()[["Sum Sq"]]))
 calc("b2.aov_p", function() fit4()[["Pr(>F)"]][1])
 calc("b2.aov_msb_over_msw_rounded", function() round(fit4()[["Mean Sq"]][1], 2) / round(fit4()[["Mean Sq"]][2], 2))
+# §B2.0 · 실습 3 (2026-11-19) = 효과 없는 세계, 쌍별 t검정을 보정 없이 할 때 하나라도 위양성 비율 (R 자기 난수 ; 몬테카를로 허용폭으로 대조)
+fwer <- function(k, n = 108, reps = 5000) {
+  set.seed(73)
+  hit <- logical(reps)
+  for (r in seq_len(reps)) {
+    x <- matrix(rnorm(k * n), n, k); m <- colMeans(x); v <- apply(x, 2, var)
+    for (i in 1:(k - 1)) for (j in (i + 1):k) {
+      t <- (m[i] - m[j]) / sqrt((v[i] + v[j]) / n)
+      if (2 * pt(-abs(t), 2 * n - 2) < .05) { hit[r] <- TRUE; break }
+    }
+  }
+  mean(hit)
+}
+calc("b2.fwer_sim4", function() fwer(4))
+calc("b2.fwer_sim6", function() fwer(6))
 })

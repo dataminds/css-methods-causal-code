@@ -79,3 +79,21 @@ for _k in ("ssb", "ssw", "sst", "dfb", "dfw", "dft", "msb", "msw", "F", "eta2", 
 calc("b2.aov_eta2_pct")(lambda: _aov()["eta2"] * 100)
 calc("b2.aov_p")(lambda: stats.f.sf(_aov()["F"], _aov()["dfb"], _aov()["dfw"]))
 calc("b2.aov_msb_over_msw_rounded")(lambda: round(_aov()["msb"], 2) / round(_aov()["msw"], 2))
+
+
+# §B2.0 · 실습 3 (2026-11-19 3부 점검 반영) = 효과가 없는 세계에서 쌍별 t검정을 보정 없이 했을 때
+# 하나라도 위양성이 나오는 비율. 집단이 쌍을 나눠 쓰므로 독립 공식(1 − .95^m)보다 낮다.
+def _fwer(k, n=108, reps=5000, seed=73):
+    g = np.random.default_rng(seed)
+    x = g.normal(0, 1, (reps, k, n))
+    m, v = x.mean(axis=2), x.var(axis=2, ddof=1)
+    hit = np.zeros(reps, bool)
+    for i in range(k):
+        for j in range(i + 1, k):
+            t = (m[:, i] - m[:, j]) / np.sqrt((v[:, i] + v[:, j]) / n)
+            hit |= 2 * stats.t.sf(np.abs(t), 2 * n - 2) < .05
+    return hit.mean()
+
+
+calc("b2.fwer_sim4")(lambda: _fwer(4))
+calc("b2.fwer_sim6")(lambda: _fwer(6))

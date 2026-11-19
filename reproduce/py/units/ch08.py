@@ -41,7 +41,8 @@ calc("ch08.sim_r_sex_vigor")(lambda: np.corrcoef(zg().sex, zg().vigor)[0, 1])
 
 def _cell(sex, lo, hi):
     d = zg()
-    return d[(d.sex == sex) & (d.dose > lo) & (d.dose <= hi)].vigor.mean()   # pd.cut 의 (lo, hi] 칸
+    low = (d.dose >= lo) if lo == 0 else (d.dose > lo)   # pd.cut(include_lowest=True) : 첫 칸은 0 을 넣는다
+    return d[(d.sex == sex) & low & (d.dose <= hi)].vigor.mean()
 
 
 calc("ch08.sim_cell_f_0_2")(lambda: _cell(0, 0, 2))

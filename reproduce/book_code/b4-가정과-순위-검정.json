@@ -2,7 +2,7 @@
  "unit": "b4-가정과-순위-검정.md",
  "blocks": [
   [
-   185,
+   194,
    "from scipy import stats\nexp = load(\"exp\")                               # 실험판 366명 (3장)\ntreat, ctrl = exp[exp.cond == 1].mil.values, exp[exp.cond == 0].mil.values\nprint(round(stats.ttest_ind(treat, ctrl).pvalue, 4),\n      round(stats.mannwhitneyu(treat, ctrl).pvalue, 4))\n# 0.028 0.0398"
   ]
  ]

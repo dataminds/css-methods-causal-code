@@ -27,7 +27,8 @@ calc("b1.t975_df200")(lambda: stats.t.ppf(.975, 200))
 # 실습 1 「다른 씨앗이면 0.4~0.6」 = 100번 비율의 가운데 95% 범위(정규 근사 0.5 ± 1.96 × 0.05)
 calc("b1.coin100_lo95")(lambda: .5 - stats.norm.ppf(.975) * np.sqrt(.25 / 100))
 calc("b1.coin100_hi95")(lambda: .5 + stats.norm.ppf(.975) * np.sqrt(.25 / 100))
-calc("b1.sqrt10")(lambda: np.sqrt(10))
+calc("b1.sqrt20")(lambda: np.sqrt(20))
+calc("b1.frac100_pct")(lambda: 100 * 100 / len(POP()))     # 100명이 566명의 몇 %인가
 
 # ── 모의시행 = 책 코드 순서 ──
 _c: dict = {}
@@ -71,4 +72,5 @@ for _n in (5, 30, 100):
     calc(f"b1.means_sd{_n}")(lambda _n=_n: sims()[f"sd{_n}_73"])
     calc(f"b1.means_skew{_n}")(lambda _n=_n: sims()[f"sk{_n}_73"])
     calc(f"b1.means_skew{_n}_seed37")(lambda _n=_n: sims()[f"sk{_n}_37"])
+calc("b1.sd_ratio_5_100")(lambda: sims()["sd5_73"] / sims()["sd100_73"])   # 실습 3 : 유한모집단 보정이 든 실제 비
 calc("b1.skew_seed_maxdiff")(lambda: max(abs(sims()[f"sk{n}_73"] - sims()[f"sk{n}_37"]) for n in (5, 30, 100)))

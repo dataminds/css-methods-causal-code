@@ -1315,7 +1315,7 @@ def fig_s3_hier():
 
 
 def fig_s2_power(reps=2000, seed=73, eff=0.38, sd=1.20):
-    """같은 크기라도 상호작용은 주효과의 두 배 표본을 요구한다."""
+    """같은 크기라도 상호작용은 단순효과(0/1 부호화 계수)의 두 배 표본을 요구한다."""
     Ns = [224, 448, 896, 1792, 3584]
     main, inter = [], []
     for N in Ns:
@@ -1333,7 +1333,7 @@ def fig_s2_power(reps=2000, seed=73, eff=0.38, sd=1.20):
             hi += abs(b[3] / se[3]) > 1.96
         main.append(hm / reps); inter.append(hi / reps)
     fig, ax = plt.subplots(figsize=(6.6, 3.8))
-    for ys, lab, i in ((main, "주효과", 0), (inter, "상호작용", 1)):
+    for ys, lab, i in ((main, "단순효과", 0), (inter, "상호작용", 1)):
         ax.plot(Ns, ys, color=BW["color"][i], linestyle=BW["line"][i],
                 marker=BW["marker"][i], linewidth=1.8, label=lab)
     ax.axhline(.8, color=OI[7], linestyle=":", linewidth=1.2, label="관례 목표 .80")

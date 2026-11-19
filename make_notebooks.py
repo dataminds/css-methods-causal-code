@@ -492,14 +492,68 @@ STEPS = {
   'B2 = rng.normal(0, 1, 500); A2 = .6 * B2 + rng.normal(0, 1, 500)   # B → A 로 지음\n'
   'print(round(np.corrcoef(A, B)[0, 1], 2), round(np.corrcoef(A2, B2)[0, 1], 2))\n'
   '# 0.55 0.48'),
+ ("## 4. 잠재결과: 두 세계를 다 지어 보기 (실습 3)\n"
+  "저그 여덟 마리의 두 세계를 짓습니다. 먼저 실제 세계에서 보이는 표를 찍습니다. 누가 먹었는지는 동전으로 정했고, "
+  "먹은 저그는 먹은 세계의 기력만, 안 먹은 저그는 안 먹은 세계의 기력만 보입니다(`NaN` = 보이지 않음).\n\n"
+  "**돌리기 전에** 답해 보세요. 이 표만으로 1번 저그의 개인 효과를 계산할 수 있나요? 없다면 무엇이 더 있어야 하나요?",
+  'rng = np.random.default_rng(73)\n'
+  'y0 = rng.normal(60, 8, 8).round(1)              # 안 먹은 세계의 기력\n'
+  'eff = rng.normal(-6, 3, 8).round(1)             # 저그마다 다른 개인 효과\n'
+  'y1 = (y0 + eff).round(1)                        # 먹은 세계의 기력\n'
+  'ate = np.random.default_rng(37).integers(0, 2, 8)   # 실제로 먹었나 (동전)\n'
+  'seen = pd.DataFrame({"먹었나": ate,\n'
+  '                     "안 먹은 세계": np.where(ate == 0, y0, np.nan),\n'
+  '                     "먹은 세계": np.where(ate == 1, y1, np.nan)}, index=range(1, 9))\n'
+  'print(seen)'),
+ ("## 5. 가렸던 칸 열기\n가렸던 칸을 엽니다. 개인 효과는 언제나 「먹은 세계 − 안 먹은 세계」이고, 두 칸이 다 있어야 계산됩니다. "
+  "모의 세계라서 열 수 있는 칸입니다(6장 §6.3).",
+  'full = pd.DataFrame({"안 먹은 세계": y0, "먹은 세계": y1,\n'
+  '                     "개인 효과": (y1 - y0).round(1)}, index=range(1, 9))\n'
+  'print(full.head(4))\n'
+  'print("평균", round(eff.mean(), 2))   # 개인 효과 −2.7 ~ −10.8 · 평균 −6.75'),
 ],
 "ch09": [
- ("## 2. 패널: 개인 안에서 보면 관계가 줄어든다\n횡단 상관 .29가 개인 평균 중심화 후 .06으로. 대부분이 안정 성향의 몫이었습니다.",
+ ("## 2. 무작위 대 자기선택 (실습 1)\n"
+  "400명을 동전으로 나눈 경우와 낙관적인 사람이 스스로 고른 경우를 견줍니다. 네 변수(나이 · 성별 · 낙관성 · 끈기)의 집단 차이 *d*를 찍습니다. "
+  "낙관성과 끈기는 실제 연구라면 측정하지 못한 변수입니다.",
+  'rng = np.random.default_rng(73)\n'
+  'n = 400\n'
+  'age  = rng.normal(35, 10, n); sex  = rng.integers(0, 2, n)   # 우리가 측정한 것\n'
+  'opt  = rng.normal(0, 1, n);   grit = rng.normal(0, 1, n)     # 우리가 측정하지 못한 것\n'
+  '\n'
+  'z  = rng.integers(0, 2, n)                                    # (가) 동전이 정한다\n'
+  'p  = 1 / (1 + np.exp(-1.2 * opt))                             # (나) 낙관적인 사람이 스스로 고른다\n'
+  'zs = (rng.random(n) < p).astype(int)\n'
+  '\n'
+  'for lab, g in [("무작위", z), ("자기선택", zs)]:\n'
+  '    print(lab, [float(round(cohen_d(v[g == 1], v[g == 0]), 2)) for v in (age, sex, opt, grit)])\n'
+  '# 무작위  [-0.02, -0.08, -0.05, -0.11]\n'
+  '# 자기선택 [-0.18, 0.04, 1.03, -0.12]'),
+ ("## 3. 단순 무작위 대 블록 무작위 (실습 2)\n"
+  "같은 400명을 2,000번 새로 나눕니다. 판마다 두 집단의 기저 차이(*d*)를 모아 평균(편향) · 표준편차(변동) · |*d*| > 0.2 비율을 찍습니다. "
+  "⚠ 바로 위 셀의 `rng`와 `n`을 이어 쓰므로 위 셀을 먼저 실행하세요. 시간이 조금 걸립니다.",
+  'base = rng.normal(0, 1, n)                    # 기저 의미감 (참값)\n'
+  'pre  = base + rng.normal(0, 0.5, n)           # 사전검사 = 그 대리 지표\n'
+  'order = np.argsort(pre)\n'
+  'simple, block = [], []\n'
+  'for _ in range(2000):\n'
+  '    z = rng.integers(0, 2, n)\n'
+  '    simple.append(cohen_d(base[z == 1], base[z == 0]))\n'
+  '    g = np.zeros(n, int)\n'
+  '    for i in range(0, n, 2):                  # 사전검사가 비슷한 둘씩 짝지어 하나만 처치\n'
+  '        g[order[i:i + 2][rng.integers(0, 2)]] = 1\n'
+  '    block.append(cohen_d(base[g == 1], base[g == 0]))\n'
+  'for lab, v in [("단순", simple), ("블록", block)]:\n'
+  '    v = np.array(v)\n'
+  '    print(lab, round(v.mean(), 3), round(v.std(ddof=1), 3), round(np.mean(np.abs(v) > 0.2), 4))\n'
+  '# 단순 0.001 0.098 0.0345\n'
+  '# 블록 0.0 0.048 0.0'),
+ ("## 4. 패널: 개인 안에서 보면 관계가 줄어든다\n횡단 상관 .29가 개인 평균 중심화 후 .06으로. 대부분이 안정 성향의 몫이었습니다.",
   'panel = pd.read_csv("data/journey_panel.csv")\n'
   'w1 = panel[panel.wave==1]\n'
   'within = panel[["hjs","mil"]] - panel.groupby("id")[["hjs","mil"]].transform("mean")\n'
   'print("횡단 r:", round(w1.hjs.corr(w1.mil),2), " 개인 내 r:", round(within.hjs.corr(within.mil),2))'),
- ("## 3. 같은 상관을 내는 세 세계\nA(여정→다음 의미) · B(의미→다음 여정) · C(안정된 성향만, 서로 영향 없음). "
+ ("## 5. 같은 상관을 내는 세 세계 (실습 4)\nA(여정→다음 의미) · B(의미→다음 여정) · C(안정된 성향만, 서로 영향 없음). "
   "횡단 상관은 셋 다 0.2대이고, 시차 기울기는 A와 B를 가르지만 C에서는 영향 없이 두 방향이 다 나옵니다.",
   'def 시차_세계(seed=73, n=5000):\n'
   '    g = np.random.default_rng(seed)\n'

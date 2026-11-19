@@ -32,11 +32,11 @@ ch08.s1.vigor.m,ch08,65.4,ch08.sim_vigor_m,sim,1.3,§8.1 수컷 평균 기력 ; 
 ch08.s1.vigor.f,ch08,51.8,ch08.sim_vigor_f,sim,1.43,§8.1 암컷 평균 기력 (코드 출력 51.83) ; 모의 표준편차 0.337 → 1.43
 ch08.s1.r.dose,ch08,.81,ch08.sim_r_sex_dose,sim,0.063,§8.1 성별·복용량 상관 ; 모의 표준편차 0.0148 → 0.063
 ch08.s1.r.vigor,ch08,.83,ch08.sim_r_sex_vigor,sim,0.050,§8.1 성별·기력 상관 ; 모의 표준편차 0.0117 → 0.050
-ch08.s1.cell.f02,ch08,53.4,ch08.sim_cell_f_0_2,sim,1.9,§8.1 구간표 암컷 (0 2] ; 모의 표준편차 0.444 → 1.9
+ch08.s1.cell.f02,ch08,53.8,ch08.sim_cell_f_0_2,sim,1.9,§8.1 구간표 암컷 [0 2] (include_lowest) ; 모의 표준편차 0.444 → 1.9
 ch08.s1.cell.f68,ch08,45.8,ch08.sim_cell_f_6_8,sim,17,§8.1 구간표 암컷 (6 8] = 기대 0.7 마리라 칸이 자주 빈다(모의 300 번 중 137 번) → R 은 이론값 55 − 1.5 × E[복용량 | 6.05 < 복용량 ≤ 8.05] ≈ 45.4 ; 칸 평균 표준편차 4.0 → 3 × √2 × 4.0 ≈ 17 (R 대조는 약하다)
 ch08.s1.cell.m24,ch08,70.3,ch08.sim_cell_m_2_4,sim,4.5,§8.1 구간표 수컷 (2 4] ; 모의 표준편차 1.06 → 4.5
 ch08.s1.cell.m810,ch08,61.1,ch08.sim_cell_m_8_10,sim,4.3,§8.1 구간표 수컷 (8 10] ; 모의 표준편차 1.01 → 4.3
-ch08.s1.diag.lo,ch08,53.4,ch08.sim_cell_f_0_2,sim,1.9,§8.1 대각선
+ch08.s1.diag.lo,ch08,53.8,ch08.sim_cell_f_0_2,sim,1.9,§8.1 대각선
 ch08.s1.diag.hi,ch08,61.1,ch08.sim_cell_m_8_10,sim,4.3,§8.1 대각선
 ch08.s1.slope3,ch08,1.70,ch08.sim_slope_all,sim,0.50,§8.1
 ch08.s1.slope4,ch08,1.70,ch08.sim_slope_all,sim,0.50,§8.1
