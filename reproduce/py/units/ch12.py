@@ -78,7 +78,7 @@ calc("ch12.beta_183_01")(lambda: _beta(183, .01))
 calc("ch12.beta_366_05")(lambda: _beta(366, .05))
 calc("ch12.power_183_05")(lambda: 1 - _beta(183, .05))
 
-# §12.3 기저율 상자 = 검정력 .56(본문이 쓴 반올림 값) · 기준 .05 · 1,000건
+# §12.4 기저율 상자 = 검정력 .56(본문이 쓴 반올림 값) · 기준 .05 · 1,000건
 for br in (10, 25, 50):
     calc(f"ch12.br{br}_true")(lambda br=br: 1000 * br / 100 * .56)
     calc(f"ch12.br{br}_false")(lambda br=br: 1000 * (1 - br / 100) * .05)
@@ -92,7 +92,7 @@ calc("ch12.br10_n_sig")(lambda: 1000 * .10 * .56 + 1000 * .90 * .05)
 calc("ch12.rogers_df")(lambda: 381 - 2)
 calc("ch12.rogers_p_pct")(lambda: .031 * 100)
 
-# §12.2 INWORKS 상자 = 원문 90% 구간에서 표준오차를 되짚은 정규 근사
+# §12.3 INWORKS 상자 = 원문 90% 구간에서 표준오차를 되짚은 정규 근사
 _INW = {"all": (.52, .27, .77), "mid": (1.12, .45, 1.80), "low": (1.38, .20, 2.60)}
 
 
@@ -178,12 +178,12 @@ def _extreme_p():
 calc("ch12.extreme_p")(_extreme_p)
 calc("ch12.extreme_count")(lambda: 5000 * _extreme_p())
 
-# §12.7 재실행 = 씨앗 73 · 37 · 2026
+# §12.8 재실행 = 씨앗 73 · 37 · 2026
 for s in (73, 37, 2026):
     calc(f"ch12.perm_p_seed{s}")(lambda s=s: (np.abs(_perm(s)) >= abs(_obs())).mean())
 
 
-# §12.3 = 씨앗 37 로 100명씩 스무 번
+# §12.4 = 씨앗 37 로 100명씩 스무 번
 def _subs():
     if "subs" not in _cache:
         e = E()
@@ -218,7 +218,7 @@ for i in range(3):
     calc(f"ch12.ch11_sample{i + 1}")(lambda i=i: _three()[i])
 
 
-# §12.4 상자 = 이분화의 검정력 손실 (d 0.23 · 집단당 183명 · 2,000번 · 씨앗 73 ; 구 배터리 절차)
+# §12.5 상자 = 이분화의 검정력 손실 (d 0.23 · 집단당 183명 · 2,000번 · 씨앗 73 ; 구 배터리 절차)
 def _dich():
     if "dich" not in _cache:
         rdi = np.random.default_rng(73)
@@ -239,7 +239,7 @@ calc("ch12.dich_chi_pct")(lambda: _dich()[1])
 calc("ch12.dich_gap_pct")(lambda: _dich()[0] - _dich()[1])
 
 
-# §12.4 상자 = 큰 분산이 작은 집단(SD 3 · 20명 대 SD 1 · 60명)일 때 등분산 t 의 위양성률 (14장 §14.4 코드 그대로)
+# §12.5 상자 = 큰 분산이 작은 집단(SD 3 · 20명 대 SD 1 · 60명)일 때 등분산 t 의 위양성률 (14장 §14.4 코드 그대로)
 def _welch_world():
     g = np.random.default_rng(73)
     hits = 0
@@ -252,7 +252,7 @@ def _welch_world():
 calc("ch12.fp_bigvar_small_pct")(_welch_world)
 
 
-# §12.7 = 결과변수 셋 가운데 잘 나온 것을 고르는 위양성률 (구 배터리 절차 그대로 ; 씨앗 73 · 100명 · 3,000번)
+# §12.8 = 결과변수 셋 가운데 잘 나온 것을 고르는 위양성률 (구 배터리 절차 그대로 ; 씨앗 73 · 100명 · 3,000번)
 def _three_outcomes():
     rpre = np.random.default_rng(73)
     hit3 = 0

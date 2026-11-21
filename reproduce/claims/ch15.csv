@@ -114,7 +114,7 @@ ch15.5.swl2,ch15,0.75,ch15.sens_swl,data,,§15.5
 ch15.5.swl3,ch15,0.75,ch15.sens_swl,data,,§15.5
 ch15.5.four,ch15,0.98,ch15.b_hjs,data,,§15.5 네 물음
 ch15.5.four.tab,ch15,0.98,ch15.b_hjs,data,,§15.5 네 물음 표 머리
-ch15.5.exp,ch15,0.283,ch15.exp_diff,data,,12장 §12.5 실험판 평균 차이
+ch15.5.exp,ch15,0.283,ch15.exp_diff,data,,12장 §12.6 실험판 평균 차이
 ch15.6.b,ch15,0.978,ch15.b_hjs,data,,§15.6
 ch15.6.r,ch15,.63,ch15.r_hjs_mil,data,,§15.6
 ch15.6.rho3,ch15,.3,,fixed,,예시로 고른 ρ 값

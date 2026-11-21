@@ -167,18 +167,18 @@ ch12.fixed.51,ch12,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
 ch12.n_clean.5,ch12,366,ch12.n_clean,data,,주의 점검(attn_1) 통과자
 ch12.fixed.52,ch12,100,,fixed,,부분표본 크기 ; 설계
 ch12.fixed.53,ch12,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
-ch12.sub_pmin.1,ch12,.006,ch12.sub_pmin,sim,0.0507,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최소 p
-ch12.sub_pmax.1,ch12,.792,ch12.sub_pmax,sim,0.3483,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최대 p
+ch12.sub_pmin.1,ch12,.006,ch12.sub_pmin,sim,0.0507,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최소 p
+ch12.sub_pmax.1,ch12,.792,ch12.sub_pmax,sim,0.3483,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최대 p
 ch12.n_clean.6,ch12,366,ch12.n_clean,data,,주의 점검(attn_1) 통과자
 ch12.fixed.54,ch12,100,,fixed,,부분표본 크기 ; 설계
 ch12.n_clean.7,ch12,366,ch12.n_clean,data,,주의 점검(attn_1) 통과자
-ch12.sub_pmin.2,ch12,.006,ch12.sub_pmin,sim,0.0507,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최소 p
-ch12.sub_pmax.2,ch12,.792,ch12.sub_pmax,sim,0.3483,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최대 p
+ch12.sub_pmin.2,ch12,.006,ch12.sub_pmin,sim,0.0507,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최소 p
+ch12.sub_pmax.2,ch12,.792,ch12.sub_pmax,sim,0.3483,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최대 p
 ch12.fixed.55,ch12,100,,fixed,,부분표본 크기 ; 설계
-ch12.sub_ov.1,ch12,27,ch12.sub_ov,sim,1.1413,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 두 표본이 공유하는 평균 인원 (기댓값 100²/366 = 27.3)
+ch12.sub_ov.1,ch12,27,ch12.sub_ov,sim,1.1413,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 두 표본이 공유하는 평균 인원 (기댓값 100²/366 = 27.3)
 ch12.n_clean.8,ch12,366,ch12.n_clean,data,,주의 점검(attn_1) 통과자
-ch12.sub_n1min.1,ch12,39,ch12.sub_n1min,sim,9.0538,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 개입 집단 최소 인원
-ch12.sub_n1max.1,ch12,59,ch12.sub_n1max,sim,9.3678,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 개입 집단 최대 인원
+ch12.sub_n1min.1,ch12,39,ch12.sub_n1min,sim,9.0538,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 개입 집단 최소 인원
+ch12.sub_n1max.1,ch12,59,ch12.sub_n1max,sim,9.3678,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 개입 집단 최대 인원
 ch12.fixed.56,ch12,.049,,fixed,,예시로 든 값 (계산 결과가 아니다) ; 문턱 바로 아래
 ch12.fixed.57,ch12,.051,,fixed,,예시로 든 값 (계산 결과가 아니다) ; 문턱 바로 위
 ch12.fixed.58,ch12,100,,fixed,,부분표본 크기 ; 설계
@@ -219,7 +219,7 @@ ch12.fixed.64,ch12,6.8,,fixed,,예시로 든 값 (계산 결과가 아니다) ; 
 ch12.d.1,ch12,0.23,ch12.d,data,,코헨의 d (합동 표준편차)
 ch12.obs.12,ch12,0.283,ch12.obs,data,,개입 − 통제 mil 평균 차이
 ch12.fixed.65,ch12,183,,fixed,,모의시행 설계 = 우리 실험의 집단 크기
-ch12.dich_t_pct.1,ch12,57.8%,ch12.dich_t_pct,sim,4.6853,"§12.4 상자 이분화 = d 0.23 · 집단당 183 · 2,000회 · 씨앗 73 (구 배터리 절차) ; t 검정 검출률 ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
+ch12.dich_t_pct.1,ch12,57.8%,ch12.dich_t_pct,sim,4.6853,"§12.5 상자 이분화 = d 0.23 · 집단당 183 · 2,000회 · 씨앗 73 (구 배터리 절차) ; t 검정 검출률 ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
 ch12.dich_chi_pct.1,ch12,44.7%,ch12.dich_chi_pct,sim,4.7167,같은 모의시행 ; 중앙값 이분화 카이제곱 검출률 ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)
 ch12.dich_gap_pct.1,ch12,13%,ch12.dich_gap_pct,sim,3.5496,같은 모의시행 ; 두 검출률의 차 (%포인트) ; mc_tol = 3√2 × √(불일치 비율 .14 / 2000)
 ch12.obs.13,ch12,0.283,ch12.obs,data,,개입 − 통제 mil 평균 차이
@@ -253,12 +253,12 @@ ch12.fixed.70,ch12,.001,,fixed,,보고 관례 하한 ; 정의
 ch12.perm_p.9,ch12,.030,ch12.perm_p,sim,0.0102,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 양측 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
 ch12.perm_p.10,ch12,.030,ch12.perm_p,sim,0.0102,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 양측 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
 ch12.p_t.6,ch12,.028,ch12.p_t,data,,등분산 t 검정 양측 p
-ch12.perm_p_seed73.1,ch12,.0302,ch12.perm_p_seed73,sim,0.0102,§12.7 재실행 씨앗 73 ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)
-ch12.perm_p_seed37.1,ch12,.0290,ch12.perm_p_seed37,sim,0.0102,§12.7 재실행 씨앗 37 ; R 은 set.seed(37) ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)
-ch12.perm_p_seed2026.1,ch12,.0304,ch12.perm_p_seed2026,sim,0.0102,§12.7 재실행 씨앗 2026 ; R 은 set.seed(2026) ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)
+ch12.perm_p_seed73.1,ch12,.0302,ch12.perm_p_seed73,sim,0.0102,§12.8 재실행 씨앗 73 ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)
+ch12.perm_p_seed37.1,ch12,.0290,ch12.perm_p_seed37,sim,0.0102,§12.8 재실행 씨앗 37 ; R 은 set.seed(37) ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)
+ch12.perm_p_seed2026.1,ch12,.0304,ch12.perm_p_seed2026,sim,0.0102,§12.8 재실행 씨앗 2026 ; R 은 set.seed(2026) ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)
 ch12.fixed.71,ch12,5%,,fixed,,관례 유의수준 .05 = 위양성 상한 5% ; 정의
 ch12.fixed.72,ch12,5%,,fixed,,관례 유의수준 .05 = 위양성 상한 5% ; 정의
-ch12.fp_three_outcomes_pct.1,ch12,14%,ch12.fp_three_indep_pct,data,,"§12.7 「결과변수 셋 … 12% 언저리」 = 구 배터리 절차 그대로(씨앗 73 · 100명 · 3,000회 ; 검정 셋 = g1·g0 · y2·y3 · g1·y2 의 최소 p) ; 원고에 코드 없음 ; 실측 12.63% 는 13% 로 반올림된다 ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD) ; 2026-11-14h 원고 정정에 맞춰 옮김"
+ch12.fp_three_outcomes_pct.1,ch12,14%,ch12.fp_three_indep_pct,data,,"§12.8 「결과변수 셋 … 12% 언저리」 = 구 배터리 절차 그대로(씨앗 73 · 100명 · 3,000회 ; 검정 셋 = g1·g0 · y2·y3 · g1·y2 의 최소 p) ; 원고에 코드 없음 ; 실측 12.63% 는 13% 로 반올림된다 ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD) ; 2026-11-14h 원고 정정에 맞춰 옮김"
 ch12.fixed.73,ch12,5%,,fixed,,관례 유의수준 .05 = 위양성 상한 5% ; 정의
 ch12.fixed.74,ch12,.05,,fixed,,관례 유의수준 .05 (양측) ; 정의
 ch12.fixed.75,ch12,.001,,fixed,,예시로 든 값 (계산 결과가 아니다)
@@ -268,8 +268,8 @@ ch12.three.indep.95,ch12,.95,,fixed,,검정 하나가 위양성을 내지 않을
 ch12.three.indep.14,ch12,.14,ch12.fp_three_indep_frac,data,,1 − .95³ = .142625 (2026-11-14h 원고 정정)
 ch12.19e.x.p05.0,ch12,.05,,fixed,,관례 유의수준
 ch12.pair_box.n,ch12,366,ch12.n_clean,data,,§12.2 짝 배정 상자 ; 정제본 사람 수
-ch12.sub_pmin.3,ch12,.006,ch12.sub_pmin,sim,0.0507,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최소 p
-ch12.sub_pmax.3,ch12,.792,ch12.sub_pmax,sim,0.3483,§12.3 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최대 p
+ch12.sub_pmin.3,ch12,.006,ch12.sub_pmin,sim,0.0507,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최소 p
+ch12.sub_pmax.3,ch12,.792,ch12.sub_pmax,sim,0.3483,§12.4 씨앗 37 로 366명에서 100명씩 스무 번 ; R 은 set.seed(37) 로 같은 설계 ; mc_tol = 3√2 × 400개 씨앗으로 잰 몬테카를로 SD ; 최대 p
 ch12.n_clean.10,ch12,366,ch12.n_clean,data,,주의 점검(attn_1) 통과자
 ch12.n_clean.11,ch12,366,ch12.n_clean,data,,주의 점검(attn_1) 통과자
 ch12.n_t.9,ch12,183,ch12.n_t,data,,개입 집단(cond 1) 정제본 인원
@@ -302,18 +302,18 @@ ch12.fixed.79,ch12,90%,,fixed,,신뢰구간 90% ; 서술
 ch12.paper.36,ch12,1.12,,paper,,Richardson et al. (2023) 결과 절 = 0-100 mGy 1.12 (90% CI 0.45 to 1.80) per Gy ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 484~496행
 ch12.paper.37,ch12,0.45,,paper,,Richardson et al. (2023) 결과 절 = 0-100 mGy 1.12 (90% CI 0.45 to 1.80) per Gy ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 484~496행
 ch12.paper.38,ch12,1.80,,paper,,Richardson et al. (2023) 결과 절 = 0-100 mGy 1.12 (90% CI 0.45 to 1.80) per Gy ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 484~496행
-ch12.inw_mid_p1.1,ch12,.003,ch12.inw_mid_p1,data,,§12.2 INWORKS 상자 = 원문 90% 구간(0-100 mGy 1.12 · 0.45 ~ 1.80)에서 표준오차를 되짚은 정규 근사
-ch12.inw_mid_p2.1,ch12,.006,ch12.inw_mid_p2,data,,§12.2 INWORKS 상자 = 원문 90% 구간(0-100 mGy 1.12 · 0.45 ~ 1.80)에서 표준오차를 되짚은 정규 근사
-ch12.inw_mid_lo95.1,ch12,0.32,ch12.inw_mid_lo95,data,,§12.2 INWORKS 상자 = 원문 90% 구간(0-100 mGy 1.12 · 0.45 ~ 1.80)에서 표준오차를 되짚은 정규 근사
-ch12.inw_mid_hi95.1,ch12,1.92,ch12.inw_mid_hi95,data,,§12.2 INWORKS 상자 = 원문 90% 구간(0-100 mGy 1.12 · 0.45 ~ 1.80)에서 표준오차를 되짚은 정규 근사
+ch12.inw_mid_p1.1,ch12,.003,ch12.inw_mid_p1,data,,§12.3 INWORKS 상자 = 원문 90% 구간(0-100 mGy 1.12 · 0.45 ~ 1.80)에서 표준오차를 되짚은 정규 근사
+ch12.inw_mid_p2.1,ch12,.006,ch12.inw_mid_p2,data,,§12.3 INWORKS 상자 = 원문 90% 구간(0-100 mGy 1.12 · 0.45 ~ 1.80)에서 표준오차를 되짚은 정규 근사
+ch12.inw_mid_lo95.1,ch12,0.32,ch12.inw_mid_lo95,data,,§12.3 INWORKS 상자 = 원문 90% 구간(0-100 mGy 1.12 · 0.45 ~ 1.80)에서 표준오차를 되짚은 정규 근사
+ch12.inw_mid_hi95.1,ch12,1.92,ch12.inw_mid_hi95,data,,§12.3 INWORKS 상자 = 원문 90% 구간(0-100 mGy 1.12 · 0.45 ~ 1.80)에서 표준오차를 되짚은 정규 근사
 ch12.fixed.80,ch12,95%,,fixed,,신뢰구간 95% ; 서술
 ch12.fixed.81,ch12,90%,,fixed,,신뢰구간 90% ; 서술
 ch12.paper.39,ch12,.11,,paper,,Richardson et al. (2023) 결과 절 = 2차항 우도비 검정 P=0.11 · 선형-지수 P=0.08 ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 476 · 482행
 ch12.paper.40,ch12,.08,,paper,,Richardson et al. (2023) 결과 절 = 2차항 우도비 검정 P=0.11 · 선형-지수 P=0.08 ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 476 · 482행
-ch12.obs.side2,ch12,0.283,ch12.obs,data,,§12.2 기준 2 보강 = 관찰 차이를 반대 방향으로 놓은 가상 예
+ch12.obs.side2,ch12,0.283,ch12.obs,data,,§12.3 기준 2 보강 = 관찰 차이를 반대 방향으로 놓은 가상 예
 ch12.obs.22,ch12,0.283,ch12.obs,data,,개입 − 통제 mil 평균 차이
 ch12.obs.23,ch12,0.283,ch12.obs,data,,개입 − 통제 mil 평균 차이
-ch12.perm_rev_one_p.1,ch12,.99,ch12.perm_rev_one_p,sim,0.0063,"§12.2 「양측과 단측」 = 결과가 반대(−0.283)였을 때 개입 쪽만 센 p ; 뒤섞기 씨앗 73 · 5,000회 ; R 은 자기 난수 ; mc_tol = 3√2 × 이항 SD(p .99 · 5,000)"
+ch12.perm_rev_one_p.1,ch12,.99,ch12.perm_rev_one_p,sim,0.0063,"§12.3 「양측과 단측」 = 결과가 반대(−0.283)였을 때 개입 쪽만 센 p ; 뒤섞기 씨앗 73 · 5,000회 ; R 은 자기 난수 ; mc_tol = 3√2 × 이항 SD(p .99 · 5,000)"
 ch12.perm_p.13,ch12,.030,ch12.perm_p,sim,0.0102,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 양측 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
 ch12.perm_p.14,ch12,.030,ch12.perm_p,sim,0.0102,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 양측 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
 ch12.perm_one_p.3,ch12,.018,ch12.perm_one_p,sim,0.008,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 한쪽 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"

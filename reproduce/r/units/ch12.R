@@ -57,7 +57,7 @@ calc("ch12.beta_183_01", function() 1 - pow_norm(183, .01))
 calc("ch12.beta_366_05", function() 1 - pow_norm(366, .05))
 calc("ch12.power_183_05", function() pow_norm(183, .05))
 
-# §12.3 기저율 상자 (검정력 .56 · 기준 .05 · 1,000건) : 행렬 한 번에
+# §12.4 기저율 상자 (검정력 .56 · 기준 .05 · 1,000건) : 행렬 한 번에
 br_tab <- function() {
   base <- c(.10, .25, .50)
   tru <- 1000 * base * .56; fal <- 1000 * (1 - base) * .05
@@ -76,7 +76,7 @@ calc("ch12.br10_n_sig", function() sum(br_tab()[1, 1:2]))
 calc("ch12.rogers_df", function() 381 - 2)
 calc("ch12.rogers_p_pct", function() 100 * .031)
 
-# §12.2 INWORKS 상자
+# §12.3 INWORKS 상자
 inw <- list(all = c(.52, .27, .77), mid = c(1.12, .45, 1.80), low = c(1.38, .20, 2.60))
 for (k in names(inw)) local({
   kk <- k; v <- inw[[kk]]; s <- (v[3] - v[2]) / (qnorm(.95) * 2)

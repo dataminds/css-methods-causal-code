@@ -578,11 +578,11 @@ def main():
     checkf("ch12 뒤섞기 p", (np.abs(diffs) >= abs(obs)).mean(), .030)
     tt = stats.ttest_ind(tg.mil, cg.mil)
     checkf("ch12 t·p", [tt.statistic, tt.pvalue], [2.21, .028])
-    # 2026-11-12d §12.4 t = 차이 ÷ 표준오차(0.283 ÷ 0.128 ≈ 2.21) · 자유도 364 의 자르는 지점
+    # 2026-11-12d §12.5 t = 차이 ÷ 표준오차(0.283 ÷ 0.128 ≈ 2.21) · 자유도 364 의 자르는 지점
     _se12 = np.sqrt(tg.mil.std(ddof=1)**2 / len(tg) + cg.mil.std(ddof=1)**2 / len(cg))
-    checkf("ch12 §12.4 차이 ÷ 표준오차", obs / _se12, 2.21, tol=.006)
-    checkf("ch12 §12.4 차이 · 표준오차(0.283 · 0.128)", [obs, _se12], [.283, .128], tol=.0006)
-    checkf("ch12 §12.4 자유도 364 의 97.5% 지점", stats.t.ppf(.975, 364), 1.967, tol=.0006)
+    checkf("ch12 §12.5 차이 ÷ 표준오차", obs / _se12, 2.21, tol=.006)
+    checkf("ch12 §12.5 차이 · 표준오차(0.283 · 0.128)", [obs, _se12], [.283, .128], tol=.0006)
+    checkf("ch12 §12.5 자유도 364 의 97.5% 지점", stats.t.ppf(.975, 364), 1.967, tol=.0006)
 
     # ── v1.0 보강분 (2026-08-11 견본 장) ──────────────────────────
     raw_exp = load("exp", clean=False)
@@ -593,8 +593,8 @@ def main():
            [np.percentile(diffs, 2.5), np.percentile(diffs, 97.5)], [-0.247, 0.269])
     check("ch12 §12.2 양측 개수", int((np.abs(diffs) >= abs(obs)).sum()), 151)
     # 세는 규칙을 바꾸면 수가 달라진다는 것 자체가 본문의 주장이다.
-    check("ch12 §12.2 단측 개수", int((diffs >= obs).sum()), 91)
-    checkf("ch12 §12.2 단측 p", (diffs >= obs).mean(), .018)
+    check("ch12 §12.3 단측 개수", int((diffs >= obs).sum()), 91)
+    checkf("ch12 §12.3 단측 p", (diffs >= obs).mean(), .018)
     check("ch12 §12.2 반올림 문턱 개수", int((np.abs(diffs) >= 0.283).sum()), 141)
     checkf("ch12 §12.2 반올림 문턱 p", (np.abs(diffs) >= 0.283).mean(), .028)
     check("ch12 §12.2 경계 정확 일치", int((np.abs(diffs) == abs(obs)).sum()), 10)
@@ -605,8 +605,8 @@ def main():
         sub = exp.iloc[rng37.choice(len(exp), size=100, replace=False)]
         ps20.append(stats.ttest_ind(sub.mil[sub.cond == 1], sub.mil[sub.cond == 0]).pvalue)
     ps20 = np.array(ps20)
-    checkf("ch12 §12.3 표본 20개 p 최소·최대", [ps20.min(), ps20.max()], [0.006, 0.792], tol=.0006)
-    check("ch12 §12.3 표본 20개 중 유의", int((ps20 < .05).sum()), 5)
+    checkf("ch12 §12.4 표본 20개 p 최소·최대", [ps20.min(), ps20.max()], [0.006, 0.792], tol=.0006)
+    check("ch12 §12.4 표본 20개 중 유의", int((ps20 < .05).sum()), 5)
 
     # 2026-11-13d §12.1 그림 = 1종 · 2종 오류 (정규 근사 · 양측 · SD 1.23 · d 0.22)
     _sd, _eff = 1.23, 0.22 * 1.23
@@ -618,25 +618,25 @@ def main():
            [.32, .44, .68], tol=.006)
     checkf("ch12 §12.1 2종 오류(366명 · .05)", _beta(366, .05), .15, tol=.006)
     checkf("ch12 §12.1 검정력(183명 · .05)", 1 - _beta(183, .05), .56, tol=.006)
-    # §12.2 INWORKS 상자 = 원문 90% 구간에서 SE 되짚기(정규 근사)
+    # §12.3 INWORKS 상자 = 원문 90% 구간에서 SE 되짚기(정규 근사)
     for _lab, _e, _lo, _hi, _w in [("전체", .52, .27, .77, [.0003, .0006, .22, .82]),
                                    ("0~50 mGy", 1.38, .20, 2.60, [.029, .059, -.05, 2.81])]:
         _s = (_hi - _lo) / (2 * 1.645)
-        checkf(f"ch12 §12.2 INWORKS {_lab} 단측 · 양측 p · 95% 구간",
+        checkf(f"ch12 §12.3 INWORKS {_lab} 단측 · 양측 p · 95% 구간",
                [stats.norm.sf(_e / _s), 2 * stats.norm.sf(_e / _s), _e - 1.96 * _s, _e + 1.96 * _s], _w, tol=.006)
-    # §12.3 S값 · 기저율 표(검정력 .557 · 1,000건)
-    checkf("ch12 §12.3 S값(p .028 · .05)", [-np.log2(.028), -np.log2(.05)], [5.2, 4.3], tol=.06)
+    # §12.4 S값 · 기저율 표(검정력 .557 · 1,000건)
+    checkf("ch12 §12.4 S값(p .028 · .05)", [-np.log2(.028), -np.log2(.05)], [5.2, 4.3], tol=.06)
     _pw = 1 - _beta(183, .05)
     for _br, _w in [(.10, [56, 45, .55]), (.25, [139, 38, .79]), (.50, [279, 25, .92])]:
         _T, _F = 1000 * _br * _pw, 1000 * (1 - _br) * .05
-        checkf(f"ch12 §12.3 기저율 {_br:.0%} 참 유의 · 거짓 유의 · 비율", [_T, _F, _T / (_T + _F)], _w, tol=.6)
+        checkf(f"ch12 §12.4 기저율 {_br:.0%} 참 유의 · 거짓 유의 · 비율", [_T, _F, _T / (_T + _F)], _w, tol=.6)
 
     exp_hi = exp.assign(high=(exp.mil >= exp.mil.median()).astype(int))
     tab = pd.crosstab(exp_hi.cond, exp_hi.high)
     chi2, p_chi, dof_chi, _ = stats.chi2_contingency(tab, correction=False)
-    check("ch12 §12.4 이분화 교차표", tab.values.tolist(), [[98, 85], [83, 100]])
-    checkf("ch12 §12.4 카이제곱·p", [chi2, p_chi], [2.46, .117])
-    check("ch12 §12.4 카이제곱 자유도", dof_chi, 1)
+    check("ch12 §12.5 이분화 교차표", tab.values.tolist(), [[98, 85], [83, 100]])
+    checkf("ch12 §12.5 카이제곱·p", [chi2, p_chi], [2.46, .117])
+    check("ch12 §12.5 카이제곱 자유도", dof_chi, 1)
 
     sub_g = svy[svy.gender.isin([1, 2])]                    # 실습 2 통과 기준
     og = sub_g.mil[sub_g.gender == 1].mean() - sub_g.mil[sub_g.gender == 2].mean()
@@ -661,7 +661,7 @@ def main():
         ds = np.array([(y[(sh := rs.permutation(cnd)) == 1].mean() - y[sh == 0].mean())
                        for _ in range(5000)])
         ps_seed.append((np.abs(ds) >= abs(obs)).mean())
-    checkf("ch12 §12.7 씨앗별 뒤섞기 p", ps_seed, [.0302, .0290, .0304], tol=.00006)
+    checkf("ch12 §12.8 씨앗별 뒤섞기 p", ps_seed, [.0302, .0290, .0304], tol=.00006)
 
     # §7.6 사전등록 주장 = 결과변수를 여럿 두면 5%가 깨진다 (효과 없는 세계)
     rpre = np.random.default_rng(73)
@@ -672,7 +672,7 @@ def main():
         ps3 = [stats.ttest_ind(g1, g0).pvalue, stats.ttest_ind(y2, y3).pvalue,
                stats.ttest_ind(g1, y2).pvalue]
         hit3 += min(ps3) < .05
-    checkf("ch12 §12.7 결과변수 3개 위양성(12% 언저리)", hit3 / 3000, .126, tol=.015)
+    checkf("ch12 §12.8 결과변수 3개 위양성(12% 언저리)", hit3 / 3000, .126, tol=.015)
 
     # §7.2 영분포 퍼짐 = 이론 표준오차와 같다
     sp7 = np.sqrt(((len(tg)-1)*tg.mil.var(ddof=1) + (len(cg)-1)*cg.mil.var(ddof=1))
@@ -685,7 +685,7 @@ def main():
     for _ in range(20):
         sb = exp.iloc[r37.choice(len(exp), size=100, replace=False)]
         n1s.append(int((sb.cond == 1).sum()))
-    check("ch12 §12.3 개입 집단 크기 범위", [min(n1s), max(n1s)], [39, 59])
+    check("ch12 §12.4 개입 집단 크기 범위", [min(n1s), max(n1s)], [39, 59])
 
     # §7.4 이분화 검정력 손실의 일반성
     if not FAST:
@@ -697,7 +697,7 @@ def main():
             tb = np.array([[np.sum(x0 < med), np.sum(x0 >= med)],
                            [np.sum(x1 < med), np.sum(x1 >= med)]])
             hc += stats.chi2_contingency(tb, correction=False)[1] < .05
-        checkf("ch12 §12.4 이분화 검정력 손실(t·χ²)", [ht/2000, hc/2000], [.578, .447], tol=.025)
+        checkf("ch12 §12.5 이분화 검정력 손실(t·χ²)", [ht/2000, hc/2000], [.578, .447], tol=.025)
 
     # ── ch08 §8.3 효과크기 환산표 (2026-09-05) ──
     _d = [0.2, 0.5, 0.8]
@@ -1168,16 +1168,16 @@ def main():
     check("ch15 §15.6 필요한 rho 가 잰 것 중 최대보다 크다",
           float(np.sqrt(_b6[1]*_sdx/_sdy)) > svy.flr.corr(svy.mil), True)
 
-    # 12장 §12.5 S0 의 빚
+    # 12장 §12.6 S0 의 빚
     _rg = np.random.default_rng(73)
     _y0, _c0 = exp.mil.values, exp.cond.values
     _df = np.array([(lambda t: _y0[t == 1].mean() - _y0[t == 0].mean())(_rg.permutation(_c0))
                     for _ in range(5000)])
     _ob = exp[exp.cond == 1].mil.mean() - exp[exp.cond == 0].mil.mean()
-    checkf("ch12 §12.5 S0 판정(관찰·p·영세계 SD)",
+    checkf("ch12 §12.6 S0 판정(관찰·p·영세계 SD)",
            [_ob, float(np.mean(np.abs(_df) >= abs(_ob))), float(_df.std(ddof=1))],
            [.283, .0302, .130])
-    checkf("ch12 §12.5 영세계에서 0.1 이상은 흔하다",
+    checkf("ch12 §12.6 영세계에서 0.1 이상은 흔하다",
            float(np.mean(np.abs(_df) >= .1)), .444)
     _g = np.random.default_rng(73)
     _A = _g.normal(0, 1, 500); _B = .6 * _A + _g.normal(0, 1, 500)
@@ -1300,7 +1300,7 @@ def main():
     checkf("ch16 §16.1 유의 대 비유의(기울기·p ×2 · 차이 · 차이 p)",
            [_res[0][0], _res[0][2], _res[1][0], _res[1][2], _res[0][0] - _res[1][0],
             2 * stats.norm.sf(abs(_z6))], [.275, .000, .241, .091, .034, .821], tol=.0006)
-    # §12.5 부트스트랩 간접효과 구간
+    # §12.6 부트스트랩 간접효과 구간
     _r = np.random.default_rng(73); _n = len(exp); _ind = []
     for _ in range(2000):
         _s = exp.iloc[_r.integers(0, _n, _n)]
@@ -1308,7 +1308,7 @@ def main():
         _bb, _, _, _ = ols(_s.mil.values, [_s.hjs.values, _s.cond.values])
         _ind.append(_aa[1] * _bb[1])
     checkf("ch16 §16.5 부트 간접효과 95% 구간", list(np.percentile(_ind, [2.5, 97.5])), [.027, .251])
-    # §12.5 혼란된 매개 = 없는 통로가 유의하게 나온다
+    # §12.6 혼란된 매개 = 없는 통로가 유의하게 나온다
     _r = np.random.default_rng(73); _n = 400
     _cd = _r.integers(0, 2, _n); _U = _r.normal(0, 1, _n)
     _M = .60 * _cd + .80 * _U + _r.normal(0, .5, _n)
@@ -1320,7 +1320,7 @@ def main():
     checkf("ch16 §16.5 U 통제 시 회수(b·c′)", [_bu[1], _bu[2]], [.018, .297], tol=.0006)
     checkf("ch16 §16.5 총효과는 멀쩡했다", _c2[1], .274, tol=.0006)
 
-    # §12.6 경로분석: 방향을 뒤집어도 자료를 똑같이 재현한다 (자유도 0)
+    # §12.7 경로분석: 방향을 뒤집어도 자료를 똑같이 재현한다 (자유도 0)
     _sv = load("svy")
     _z = lambda v: (v - v.mean()) / v.std(ddof=1)
     _px, _pm, _py = _z(_sv.hjs.values), _z(_sv.refl.values), _z(_sv.mil.values)
@@ -1331,7 +1331,7 @@ def main():
     checkf("ch16 §16.6 두 모형이 재현한 XY 상관 = 관찰값",
            [_a1[1]*_b1[1] + _b1[2], _a2[1]*_b2[1] + _b2[2], float(np.corrcoef(_px, _py)[0, 1])],
            [.629, .629, .629], tol=.0006)
-    # §12.4 측정오차 × 상호작용 검정력 (신뢰도 1.0 / 0.7)
+    # §12.5 측정오차 × 상호작용 검정력 (신뢰도 1.0 / 0.7)
     def _pw(rel, n=400, reps=800, seed=73):
         r_ = np.random.default_rng(seed); sd_e = np.sqrt((1 - rel) / rel); hx = hi = 0
         for _ in range(reps):

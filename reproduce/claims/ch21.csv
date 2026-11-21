@@ -53,7 +53,7 @@ ch21.1.ind.pct,ch21,95,ch21.indep_fwer_pct,data,,같은 값의 백분율 95.4
 ch21.1.ind.real,ch21,53,ch21.harvest_any_pct,sim,15,씨앗 37 200세계 (위와 같음)
 ch21.1.ind.not5,ch21,5,,fixed,,관례 유의수준 5%
 ch21.2.s1.power,ch21,.57,s1.power,data,,S1 의 해석해 검정력 (s1 대조표의 계산 s1.power 를 그대로 쓴다)
-ch21.2.ch12,ch21,14,ch12.fp_three_indep_pct,data,,"12장 §12.7 의 값을 옮김 = ch12 대조표의 계산 ch12.fp_three_outcomes_pct (구 배터리 절차 ; 씨앗 73 · 3,000회) 와 허용폭을 그대로 쓴다 ; 실측 12.63% 는 13 으로 반올림 ; 2026-11-14h 원고 정정에 맞춰 옮김"
+ch21.2.ch12,ch21,14,ch12.fp_three_indep_pct,data,,"12장 §12.8 의 값을 옮김 = ch12 대조표의 계산 ch12.fp_three_outcomes_pct (구 배터리 절차 ; 씨앗 73 · 3,000회) 와 허용폭을 그대로 쓴다 ; 실측 12.63% 는 13 으로 반올림 ; 2026-11-14h 원고 정정에 맞춰 옮김"
 ch21.2.m.design,ch21,100,,fixed,,모의시행 집단 인원
 ch21.2.m.reps,ch21,"4,000",,fixed,,반복 횟수
 ch21.2.m.alpha,ch21,.05,,fixed,,관례 유의수준
