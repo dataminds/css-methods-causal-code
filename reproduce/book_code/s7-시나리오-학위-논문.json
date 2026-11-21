@@ -1,0 +1,9 @@
+{
+ "unit": "s7-시나리오-학위-논문.md",
+ "blocks": [
+  [
+   126,
+   "from scipy import stats\n\ndef 검정력(n, d, alpha=.05):            # 집단당 n명 · 두 집단 t검정 · 양측\n    df = 2 * n - 2\n    nc = d * np.sqrt(n / 2)                # 비중심 모수 = 효과가 t 값을 미는 크기\n    c = stats.t.ppf(1 - alpha / 2, df)\n    return 1 - stats.nct.cdf(c, df, nc) + stats.nct.cdf(-c, df, nc)\n\ndef 필요_n(d, 목표=.80):\n    n = 2\n    while 검정력(n, d) < 목표:\n        n += 1\n    return n\n\nprint(필요_n(0.40), round(float(검정력(100, 0.22)), 3))\nprint(필요_n(0.22), round(float(검정력(190, 0.22)), 3), round(float(검정력(183, 0.22)), 3))\n# 100 0.34\n# 326 0.571 0.555"
+  ]
+ ]
+}

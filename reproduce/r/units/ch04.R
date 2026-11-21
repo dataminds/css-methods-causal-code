@@ -80,14 +80,18 @@ calc("ch04.cx_ev1", function() .cx$ev[1])
 calc("ch04.cx_ev2", function() .cx$ev[2])
 calc("ch04.cx_ev_rest_max", function() max(.cx$ev[3:6]))
 calc("ch04.cx_ev_rest_min", function() min(.cx$ev[3:6]))
+for (i in 3:6) local({ ii <- i; calc(paste0("ch04.cx_ev", ii), function() .cx$ev[ii]) })   # §4.3 고유값 여섯
 
-.att <- function(true) {
+.att <- function(true, rel = .7) {
   set.seed(73); n <- 50000
   tx <- rnorm(n); ty <- true * tx + sqrt(1 - true^2) * rnorm(n)
-  e <- sqrt((1 - .7) / .7)
+  e <- sqrt((1 - rel) / rel)
   cor(tx + rnorm(n, 0, e), ty + rnorm(n, 0, e))
 }
 calc("ch04.att_obs_07", function() .att(0.60))
+for (k in c("10", "09", "08", "06", "05")) local({   # §4.5 표
+  kk <- k; calc(paste0("ch04.att_obs_", kk), function() .att(0.60, as.numeric(kk) / 10))
+})
 calc("ch04.att30_obs_07", function() .att(0.30))
 calc("ch04.att_pred_07", function() 0.60 * 0.7)
 calc("ch04.att_back", function() 0.42 / 0.7)
@@ -98,6 +102,7 @@ set.seed(73)
   sapply(c(0, 0.3, 0.5, 0.7), function(w) cor(A + w * M + rnorm(n, 0, .5), B + w * M + rnorm(n, 0, .5)))
 })
 calc("ch04.cm_00", function() .cm[1])
+calc("ch04.cm_03", function() .cm[2])
 calc("ch04.cm_05", function() .cm[3])
 calc("ch04.cm_07", function() .cm[4])
 })

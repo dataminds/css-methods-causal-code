@@ -38,6 +38,9 @@ def _diff(d):
 
 calc("ch03.exp_raw_diff")(lambda: _diff(ER()))
 calc("ch03.exp_clean_diff")(lambda: _diff(E()))
+for _k, _f in (("raw", ER), ("clean", E)):                      # §3.3 제외 전후 표 (2026-11-21 개념 절로 옮김)
+    for _c in (1, 0):
+        calc(f"ch03.exp_{_k}_m{_c}")(lambda f=_f, c=_c: f()[f().cond == c].mil.mean())
 
 
 # §3.3 네 기준

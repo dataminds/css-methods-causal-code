@@ -150,6 +150,7 @@ calc("ch12.perm_not_p_pct")(lambda: 100 * (1 - (np.abs(D()) >= abs(_obs())).mean
 calc("ch12.perm_count")(lambda: int((np.abs(D()) >= abs(_obs())).sum()))
 calc("ch12.perm_one_count")(lambda: int((D() >= _obs()).sum()))
 calc("ch12.perm_one_p")(lambda: (D() >= _obs()).mean())
+calc("ch12.perm_rev_one_p")(lambda: (D() >= -_obs()).mean())   # 결과가 반대(−0.283)였을 때 개입 쪽만 센 p
 calc("ch12.perm_round_count")(lambda: int((np.abs(D()) >= 0.283).sum()))
 calc("ch12.perm_round_p")(lambda: (np.abs(D()) >= 0.283).mean())
 calc("ch12.perm_ge01_pct")(lambda: 100 * (np.abs(D()) >= 0.1).mean())

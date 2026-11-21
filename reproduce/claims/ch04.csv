@@ -133,3 +133,55 @@ ch04.chk.back.obs,ch04,.42,ch04.att_pred_07,data,,.60 × .7 (산술)
 ch04.chk.back.true,ch04,.60,,fixed,,§4.9 참 상관 (설계값)
 ch04.chk.rev.a,ch04,.93,ch04.alpha_hjs21,data,,§4.9
 ch04.chk.rev.b,ch04,.91,ch04.alpha_rev21,data,,§4.9
+ch04.r5.a21,ch04,.931,ch04.alpha_hjs21,data,,§4.2 역채점 표 원래 판
+ch04.r5.rev,ch04,.912,ch04.alpha_rev21,data,,§4.2 역채점 표
+ch04.r5.itca,ch04,−.502,ch04.itc_rev_a1,data,,§4.2 역채점 표
+ch04.r5.itcb,ch04,.479,ch04.itc_rev_a2,data,,§4.2 역채점 표
+ch04.a3.full,ch04,.708,ch04.alpha_el_a,data,,§4.2 조력자 3문항 알파
+ch04.a3.drop,ch04,.617,ch04.alpha_a_drop1,data,,§4.2 hjs_a1 뺀 두 문항 알파
+ch04.ev.1,ch04,2.65,ch04.cx_ev1,sim,0.27,§4.3 고유값 ; 허용폭 근거 = ch04.fa.ev1
+ch04.ev.2,ch04,2.52,ch04.cx_ev2,sim,0.28,§4.3 고유값 ; 허용폭 근거 = ch04.fa.ev2
+ch04.ev.3,ch04,0.24,ch04.cx_ev3,sim,0.05,§4.3 고유값 ; 허용폭 근거 = ch04.fa.rest.max
+ch04.ev.4,ch04,0.21,ch04.cx_ev4,sim,0.05,§4.3 고유값
+ch04.ev.5,ch04,0.20,ch04.cx_ev5,sim,0.05,§4.3 고유값
+ch04.ev.6,ch04,0.19,ch04.cx_ev6,sim,0.05,§4.3 고유값
+ch04.att.t.rel10,ch04,1.0,,fixed,,§4.5 표 신뢰도 (설계값)
+ch04.att.t.rel09,ch04,.9,,fixed,,§4.5 표 신뢰도 (설계값)
+ch04.att.t.rel08,ch04,.8,,fixed,,§4.5 표 신뢰도 (설계값)
+ch04.att.t.rel07,ch04,.7,,fixed,,§4.5 표 신뢰도 (설계값)
+ch04.att.t.rel06,ch04,.6,,fixed,,§4.5 표 신뢰도 (설계값)
+ch04.att.t.rel05,ch04,.5,,fixed,,§4.5 표 신뢰도 (설계값)
+ch04.att.t.obs10,ch04,.599,ch04.att_obs_10,sim,0.02,§4.5 표 관찰 상관 ; 5만 명 상관 표준오차 약 .004
+ch04.att.t.obs09,ch04,.536,ch04.att_obs_09,sim,0.02,§4.5 표 관찰 상관 ; 5만 명 상관 표준오차 약 .004
+ch04.att.t.obs08,ch04,.479,ch04.att_obs_08,sim,0.02,§4.5 표 관찰 상관 ; 5만 명 상관 표준오차 약 .004
+ch04.att.t.obs07,ch04,.416,ch04.att_obs_07,sim,0.02,§4.5 표 관찰 상관 ; 5만 명 상관 표준오차 약 .004
+ch04.att.t.obs06,ch04,.356,ch04.att_obs_06,sim,0.02,§4.5 표 관찰 상관 ; 5만 명 상관 표준오차 약 .004
+ch04.att.t.obs05,ch04,.299,ch04.att_obs_05,sim,0.02,§4.5 표 관찰 상관 ; 5만 명 상관 표준오차 약 .004
+ch04.att.t.pred10,ch04,.60,,fixed,,§4.5 표 참 상관 × 신뢰도 (산술 .60 × 신뢰도)
+ch04.att.t.pred09,ch04,.54,,fixed,,§4.5 표 참 상관 × 신뢰도 (산술 .60 × 신뢰도)
+ch04.att.t.pred08,ch04,.48,,fixed,,§4.5 표 참 상관 × 신뢰도 (산술 .60 × 신뢰도)
+ch04.att.t.pred07,ch04,.42,,fixed,,§4.5 표 참 상관 × 신뢰도 (산술 .60 × 신뢰도)
+ch04.att.t.pred06,ch04,.36,,fixed,,§4.5 표 참 상관 × 신뢰도 (산술 .60 × 신뢰도)
+ch04.att.t.pred05,ch04,.30,,fixed,,§4.5 표 참 상관 × 신뢰도 (산술 .60 × 신뢰도)
+ch04.cm.t.w00,ch04,0.0,,fixed,,§4.6 표 방법 몫 (설계값)
+ch04.cm.t.w03,ch04,0.3,,fixed,,§4.6 표 방법 몫 (설계값)
+ch04.cm.t.w05,ch04,0.5,,fixed,,§4.6 표 방법 몫 (설계값)
+ch04.cm.t.w07,ch04,0.7,,fixed,,§4.6 표 방법 몫 (설계값)
+ch04.cm.t.r00,ch04,−.012,ch04.cm_00,sim,0.19,§4.6 표 ; 허용폭 근거 = ch04.cm.0
+ch04.cm.t.r03,ch04,.100,ch04.cm_03,sim,0.19,§4.6 표 ; 허용폭 근거 = ch04.cm.0
+ch04.cm.t.r05,ch04,.198,ch04.cm_05,sim,0.19,§4.6 표 ; 허용폭 근거 = ch04.cm.0
+ch04.cm.t.r07,ch04,.339,ch04.cm_07,sim,0.19,§4.6 표 ; 허용폭 근거 = ch04.cm.0
+ch04.cm.n,ch04,500,,fixed,,§4.6 모의시행 표본 크기 (설계값)
+ch04.ai.n,ch04,566,ch04.svy_n,data,,AI 절 판단 1
+ch04.ai.raw,ch04,590,ch04.svy_raw_n,data,,AI 절 판단 1
+ch04.ai.a,ch04,.93,ch04.alpha_hjs21,data,,AI 절 판단 2
+ch04.ai.lo,ch04,.71,ch04.alpha_el_min,data,,AI 절 판단 2
+ch04.ai.hi,ch04,.88,ch04.alpha_el_max,data,,AI 절 판단 2
+ch04.ai.a3,ch04,.708,ch04.alpha_el_a,data,,AI 절 판단 5
+ch04.ai.a3d,ch04,.617,ch04.alpha_a_drop1,data,,AI 절 판단 5
+ch04.rv.n,ch04,566,ch04.svy_n,data,,복습 대조표
+ch04.rv.rel,ch04,1.0,,fixed,,복습 대조표 극단값 (설계값)
+ch04.rv.true,ch04,.60,,fixed,,복습 대조표 참 상관 (설계값)
+ch04.rv.c10,ch04,.60,,fixed,,복습 코드 10 머리 (설계값)
+ch04.rv.c10a,ch04,0.60,,fixed,,복습 코드 10 실습 3 안내 (설계값)
+ch04.rv.c10b,ch04,0.30,,fixed,,실습 3 참 상관 (설계값)

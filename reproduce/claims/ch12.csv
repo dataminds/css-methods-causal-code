@@ -311,3 +311,11 @@ ch12.fixed.81,ch12,90%,,fixed,,신뢰구간 90% ; 서술
 ch12.paper.39,ch12,.11,,paper,,Richardson et al. (2023) 결과 절 = 2차항 우도비 검정 P=0.11 · 선형-지수 P=0.08 ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 476 · 482행
 ch12.paper.40,ch12,.08,,paper,,Richardson et al. (2023) 결과 절 = 2차항 우도비 검정 P=0.11 · 선형-지수 P=0.08 ; raw/papers/radiation-sources/INWORKS-2023-Solid-Cancer-Mortality-Nuclear-Workers-BMJ.txt 476 · 482행
 ch12.obs.side2,ch12,0.283,ch12.obs,data,,§12.2 기준 2 보강 = 관찰 차이를 반대 방향으로 놓은 가상 예
+ch12.obs.22,ch12,0.283,ch12.obs,data,,개입 − 통제 mil 평균 차이
+ch12.obs.23,ch12,0.283,ch12.obs,data,,개입 − 통제 mil 평균 차이
+ch12.perm_rev_one_p.1,ch12,.99,ch12.perm_rev_one_p,sim,0.0063,"§12.2 「양측과 단측」 = 결과가 반대(−0.283)였을 때 개입 쪽만 센 p ; 뒤섞기 씨앗 73 · 5,000회 ; R 은 자기 난수 ; mc_tol = 3√2 × 이항 SD(p .99 · 5,000)"
+ch12.perm_p.13,ch12,.030,ch12.perm_p,sim,0.0102,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 양측 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
+ch12.perm_p.14,ch12,.030,ch12.perm_p,sim,0.0102,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 양측 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
+ch12.perm_one_p.3,ch12,.018,ch12.perm_one_p,sim,0.008,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 한쪽 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
+ch12.fixed.82,ch12,95%,,fixed,,신뢰구간 95% ; 정의
+ch12.fixed.83,ch12,90%,,fixed,,신뢰구간 90% ; 정의

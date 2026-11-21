@@ -1,0 +1,95 @@
+id,unit,printed,calc,kind,mc_tol,note
+s7.t3q.d4,s7,.4,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80) ; 13장 대조표 ch13.paper.25 와 같은 근거
+s7.t3q.p80,s7,.80,,paper,,같은 문장
+s7.t3q.d22,s7,0.22,,paper,,원 연구 다섯째 연구 d = .22 (Rogers et al. 2023 p. 765 ; 1장)
+s7.t3q.c1,s7,.80,,fixed,,먼저 답해 보라 선택지
+s7.t3q.c2,s7,.60,,fixed,,선택지
+s7.t3q.c3,s7,.35,,fixed,,선택지
+s7.t3.alpha,s7,.05,,fixed,,유의수준 관례
+s7.t3.target,s7,.80,,fixed,,목표 검정력 관례
+s7.t3.lead.d4,s7,.4,,fixed,,코드 인자 (계획값 = Rogers 넷째 연구)
+s7.t3.lead.d22a,s7,0.22,,fixed,,코드 인자
+s7.t3.lead.d22b,s7,0.22,,fixed,,코드 인자
+s7.t3.lead.n190,s7,190,s1.raw_n_per_group,data,,실험판 집단당 배정
+s7.t3.lead.n183,s7,183,s1.n_treat,data,,정제 뒤 개입 집단
+s7.t3.read.d4,s7,.4,,fixed,,계획값
+s7.t3.read.n100,s7,100,s7.need_d40,data,,비중심 t 역산 (파이썬 scipy nct ; R power.t.test strict 올림)
+s7.t3.read.d22,s7,0.22,,fixed,,가정한 실제 효과
+s7.t3.read.p34,s7,.34,s7.pow_100_d22,data,,0.3404
+s7.t3.read.d22b,s7,0.22,,fixed,,계획값
+s7.t3.read.p80,s7,.80,,fixed,,목표 검정력
+s7.t3.read.n326,s7,326,s7.need_d22,data,,비중심 t 역산
+s7.t3.read.n190,s7,190,s1.raw_n_per_group,data,,
+s7.t3.read.p57,s7,.57,s7.pow_190_d22,data,,0.5710 = s1.power 와 같은 계산
+s7.t3.read.n183,s7,183,s1.n_treat,data,,
+s7.t3.read.p56,s7,.56,s7.pow_183_d22,data,,0.5553 (코드 출력 0.555 를 둘째 자리로 ; 반 아님)
+s7.t3.src.d4,s7,.4,,paper,,Rogers 넷째 연구 계획값
+s7.t3.src.d22,s7,.22,,paper,,Rogers 다섯째 연구 d = .22 (p. 765)
+s7.t3.choice.n,s7,190,s1.raw_n_per_group,data,,
+s7.t3.choice.p,s7,.57,s7.pow_190_d22,data,,
+s7.t3.fac.n,s7,448,s7.fac_raw,data,,요인판 배정 표본
+s7.t3.fac.p,s7,.45,s2.fac_power_448,sim,0.11,S2 표와 같은 계산 (s2.pow.p448 비고)
+s7.t4.n,s7,190,s1.raw_n_per_group,data,,사전등록 표
+s7.t4.p,s7,.57,s7.pow_190_d22,data,,사전등록 표
+s7.t5.svy.raw,s7,590,s3.raw_n,data,,표본 흐름
+s7.t5.svy.ex,s7,24,s7.svy_excl,data,,주의 점검 제외
+s7.t5.svy.n,s7,566,s3.n,data,,
+s7.t5.svy.n554,s7,554,s3.n554,data,,
+s7.t5.svy.n12,s7,12,s3.other_n,data,,
+s7.t5.exp.raw,s7,380,s1.raw_n,data,,
+s7.t5.exp.ex,s7,14,s1.excluded,data,,
+s7.t5.exp.e7t,s7,7,s1.excl_treat,data,,
+s7.t5.exp.n,s7,366,s1.n,data,,
+s7.t5.exp.nt,s7,183,s1.n_treat,data,,
+s7.t5.fac.raw,s7,448,s7.fac_raw,data,,
+s7.t5.fac.ex,s7,18,s7.fac_excl,data,,
+s7.t5.fac.n,s7,430,s2.n,data,,
+s7.t5.fac.min,s7,105,s7.fac_cell_min,data,,
+s7.t5.fac.max,s7,110,s7.fac_cell_max,data,,
+s7.t5.a.hjs1,s7,.93,s3.hjs_alpha,data,,연구 1 (설문판 566명)
+s7.t5.a.hjs2,s7,.93,s1.hjs_alpha,data,,연구 2 (실험판 366명 ; 0.928)
+s7.t5.a.items,s7,21,s3.hjs_items,data,,
+s7.t5.a.mil,s7,.93,s3.mil_alpha,data,,연구 1
+s7.t5.r,s7,.63,s3.r_hjs_mil,data,,
+s7.t6.h1.b,s7,0.98,s3.mil_b_hjs2,data,,S3 ⑦ 2단계
+s7.t6.h1.lv,s7,95,,fixed,,신뢰수준
+s7.t6.h1.lo,s7,0.88,s3.ci_hjs_lo,data,,
+s7.t6.h1.hi,s7,1.08,s3.ci_hjs_hi,data,,
+s7.t6.h1.n,s7,554,s3.n554,data,,
+s7.t6.h2.b,s7,0.19,s3.mil_b_int,data,,
+s7.t6.h2.lv,s7,95,,fixed,,신뢰수준 (관례 95%)
+s7.t6.h2.lo,s7,0.12,s3.ci_int_lo,data,,
+s7.t6.h2.hi,s7,0.27,s3.ci_int_hi,data,,
+s7.t6.h2.dr2,s7,.025,s3.mil_dr2_int,data,,곱항만의 증분 (4단계)
+s7.t6.m.d,s7,0.27,s1.hjs_d,data,,
+s7.t6.h3.diff,s7,0.283,s1.obs_diff,data,,
+s7.t6.h3.t,s7,2.21,s1.mil_t,data,,
+s7.t6.h3.p,s7,.028,s1.mil_p,data,,
+s7.t6.h3.d,s7,0.23,s1.mil_d,data,,
+s7.t6.h3a.d,s7,0.22,s1.flr_d,data,,
+s7.t6.h3a.p,s7,.038,s1.flr_p,data,,
+s7.t6.h4.b,s7,0.34,s2.b3,data,,
+s7.t6.h4.lv,s7,95,,fixed,,신뢰수준 (관례 95%)
+s7.t6.h4.lo,s7,−0.15,s2.ci_lo,data,,
+s7.t6.h4.hi,s7,0.83,s2.ci_hi,data,,
+s7.t6.h4.p,s7,.176,s2.p3,data,,
+s7.t6.h4.pow,s7,.45,s2.fac_power_448,sim,0.11,
+s7.t6.dev.n554,s7,554,s3.n554,data,,편차 표
+s7.t6.dev.n12,s7,12,s3.other_n,data,,편차 표
+s7.t6.dev.n566,s7,566,s3.n,data,,
+s7.t6.rob.b,s7,0.29,s1.adj_b,data,,
+s7.t6.rob.p,s7,.007,s1.adj_p,data,,
+s7.t7.r,s7,.63,s3.r_hjs_mil,data,,
+s7.t7.d,s7,0.23,s1.mil_d,data,,
+s7.t7.lv,s7,95,,fixed,,신뢰수준 (관례 95%)
+s7.t7.lo,s7,0.03,s1.boot_lo,sim,0.022,S1 부트스트랩 (s1.rob.lo 비고)
+s7.t7.hi,s7,0.54,s1.boot_hi,sim,0.022,
+s7.t9.d,s7,0.23,s1.mil_d,data,,
+s7.t9.p,s7,.57,s7.pow_190_d22,data,,
+s7.sc.truth,s7,0.22,,fixed,,모의 세계 참값 = gen_exp inject_d(mil_lat · .22) (s1.truth.mil)
+s7.sc.est,s7,0.23,s1.mil_d,data,,
+s7.sc.pow,s7,.57,s7.pow_190_d22,data,,
+s7.sc.alpha,s7,.05,,fixed,,유의수준
+s7.sc.truthb3,s7,0.38,s2.truth_b3,sim,0.06,s2.truth.b3 비고
+s7.sc.b3,s7,0.34,s2.b3,data,,
+s7.sc.pow45,s7,.45,s2.fac_power_448,sim,0.11,

@@ -375,6 +375,51 @@ def fig_ch12_perm(n_perm=5000, seed=73):
     return obs, p
 
 
+def fig_ch12_sides(n_perm=5000, seed=73):
+    """§12.2 「양측과 단측」 = 같은 영분포에서 무엇을 세는가 (2026-11-21).
+
+    fig_ch12_perm 과 같은 뒤섞기(씨앗 73 · 5,000번). 세 줄 = 양측 · 단측(개입 쪽) ·
+    결과가 반대(관찰 −0.283)였을 때의 단측(개입 쪽). 흑백 안전 = 센 막대에 빗금.
+    """
+    exp = load_clean("exp")
+    obs = exp.loc[exp.cond == 1, "mil"].mean() - exp.loc[exp.cond == 0, "mil"].mean()
+    rng = np.random.default_rng(seed)
+    y = exp["mil"].values
+    cond = exp["cond"].values
+    diffs = np.empty(n_perm)
+    for i in range(n_perm):
+        sh = rng.permutation(cond)
+        diffs[i] = y[sh == 1].mean() - y[sh == 0].mean()
+    bins = np.linspace(diffs.min(), diffs.max(), 41)
+    rows = [
+        ("양측: 크기가 0.283 이상인 차이를 양 끝에서 다 센다",
+         np.abs(diffs) >= abs(obs), [obs, -obs]),
+        ("단측(개입 쪽): 개입 쪽 끝만 센다",
+         diffs >= obs, [obs]),
+        ("결과가 반대였다면(통제 쪽이 0.283 높음): 개입 쪽만 세는 규칙은 거의 다 센다",
+         diffs >= -obs, [-obs]),
+    ]
+    fig, axes = plt.subplots(3, 1, figsize=(6.5, 6.4), sharex=True)
+    out = []
+    for ax, (title, hit, lines) in zip(axes, rows):
+        ax.hist(diffs, bins=bins, color="#d9d9d9", edgecolor="white")
+        ax.hist(diffs[hit], bins=bins, color=OI[0], edgecolor="white", hatch="///")
+        for v in lines:
+            ax.axvline(v, color=OI[5], linewidth=1.8)
+        n, p = int(hit.sum()), hit.mean()
+        out.append((n, p))
+        ax.set_ylim(0, 540)                                      # 글상자 자리 = 막대 위 여백
+        ax.text(.5, .96, f"센 세계 {n:,}개 · p = {p:.3f}", transform=ax.transAxes,
+                ha="center", va="top", fontsize=9,
+                bbox=dict(facecolor="white", edgecolor="none", alpha=.85))
+        ax.set_title(title, fontsize=9.5, loc="left")
+        ax.set_ylabel("횟수", fontsize=8.5)
+    axes[-1].set_xlabel("효과가 없는 세계 5,000개의 차이 (개입 - 통제 ; 씨앗 73)")
+    fig.tight_layout()
+    save(fig, "fig-ch12-sides.png")
+    return out
+
+
 # ── ch07: 같은 세계, 표본마다 달라지는 p값 ─────────────────────
 def fig_ch12_pvar(n_draw=20, n_sub=100, seed=37):
     """§7.3 = p값은 자료의 성질이 아니라 이 표본의 성질이다.
@@ -1870,6 +1915,7 @@ if __name__ == "__main__":
     sk_pop, sk_mean = fig_ch11_clt()
     fig_ch11_two_answers()   # 2026-11-15 11장 두 답 (빈도주의 ⊥ 베이즈)
     obs, p = fig_ch12_perm()
+    print("12장 양측 · 단측 · 반대", fig_ch12_sides())
     ps20 = fig_ch12_pvar()
     fig_ch12_alpha_beta()
     ci_lo, ci_hi = fig_ch13_boot()

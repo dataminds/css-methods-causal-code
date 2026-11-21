@@ -1047,7 +1047,7 @@ STEPS = {
   'print("남남으로:", round((x3.mean()-x1.mean()) / (sp*np.sqrt(2/len(d))), 2))  # -1.64'),
 ],
 "ch20": [
- ("## 2. 구간은 무엇의 구간인가\n*d* 의 구간과 **평균 차이**의 구간은 다른 수다. 섞어 적는 것이 이 장의 대표 오류.",
+ ("## 2. 복습 코드 1 · 구간은 무엇의 구간인가 (§20.3 규칙 6)\n*d* 의 구간과 **평균 차이**의 구간은 다른 수다. 섞어 적는 것이 이 장의 대표 오류.",
   'exp = load("exp")\n'
   'x = exp[exp.cond == 1].mil.values; y = exp[exp.cond == 0].mil.values\n'
   'n1, n2 = len(x), len(y)\n'
@@ -1058,23 +1058,7 @@ STEPS = {
   'tcrit = stats.t.ppf(.975, n1+n2-2); se_diff = sp*np.sqrt(1/n1 + 1/n2)\n'
   'md = x.mean() - y.mean()\n'
   'print("평균차와 그 구간:", round(md,3), round(md-tcrit*se_diff,3), round(md+tcrit*se_diff,3))  # 0.283 0.031 0.535'),
- ("## 3. 오차 막대 세 종\n같은 자료인데 폭이 열 배 넘게 벌어진다. 캡션에 **무엇인지** 안 적으면 그림이 거짓말을 한다.",
-  'print("SD:", round(x.std(ddof=1),3),\n'
-  '      " SE:", round(x.std(ddof=1)/np.sqrt(n1),3),\n'
-  '      " 95%CI 반폭:", round(tcrit*x.std(ddof=1)/np.sqrt(n1),3))   # 1.18 0.087 0.171'),
- ("## 4. 결과 절 수치를 한 번에\n손으로 옮겨 적지 않는다. 함수 하나가 본문의 수를 전부 다시 뽑는다.",
-  'def 보고(x, y, name):\n'
-  '    n1, n2 = len(x), len(y)\n'
-  '    sp = np.sqrt(((n1-1)*x.var(ddof=1) + (n2-1)*y.var(ddof=1)) / (n1+n2-2))\n'
-  '    d = (x.mean() - y.mean()) / sp\n'
-  '    t = (x.mean() - y.mean()) / (sp * np.sqrt(1/n1 + 1/n2)); df = n1 + n2 - 2\n'
-  '    p = 2 * stats.t.sf(abs(t), df)\n'
-  '    se_d = np.sqrt((n1+n2)/(n1*n2) + d**2/(2*(n1+n2)))\n'
-  '    print(f"{name}: M {x.mean():.2f}({x.std(ddof=1):.2f}) 대 {y.mean():.2f}({y.std(ddof=1):.2f}) "\n'
-  '          f"t({df})={t:.2f} p={p:.3f} d={d:.2f} CI[{d-1.96*se_d:.2f}, {d+1.96*se_d:.2f}]")\n'
-  'for v in ("mil", "hjs", "flr", "age", "mil_t1"):\n'
-  '    보고(exp[exp.cond==1][v].values, exp[exp.cond==0][v].values, v)'),
- ("## 5. 회귀 결과를 쓰는 문장의 수 (§20.3 상자 · 실습 7)\nS3 의 위계 회귀에서 2단계 여정 지각과 3단계 곱항의 *b* · *SE* · 95% 구간을 다시 뽑습니다. "
+ ("## 3. 복습 코드 2 · 회귀 결과를 쓰는 문장의 수 (§20.3 · 실습 7)\nS3 의 위계 회귀에서 2단계 여정 지각과 곱항까지 넣은 마지막 단계 곱항의 *b* · *SE* · 95% 구간을 다시 뽑습니다. "
   "성별 통제 분석이라 표본은 554명입니다.",
   'svy = load("svy")\n'
   's = svy[svy.gender.isin([1, 2])]                 # 성별 1 · 2 만 = 554명\n'
@@ -1089,6 +1073,22 @@ STEPS = {
   '구간(s.mil, [s.age, fem, h, r, h * r], 5)\n'
   '# 0.981 0.052 0.88 1.08\n'
   '# 0.193 0.04 0.12 0.27'),
+ ("## 4. 복습 코드 3 · 오차 막대 세 종 (§20.4)\n같은 자료인데 폭이 열 배 넘게 벌어진다. 캡션에 **무엇인지** 안 적으면 그림이 거짓말을 한다.",
+  'print("SD:", round(x.std(ddof=1),3),\n'
+  '      " SE:", round(x.std(ddof=1)/np.sqrt(n1),3),\n'
+  '      " 95%CI 반폭:", round(tcrit*x.std(ddof=1)/np.sqrt(n1),3))   # 1.18 0.087 0.172'),
+ ("## 5. 복습 코드 4 · 5 · 결과 절 수치를 한 번에 (§20.6)\n손으로 옮겨 적지 않는다. 함수 하나가 본문의 수를 전부 다시 뽑는다.",
+  'def 보고(x, y, name):\n'
+  '    n1, n2 = len(x), len(y)\n'
+  '    sp = np.sqrt(((n1-1)*x.var(ddof=1) + (n2-1)*y.var(ddof=1)) / (n1+n2-2))\n'
+  '    d = (x.mean() - y.mean()) / sp\n'
+  '    t = (x.mean() - y.mean()) / (sp * np.sqrt(1/n1 + 1/n2)); df = n1 + n2 - 2\n'
+  '    p = 2 * stats.t.sf(abs(t), df)\n'
+  '    se_d = np.sqrt((n1+n2)/(n1*n2) + d**2/(2*(n1+n2)))\n'
+  '    print(f"{name}: M {x.mean():.2f}({x.std(ddof=1):.2f}) 대 {y.mean():.2f}({y.std(ddof=1):.2f}) "\n'
+  '          f"t({df})={t:.2f} p={p:.3f} d={d:.2f} CI[{d-1.96*se_d:.2f}, {d+1.96*se_d:.2f}]")\n'
+  'for v in ("mil", "hjs", "flr", "age", "mil_t1"):\n'
+  '    보고(exp[exp.cond==1][v].values, exp[exp.cond==0][v].values, v)'),
 ],
 "s1": [
  ("## 2. ③ 균형 점검\n무작위가 **이 표본에서** 실제로 균형을 만들었는지 확인. 셋 다 차이가 없어야 한다.",

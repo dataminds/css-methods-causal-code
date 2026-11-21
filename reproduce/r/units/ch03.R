@@ -32,6 +32,10 @@ calc("ch03.raw_gender_mean", function() mean(SR()$gender))
 .diff <- function(d) unname(coef(lm(mil ~ cond, data = d))[2])
 calc("ch03.exp_raw_diff", function() .diff(ER()))
 calc("ch03.exp_clean_diff", function() .diff(E()))
+for (k in c("raw", "clean")) for (cc in c(1, 0)) local({        # §3.3 제외 전후 표
+  kk <- k; c2 <- cc
+  calc(paste0("ch03.exp_", kk, "_m", c2), function() { d <- if (kk == "raw") ER() else E(); mean(d$mil[d$cond == c2]) })
+})
 
 # §3.3 네 기준 (subset 으로)
 .keep <- function(d, k) {

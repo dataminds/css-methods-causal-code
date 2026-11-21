@@ -50,6 +50,21 @@ calc("ch05.hjs_nunique", function() length(unique(S()$hjs)))
 calc("ch05.raw_gender_mean", function() mean(RAW()$gender))
 calc("ch05.mil_alpha", function() cronbach(S()[, paste0("mil_", 1:4)]))
 
+# 2026-11-21 개념 절 결과 표
+for (v in c("hjs", "mil", "flr", "swl")) local({
+  vv <- v
+  calc(paste0("ch05.tail_", vv, "_ge65"), function() 100 * mean(S()[[vv]] >= 6.5))
+  calc(paste0("ch05.tail_", vv, "_le15"), function() 100 * mean(S()[[vv]] <= 1.5))
+  calc(paste0("ch05.tail_", vv, "_max"), function() max(S()[[vv]]))
+})
+for (v in c("hjs", "mil", "age")) local({
+  vv <- v
+  calc(paste0("ch05.sd1_", vv, "_lo"), function() mean(S()[[vv]]) - sd(S()[[vv]]))
+  calc(paste0("ch05.sd1_", vv, "_hi"), function() mean(S()[[vv]]) + sd(S()[[vv]]))
+  calc(paste0("ch05.sd1_", vv, "_in"), function() { x <- S()[[vv]]; 100 * mean(x > mean(x) - sd(x) & x < mean(x) + sd(x)) })
+})
+for (v in c("hjs", "flr", "swl")) local({ vv <- v; calc(paste0("ch05.med_", vv), function() median(S()[[vv]])) })
+
 A <- c(rep(1, 10), rep(2, 30), rep(3, 30), rep(4, 20), rep(5, 10))
 B <- c(rep(1, 20), rep(2, 15), rep(3, 25), rep(4, 25), rep(5, 15))
 W <- c(0, 1, 2, 5, 9)
@@ -67,6 +82,9 @@ calc("ch05.sim_median_min", function() min(.med))
 calc("ch05.sim_median_max", function() max(.med))
 calc("ch05.sim_max_min", function() min(.mx))
 calc("ch05.sim_max_max", function() max(.mx))
+for (i in 1:4) local({ ii <- i
+  calc(paste0("ch05.sim_med_", ii - 1), function() .med[ii])
+  calc(paste0("ch05.sim_mx_", ii - 1), function() .mx[ii]) })
 .two <- function(sd_) { a <- rnorm(300, 5.0, sd_); b <- rnorm(300, 4.6, sd_)
   c(mean(a) - mean(b), cohen_d(a, b), 100 * mean(b > mean(a))) }
 .big <- .two(1.25); .small <- .two(0.25)

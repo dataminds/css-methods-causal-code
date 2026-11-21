@@ -111,6 +111,8 @@ calc("ch04.cx_ev1")(lambda: _cx()[2][0])
 calc("ch04.cx_ev2")(lambda: _cx()[2][1])
 calc("ch04.cx_ev_rest_max")(lambda: _cx()[2][2:].max())
 calc("ch04.cx_ev_rest_min")(lambda: _cx()[2][2:].min())
+for _i in (3, 4, 5, 6):                                          # §4.3 고유값 여섯 (개념 절로 옮김)
+    calc(f"ch04.cx_ev{_i}")(lambda i=_i: _cx()[2][i - 1])
 
 
 # §4.5 감쇠 = 책 코드 (씨앗 73 · 5만 명) ; true 를 바꾸면 실습 3
@@ -127,6 +129,8 @@ def _att(true, rel_want):
 
 
 calc("ch04.att_obs_07")(lambda: _att(0.60, .7))
+for _r, _k in ((1.0, "10"), (.9, "09"), (.8, "08"), (.6, "06"), (.5, "05")):   # §4.5 표 (2026-11-21 개념 절로 옮김)
+    calc(f"ch04.att_obs_{_k}")(lambda r=_r: _att(0.60, r))
 calc("ch04.att30_obs_07")(lambda: _att(0.30, .7))
 calc("ch04.att_pred_07")(lambda: 0.60 * 0.7)
 calc("ch04.att_back")(lambda: 0.42 / 0.7)
@@ -146,5 +150,6 @@ def _cm():
 
 
 calc("ch04.cm_00")(lambda: _cm()[0.0])
+calc("ch04.cm_03")(lambda: _cm()[0.3])
 calc("ch04.cm_05")(lambda: _cm()[0.5])
 calc("ch04.cm_07")(lambda: _cm()[0.7])

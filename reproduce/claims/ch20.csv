@@ -94,11 +94,11 @@ ch20.boot_mdiff_lo.4,ch20,0.03,ch20.boot_mdiff_lo,sim,0.021,"규칙 6 ; 13장 §
 ch20.boot_mdiff_hi.4,ch20,0.54,ch20.boot_mdiff_hi,sim,0.021,"규칙 6 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
 ch20.boot_mdiff_hi.5,ch20,0.54,ch20.boot_mdiff_hi,sim,0.021,"규칙 6 ; 13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
 ch20.exp_mil_hi.4,ch20,0.44,ch20.exp_mil_hi,data,,규칙 6
-ch20.exp_mil_lo.4,ch20,0.025,ch20.exp_mil_lo,data,,d 구간 아래 셋째 자리
-ch20.fixed.13,ch20,0.03,,fixed,,이중 반올림의 예 = 인쇄된 0.025 를 다시 둘째 자리로 올린 틀린 값(원고가 틀렸다고 말하는 수)
+ch20.exp_mil_lo.4,ch20,0.025,ch20.exp_mil_lo,data,,d 구간 아래 셋째 자리 ; 2026-11-21 개념 먼저 재구성
+ch20.fixed.13,ch20,0.03,,fixed,,이중 반올림의 예 = 인쇄된 0.025 를 다시 둘째 자리로 올린 틀린 값(원고가 틀렸다고 말하는 수) ; 2026-11-21 개념 먼저 재구성
 ch20.exp_mil_lo.5,ch20,0.02499,ch20.exp_mil_lo,data,,d 구간 아래 다섯째 자리
 ch20.exp_mil_lo.6,ch20,0.02,ch20.exp_mil_lo,data,,규칙 6
-ch20.exp_mil_lo.7,ch20,0.025,ch20.exp_mil_lo,data,,규칙 6
+ch20.exp_mil_lo.7,ch20,0.025,ch20.exp_mil_lo,data,,규칙 6 ; 2026-11-21 개념 먼저 재구성
 ch20.mil_mdiff.3,ch20,0.28,ch20.mil_mdiff,data,,규칙 6 따로 쓰기
 ch20.fixed.14,ch20,95,,fixed,,신뢰수준 95% (정의)
 ch20.boot_mdiff_lo.5,ch20,0.03,ch20.boot_mdiff_lo,sim,0.021,"13장 §13.1 부트스트랩(씨앗 73 · 5,000번) 백분위 구간 ; 백분위의 몬테카를로 표준오차 ≈ 0.005 → 3 × √2 × 0.005 ≈ 0.021"
@@ -176,7 +176,7 @@ ch20.eq_mil_bound.2,ch20,0.25,ch20.eq_mil_bound,data,,
 ch20.fixed.29,ch20,90,,fixed,,동등성 검정의 90% 구간 = 두 단측 검정 .05 (정의)
 ch20.eq_mil_lo90.2,ch20,−0.20,ch20.eq_mil_lo90,data,,
 ch20.eq_mil_hi90.2,ch20,0.15,ch20.eq_mil_hi90,data,,
-ch20.fixed.30,ch20,95,,fixed,,신뢰수준 95% (정의)
+ch20.fixed.30,ch20,95,,fixed,,신뢰수준 95% (정의) ; 2026-11-21 개념 먼저 재구성
 ch20.fixed.31,ch20,95,,fixed,,신뢰수준 95% (정의)
 ch20.fixed.32,ch20,1.96,,fixed,,정규분포 97.5% 분위수 (「쯤」)
 ch20.bar_sd.1,ch20,1.18,ch20.bar_sd,data,,개입 집단 SD
@@ -247,8 +247,8 @@ ch20.ancova_se.1,ch20,0.11,ch20.ancova_se,data,,
 ch20.ancova_p.1,ch20,.007,ch20.ancova_p,data,,
 ch20.inter_b.1,ch20,0.02,ch20.inter_b,data,,조건 × 중심화 기저
 ch20.inter_p.1,ch20,.797,ch20.inter_p,data,,
-ch20.exp_age_d.2,ch20,−0.06,ch20.exp_age_d,data,,
-ch20.exp_mil_t1_d.2,ch20,−0.01,ch20.exp_mil_t1_d,data,,
+ch20.exp_age_d.2,ch20,−0.06,ch20.exp_age_d,data,,2026-11-21 개념 먼저 재구성
+ch20.exp_mil_t1_d.2,ch20,−0.01,ch20.exp_mil_t1_d,data,,2026-11-21 개념 먼저 재구성
 ch20.s2_b3.2,ch20,0.34,ch20.s2_b3,data,,실습 2 ; 2026-11-14h 원고 정정에 맞춰 옮김
 ch20.fixed.42,ch20,95,,fixed,,신뢰수준 95% (정의) ; 2026-11-14h 원고 정정에 맞춰 옮김
 ch20.s2_b3_lo.2,ch20,−0.15,ch20.s2_b3_lo,data,, ; 2026-11-14h 원고 정정에 맞춰 옮김
@@ -268,7 +268,7 @@ ch20.svy_n_excl.2,ch20,24,ch20.svy_n_excl,data,,
 ch20.svy_n.3,ch20,566,ch20.svy_n,data,,
 ch20.s3_n.2,ch20,554,ch20.s3_n,data,,실습 7
 ch20.svy_n.4,ch20,566,ch20.svy_n,data,,
-ch20.fixed.46,ch20,95,,fixed,,신뢰수준 95% (정의)
+ch20.fixed.46,ch20,95,,fixed,,신뢰수준 95% (정의) ; 2026-11-21 개념 먼저 재구성
 ch20.fixed.47,ch20,95,,fixed,,신뢰수준 95% (정의)
 ch20.fixed.48,ch20,95,,fixed,,신뢰수준 95% (정의)
 ch20.fixed.49,ch20,95,,fixed,,신뢰수준 95% (정의)
@@ -285,3 +285,104 @@ ch20.bayes.bf1_5,ch20,1.5,,paper,,Wagenmakers 외 2018 p. 46 의 예시 값 (BF0
 ch20.bayes.bf1,ch20,1,,fixed,,BF = 1 = 자료가 두 가설을 똑같이 지지 (정의)
 ch20.bayes.prior30,ch20,0.32,ch11.bayes30_shift,data,,§20.3 끝 상자 1 = 11장 §11.6 앞 30명 평평한 사전분포 대 믿음 사전분포의 사후 평균 차 (2026-11-15g)
 ch20.bal.age_d,ch20,−0.06,ch20.exp_age_d,data,,§20.3 균형 점검 문단이 본보기를 가리킴 (2026-11-20 0부 · 5부 점검 #13)
+ch20.cf.tab.mil.m1,ch20,5.26,ch20.exp_mil_m1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil.s1,ch20,1.18,ch20.exp_mil_s1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil.m0,ch20,4.98,ch20.exp_mil_m0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil.s0,ch20,1.27,ch20.exp_mil_s0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil.t,ch20,2.21,ch20.exp_mil_t,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil.p,ch20,.028,ch20.exp_mil_p,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil.d,ch20,0.23,ch20.exp_mil_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil.lo,ch20,0.02,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil.hi,ch20,0.44,ch20.exp_mil_hi,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.m1,ch20,5.27,ch20.exp_hjs_m1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.s1,ch20,0.75,ch20.exp_hjs_s1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.m0,ch20,5.06,ch20.exp_hjs_m0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.s0,ch20,0.78,ch20.exp_hjs_s0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.t,ch20,2.58,ch20.exp_hjs_t,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.p,ch20,.010,ch20.exp_hjs_p,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.d,ch20,0.27,ch20.exp_hjs_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.lo,ch20,0.06,ch20.exp_hjs_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.hjs.hi,ch20,0.48,ch20.exp_hjs_hi,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.m1,ch20,5.53,ch20.exp_flr_m1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.s1,ch20,0.89,ch20.exp_flr_s1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.m0,ch20,5.33,ch20.exp_flr_m0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.s0,ch20,0.95,ch20.exp_flr_s0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.t,ch20,2.08,ch20.exp_flr_t,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.p,ch20,.038,ch20.exp_flr_p,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.d,ch20,0.22,ch20.exp_flr_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.lo,ch20,0.01,ch20.exp_flr_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.flr.hi,ch20,0.42,ch20.exp_flr_hi,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.m1,ch20,36.92,ch20.exp_age_m1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.s1,ch20,10.51,ch20.exp_age_s1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.m0,ch20,37.53,ch20.exp_age_m0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.s0,ch20,11.26,ch20.exp_age_s0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.t,ch20,−0.54,ch20.exp_age_t,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.p,ch20,.591,ch20.exp_age_p,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.d,ch20,−0.06,ch20.exp_age_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.lo,ch20,−0.26,ch20.exp_age_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.age.hi,ch20,0.15,ch20.exp_age_hi,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.m1,ch20,4.80,ch20.exp_mil_t1_m1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.s1,ch20,1.21,ch20.exp_mil_t1_s1,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.m0,ch20,4.82,ch20.exp_mil_t1_m0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.s0,ch20,1.27,ch20.exp_mil_t1_s0,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.t,ch20,−0.13,ch20.exp_mil_t1_t,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.p,ch20,.900,ch20.exp_mil_t1_p,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.d,ch20,−0.01,ch20.exp_mil_t1_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.lo,ch20,−0.22,ch20.exp_mil_t1_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.mil_t1.hi,ch20,0.19,ch20.exp_mil_t1_hi,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.df,ch20,364,ch20.exp_df,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.tab.95,ch20,95,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.bar.sd,ch20,1.18,ch20.bar_sd,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.bar.se,ch20,0.087,ch20.bar_se,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.bar.ci,ch20,0.172,ch20.bar_ci_half,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.n,ch20,366,ch20.exp_n,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.nt,ch20,183,ch20.exp_n_treat,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.raw,ch20,380,ch20.exp_n_raw,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.d,ch20,0.23,ch20.exp_mil_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.lo,ch20,0.02,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.hi,ch20,0.44,ch20.exp_mil_hi,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.mlo,ch20,0.03,ch20.boot_mdiff_lo,sim,0.021,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.mhi,ch20,0.54,ch20.boot_mdiff_hi,sim,0.021,2026-11-21 개념 먼저 재구성
+ch20.cf.ai.025,ch20,0.025,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.d,ch20,0.23,ch20.exp_mil_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.95,ch20,95,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.lo,ch20,0.02,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.hi,ch20,0.44,ch20.exp_mil_hi,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.md,ch20,0.28,ch20.mil_mdiff,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.95b,ch20,95,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.mlo,ch20,0.03,ch20.boot_mdiff_lo,sim,0.021,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.mhi,ch20,0.54,ch20.boot_mdiff_hi,sim,0.021,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.ppf,ch20,.975,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.25,ch20,2.5,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.025,ch20,0.025,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.03,ch20,0.03,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.true,ch20,0.02499,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r1.02,ch20,0.02,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.b2,ch20,0.98,ch20.s3_b2,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.se2,ch20,0.05,ch20.s3_se2,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.95,ch20,95,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.lo2,ch20,0.88,ch20.s3_lo2,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.hi2,ch20,1.08,ch20.s3_hi2,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.b3,ch20,0.19,ch20.s3_b3,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.se3,ch20,0.04,ch20.s3_se3,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.95b,ch20,95,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.lo3,ch20,0.12,ch20.s3_lo3,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r2.hi3,ch20,0.27,ch20.s3_hi3,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r3.sd,ch20,1.18,ch20.bar_sd,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r3.se,ch20,0.087,ch20.bar_se,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r3.95,ch20,95,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.r3.ci,ch20,0.172,ch20.bar_ci_half,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r5.age,ch20,−0.06,ch20.exp_age_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.r5.t1,ch20,−0.01,ch20.exp_mil_t1_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.pair.d,ch20,0.23,ch20.exp_mil_d,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.pair.95,ch20,95,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.pair.lo,ch20,0.02,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.pair.hi,ch20,0.44,ch20.exp_mil_hi,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.pair.md,ch20,0.28,ch20.mil_mdiff,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.pair.95b,ch20,95,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.pair.mlo,ch20,0.03,ch20.boot_mdiff_lo,sim,0.021,2026-11-21 개념 먼저 재구성
+ch20.cf.pair.mhi,ch20,0.54,ch20.boot_mdiff_hi,sim,0.021,2026-11-21 개념 먼저 재구성
+ch20.cf.trap.025,ch20,0.025,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재구성
+ch20.cf.trap.03,ch20,0.03,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.trap.196,ch20,1.96,,fixed,,2026-11-21 개념 먼저 재구성
+ch20.cf.trap.380,ch20,380,ch20.exp_n_raw,data,,2026-11-21 개념 먼저 재구성

@@ -186,4 +186,30 @@ ch03.blank.sum,ch03,4.381,ch03.row1_blank_sum21,data,,§3.4 ⚠ 같은 행 합 �
 ch03.ex8.mean,ch03,4.600,ch03.row1_blank_mean,data,,실습 8
 ch03.ex8.sum,ch03,4.381,ch03.row1_blank_sum21,data,,실습 8
 ch03.ex8.full,ch03,4.571,ch03.row1_hjs_mine,data,,실습 8 = 비우기 전 21문항 평균
-ch03.pat.70box,ch03,70,ch03.pat_110,data,,§3.5 더 나아가기 상자 (그동안 대조표에 빠져 있던 수)
+ch03.gt.f,ch03,295,ch03.raw_gender2_n,data,,§3.2 표
+ch03.gt.m,ch03,282,ch03.raw_gender1_n,data,,§3.2 표
+ch03.gt.o,ch03,13,ch03.raw_gender3_n,data,,§3.2 표
+ch03.cmpt.rn,ch03,380,ch03.exp_raw_n,data,,§3.3 제외 전후 표
+ch03.cmpt.r1,ch03,5.266,ch03.exp_raw_m1,data,,§3.3 원자료 개입 평균
+ch03.cmpt.r0,ch03,4.988,ch03.exp_raw_m0,data,,§3.3 원자료 통제 평균
+ch03.cmpt.rd,ch03,0.278,ch03.exp_raw_diff,data,,§3.3 원자료 차이
+ch03.cmpt.cn,ch03,366,ch03.exp_n,data,,§3.3 제외 전후 표
+ch03.cmpt.c1,ch03,5.264,ch03.exp_clean_m1,data,,§3.3 정제본 개입 평균
+ch03.cmpt.c0,ch03,4.981,ch03.exp_clean_m0,data,,§3.3 정제본 통제 평균
+ch03.cmpt.cd,ch03,0.283,ch03.exp_clean_diff,data,,§3.3 정제본 차이
+ch03.sd.thr,ch03,0.5,,fixed,,§3.3 일자 응답 문턱 (설계값)
+ch03.ax.n1,ch03,566,ch03.svy_n,data,,§3.4 축
+ch03.rc.mine,ch03,4.571429,ch03.row1_hjs_mine,data,,§3.4 독립 재계산
+ch03.rc.n,ch03,566,ch03.svy_n,data,,§3.4
+ch03.rc.max,ch03,0.000476,ch03.hjs_recalc_maxdiff,data,,§3.4
+ch03.rv.bad,ch03,4.892,ch03.hjs_items_mean_rev,data,,§3.4 역채점 누락
+ch03.rv.ok,ch03,5.01,ch03.hjs_items_mean,data,,§3.4
+ch03.ai.raw,ch03,590,ch03.svy_raw_n,data,,AI 절 판단 1
+ch03.ai.ex,ch03,24,ch03.svy_excluded,data,,AI 절 판단 1
+ch03.ai.n,ch03,566,ch03.svy_n,data,,AI 절 판단 1
+ch03.ai.max,ch03,0.000476,ch03.hjs_recalc_maxdiff,data,,AI 절 판단 3
+ch03.ai.ids,ch03,500,ch03.panel_ids,data,,AI 절 판단 4
+ch03.ai.rows,ch03,"1,270",ch03.panel_rows,data,,AI 절 판단 4
+ch03.c8.n1,ch03,566,,fixed,,복습 코드 8 표본 크기 (설계값)
+ch03.c8.n2,ch03,60,,fixed,,복습 코드 8 표본 크기 (설계값)
+ch03.c10.n,ch03,566,ch03.svy_n,data,,복습 코드 10

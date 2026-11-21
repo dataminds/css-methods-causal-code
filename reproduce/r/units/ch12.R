@@ -114,6 +114,7 @@ calc("ch12.perm_not_p_pct", function() 100 * mean(abs(P()) < abs(obs())))
 calc("ch12.perm_count", function() sum(abs(P()) >= abs(obs())))
 calc("ch12.perm_one_count", function() sum(P() >= obs()))
 calc("ch12.perm_one_p", function() mean(P() >= obs()))
+calc("ch12.perm_rev_one_p", function() mean(P() >= -obs()))   # 결과가 반대였을 때 개입 쪽만 센 p
 calc("ch12.perm_round_count", function() sum(abs(P()) >= 0.283))
 calc("ch12.perm_round_p", function() mean(abs(P()) >= 0.283))
 calc("ch12.perm_ge01_pct", function() 100 * mean(abs(P()) >= 0.1))

@@ -2,63 +2,63 @@
  "unit": "ch03-자료-다루기.md",
  "blocks": [
   [
-   73,
+   281,
    "import pandas as pd\n\nsvy = pd.read_csv(\"data/journey_svy.csv\")   # 읽기\nsvy.shape                              # 크기: (590, 51)\nsvy.head()                             # 앞부분 보기\nsvy[\"mil\"].describe()                  # 한 열의 요약(개수·평균·표준편차·범위)\nsvy[\"gender\"].value_counts()           # 범주 세기"
   ],
   [
-   89,
+   295,
    "print(svy[[\"id\", \"gender\", \"mil_1\", \"mil\"]].dtypes.astype(str).tolist())\nprint(svy.dtypes.astype(str).value_counts().to_dict())\n# ['int64', 'int64', 'int64', 'float64']\n# {'float64': 26, 'int64': 25}"
   ],
   [
-   100,
+   306,
    "import io\nt = pd.read_csv(io.StringIO(\"id,age\\n1,23\\n2,모름\\n3,41\\n\"))     # 나이 칸에 「모름」 하나\nprint(pd.api.types.is_numeric_dtype(t[\"age\"]), t[\"age\"].sum())  # 숫자형인가 · 합\nage = pd.to_numeric(t[\"age\"], errors=\"coerce\")                  # 숫자로 못 바꾸는 칸은 빈칸으로\nprint(age.tolist(), age.isna().sum(), age.mean())\nprint(pd.Series([5, 7]).dtype, pd.Series([5, None]).dtype)       # 빈칸이 생기면 정수형 → 실수형\n# False 23모름41\n# [23.0, nan, 41.0] 1 32.0\n# int64 float64"
   ],
   [
-   130,
+   322,
    "exp = pd.read_csv(\"data/journey_exp.csv\")\nexp_clean = exp[exp[\"attn_1\"] == 1]    # 통과자만 남기기\nlen(exp), len(exp_clean)               # 380, 366"
   ],
   [
-   142,
+   332,
    "def load(name, clean=True):\n    df = pd.read_csv(f\"data/journey_{name}.csv\")\n    return df[df.attn_1 == 1] if clean and \"attn_1\" in df else df\n\nexp = load(\"exp\")\nsvy = load(\"svy\")\nprint(len(exp), len(svy))\n# 366 566"
   ],
   [
-   166,
+   347,
    "raw = load(\"exp\", clean=False)\nfor lab, e in [(\"전체 380\", raw), (\"정제 366\", exp)]:\n    a, b = e[e.cond == 1].mil, e[e.cond == 0].mil\n    print(lab, round(a.mean(), 3), round(b.mean(), 3), round(a.mean() - b.mean(), 3))\n# 전체 380 5.266 4.988 0.278\n# 정제 366 5.264 4.981 0.283"
   ],
   [
-   189,
+   360,
    "raw = load(\"svy\", clean=False)\nitems = [c for c in raw.columns if c.startswith(\"hjs_\")]\nsd_item = raw[items].std(axis=1)                 # 문항 사이 흩어짐 (0 에 가까우면 일자 응답)\nrules = {\"정제 없음\":   raw.attn_1 > -1,\n         \"주의점검\":     raw.attn_1 == 1,\n         \"+ 일자응답\":   (raw.attn_1 == 1) & (sd_item >= 0.5),\n         \"+ 나이 19~65\": (raw.attn_1 == 1) & (sd_item >= 0.5) & raw.age.between(19, 65)}\nfor lab, m in rules.items():\n    sub = raw[m]\n    print(lab, len(sub), round(sub.hjs.corr(sub.mil), 3))\n# 정제 없음 590 0.635\n# 주의점검 566 0.629\n# + 일자응답 563 0.624\n# + 나이 19~65 517 0.628"
   ],
   [
-   208,
+   381,
    "import numpy as np\nrng = np.random.default_rng(73)\nfor n in (566, 60):\n    격차 = []\n    for _ in range(300):\n        i = rng.choice(len(raw), n, replace=False)      # n명을 무작위로 뽑는다\n        sub, sv = raw.iloc[i], sd_item.iloc[i]\n        ms = [sub.attn_1 > -1, sub.attn_1 == 1, (sub.attn_1 == 1) & (sv >= 0.5),\n              (sub.attn_1 == 1) & (sv >= 0.5) & sub.age.between(19, 65)]\n        rs = [sub[m].hjs.corr(sub[m].mil) for m in ms]\n        격차.append(max(rs) - min(rs))                   # 네 상관의 최대 격차\n    print(n, round(np.mean(격차), 3), round(max(격차), 3))\n# 566 0.011 0.014\n# 60 0.028 0.111"
   ],
   [
-   241,
+   402,
    "items = [c for c in svy.columns if c.startswith(\"hjs_\")]   # 문항 21개 이름 모으기\nsvy[\"hjs_mine\"] = svy[items].mean(axis=1)                  # 행 방향 평균"
   ],
   [
-   250,
+   411,
    "svy[items].iloc[0].sum() / 21        # 1번 응답자: 합을 직접 나누기 → 4.571429\n(svy[\"hjs_mine\"] - svy[\"hjs\"]).abs().max()   # 두 열의 최대 차이 → 0.000476"
   ],
   [
-   276,
+   420,
    "X = svy[items].copy()\nX[\"hjs_a1\"] = 8 - X[\"hjs_a1\"]                    # 역채점 문항 하나 (되돌리지 않은 상태)\nprint(round(X.mean(axis=1).mean(), 3),           # 되돌리지 않고 낸 평균\n      round(svy[items].mean(axis=1).mean(), 3))  # 제대로 낸 평균\n# 4.892 5.01"
   ],
   [
-   302,
+   432,
    "panel = pd.read_csv(\"data/journey_panel.csv\")\nw = panel.pivot(index=\"id\", columns=\"wave\", values=\"mil\")   # long → wide"
   ],
   [
-   315,
+   441,
    "m3 = w[3]                                            # 3차 삶의 의미 (빈칸 150칸)\nprint(round(m3.mean(), 3), m3.to_numpy().mean())     # pandas 는 빈칸을 빼고, numpy 는 nan\nprint(m3.isna().sum(), (m3 == float(\"nan\")).sum())   # 빈칸 세기 = isna 는 150, == 는 0\n# 4.926 nan\n# 150 0"
   ],
   [
-   329,
+   453,
    "w = panel.pivot(index=\"id\", columns=\"wave\", values=\"mil\")\npattern = w.notna().astype(int).astype(str).agg(\"\".join, axis=1)\nprint(pattern.value_counts().to_dict())\n# {'111': 350, '100': 80, '110': 70}"
   ],
   [
-   366,
+   464,
    "w   = panel.pivot(index=\"id\", columns=\"wave\", values=\"mil\")\nlw  = w.dropna()                    # 목록별 삭제\nimp = w.fillna(w.mean())            # 평균 대치\nfor a, b in [(1, 2), (1, 3), (2, 3)]:\n    print(f\"{a}-{b} 목록별 n={len(lw)} r={lw[a].corr(lw[b]):.3f}\"\n          f\" 변수별 n={w[[a, b]].dropna().shape[0]} r={w[a].corr(w[b]):.3f}\"\n          f\" 대치 n={len(imp)} r={imp[a].corr(imp[b]):.3f}\")\n# 1-2 목록별 n=350 r=0.439 변수별 n=420 r=0.456 대치 n=500 r=0.395\n# 1-3 목록별 n=350 r=0.453 변수별 n=350 r=0.453 대치 n=500 r=0.363\n# 2-3 목록별 n=350 r=0.625 변수별 n=350 r=0.625 대치 n=500 r=0.564"
   ]
  ]

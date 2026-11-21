@@ -214,3 +214,76 @@ ch05.ex4.skew.med,ch05,4.54,ch05.sim_skew_median,sim,0.13,실습 4 = 치우친 �
 ch05.ex4.skew.max,ch05,11.67,ch05.sim_max_max,sim,5,실습 4 = 치우친 분포 최댓값 (§5.1 행과 같은 허용폭)
 ch05.ex5.med,ch05,5.00,ch05.mil_median,data,,실습 5 우수 기준
 ch05.ex5.mean,ch05,4.89,ch05.mil_mean,data,,실습 5 우수 기준
+ch05.t4.0.m,ch05,4.89,,fixed,,§5.1 모의시행 fit 이 맞춘 값 (설계값)
+ch05.t4.0.sd,ch05,1.25,,fixed,,§5.1 모의시행 fit 이 맞춘 값 (설계값)
+ch05.t4.0.med,ch05,4.87,ch05.sim_med_0,sim,0.2,§5.1 네 분포 표 중앙값 ; 허용폭 = ch05.ex4.med 와 같게
+ch05.t4.0.max,ch05,8.97,ch05.sim_mx_0,sim,1.0,§5.1 네 분포 표 최댓값 ; 꼬리 두께에 따라 허용폭
+ch05.t4.1.m,ch05,4.89,,fixed,,§5.1 모의시행 fit 이 맞춘 값 (설계값)
+ch05.t4.1.sd,ch05,1.25,,fixed,,§5.1 모의시행 fit 이 맞춘 값 (설계값)
+ch05.t4.1.med,ch05,4.95,ch05.sim_med_1,sim,0.2,§5.1 네 분포 표 중앙값 ; 허용폭 = ch05.ex4.med 와 같게
+ch05.t4.2.m,ch05,4.89,,fixed,,§5.1 모의시행 fit 이 맞춘 값 (설계값)
+ch05.t4.2.sd,ch05,1.25,,fixed,,§5.1 모의시행 fit 이 맞춘 값 (설계값)
+ch05.t4.2.med,ch05,4.54,ch05.sim_med_2,sim,0.2,§5.1 네 분포 표 중앙값 ; 허용폭 = ch05.ex4.med 와 같게
+ch05.t4.2.max,ch05,11.67,ch05.sim_mx_2,sim,5,§5.1 네 분포 표 최댓값 ; 꼬리 두께에 따라 허용폭
+ch05.t4.3.m,ch05,4.89,,fixed,,§5.1 모의시행 fit 이 맞춘 값 (설계값)
+ch05.t4.3.sd,ch05,1.25,,fixed,,§5.1 모의시행 fit 이 맞춘 값 (설계값)
+ch05.t4.3.med,ch05,4.83,ch05.sim_med_3,sim,0.2,§5.1 네 분포 표 중앙값 ; 허용폭 = ch05.ex4.med 와 같게
+ch05.t4.3.max,ch05,7.16,ch05.sim_mx_3,sim,0.3,§5.1 네 분포 표 최댓값 ; 꼬리 두께에 따라 허용폭
+ch05.tail.h1,ch05,6.5,,fixed,,§5.1 천장 문턱 (설계값)
+ch05.tail.h2,ch05,1.5,,fixed,,§5.1 바닥 문턱 (설계값)
+ch05.tail.hjs.ge,ch05,1.1,ch05.tail_hjs_ge65,data,,§5.1 천장 표
+ch05.tail.hjs.le,ch05,0.0,ch05.tail_hjs_le15,data,,§5.1 바닥 표
+ch05.tail.hjs.mx,ch05,6.86,ch05.tail_hjs_max,data,,§5.1 표 최댓값
+ch05.tail.mil.ge,ch05,13.6,ch05.tail_mil_ge65,data,,§5.1 천장 표
+ch05.tail.mil.le,ch05,0.5,ch05.tail_mil_le15,data,,§5.1 바닥 표
+ch05.tail.mil.mx,ch05,7.00,ch05.tail_mil_max,data,,§5.1 표 최댓값
+ch05.tail.flr.ge,ch05,8.8,ch05.tail_flr_ge65,data,,§5.1 천장 표
+ch05.tail.flr.le,ch05,0.0,ch05.tail_flr_le15,data,,§5.1 바닥 표
+ch05.tail.flr.mx,ch05,7.00,ch05.tail_flr_max,data,,§5.1 표 최댓값
+ch05.tail.swl.ge,ch05,3.9,ch05.tail_swl_ge65,data,,§5.1 천장 표
+ch05.tail.swl.le,ch05,0.4,ch05.tail_swl_le15,data,,§5.1 바닥 표
+ch05.tail.swl.mx,ch05,7.00,ch05.tail_swl_max,data,,§5.1 표 최댓값
+ch05.sd1t.hjs.lo,ch05,4.21,ch05.sd1_hjs_lo,data,,§5.1 ±1SD 표
+ch05.sd1t.hjs.hi,ch05,5.81,ch05.sd1_hjs_hi,data,,§5.1 ±1SD 표
+ch05.sd1t.mil.lo,ch05,3.64,ch05.sd1_mil_lo,data,,§5.1 ±1SD 표
+ch05.sd1t.mil.hi,ch05,6.14,ch05.sd1_mil_hi,data,,§5.1 ±1SD 표
+ch05.sd1t.age.lo,ch05,33.51,ch05.sd1_age_lo,data,,§5.1 ±1SD 표
+ch05.sd1t.age.hi,ch05,58.24,ch05.sd1_age_hi,data,,§5.1 ±1SD 표
+ch05.tw.big.sd,ch05,1.25,,fixed,,§5.2 두 세계 설계값
+ch05.tw.big.diff,ch05,0.38,ch05.sim_big_diff,sim,0.31,§5.2 표 ; 허용폭 = ch05.sim.big.diff
+ch05.tw.big.d,ch05,0.31,ch05.sim_big_d,sim,0.25,§5.2 표 ; 허용폭 = ch05.sim.big.d
+ch05.tw.small.sd,ch05,0.25,,fixed,,§5.2 두 세계 설계값
+ch05.tw.small.diff,ch05,0.41,ch05.sim_small_diff,sim,0.061,§5.2 표
+ch05.tw.small.d,ch05,1.64,ch05.sim_small_d,sim,0.3,§5.2 표
+ch05.med.hjs,ch05,5.10,ch05.med_hjs,data,,§5.3 중앙값
+ch05.med.mil,ch05,5.00,ch05.mil_median,data,,§5.3 중앙값
+ch05.med.flr,ch05,5.25,ch05.med_flr,data,,§5.3 중앙값
+ch05.med.swl,ch05,4.60,ch05.med_swl,data,,§5.3 중앙값
+ch05.chk.a,ch05,4.891,ch05.mil_mean,data,,§5.3 한 칸 검산 (합 ÷ 사람 수 = 평균)
+ch05.lk.n,ch05,100,,fixed,,§5.4 간격 가정 예시의 집단 크기 (설계값)
+ch05.lk.eq,ch05,−0.10,ch05.likert_equal_diff,data,,§5.4 산술
+ch05.lk.w,ch05,−0.45,ch05.likert_weighted_diff,data,,§5.4 산술
+ch05.ai.n,ch05,566,ch05.svy_n,data,,AI 절 판단 1
+ch05.ai.m,ch05,4.89,ch05.mil_mean,data,,AI 절 판단 1
+ch05.ai.raw,ch05,4.88,ch05.raw_mil_mean,data,,AI 절 판단 1 = 원자료 590명 mil 평균 4.878
+ch05.ai.rawn,ch05,590,,fixed,,원자료 인원 (3장 ; ch05.svy_n + ch05.svy_excluded)
+ch05.ai.lo,ch05,2.33,ch05.hjs_obs_min,data,,AI 절 판단 2
+ch05.ai.hi,ch05,6.86,ch05.hjs_obs_max,data,,AI 절 판단 2
+ch05.ai.thr,ch05,6.5,,fixed,,천장 문턱 (설계값)
+ch05.ai.ge,ch05,13.6,ch05.mil_ge65_pct,data,,AI 절 판단 3
+ch05.ai.gap,ch05,0.02,ch05.men_minus_women_mil,data,,AI 절 판단 5
+ch05.rv.0.0,ch05,566,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.0.1,ch05,4.89,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.0.2,ch05,1.25,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.1.0,ch05,1.25,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.1.1,ch05,4.89,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.2.0,ch05,6.5,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.2.1,ch05,1.5,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.3.0,ch05,6.5,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.4.0,ch05,300,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.5.0,ch05,4.89,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.5.1,ch05,1.25,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.6.0,ch05,6.5,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.7.0,ch05,566,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
+ch05.rv.raw,ch05,4.88,ch05.raw_mil_mean,data,,복습 대조표 = 원자료 mil 평균
+ch05.t4.1.maxb,ch05,7.31,ch05.sim_mx_1,sim,0.64,§5.1 두 봉우리 최댓값 ; 씨앗 300 개 모의 표준편차 .15 × 3√2 (R 6.94 · 파이썬 7.31)
