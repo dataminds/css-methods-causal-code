@@ -18,9 +18,7 @@ ch21.1.opt.sub,ch21,5,,fixed,,갈래 설계 = 하위집단 5
 ch21.1.opt.cov,ch21,2,,fixed,,갈래 설계 = 공변인 2
 ch21.1.forks,ch21,60,ch21.fork_product,data,,2 × 3 × 5 × 2
 ch21.1.ask,ch21,.05,,fixed,,관례 유의수준
-ch21.1.out.alpha,ch21,.05,,fixed,,관례 유의수준
 ch21.1.h.alpha2,ch21,.05,,fixed,,관례 유의수준
-ch21.1.mul.base,ch21,0.95,,fixed,,1 − .05
 ch21.1.ind.alpha2,ch21,.05,,fixed,,관례 유의수준
 ch21.1.prod,ch21,60,ch21.fork_product,data,,곱셈
 ch21.1.paths,ch21,60,ch21.n_paths,sim,0,함수가 실제로 돈 갈래 수 (두 엔진 모두 60 이어야 한다)
@@ -82,10 +80,6 @@ ch21.2.pow.p01,ch21,.588,ch21.multi_pow01,sim,0.033,MC SD .0078 × 3√2
 ch21.2.pow.drop05,ch21,.804,ch21.multi_pow05,sim,0.027,같은 근거
 ch21.2.pow.drop01,ch21,.588,ch21.multi_pow01,sim,0.033,같은 근거
 ch21.2.pow.d2,ch21,0.4,,fixed,,정한 효과크기
-ch21.2.box.design,ch21,100,,fixed,,상자 = 설계 인원
-ch21.2.box.thr,ch21,.05,,fixed,,문턱 (두 곳)
-ch21.2.box.k,ch21,5,,fixed,,검정 개수
-ch21.2.box.base,ch21,0.95,,fixed,,1 − .05
 ch21.2.box2.thr,ch21,.05,,fixed,,문턱
 ch21.2.box2.cut,ch21,.01,ch21.bonf_cut,data,,.05 / 5
 ch21.2.paper.n,ch21,150,,paper,,Rogers et al. (2023) 연구 2 p. 760
@@ -104,3 +98,29 @@ ch21.7.q1.min,ch21,.020,ch21.min_p,sim,0.28,60갈래 최소 p
 ch21.7.q5.paths,ch21,60,ch21.n_paths,sim,0,갈래 수
 ch21.7.q5.ind,ch21,95,ch21.indep_fwer_pct,data,,1 − .95^60 = 95.4%
 ch21.7.q5.real,ch21,53,ch21.harvest_any_pct,sim,15,씨앗 37 200세계
+ch21.t21.L107.1.95,ch21,95,ch21.indep_fwer_pct,data,,같은 값의 백분율 95.4
+ch21.t21.L107.1.53,ch21,53,ch21.harvest_any_pct,sim,15,한 건 이상인 세계 비율(%) 52.5 ; MC SD √(.525 × .475 / 200) = 3.5%p × 3√2 ; ⚠ 52.5 는 반올림 경계
+ch21.t21.L113.1.0.95,ch21,0.95,,fixed,,1 − .05
+ch21.t21.L113.1..954,ch21,.954,ch21.indep_fwer,data,,독립 가정 묶음 위양성률 1 − .95^60
+ch21.t21.L115.1..954,ch21,.954,ch21.indep_fwer,data,,독립 가정 묶음 위양성률 1 − .95^60
+ch21.t21.L163.1..235,ch21,.235,ch21.multi_fwer,sim,0.028,§21.2 상자 (씨앗 73) ; MC SD √(p(1−p)/4000) = .0067 × 3√2
+ch21.t21.L163.1..047,ch21,.047,ch21.multi_fwer_bon,sim,0.014,MC SD √(p(1−p)/4000) = .0033 × 3√2
+ch21.t21.L163.1..226,ch21,.226,ch21.indep_fwer5,data,,1 − .95^5
+ch21.t21.L163.1..804,ch21,.804,ch21.multi_pow05,sim,0.027,MC SD .0063 × 3√2
+ch21.t21.L163.1..588,ch21,.588,ch21.multi_pow01,sim,0.033,MC SD .0078 × 3√2
+ch21.t21.L207.1..3464,ch21,.3464,ch21.main_p,sim,1.34,§21.4 대조 셋 표 = 주 분석 p 넷째 자리 (t검정 · 집단 표시 회귀가 같은 값 ; 2026-11-21 코드 출력 → 표)
+ch21.t21.L207.2..3464,ch21,.3464,ch21.main_p,sim,1.34,§21.4 대조 셋 표 = 주 분석 p 넷째 자리 (t검정 · 집단 표시 회귀가 같은 값 ; 2026-11-21 코드 출력 → 표)
+ch21.t21.L241.1..05,ch21,.05,,fixed,,관례 유의수준
+ch21.t21.L249.1..05,ch21,.05,,fixed,,관례 유의수준
+ch21.t21.L249.2..05,ch21,.05,,fixed,,관례 유의수준
+ch21.t21.L261.1.0.95,ch21,0.95,,fixed,,1 − .05
+ch21.t21.L261.2.0.95,ch21,0.95,,fixed,,1 − .05
+ch21.t21.L263.1.100,ch21,100,,fixed,,상자 = 설계 인원
+ch21.t21.L263.1..05,ch21,.05,,fixed,,관례 유의수준
+ch21.t21.L263.2..05,ch21,.05,,fixed,,관례 유의수준
+ch21.t21.L263.1.0.95,ch21,0.95,,fixed,,1 − .05
+ch21.t21.L269.1..05,ch21,.05,,fixed,,관례 유의수준
+ch21.t21.L281.1..346,ch21,.346,ch21.main_p,sim,1.34,집단 표시 뒤섞기 (numpy 씨앗 73 순열) 주 분석 p ; R 은 자기 난수 순열 ; 영세계 p 는 대략 균등 → 순열 150개 MC SD .315 × 3√2 (R 대조는 형식만)
+ch21.t21.L300.1.2.16,ch21,2.16,,paper,,Rogers et al. (2023) JPSP 125(4) 다섯째 연구 t(378) = 2.16 (12장 「먼저」 절과 같은 값)
+ch21.t21.L300.1..031,ch21,.031,,paper,,Rogers et al. (2023) JPSP 125(4) 다섯째 연구 p = .031 (12장 「먼저」 절과 같은 값)
+ch21.t21.L300.1.381,ch21,381,,paper,,Rogers et al. (2023) 다섯째 연구 최종 표본 381명 (12장이 짚은 자유도 차이)

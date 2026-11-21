@@ -31,3 +31,16 @@ ch22.ex1.crit,ch22,.05,,fixed,,실습 1 = §22.4 ⑥ 판정 문턱(저자가 정
 ch22.ex1.null.ok,ch22,0.001,ch22.null_ok_mean,sim,0.02,실습 1 = §22.4 ⑥ 와 같은 계산
 ch22.ex1.null.ai,ch22,0.95,ch22.null_ai_mean,sim,0.0006,실습 1 = §22.5 ⑥ 와 같은 계산
 ch22.ex2.b,ch22,0.404,ch22.slope_swap,data,,실습 2 고장 B
+ch22.t21.out.ai.b,ch22,0.976,ch22.slope_ai,data,,§22.4 두 판 결과 표 (2026-11-21 코드 출력 → 개념 절 표)
+ch22.t21.out.ai.se,ch22,0.008,ch22.se_ai,data,,§22.4 두 판 결과 표 ; 절편 없는 회귀의 표준오차
+ch22.t21.out.ok.b,ch22,0.978,ch22.slope_ok,data,,§22.4 두 판 결과 표
+ch22.t21.out.ok.se,ch22,0.051,ch22.se_ok,data,,§22.4 두 판 결과 표 ; 14장 ols 의 표준오차
+ch22.t21.inv.ai.b0,ch22,0.976,ch22.slope_ai,data,,§22.4 불변식 표 원래 기울기 · ① 행 섞은 뒤(행 순서는 기울기를 바꾸지 않는다 ; 실행 차이 0.0)
+ch22.t21.inv.ai.y5,ch22,1.949,ch22.ai_slope_y_plus5,data,,§22.4 불변식 표 ③
+ch22.t21.inv.ai.c4,ch22,0.778,ch22.ai_slope_y_const4,data,,§22.4 불변식 표 ④
+ch22.t21.inv.ok.b0,ch22,0.978,ch22.slope_ok,data,,§22.4 불변식 표 원래 기울기 · ① · ③(행 순서와 Y 의 상수 이동은 기울기를 바꾸지 않는다 ; 실행 차이 0.0 · −0.0)
+ch22.t21.inv.ok.c4,ch22,0.000,ch22.ok_slope_y_const4,data,,§22.4 불변식 표 ④ = 0
+ch22.t21.rev.ok,ch22,0.978,ch22.slope_ok,data,,복습 ③ 읽는 법
+ch22.t21.rev.c4,ch22,0.000,ch22.ok_slope_y_const4,data,,복습 ③ 읽는 법
+ch22.t21.rev.neg0a,ch22,-0.0,,fixed,,복습 ③ 읽는 법 = 출력 표기 -0.0 (부호가 붙은 0) 의 설명 ; 수치 주장이 아니다
+ch22.t21.rev.neg0b,ch22,-0.0,,fixed,,복습 ③ 읽는 법 = 출력 표기 -0.0 의 설명 ; 수치 주장이 아니다

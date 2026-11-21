@@ -20,6 +20,10 @@ calc("ch22.se_ratio", function() {
   coef(summary(lm(mil ~ hjs, data = d)))["hjs", "Std. Error"] /
     coef(summary(lm(mil ~ 0 + hjs, data = d)))["hjs", "Std. Error"]
 })
+# §22.4 결과 표의 두 표준오차 (2026-11-21 개념 절 표로 옮김)
+calc("ch22.se_ok", function() { d <- S(); coef(summary(lm(mil ~ hjs, data = d)))["hjs", "Std. Error"] })
+calc("ch22.se_ai", function() { d <- S(); coef(summary(lm(mil ~ 0 + hjs, data = d)))["hjs", "Std. Error"] })
+calc("ch22.ok_slope_y_const4", function() { d <- S(); slope_ok(rep(4, nrow(d)), d$hjs) })   # 불변식 ④ 바른 판 = 0
 calc("ch22.ai_slope_y_plus5", function() { d <- S(); slope_ai(d$mil + 5, d$hjs) })
 calc("ch22.ai_slope_y_const4", function() { d <- S(); slope_ai(rep(4, nrow(d)), d$hjs) })
 calc("ch22.ymean_over_xmean", function() { d <- S(); mean(d$mil) / mean(d$hjs) })
