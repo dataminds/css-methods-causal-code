@@ -992,7 +992,7 @@ STEPS = {
   '# 걸린 것이 있으면 확실히 익명이 아니다. 통과가 익명을 증명하지는 않는다.'),
 ],
 "ch21": [
- ("## 2. 갈림길의 정원\n효과가 확실히 없는 세계(조건 딱지를 뒤섞음)에서, 분석 갈림길을 다 걸으면 '유의'가 수확됩니다.",
+ ("## 2. 갈림길의 정원\n효과가 확실히 없는 세계(집단 표시를 뒤섞음)에서, 분석 갈림길을 다 걸으면 '유의'가 수확됩니다.",
   'exp = pd.read_csv("data/journey_exp.csv")\n'
   'rng = np.random.default_rng(73)\n'
   'null_cond = rng.permutation(exp.cond.values)\n'

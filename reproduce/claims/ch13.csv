@@ -303,3 +303,55 @@ ch13.t19d.n190,ch13,190,,fixed,,§13.4 검정력 표의 우리 실험 규모 (�
 ch13.t19d.p575,ch13,0.575,ch13.power_190,sim,0.0332,§13.4 모의시행 검정력 1150/2000 ; 2026-11-19 반올림 관례 문단 ; mc_tol = ch13.power_190.1 과 같음
 ch13.t19d.p58,ch13,.58,ch13.power_190,sim,0.0332,§13.4 모의시행 검정력의 표 표기 (공통 반올림 함수) ; 2026-11-19 반올림 관례 문단
 ch13.t19d.r057,ch13,0.57,,fixed,,파이썬 round(0.575 · 2) 의 출력 = 0.575 의 이진 저장값 0.57499999999999995559 를 반올림 (2026-11-19 실측 파이썬 3.14 ; 반올림 지침 §2.1 표)
+ch13.fixed.91,ch13,95%,,fixed,,신뢰수준 ; 설계
+ch13.boot_lo.10,ch13,0.03,ch13.boot_lo,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 2.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.boot_hi.10,ch13,0.54,ch13.boot_hi,sim,0.0208,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 97.5 백분위 ; mc_tol = 3√2 × 분위수 SD 0.0049"
+ch13.fixed.92,ch13,50,,fixed,,표본 크기 ; 설계
+ch13.fixed.93,ch13,1.96,,fixed,,정규분포 97.5% 분위수 ; 상수
+ch13.fixed.94,ch13,95%,,fixed,,신뢰수준 ; 설계
+ch13.ps_pct.5,ch13,56%,ch13.ps_pct,data,,우월 확률 Φ(0.23/√2)
+ch13.fixed.95,ch13,0.4,,fixed,,최소 관심 효과 ; 설계
+ch13.n_clean.2,ch13,366,ch13.n_clean,data,,정제본 인원
+ch13.n_clean.3,ch13,366,ch13.n_clean,data,,정제본 인원
+ch13.n_t.10,ch13,183,ch13.n_t,data,,개입 정제본 인원
+ch13.fixed.96,ch13,95%,,fixed,,신뢰수준 ; 설계
+ch13.fixed.97,ch13,0.4,,fixed,,최소 관심 효과 ; 설계
+ch13.fixed.98,ch13,.05,,fixed,,관례 문턱
+ch13.fixed.99,ch13,80,,fixed,,예시 표본 크기 ; 설계
+ch13.fixed.100,ch13,100,,fixed,,예시 표본 크기 ; 설계
+ch13.fixed.101,ch13,120,,fixed,,예시 표본 크기 ; 설계
+ch13.fixed.102,ch13,95%,,fixed,,신뢰수준 ; 설계
+ch13.fixed.103,ch13,95%,,fixed,,신뢰수준 ; 설계
+ch13.fixed.104,ch13,2.5%,,fixed,,백분위 ; 설계
+ch13.fixed.105,ch13,97.5%,,fixed,,백분위 ; 설계
+ch13.boot_sd.3,ch13,0.13,ch13.boot_sd,sim,0.0055,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; SD ; mc_tol = 3√2 × 0.13/√10000"
+ch13.boot_sd.4,ch13,0.130,ch13.boot_sd,sim,0.0055,"§13.1 부트스트랩 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; SD ; mc_tol = 3√2 × 0.13/√10000"
+ch13.fixed.106,ch13,1.96,,fixed,,정규분포 97.5% 분위수 ; 상수
+ch13.fixed.107,ch13,1.96,,fixed,,정규분포 97.5% 분위수 ; 상수
+ch13.fixed.108,ch13,95%,,fixed,,신뢰수준 ; 설계
+ch13.fixed.109,ch13,1.96,,fixed,,정규분포 97.5% 분위수 ; 상수
+ch13.ps_pct.6,ch13,56%,ch13.ps_pct,data,,우월 확률 Φ(0.23/√2)
+ch13.d.10,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.d.11,ch13,0.23,ch13.d,data,,코헨의 d (합동 SD)
+ch13.fixed.110,ch13,0.4,,fixed,,최소 관심 효과 ; 설계
+ch13.fixed.111,ch13,110,,fixed,,표본 크기 ; 설계
+ch13.fixed.112,ch13,.05,,fixed,,관례 문턱
+ch13.fixed.113,ch13,0.4,,fixed,,최소 관심 효과 ; 설계
+ch13.fixed.114,ch13,.05,,fixed,,관례 문턱
+ch13.fixed.115,ch13,50,,fixed,,표본 크기 ; 설계
+ch13.fixed.116,ch13,95%,,fixed,,신뢰수준 ; 설계
+ch13.fixed.117,ch13,0.22,,fixed,,참값으로 정한 효과 ; 설계
+ch13.fixed.118,ch13,1.0,,fixed,,신뢰도 ; 설계
+ch13.fixed.119,ch13,.9,,fixed,,신뢰도 ; 설계
+ch13.fixed.120,ch13,.7,,fixed,,신뢰도 ; 설계
+ch13.fixed.121,ch13,190,,fixed,,표본 크기 ; 설계
+ch13.fixed.122,ch13,1.0,,fixed,,신뢰도 ; 설계
+ch13.fixed.123,ch13,1.0,,fixed,,신뢰도 ; 설계
+ch13.noise_10.2,ch13,0.5585,ch13.noise_10,sim,0.0333,"§13.4 상자 신뢰도 1.0 (씨앗 73 · 2,000회) ; R = power.t.test 해석값 ; mc_tol = 3 × 이항 SD"
+ch13.fixed.124,ch13,190,,fixed,,표본 크기 ; 설계
+ch13.power_190.2,ch13,0.575,ch13.power_190,sim,0.0332,"§13.4 검정력 표 (씨앗 73 한 번 · 2,000회/점) ; R = power.t.test(strict = TRUE) 해석값 ; mc_tol = 3 × 파이썬 이항 SD ; 2026-11-19 공통 반올림 함수"
+ch13.fixed.125,ch13,1.96,,fixed,,정규분포 97.5% 분위수 ; 상수
+ch13.fixed.126,ch13,0.5,,fixed,,무효과의 우월 확률 ; 정의
+ch13.fixed.127,ch13,.05,,fixed,,관례 문턱
+ch13.fixed.128,ch13,1.0,,fixed,,신뢰도 ; 설계
+ch13.fixed.129,ch13,190,,fixed,,표본 크기 ; 설계

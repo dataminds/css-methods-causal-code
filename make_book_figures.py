@@ -406,7 +406,7 @@ def fig_ch12_pvar(n_draw=20, n_sub=100, seed=37):
     ax.text(.058, 1.2, "관례 문턱 .05", fontsize=8)
     ax.set_xlabel("p값"); ax.set_ylabel("표본 (p값 순으로 정렬)")
     ax.set_yticks([])
-    ax.set_title(f"같은 366명에서 100명씩 골라 뽑은 스무 표본의 p값 "
+    ax.set_title(f"같은 366명에서 100명씩 골라 뽑은 표본 스무 개의 p값 "
                  f"({ps.min():.3f}~{ps.max():.3f}, 씨앗 37)", fontsize=10.5)
     ax.legend(fontsize=8, loc="lower right")
     save(fig, "fig-ch12-pvar.png")

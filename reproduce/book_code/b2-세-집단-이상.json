@@ -2,11 +2,11 @@
  "unit": "b2-세-집단-이상.md",
  "blocks": [
   [
-   75,
+   177,
    "from scipy import stats\nfac = load(\"fac\")\ngrp = [fac[(fac.elem == e) & (fac.frame == f)].mil_t2.values\n       for e in (0, 1) for f in (0, 1)]\nprint([len(x) for x in grp], [float(round(x.mean(), 2)) for x in grp])\nF, p = stats.f_oneway(*grp)\nprint(round(F, 3), round(p, 4))\n# [110, 106, 109, 105] [4.9, 4.81, 4.95, 5.2]\n# 1.728 0.1605"
   ],
   [
-   122,
+   193,
    "pairs = [(i, j) for i in range(4) for j in range(i + 1, 4)]\nps = [stats.ttest_ind(grp[i], grp[j]).pvalue for i, j in pairs]\nprint(len(ps), sum(q < .05 for q in ps), round(min(ps), 4))\nprint(round(.05 / len(ps), 4), sum(q < .05 / len(ps) for q in ps))\n# 6 1 0.0308\n# 0.0083 0"
   ]
  ]

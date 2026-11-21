@@ -77,7 +77,7 @@ calc("ch12.rogers_df", function() 381 - 2)
 calc("ch12.rogers_p_pct", function() 100 * .031)
 
 # §12.2 INWORKS 상자
-inw <- list(all = c(.52, .27, .77), low = c(1.38, .20, 2.60))
+inw <- list(all = c(.52, .27, .77), mid = c(1.12, .45, 1.80), low = c(1.38, .20, 2.60))
 for (k in names(inw)) local({
   kk <- k; v <- inw[[kk]]; s <- (v[3] - v[2]) / (qnorm(.95) * 2)
   calc(paste0("ch12.inw_", kk, "_p1"), function() pnorm(v[1] / s, lower.tail = FALSE))

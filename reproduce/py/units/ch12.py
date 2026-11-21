@@ -93,7 +93,7 @@ calc("ch12.rogers_df")(lambda: 381 - 2)
 calc("ch12.rogers_p_pct")(lambda: .031 * 100)
 
 # §12.2 INWORKS 상자 = 원문 90% 구간에서 표준오차를 되짚은 정규 근사
-_INW = {"all": (.52, .27, .77), "low": (1.38, .20, 2.60)}
+_INW = {"all": (.52, .27, .77), "mid": (1.12, .45, 1.80), "low": (1.38, .20, 2.60)}
 
 
 def _inw(k, what):

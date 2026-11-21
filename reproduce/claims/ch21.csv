@@ -10,7 +10,7 @@ ch21.tab.recv,ch21,481,,paper,,Rogers et al. (2023) 연구 2 p. 760
 ch21.tab.anal,ch21,414,,paper,,Rogers et al. (2023) 연구 2 p. 760
 ch21.p.first150,ch21,150,,paper,,Rogers et al. (2023) 연구 2 p. 760
 ch21.0.alpha,ch21,.05,,fixed,,관례 유의수준
-ch21.1.main,ch21,.346,ch21.main_p,sim,1.34,딱지 뒤섞기 (numpy 씨앗 73 순열) 주 분석 p ; R 은 자기 난수 순열 ; 영세계 p 는 대략 균등 → 순열 150개 MC SD .315 × 3√2 (R 대조는 형식만)
+ch21.1.main,ch21,.346,ch21.main_p,sim,1.34,집단 표시 뒤섞기 (numpy 씨앗 73 순열) 주 분석 p ; R 은 자기 난수 순열 ; 영세계 p 는 대략 균등 → 순열 150개 MC SD .315 × 3√2 (R 대조는 형식만)
 ch21.1.opt.oc,ch21,2,,fixed,,갈래 설계 = 결과변수 2
 ch21.1.opt.trim,ch21,2.5,,fixed,,절사 기준 (설계)
 ch21.1.opt.excl,ch21,3,,fixed,,갈래 설계 = 표본 3

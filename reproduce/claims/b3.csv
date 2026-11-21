@@ -125,3 +125,10 @@ b3.mx.read3.2,b3,.08,b3.r_crit05,data,,§B3.4 「논문의 상관행렬 읽기�
 b3.mx.read3b.1,b3,.33,ch05.r_flr_swl,data,,§B3.4 「논문의 상관행렬 읽기」 (2026-11-15)
 b3.mx.read3b.2,b3,.63,ch05.r_hjs_mil,data,,§B3.4 「논문의 상관행렬 읽기」 (2026-11-15)
 b3.mx.read4.1,b3,.05,b3.r_age_absmax,data,,§B3.4 「논문의 상관행렬 읽기」 (2026-11-15)
+b3.20d.1,b3,3.75,b3.five_cov,data,,§B3.2 공분산 (n − 1)
+b3.20d.2,b3,.75,b3.five_r,data,,§B3.2 상관 (R = cor)
+b3.20d.3,b3,.75,b3.five_r,data,,§B3.2 상관 (R = cor)
+b3.20d.4,b3,.001,,fixed,,별표 기준 ; 관례
+b3.20d.5,b3,.05,,fixed,,관례 유의수준
+b3.20d.6,b3,.33,ch05.r_flr_swl,data,,§B3.4 「논문의 상관행렬 읽기」 (2026-11-15)
+b3.20d.7,b3,.63,b3.r,data,,§B3.0 설문판 hjs–mil 상관 (.6288)

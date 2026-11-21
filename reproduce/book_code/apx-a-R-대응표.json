@@ -6,19 +6,27 @@
    "# Python\nimport pandas as pd\nexp = pd.read_csv(\"data/journey_exp.csv\")\nexp_clean = exp[exp.attn_1 == 1]\nprint(exp_clean.groupby(\"cond\").mil.agg([\"mean\", \"std\", \"count\"]))\n#           mean       std  count\n# cond\n# 0     4.980874  1.271103    183\n# 1     5.263661  1.180114    183"
   ],
   [
-   112,
+   66,
+   "# Python\nx = [10, 20, 30, 40]\nprint(x[0], x[1], x[-1], x[1:3])\nprint(2 ^ 3, 2 ** 3)\nprint(round(np.random.default_rng(73).normal(), 3))\n# 10 20 40 [20, 30]\n# 1 8\n# -1.093"
+  ],
+  [
+   101,
+   "a = [1, 2]\nb = a\nb[0] = 99\nprint(a)\nc = [1, 2]\nd = c.copy()\nd[0] = 99\nprint(c)\n# [99, 2]\n# [1, 2]"
+  ],
+  [
+   179,
    "# Python\nfrom scipy import stats\na = exp_clean[exp_clean.cond == 1].mil\nb = exp_clean[exp_clean.cond == 0].mil\nt, p = stats.ttest_ind(a, b)\nprint(round(t, 3), round(p, 4))\n# 2.206 0.028"
   ],
   [
-   136,
+   203,
    "# Python: 이 책은 손으로 짠 도우미를 쓴다 (14장 §14.2)\nb, se, p, r2 = ols(exp_clean.mil, [exp_clean.cond])\nprint(round(b[1], 4), round(se[1], 4), round(float(p[1]), 4), round(r2, 4))\n# 0.2828 0.1282 0.028 0.0132"
   ],
   [
-   145,
+   212,
    "# 실무판 (코랩 기본 제공)\nimport statsmodels.formula.api as smf\nprint(smf.ols(\"mil ~ cond\", data=exp_clean).fit().summary())"
   ],
   [
-   160,
+   227,
    "# Python\nh = svy.hjs - svy.hjs.mean()\nr = svy.refl - svy.refl.mean()\nb, se, p, r2 = ols(svy.mil, [h, r, h * r])\nprint(b.round(3))\n# [4.833 0.987 0.042 0.192]"
   ]
  ]

@@ -3,7 +3,7 @@
  "blocks": [
   [
    63,
-   "exp = load(\"exp\", clean=False)\nrng = np.random.default_rng(73)\nnull_cond = rng.permutation(exp.cond.values)      # 딱지만 뒤섞는다\nd = exp.copy(); d[\"cond\"] = null_cond\n\ndc = d[d.attn_1 == 1]                              # 사전에 정한 주 분석\nprint(round(float(stats.ttest_ind(dc[dc.cond == 1].mil,\n                                  dc[dc.cond == 0].mil).pvalue), 3))\n# 0.346"
+   "exp = load(\"exp\", clean=False)\nrng = np.random.default_rng(73)\nnull_cond = rng.permutation(exp.cond.values)      # 집단 표시만 뒤섞는다\nd = exp.copy(); d[\"cond\"] = null_cond\n\ndc = d[d.attn_1 == 1]                              # 사전에 정한 주 분석\nprint(round(float(stats.ttest_ind(dc[dc.cond == 1].mil,\n                                  dc[dc.cond == 0].mil).pvalue), 3))\n# 0.346"
   ],
   [
    90,
@@ -27,7 +27,7 @@
   ],
   [
    297,
-   "# ① 독립 재계산: t 검정과 집단 표시 회귀가 같은 답을 내는가 (19장)\nb, se, pr, _ = ols(dc.mil, [dc.cond])\nprint(round(float(stats.ttest_ind(dc[dc.cond == 1].mil,\n                                  dc[dc.cond == 0].mil).pvalue), 4),\n      round(float(pr[1]), 4))\n# 0.3464 0.3464\n\n# ② 극단값 시험: 결과를 통째로 상수로 만들면 차이가 0 이어야 한다\nflat = dc.copy(); flat[\"mil\"] = 5.0\nprint(round(flat[flat.cond == 1].mil.mean() - flat[flat.cond == 0].mil.mean(), 6))\n# 0.0\n\n# ③ 재실행: 같은 씨앗으로 딱지를 다시 뒤섞으면 같은 순서가 나오는가\nprint(bool((np.random.default_rng(73).permutation(exp.cond.values) == null_cond).all()))\n# True"
+   "# ① 독립 재계산: t 검정과 집단 표시 회귀가 같은 답을 내는가 (19장)\nb, se, pr, _ = ols(dc.mil, [dc.cond])\nprint(round(float(stats.ttest_ind(dc[dc.cond == 1].mil,\n                                  dc[dc.cond == 0].mil).pvalue), 4),\n      round(float(pr[1]), 4))\n# 0.3464 0.3464\n\n# ② 극단값 시험: 결과를 통째로 상수로 만들면 차이가 0 이어야 한다\nflat = dc.copy(); flat[\"mil\"] = 5.0\nprint(round(flat[flat.cond == 1].mil.mean() - flat[flat.cond == 0].mil.mean(), 6))\n# 0.0\n\n# ③ 재실행: 같은 씨앗으로 집단 표시를 다시 뒤섞으면 같은 순서가 나오는가\nprint(bool((np.random.default_rng(73).permutation(exp.cond.values) == null_cond).all()))\n# True"
   ]
  ]
 }

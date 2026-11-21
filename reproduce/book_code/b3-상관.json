@@ -2,12 +2,12 @@
  "unit": "b3-상관.md",
  "blocks": [
   [
-   113,
-   "x = np.array([1, 2, 3, 4, 5])\ny = np.array([1, 3, 5, 2, 9])\n곱 = (x - x.mean()) * (y - y.mean())\n공분산 = 곱.sum() / (len(x) - 1)\nprint(곱.tolist(), 공분산)\nprint(round(공분산 / (x.std(ddof=1) * y.std(ddof=1)), 3), round(np.corrcoef(x, y)[0, 1], 3))\n# [6.0, 1.0, 0.0, -2.0, 10.0] 3.75\n# 0.75 0.75"
+   221,
+   "svy = load(\"svy\")\nprint(round(svy.hjs.corr(svy.mil), 2), round(svy.hjs.corr(svy.mil) ** 2, 2))\n# 0.63 0.4"
   ],
   [
-   161,
-   "print(round(svy.hjs.corr(svy.mil), 2), round(svy.hjs.corr(svy.mil) ** 2, 2))\n# 0.63 0.4"
+   235,
+   "x = np.array([1, 2, 3, 4, 5])\ny = np.array([1, 3, 5, 2, 9])\n곱 = (x - x.mean()) * (y - y.mean())\n공분산 = 곱.sum() / (len(x) - 1)\nprint(곱.tolist(), 공분산)\nprint(round(공분산 / (x.std(ddof=1) * y.std(ddof=1)), 3), round(np.corrcoef(x, y)[0, 1], 3))\n# [6.0, 1.0, 0.0, -2.0, 10.0] 3.75\n# 0.75 0.75"
   ]
  ]
 }
