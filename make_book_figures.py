@@ -678,6 +678,54 @@ def fig_ch14_lowdose():
     save(fig, "fig-ch14-lowdose.png")
 
 
+def fig_ch14_influence(seed=73):
+    """§14.3 「이상치 · 지레점 · 영향점」 모의 세계 = 60명 중 3명이 기울기의 부호를 뒤집는다 (2026-11-23).
+
+    생성 = `reproduce/py/units/ch14.py` 의 `_infl()` 과 같다 (씨앗 73 ; 57명 X ~ 정규(4, 1),
+    Y = 2 + 0.5X + 정규(0, 1) ; 심은 3명 (8.5, 1.0) · (9.0, 0.5) · (9.5, 1.5)).
+    왼쪽 = 산점도 + 두 직선 · 오른쪽 = 사람마다 쿡 거리 + 4/n 점선.
+    """
+    g = np.random.default_rng(seed)
+    x = g.normal(4, 1, 57)
+    y = 2 + 0.5 * x + g.normal(0, 1, 57)
+    xo, yo = np.array([8.5, 9.0, 9.5]), np.array([1.0, 0.5, 1.5])
+    xa, ya = np.r_[x, xo], np.r_[y, yo]
+    n = len(xa)
+    X = np.column_stack([np.ones(n), xa])
+    h = np.diag(X @ np.linalg.inv(X.T @ X) @ X.T)
+    e = ya - X @ np.linalg.lstsq(X, ya, rcond=None)[0]
+    D = e ** 2 / (2 * (e @ e / (n - 2))) * h / (1 - h) ** 2
+    b_all, a_all = np.polyfit(xa, ya, 1)
+    b_wo, a_wo = np.polyfit(x, y, 1)
+
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4.0), gridspec_kw={"width_ratios": [1, 1.15]})
+    ax = axes[0]
+    ax.scatter(x, y, s=16, color="#888888", alpha=.8, label="보통 사람 57명")
+    ax.scatter(xo, yo, s=60, marker="^", color=BW["color"][2], edgecolor="black",
+               linewidth=.8, zorder=3, label="멀리 있는 3명")
+    xs = np.linspace(xa.min() - .3, xa.max() + .3, 50)
+    ax.plot(xs, a_all + b_all * xs, color=OI[7], linestyle="-", linewidth=1.6,
+            label=f"60명 모두: 기울기 {b_all:.2f}")
+    ax.plot(xs, a_wo + b_wo * xs, color=BW["color"][0], linestyle="--", linewidth=1.6,
+            label=f"3명 뺌: 기울기 {b_wo:.2f}")
+    ax.set_xlabel("X"); ax.set_ylabel("Y")
+    ax.set_title("세 사람이 기울기의 부호를 뒤집는다", fontsize=10.5)
+    ax.legend(fontsize=7.5, loc="upper left")
+
+    ax = axes[1]
+    idx = np.arange(1, n + 1)
+    ax.bar(idx[:57], D[:57], color="#888888", width=.8)
+    ax.bar(idx[57:], D[57:], color=BW["color"][2], edgecolor="black", linewidth=.8,
+           hatch="//", width=.8, label="멀리 있는 3명")
+    ax.axhline(4 / n, color=OI[7], linestyle=":", linewidth=1.4, label=f"4/n = {4 / n:.3f}")
+    ax.set_xlabel("사람 번호 (58 ~ 60 = 멀리 있는 3명)"); ax.set_ylabel("쿡 거리")
+    ax.set_xlim(0, n + 1)
+    ax.set_title("쿡 거리가 세 사람을 골라낸다", fontsize=10.5)
+    ax.legend(fontsize=7.5, loc="upper left")
+    save(fig, "fig-ch14-influence.png")
+    return dict(b_all=b_all, b_wo=b_wo, d3=(D[57:].min(), D[57:].max()), rest=D[:57].max(), c=4 / n)
+
+
 def fig_ch14_reg():
     svy = load_clean("svy")
     x, y = svy["hjs"].values, svy["mil"].values
@@ -2140,6 +2188,7 @@ if __name__ == "__main__":
     fig_ch14_ls_candidates(); fig_ch14_ls_fitted(); fig_ch14_ls_squares()
     fig_ch14_ls_decomp(); fig_ch14_ls_noise(); fig_ch14_fit()
     print("14장 외삽 범위 · hjs = 1 직선 · 곡선", fig_ch14_extrap()); fig_ch14_lowdose()
+    print("14장 영향점", {k: np.round(v, 3) for k, v in fig_ch14_influence().items()})
     b_all, slopes = fig_ch08_simpson()
     fig_ch08_dag()
     fig_ch08_unrolled()
