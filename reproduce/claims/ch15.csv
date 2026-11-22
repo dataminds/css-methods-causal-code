@@ -358,3 +358,56 @@ ch15.1.legend.f,ch15,−1.72,ch15.zg_slope_f,sim,0.85,2026-11-19e 외부 점검 
 ch15.1.legend.m,ch15,−1.66,ch15.zg_slope_m,sim,0.83,2026-11-19e 외부 점검 반영
 ch15.1.wmean,ch15,−1.687,ch15.zg_slope_wmean,sim,0.6,2026-11-19e 외부 점검 반영
 ch15.8.ex1.wmean,ch15,−1.687,ch15.zg_slope_wmean,sim,0.6,2026-11-19e 외부 점검 반영
+ch15.1.add.flip.alone,ch15,1.70,ch15.zg_b_alone,sim,0.5,2026-11-22 §15.1 합산모형 ; 허용 근거 = ch15.1.tab.alone
+ch15.1.add.flip.dose,ch15,−1.69,ch15.zg_b_dose,sim,0.6,2026-11-22 §15.1 합산모형 ; 허용 근거 = ch15.1.tab.dose
+ch15.1.add.design.mean,ch15,4,,fixed,,모의시행 설계 = 끊은 마을의 복용량 평균 (make2(linked=False) ; 원래 마을 2 + 4 × 성별의 전체 평균 = 2 + 4 × .5)
+ch15.1.add.design.sd,ch15,2.5,,fixed,,모의시행 설계 = 끊은 마을의 복용량 표준편차 (원래 마을 전체 = √(1.5² + 2²) = 2.5 ; 0 아래를 0으로 자르기 전 기준)
+ch15.1.add.true.dose,ch15,−1.5,,fixed,,참값으로 정한 복용량 효과 (make2 의 −1.5 * dose)
+ch15.1.add.true.sex,ch15,20,,fixed,,참값으로 정한 성별 차이 (make2 의 sexeff 20)
+ch15.1.add.seed,ch15,73,,fixed,,모의시행 설계 = 씨앗 73
+ch15.1.add.n,ch15,400,,fixed,,모의시행 설계 = 400마리
+ch15.1.add.tab.r.link,ch15,.81,ch15.add_link_r,sim,0.07,2026-11-22 §15.1 합산모형 표 = 묶인 마을 성별 · 복용량 상관 (파이썬 .8095) ; 파이썬 500 번 모의(씨앗 1000~1499) 표준편차 .0146 → 3 × √2 × .0146 ≈ .062
+ch15.1.add.tab.r.free,ch15,−.02,ch15.add_free_r,sim,0.21,끊은 마을 성별 · 복용량 상관 (파이썬 −.0184) ; 모의 표준편차 .0491 → .208
+ch15.1.add.tab.dalone.link,ch15,1.70,ch15.zg_b_alone,sim,0.5,묶인 마을 = 원래 마을 ; 허용 근거 = ch15.1.tab.alone
+ch15.1.add.tab.dalone.free,ch15,−1.69,ch15.add_free_d_alone,sim,0.98,끊은 마을 복용량만 (파이썬 −1.6932) ; 모의 표준편차 .2288 → .971
+ch15.1.add.tab.djoint.link,ch15,−1.69,ch15.zg_b_dose,sim,0.6,묶인 마을 ; 허용 근거 = ch15.1.tab.dose
+ch15.1.add.tab.djoint.free,ch15,−1.62,ch15.add_free_d_joint,sim,0.36,끊은 마을 둘 함께 (파이썬 −1.6161) ; 모의 표준편차 .0835 → .354
+ch15.1.add.tab.sealone.link,ch15,0.15,ch15.add_link_se_alone,sim,0.03,묶인 마을 복용량만 SE (파이썬 .1481) ; 모의 표준편차 .0071 → .030
+ch15.1.add.tab.sealone.free,ch15,0.23,ch15.add_free_se_alone,sim,0.035,끊은 마을 복용량만 SE (파이썬 .2268) ; 모의 표준편차 .0082 → .035
+ch15.1.add.tab.sejoint.link,ch15,0.14,ch15.add_link_se_joint,sim,0.03,묶인 마을 둘 함께 SE (파이썬 .1404) ; 모의 표준편차 .0070 → .030
+ch15.1.add.tab.sejoint.free,ch15,0.09,ch15.add_free_se_joint,sim,0.018,끊은 마을 둘 함께 SE (파이썬 .0857) ; 모의 표준편차 .0041 → .0175
+ch15.1.add.tab.salone.link,ch15,13.57,ch15.add_link_s_alone,sim,1.9,묶인 마을 성별만 (파이썬 13.5667) ; 모의 표준편차 .4291 → 1.82
+ch15.1.add.tab.salone.free,ch15,19.54,ch15.add_free_s_alone,sim,2.2,끊은 마을 성별만 (파이썬 19.5402) ; 모의 표준편차 .5068 → 2.15
+ch15.1.add.tab.sjoint.link,ch15,20.14,ch15.zg_b_sex,sim,2.8,묶인 마을 ; 허용 근거 = ch15.1.tab.sex
+ch15.1.add.tab.sjoint.free,ch15,19.40,ch15.add_free_s_joint,sim,1.7,끊은 마을 둘 함께 (파이썬 19.4026) ; 모의 표준편차 .3791 → 1.61
+ch15.1.add.tab.r2d.link,ch15,.249,ch15.add_link_r2d,sim,0.13,묶인 마을 복용량만 R² (파이썬 .2486) ; 모의 표준편차 .0304 → .129
+ch15.1.add.tab.r2d.free,ch15,.123,ch15.add_free_r2d,sim,0.12,끊은 마을 복용량만 R² (파이썬 .1228) ; 모의 표준편차 .0273 → .116
+ch15.1.add.tab.r2s.link,ch15,.683,ch15.add_link_r2s,sim,0.09,묶인 마을 성별만 R² (파이썬 .6833) ; 모의 표준편차 .0196 → .083
+ch15.1.add.tab.r2s.free,ch15,.763,ch15.add_free_r2s,sim,0.07,끊은 마을 성별만 R² (파이썬 .7633) ; 모의 표준편차 .0148 → .063
+ch15.1.add.tab.r2sum.link,ch15,.932,ch15.add_link_r2sum,sim,0.19,묶인 마을 두 R² 의 합 (반올림 전 값으로 더함 ; 파이썬 .9319) ; 모의 표준편차 .0446 → .189
+ch15.1.add.tab.r2sum.free,ch15,.886,ch15.add_free_r2sum,sim,0.14,끊은 마을 두 R² 의 합 (파이썬 .8861) ; 모의 표준편차 .0311 → .132
+ch15.1.add.tab.r2j.link,ch15,.768,ch15.add_link_r2j,sim,0.07,묶인 마을 둘 함께 R² (파이썬 .7678) ; 모의 표준편차 .0160 → .068
+ch15.1.add.tab.r2j.free,ch15,.875,ch15.add_free_r2j,sim,0.04,끊은 마을 둘 함께 R² (파이썬 .8751) ; 모의 표준편차 .0092 → .039
+ch15.1.add.free.dalone,ch15,−1.69,ch15.add_free_d_alone,sim,0.98,허용 근거 = ch15.1.add.tab.dalone.free
+ch15.1.add.free.djoint,ch15,−1.62,ch15.add_free_d_joint,sim,0.36,허용 근거 = ch15.1.add.tab.djoint.free
+ch15.1.add.free.salone,ch15,19.54,ch15.add_free_s_alone,sim,2.2,허용 근거 = ch15.1.add.tab.salone.free
+ch15.1.add.free.sjoint,ch15,19.40,ch15.add_free_s_joint,sim,1.7,허용 근거 = ch15.1.add.tab.sjoint.free
+ch15.1.add.free.true.dose,ch15,−1.5,,fixed,,참값으로 정한 복용량 효과
+ch15.1.add.free.true.sex,ch15,20,,fixed,,참값으로 정한 성별 차이
+ch15.1.add.free.r,ch15,−.02,ch15.add_free_r,sim,0.21,허용 근거 = ch15.1.add.tab.r.free
+ch15.1.add.zero,ch15,0,,fixed,,정의 = 표본 상관이 0이면 생략변수 편향 항(성별 계수 × 공분산 ÷ 복용량 분산)이 0 이라 단순회귀 계수 = 다중회귀 계수 (최소제곱 대수)
+ch15.1.add.sum.free.d,ch15,.123,ch15.add_free_r2d,sim,0.12,허용 근거 = ch15.1.add.tab.r2d.free
+ch15.1.add.sum.free.s,ch15,.763,ch15.add_free_r2s,sim,0.07,허용 근거 = ch15.1.add.tab.r2s.free
+ch15.1.add.sum.free.sum,ch15,.886,ch15.add_free_r2sum,sim,0.14,허용 근거 = ch15.1.add.tab.r2sum.free
+ch15.1.add.sum.free.j,ch15,.875,ch15.add_free_r2j,sim,0.04,허용 근거 = ch15.1.add.tab.r2j.free
+ch15.1.add.sum.link.d,ch15,.249,ch15.add_link_r2d,sim,0.13,허용 근거 = ch15.1.add.tab.r2d.link
+ch15.1.add.sum.link.s,ch15,.683,ch15.add_link_r2s,sim,0.09,허용 근거 = ch15.1.add.tab.r2s.link
+ch15.1.add.sum.link.sum,ch15,.932,ch15.add_link_r2sum,sim,0.19,허용 근거 = ch15.1.add.tab.r2sum.link
+ch15.1.add.sum.link.j,ch15,.768,ch15.add_link_r2j,sim,0.07,허용 근거 = ch15.1.add.tab.r2j.link
+ch15.1.add.link.r,ch15,.81,ch15.add_link_r,sim,0.07,허용 근거 = ch15.1.add.tab.r.link
+ch15.1.add.se.alone,ch15,0.23,ch15.add_free_se_alone,sim,0.035,허용 근거 = ch15.1.add.tab.sealone.free
+ch15.1.add.se.joint,ch15,0.09,ch15.add_free_se_joint,sim,0.018,허용 근거 = ch15.1.add.tab.sejoint.free
+ch15.ai.c12.mean,ch15,4,,fixed,,코드 12 = 끊은 마을 복용량 평균 (설계 ; ch15.1.add.design.mean)
+ch15.ai.c12.sd,ch15,2.5,,fixed,,코드 12 = 끊은 마을 복용량 표준편차 (설계 ; ch15.1.add.design.sd)
+ch15.8.ex7.lo,ch15,0,,fixed,,실습 7 = 세계행복보고서 삶의 평가(캔트릴 사다리) 척도 끝값 (0 = 가장 나쁜 삶 · 10 = 가장 좋은 삶 ; 보고서 정의)
+ch15.8.ex7.hi,ch15,10,,fixed,,실습 7 = 캔트릴 사다리 척도 끝값 10

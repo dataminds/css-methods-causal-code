@@ -97,4 +97,59 @@ peek <- function() {
   mean(pc(x[, 1:150], y[, 1:150]) < .05 | pc(x, y) < .05)
 }
 calc("ch21.peek_fwer", function() memo("peek", peek))
+
+# §21.2 끝 「확증 연구와 탐색 연구」 = 같은 알고리즘을 R 난수로 따로 (AIC 전진 선택 · 앞뒤 100명 · 40명씩 5겹)
+# AIC = n log(RSS/n) + 2 edf = extractAIC.lm 과 같은 식. 속도 때문에 step() 대신 lm.fit 으로 돌린다
+# (2026-11-22 대조 = 같은 자료 120개 선택에서 step(lm(y ~ 1), scope, direction = "forward", k = 2) 와 고른 변수가 전부 같았다).
+explore <- function() {
+  aic_of <- function(X, y, cols) {
+    M <- cbind(1, X[, cols, drop = FALSE])
+    rss <- sum(lm.fit(M, y)$residuals^2)
+    length(y) * log(rss / length(y)) + 2 * ncol(M)
+  }
+  fwd <- function(X, y) {
+    sel <- integer(0); now <- aic_of(X, y, sel)
+    repeat {
+      cand <- setdiff(seq_len(ncol(X)), sel)
+      if (!length(cand)) break
+      sc <- vapply(cand, function(j) aic_of(X, y, c(sel, j)), numeric(1))
+      if (min(sc) >= now) break
+      now <- min(sc); sel <- c(sel, cand[which.min(sc)])
+    }
+    sel
+  }
+  r2o <- function(y, yh) 1 - sum((y - yh)^2) / sum((y - mean(y))^2)
+  fitpred <- function(Xa, ya, Xb, sel) {
+    fit <- if (length(sel)) lm(ya ~ Xa[, sel, drop = FALSE]) else lm(ya ~ 1)
+    list(fit = fit, yh = drop(cbind(1, Xb[, sel, drop = FALSE]) %*% coef(fit)))
+  }
+  one <- function(X, y, true) {
+    a <- 1:100; h <- 101:200
+    sel <- fwd(X[a, ], y[a])
+    fp <- fitpred(X[a, ], y[a], X[h, ], sel)
+    pv <- summary(fp$fit)$coefficients[-1, 4]
+    ho <- r2o(y[h], fp$yh)
+    pred <- numeric(200)
+    for (f in 0:4) {
+      te <- f * 40 + 1:40
+      pred[te] <- fitpred(X[-te, ], y[-te], X[te, ], fwd(X[-te, ], y[-te]))$yh
+    }
+    c(length(sel), sum(!(sel %in% true)), sum(pv < .05), summary(fp$fit)$r.squared, ho, ho < 0, r2o(y, pred))
+  }
+  set.seed(73)
+  res <- replicate(200, {
+    X <- matrix(rnorm(200 * 20), 200); e <- rnorm(200)
+    c(one(X, e, integer(0)), one(X, 0.5 * X[, 1] + 0.5 * X[, 2] + e, 1:2))
+  })
+  m <- rowMeans(res)
+  list(noise = m[1:7], signal = m[8:14])
+}
+for (w in c("noise", "signal")) for (i in 1:7) local({
+  ww <- w; ii <- i; k <- c("nsel", "nfalse", "nsig", "r2in", "r2ho", "neg_pct", "cv")[i]
+  calc(paste0("ch21.explore_", ww, "_", k), function() memo("x", explore)[[ww]][ii] * (if (k == "neg_pct") 100 else 1))
+})
+calc("ch21.explore_noise_r2in_pct", function() 100 * memo("x", explore)$noise[4])
+calc("ch21.explore_true_r2", function() { b <- c(0.5, 0.5); v <- sum(b^2); v / (v + 1) })
+calc("ch21.explore_subsets", function() length(seq_len(2^20)))
+calc("ch21.explore_scan_expect", function() sum(rep(.05, 20)))
 })

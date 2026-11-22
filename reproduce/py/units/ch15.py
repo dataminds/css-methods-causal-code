@@ -18,10 +18,11 @@ def _once(key, f):
 
 
 # ── 저그마을 = make_book_figures.make_simpson · 8장 §8.1 make2 와 같은 생성기 (씨앗 73, 400마리) ──
-def make2(seed=73, n=400, sexeff=20.0):
+def make2(seed=73, n=400, sexeff=20.0, linked=True):
+    # linked=False = §15.1 「원인끼리 무관하면: 합산모형」의 끊은 마을 (성별 → 복용량 다리만 끊는다 ; 코드 12)
     rng = np.random.default_rng(seed)
     sex = rng.integers(0, 2, n)
-    dose = np.clip(rng.normal(2 + 4 * sex, 1.5), 0, 10)
+    dose = np.clip(rng.normal(2 + 4 * sex, 1.5) if linked else rng.normal(4, 2.5, n), 0, 10)
     vigor = 55 + sexeff * sex - 1.5 * dose + rng.normal(0, 4, n)
     return pd.DataFrame({"sex": sex, "dose": dose.round(1), "vigor": vigor.round(1)})
 
@@ -51,6 +52,23 @@ calc("ch15.zg_slope_wmean")(lambda: _zg()["wmean"])
 calc("ch15.zg_mean_minus_ctrl_rounded")(lambda: abs(round(_zg()["mean"], 3) - round(_zg()["dose"], 3)))
 calc("ch15.zg_n_f")(lambda: _zg()["nf"])
 calc("ch15.zg_n_m")(lambda: _zg()["nm"])
+
+
+# 2026-11-22 §15.1 「원인끼리 무관하면: 합산모형」 = 묶인 마을(원래) ⊥ 성별 → 복용량 다리를 끊은 마을 (코드 12)
+def _add(w):
+    def f():
+        z = make2(linked=(w == "link"))
+        bd, sd, _, r2d = ols(z.vigor, [z.dose])
+        bs, _, _, r2s = ols(z.vigor, [z.sex])
+        bj, sj, _, r2j = ols(z.vigor, [z.dose, z.sex])
+        return dict(r=np.corrcoef(z.sex, z.dose)[0, 1], d_alone=bd[1], d_joint=bj[1], se_alone=sd[1],
+                    se_joint=sj[1], s_alone=bs[1], s_joint=bj[2], r2d=r2d, r2s=r2s, r2sum=r2d + r2s, r2j=r2j)
+    return _once(("add", w), f)
+
+
+for _w in ("link", "free"):
+    for _k in ("r", "d_alone", "d_joint", "se_alone", "se_joint", "s_alone", "s_joint", "r2d", "r2s", "r2sum", "r2j"):
+        calc(f"ch15.add_{_w}_{_k}")(lambda w=_w, k=_k: _add(w)[k])
 
 # §15.3 생략변수 편향 = 성별 → 기력 다리만 바꾼 세계에서 성별을 뺀 기울기
 for _e in (0, 5, 10, 20):

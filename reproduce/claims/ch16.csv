@@ -427,3 +427,38 @@ ch16r.hier.r3w,ch16,.393,s3.mil_r2_w,data,,2026-11-19e 외부 점검 반영
 ch16r.hier.d3w,ch16,.002,s3.mil_dr2_w,data,,2026-11-19e 외부 점검 반영
 ch16r.hier.d3w2,ch16,.002,s3.mil_dr2_w,data,,2026-11-19e 외부 점검 반영
 ch16n.ex1.check,ch16,0.731,ch16.cm1_b1,data,,2026-11-19e 외부 점검 반영
+ch16x.lo,ch16,0.73,ch16.ss_b_lo,data,,2026-11-22 교차형 소절 = §16.3 단순기울기 −1SD
+ch16x.hi,ch16,1.24,ch16.ss_b_hi,data,,2026-11-22 = §16.3 단순기울기 +1SD
+ch16x.n150,ch16,150,,fixed,,2026-11-22 교차형 모의시행 설계 인원 (이야기 종류마다)
+ch16x.std0,ch16,0,,fixed,,설계 = 몰입과 오차를 표준정규로 뽑음
+ch16x.std1,ch16,1,,fixed,,설계 = 몰입과 오차를 표준정규로 뽑음
+ch16x.true_pos,ch16,0.4,,fixed,,설계 = 성장 이야기의 참 기울기
+ch16x.true_neg,ch16,−0.4,,fixed,,설계 = 냉소 이야기의 참 기울기
+ch16x.tab.n300,ch16,300,,fixed,,설계 인원 150 × 2
+ch16x.tab.r,ch16,−0.03,ch16.cross_r,sim,0.27,씨앗 73 ; R 은 자기 난수 ; 전체 r MC SD 0.063 (씨앗 1~200 실측) × 3√2 ; 기댓값 0
+ch16x.tab.n_g,ch16,150,,fixed,,설계 인원
+ch16x.tab.b_g,ch16,0.31,ch16.cross_b_grow,sim,0.35,기울기 MC SD 0.081 (씨앗 1~200) × 3√2 ; 참값 0.4
+ch16x.tab.n_c,ch16,150,,fixed,,설계 인원
+ch16x.tab.b_c,ch16,−0.37,ch16.cross_b_cyn,sim,0.35,기울기 MC SD 0.080 (씨앗 1~200) × 3√2 ; 참값 −0.4
+ch16x.tab.int,ch16,−0.68,ch16.cross_bint,sim,0.47,곱항 MC SD 0.110 (씨앗 1~200) × 3√2 ; 참값 −0.8
+ch16x.tab.p,ch16,.001,ch16.cross_pint_lt001,sim,0.001,"부등식 주장 = 계산은 p < .001 이면 .001, 아니면 p ; 씨앗 1~200 의 p 최댓값 0.00004 → 두 엔진 모두 .001"
+ch16x.t1.n300,ch16,300,,fixed,,설계 인원 150 × 2
+ch16x.t1.r,ch16,−0.03,ch16.cross_r,sim,0.27,전체 r MC SD 0.063 × 3√2
+ch16x.t2.one,ch16,1,,fixed,,0/1 표시 정의
+ch16x.t2.bx,ch16,0.31,ch16.cross_bx,sim,0.35,곱항 모형의 몰입 계수 = 성장 이야기 기울기 ; MC SD 0.081 × 3√2
+ch16x.t2.sum_bx,ch16,0.31,ch16.cross_bx,sim,0.35,MC SD 0.081 × 3√2
+ch16x.t2.sum_int,ch16,−0.68,ch16.cross_bint,sim,0.47,MC SD 0.110 × 3√2
+ch16x.t2.sum_c,ch16,−0.37,ch16.cross_b_cyn,sim,0.35,몰입 계수 + 곱항 = 냉소 이야기만 돌린 기울기 ; MC SD 0.080 × 3√2
+ch16x.t2.bx2,ch16,0.31,ch16.cross_bx,sim,0.35,MC SD 0.081 × 3√2
+ch16x.t2.eff_lo,ch16,−0.5,,fixed,,효과 부호화 정의 (§16.5)
+ch16x.t2.eff_hi,ch16,0.5,,fixed,,효과 부호화 정의 (§16.5)
+ch16x.t2.be,ch16,−0.03,ch16.cross_bx_eff,sim,0.25,효과 부호화 몰입 계수 = 두 기울기 평균 ; MC SD 0.059 (씨앗 1~200) × 3√2 ; 기댓값 0
+ch16x.c10.n150,ch16,150,,fixed,,코드 10 설계 인원
+ch16x.c10.n300,ch16,300,,fixed,,코드 10 설계 인원 150 × 2
+ch16x.c10.code0,ch16,0,,fixed,,코드 10 표시 정의
+ch16x.c10.code1,ch16,1,,fixed,,코드 10 표시 정의
+ch16x.c10.p,ch16,.001,,fixed,,판정 기준
+ch16x.c10.read_bx,ch16,0.31,ch16.cross_bx,sim,0.35,MC SD 0.081 × 3√2
+ch16x.c10.read_n,ch16,150,,fixed,,설계 인원
+ch16x.c10.where_pos,ch16,0.4,,fixed,,코드 10 설계 = 성장 이야기 참 기울기
+ch16x.c10.where_neg,ch16,-0.4,,fixed,,코드 10 설계 = 냉소 이야기 참 기울기 (코드 표기라 하이픈 마이너스)

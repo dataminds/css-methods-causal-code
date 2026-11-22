@@ -124,3 +124,82 @@ ch21.t21.L281.1..346,ch21,.346,ch21.main_p,sim,1.34,집단 표시 뒤섞기 (num
 ch21.t21.L300.1.2.16,ch21,2.16,,paper,,Rogers et al. (2023) JPSP 125(4) 다섯째 연구 t(378) = 2.16 (12장 「먼저」 절과 같은 값)
 ch21.t21.L300.1..031,ch21,.031,,paper,,Rogers et al. (2023) JPSP 125(4) 다섯째 연구 p = .031 (12장 「먼저」 절과 같은 값)
 ch21.t21.L300.1.381,ch21,381,,paper,,Rogers et al. (2023) 다섯째 연구 최종 표본 381명 (12장이 짚은 자유도 차이)
+ch21.x.story.60,ch21,60,ch21.n_paths,sim,0,갈래 수 (§21.1)
+ch21.x.story.p,ch21,.027,ch21.p_flr_none_m_raw,sim,1.23,갈래 (flr · none · m · 무보정) = §21.1 표와 같은 값
+ch21.x.scan.k1,ch21,20,,fixed,,설명 예시 = 후보 예측변수 수 (시뮬레이션 설계와 같은 20)
+ch21.x.scan.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.x.scan.k2,ch21,20,,fixed,,후보 수 (예시)
+ch21.x.scan.exp,ch21,1,ch21.explore_scan_expect,data,,20 × .05 = 영세계 기대 유의 건수
+ch21.x.scan.k3,ch21,20,,fixed,,후보 수 (예시)
+ch21.x.subsets.base,ch21,2,,fixed,,조합 수의 밑 (넣는다 · 안 넣는다 둘)
+ch21.x.subsets,ch21,"1,048,576",ch21.explore_subsets,data,,2^20 (빈 모형 포함 모든 부분집합)
+ch21.x.aic.2,ch21,2,,fixed,,AIC 정의의 벌점 계수 (Akaike ; R extractAIC.lm 의 k = 2)
+ch21.x.d.n,ch21,200,,fixed,,시뮬레이션 설계 = 세계당 인원
+ch21.x.d.k,ch21,20,,fixed,,시뮬레이션 설계 = 후보 예측변수 수
+ch21.x.d.b,ch21,0.5,,fixed,,신호 세계에 참값으로 정한 계수 (예측변수 둘 · 오차 표준편차 1)
+ch21.x.d.true,ch21,.33,ch21.explore_true_r2,data,,(0.5² × 2) / (0.5² × 2 + 1) = 1/3 (예측변수 · 오차 모두 분산 1 · 서로 독립)
+ch21.x.d.half1,ch21,100,,fixed,,나누는 규칙 = 앞 100명 탐색 · 뒤 100명 확인
+ch21.x.d.half2,ch21,100,,fixed,,나누는 규칙
+ch21.x.d.seed,ch21,73,,fixed,,기본 씨앗 (R 은 set.seed(73) 의 자기 난수)
+ch21.x.d.w,ch21,200,,fixed,,세계 수
+ch21.x.t.head,ch21,200,,fixed,,세계 수
+ch21.x.t.nsel.n,ch21,3.6,ch21.explore_noise_nsel,sim,0.52,잡음 세계 200개 평균 고른 수 3.61 ; 세계별 SD 1.736 / √200 = .123 × 3√2 (R 씨앗 73 = 3.98 · 37 = 3.40 ; 파이썬 씨앗 37 = 3.50)
+ch21.x.t.nsel.s,ch21,5.2,ch21.explore_signal_nsel,sim,0.52,신호 세계 평균 5.185 ; SD 1.722 / √200 = .122 × 3√2 (R 씨앗 73 = 5.58)
+ch21.x.t.nf.n,ch21,3.6,ch21.explore_noise_nfalse,sim,0.52,잡음 세계는 고른 것이 전부 참이 아니다 (= 고른 수) ; 허용폭 위와 같음
+ch21.x.t.nf.s,ch21,3.2,ch21.explore_signal_nfalse,sim,0.52,신호 세계 평균 3.19 ; SD 1.717 / √200 = .121 × 3√2 (R 씨앗 73 = 3.585)
+ch21.x.t.sig.a,ch21,.05,,fixed,,관례 유의수준
+ch21.x.t.sig.n,ch21,1.5,ch21.explore_noise_nsig,sim,0.37,잡음 세계 평균 1.500 ; SD 1.224 / √200 = .087 × 3√2 (R 씨앗 73 = 1.565)
+ch21.x.t.sig.s,ch21,3.2,ch21.explore_signal_nsig,sim,0.33,신호 세계 평균 3.225 ; SD 1.100 / √200 = .078 × 3√2 (R 씨앗 73 = 3.38)
+ch21.x.t.in.n,ch21,.12,ch21.explore_noise_r2in,sim,0.019,잡음 세계 평균 .1246 ; SD .0623 / √200 = .0044 × 3√2
+ch21.x.t.in.s,ch21,.42,ch21.explore_signal_r2in,sim,0.025,신호 세계 평균 .4192 ; SD .0822 / √200 = .0058 × 3√2
+ch21.x.t.ho.n,ch21,−.17,ch21.explore_noise_r2ho,sim,0.036,잡음 세계 평균 −.1671 ; SD .1197 / √200 = .0085 × 3√2
+ch21.x.t.ho.s,ch21,.21,ch21.explore_signal_r2ho,sim,0.037,신호 세계 평균 .2088 ; SD .1218 / √200 = .0086 × 3√2
+ch21.x.t.neg.0,ch21,0,,fixed,,기준값 0 (평균 하나로 예측한 오차와 같을 때)
+ch21.x.t.neg.n,ch21,97%,ch21.explore_noise_neg_pct,sim,5.1,잡음 세계 비율 97.0% ; √(.97 × .03 / 200) = 1.2%p × 3√2 (세계별 SD .171)
+ch21.x.t.neg.s,ch21,5%,ch21.explore_signal_neg_pct,sim,6.6,신호 세계 비율 5.0% ; 세계별 SD .219 / √200 = 1.5%p × 3√2
+ch21.x.t.cv.k,ch21,5,,fixed,,교차 검증 몫 수 (40명씩)
+ch21.x.t.cv.n,ch21,−.09,ch21.explore_noise_cv,sim,0.015,잡음 세계 평균 −.0935 ; SD .0482 / √200 = .0034 × 3√2
+ch21.x.t.cv.s,ch21,.27,ch21.explore_signal_cv,sim,0.020,신호 세계 평균 .2675 ; SD .0660 / √200 = .0047 × 3√2
+ch21.x.n.nsel,ch21,3.6,ch21.explore_noise_nsel,sim,0.52,표와 같은 근거
+ch21.x.n.nsig,ch21,1.5,ch21.explore_noise_nsig,sim,0.37,표와 같은 근거
+ch21.x.n.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.x.n.in,ch21,.12,ch21.explore_noise_r2in,sim,0.019,표와 같은 근거
+ch21.x.n.inpct,ch21,12,ch21.explore_noise_r2in_pct,sim,1.9,같은 값의 백분율 12.46 ; SD 6.23 / √200 = .44%p × 3√2
+ch21.x.n.ho,ch21,−.17,ch21.explore_noise_r2ho,sim,0.036,표와 같은 근거
+ch21.x.n.w,ch21,200,,fixed,,세계 수
+ch21.x.n.neg,ch21,97,ch21.explore_noise_neg_pct,sim,5.1,표와 같은 근거
+ch21.x.n.zero,ch21,0,,fixed,,기준값 0
+ch21.x.s.ho,ch21,.21,ch21.explore_signal_r2ho,sim,0.037,표와 같은 근거
+ch21.x.s.zero,ch21,0,,fixed,,기준값 0
+ch21.x.s.nsel,ch21,5.2,ch21.explore_signal_nsel,sim,0.52,표와 같은 근거
+ch21.x.s.nf,ch21,3.2,ch21.explore_signal_nfalse,sim,0.52,표와 같은 근거
+ch21.x.s.in,ch21,.42,ch21.explore_signal_r2in,sim,0.025,표와 같은 근거
+ch21.x.s.true,ch21,.33,ch21.explore_true_r2,data,,1/3
+ch21.x.s.ho2,ch21,.21,ch21.explore_signal_r2ho,sim,0.037,표와 같은 근거
+ch21.x.s.true2,ch21,.33,ch21.explore_true_r2,data,,1/3
+ch21.x.cv.k,ch21,5,,fixed,,몫 수
+ch21.x.cv.n,ch21,200,,fixed,,세계당 인원
+ch21.x.cv.fold,ch21,40,,fixed,,몫 크기 = 200 / 5 (연속한 40명씩)
+ch21.x.cv.train,ch21,160,,fixed,,200 − 40
+ch21.x.cv.test,ch21,40,,fixed,,몫 크기
+ch21.x.cv.all,ch21,200,,fixed,,세계당 인원
+ch21.x.cv.res.n,ch21,−.09,ch21.explore_noise_cv,sim,0.015,표와 같은 근거
+ch21.x.cv.res.s,ch21,.27,ch21.explore_signal_cv,sim,0.020,표와 같은 근거
+ch21.x.cv.more,ch21,160,,fixed,,교차 검증의 맞추는 인원
+ch21.x.cv.cmp.cv,ch21,.27,ch21.explore_signal_cv,sim,0.020,표와 같은 근거
+ch21.x.cv.cmp.ho,ch21,.21,ch21.explore_signal_r2ho,sim,0.037,표와 같은 근거
+ch21.x.cv.cmp.true,ch21,.33,ch21.explore_true_r2,data,,1/3
+ch21.x.cv.wrong,ch21,200,,fixed,,세계당 인원
+ch21.x.rule.k,ch21,20,,fixed,,보고 문장 예시 (시뮬레이션 설계와 같은 후보 수)
+ch21.x.q.in,ch21,.12,ch21.explore_noise_r2in,sim,0.019,표와 같은 근거
+ch21.x.q.ho,ch21,−.17,ch21.explore_noise_r2ho,sim,0.036,표와 같은 근거
+ch21.x.q.k,ch21,5,,fixed,,몫 수
+ch21.x.r8.w,ch21,200,,fixed,,세계 수 (복습 ⑧)
+ch21.x.r8.alpha,ch21,.05,,fixed,,관례 유의수준
+ch21.x.r8.zero,ch21,0,,fixed,,기준값 0
+ch21.x.r8.k,ch21,5,,fixed,,몫 수
+ch21.x.r8.time,ch21,1,,fixed,,실행 시간 안내 (2026-11-22 이 PC 실측 약 55 ~ 63초 ; 계산값 아님)
+ch21.x.r8.aic2,ch21,2,,fixed,,AIC 벌점 계수
+ch21.x.r8.a,ch21,100,,fixed,,나누는 규칙
+ch21.x.r8.b,ch21,160,,fixed,,교차 검증 맞추는 인원
+ch21.x.r8.c,ch21,40,,fixed,,몫 크기

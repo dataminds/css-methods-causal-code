@@ -134,3 +134,68 @@ def _peek():
 
 
 calc("ch21.peek_fwer")(lambda: memo("peek", _peek))
+
+
+# §21.2 끝 「확증 연구와 탐색 연구」 = 복습 ⑧ 그대로 (AIC 전진 선택 · 앞뒤 100명 · 5겹 교차 검증 ; 씨앗 73 · 200세계)
+def _aic(y, cols):
+    X1 = np.column_stack([np.ones(len(y))] + cols)
+    b, *_ = np.linalg.lstsq(X1, y, rcond=None)
+    rss = ((y - X1 @ b) ** 2).sum()
+    return len(y) * np.log(rss / len(y)) + 2 * X1.shape[1]
+
+
+def _forward(X, y):
+    chosen = []
+    now = _aic(y, [])
+    while True:
+        cand = [j for j in range(X.shape[1]) if j not in chosen]
+        if not cand:
+            break
+        sc = [_aic(y, [X[:, k] for k in chosen + [j]]) for j in cand]
+        if min(sc) >= now:
+            break
+        now = min(sc)
+        chosen.append(cand[int(np.argmin(sc))])
+    return chosen
+
+
+def _r2_pred(y, yhat):
+    return 1 - ((y - yhat) ** 2).sum() / ((y - y.mean()) ** 2).sum()
+
+
+def _pick_predict(X, y, fit, see):
+    chosen = _forward(X[fit], y[fit])
+    b, _, p, r2 = ols(y[fit], [X[fit][:, k] for k in chosen])
+    return chosen, p, r2, b[0] + X[see][:, chosen] @ b[1:]
+
+
+def _one_world(X, y, true):
+    a, h = np.arange(100), np.arange(100, 200)
+    chosen, p, r2, yhat = _pick_predict(X, y, a, h)
+    ho = _r2_pred(y[h], yhat)
+    cv = np.empty(200)
+    for f in range(5):
+        see = np.arange(40 * f, 40 * f + 40)
+        cv[see] = _pick_predict(X, y, np.setdiff1d(np.arange(200), see), see)[3]
+    return [len(chosen), sum(k not in true for k in chosen), (p[1:] < .05).sum(),
+            r2, ho, ho < 0, _r2_pred(y, cv)]
+
+
+def _explore():
+    rng = np.random.default_rng(73)
+    noise, signal = [], []
+    for _ in range(200):
+        X = rng.standard_normal((200, 20))
+        e = rng.standard_normal(200)
+        noise.append(_one_world(X, e, []))
+        signal.append(_one_world(X, 0.5 * X[:, 0] + 0.5 * X[:, 1] + e, [0, 1]))
+    return {"noise": np.mean(noise, axis=0), "signal": np.mean(signal, axis=0)}
+
+
+for w in ("noise", "signal"):
+    for i, k in enumerate(("nsel", "nfalse", "nsig", "r2in", "r2ho", "neg_pct", "cv")):
+        calc(f"ch21.explore_{w}_{k}")(lambda w=w, i=i, k=k: memo("x", _explore)[w][i] * (100 if k == "neg_pct" else 1))
+calc("ch21.explore_noise_r2in_pct")(lambda: memo("x", _explore)["noise"][3] * 100)
+calc("ch21.explore_true_r2")(lambda: (0.5 ** 2 * 2) / (0.5 ** 2 * 2 + 1))   # 참 모형 설명 몫 = 계수² 합 / (계수² 합 + 오차분산 1)
+calc("ch21.explore_subsets")(lambda: 2 ** 20)
+calc("ch21.explore_scan_expect")(lambda: 20 * .05)

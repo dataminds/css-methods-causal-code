@@ -5,10 +5,11 @@ S <- function() load_data("svy")
 E <- function() load_data("exp")
 
 # 저그마을 = 같은 설계를 R 난수로 (씨앗 73, 400마리)
-make2 <- function(sexeff = 20, n = 400) {
+# linked = FALSE = §15.1 「원인끼리 무관하면: 합산모형」의 끊은 마을 (성별 → 복용량 다리만 끊는다 ; 코드 12)
+make2 <- function(sexeff = 20, n = 400, linked = TRUE) {
   set.seed(73)
   sex <- rbinom(n, 1, .5)
-  dose <- round(pmin(pmax(rnorm(n, 2 + 4 * sex, 1.5), 0), 10), 1)
+  dose <- round(pmin(pmax(if (linked) rnorm(n, 2 + 4 * sex, 1.5) else rnorm(n, 4, 2.5), 0), 10), 1)
   vigor <- round(55 + sexeff * sex - 1.5 * dose + rnorm(n, 0, 4), 1)
   data.frame(sex = sex, dose = dose, vigor = vigor)
 }
@@ -26,6 +27,22 @@ calc("ch15.zg_slope_wmean", function() sum(sl * wss) / sum(wss))
 calc("ch15.zg_mean_minus_ctrl_rounded", function() abs(round(mean(sl), 3) - round(unname(m2["dose"]), 3)))
 calc("ch15.zg_n_f", function() sum(zg$sex == 0))
 calc("ch15.zg_n_m", function() sum(zg$sex == 1))
+# 2026-11-22 §15.1 「원인끼리 무관하면: 합산모형」 = 묶인 마을 ⊥ 끊은 마을 (lm · summary)
+add_stats <- function(linked) {
+  z <- make2(linked = linked)
+  md <- summary(lm(vigor ~ dose, data = z)); ms <- summary(lm(vigor ~ sex, data = z))
+  mj <- summary(lm(vigor ~ dose + sex, data = z))
+  list(r = cor(z$sex, z$dose), d_alone = md$coefficients["dose", 1], d_joint = mj$coefficients["dose", 1],
+       se_alone = md$coefficients["dose", 2], se_joint = mj$coefficients["dose", 2],
+       s_alone = ms$coefficients["sex", 1], s_joint = mj$coefficients["sex", 1],
+       r2d = md$r.squared, r2s = ms$r.squared, r2sum = md$r.squared + ms$r.squared, r2j = mj$r.squared)
+}
+for (w in c("link", "free")) local({
+  ww <- w; st <- add_stats(ww == "link")
+  for (k in names(st)) local({
+    kk <- k; calc(paste0("ch15.add_", ww, "_", kk), function() st[[kk]])
+  })
+})
 for (e in c(0, 5, 10, 20)) local({
   ee <- e
   calc(paste0("ch15.bias_e", ee), function() { z <- make2(sexeff = ee); unname(coef(lm(vigor ~ dose, data = z))[2]) })

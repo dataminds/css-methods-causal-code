@@ -322,3 +322,25 @@ def _g3():
 for _k in ("r2a", "r2b", "dr2", "F", "p", "df2", "int2", "int3", "n1", "n2", "n3", "b1", "b2", "b3",
            "se1", "se2", "se3", "cl1", "cu1", "cl2", "cu2", "cl3", "cu3"):
     calc(f"ch16.g3_{_k}")(lambda k=_k: memo("g3", _g3)[k])
+
+
+# §16.4 「기울기가 반대 방향이면」 (2026-11-22) = 교차형 상호작용 모의시행 (씨앗 73 ; 책 코드 10 과 같은 난수 순서)
+def _cross():
+    def f():
+        rng = np.random.default_rng(73)
+        n = 150
+        genre = np.repeat([0, 1], n)                     # 0 = 성장 이야기 · 1 = 냉소 이야기
+        imm = rng.normal(0, 1, 2 * n)
+        give = np.where(genre == 0, 0.4, -0.4) * imm + rng.normal(0, 1, 2 * n)
+        b0 = ols(give[genre == 0], [imm[genre == 0]])[0][1]
+        b1 = ols(give[genre == 1], [imm[genre == 1]])[0][1]
+        bi, sei, pi, _ = ols(give, [imm, genre, imm * genre])
+        ge = genre - .5                                  # 효과 부호화 (−0.5 · +0.5)
+        be = ols(give, [imm, ge, imm * ge])[0][1]
+        return dict(r=np.corrcoef(imm, give)[0, 1], b_grow=b0, b_cyn=b1, bx=bi[1], bint=bi[3],
+                    pint_lt001=.001 if pi[3] < .001 else pi[3], bx_eff=be)
+    return memo("cross", f)
+
+
+for _k in ("r", "b_grow", "b_cyn", "bx", "bint", "pint_lt001", "bx_eff"):
+    calc(f"ch16.cross_{_k}")(lambda k=_k: _cross()[k])

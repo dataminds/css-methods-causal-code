@@ -282,4 +282,22 @@ for (k in c("r2a", "r2b", "dr2", "F", "p", "df2", "int2", "int3", "n1", "n2", "n
             "se1", "se2", "se3", "cl1", "cu1", "cl2", "cu2", "cl3", "cu3")) local({
   kk <- k; calc(paste0("ch16.g3_", kk), function() memo("g3", g3r)[[kk]])
 })
+# §16.4 「기울기가 반대 방향이면」 (2026-11-22) = 교차형 상호작용 모의시행 (R 의 난수 ; 씨앗 73)
+crossr <- function() {
+  set.seed(73); n <- 150
+  genre <- rep(c(0, 1), each = n)                     # 0 = 성장 이야기 · 1 = 냉소 이야기
+  imm <- rnorm(2 * n)
+  give <- ifelse(genre == 0, 0.4, -0.4) * imm + rnorm(2 * n)
+  f <- summary(lm(give ~ imm * genre))$coefficients
+  ge <- genre - .5
+  p <- f["imm:genre", 4]
+  list(r = cor(imm, give),
+       b_grow = unname(coef(lm(give[genre == 0] ~ imm[genre == 0]))[2]),
+       b_cyn = unname(coef(lm(give[genre == 1] ~ imm[genre == 1]))[2]),
+       bx = f["imm", 1], bint = f["imm:genre", 1], pint_lt001 = if (p < .001) .001 else p,
+       bx_eff = unname(coef(lm(give ~ imm * ge))["imm"]))
+}
+for (k in c("r", "b_grow", "b_cyn", "bx", "bint", "pint_lt001", "bx_eff")) local({
+  kk <- k; calc(paste0("ch16.cross_", kk), function() memo("cross", crossr)[[kk]])
+})
 })
