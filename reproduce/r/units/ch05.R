@@ -140,4 +140,18 @@ for (cc in c(1, 0)) local({
 calc("ch05.exp_women_pct_gap", function() { e <- E(); 100 * (mean(e$gender[e$cond == 0] == 2) - mean(e$gender[e$cond == 1] == 2)) })
 calc("ch05.exp_raw_n", function() nrow(load_data("exp", clean = FALSE)))
 calc("ch05.exp_n", function() nrow(E()))
+
+# §5.2 「상자 그림 읽기」 = mil 의 사분위수 · IQR · 수염 (quantile type 7 = 선형 보간 ; boxplot.stats 의 경첩과는 다르다)
+.box <- function() {
+  x <- S()$mil
+  q <- unname(quantile(x, c(0.25, 0.75), type = 7)); r <- IQR(x, type = 7)
+  lo <- q[1] - 1.5 * r; hi <- q[2] + 1.5 * r
+  out <- x[x < lo | x > hi]
+  list(q1 = q[1], q3 = q[2], iqr = r, k = 1.5 * r, lo = lo, hi = hi,
+       wlo = min(x[x >= lo]), whi = max(x[x <= hi]), flier = min(out), nflier = length(out))
+}
+for (k in c("q1", "q3", "iqr", "k", "lo", "hi", "wlo", "whi", "flier", "nflier")) local({
+  kk <- k
+  calc(paste0("ch05.box_mil_", kk), function() .box()[[kk]])
+})
 })

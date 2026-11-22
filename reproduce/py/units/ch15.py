@@ -263,6 +263,10 @@ for _j, _nm in enumerate(("int", "age", "fem", "hjs")):
     calc(f"ch15.ht2_hi_{_nm}")(lambda j=_j: _ht_ext()["hi"][j])
 for _k in ("t_hjs", "adj1", "adj2", "vmin", "vmax", "dr2_rounded"):
     calc(f"ch15.ht_{_k}")(lambda k=_k: _ht_ext()[k])
+# 2026-11-22 [선택] 소절 끝 상자 = 조정 R² 계산식의 산술 (n − 1 · 설명변수 수 k · 인쇄한 .3915 로 다시 계산)
+calc("ch15.ht_nm1")(lambda: _ht()["n"] - 1)
+calc("ch15.ht_k")(lambda: len(_ht()[2][0]) - 1)  # 2단계 계수 수 − 절편 = age · fem · hjs
+calc("ch15.ht_adj2_from_printed")(lambda: 1 - (1 - .3915) * (_ht()["n"] - 1) / (_ht()["n"] - 3 - 1))
 
 
 # 2026-11-15 §15.1 「명목 변수를 넣는 법」 = 성별 세 범주 더미 (기준 남성 · 여성) · 번호를 수로 넣은 잘못된 모형

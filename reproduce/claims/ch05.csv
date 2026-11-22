@@ -304,3 +304,29 @@ ch05.vt.j2,ch05,0.2,,fixed,,복습 코드 13 (설계값)
 ch05.vt.j3,ch05,−0.2,,fixed,,복습 코드 13 (설계값)
 ch05.vt.a,ch05,0.4,,fixed,,복습 코드 13 투명도 (설계값)
 ch05.vt.w,ch05,0.5,,fixed,,값 간격 1 의 절반 (정의)
+ch05.box.k.def,ch05,1.5,,fixed,,§5.2 상자 그림 = 튜키 관례의 수염 배수 (matplotlib · R boxplot 기본 1.5)
+ch05.box.q1,ch05,4.00,ch05.box_mil_q1,data,,§5.2 상자 그림 mil 제1사분위수 (선형 보간)
+ch05.box.med,ch05,5.00,ch05.mil_median,data,,§5.2 상자 그림 mil 중앙값
+ch05.box.q3,ch05,5.75,ch05.box_mil_q3,data,,§5.2 상자 그림 mil 제3사분위수
+ch05.box.iqr.q3,ch05,5.75,ch05.box_mil_q3,data,,§5.2 IQR 식
+ch05.box.iqr.q1,ch05,4.00,ch05.box_mil_q1,data,,§5.2 IQR 식
+ch05.box.iqr,ch05,1.75,ch05.box_mil_iqr,data,,§5.2 IQR
+ch05.box.k.mult,ch05,1.5,,fixed,,§5.2 수염 배수 (관례)
+ch05.box.k,ch05,2.625,ch05.box_mil_k,data,,§5.2 1.5 × IQR
+ch05.box.lo.q1,ch05,4.00,ch05.box_mil_q1,data,,§5.2 아래 문턱 식
+ch05.box.lo.k,ch05,2.625,ch05.box_mil_k,data,,§5.2 아래 문턱 식
+ch05.box.lo,ch05,1.375,ch05.box_mil_lo,data,,§5.2 아래 문턱
+ch05.box.hi.q3,ch05,5.75,ch05.box_mil_q3,data,,§5.2 위 문턱 식
+ch05.box.hi.k,ch05,2.625,ch05.box_mil_k,data,,§5.2 위 문턱 식
+ch05.box.hi,ch05,8.375,ch05.box_mil_hi,data,,§5.2 위 문턱
+ch05.box.wlo.lo,ch05,1.375,ch05.box_mil_lo,data,,§5.2 아래 문턱 (다시)
+ch05.box.wlo,ch05,1.50,ch05.box_mil_wlo,data,,§5.2 아래 수염 끝
+ch05.box.hi.b,ch05,8.375,ch05.box_mil_hi,data,,§5.2 위 문턱 (다시)
+ch05.box.whi,ch05,7.00,ch05.box_mil_whi,data,,§5.2 위 수염 끝 = 최댓값
+ch05.box.flier,ch05,1.00,ch05.box_mil_flier,data,,§5.2 수염 밖 점의 값 (개수 1 = ch05.box_mil_nflier ; 「하나」로 인쇄)
+ch05.box.n,ch05,566,ch05.svy_n,data,,§5.2 정제본 인원
+ch05.box.other.n,ch05,12,ch05.other_n,data,,§5.2 작은 집단 예
+ch05.box.other.n2,ch05,12,ch05.other_n,data,,§5.2 작은 집단 예
+ch05.box.men.n,ch05,270,ch05.men_n,data,,§5.2 작은 집단 예
+ch05.box.women.n,ch05,284,ch05.women_n,data,,§5.2 작은 집단 예
+ch05.box.k.code,ch05,1.5,,fixed,,복습 코드 14 = matplotlib boxplot 의 whis 기본값

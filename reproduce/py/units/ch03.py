@@ -141,3 +141,4 @@ calc("ch03.w1_mean_kept")(lambda: W()[1][W()[3].notna()].mean())
 calc("ch03.w1_mean_all")(lambda: W()[1].mean())
 calc("ch03.w3_mean")(lambda: W()[3].mean())   # §3.5 빈칸 상자 = pandas 는 빈칸을 빼고 평균
 calc("ch03.w1_lw_gap")(lambda: W().dropna()[1].mean() - W()[1].mean())
+calc("ch03.toy_nan_mean")(lambda: np.nanmean([4, np.nan, 6]))   # §3.5 둘째 상자 = 빈칸을 빼고 평균 (2026-11-22)

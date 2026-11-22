@@ -213,3 +213,4 @@ ch03.ai.rows,ch03,"1,270",ch03.panel_rows,data,,AI 절 판단 4
 ch03.c8.n1,ch03,566,,fixed,,복습 코드 8 표본 크기 (설계값)
 ch03.c8.n2,ch03,60,,fixed,,복습 코드 8 표본 크기 (설계값)
 ch03.c10.n,ch03,566,ch03.svy_n,data,,복습 코드 10
+ch03.box2.nanmean,ch03,5.0,ch03.toy_nan_mean,data,,§3.5 둘째 상자 = 4 · 빈칸 · 6 의 평균 (빈칸 제외 ; 예시 산술)

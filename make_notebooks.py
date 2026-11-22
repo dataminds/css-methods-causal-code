@@ -424,6 +424,58 @@ STEPS = {
   '# 1 0.97 -0.05\n'
   '# 2 0.0 0.55\n'
   '# 12 0.72 -2.54'),
+ ("## 5. (책이 원리를 보이려고 돌린 코드) 원인끼리 무관한 세계 (책 §15.1 「원인끼리 무관하면: 합산모형」 · 코드 12)\n"
+  "저그마을 생성기에서 성별 → 복용량 다리만 끊은 `make_free`를 만들고, 묶인 마을(위 2 의 `make_simpson`)과 끊은 마을에서 "
+  "세 모형(복용량만 · 성별만 · 둘 함께)을 맞춥니다. 마을마다 한 줄에 성별과 복용량의 상관, 복용량 계수 둘(복용량만 · 성별 함께), "
+  "그 *SE* 둘, 성별 계수 둘(성별만 · 복용량 함께), *R*² 넷(복용량만 · 성별만 · 그 합 · 둘 함께)을 차례로 찍습니다. "
+  "끊은 마을에서는 통제해도 복용량 계수가 거의 그대로이고 *SE* 만 줄어듭니다.",
+  'def make_free(seed=73, n=400):                     # 성별 → 복용량 다리만 끊은 저그마을\n'
+  '    rng = np.random.default_rng(seed)\n'
+  '    sex = rng.integers(0, 2, n)\n'
+  '    dose = np.clip(rng.normal(4, 2.5, n), 0, 10)   # 성별과 상관없이 뽑는다\n'
+  '    vigor = 55 + 20 * sex - 1.5 * dose + rng.normal(0, 4, n)\n'
+  '    return pd.DataFrame({"sex": sex, "dose": dose.round(1), "vigor": vigor.round(1)})\n'
+  '\n'
+  'for name, z in (("묶임", make_simpson()), ("끊음", make_free())):\n'
+  '    bd, sd, _, r2d = ols(z.vigor, [z.dose])             # 복용량만\n'
+  '    bs, _, _, r2s = ols(z.vigor, [z.sex])               # 성별만\n'
+  '    bj, sj, _, r2j = ols(z.vigor, [z.dose, z.sex])      # 둘 함께\n'
+  '    print(name, round(np.corrcoef(z.sex, z.dose)[0, 1], 2),\n'
+  '          round(bd[1], 2), round(bj[1], 2), round(sd[1], 2), round(sj[1], 2),\n'
+  '          round(bs[1], 2), round(bj[2], 2),\n'
+  '          round(r2d, 3), round(r2s, 3), round(r2d + r2s, 3), round(r2j, 3))\n'
+  '# 묶임 0.81 1.7 -1.69 0.15 0.14 13.57 20.14 0.249 0.683 0.932 0.768\n'
+  '# 끊음 -0.02 -1.69 -1.62 0.23 0.09 19.54 19.4 0.123 0.763 0.886 0.875'),
+ ("## 6. 실습 7: 세계행복보고서 자료로 통제를 판정한다 (책 §15.8 실습 7)\n"
+  "⚠ 이 노트북에는 자료가 들어 있지 않습니다. 직접 내려받습니다.\n\n"
+  "1. 세계행복보고서(World Happiness Report) 누리집(https://worldhappiness.report)의 자료 쪽에서 나라별 자료 파일을 내려받습니다. "
+  "엑셀 파일이면 엑셀에서 열어 CSV 로 저장합니다.\n"
+  "2. 코랩 왼쪽의 폴더 아이콘을 눌러 그 CSV 를 올립니다(올린 파일은 연결이 끊기면 사라집니다).\n"
+  "3. 아래 상자의 `파일` 과 열 이름 셋을 내 파일에 맞게 고칩니다. 열 이름은 판마다 조금씩 다릅니다"
+  "(예 = `Life Ladder` · `Log GDP per capita` · `Social support`). `print(df.columns.tolist())` 로 확인합니다.\n\n"
+  "⭐ 상자를 돌리기 **전에** 세 변수의 DAG 와 예측(GDP 가 혼란변수인가 · 사슬의 가운데인가 · 둘 다 아닌가)을 먼저 씁니다. "
+  "어느 판의 어느 해를 썼는지와 내려받은 날짜도 적어 둡니다. 파일이 없으면 상자는 안내만 찍고 끝납니다.",
+  'import os\n'
+  '파일 = "whr.csv"                   # 올린 파일 이름으로 바꾼다\n'
+  '삶 = "Life Ladder"                 # 삶의 평가(사다리 점수)\n'
+  '지지 = "Social support"            # 사회적 지지\n'
+  'gdp = "Log GDP per capita"         # 1인당 GDP 의 로그\n'
+  'if not os.path.exists(파일):\n'
+  '    print("파일이 없습니다. 위 안내대로 내려받아 올린 뒤 파일 이름을 고치세요.")\n'
+  'else:\n'
+  '    df = pd.read_csv(파일)\n'
+  '    print(df.columns.tolist())\n'
+  '    # 한 해만 쓸 때 = 해 열 이름을 확인해 고른다. 예: df = df[df["year"] == 2023]\n'
+  '    w = df[[삶, 지지, gdp]].dropna()     # 세 열이 다 있는 행만\n'
+  '    print("나라 · 해 행 수:", len(w))\n'
+  '    b1, se1, _, r2_1 = ols(w[삶], [w[지지]])              # ② 사회적 지지만\n'
+  '    bg, _, _, r2_g = ols(w[삶], [w[gdp]])                # GDP 만\n'
+  '    b2, se2, _, r2_2 = ols(w[삶], [w[지지], w[gdp]])      # ③ 둘 함께\n'
+  '    print("사회적 지지 계수: 단독", round(b1[1], 3), "(SE", round(se1[1], 3), ")",\n'
+  '          "→ GDP 함께", round(b2[1], 3), "(SE", round(se2[1], 3), ")")\n'
+  '    print("사회적 지지와 GDP 의 상관:", round(np.corrcoef(w[지지], w[gdp])[0, 1], 2))\n'
+  '    print("R² 지지만", round(r2_1, 3), "· GDP 만", round(r2_g, 3),\n'
+  '          "· 합", round(r2_1 + r2_g, 3), "· 둘 함께", round(r2_2, 3))'),
 ],
 "ch16": [
  ("## 2. 조절: 단순기울기\n회고 습관이 높을수록 여정→의미 기울기가 가팔라집니다(.73 → 1.24).",
@@ -751,6 +803,16 @@ STEPS = {
   'plt.scatter(svy.hjs + jit[0], svy.mil + jit[1], s=8, alpha=.4)\n'
   'plt.xlabel("hjs"); plt.ylabel("mil")\n'
   'plt.show()'),
+ ("## 7. 산점도 행렬: 상관행렬 표 옆에 두는 그림 (§B3.4)\n"
+  "§B3.4 상관행렬의 변수 다섯을 둘씩 짝지은 산점도를 한 판에 모읍니다. 대각선 칸은 변수마다의 히스토그램입니다. "
+  "곡선 · 극단점 · 범위 제한 · 두 집단 섞임(§B3.3)이 보이는 칸이 있는지 칸마다 살피고, 아래 상자가 찍는 상관행렬과 견주세요. "
+  "seaborn 을 쓰면 `sns.pairplot(svy[열])` 로 같은 그림을 그립니다.",
+  'import matplotlib.pyplot as plt\n'
+  '열 = ["hjs", "mil", "flr", "swl", "age"]\n'
+  'print(svy[열].corr().round(2))\n'
+  'pd.plotting.scatter_matrix(svy[열], figsize=(7, 7), alpha=.3, s=6, hist_kwds={"bins": 20})\n'
+  'plt.show()\n'
+  '# 2행 1열(hjs · mil) = 0.63 · 표의 아래 삼각형과 같은 수가 찍힌다'),
 ],
 "b4": [
  ("## 2-0. 실습 1 · 2: 실험판 두 집단을 세 검정으로 (책 B4.4 코드 1)\n"
@@ -1023,6 +1085,68 @@ STEPS = {
   'ps = forks(exp, null_cond)\n'
   'print("갈림길:", len(ps), " p<.05 수확:", sum(p<.05 for p in ps), " 최소 p:", round(min(ps),3))\n'
   '# 사전 지정 하나(0.346)는 정직하지만, 60을 다 걸으면 그럴듯한 유의가 여럿 나온다.'),
+ ("## 4. 탐색: AIC 전진 선택 · 떼어 둔 반 · 5겹 교차 검증 (책 §21.2 · 복습 ⑧)\n"
+  "잡음 세계(스무 후보 가운데 결과와 관련된 변수가 없다)와 신호 세계(두 변수가 결과를 정한다)를 200개씩 만듭니다. "
+  "출력 두 줄은 세계별 평균이고, 순서는 고른 예측변수 수 · 그 가운데 참 예측변수가 아닌 것 · 그 가운데 *p* < .05인 것 · "
+  "탐색 반 *R*² · 떼어 둔 반 *R*² · 떼어 둔 반 *R*²가 0보다 작은 세계의 비율 · 5겹 교차 검증 *R*²입니다. "
+  "앞 상자와 이어지지 않으므로 따로 돌려도 됩니다. ⏳ 1분쯤 걸립니다.",
+  'def aic(y, cols):\n'
+  '    X1 = np.column_stack([np.ones(len(y))] + cols)\n'
+  '    b, *_ = np.linalg.lstsq(X1, y, rcond=None)\n'
+  '    rss = ((y - X1 @ b) ** 2).sum()\n'
+  '    return len(y) * np.log(rss / len(y)) + 2 * X1.shape[1]\n'
+  '\n'
+  '\n'
+  'def 전진선택(X, y):\n'
+  '    고른 = []\n'
+  '    지금 = aic(y, [])\n'
+  '    while True:\n'
+  '        후보 = [j for j in range(X.shape[1]) if j not in 고른]\n'
+  '        if not 후보:\n'
+  '            break\n'
+  '        점수 = [aic(y, [X[:, k] for k in 고른 + [j]]) for j in 후보]\n'
+  '        if min(점수) >= 지금:                    # 더 줄일 후보가 없으면 멈춘다\n'
+  '            break\n'
+  '        지금 = min(점수)\n'
+  '        고른.append(후보[int(np.argmin(점수))])\n'
+  '    return 고른\n'
+  '\n'
+  '\n'
+  'def 예측R2(y, 예측):\n'
+  '    return 1 - ((y - 예측) ** 2).sum() / ((y - y.mean()) ** 2).sum()\n'
+  '\n'
+  '\n'
+  'def 고르고_예측(X, y, 맞출, 볼):\n'
+  '    고른 = 전진선택(X[맞출], y[맞출])\n'
+  '    b, _, p, r2 = ols(y[맞출], [X[맞출][:, k] for k in 고른])\n'
+  '    return 고른, p, r2, b[0] + X[볼][:, 고른] @ b[1:]\n'
+  '\n'
+  '\n'
+  'def 한_세계(X, y, 참):\n'
+  '    탐색, 확인 = np.arange(100), np.arange(100, 200)          # 앞 100명 · 뒤 100명\n'
+  '    고른, p, r2, 예측 = 고르고_예측(X, y, 탐색, 확인)\n'
+  '    떼어둔 = 예측R2(y[확인], 예측)\n'
+  '    cv예측 = np.empty(200)\n'
+  '    for f in range(5):                                        # 40명씩 다섯 몫\n'
+  '        볼 = np.arange(40 * f, 40 * f + 40)\n'
+  '        맞출 = np.setdiff1d(np.arange(200), 볼)\n'
+  '        cv예측[볼] = 고르고_예측(X, y, 맞출, 볼)[3]             # 선택부터 다시 한다\n'
+  '    return [len(고른), sum(k not in 참 for k in 고른), (p[1:] < .05).sum(),\n'
+  '            r2, 떼어둔, 떼어둔 < 0, 예측R2(y, cv예측)]\n'
+  '\n'
+  '\n'
+  'rng = np.random.default_rng(73)\n'
+  '잡음, 신호 = [], []\n'
+  'for _ in range(200):\n'
+  '    X = rng.standard_normal((200, 20))                        # 후보 예측변수 20개\n'
+  '    e = rng.standard_normal(200)\n'
+  '    잡음.append(한_세계(X, e, []))\n'
+  '    신호.append(한_세계(X, 0.5 * X[:, 0] + 0.5 * X[:, 1] + e, [0, 1]))\n'
+  'for 이름, 결과 in (("잡음", 잡음), ("신호", 신호)):\n'
+  '    m = np.mean(결과, axis=0)\n'
+  '    print(이름, *[round(float(v), d) for v, d in zip(m, (1, 1, 1, 2, 2, 2, 2))])\n'
+  '# 잡음 3.6 3.6 1.5 0.12 -0.17 0.97 -0.09\n'
+  '# 신호 5.2 3.2 3.2 0.42 0.21 0.05 0.27'),
 ],
 "ch19": [
  ("## 2. 같은 물음, 두 경로\n평균을 직접 빼는 것과 집단 표시를 넣은 회귀는 **같은 수**를 낸다. 소수 넷째 자리까지 같다.",

@@ -30,6 +30,7 @@ b3.1.grid.50,b3,.50,b3.grid_r50,data,,§B3.1 격자 칸 (구성상 정확히 .5)
 b3.1.grid.30,b3,.30,b3.grid_r30,data,,§B3.1 격자 칸 (구성상 정확히 .3)
 b3.1.paper.r3,b3,.3,,fixed,,§B3.1 예시값 = 사회과학 논문에 흔한 크기 (격자의 .30 칸)
 b3.1.ours.n,b3,566,b3.n_svy,data,,§B3.1 그림 설명 = 설문판 정제본
+b3.4.smat.n,b3,566,b3.n_svy,data,,§B3.4 산점도 행렬 그림 설명 = 설문판 정제본 (make_book_figures.fig_b3_scatter_matrix ; 2026-11-22)
 b3.1.ours.grid50,b3,.50,b3.grid_r50,data,,§B3.1 격자 칸 (구성상 정확히 .5)
 b3.1.ours.grid70,b3,.70,b3.grid_r70,data,,§B3.1 격자 칸 (구성상 정확히 .7)
 b3.2.five.xbar,b3,3,b3.five_xbar,data,,§B3.2 다섯 사람 X 평균

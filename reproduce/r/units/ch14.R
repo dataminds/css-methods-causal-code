@@ -253,4 +253,50 @@ calc("ch14.cen_hjs_mean", function() mean(S()$hjs))
 calc("ch14.cen_intercept", function() cen()[1])
 calc("ch14.cen_slope", function() cen()[2])
 calc("ch14.cen_mil_mean", function() mean(S()$mil))
+
+# §14.3 이상치 · 지레점 · 영향점 = 쿡 거리 (2026-11-22 ; cooks.distance 는 기본 R stats)
+svycook <- function() cooks.distance(fit())
+svyj <- function() which.max(svycook())
+calc("ch14.svy_4n", function() 4 / nrow(S()))
+calc("ch14.svy_cook_n_over", function() sum(svycook() > 4 / nrow(S())))
+calc("ch14.svy_cook_max", function() max(svycook()))
+calc("ch14.svy_cook_max_hjs", function() S()$hjs[svyj()])
+calc("ch14.svy_cook_max_resid", function() unname(residuals(fit())[svyj()]))
+calc("ch14.svy_cook_far", function() unname(svycook()[far()]))
+calc("ch14.svy_slope_drop_cookmax", function() unname(coef(lm(mil ~ hjs, data = S()[-svyj(), ]))[2]))
+
+# 모의 세계 = 같은 설계를 R 난수로 (set.seed(73) ; 57명 + 고정한 3명)
+infl <- local({
+  set.seed(73)
+  x <- rnorm(57, 4, 1)
+  y <- 2 + 0.5 * x + rnorm(57, 0, 1)
+  xa <- c(x, 8.5, 9.0, 9.5); ya <- c(y, 1.0, 0.5, 1.5)
+  D <- cooks.distance(lm(ya ~ xa))
+  list(b_all = unname(coef(lm(ya ~ xa))[2]), b_wo = unname(coef(lm(y ~ x))[2]),
+       d3_min = min(D[58:60]), d3_max = max(D[58:60]), d_rest_max = max(D[1:57]))
+})
+for (k in c("b_all", "b_wo", "d3_min", "d3_max", "d_rest_max")) local({
+  kk <- k
+  calc(paste0("ch14.infl_", kk), function() infl[[kk]])
+})
+calc("ch14.infl_4n", function() 4 / 60)
+
+# §14.4 [선택] 로그 변환 = 같은 설계를 R 난수로 (set.seed(73) ; 계정 300개)
+logw <- local({
+  set.seed(73)
+  f <- exp(rnorm(300, log(3000), 1.2))
+  w <- exp(0.5 + 0.3 * log(f) + rnorm(300, 0, 0.5))
+  keep <- !(seq_along(f) %in% order(f, decreasing = TRUE)[1:5])
+  lg <- unname(coef(lm(log(w) ~ log(f)))[2])
+  list(f_med = median(f), f_max_man = max(f) / 10000,
+       raw = unname(coef(lm(w ~ f))[2]) * 1000, raw_wo = unname(coef(lm(w[keep] ~ f[keep]))[2]) * 1000,
+       lg = lg, lg_wo = unname(coef(lm(log(w[keep]) ~ log(f[keep])))[2]),
+       pct10 = (1.1^lg - 1) * 100)
+})
+for (k in c("f_med", "f_max_man", "raw", "raw_wo", "lg", "lg_wo", "pct10")) local({
+  kk <- k
+  calc(paste0("ch14.logw_", kk), function() logw[[kk]])
+})
+calc("ch14.log_ex_exact", function() 100 * (exp(0.05) - 1))
+calc("ch14.log_ex_lx", function() 2 / 100)
 })

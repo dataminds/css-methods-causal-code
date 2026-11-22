@@ -350,3 +350,77 @@ calc("ch14.cen_hjs_mean")(lambda: S().hjs.mean())
 calc("ch14.cen_intercept")(lambda: _cen()[0])
 calc("ch14.cen_slope")(lambda: _cen()[1])
 calc("ch14.cen_mil_mean")(lambda: S().mil.mean())
+
+
+# §14.3 이상치 · 지레점 · 영향점 = 쿡 거리 (2026-11-22)
+def _cook(x, y):
+    """단순 회귀의 쿡 거리 = 잔차² ÷ (계수 수 × 잔차 분산) × h ÷ (1 − h)²."""
+    x = np.asarray(x, float); y = np.asarray(y, float)
+    X = np.column_stack([np.ones(len(x)), x])
+    h = np.diag(X @ np.linalg.inv(X.T @ X) @ X.T)
+    b = np.linalg.lstsq(X, y, rcond=None)[0]
+    e = y - X @ b
+    s2 = e @ e / (len(y) - 2)
+    return e ** 2 / (2 * s2) * h / (1 - h) ** 2
+
+
+def _svy_cook():
+    if "svycook" not in _c:
+        x, y = F("x"), F("y")
+        D = _cook(x, y)
+        j = int(np.argmax(D))
+        keep = np.ones(len(x), bool); keep[j] = False
+        _c["svycook"] = dict(D=D, j=j, slope_wo=np.polyfit(x[keep], y[keep], 1)[0])
+    return _c["svycook"]
+
+
+calc("ch14.svy_4n")(lambda: 4 / len(F("x")))
+calc("ch14.svy_cook_n_over")(lambda: int(np.sum(_svy_cook()["D"] > 4 / len(F("x")))))
+calc("ch14.svy_cook_max")(lambda: _svy_cook()["D"].max())
+calc("ch14.svy_cook_max_hjs")(lambda: F("x")[_svy_cook()["j"]])
+calc("ch14.svy_cook_max_resid")(lambda: F("resid")[_svy_cook()["j"]])
+calc("ch14.svy_cook_far")(lambda: _svy_cook()["D"][int(np.argmax(np.abs(F("x") - F("x").mean())))])
+calc("ch14.svy_slope_drop_cookmax")(lambda: _svy_cook()["slope_wo"])
+
+# 모의 세계 = 57명(X ~ 정규(4, 1), Y = 2 + 0.5X + 정규(0, 1)) + 3명(X 8.5 · 9.0 · 9.5, Y 1.0 · 0.5 · 1.5) ; 씨앗 73
+_INFL_XO = np.array([8.5, 9.0, 9.5])
+_INFL_YO = np.array([1.0, 0.5, 1.5])
+
+
+def _infl():
+    if "infl" not in _c:
+        g = np.random.default_rng(73)
+        x = g.normal(4, 1, 57)
+        y = 2 + 0.5 * x + g.normal(0, 1, 57)
+        xa, ya = np.r_[x, _INFL_XO], np.r_[y, _INFL_YO]
+        D = _cook(xa, ya)
+        _c["infl"] = dict(b_all=np.polyfit(xa, ya, 1)[0], b_wo=np.polyfit(x, y, 1)[0],
+                          d3_min=D[57:].min(), d3_max=D[57:].max(), d_rest_max=D[:57].max())
+    return _c["infl"]
+
+
+for _k in ("b_all", "b_wo", "d3_min", "d3_max", "d_rest_max"):
+    calc(f"ch14.infl_{_k}")(lambda k=_k: _infl()[k])
+calc("ch14.infl_4n")(lambda: 4 / 60)
+
+
+# §14.4 [선택] 로그 변환 = 계정 300개 ; 팔로워 = exp(정규(log 3000, 1.2)) ; 하루 시청 시간(분) = exp(0.5 + 0.3 log 팔로워 + 정규(0, 0.5)) ; 씨앗 73
+def _logw():
+    if "logw" not in _c:
+        g = np.random.default_rng(73)
+        f = np.exp(g.normal(np.log(3000), 1.2, 300))
+        w = np.exp(0.5 + 0.3 * np.log(f) + g.normal(0, 0.5, 300))
+        keep = np.ones(300, bool); keep[np.argsort(f)[-5:]] = False   # 팔로워가 가장 많은 다섯 계정 뺌
+        lg = np.polyfit(np.log(f), np.log(w), 1)[0]
+        _c["logw"] = dict(
+            f_med=np.median(f), f_max_man=f.max() / 10000,
+            raw=np.polyfit(f, w, 1)[0] * 1000, raw_wo=np.polyfit(f[keep], w[keep], 1)[0] * 1000,
+            lg=lg, lg_wo=np.polyfit(np.log(f[keep]), np.log(w[keep]), 1)[0],
+            pct10=(1.1 ** lg - 1) * 100)
+    return _c["logw"]
+
+
+for _k in ("f_med", "f_max_man", "raw", "raw_wo", "lg", "lg_wo", "pct10"):
+    calc(f"ch14.logw_{_k}")(lambda k=_k: _logw()[k])
+calc("ch14.log_ex_exact")(lambda: 100 * (np.exp(0.05) - 1))     # log(Y) ~ X 에서 b = 0.05 의 정확한 % (예시)
+calc("ch14.log_ex_lx")(lambda: 2 / 100)                         # Y ~ log(X) 에서 b = 2 → X 1% 당 Y 변화 (예시)

@@ -180,6 +180,10 @@ local({
 calc("ch15.ht_t_hjs", function() summary(ht_fit(2)$m)$coefficients["hjs", "t value"])
 calc("ch15.ht_adj1", function() summary(ht_fit(1)$m)$adj.r.squared)
 calc("ch15.ht_adj2", function() summary(ht_fit(2)$m)$adj.r.squared)
+# 2026-11-22 [선택] 소절 끝 상자 = 조정 R² 계산식의 산술
+calc("ch15.ht_nm1", function() nobs(ht_fit(2)$m) - 1)
+calc("ch15.ht_k", function() length(coef(ht_fit(2)$m)) - 1)
+calc("ch15.ht_adj2_from_printed", function() { m <- ht_fit(2)$m; 1 - (1 - .3915) * (nobs(m) - 1) / df.residual(m) })
 ht_vif <- function() { s <- HT(); v <- c("age", "fem", "hjs")
   sapply(v, function(x) 1 / (1 - summary(lm(reformulate(setdiff(v, x), x), data = s))$r.squared)) }
 calc("ch15.ht_vmin", function() min(ht_vif()))

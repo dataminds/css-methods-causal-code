@@ -97,3 +97,40 @@ def _fwer(k, n=108, reps=5000, seed=73):
 
 calc("b2.fwer_sim4")(lambda: _fwer(4))
 calc("b2.fwer_sim6")(lambda: _fwer(6))
+
+
+# §B2.2 「투키 HSD 출력 읽기」 · 「계획비교」 · 「결과 보고 본보기」 (2026-11-22)
+# 쌍 순서 = grp 순서 (00 · 01 · 10 · 11) 의 (i, j), i < j ; 차이 = 뒤 칸 − 앞 칸
+_PAIRS = [(i, j) for i in range(4) for j in range(i + 1, 4)]
+
+
+def _tukey():
+    r = stats.tukey_hsd(*grp())
+    ci = r.confidence_interval(.95)
+    # scipy 의 statistic[i, j] = 평균 i − 평균 j → 뒤 칸 − 앞 칸 = statistic[j, i]
+    return [{"diff": r.statistic[j, i], "padj": r.pvalue[i, j], "lo": ci.low[j, i], "hi": ci.high[j, i],
+             "p": stats.ttest_ind(grp()[j], grp()[i]).pvalue} for i, j in _PAIRS]
+
+
+for _q, (_i, _j) in enumerate(_PAIRS):
+    for _k in ("diff", "padj", "lo", "hi", "p"):
+        calc(f"b2.tk{_i}{_j}_{_k}")(lambda q=_q, k=_k: _tukey()[q][k])
+
+
+def _contrast():
+    g = grp()
+    w = np.array([-1, 1 / 3, 1 / 3, 1 / 3])
+    m = np.array([x.mean() for x in g])
+    n = np.array([len(x) for x in g])
+    dfw = n.sum() - len(g)
+    mse = sum(((x - x.mean()) ** 2).sum() for x in g) / dfw
+    est = w @ m
+    se = np.sqrt(mse * (w ** 2 / n).sum())
+    t = est / se
+    half = stats.t.ppf(.975, dfw) * se
+    return {"est": est, "se": se, "t": t, "p": 2 * stats.t.sf(abs(t), dfw), "lo": est - half, "hi": est + half,
+            "df": dfw, "wsum": w.sum()}
+
+
+for _k in ("est", "se", "t", "p", "lo", "hi", "df", "wsum"):
+    calc(f"b2.con_{_k}")(lambda k=_k: _contrast()[k])

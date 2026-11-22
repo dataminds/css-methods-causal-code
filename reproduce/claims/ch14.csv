@@ -284,3 +284,74 @@ ch14.5.ex.q0,ch14,0.77,ch14.quad_at0,data,,§14.5 외삽 = 설문판 mil ~ hjs �
 ch14.5.ex.l1b,ch14,0.97,ch14.lin_at1,data,,§14.5 외삽 = 설문판 mil ~ hjs 직선과 2차 곡선 (자료 범위 = hjs 최솟값 ~ 최댓값)
 ch14.5.ex.rlo,ch14,2.33,ch14.hjs_min,data,,§14.5 외삽 = 설문판 mil ~ hjs 직선과 2차 곡선 (자료 범위 = hjs 최솟값 ~ 최댓값)
 ch14.5.ex.rhi,ch14,6.86,ch14.hjs_max,data,,§14.5 외삽 = 설문판 mil ~ hjs 직선과 2차 곡선 (자료 범위 = hjs 최솟값 ~ 최댓값)
+ch14.3.cook.far,ch14,2.33,ch14.far_hjs,data,,§14.3 이상치 · 지레점 · 영향점 (2026-11-22) = 코드 6 의 평균에서 가장 먼 점
+ch14.3.cook.rule4n,ch14,4,,fixed,,쿡 거리의 관행 어림 기준 4/n (정의)
+ch14.3.cook.n,ch14,566,ch14.n_svy,data,,§14.3 쿡 거리 = 설문판 정제본
+ch14.3.cook.svy4n,ch14,.0071,ch14.svy_4n,data,,4 ÷ 566
+ch14.3.cook.nover,ch14,22,ch14.svy_cook_n_over,data,,설문판 mil ~ hjs 의 쿡 거리 > 4/n 인원
+ch14.3.cook.n2,ch14,566,ch14.n_svy,data,,설문판 정제본
+ch14.3.cook.maxhjs,ch14,3.14,ch14.svy_cook_max_hjs,data,,쿡 거리 최대인 사람의 hjs (실제 3.143)
+ch14.3.cook.maxres,ch14,2.4,ch14.svy_cook_max_resid,data,,그 사람의 잔차 (실제 2.435)
+ch14.3.cook.max,ch14,.036,ch14.svy_cook_max,data,,설문판 쿡 거리 최댓값
+ch14.3.cook.b,ch14,0.978,ch14.slope,data,,§14.3 원래 기울기
+ch14.3.cook.bwo,ch14,0.991,ch14.svy_slope_drop_cookmax,data,,쿡 거리 최대인 사람을 뺀 기울기
+ch14.3.cook.farhjs,ch14,2.33,ch14.far_hjs,data,,코드 6 의 점
+ch14.3.cook.fard,ch14,.0070,ch14.svy_cook_far,data,,코드 6 의 점의 쿡 거리 (실제 .00701 ; 4/n .00707 바로 아래)
+ch14.3.cook.flags,ch14,22,ch14.svy_cook_n_over,data,,쿡 거리 > 4/n 인원
+ch14.3.infl.n,ch14,60,,fixed,,모의시행 설계 = 57명 + 3명 (py/units/ch14.py _infl)
+ch14.3.infl.n57,ch14,57,,fixed,,모의시행 설계 = 보통 점 57명
+ch14.3.infl.xmu,ch14,4,,fixed,,모의시행 설계 = X ~ 정규(4 · 1)
+ch14.3.infl.beta,ch14,0.5,,fixed,,모의시행에 심은 기울기 (Y = 2 + 0.5X + 정규(0 · 1))
+ch14.3.infl.seed,ch14,73,,fixed,,씨앗
+ch14.3.infl.n3,ch14,3,,fixed,,모의시행 설계 = 심은 영향점 3명
+ch14.3.infl.x1,ch14,8.5,,fixed,,심은 영향점의 X
+ch14.3.infl.x2,ch14,9.0,,fixed,,심은 영향점의 X
+ch14.3.infl.x3,ch14,9.5,,fixed,,심은 영향점의 X
+ch14.3.infl.y1,ch14,1.0,,fixed,,심은 영향점의 Y
+ch14.3.infl.y2,ch14,0.5,,fixed,,심은 영향점의 Y
+ch14.3.infl.y3,ch14,1.5,,fixed,,심은 영향점의 Y
+ch14.3.infl.n60b,ch14,60,,fixed,,모의시행 설계
+ch14.3.infl.ball,ch14,−0.16,ch14.infl_b_all,sim,0.35,60명 기울기 (파이썬 −0.159 ; R −0.095). 파이썬 씨앗 200개 모의 SD .082 → 허용 3 × √2 × .082 ≈ .35 (씨앗 200개 중 94.5% 에서 부호가 음)
+ch14.3.infl.n3b,ch14,3,,fixed,,모의시행 설계
+ch14.3.infl.bwo,ch14,0.43,ch14.infl_b_wo,sim,0.56,57명 기울기 (파이썬 0.434 ; R 0.440). 모의 SD .132 → 허용 3 × √2 × .132 ≈ .56
+ch14.3.infl.d3lo,ch14,.32,ch14.infl_d3_min,sim,0.43,심은 3명의 쿡 거리 최솟값 (파이썬 .323 ; R .311). 모의 SD .099 → 허용 3 × √2 × .099 ≈ .42 (올려 .43)
+ch14.3.infl.d3hi,ch14,.67,ch14.infl_d3_max,sim,0.51,심은 3명의 쿡 거리 최댓값 (파이썬 .671 ; R .594). 모의 SD .120 → 허용 ≈ .51
+ch14.3.infl.n57b,ch14,57,,fixed,,모의시행 설계
+ch14.3.infl.drest,ch14,.08,ch14.infl_d_rest_max,sim,0.30,보통 57명의 쿡 거리 최댓값 (파이썬 .078 ; R .154). 모의 SD .070 → 허용 3 × √2 × .070 ≈ .30
+ch14.3.infl.4n,ch14,.067,ch14.infl_4n,data,,4 ÷ 60
+ch14.3.infl.n57c,ch14,57,,fixed,,모의시행 설계
+ch14.3.infl.drest2,ch14,.08,ch14.infl_d_rest_max,sim,0.30,허용 근거 = ch14.3.infl.drest
+ch14.3.rule.lo,ch14,1,,fixed,,예시 = 설문판 척도 범위
+ch14.3.rule.hi,ch14,7,,fixed,,예시 = 설문판 척도 범위
+ch14.3.rule.typo,ch14,70,,fixed,,예시 숫자 = 7 을 잘못 친 값
+ch14.4.log.t1.one,ch14,1,,fixed,,로그 해석 표 (정의)
+ch14.4.log.t1.hund,ch14,100,,fixed,,로그 해석 표 (정의)
+ch14.4.log.t1.exact,ch14,100,,fixed,,로그 해석 표 (정의)
+ch14.4.log.t1.b,ch14,0.05,,fixed,,예시 숫자
+ch14.4.log.t1.approx,ch14,5,,fixed,,100 × 0.05
+ch14.4.log.t1.ex,ch14,5.1,ch14.log_ex_exact,data,,100 × (e^0.05 − 1) = 5.127
+ch14.4.log.t2.pct,ch14,1,,fixed,,로그 해석 표 (정의)
+ch14.4.log.t2.hund,ch14,100,,fixed,,로그 해석 표 (정의)
+ch14.4.log.t2.b,ch14,2,,fixed,,예시 숫자
+ch14.4.log.t2.pct2,ch14,1,,fixed,,예시 숫자
+ch14.4.log.t2.ex,ch14,0.02,ch14.log_ex_lx,data,,2 ÷ 100
+ch14.4.log.t3.pct,ch14,1,,fixed,,로그 해석 표 (정의)
+ch14.4.log.t3.b,ch14,0.3,,fixed,,예시 숫자 (b 와 그 % 가 같은 수)
+ch14.4.log.t3.pct2,ch14,1,,fixed,,예시 숫자
+ch14.4.log.n,ch14,300,,fixed,,모의시행 설계 (py/units/ch14.py _logw)
+ch14.4.log.seed,ch14,73,,fixed,,씨앗
+ch14.4.log.fmed,ch14,"3,293",ch14.logw_f_med,sim,1130,팔로워 중앙값 (파이썬 3292.6 ; R 2957.9). 모의 SD 264.7 → 허용 3 × √2 × 264.7 ≈ 1123 (올려 1130)
+ch14.4.log.fmax,ch14,15,ch14.logw_f_max_man,sim,32,팔로워 최댓값 ÷ 1만 (파이썬 14.77 ; R 9.14). 모의 SD 7.54 → 허용 3 × √2 × 7.54 ≈ 32
+ch14.4.log.true,ch14,0.3,,fixed,,모의시행에 심은 log–log 기울기
+ch14.4.log.k,ch14,"1,000",,fixed,,원래 단위 기울기의 표시 단위 (팔로워 1000명당)
+ch14.4.log.raw,ch14,0.58,ch14.logw_raw,sim,0.97,원래 단위 기울기 × 1000 (파이썬 0.576 ; R 0.557). 모의 SD .2285 → 허용 3 × √2 × .2285 ≈ .97
+ch14.4.log.top5,ch14,5,,fixed,,모의시행 설계 = 뺀 계정 수
+ch14.4.log.rawwo,ch14,0.81,ch14.logw_raw_wo,sim,0.83,5개 계정을 뺀 원래 단위 기울기 × 1000 (파이썬 0.814 ; R 0.972). 모의 SD .1934 → 허용 ≈ .82 (올려 .83)
+ch14.4.log.lg,ch14,0.29,ch14.logw_lg,sim,0.11,log–log 기울기 (파이썬 .2894 ; R .3138). 모의 SD .0245 → 허용 3 × √2 × .0245 ≈ .104 (올려 .11)
+ch14.4.log.top5b,ch14,5,,fixed,,모의시행 설계
+ch14.4.log.lgwo,ch14,0.29,ch14.logw_lg_wo,sim,0.11,5개 계정을 뺀 log–log 기울기 (파이썬 .2857 ; R .3253). 모의 SD .0256 → 허용 ≈ .109 (올려 .11)
+ch14.4.log.el.pct,ch14,1,,fixed,,탄력성 읽기의 1%
+ch14.4.log.el,ch14,0.29,ch14.logw_lg,sim,0.11,허용 근거 = ch14.4.log.lg
+ch14.4.log.p10.x,ch14,10,,fixed,,예시 숫자
+ch14.4.log.p10,ch14,2.8,ch14.logw_pct10,sim,1.1,(1.1^b − 1) × 100 (파이썬 2.80 ; R 3.04). 모의 SD .2405 → 허용 3 × √2 × .2405 ≈ 1.02 (올려 1.1)
+ch14.4.log.p10.base,ch14,1.1,,fixed,,1 + 10%

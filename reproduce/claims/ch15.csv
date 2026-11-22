@@ -411,3 +411,10 @@ ch15.ai.c12.mean,ch15,4,,fixed,,코드 12 = 끊은 마을 복용량 평균 (설�
 ch15.ai.c12.sd,ch15,2.5,,fixed,,코드 12 = 끊은 마을 복용량 표준편차 (설계 ; ch15.1.add.design.sd)
 ch15.8.ex7.lo,ch15,0,,fixed,,실습 7 = 세계행복보고서 삶의 평가(캔트릴 사다리) 척도 끝값 (0 = 가장 나쁜 삶 · 10 = 가장 좋은 삶 ; 보고서 정의)
 ch15.8.ex7.hi,ch15,10,,fixed,,실습 7 = 캔트릴 사다리 척도 끝값 10
+ch15.22.adj.n,ch15,554,ch15.ht_n,data,,[선택] 소절 끝 상자 조정 R² 산술 (2026-11-22 사용자 「… 조정 R² …: 시행」)
+ch15.22.adj.k,ch15,3,ch15.ht_k,data,,2단계 설명변수 수 = age · fem · hjs
+ch15.22.adj.r2,ch15,.3915,ch15.ht2_r2,data,,2단계 반올림 전 R² (표 주와 같은 값)
+ch15.22.adj.nm1,ch15,553,ch15.ht_nm1,data,,n − 1
+ch15.22.adj.df,ch15,550,ch15.ht_df,data,,n − k − 1 = 잔차 자유도
+ch15.22.adj.val,ch15,.388,ch15.ht_adj2_from_printed,data,,인쇄한 .3915 로 다시 한 산술
+ch15.22.adj.val2,ch15,.388,ch15.ht_adj2,data,,표의 조정 R² (반올림 전 R² 로 계산)

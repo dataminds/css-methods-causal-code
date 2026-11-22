@@ -150,3 +150,18 @@ for _c, _g in ((1, "int"), (0, "ctl")):
 calc("ch05.exp_women_pct_gap")(lambda: ((E()[E().cond == 0].gender == 2).mean() - (E()[E().cond == 1].gender == 2).mean()) * 100)
 calc("ch05.exp_raw_n")(lambda: len(load("exp", clean=False)))
 calc("ch05.exp_n")(lambda: len(E()))
+
+
+# §5.2 「상자 그림 읽기」 = mil 의 사분위수 · IQR · 수염 (2026-11-22 ; 사분위수 = 선형 보간, numpy · pandas 기본)
+def _box():
+    x = S().mil
+    q1, q3 = np.percentile(x, 25), np.percentile(x, 75)
+    iqr = q3 - q1
+    lo, hi = q1 - 1.5 * iqr, q3 + 1.5 * iqr
+    out = x[(x < lo) | (x > hi)]
+    return {"q1": q1, "q3": q3, "iqr": iqr, "k": 1.5 * iqr, "lo": lo, "hi": hi,
+            "wlo": x[x >= lo].min(), "whi": x[x <= hi].max(), "flier": out.min(), "nflier": len(out)}
+
+
+for _k in ("q1", "q3", "iqr", "k", "lo", "hi", "wlo", "whi", "flier", "nflier"):
+    calc(f"ch05.box_mil_{_k}")(lambda k=_k: _box()[k])

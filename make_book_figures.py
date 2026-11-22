@@ -1953,6 +1953,164 @@ def fig_ch17_its():
     save(fig, "fig-ch17-its.png")
 
 
+# ── 2026-11-22 그림 넷 (사용자 「그림 시행」) ─────────────────────
+# 하나만 다시 그릴 때: python -c "import make_book_figures as m; m.fig_ch16_crossover()"
+def _mn(v, fmt="{:.2f}"):
+    """음수 부호는 하이픈으로 둔다(맑은 고딕에 U+2212 글리프가 없다 ; axes.unicode_minus = False 와 같은 까닭)."""
+    return fmt.format(v)
+
+
+def fig_ch16_crossover(seed=73, n=150):
+    """교차형 상호작용 = 16장 코드 10 · reproduce/py/units/ch16.py `_cross()` 와 같은 세계.
+    성장 이야기 · 냉소 이야기 150명씩, 참 기울기 +0.4 · −0.4. 합친 직선은 거의 평평하다."""
+    rng = np.random.default_rng(seed)
+    genre = np.repeat([0, 1], n)                     # 0 = 성장 이야기 · 1 = 냉소 이야기
+    imm = rng.normal(0, 1, 2 * n)
+    give = np.where(genre == 0, 0.4, -0.4) * imm + rng.normal(0, 1, 2 * n)
+    r_all = np.corrcoef(imm, give)[0, 1]
+    fig, ax = plt.subplots(figsize=(6.8, 4.4))
+    xs = np.linspace(imm.min(), imm.max(), 50)
+    out = {"r": r_all}
+    for k, name in ((0, "성장 이야기"), (1, "냉소 이야기")):
+        x, y = imm[genre == k], give[genre == k]
+        b1, b0 = np.polyfit(x, y, 1)
+        out[k] = b1
+        face = BW["color"][k] if k == 0 else "none"
+        ax.scatter(x, y, s=16, marker=BW["marker"][k], facecolors=face,
+                   edgecolors=BW["color"][k], linewidths=.8, alpha=.55)
+        ax.plot(xs, b0 + b1 * xs, color=BW["color"][k], linestyle=BW["line"][k], linewidth=2.4,
+                label=f"{name} {n}명: 기울기 {_mn(b1)}")
+    b1, b0 = np.polyfit(imm, give, 1)
+    ax.plot(xs, b0 + b1 * xs, color=OI[7], linestyle=":", linewidth=2.4,
+            label=f"300명 전체: r = {_mn(r_all)}")
+    ax.set_xlabel("몰입 (평균 0 · 표준편차 1)"); ax.set_ylabel("나눔 의향")
+    ax.set_title("기울기가 엇갈리면 합친 직선은 거의 평평하다 (씨앗 73)", fontsize=10.5)
+    ax.legend(fontsize=8.5, loc="upper center", bbox_to_anchor=(.5, -.14), ncol=3,
+              handlelength=2.6, columnspacing=1.2)      # 점과 겹치지 않게 그림 밖 아래로
+    save(fig, "fig-ch16-crossover.png")
+    return out
+
+
+def fig_b4_qq(seed=73, n=100):
+    """분위수 그림(Q-Q) 넷 = B4 §B4.1 읽는 법 표의 앞 네 행. 칸마다 같은 씨앗으로 100개.
+    기준선은 책이 권하는 `stats.probplot` 이 그리는 최소제곱 직선이다."""
+    from scipy import stats
+    draws = (
+        ("(가) 직선 위에 늘어선다\n정규분포", lambda g: g.normal(0, 1, n)),
+        ("(나) 왼쪽 끝은 아래로, 오른쪽 끝은 위로\n꼬리가 두껍다: 자유도 3의 t분포", lambda g: g.standard_t(3, n)),
+        ("(다) 왼쪽 끝은 위로, 오른쪽 끝은 아래로\n꼬리가 얇다: 균등분포", lambda g: g.uniform(0, 1, n)),
+        ("(라) 양 끝이 함께 들려 아래로 볼록하다\n오른쪽으로 치우쳤다: 지수분포", lambda g: g.exponential(1, n)),
+    )
+    fig, axes = plt.subplots(2, 2, figsize=(8.4, 7.0))
+    for ax, (title, draw) in zip(axes.ravel(), draws):
+        x = draw(np.random.default_rng(seed))
+        (osm, osr), (slope, icept, _) = stats.probplot(x, dist="norm")
+        ax.scatter(osm, osr, s=12, color=BW["color"][0], alpha=.75, edgecolors="none")
+        ax.plot(osm, icept + slope * osm, color=OI[7], linestyle="--", linewidth=1.3)
+        ax.set_title(title, fontsize=9.5)
+    for ax in axes[1]:
+        ax.set_xlabel("정규분포라면 나왔을 값", fontsize=9)
+    for ax in axes[:, 0]:
+        ax.set_ylabel("내 자료의 값", fontsize=9)
+    fig.suptitle(f"분위수 그림 읽기: 점이 직선에서 어디로 벗어나는가 (칸마다 {n}개, 씨앗 73)", y=1.00)
+    save(fig, "fig-b4-qq.png")
+
+
+def fig_b3_scatter_matrix(seed=73):
+    """B3 §B3.4 상관행렬 표의 변수 다섯 = 아래 삼각형 산점도 · 대각선 히스토그램 · 위 삼각형 r.
+    척도 점수는 값이 몇 가지뿐이라 점이 겹친다 → ±0.08 만큼 흔든다(B3 노트북 실습 4 와 같은 폭).
+    나이는 흔들지 않는다."""
+    svy = load_clean("svy")
+    cols = ["hjs", "mil", "flr", "swl", "age"]
+    names = ["1. 영웅의 여정", "2. 삶의 의미", "3. 번영", "4. 삶의 만족", "5. 나이"]
+    rng = np.random.default_rng(seed)
+    jit = {c: (rng.uniform(-.08, .08, len(svy)) if c != "age" else np.zeros(len(svy))) for c in cols}
+    R = svy[cols].corr().values
+    k = len(cols)
+    fig, axes = plt.subplots(k, k, figsize=(8.6, 8.6))
+    for i, ri in enumerate(cols):
+        for j, cj in enumerate(cols):
+            ax = axes[i, j]
+            ax.grid(False)
+            if i == j:
+                ax.hist(svy[ri], bins=20, color=BW["color"][0], edgecolor="white", linewidth=.4)
+                ax.set_yticks([])
+            elif i > j:
+                ax.scatter(svy[cj] + jit[cj], svy[ri] + jit[ri], s=3, alpha=.35,
+                           color=BW["color"][0], edgecolors="none")
+            else:
+                r = R[i, j]
+                ax.text(.5, .5, "r = " + f"{r:.2f}".replace("0.", ".", 1),
+                        ha="center", va="center", transform=ax.transAxes,
+                        fontsize=8 + 10 * abs(r), color="0.15" if abs(r) >= .1 else "0.55")
+                ax.set_xticks([]); ax.set_yticks([])
+                for sp in ax.spines.values():
+                    sp.set_color("0.85")
+            if i < k - 1:
+                ax.set_xticklabels([])
+            else:
+                ax.set_xlabel(names[j], fontsize=9)
+            if j > 0 and i != j:
+                ax.set_yticklabels([])
+            elif j == 0 and i > 0:
+                ax.set_ylabel(names[i], fontsize=9)
+            ax.tick_params(labelsize=7)
+    axes[0, 0].set_ylabel(names[0], fontsize=9)
+    fig.suptitle("상관행렬의 변수 다섯을 그림으로: 아래는 산점도, 대각선은 분포, 위는 r (566명)", y=1.00)
+    save(fig, "fig-b3-scatter-matrix.png")
+    return R
+
+
+def fig_ch05_boxplot_anatomy(seed=73, var="mil"):
+    """상자 그림의 부분 이름 = 설문판 삶의 의미(mil) 566명. 오른쪽에 원자료를 흔들어 찍는다.
+    사분위수는 np.percentile 기본(선형 보간 ; R quantile type 7 과 같다)이고 matplotlib boxplot 도 같은 값을 쓴다."""
+    svy = load_clean("svy")
+    x = svy[var].values
+    q1, med, q3 = np.percentile(x, [25, 50, 75])
+    iqr = q3 - q1
+    lo_w = x[x >= q1 - 1.5 * iqr].min(); hi_w = x[x <= q3 + 1.5 * iqr].max()
+    outl = np.sort(x[(x < q1 - 1.5 * iqr) | (x > q3 + 1.5 * iqr)])
+    fig, ax = plt.subplots(figsize=(7.4, 5.4))
+    ax.grid(False)
+    ax.boxplot(x, positions=[0], widths=.45, whis=1.5, patch_artist=True,
+               boxprops=dict(facecolor="0.92", edgecolor=OI[7], linewidth=1.3),
+               medianprops=dict(color=OI[7], linewidth=2.4),
+               whiskerprops=dict(color=OI[7], linewidth=1.3),
+               capprops=dict(color=OI[7], linewidth=1.3),
+               flierprops=dict(marker="o", markerfacecolor="none", markeredgecolor=OI[7], markersize=7))
+    rng = np.random.default_rng(seed)
+    ax.scatter(0.62 + rng.uniform(-.14, .14, len(x)), x + rng.uniform(-.06, .06, len(x)),
+               s=6, alpha=.35, color=BW["color"][0], edgecolors="none")
+    ax.text(0.62, 7.45, f"원자료 {len(x)}명\n(겹치지 않게 조금 흔들었다)", ha="center", va="bottom", fontsize=8.5)
+    L = -0.42                                         # 왼쪽 이름표의 x
+    def lab(y, text, ytext=None):
+        ax.annotate(text, xy=(-0.24, y), xytext=(L, y if ytext is None else ytext),
+                    ha="right", va="center", fontsize=9,
+                    arrowprops=dict(arrowstyle="-", color="0.4", linewidth=.8))
+    lab(hi_w, f"수염 위끝 {hi_w:.2f}\n(상자에서 1.5 × IQR 안의 가장 먼 값)", 6.95)
+    lab(q3, f"Q3(위 사분위수) {q3:.2f}", 5.95)
+    lab(med, f"중앙값 {med:.2f}", 5.0)
+    lab(q1, f"Q1(아래 사분위수) {q1:.2f}", 4.0)
+    lab(lo_w, f"수염 아래끝 {lo_w:.2f}\n(상자에서 1.5 × IQR 안의 가장 먼 값)", 2.0)
+    ax.annotate(f"따로 찍힌 점 {', '.join(f'{v:.2f}' for v in outl)}\n(수염 밖의 값)",
+                xy=(-0.04, outl[0]), xytext=(L, 0.85), ha="right", va="center", fontsize=9,
+                arrowprops=dict(arrowstyle="-", color="0.4", linewidth=.8))
+    # IQR 괄호 (상자 오른쪽)
+    bx = 0.30
+    ax.annotate("", xy=(bx, q1), xytext=(bx, q3),
+                arrowprops=dict(arrowstyle="<->", color="0.25", linewidth=1))
+    ax.text(bx + .03, (q1 + q3) / 2, f"IQR\n(사분범위)\n{iqr:.2f}", ha="left", va="center", fontsize=8.5,
+            bbox=dict(facecolor="white", edgecolor="none", pad=1))
+    ax.set_xlim(-1.75, 0.95); ax.set_ylim(0.4, 8.0)
+    ax.set_xticks([]); ax.set_yticks(range(1, 8))
+    ax.set_ylabel("삶의 의미 (1 ~ 7)")
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    ax.set_title(f"상자 그림의 부분 이름: 삶의 의미 (설문판 {len(x)}명, 씨앗 73)", fontsize=10.5)
+    save(fig, "fig-ch05-boxplot-anatomy.png")
+    return dict(q1=q1, med=med, q3=q3, iqr=iqr, lo_w=lo_w, hi_w=hi_w, outl=outl.tolist(), n=len(x))
+
+
 if __name__ == "__main__":
     fig_ch01_map()
     fig_colab_sidebar()
@@ -2015,6 +2173,10 @@ if __name__ == "__main__":
     fig_ch17_its()
     fig_s2_cells()
     fig_s4_cohort()
+    print("16장 교차형", {k: round(v, 2) for k, v in fig_ch16_crossover().items()})
+    fig_b4_qq()
+    fig_b3_scatter_matrix()
+    print("5장 상자 그림", fig_ch05_boxplot_anatomy())
     print("ch06 치우침: 모집단", round(sk_pop, 2), "→ 평균들", round(sk_mean, 2))
     print("ch07 관찰 차이:", round(obs, 3), "p =", round(p, 4))
     print("ch07 표본 20개 p:", round(ps20.min(), 3), "~", round(ps20.max(), 3),

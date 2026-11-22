@@ -20,6 +20,26 @@
   [
    204,
    "# ④ 씨앗. 본문 수치를 재현하려면 73, 요동 체험은 아무 수나\nrng = np.random.default_rng(73)"
+  ],
+  [
+   225,
+   "import os\nprint(os.getcwd())                                # → 지금 작업 폴더 (컴퓨터마다 다르다)\nprint(os.path.exists(\"data/journey_svy.csv\"))     # → 작업 폴더에서 data/ 가 보이면 True"
+  ],
+  [
+   239,
+   "print(len(\"C:\\temp\"), len(\"C:/temp\"), len(r\"C:\\temp\"))   # 역슬래시와 t 두 글자가 탭 한 글자로\nfrom pathlib import Path\np = Path(\"data\") / \"journey_svy.csv\"                       # 폴더와 파일 이름을 / 로 잇는다\nprint(p.as_posix(), p.exists())\n# 6 7 7\n# data/journey_svy.csv True"
+  ],
+  [
+   254,
+   "import io\nraw = \"이름,점수\\n가,3\\n\".encode(\"cp949\")                  # 엑셀이 CP949 로 저장한 CSV 를 흉내 낸다\ntry:\n    pd.read_csv(io.BytesIO(raw))                            # 기본 = UTF-8 로 읽기\nexcept UnicodeDecodeError as e:\n    print(type(e).__name__)\nprint(pd.read_csv(io.BytesIO(raw), encoding=\"cp949\").columns.tolist())\nprint(\"삶의 의미\".encode(\"utf-8\").decode(\"cp949\", errors=\"replace\"))   # UTF-8 을 CP949 로 읽으면\n# UnicodeDecodeError\n# ['이름', '점수']\n# �궣�쓽 �쓽誘�"
+  ],
+  [
+   277,
+   "t = pd.DataFrame({\"id\": [1, 2], \"mil\": [4.5, 6.0]})\nprint(t.to_csv().splitlines())                              # index 를 빼지 않으면\nprint(t.to_csv(index=False).splitlines())\nprint(pd.read_csv(io.StringIO(t.to_csv())).columns.tolist())   # 다시 읽으면\n# [',id,mil', '0,1,4.5', '1,2,6.0']\n# ['id,mil', '1,4.5', '2,6.0']\n# ['Unnamed: 0', 'id', 'mil']"
+  ],
+  [
+   329,
+   "x = 4.891                                        # 이름 x 에 값을 넣는다\nprint(round(x, 1), round(x))                     # 둘째 인자를 빼면 기본값 = 정수로 반올림\nnums = [3, 5, 4]                                 # 목록\ncode = {1: \"남\", 2: \"여\", 3: \"그 외/무응답\"}      # 사전 = 키 → 값\nprint(nums[0], len(nums), code[2])\nfor v in nums:                                   # nums 에서 하나씩 꺼내 v 라 부른다\n    if v != 5:                                   # v 가 5 가 아닐 때만\n        print(v, v >= 4)\nprint(svy.groupby(\"gender\")[\"mil\"].mean().round(2).tolist())   # 묶고 → 꺼내고 → 평균 → 반올림\nprint(int(((svy.age >= 20) & (svy.gender == 2)).sum()))        # 두 조건을 모두 만족하는 사람 수\n# 4.9 5\n# 3 3 여\n# 3 False\n# 4 True\n# [4.9, 4.88, 4.98]\n# 281"
   ]
  ]
 }

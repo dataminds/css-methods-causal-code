@@ -69,4 +69,29 @@ fwer <- function(k, n = 108, reps = 5000) {
 }
 calc("b2.fwer_sim4", function() fwer(4))
 calc("b2.fwer_sim6", function() fwer(6))
+
+# §B2.2 「투키 HSD 출력 읽기」 · 「계획비교」 (2026-11-22) = TukeyHSD(aov) · 칸 평균 회귀(lm 절편 없음)의 vcov 로 대비
+tk <- function() TukeyHSD(aov(mil_t2 ~ cell, data = FAC()))$cell
+lv <- c("0 0", "0 1", "1 0", "1 1")
+for (i in 1:3) for (j in (i + 1):4) local({
+  ii <- i; jj <- j
+  row <- paste0(lv[jj], "-", lv[ii])   # TukeyHSD 의 행 이름 = 뒤 수준 − 앞 수준
+  key <- paste0("b2.tk", ii - 1, jj - 1, "_")
+  calc(paste0(key, "diff"), function() unname(tk()[row, "diff"]))
+  calc(paste0(key, "padj"), function() unname(tk()[row, "p adj"]))
+  calc(paste0(key, "lo"), function() unname(tk()[row, "lwr"]))
+  calc(paste0(key, "hi"), function() unname(tk()[row, "upr"]))
+  calc(paste0(key, "p"), function() { f <- FAC(); t.test(f$mil_t2[f$cell == lv[jj]], f$mil_t2[f$cell == lv[ii]], var.equal = TRUE)$p.value })
+})
+con <- function() {
+  m <- lm(mil_t2 ~ 0 + cell, data = FAC())
+  w <- c(-1, 1/3, 1/3, 1/3)
+  est <- sum(w * coef(m)); se <- sqrt(drop(t(w) %*% vcov(m) %*% w)); df <- df.residual(m)
+  list(est = est, se = se, t = est / se, p = 2 * pt(-abs(est / se), df),
+       lo = est - qt(.975, df) * se, hi = est + qt(.975, df) * se, df = df, wsum = sum(w))
+}
+for (k in c("est", "se", "t", "p", "lo", "hi", "df", "wsum")) local({
+  kk <- k
+  calc(paste0("b2.con_", kk), function() con()[[kk]])
+})
 })
