@@ -738,7 +738,7 @@ STEPS = {
   'top = svy[svy.hjs >= 5]\n'
   'print(len(top), round(top.hjs.corr(top.mil), 3))\n'
   '# 312 0.36'),
- ("## 5. 순위 상관\n값을 순위로 바꿔 구한 스피어만 상관을 피어슨 상관과 견줍니다(14장 §14.5).",
+ ("## 5. 순위 상관\n값을 순위로 바꿔 구한 스피어만 상관을 피어슨 상관과 견줍니다(B4 §B4.4).",
   'print(round(stats.spearmanr(svy.hjs, svy.mil)[0], 3), round(svy.hjs.corr(svy.mil), 3))\n'
   '# 0.626 0.629'),
  ("## 6. 실습 4: 산점도로 세 가지를 확인한다 (§B3.1)\n"

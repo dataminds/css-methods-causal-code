@@ -38,6 +38,24 @@ calc("ch14.slope_t")(lambda: F("b")[1] / F("se")[1])
 calc("ch14.z975")(lambda: stats.norm.ppf(.975))
 calc("ch14.ci_lo")(lambda: F("b")[1] - 1.96 * F("se")[1])
 calc("ch14.ci_hi")(lambda: F("b")[1] + 1.96 * F("se")[1])
+
+
+# §14.5 외삽 = 자료 범위(hjs 최솟값 ~ 최댓값) 밖에서 직선과 2차 곡선이 벌어진다 (2026-11-22)
+def _quad():
+    if "quad" not in _c:
+        x, y = F("x"), F("y")
+        b, se, p, r2 = ols(y, [x, x ** 2])
+        _c["quad"] = dict(b=b, p=p, r2=r2)
+    return _c["quad"]
+
+
+calc("ch14.hjs_min")(lambda: F("x").min())
+calc("ch14.hjs_max")(lambda: F("x").max())
+calc("ch14.lin_at1")(lambda: F("b")[0] + F("b")[1] * 1)
+calc("ch14.quad_at0")(lambda: _quad()["b"][0])
+calc("ch14.quad_at1")(lambda: _quad()["b"][0] + _quad()["b"][1] + _quad()["b"][2])
+calc("ch14.quad_r2")(lambda: _quad()["r2"])
+calc("ch14.quad_p")(lambda: _quad()["p"][2])
 # §14.2 「논문의 단순 회귀 표 읽기」 = 절편 줄 · 조정 R² · F · t² (2026-11-15)
 calc("ch14.int_se")(lambda: F("se")[0])
 calc("ch14.int_t")(lambda: F("b")[0] / F("se")[0])
@@ -186,7 +204,7 @@ calc("ch14.fp_equal40_t")(lambda: _fp_cached(("eq40", "t"), _eq40, _t))
 calc("ch14.fp_equal40_welch")(lambda: _fp_cached(("eq40", "w"), _eq40, _welch))
 
 
-# §14.5 두꺼운 꼬리의 검정력 = 책 코드와 같은 난수 순서
+# B4 §B4.4 (옛 14장 §14.5) 두꺼운 꼬리의 검정력 = 책 코드와 같은 난수 순서
 def _power():
     if "power" not in _c:
         g = np.random.default_rng(73)

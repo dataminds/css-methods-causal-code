@@ -625,6 +625,59 @@ def fig_ch14_resid():
     return resid.std(ddof=1)
 
 
+def fig_ch14_extrap():
+    """§14.5 외삽 = 자료 범위 안에서는 직선과 2차 곡선이 거의 같고, 범위 밖에서 벌어진다 (2026-11-22).
+
+    설문판 566명 mil ~ hjs. 범위 안 = 실선 · 범위 밖(0 ~ 7) = 점선 · 척도 바닥 1점 표시.
+    """
+    svy = load_clean("svy")
+    x, y = svy.hjs.values, svy.mil.values
+    lo, hi = x.min(), x.max()
+    b1, b0 = np.polyfit(x, y, 1)
+    c = np.polyfit(x, y, 2)
+    fig, ax = plt.subplots(figsize=(6.5, 4.0))
+    ax.axvspan(lo, hi, color="#eeeeee", zorder=0, label=f"자료가 있는 범위 ({lo:.2f} ~ {hi:.2f})")
+    ax.scatter(x, y, s=8, color=BW["color"][0], alpha=.35, zorder=1)
+    xin = np.linspace(lo, hi, 100)
+    for xs, ls in ((np.linspace(0, lo, 50), "--"), (xin, "-"), (np.linspace(hi, 7, 20), "--")):
+        ax.plot(xs, b0 + b1 * xs, color=OI[4], linestyle=ls, linewidth=2,
+                label="직선" if ls == "-" else None)
+        ax.plot(xs, np.polyval(c, xs), color=OI[5], linestyle=ls, linewidth=2,
+                label="2차 곡선" if ls == "-" else None)
+    ax.axhline(1, color=OI[7], linestyle=":", linewidth=1)
+    ax.text(6.95, 1.08, "삶의 의미 척도의 바닥 (1점)", ha="right", fontsize=8)
+    for v in (0, 1):
+        ax.plot([v, v], [b0 + b1 * v, np.polyval(c, v)], color=OI[7], linewidth=1)
+    ax.text(1.3, (b0 + b1 + np.polyval(c, 1)) / 2 - 0.9,
+            f"hjs = 1에서\n직선 {b0 + b1:.2f} · 곡선 {np.polyval(c, 1):.2f}", fontsize=8, va="center",
+            bbox=dict(facecolor="white", edgecolor="none", alpha=.9))
+    ax.set_xlim(-0.1, 7.1); ax.set_ylim(-0.6, 7.3)
+    ax.set_xlabel("여정 지각 (hjs ; 점선 = 자료 밖으로 이은 선)"); ax.set_ylabel("삶의 의미 (mil)")
+    ax.set_title("범위 안에서는 같은 두 선이 범위 밖에서 갈라진다 (설문판 566명)", fontsize=10.5)
+    ax.legend(fontsize=8, loc="upper left")
+    save(fig, "fig-ch14-extrap.png")
+    return lo, hi, b0 + b1, np.polyval(c, 1)
+
+
+def fig_ch14_lowdose():
+    """§14.5 저선량 = 개념도. 높은 선량에서 맞는 세 모양이 100 mSv 아래에서 갈라진다 (실제 추정치 아님)."""
+    d = np.linspace(0, 600, 601)
+    lnt = d.copy()                                                  # 모양만 보이는 상대 크기
+    thr = np.where(d < 100, 0, np.where(d < 250, 250 * (d - 100) / 150, d))   # 250 mSv 위에서 직선과 겹침
+    hor = np.where(d < 250, d * (1 - 0.5 * (250 - d) / 62.5), d)              # 낮은 선량에서 0 아래로
+    fig, ax = plt.subplots(figsize=(6.5, 3.8))
+    ax.axvspan(0, 100, color="#eeeeee", zorder=0, label="100 mSv 아래 = 사람 자료로 직접 가려내기 어려운 범위")
+    ax.plot(d, lnt, color=OI[4], linewidth=2, label="직선 무문턱 (LNT)")
+    ax.plot(d, thr, color=OI[5], linewidth=2, linestyle="--", label="문턱이 있는 직선")
+    ax.plot(d, hor, color=OI[2], linewidth=2, linestyle="-.", label="낮은 선량에서 위험이 줄어드는 곡선")
+    ax.axhline(0, color=OI[7], linewidth=.8)
+    ax.set_xlabel("선량 (mSv)"); ax.set_ylabel("초과 위험 (상대 크기)")
+    ax.set_yticks([])
+    ax.set_title("개념도: 높은 선량에서 같은 세 모양이 낮은 선량에서 갈라진다", fontsize=10.5)
+    ax.legend(fontsize=8, loc="upper left")
+    save(fig, "fig-ch14-lowdose.png")
+
+
 def fig_ch14_reg():
     svy = load_clean("svy")
     x, y = svy["hjs"].values, svy["mil"].values
@@ -1928,6 +1981,7 @@ if __name__ == "__main__":
     fig_b3_grid(); fig_b3_ours(); fig_b3_traps()
     fig_ch14_ls_candidates(); fig_ch14_ls_fitted(); fig_ch14_ls_squares()
     fig_ch14_ls_decomp(); fig_ch14_ls_noise(); fig_ch14_fit()
+    print("14장 외삽 범위 · hjs = 1 직선 · 곡선", fig_ch14_extrap()); fig_ch14_lowdose()
     b_all, slopes = fig_ch08_simpson()
     fig_ch08_dag()
     fig_ch08_unrolled()

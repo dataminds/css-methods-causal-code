@@ -64,6 +64,8 @@ for (v in c("hjs", "mil", "age")) local({
   calc(paste0("ch05.sd1_", vv, "_in"), function() { x <- S()[[vv]]; 100 * mean(x > mean(x) - sd(x) & x < mean(x) + sd(x)) })
 })
 for (v in c("hjs", "flr", "swl")) local({ vv <- v; calc(paste0("ch05.med_", vv), function() median(S()[[vv]])) })
+calc("ch05.pts_item", function() nrow(unique(S()[, c("mil_1", "mil_2")])))   # §5.5 겹친 점
+calc("ch05.pts_scale", function() nrow(unique(S()[, c("hjs", "mil")])))
 
 A <- c(rep(1, 10), rep(2, 30), rep(3, 30), rep(4, 20), rep(5, 10))
 B <- c(rep(1, 20), rep(2, 15), rep(3, 25), rep(4, 25), rep(5, 15))

@@ -54,6 +54,8 @@ for v in ("hjs", "mil", "age"):                            # §5.1 ±1SD 표
     calc(f"ch05.sd1_{v}_hi")(lambda v=v: S()[v].mean() + S()[v].std(ddof=1))
     calc(f"ch05.sd1_{v}_in")(lambda v=v: ((S()[v] > S()[v].mean() - S()[v].std(ddof=1))
                                           & (S()[v] < S()[v].mean() + S()[v].std(ddof=1))).mean() * 100)
+calc("ch05.pts_item")(lambda: S().groupby(["mil_1", "mil_2"]).ngroups)    # §5.5 겹친 점 (문항 둘)
+calc("ch05.pts_scale")(lambda: S().groupby(["hjs", "mil"]).ngroups)       # §5.5 척도 점수 둘
 for v in ("hjs", "flr", "swl"):                            # §5.3 중앙값
     calc(f"ch05.med_{v}")(lambda v=v: S()[v].median())
 

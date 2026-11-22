@@ -287,3 +287,20 @@ ch05.rv.6.0,ch05,6.5,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문�
 ch05.rv.7.0,ch05,566,,fixed,,복습 절 설계값 (§5.1 · §5.2 모의 · 문턱)
 ch05.rv.raw,ch05,4.88,ch05.raw_mil_mean,data,,복습 대조표 = 원자료 mil 평균
 ch05.t4.1.maxb,ch05,7.31,ch05.sim_mx_1,sim,0.64,§5.1 두 봉우리 최댓값 ; 씨앗 300 개 모의 표준편차 .15 × 3√2 (R 6.94 · 파이썬 7.31)
+ch05.vt.h1,ch05,1.5,,fixed,,"matplotlib 기본 hist 의 가로축 눈금 실측 (0.75 ～ 3.25, 0.25 간격 ; 2026-11-22)"
+ch05.vt.h2,ch05,2.5,,fixed,,같은 실측
+ch05.vt.n.m,ch05,270,ch05.men_n,data,,§5.5 성별 빈도
+ch05.vt.n.w,ch05,284,ch05.women_n,data,,§5.5
+ch05.vt.n.o,ch05,12,ch05.other_n,data,,§5.5
+ch05.vt.p.m,ch05,47.7,ch05.men_pct,data,,§5.5 성별 비율
+ch05.vt.p.w,ch05,50.2,ch05.women_pct,data,,§5.5
+ch05.vt.p.o,ch05,2.1,ch05.other_pct,data,,§5.5
+ch05.vt.op.n,ch05,566,ch05.svy_n,data,,§5.5 겹친 점
+ch05.vt.op.k,ch05,30,ch05.pts_item,data,,§5.5 mil_1 × mil_2 서로 다른 점
+ch05.vt.op.k2,ch05,30,ch05.pts_item,data,,§5.5 「30명쯤」 = 같은 수
+ch05.vt.op.s,ch05,411,ch05.pts_scale,data,,§5.5 hjs × mil 서로 다른 점
+ch05.vt.j1,ch05,-0.2,,fixed,,복습 코드 13 흩뜨리는 폭 (설계값)
+ch05.vt.j2,ch05,0.2,,fixed,,복습 코드 13 (설계값)
+ch05.vt.j3,ch05,−0.2,,fixed,,복습 코드 13 (설계값)
+ch05.vt.a,ch05,0.4,,fixed,,복습 코드 13 투명도 (설계값)
+ch05.vt.w,ch05,0.5,,fixed,,값 간격 1 의 절반 (정의)
