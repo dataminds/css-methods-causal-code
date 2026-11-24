@@ -462,3 +462,49 @@ ch16x.c10.read_bx,ch16,0.31,ch16.cross_bx,sim,0.35,MC SD 0.081 × 3√2
 ch16x.c10.read_n,ch16,150,,fixed,,설계 인원
 ch16x.c10.where_pos,ch16,0.4,,fixed,,코드 10 설계 = 성장 이야기 참 기울기
 ch16x.c10.where_neg,ch16,-0.4,,fixed,,코드 10 설계 = 냉소 이야기 참 기울기 (코드 표기라 하이픈 마이너스)
+ch16na.1.other.n,ch16,12,s3.other_n,data,,2026-11-24c 개선안 주제 E = 설문판 성별 셋째 범주 인원
+ch16na.1.other.n2,ch16,12,s3.other_n,data,,2026-11-24c 개선안 주제 E
+ch16na.4.other.n3,ch16,12,s3.other_n,data,,2026-11-24c 개선안 상 5
+ch16na.4.maxr,ch16,.05,ch16.ctrl_maxr,data,,2026-11-24c 개선안 상 5 = 554명 · 나이 · 여성 표시와 hjs · refl 상관 넷 중 최대 절댓값 (.0498 = 나이와 hjs)
+ch16na.6.box.diff,ch16,0.3,,fixed,,2026-11-24c 개선안 상 1 = 코드 11 예시 설정값
+ch16na.6.box.rel,ch16,0.7,,fixed,,예시 설정값 (이 장의 신뢰도 설정과 같다)
+ch16na.6.box.n300,ch16,300,,fixed,,예시 인원 후보
+ch16na.6.box.p300,ch16,0.57,ch16.pow01_n300,sim,0.075,0/1 조절변수 검정력 .569 (800 번) ; mc_tol = 3√2 × √(p(1−p)/800) = 4.24 × .0175
+ch16na.6.box.n600,ch16,600,,fixed,,예시 인원 후보
+ch16na.6.box.p600,ch16,0.85,ch16.pow01_n600,sim,0.054,0/1 조절변수 검정력 .850 (800 번) ; mc_tol = 4.24 × √(.85 × .15/800) = 4.24 × .0126
+ch16na.c11.b,ch16,0.2,,fixed,,코드 11 설계값 (§16.6 표와 같다)
+ch16na.c11.rel,ch16,0.7,,fixed,,코드 11 설계값
+ch16na.c11.n400,ch16,400,,fixed,,코드 11 인원 후보
+ch16na.c11.n800,ch16,800,,fixed,,코드 11 인원 후보
+ch16na.c11.diff,ch16,0.3,,fixed,,코드 11 예시 설정값
+ch16na.c11.n300,ch16,300,,fixed,,코드 11 인원 후보
+ch16na.c11.n600,ch16,600,,fixed,,코드 11 인원 후보
+ch16na.c11.rd.rel,ch16,0.7,,fixed,,설계값
+ch16na.c11.rd.p400,ch16,0.75,ch16.pow07_int,sim,0.065,ch16.7.ex5.p400 과 같은 허용폭
+ch16na.c11.rd.n800,ch16,800,,fixed,,설계 인원
+ch16na.c11.rd.p800,ch16,0.97,ch16.pow07_int_n800,sim,0.028,ch16.7.ex5.p800 과 같은 허용폭
+ch16na.c12.n,ch16,554,s3.n554,data,,코드 12 분석 인원
+ch16na.c12.other,ch16,12,s3.other_n,data,,코드 12
+ch16na.c12.dr2,ch16,.025,s3.mil_dr2_int,data,,코드 12 = §16.1 ④ 표 4단
+ch16na.c12.maxr,ch16,0.05,ch16.ctrl_maxr,data,,코드 12 첫 줄 = 본문 .05
+ch16na.c13.ci,ch16,95,,fixed,,신뢰수준 관례
+ch16na.c13.n,ch16,554,s3.n554,data,,코드 13 분석 인원
+ch16na.tab.c11.alpha,ch16,.05,,fixed,,곱항이 없는 세계의 기대 1종 오류율 = 유의수준 .05 (설계)
+ch16lg.rs.lo.b,ch16,−0.11,ch16.rs_b_lo,data,,§16.0 두 방향 읽기 · 실습 7 = hjs −1SD 에서의 refl 기울기 (2026-11-24d)
+ch16lg.rs.lo.cl,ch16,−0.20,ch16.rs_cl_lo,data,,95% CI 하한 = hjs 기준을 옮긴 모형의 refl 계수 구간 (t 자유도 562)
+ch16lg.rs.lo.cu,ch16,−0.03,ch16.rs_cu_lo,data,,95% CI 상한
+ch16lg.rs.mid.b,ch16,0.04,ch16.rs_b_mid,data,,hjs 평균에서의 refl 기울기 = §16.1 ⑤ 표 refl 줄
+ch16lg.rs.mid.cl,ch16,−0.02,ch16.rs_cl_mid,data,,95% CI 하한
+ch16lg.rs.mid.cu,ch16,0.10,ch16.rs_cu_mid,data,,95% CI 상한
+ch16lg.rs.hi.b,ch16,0.20,ch16.rs_b_hi,data,,hjs +1SD 에서의 refl 기울기
+ch16lg.rs.hi.cl,ch16,0.11,ch16.rs_cl_hi,data,,95% CI 하한
+ch16lg.rs.hi.cu,ch16,0.28,ch16.rs_cu_hi,data,,95% CI 상한
+ch16lg.sym.b3,ch16,0.19,ch16.mod_b3,data,,§16.0 두 방향 읽기 = 중심화 곱항 계수
+ch16lg.sym.neg,ch16,−0.11,ch16.rs_b_lo,data,,
+ch16lg.ex7.b3,ch16,0.19,ch16.mod_b3,data,,실습 7 통과 기준
+ch16lg.ft.f,ch16,24.65,ch16.ss_f,data,,§16.10 = 옮긴 문장 앞에 붙인 수
+ch16lg.sym.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16lg.fig.n,ch16,566,ch16.mt_n,data,,그림 16-B 설명
+ch16lg.ex7.ci95,ch16,95,,fixed,,신뢰수준 95% ; 정의
+ch16lg.ex7.mid,ch16,0.04,ch16.rs_b_mid,data,,실습 7
+ch16lg.ft.df,ch16,562,ch16.ss_df2,data,,

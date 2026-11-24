@@ -2,39 +2,39 @@
  "unit": "ch17-매개와-경로분석.md",
  "blocks": [
   [
-   373,
+   414,
    "exp = load(\"exp\")\nc,  *_ = ols(exp.mil, [exp.cond])                 # 총효과\na,  *_ = ols(exp.hjs, [exp.cond])                 # cond → hjs\nbc, *_ = ols(exp.mil, [exp.hjs, exp.cond])        # hjs → mil (cond 고정), 남은 직접 길\nprint(round(c[1], 4), round(a[1], 4), round(bc[1], 4), round(bc[2], 4))\n# 0.2828 0.2067 0.6457 0.1493"
   ],
   [
-   388,
+   437,
    "rng = np.random.default_rng(73)\nind = []\nfor _ in range(2000):\n    s = exp.iloc[rng.integers(0, len(exp), len(exp))]     # 사람을 다시 뽑는다\n    aa, *_ = ols(s.hjs, [s.cond])\n    bb, *_ = ols(s.mil, [s.hjs, s.cond])\n    ind.append(aa[1] * bb[1])                              # 매번 a×b 를 새로 만든다\nprint(np.percentile(ind, [2.5, 97.5]).round(3))\n# [0.027 0.251]"
   ],
   [
-   406,
+   455,
    "svy = load(\"svy\")\nz = lambda v: (v - v.mean()) / v.std(ddof=1)\nX, M, Y = z(svy.hjs.values), z(svy.refl.values), z(svy.mil.values)\n\na1, *_ = ols(M, [X]); b1, *_ = ols(Y, [M, X])          # 모형 1: X → M → Y\na2, *_ = ols(M, [Y]); b2, *_ = ols(X, [M, Y])          # 모형 2: Y → M → X\nprint(round(a1[1], 3), round(b1[1], 3), round(b1[2], 3))\nprint(round(a2[1], 3), round(b2[1], 3), round(b2[2], 3))\nprint(round(a1[1]*b1[1] + b1[2], 3), round(a2[1]*b2[1] + b2[2], 3),\n      round(np.corrcoef(X, Y)[0, 1], 3))\n# 0.285 0.043 0.616\n# 0.219 0.155 0.595\n# 0.629 0.629 0.629"
   ],
   [
-   426,
+   475,
    "from scipy import stats\ndef chain_chi2(a, b, c):                  # a → b → c, a와 c 사이 직접 경로 = 0\n    S = np.cov(svy[[a, b, c]].values, rowvar=False, bias=True)\n    H = S.copy()\n    H[0, 2] = H[2, 0] = S[0, 1] * S[1, 2] / S[1, 1]          # 사슬이 재현하는 a–c 공분산\n    F = np.log(np.linalg.det(H)) - np.log(np.linalg.det(S)) + np.trace(S @ np.linalg.inv(H)) - 3\n    chi = len(svy) * F\n    return round(chi, 2), round(stats.chi2.sf(chi, 1), 3)\n\nfor a, b, c in [(\"hjs\", \"refl\", \"mil\"), (\"mil\", \"refl\", \"hjs\"), (\"hjs\", \"mil\", \"refl\"),\n                (\"refl\", \"mil\", \"hjs\"), (\"refl\", \"hjs\", \"mil\"), (\"mil\", \"hjs\", \"refl\")]:\n    print(a, b, c, *chain_chi2(a, b, c))\n# hjs refl mil 258.51 0.0\n# mil refl hjs 258.51 0.0\n# hjs mil refl 21.77 0.0\n# refl mil hjs 21.77 0.0\n# refl hjs mil 1.62 0.203\n# mil hjs refl 1.62 0.203"
   ],
   [
-   470,
+   519,
    "rng = np.random.default_rng(73)\nn = 400\ncond = rng.integers(0, 2, n)                    # 무작위 배정 (동전)\nU    = rng.normal(0, 1, n)                      # 우리가 측정하지 못한 성향\nM    = 0.60 * cond + 0.80 * U + rng.normal(0, .5, n)\nY    = 0.30 * cond + 0.80 * U + rng.normal(0, .5, n)   # ← M 이 없다"
   ],
   [
-   483,
+   532,
    "a,  *_ = ols(M, [cond])\nbc, *_ = ols(Y, [M, cond])\nprint(round(a[1], 3), round(bc[1], 3), round(bc[2], 3), round(a[1] * bc[1], 3))\n# 0.493 0.708 -0.075 0.349"
   ],
   [
-   494,
+   543,
    "bu, *_ = ols(Y, [M, cond, U])\nprint(round(bu[1], 3), round(bu[2], 3))\n# 0.018 0.297   ← b 가 사라지고, 직접효과가 참값 0.30 으로 돌아온다"
   ],
   [
-   506,
+   555,
    "svy = load(\"svy\")\ndef mediate(x, m, y, B=2000, seed=73):        # x → m → y, 간접효과와 부트스트랩 95% 구간\n    X, M, Y = svy[x].values, svy[m].values, svy[y].values\n    c = ols(Y, [X])[0][1]                     # 총효과\n    a = ols(M, [X])[0][1]; b = ols(Y, [M, X])[0][1]\n    g = np.random.default_rng(seed); n = len(X); ab = []\n    for _ in range(B):\n        i = g.integers(0, n, n)               # 사람을 다시 뽑는다\n        ab.append(ols(M[i], [X[i]])[0][1] * ols(Y[i], [M[i], X[i]])[0][1])\n    lo, hi = np.percentile(ab, [2.5, 97.5])\n    return round(c, 3), round(a * b, 3), round(lo, 3), round(hi, 3)\n\nprint(*mediate(\"refl\", \"hjs\", \"mil\"))          # 가설의 순서\nprint(*mediate(\"mil\", \"hjs\", \"refl\"))          # 원인과 결과를 바꾼 순서\n# 0.205 0.164 0.118 0.212\n# 0.234 0.164 0.097 0.234"
   ],
   [
-   529,
+   578,
    "svy = load(\"svy\")\nR, H, M, W, A = (svy[k].values for k in (\"refl\", \"hjs\", \"mil\", \"swl\", \"age\"))\ndef specific(r, h, m, w, a):                    # 병렬 매개 = 회고 습관 → {여정 지각, 삶의 의미} → 만족 ; 공변인 나이는 세 식 모두에\n    a1 = ols(h, [r, a])[0][1]                   # 회고 습관 → 여정 지각\n    a2 = ols(m, [r, a])[0][1]                   # 회고 습관 → 삶의 의미\n    bw = ols(w, [h, m, r, a])[0]                # 만족 ← 여정 지각 · 삶의 의미 · 회고 습관 · 나이\n    i1, i2 = a1 * bw[1], a2 * bw[2]\n    return i1, i2, i1 + i2, i1 - i2             # 특정 간접효과 둘 · 총 간접효과 · 둘의 차이\n\ng = np.random.default_rng(73); n = len(R); boot = []\nfor _ in range(5000):\n    i = g.integers(0, n, n)\n    boot.append(specific(R[i], H[i], M[i], W[i], A[i]))\nlo, hi = np.percentile(boot, [2.5, 97.5], axis=0)\nfor name, est, l, u in zip([\"여정 지각 경유\", \"삶의 의미 경유\", \"총 간접효과\", \"차이\"],\n                           specific(R, H, M, W, A), lo, hi):\n    print(name, round(est, 3), round(l, 3), round(u, 3))\n# 여정 지각 경유 0.015 -0.006 0.038\n# 삶의 의미 경유 0.093 0.058 0.133\n# 총 간접효과 0.108 0.07 0.149\n# 차이 -0.078 -0.128 -0.034"
   ]
  ]

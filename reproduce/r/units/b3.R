@@ -77,4 +77,8 @@ calc("b3.alpha_swl", function() cronbach(S()[, paste0("swl_", 1:5)]))
 for (v in c("hjs", "mil", "flr", "swl")) local({ vv <- v; calc(paste0("b3.r_age_", vv), function() cor(S()$age, S()[[vv]])) })
 calc("b3.r_age_absmax", function() max(abs(sapply(c("hjs", "mil", "flr", "swl"), function(v) cor(S()$age, S()[[v]])))))
 calc("b3.r_crit05", function() { df <- nrow(S()) - 2; t <- qt(.975, df); t / sqrt(t^2 + df) })
+# §B3.5 결과 보고 본보기 = cor.test 의 피셔 z 구간
+calc("b3.r_df", function() unname(cor.test(S()$hjs, S()$mil)$parameter))
+calc("b3.r_ci_lo", function() cor.test(S()$hjs, S()$mil)$conf.int[1])
+calc("b3.r_ci_hi", function() cor.test(S()$hjs, S()$mil)$conf.int[2])
 })

@@ -14,6 +14,9 @@ ch08.table.t,ch08,3.09,,paper,,Rogers 외 2023 연구 5 p. 765
 ch08.table.b.paren,ch08,.26,,paper,,Rogers 외 2023 연구 5 p. 765 (산술 괄호 안)
 ch08.table.se.paren,ch08,.09,,paper,,Rogers 외 2023 연구 5 p. 765 (산술 괄호 안)
 ch08.table.ratio,ch08,2.9,ch08.t_from_rounded,data,,산술 .26 ÷ .09 = 2.89
+ch08.table.b.osf4,ch08,.2721,,paper,,OSF 원자료 재계산 b = 0.2721 (원자료 재배포 불가 ; 기록 = book/final-review-2026-11-13/rogers-osf-checks-2026-11-14.md §7 ② ; 2026-11-24 t 되짚기 문장 정정)
+ch08.table.se.osf4,ch08,.0882,,paper,,OSF 원자료 재계산 SE = 0.0882 (같은 기록 §7 ②)
+ch08.table.t.osf,ch08,3.09,ch08.t_from_osf,data,,산술 .2721 ÷ .0882 = 3.0850 (같은 기록 §7 ② 재계산 t = 3.0851)
 ch08.table.test,ch08,0.26,,paper,,Rogers 외 2023 연구 5 p. 765
 ch08.table.before,ch08,0.31,,paper,,Rogers 외 2023 연구 5 p. 765 평균 차
 ch08.table.after,ch08,0.26,,paper,,Rogers 외 2023 연구 5 p. 765 공변인 모형 b

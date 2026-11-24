@@ -35,6 +35,19 @@ calc("ch14.intercept")(lambda: F("b")[0])
 calc("ch14.slope")(lambda: F("b")[1])
 calc("ch14.slope_se")(lambda: F("se")[1])
 calc("ch14.slope_t")(lambda: F("b")[1] / F("se")[1])
+
+
+def _hc3():
+    """§14.4 HC3 강건 표준오차 (기울기) = (X'X)^-1 X' diag(e²/(1−h)²) X (X'X)^-1 ; 2026-11-24 주제 D."""
+    x, resid = F("x"), F("resid")
+    X = np.column_stack([np.ones(len(x)), x])
+    A = np.linalg.inv(X.T @ X)
+    h = np.einsum("ij,jk,ik->i", X, A, X)
+    meat = (X * (resid ** 2 / (1 - h) ** 2)[:, None]).T @ X
+    return np.sqrt((A @ meat @ A)[1, 1])
+
+
+calc("ch14.slope_se_hc3")(_hc3)
 calc("ch14.z975")(lambda: stats.norm.ppf(.975))
 calc("ch14.ci_lo")(lambda: F("b")[1] - 1.96 * F("se")[1])
 calc("ch14.ci_hi")(lambda: F("b")[1] + 1.96 * F("se")[1])

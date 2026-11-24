@@ -14,19 +14,19 @@
    "a = [1, 2]\nb = a\nb[0] = 99\nprint(a)\nc = [1, 2]\nd = c.copy()\nd[0] = 99\nprint(c)\n# [99, 2]\n# [1, 2]"
   ],
   [
-   179,
+   180,
    "# Python\nfrom scipy import stats\na = exp_clean[exp_clean.cond == 1].mil\nb = exp_clean[exp_clean.cond == 0].mil\nt, p = stats.ttest_ind(a, b)\nprint(round(t, 3), round(p, 4))\n# 2.206 0.028"
   ],
   [
-   203,
+   204,
    "# Python: 이 책은 손으로 짠 도우미를 쓴다 (14장 §14.2)\nb, se, p, r2 = ols(exp_clean.mil, [exp_clean.cond])\nprint(round(b[1], 4), round(se[1], 4), round(float(p[1]), 4), round(r2, 4))\n# 0.2828 0.1282 0.028 0.0132"
   ],
   [
-   212,
+   213,
    "# 실무판 (코랩 기본 제공)\nimport statsmodels.formula.api as smf\nprint(smf.ols(\"mil ~ cond\", data=exp_clean).fit().summary())"
   ],
   [
-   227,
+   228,
    "# Python\nh = svy.hjs - svy.hjs.mean()\nr = svy.refl - svy.refl.mean()\nb, se, p, r2 = ols(svy.mil, [h, r, h * r])\nprint(b.round(3))\n# [4.833 0.987 0.042 0.192]"
   ]
  ]

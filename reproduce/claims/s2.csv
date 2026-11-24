@@ -100,3 +100,5 @@ s2.ex2g.level,s2,95,,fixed,,신뢰수준
 s2.ex2g.lo,s2,−0.06,s2.gain_lo,data,,실습 2
 s2.ex2g.hi,s2,0.58,s2.gain_hi,data,,실습 2
 s2.ex2g.p,s2,.113,s2.gain_p,data,,실습 2
+s2.loop.eff,s2,0.38,,fixed,,검정력 루프 설계값 = 참값으로 정한 계수 (make_book_figures.py fig_s2_power eff ; 2026-11-24 루프 본체 복원)
+s2.loop.crit,s2,1.96,,fixed,,판정 문턱 = 정규 근사 양측 .05 (루프 코드와 같은 값)

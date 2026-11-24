@@ -2,7 +2,7 @@
  "unit": "apx-g-이-책으로-수업하기.md",
  "blocks": [
   [
-   282,
+   290,
    "b, se, dof = ols(df.mil, [df.jrn])\nprint(b[1] / se[1])"
   ]
  ]

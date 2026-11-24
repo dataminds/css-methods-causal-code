@@ -16,6 +16,13 @@ calc("ch14.intercept", function() unname(coef(fit())[1]))
 calc("ch14.slope", function() unname(coef(fit())[2]))
 calc("ch14.slope_se", function() co()["hjs", "Std. Error"])
 calc("ch14.slope_t", function() co()["hjs", "t value"])
+# §14.4 HC3 강건 표준오차 (기울기) = 기본 R 로 직접 (sandwich 패키지 없이) ; 2026-11-24 주제 D
+calc("ch14.slope_se_hc3", function() {
+  f <- fit(); X <- model.matrix(f); e <- resid(f); h <- hatvalues(f)
+  A <- solve(crossprod(X))
+  V <- A %*% crossprod(X * (e^2 / (1 - h)^2), X) %*% A
+  sqrt(V[2, 2])
+})
 calc("ch14.z975", function() qnorm(.975))
 # §14.5 외삽 = 자료 범위 밖에서 직선과 2차 곡선이 벌어진다 (2026-11-22)
 quad <- function() lm(mil ~ hjs + I(hjs^2), data = S())

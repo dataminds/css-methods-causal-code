@@ -355,3 +355,7 @@ ch14.4.log.el,ch14,0.29,ch14.logw_lg,sim,0.11,허용 근거 = ch14.4.log.lg
 ch14.4.log.p10.x,ch14,10,,fixed,,예시 숫자
 ch14.4.log.p10,ch14,2.8,ch14.logw_pct10,sim,1.1,(1.1^b − 1) × 100 (파이썬 2.80 ; R 3.04). 모의 SD .2405 → 허용 3 × √2 × .2405 ≈ 1.02 (올려 1.1)
 ch14.4.log.p10.base,ch14,1.1,,fixed,,1 + 10%
+ch14.hc3.n,ch14,566,ch14.n_svy,data,,§14.4 강건 표준오차 시연 (2026-11-24 개선안 주제 D)
+ch14.hc3.se_ord,ch14,0.0509,ch14.slope_se,data,,mil ~ hjs 일반 표준오차 (넷째 자리)
+ch14.hc3.se_hc3,ch14,0.0508,ch14.slope_se_hc3,data,,mil ~ hjs HC3 강건 표준오차 = (X'X)^-1 X' diag(e²/(1−h)²) X (X'X)^-1
+ch14.hc3.z,ch14,1.96,,fixed,,정규분포 97.5% 분위수의 관례 표기 (13장 §13.2)

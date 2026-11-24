@@ -1728,6 +1728,121 @@ def fig_ch18_tree():
     save(fig, "fig-ch18-tree.png")
 
 
+# 2026-11-24 19장 선택의 나무 재구성 (기획 = book/ch19-decision-tree-redesign-plan-2026-11-24.md).
+#   출발 = 결과 절에 쓰고 싶은 문장의 동사 → 설계 → 자료 구조 → 변수 형식.
+#   그림 둘 = 뼈대(fig-ch19-tree) + 인과 갈래 확대(fig-ch19-tree-causal). 옛 fig_ch18_tree 는 남겨 둔다.
+def _tree_tools(ax):
+    from matplotlib.patches import FancyBboxPatch
+
+    def box(x, y, w, h, text, fc, fs=8.2, bold=False, ec="#444444", ls="-"):
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.06",
+                                    linewidth=1.0, edgecolor=ec, facecolor=fc, linestyle=ls))
+        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
+                fontsize=fs, fontweight="bold" if bold else "normal")
+
+    def arrow(x1, y1, x2, y2, dashed=False, rad=0.0, color="#555555"):
+        ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
+                    arrowprops=dict(arrowstyle="-|>", linewidth=1.0, color=color,
+                                    linestyle="--" if dashed else "-",
+                                    connectionstyle=f"arc3,rad={rad}"))
+    return box, arrow
+
+
+def fig_ch19_tree():
+    """선택의 나무 뼈대: 문장 → 설계 → 자료 구조 → 변수 형식 + 관문 · 출구 · 되돌이."""
+    fig, ax = plt.subplots(figsize=(10.0, 6.6))
+    ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
+    box, arrow = _tree_tools(ax)
+    GATE, HEAD, OPT, EXIT = "#E8E8E8", "#EAF1F8", "#FBEFD5", "#E8F4EC"
+
+    box(0.1, 9.05, 9.8, 0.75, "나무 앞 관문 (§19.1) :  척도가 개념을 측정하나  ·  표본이 효과를 잡을 만한가  ·  "
+        "주 분석을 자료 보기 전에 정했나", GATE, 8.4, True)
+
+    cols = [
+        (0.1, "문장" + chr(10) + "쓰고 싶은 동사는?",
+         ["기술 · 이 표본은 이렇다", "관계 · 관련이 있었다", "방향 · 앞섰다",
+          "인과 · 높였다 · 바꿨다", "조건 · 누구에게 더", "경로 · 무엇을 거쳐"]),
+        (2.55, "설계" + chr(10) + "그 동사를 감당하나?",
+         ["무작위 배정 → 인과", "자연실험 가정 → 가정만큼", "패널 → 방향까지",
+          "그 밖 → 관계 · 기술"]),
+        (5.0, "자료 구조" + chr(10) + "관찰이 서로 독립인가?",
+         ["다른 사람 한 번", "같은 사람 여러 번 · 짝", "다른 사람 여러 해",
+          "코딩한 글", "포개짐 → 이관"]),
+        (7.45, "변수 형식" + chr(10) + "결과 · 설명변수는?",
+         ["결과 연속 · 이분 · 범주", "결과가 심하게 치우침", "집단 둘 · 셋 이상",
+          "요인 둘 · 연속 · 통제"]),
+    ]
+    W = 2.35
+    for x, head, opts in cols:
+        box(x, 7.55, W, 1.05, head, HEAD, 8.8, True)
+        for i, o in enumerate(opts):
+            box(x + .1, 6.75 - i * .78, W - .2, .6, o, OPT, 7.9)
+    for x in (0.1 + W, 2.55 + W, 5.0 + W):
+        arrow(x + .02, 8.07, x + .2, 8.07)
+
+    # 되돌이: 설계가 감당 못 하면 동사를 낮춘다 (설계 열 아래 빈 곳 → 문장 열 오른쪽)
+    ax.text(3.72, 3.05, "감당 못 하면" + chr(10) + "동사를 낮추거나" + chr(10) + "설계를 바꾼다",
+            ha="center", va="center", fontsize=7.9, color=OI[5])
+    arrow(3.05, 3.05, 2.48, 3.15, dashed=True, color=OI[5])
+    # 낮춘 동사 → 출구(한계 절)
+    arrow(1.25, 2.8, 1.25, 1.2, dashed=True, color=OI[5])
+    ax.text(1.4, 2.0, "낮춘 동사는" + chr(10) + "한계 절의 첫 줄", ha="left", va="center",
+            fontsize=7.8, color=OI[5])
+
+    box(4.95, 1.75, 4.95, .75, "갈래 끝 표 (§19.3) = 도구 · 쓸 수 있는 문장 · 배운 곳 · 무대", HEAD, 8.2, True)
+    arrow(8.62, 4.35, 8.62, 2.52)
+    box(0.1, 0.35, 9.8, .8, "나무 뒤 출구 (§19.8) :  먼저 세 가지(인원 · 뺀 사람 · 빈칸)  ·  가정(B4)  ·  "
+        "빈칸(B5)  ·  결과 절 문장과 한계 절(20장)", EXIT, 8.2, True)
+    arrow(7.4, 1.73, 7.4, 1.17)
+    fig.suptitle("선택의 나무: 결과 문장에서 출발해 설계 · 자료 구조 · 변수 형식을 지난다", y=.99)
+    save(fig, "fig-ch19-tree.png")
+
+
+def fig_ch19_tree_causal():
+    """인과 갈래 확대: 무작위 배정 → 실험 갈래 / 자연실험 가정 / 동사를 낮춤."""
+    fig, ax = plt.subplots(figsize=(10.0, 5.6))
+    ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
+    box, arrow = _tree_tools(ax)
+    HEAD, Q, LEAF, DOWN = "#EAF1F8", "#FBEFD5", "#F2F2F2", "#FDE9E1"
+
+    box(0.1, 4.4, 1.9, 1.2, "인과 동사" + chr(10) + "「높였다 · 바꿨다」", HEAD, 8.6, True)
+    box(2.4, 4.4, 1.9, 1.2, "무작위 배정이" + chr(10) + "있나?", Q, 8.6, True)
+    arrow(2.0, 5.0, 2.4, 5.0)
+
+    exp = [("조건 둘 · 결과 연속", "뒤섞기 · t + d · 구간  (12 · 13장 ; S1)"),
+           ("사전 점수 있음", "공변인 조정  (S1 ⑧ · 15장)"),
+           ("조건 셋 이상", "분산분석 = 더미 회귀 + 사후 비교  (B2)"),
+           ("요인 둘 (2 × 2)", "상호작용 회귀  (16장 ; S2)"),
+           ("결과 이분", "로지스틱 · 오즈비  (§19.6)"),
+           ("심하게 치우침", "웰치 t · 순위 검정  (B4)"),
+           ("짝지어 배정", "짝 안에서 뒤섞기  (S1 ⑦)")]
+    ax.text(4.9, 9.65, "예 = 실험 : 자료 구조 · 변수 형식 → 도구", fontsize=8.4, fontweight="bold")
+    for i, (cond, tool) in enumerate(exp):
+        y = 8.85 - i * .78
+        box(4.85, y, 1.95, .6, cond, Q, 7.8)
+        box(6.95, y, 2.95, .6, tool, LEAF, 7.6)
+        arrow(6.8, y + .3, 6.95, y + .3)
+    arrow(4.3, 5.25, 4.85, 7.0, rad=-0.15)
+    ax.text(9.9, 3.35, "쓸 수 있는 문장 = 인과어", ha="right", fontsize=8, color=OI[4])
+
+    box(2.4, 1.6, 1.9, 1.2, "자연실험의" + chr(10) + "가정을 댈 수 있나?", Q, 8.2, True)
+    arrow(3.35, 4.4, 3.35, 2.8)
+    ax.text(3.45, 3.55, "아니오", fontsize=7.8)
+    nat = [("문턱 · 점수", "회귀단절  (18장 §18.1)"),
+           ("비교 집단 + 평행 추세", "이중차분  (18장 §18.2)"),
+           ("긴 시계열 + 시점", "단절 시계열  (18장 §18.3)")]
+    for i, (cond, tool) in enumerate(nat):
+        y = 2.55 - i * .72
+        box(4.85, y, 1.95, .55, cond, Q, 7.6)
+        box(6.95, y, 2.95, .55, tool + "  = 가정만큼", LEAF, 7.6)
+        arrow(4.3, 2.2, 4.85, y + .27)
+    box(0.1, 0.15, 4.2, .85, "아니오 → 「관련이 있었다」로 낮추거나 설계를 바꾼다" + chr(10)
+        + "(15장 §15.5 ; 낮춘 동사는 한계 절 첫 줄)", DOWN, 7.8, ec=OI[5], ls="--")
+    arrow(3.35, 1.6, 3.0, 1.02, dashed=True, color=OI[5])
+    fig.suptitle("인과 갈래 확대: 설계가 동사를 감당하는가", y=.99)
+    save(fig, "fig-ch19-tree-causal.png")
+
+
 def fig_ch05_samestats(seed=73, n=566, m=4.89, sd=1.25):
     """평균과 표준편차가 같아도 생김새는 딴판일 수 있다."""
     rng = np.random.default_rng(seed)
@@ -2107,6 +2222,114 @@ def fig_ch16_crossover(seed=73, n=150):
     return out
 
 
+# ── 2026-11-24 16장 조절 논리 그림 셋 (보강안 book/ch16-moderation-logic-plan-2026-11-24.md) ──
+def _svy_moderation():
+    """설문판 정제 566명의 중심화 곱항 모형 계수 · 두 변수의 SD · 원점수 범위."""
+    svy = load_clean("svy")
+    hc = svy["hjs"] - svy["hjs"].mean()
+    rc = svy["refl"] - svy["refl"].mean()
+    X = np.column_stack([np.ones(len(svy)), hc, rc, hc * rc])
+    b = np.linalg.lstsq(X, svy["mil"].values, rcond=None)[0]
+    return svy, hc, rc, b, hc.std(ddof=1), rc.std(ddof=1)
+
+
+def fig_ch16_logic():
+    """그림 16-A: 매개(화살표 사이에 끼는 변수) 대 조절(화살표에 걸리는 변수). 수치 없음."""
+    fig, axes = plt.subplots(1, 2, figsize=(8.6, 3.2))
+    box = dict(boxstyle="round,pad=0.45", fc="white", ec=OI[7], lw=1.2)
+    arr = dict(arrowstyle="-|>", color=OI[7], lw=1.6, shrinkA=26, shrinkB=26)
+    for ax in axes:
+        ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis("off"); ax.grid(False)
+    # 왼쪽: 매개
+    ax = axes[0]
+    p = {"X": (.12, .25), "M": (.50, .78), "Y": (.88, .25)}
+    for k, (x, y) in p.items():
+        ax.text(x, y, k, ha="center", va="center", fontsize=11, bbox=box)
+    for s, e in (("X", "M"), ("M", "Y"), ("X", "Y")):
+        ax.annotate("", xy=p[e], xytext=p[s], arrowprops=arr)
+    ax.set_title("매개: 화살표 사이에 끼는 변수 M\n(X가 M을 거쳐 Y로 · 17장)", fontsize=10)
+    # 오른쪽: 조절
+    ax = axes[1]
+    p = {"X": (.12, .25), "Y": (.88, .25), "W": (.50, .80)}
+    for k, (x, y) in p.items():
+        ax.text(x, y, k, ha="center", va="center", fontsize=11, bbox=box)
+    ax.annotate("", xy=p["Y"], xytext=p["X"], arrowprops=arr)
+    ax.annotate("", xy=(.50, .28), xytext=p["W"],
+                arrowprops=dict(arrowstyle="-|>", color=OI[5], lw=1.8, linestyle="--",
+                                shrinkA=22, shrinkB=0))
+    ax.set_title("조절: 화살표에 걸리는 변수 W\n(X → Y의 크기가 W에 따라 다르다 · 이 장)", fontsize=10)
+    save(fig, "fig-ch16-logic.png")
+
+
+def fig_ch16_symmetry():
+    """그림 16-B: 같은 곱항을 두 방향으로 읽는다. 왼쪽 = refl ±1SD 에서의 hjs 선,
+    오른쪽 = hjs ±1SD 에서의 refl 선. 선은 자료에 있는 범위 안에서만 긋는다."""
+    svy, hc, rc, b, sd_h, sd_r = _svy_moderation()
+    fig, axes = plt.subplots(1, 2, figsize=(9.2, 4.0), sharey=True)
+    out = {}
+    panels = ((axes[0], hc, sd_r, 1, 2, "영웅의 여정 hjs (평균 중심화)", "회고 습관", "hjs"),
+              (axes[1], rc, sd_h, 2, 1, "회고 습관 refl (평균 중심화)", "여정 지각", "refl"))
+    for ax, x, sd_w, i_x, i_w, xlabel, wname, key in panels:
+        ax.scatter(x, svy["mil"], s=9, alpha=.15, color=OI[7], edgecolors="none")
+        xs = np.linspace(x.min(), x.max(), 50)
+        for j, (v, lab) in enumerate(((-sd_w, "낮음(-1SD)"), (+sd_w, "높음(+1SD)"))):
+            slope = b[i_x] + b[3] * v
+            out[(key, lab)] = slope
+            ax.plot(xs, (b[0] + b[i_w] * v) + slope * xs, color=BW["color"][j],
+                    linestyle=BW["line"][j], linewidth=2.4,
+                    label=f"{wname} {lab}: 기울기 {_mn(slope)}")
+        ax.set_xlabel(xlabel)
+        ax.legend(fontsize=8.5, loc="lower right")
+    axes[0].set_ylabel("삶의 의미")
+    axes[0].set_title("회고 습관 수준별 여정 지각의 기울기", fontsize=10)
+    axes[1].set_title("여정 지각 수준별 회고 습관의 기울기", fontsize=10)
+    fig.suptitle(f"곱항 하나(b = {b[3]:.2f})를 두 방향으로 읽었다 (설문판 {len(svy)}명, 씨앗 73)",
+                 fontsize=11)
+    save(fig, "fig-ch16-symmetry.png")
+    return out
+
+
+def fig_ch16_three_forms(seed=73, n=150):
+    """그림 16-C: 조절의 세 꼴. 강화형 = 설문판 실측 · 반전형 = 코드 10 세계(씨앗 73)의
+    실측 · 약화형 = 예시 선(값 없음)."""
+    fig, axes = plt.subplots(1, 3, figsize=(10.2, 3.6))
+    out = {}
+    # 강화형: 설문판
+    svy, hc, rc, b, sd_h, sd_r = _svy_moderation()
+    xs = np.linspace(hc.min(), hc.max(), 50)
+    for j, (v, lab) in enumerate(((-sd_r, "W 낮음"), (+sd_r, "W 높음"))):
+        s = b[1] + b[3] * v
+        out[("강화", lab)] = s
+        axes[0].plot(xs, b[0] + b[2] * v + s * xs, color=BW["color"][j],
+                     linestyle=BW["line"][j], linewidth=2.4, label=f"{lab}: {_mn(s)}")
+    axes[0].set_title("강화형 (설문판 실측)\nW = 회고 습관 · X = 여정 지각", fontsize=9.5)
+    axes[0].set_xlabel("X"); axes[0].set_ylabel("Y")
+    # 약화형: 예시
+    xs = np.linspace(-2, 2, 20)
+    for j, (s, lab) in enumerate(((0.6, "W 낮음"), (0.1, "W 높음"))):
+        axes[1].plot(xs, s * xs, color=BW["color"][j], linestyle=BW["line"][j],
+                     linewidth=2.4, label=lab)
+    axes[1].set_title("약화형 · 완충형 (예시)\nW가 높을수록 완만해진다", fontsize=9.5)
+    axes[1].set_xticks([]); axes[1].set_yticks([]); axes[1].set_xlabel("X")
+    # 반전형: 코드 10 세계
+    rng = np.random.default_rng(seed)
+    genre = np.repeat([0, 1], n)
+    imm = rng.normal(0, 1, 2 * n)
+    give = np.where(genre == 0, 0.4, -0.4) * imm + rng.normal(0, 1, 2 * n)
+    xs = np.linspace(imm.min(), imm.max(), 50)
+    for j, lab in enumerate(("성장 이야기", "냉소 이야기")):
+        s, c = np.polyfit(imm[genre == j], give[genre == j], 1)
+        out[("반전", lab)] = s
+        axes[2].plot(xs, c + s * xs, color=BW["color"][j], linestyle=BW["line"][j],
+                     linewidth=2.4, label=f"{lab}: {_mn(s)}")
+    axes[2].set_title("반전형 · 교차형 (코드 10 세계)\nW = 이야기 종류 · X = 몰입", fontsize=9.5)
+    axes[2].set_xlabel("X")
+    for ax, loc in zip(axes, ("upper left", "upper left", "upper center")):
+        ax.legend(fontsize=8, loc=loc)               # 반전형은 선이 왼쪽 위에 있어 가운데로
+    save(fig, "fig-ch16-three-forms.png")
+    return out
+
+
 def fig_b4_qq(seed=73, n=100):
     """분위수 그림(Q-Q) 넷 = B4 §B4.1 읽는 법 표의 앞 네 행. 칸마다 같은 씨앗으로 100개.
     기준선은 책이 권하는 `stats.probplot` 이 그리는 최소제곱 직선이다."""
@@ -2227,7 +2450,185 @@ def fig_ch05_boxplot_anatomy(seed=73, var="mil"):
     return dict(q1=q1, med=med, q3=q3, iqr=iqr, lo_w=lo_w, hi_w=hi_w, outl=outl.tolist(), n=len(x))
 
 
+# ── 2026-11-24 S0.4 겹친 분포 · 3장 §3.1 한 행이 무엇인가 (사용자 「S0.4 그림으로 본다 그림 추가 · 3.1 행과 열 실제 데이터셋 그림」) ──
+def fig_s0_overlap():
+    """S0.4 두 집단의 삶의 의미 분포를 한 그림에 겹친다 (원고 코드와 같은 칸 경계)."""
+    exp = load_clean("exp")
+    ctl, trt = exp[exp.cond == 0].mil, exp[exp.cond == 1].mil
+    bins = np.arange(0.875, 7.25, 0.25)
+    fig, ax = plt.subplots(figsize=(6.8, 3.4))
+    ax.hist(ctl, bins=bins, histtype="step", linestyle="--", linewidth=1.4,
+            color=BW["color"][1], label=f"통제 ({len(ctl)}명)")
+    ax.hist(trt, bins=bins, histtype="step", linestyle="-", linewidth=1.6,
+            color=BW["color"][0], label=f"개입 ({len(trt)}명)")
+    ax.axvline(ctl.mean(), linestyle="--", color=BW["color"][1], linewidth=1)
+    ax.axvline(trt.mean(), linestyle="-", color=BW["color"][0], linewidth=1)
+    top = ax.get_ylim()[1]
+    ax.text(ctl.mean() - 0.05, top * 0.97, f"통제 평균 {ctl.mean():.2f}", ha="right", va="top", fontsize=8)
+    ax.text(trt.mean() + 0.05, top * 0.97, f"개입 평균 {trt.mean():.2f}", ha="left", va="top", fontsize=8)
+    ax.set_xlabel("삶의 의미 (1 ~ 7)"); ax.set_ylabel("사람 수")
+    ax.set_xlim(0.8, 7.3)
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    ax.legend(frameon=False, fontsize=8, loc="upper left")
+    ax.set_title("두 집단의 분포는 크게 겹친다: 평균 차이 "
+                 f"{trt.mean() - ctl.mean():.3f}점 (실험판 정제본, 씨앗 73)", fontsize=10)
+    save(fig, "fig-s0-overlap.png")
+    return dict(n_ctl=len(ctl), n_trt=len(trt), m_ctl=ctl.mean(), m_trt=trt.mean())
+
+
+def fig_ch03_rows():
+    """3장 §3.1 한 행이 무엇인가: 설문판(한 행 = 한 사람) 과 패널판(한 행 = 한 사람의 한 시점) 의 실제 첫 행들."""
+    svy = pd.read_csv(os.path.join(DATA, "journey_svy.csv"))
+    pan = pd.read_csv(os.path.join(DATA, "journey_panel.csv")).sort_values(["id", "wave"])
+    s_cols = ["id", "age", "gender", "hjs_p1", "hjs_p2", "hjs", "mil"]
+    s = svy[s_cols].head(5)
+    p = pan[pan.id.isin([1, 2])][["id", "wave", "hjs", "mil", "flr"]]
+
+    def fmt(v):
+        return f"{v:g}" if isinstance(v, (int, np.integer)) else (f"{v:.3g}" if abs(v - round(v)) > 1e-9 else f"{int(round(v))}")
+
+    fig, axes = plt.subplots(2, 1, figsize=(7.2, 4.4), gridspec_kw={"height_ratios": [1, 0.85]})
+    for ax, df, title, row_note, n_txt in (
+        (axes[0], s, "설문판 journey_svy.csv (첫 5행 ; 열 51개 가운데 7개)",
+         "한 행 = 사람 한 명", f"{len(svy)}행 = {len(svy)}명"),
+        (axes[1], p, "패널판 journey_panel.csv (id 1 · 2 의 모든 행)",
+         "한 행 = 사람 한 명의 한 시점", f"{len(pan):,}행 · 사람은 {pan.id.nunique()}명"),
+    ):
+        ax.axis("off")
+        cells = [[fmt(v) for v in r] for r in df.itertuples(index=False)]
+        cols = list(df.columns) + (["…"] if df is s else [])
+        if df is s:
+            cells = [c + ["…"] for c in cells]
+        tb = ax.table(cellText=cells, colLabels=cols, loc="center", cellLoc="center")
+        tb.auto_set_font_size(False); tb.set_fontsize(8.5); tb.scale(1, 1.25)
+        for (r, c), cell in tb.get_celld().items():
+            cell.set_edgecolor("#999999"); cell.set_linewidth(.5)
+            if r == 0:
+                cell.set_facecolor("#e6e6e6"); cell.set_text_props(weight="bold")
+        if df is s:
+            for c in range(len(cols)):
+                tb[(1, c)].set_facecolor("#d9d9d9")      # 첫 행 강조 = 한 사람
+            for r in range(len(cells) + 1):
+                tb[(r, 6)].set_edgecolor("#333333"); tb[(r, 6)].set_linewidth(1.4)   # mil 열 = 한 변수
+        else:
+            for r in range(1, len(cells) + 1):
+                if cells[r - 1][0] == "1":
+                    for c in range(len(cols)):
+                        tb[(r, c)].set_facecolor("#d9d9d9")   # id 1 의 세 행
+        ax.set_title(title, fontsize=9.5, loc="left")
+        ax.text(1.0, 1.0, f"{row_note}  ·  {n_txt}", transform=ax.transAxes,
+                ha="right", va="bottom", fontsize=9, weight="bold")
+    axes[0].text(0.0, -0.02, "회색 행 = 한 사람 · 굵은 테두리 열(mil) = 한 변수 · 칸 하나 = 한 사람의 한 값",
+                 transform=axes[0].transAxes, ha="left", va="top", fontsize=8)
+    axes[1].text(0.0, -0.02, "회색 행 = 같은 사람(id 1)이 세 시점에 세 번 나온다 · id 2는 1차 한 행뿐(그 뒤 빠짐)",
+                 transform=axes[1].transAxes, ha="left", va="top", fontsize=8)
+    fig.suptitle("한 행이 무엇인가: 같은 표 모양, 다른 관찰 단위", fontsize=10.5, y=1.0)
+    save(fig, "fig-ch03-rows.png")
+    return dict(svy_rows=len(svy), pan_rows=len(pan), pan_people=pan.id.nunique())
+
+
+# ── ch17 §17.1: 매개 그림 셋 (기본 · 병렬 · 직렬) ── 2026-11-24 (기획 = book/ch17-mediation-logic-plan-2026-11-24.md)
+#   값은 계산 단위(ch17.med_* · ch17.par_* · ch17.pm_m1_*)와 같은 최소제곱으로 낸다.
+def _b(y, cols):
+    X = np.column_stack([np.ones(len(y))] + [np.asarray(c, float) for c in cols])
+    return np.linalg.lstsq(X, np.asarray(y, float), rcond=None)[0]
+
+
+def _med_node(ax, xy, text, w=1.7, h=0.62):
+    from matplotlib.patches import FancyBboxPatch
+    x, y = xy
+    ax.add_patch(FancyBboxPatch((x - w / 2, y - h / 2), w, h, boxstyle="round,pad=0.05",
+                                linewidth=1.0, edgecolor="#444444", facecolor="#F2F2F2"))
+    ax.text(x, y, text, ha="center", va="center", fontsize=10)
+
+
+def _med_arrow(ax, p, q, label="", off=(0, 0.16), w=1.7, h=0.62):
+    (x1, y1), (x2, y2) = p, q
+    L = np.hypot(x2 - x1, y2 - y1); ux, uy = (x2 - x1) / L, (y2 - y1) / L
+    sx = (w / 2) / abs(ux) if ux else np.inf
+    sy = (h / 2) / abs(uy) if uy else np.inf
+    s = min(sx, sy) + 0.05
+    ax.annotate("", xy=(x2 - ux * s, y2 - uy * s), xytext=(x1 + ux * s, y1 + uy * s),
+                arrowprops=dict(arrowstyle="-|>", color="#333333", lw=1.4, mutation_scale=13))
+    if label:
+        ax.text((x1 + x2) / 2 + off[0], (y1 + y2) / 2 + off[1], label, ha="center", va="center",
+                fontsize=9.5, bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none"))
+
+
+def fig_ch17_mediation():
+    """기본 매개: 위 = 회귀식 ① 의 총효과 c · 아래 = 회귀식 ② · ③ 의 a · b · c′ (실험판)."""
+    e = load_clean("exp")
+    c = _b(e.mil, [e.cond])[1]
+    a = _b(e.hjs, [e.cond])[1]
+    bb = _b(e.mil, [e.hjs, e.cond]); b, cp = bb[1], bb[2]
+    fig, axes = plt.subplots(2, 1, figsize=(7.2, 4.8), gridspec_kw=dict(height_ratios=[1, 2.1]))
+    for ax in axes:
+        ax.set_xlim(-0.6, 6.6); ax.axis("off")
+    ax = axes[0]; ax.set_ylim(-0.45, 0.55)
+    X, Y = (0.6, 0), (5.4, 0)
+    _med_node(ax, X, "개입 (X)"); _med_node(ax, Y, "삶의 의미 (Y)")
+    _med_arrow(ax, X, Y, f"c = {c:.2f}  (총효과)")
+    ax.set_title("회귀식 ① : 개입만 넣으면 = 총효과 c", fontsize=10, loc="left")
+    ax = axes[1]; ax.set_ylim(-0.7, 2.0)
+    X, Mm, Y = (0.6, 0), (3.0, 1.35), (5.4, 0)
+    _med_node(ax, X, "개입 (X)"); _med_node(ax, Mm, "여정 지각 (M)"); _med_node(ax, Y, "삶의 의미 (Y)")
+    _med_arrow(ax, X, Mm, f"a = {a:.2f}", off=(-0.45, 0.12))
+    _med_arrow(ax, Mm, Y, f"b = {b:.2f}", off=(0.45, 0.12))
+    _med_arrow(ax, X, Y, f"c′ = {cp:.2f}  (직접효과)", off=(0, -0.2))
+    ax.set_title("회귀식 ② · ③ : 여정 지각을 넣으면 = 거쳐 가는 길 a × b 와 나머지 c′", fontsize=10, loc="left")
+    fig.suptitle("총효과 = 직접효과 + 간접효과 :  c = c′ + a × b   (실험판 366명)", y=0.02, fontsize=10)
+    save(fig, "fig-ch17-mediation.png")
+    return dict(c=c, a=a, b=b, cp=cp)
+
+
+def fig_ch17_parallel():
+    """병렬 매개 + 공변인(나이) (설문판)."""
+    s = load_clean("svy"); A = s.age
+    a1 = _b(s.hjs, [s.refl, A])[1]; a2 = _b(s.mil, [s.refl, A])[1]
+    y = _b(s.swl, [s.hjs, s.mil, s.refl, A]); b1, b2, cp = y[1], y[2], y[3]
+    fig, ax = plt.subplots(figsize=(7.6, 4.4))
+    ax.set_xlim(-0.6, 6.8); ax.set_ylim(-1.9, 1.9); ax.axis("off")
+    X, M1, M2, Y = (0.6, 0), (3.1, 1.2), (3.1, -1.2), (5.6, 0)
+    _med_node(ax, X, "회고 습관 (X)"); _med_node(ax, M1, "여정 지각 (M₁)")
+    _med_node(ax, M2, "삶의 의미 (M₂)"); _med_node(ax, Y, "삶의 만족 (Y)")
+    _med_arrow(ax, X, M1, f"a₁ = {a1:.2f}", off=(-0.5, 0.1)); _med_arrow(ax, M1, Y, f"b₁ = {b1:.2f}", off=(0.5, 0.1))
+    _med_arrow(ax, X, M2, f"a₂ = {a2:.2f}", off=(-0.5, -0.1)); _med_arrow(ax, M2, Y, f"b₂ = {b2:.2f}", off=(0.5, -0.1))
+    _med_arrow(ax, X, Y, f"c′ = {cp:.2f}", off=(0, 0.17))
+    ax.text(6.75, -1.75, "나이 → M₁ · M₂ · Y (모든 식에 넣음)", ha="right", fontsize=8.5, color="#777777")
+    ax.set_title(f"병렬 매개: 특정 간접효과 a₁ × b₁ = {a1 * b1:.3f} · a₂ × b₂ = {a2 * b2:.3f} (설문판 566명 ; 나이 통제)",
+                 fontsize=10, loc="left")
+    save(fig, "fig-ch17-parallel.png")
+    return dict(ind1=a1 * b1, ind2=a2 * b2)
+
+
+def fig_ch17_serial():
+    """직렬 매개 = §17.4 네 변수 모형 (설문판)."""
+    from matplotlib.patches import FancyArrowPatch
+    s = load_clean("svy")
+    a1 = _b(s.hjs, [s.refl])[1]; d = _b(s.mil, [s.hjs])[1]
+    w = _b(s.swl, [s.mil, s.hjs]); b2, e = w[1], w[2]
+    fig, ax = plt.subplots(figsize=(9.6, 3.2))
+    ax.set_xlim(-0.5, 10.1); ax.set_ylim(-1.5, 0.9); ax.axis("off")
+    X, M1, M2, Y = (0.6, 0), (3.5, 0), (6.4, 0), (9.3, 0)
+    for xy, t in ((X, "회고 습관 (X)"), (M1, "여정 지각 (M₁)"), (M2, "삶의 의미 (M₂)"), (Y, "삶의 만족 (Y)")):
+        _med_node(ax, xy, t, w=1.5)
+    _med_arrow(ax, X, M1, f"a₁ = {a1:.2f}", off=(0, 0.42), w=1.5)
+    _med_arrow(ax, M1, M2, f"d₂₁ = {d:.2f}", off=(0, 0.42), w=1.5)
+    _med_arrow(ax, M2, Y, f"b₂ = {b2:.2f}", off=(0, 0.42), w=1.5)
+    ax.add_patch(FancyArrowPatch((M1[0] + 0.3, -0.36), (Y[0] - 0.3, -0.36), connectionstyle="arc3,rad=0.25",
+                                 arrowstyle="-|>", mutation_scale=13, lw=1.4, color="#333333"))
+    ax.text((M1[0] + Y[0]) / 2, -1.12, f"e = {e:.2f}  (여정 지각 → 삶의 만족)", ha="center", fontsize=9.5,
+            bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none"))
+    ax.set_title(f"직렬 매개: 직렬 간접효과 a₁ × d₂₁ × b₂ = {a1 * d * b2:.3f} (설문판 566명 ; §17.4 네 변수 모형)",
+                 fontsize=10, loc="left")
+    save(fig, "fig-ch17-serial.png")
+    return dict(serial=a1 * d * b2)
+
+
 if __name__ == "__main__":
+    print("S0 겹친 분포", fig_s0_overlap())
+    print("3장 한 행", fig_ch03_rows())
     fig_ch01_map()
     fig_colab_sidebar()
     fig_ch06_arcimboldo()
@@ -2279,6 +2680,8 @@ if __name__ == "__main__":
     fig_ch20_harvest()
     fig_ch19_errorbars()
     fig_ch18_tree()
+    fig_ch19_tree()
+    fig_ch19_tree_causal()
     fig_ch05_samestats()
     fig_ch04_atten()
     fig_ch03_missing()
@@ -2289,10 +2692,16 @@ if __name__ == "__main__":
     fig_ch16_relpower()
     fig_ch16_slopes()
     _p1, _p2, _pobs = fig_ch16_paths()
+    fig_ch17_mediation()
+    fig_ch17_parallel()
+    fig_ch17_serial()
     fig_ch17_its()
     fig_s2_cells()
     fig_s4_cohort()
     print("16장 교차형", {k: round(v, 2) for k, v in fig_ch16_crossover().items()})
+    fig_ch16_logic()
+    print("16장 대칭", {k: round(v, 3) for k, v in fig_ch16_symmetry().items()})
+    print("16장 세 꼴", {k: round(v, 2) for k, v in fig_ch16_three_forms().items()})
     fig_b4_qq()
     fig_b3_scatter_matrix()
     print("5장 상자 그림", fig_ch05_boxplot_anatomy())

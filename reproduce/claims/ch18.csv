@@ -122,3 +122,13 @@ ch18.3.ac.camp,ch18,0.306,ch18.ts_camp,data,,2026-11-19e 외부 점검 반영
 ch18.3.ac.se3,ch18,0.07,ch18.ts_se,data,,2026-11-19e 외부 점검 반영
 ch18.6.ex1.pl2,ch18,−0.013,ch18.ts_placebo,data,,2026-11-19e 외부 점검 반영
 ch18.6.ex1.plse,ch18,0.05,ch18.ts_plse,data,,2026-11-19e 외부 점검 반영
+ch18.t24.tab.did,ch18,0.4,ch18.did_gap,data,,§18.0 설계 표 (2026-11-24 인과 관점 보강) = §18.2 틀린 몫
+ch18.t24.tab.its,ch18,0.64,ch18.tw_diff,sim,0.21,§18.0 설계 표 = §18.3 추세 세계 전후 평균차 (ch18.3.tw.diff 와 같음)
+ch18.t24.cf.dB1,ch18,0.2,ch18.dB,data,,§18.2 반사실 문단 = B 변화
+ch18.t24.cf.real,ch18,0.6,,fixed,,§18.2 반사실 문단 = 깨진 세계 정책 지역의 정책 없는 변화 = 시대 흐름 0.2 + drift 0.4 (생성식)
+ch18.t24.cf.time,ch18,0.2,,fixed,,생성식 계수 0.2*t
+ch18.t24.cf.drift,ch18,0.4,,fixed,,깨진 세계에 정한 사전 추세 (drift)
+ch18.t24.cf.dB2,ch18,0.2,ch18.dB,data,,§18.2 반사실 문단 = B 변화
+ch18.t24.cf.real2,ch18,0.6,,fixed,,시대 흐름 0.2 + drift 0.4 (생성식)
+ch18.t24.cf.gap,ch18,0.4,ch18.did_gap,data,,§18.2 틀린 몫
+ch18.t24.ac.se,ch18,0.07,ch18.ts_se,data,,§18.3 자기상관 결론 문단 (상자로 옮긴 본문 대신)

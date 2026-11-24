@@ -2,59 +2,51 @@
  "unit": "ch05-기술과-시각화.md",
  "blocks": [
   [
-   382,
+   361,
    "rng = np.random.default_rng(73)\nn = 566\ndef fit(x):                                   # 평균 4.89 · 표준편차 1.25 로 맞춘다\n    x = np.asarray(x, float)\n    return (x - x.mean()) / x.std(ddof=1) * 1.25 + 4.89\n\nshapes = {\"종 모양\":  fit(rng.normal(0, 1, n)),\n          \"두 봉우리\": fit(np.concatenate([rng.normal(-1, .35, n//2),\n                                       rng.normal(1, .35, n - n//2)])),\n          \"치우침\":   fit(rng.exponential(1, n)),\n          \"고른 분포\": fit(rng.uniform(0, 1, n))}\nfor name, v in shapes.items():\n    print(name, round(v.mean(), 2), round(v.std(ddof=1), 2),\n          round(float(np.median(v)), 2), round(v.max(), 2))\n# 종 모양 4.89 1.25 4.87 8.97\n# 두 봉우리 4.89 1.25 4.95 7.31\n# 치우침 4.89 1.25 4.54 11.67\n# 고른 분포 4.89 1.25 4.83 7.16"
   ],
   [
-   407,
+   386,
    "import matplotlib.pyplot as plt\nfig, ax = plt.subplots(figsize=(6, 3.2))\nax.hist(svy[\"mil\"], bins=20)                       # 점수대별 사람 수\nax.axvline(svy[\"mil\"].mean(), linestyle=\"--\")      # 평균선\nax.set_xlabel(\"삶의 의미 (1~7점)\")\nax.set_ylabel(\"사람 수\")"
   ],
   [
-   420,
+   399,
    "for c in (\"hjs\", \"mil\", \"flr\", \"swl\"):\n    print(c, round((svy[c] >= 6.5).mean() * 100, 1),\n          round((svy[c] <= 1.5).mean() * 100, 1), svy[c].max())\n# hjs 1.1 0.0 6.857\n# mil 13.6 0.5 7.0\n# flr 8.8 0.0 7.0\n# swl 3.9 0.4 7.0"
   ],
   [
-   434,
+   413,
    "for c in (\"hjs\", \"mil\", \"age\"):\n    m, sd = svy[c].mean(), svy[c].std(ddof=1)\n    inside = ((svy[c] > m - sd) & (svy[c] < m + sd)).mean()\n    print(c, round(m - sd, 2), round(m + sd, 2), round(inside * 100))\n# hjs 4.21 5.81 67\n# mil 3.64 6.14 64\n# age 33.51 58.24 67"
   ],
   [
-   448,
+   427,
    "fig, ax = plt.subplots(figsize=(6, 3.2))\nax.violinplot([svy[svy.gender == 1][\"mil\"], svy[svy.gender == 2][\"mil\"]])   # 1 = 남, 2 = 여\nax.set_xticks([1, 2], [\"남\", \"여\"])"
   ],
   [
-   458,
+   437,
    "# ⚠ rng 는 코드 1에서 만든 것을 이어 쓴다. 책의 수는 코드 1을 먼저 돌린 뒤의 값이다.\nfor lab, sd in [(\"퍼짐 크다\", 1.25), (\"퍼짐 작다\", 0.25)]:\n    a, b = rng.normal(5.0, sd, 300), rng.normal(4.6, sd, 300)\n    print(lab, round(a.mean() - b.mean(), 2), round(cohen_d(a, b), 2),\n          round(np.mean(b > a.mean()) * 100))\n# 퍼짐 크다 0.38 0.31 37\n# 퍼짐 작다 0.41 1.64 5"
   ],
   [
-   472,
+   451,
    "print(svy[[\"hjs\", \"mil\", \"flr\", \"swl\"]].corr().round(2))\n#       hjs   mil   flr   swl\n# hjs  1.00  0.63  0.39  0.38\n# mil  0.63  1.00  0.60  0.54\n# flr  0.39  0.60  1.00  0.33\n# swl  0.38  0.54  0.33  1.00"
   ],
   [
-   485,
+   464,
    "cols = [\"age\", \"hjs\", \"mil\", \"flr\", \"swl\"]\ntab = svy[cols].agg([\"mean\", \"std\", \"median\", \"min\", \"max\"]).T.round(2)\nprint(tab)\n#       mean    std  median    min    max\n# age  45.87  12.37   46.00  18.00  75.00\n# hjs   5.01   0.80    5.10   2.33   6.86\n# mil   4.89   1.25    5.00   1.00   7.00\n# flr   5.23   0.88    5.25   2.12   7.00\n# swl   4.60   1.10    4.60   1.20   7.00"
   ],
   [
-   501,
+   480,
    "print(round(svy[\"mil\"].sum() / len(svy), 3), round(svy[\"mil\"].mean(), 3))\n# 4.891 4.891"
   ],
   [
-   510,
-   "a = np.array([1]*10 + [2]*30 + [3]*30 + [4]*20 + [5]*10)   # 집단 A\nb = np.array([1]*20 + [2]*15 + [3]*25 + [4]*25 + [5]*15)   # 집단 B\nprint(round(a.mean() - b.mean(), 2))                        # 등간으로 보면\nw = {1: 0, 2: 1, 3: 2, 4: 5, 5: 9}                          # 위쪽 간격이 넓다면\naw = np.array([w[x] for x in a]); bw = np.array([w[x] for x in b])\nprint(round(aw.mean() - bw.mean(), 2))\nprint(np.median(a), np.median(b))\n# -0.1\n# -0.45\n# 3.0 3.0"
-  ],
-  [
-   527,
-   "print(svy[\"mil_1\"].nunique(),   # 문항 하나\n      svy[\"mil\"].nunique(),     # 4문항 평균\n      svy[\"hjs\"].nunique())     # 21문항 평균\n# 7 24 79"
-  ],
-  [
-   538,
+   489,
    "cnt = svy[\"gender\"].value_counts().sort_index()                 # 1 = 남, 2 = 여, 3 = 그 외/무응답\nprint(cnt.tolist(), (cnt / cnt.sum() * 100).round(1).tolist())\nfig, ax = plt.subplots(figsize=(4, 3))\nax.bar([\"남\", \"여\", \"그 외/무응답\"], cnt.values)\nax.set_ylabel(\"사람 수\")\n# [270, 284, 12] [47.7, 50.2, 2.1]"
   ],
   [
-   551,
+   502,
    "print(svy.groupby([\"mil_1\", \"mil_2\"]).ngroups, svy.groupby([\"hjs\", \"mil\"]).ngroups)\ng = np.random.default_rng(73)\njx = svy[\"mil_1\"] + g.uniform(-0.2, 0.2, len(svy))               # 가로로 조금 흩뜨린다\njy = svy[\"mil_2\"] + g.uniform(-0.2, 0.2, len(svy))               # 세로로 조금 흩뜨린다\nfig, ax = plt.subplots(figsize=(4, 4))\nax.scatter(jx, jy, s=8, alpha=0.4)\nax.set_xlabel(\"삶의 의미 문항 1 (1~7)\"); ax.set_ylabel(\"삶의 의미 문항 2 (1~7)\")\n# 30 411"
   ],
   [
-   566,
+   517,
    "x = svy[\"mil\"]\nq1, med, q3 = x.quantile([0.25, 0.5, 0.75])       # 사분위수 셋\niqr = q3 - q1                                      # 사분범위\nlo, hi = q1 - 1.5 * iqr, q3 + 1.5 * iqr            # 수염이 닿을 수 있는 문턱\nprint(q1, med, q3, iqr)\nprint(lo, hi, x[x >= lo].min(), x[x <= hi].max(), int(((x < lo) | (x > hi)).sum()))\ngroups = [svy[svy.gender == k][\"mil\"] for k in (1, 2, 3)]   # 1 = 남, 2 = 여, 3 = 그 외/무응답\nfig, ax = plt.subplots(figsize=(6, 3.2))\nax.boxplot(groups)                                 # 수염 = 기본 1.5 × IQR\ng = np.random.default_rng(73)\nfor i, v in enumerate(groups, start=1):\n    ax.scatter(i + g.uniform(-0.15, 0.15, len(v)), v, s=6, alpha=0.4)   # 가로로 흩뜨린 점\nax.set_xticks([1, 2, 3], [\"남\", \"여\", \"그 외/무응답\"])\n# 4.0 5.0 5.75 1.75\n# 1.375 8.375 1.5 7.0 1"
   ]
  ]

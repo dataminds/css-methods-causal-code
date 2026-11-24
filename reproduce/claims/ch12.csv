@@ -319,3 +319,7 @@ ch12.perm_p.14,ch12,.030,ch12.perm_p,sim,0.0102,"§12.2 뒤섞기 (씨앗 73 · 
 ch12.perm_one_p.3,ch12,.018,ch12.perm_one_p,sim,0.008,"§12.2 뒤섞기 (씨앗 73 · 5,000회) ; R 은 같은 설계를 자기 난수로 ; 한쪽 p ; mc_tol = 3√2 × 몬테카를로 SD (이항 또는 분위수 SD)"
 ch12.fixed.82,ch12,95%,,fixed,,신뢰구간 95% ; 정의
 ch12.fixed.83,ch12,90%,,fixed,,신뢰구간 90% ; 정의
+ch12.24.inw.py,ch12,"1,070",,paper,,Richardson et al. (2023) BMJ 382:e074520 초록 p. 1 (10.7 million person years) ; 13장에서 옮김 (구 ch13.paper.39)
+ch12.24.inw.dose,ch12,20.9,,paper,,Richardson et al. (2023) BMJ 382:e074520 표 1 p. 5 (평균 누적 선량 20.9 mGy) ; 13장에서 옮김 (구 ch13.paper.40)
+ch12.24.twosided,ch12,.05,,fixed,,2026-11-24 개선안 주제 H · 관례 문턱
+ch12.24.perm,ch12,.05,,fixed,,2026-11-24 개선안 주제 A · 관례 문턱

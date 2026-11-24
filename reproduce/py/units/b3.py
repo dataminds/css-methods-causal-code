@@ -113,3 +113,10 @@ for _v in ("hjs", "mil", "flr", "swl"):
 calc("b3.r_age_absmax")(lambda: max(abs(np.corrcoef(S().age, S()[v])[0, 1]) for v in ("hjs", "mil", "flr", "swl")))
 # |r| 이 이 값을 넘으면 양측 p < .05 (df = n − 2)
 calc("b3.r_crit05")(lambda: (lambda t, df: t / np.sqrt(t * t + df))(stats.t.ppf(.975, len(S()) - 2), len(S()) - 2))
+
+# §B3.5 결과 보고 본보기 (2026-11-24) = r(N − 2) · 피셔 z 95% 구간 · p
+_rz = lambda: np.arctanh(np.corrcoef(S().hjs, S().mil)[0, 1])
+_rh = lambda: stats.norm.ppf(.975) / np.sqrt(len(S()) - 3)
+calc("b3.r_df")(lambda: len(S()) - 2)
+calc("b3.r_ci_lo")(lambda: np.tanh(_rz() - _rh()))
+calc("b3.r_ci_hi")(lambda: np.tanh(_rz() + _rh()))

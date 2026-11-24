@@ -22,4 +22,4 @@ ch07.s4.eff.max,ch07,−2.7,ch07.sim_eff4_max,sim,8.8,§7.4 상자 = 6장 §6.2 
 ch07.s4.eff.min,ch07,−10.8,ch07.sim_eff4_min,sim,9.1,§7.4 상자 = 6장 §6.2 모의 ; 표준편차 2.13 → 9.1
 ch07.box.beta,ch07,.74,,paper,,Rogers 외 2023 연구 1 pp. 757–758
 ch07.box.t,ch07,27.08,,paper,,Rogers 외 2023 연구 1 pp. 757–758
-ch07.check.diff,ch07,0.3,,fixed,,§7.8 점검 = §7.1 가상 예시
+ch07.check.diff,ch07,0.3,,fixed,,§7.9 점검 = §7.1 가상 예시

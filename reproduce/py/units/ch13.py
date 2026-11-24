@@ -177,3 +177,29 @@ def _noise():
 
 calc("ch13.noise_10")(lambda: _noise()[1.00])
 calc("ch13.noise_07")(lambda: _noise()[0.70])
+
+# §13.4 「설문 · 연속 변수라면」 (2026-11-24 개선안 상 1) = 상관 .20 · 양측 .05 · 검정력 .80
+_fz = lambda: ((stats.norm.ppf(.975) + stats.norm.ppf(.80)) / np.arctanh(.20)) ** 2 + 3
+calc("ch13.fz_n_raw")(_fz)
+calc("ch13.fz_n")(lambda: float(np.ceil(_fz())))
+calc("ch13.fz_recruit")(lambda: float(np.ceil(np.ceil(_fz()) / (1 - .15))))   # 탈락 15% 를 더한 모집 목표
+
+
+def _fz_sim():
+    """코드 10 과 같은 난수 순서 (n 마다 default_rng(73))."""
+    if "fz" not in _cache:
+        out = {}
+        for n in (150, 194, 300):
+            rng = np.random.default_rng(73)
+            hits = 0
+            for _ in range(2000):
+                x = rng.standard_normal(n)
+                y = 0.2 * x + np.sqrt(1 - 0.2 ** 2) * rng.standard_normal(n)
+                hits += stats.pearsonr(x, y).pvalue < .05
+            out[n] = hits / 2000
+        _cache["fz"] = out
+    return _cache["fz"]
+
+
+for _n in (150, 194, 300):
+    calc(f"ch13.fz_pw_{_n}")(lambda n=_n: _fz_sim()[n])

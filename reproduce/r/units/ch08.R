@@ -2,6 +2,7 @@
 # ⚠ 단위 파일 전체를 local({ }) 로 감싼다.
 local({
 calc("ch08.t_from_rounded", function() .26 / .09)
+calc("ch08.t_from_osf", function() .2721 / .0882)
 
 mk <- function(sexeff = 20, n = 400) {
   set.seed(73)

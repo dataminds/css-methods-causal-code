@@ -7,6 +7,7 @@ from common import calc
 
 # §8.1 먼저 절 산술 = 보고된 b ÷ SE
 calc("ch08.t_from_rounded")(lambda: .26 / .09)
+calc("ch08.t_from_osf")(lambda: .2721 / .0882)
 
 
 def make_simpson(seed=73, n=400, sexeff=20.0):

@@ -386,3 +386,4 @@ ch20.cf.trap.025,ch20,0.025,ch20.exp_mil_lo,data,,2026-11-21 개념 먼저 재�
 ch20.cf.trap.03,ch20,0.03,,fixed,,2026-11-21 개념 먼저 재구성
 ch20.cf.trap.196,ch20,1.96,,fixed,,2026-11-21 개념 먼저 재구성
 ch20.cf.trap.380,ch20,380,ch20.exp_n_raw,data,,2026-11-21 개념 먼저 재구성
+ch20.t2cols.lv,ch20,95,,fixed,,신뢰수준 관례 (2026-11-24b 표 2 열 구성 가리킴)

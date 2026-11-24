@@ -67,6 +67,23 @@ for (k in c("b_lo", "b_mid", "b_hi", "se_lo", "se_mid", "se_hi", "cl_lo", "cu_lo
   kk <- k; calc(paste0("ch16.ss_", kk), function() memo("ss", ssr)[[kk]])
 })
 
+# 2026-11-24d §16.0 「곱항은 두 방향으로 읽힌다」 · 실습 7 = refl 의 조건별 기울기 (hjs 기준을 옮겨 confint)
+rsr <- function() {
+  d <- S(); d$rc <- d$refl - mean(d$refl); s <- sd(d$hjs); out <- list(hjs_sd = s)
+  for (lab in c("lo", "mid", "hi")) {
+    v <- c(lo = -s, mid = 0, hi = s)[[lab]]
+    d$hv <- d$hjs - mean(d$hjs) - v
+    f <- lm(mil ~ hv * rc, data = d)
+    ci <- confint(f)["rc", ]
+    out[[paste0("b_", lab)]] <- unname(coef(f)["rc"])
+    out[[paste0("cl_", lab)]] <- unname(ci[1]); out[[paste0("cu_", lab)]] <- unname(ci[2])
+  }
+  out
+}
+for (k in c("hjs_sd", "b_lo", "b_mid", "b_hi", "cl_lo", "cu_lo", "cl_mid", "cu_mid", "cl_hi", "cu_hi")) local({
+  kk <- k; calc(paste0("ch16.rs_", kk), function() memo("rs", rsr)[[kk]])
+})
+
 # ── 모의시행 = R 의 난수로 같은 설계를 따로 돌린다 (씨앗 73) ──
 gs <- function() {
   set.seed(73)
@@ -300,4 +317,25 @@ crossr <- function() {
 for (k in c("r", "b_grow", "b_cyn", "bx", "bint", "pint_lt001", "bx_eff")) local({
   kk <- k; calc(paste0("ch16.cross_", kk), function() memo("cross", crossr)[[kk]])
 })
+# 2026-11-24c 개선안 상 5 = 554명에서 통제변수(나이 · 성별)와 hjs · refl 의 상관 넷 중 가장 큰 절댓값 (cor 행렬)
+calc("ch16.ctrl_maxr", function() {
+  d <- S(); d <- d[d$gender %in% c(1, 2), ]; d$fem <- as.numeric(d$gender == 2)
+  max(abs(cor(d[, c("age", "fem")], d[, c("hjs", "refl")])))
+})
+# 2026-11-24c 개선안 상 1 = 0/1 조절변수 검정력 (R 의 난수 ; 씨앗 73 ; 800 번 ; 곱항 t 는 lm.fit 잔차로)
+pow01r <- function(n, b_int = 0.3, rel = 0.7, reps = 800) {
+  set.seed(73); sd_e <- sqrt((1 - rel) / rel); hit <- 0
+  for (i in seq_len(reps)) {
+    X <- rnorm(n); W <- rbinom(n, 1, 0.5)
+    Y <- .2 * X + .2 * W + b_int * X * W + rnorm(n)
+    Xo <- X + rnorm(n, 0, sd_e)
+    M <- cbind(1, Xo, W, Xo * W); f <- lm.fit(M, Y)
+    s2 <- sum(f$residuals^2) / (n - 4)
+    se <- sqrt(diag(solve(crossprod(M))) * s2)
+    hit <- hit + (abs(f$coefficients[4] / se[4]) > 1.96)
+  }
+  hit / reps
+}
+calc("ch16.pow01_n300", function() memo("pow01_300", function() pow01r(300)))
+calc("ch16.pow01_n600", function() memo("pow01_600", function() pow01r(600)))
 })

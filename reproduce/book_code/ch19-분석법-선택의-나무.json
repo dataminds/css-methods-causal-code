@@ -2,19 +2,19 @@
  "unit": "ch19-분석법-선택의-나무.md",
  "blocks": [
   [
-   112,
+   182,
    "exp = load(\"exp\")\na, b = exp[exp.cond == 1].mil.values, exp[exp.cond == 0].mil.values\nprint(round(a.mean() - b.mean(), 4))                      # ① 평균을 직접 뺀다\nbb, se, p, r2 = ols(exp.mil, [exp.cond])                  # ② 집단 표시를 넣은 회귀\nprint(round(bb[1], 4), round(bb[1] / se[1], 3), round(p[1], 3))\n# 0.2828\n# 0.2828 2.206 0.028"
   ],
   [
-   126,
+   196,
    "rng = np.random.default_rng(73)\npool = np.concatenate([a, b]); null = []\nfor _ in range(10000):\n    p = rng.permutation(pool)\n    null.append(p[:len(a)].mean() - p[len(a):].mean())\nprint(round(float(np.mean(np.abs(null) >= abs(a.mean() - b.mean()))), 4))\n# 0.0292        (t 검정의 p = 0.028)"
   ],
   [
-   152,
+   222,
    "w = load(\"panel\").pivot(index=\"id\", columns=\"wave\", values=\"mil\").dropna()\nx1, x3 = w[1].values, w[3].values\nd = x3 - x1\nprint(len(d), round(d.mean(), 3), round(np.corrcoef(x1, x3)[0, 1], 3))\n# 350 -0.13 0.453\n\nprint(round(d.mean() / (d.std(ddof=1) / np.sqrt(len(d))), 2))        # 짝지어 본다\n# -2.21\nsp = np.sqrt((x1.var(ddof=1) + x3.var(ddof=1)) / 2)                  # 독립 두 집단으로 본다\nprint(round((x3.mean() - x1.mean()) / (sp * np.sqrt(2 / len(d))), 2))\n# -1.64"
   ],
   [
-   233,
+   268,
    "for p0 in (.01, .20, .40, .50):\n    odds = p0 / (1 - p0) * 2          # 오즈비 2 를 적용\n    p1 = odds / (1 + odds)\n    print(p0, round(p1, 3), round(p1 / p0, 2))\n# 0.01 0.02 1.98\n# 0.2 0.333 1.67\n# 0.4 0.571 1.43\n# 0.5 0.667 1.33"
   ]
  ]

@@ -1,5 +1,5 @@
 id,unit,printed,calc,kind,mc_tol,note
-s7.t3q.d4,s7,.4,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80) ; 13장 대조표 ch13.paper.25 와 같은 근거
+s7.t3q.d4,s7,0.40,,paper,,Rogers et al. (2023) 방법 절 검정력 문장 p. 762 (넷째 연구 d = .4 · 검정력 ≥ .80) ; 13장 대조표 ch13.paper.25 와 같은 근거
 s7.t3q.p80,s7,.80,,paper,,같은 문장
 s7.t3q.d22,s7,0.22,,paper,,원 연구 다섯째 연구 d = .22 (Rogers et al. 2023 p. 765 ; 1장)
 s7.t3q.c1,s7,.80,,fixed,,먼저 답해 보라 선택지
@@ -7,12 +7,12 @@ s7.t3q.c2,s7,.60,,fixed,,선택지
 s7.t3q.c3,s7,.35,,fixed,,선택지
 s7.t3.alpha,s7,.05,,fixed,,유의수준 관례
 s7.t3.target,s7,.80,,fixed,,목표 검정력 관례
-s7.t3.lead.d4,s7,.4,,fixed,,코드 인자 (계획값 = Rogers 넷째 연구)
+s7.t3.lead.d4,s7,0.40,,fixed,,코드 인자 (계획값 = Rogers 넷째 연구)
 s7.t3.lead.d22a,s7,0.22,,fixed,,코드 인자
 s7.t3.lead.d22b,s7,0.22,,fixed,,코드 인자
 s7.t3.lead.n190,s7,190,s1.raw_n_per_group,data,,실험판 집단당 배정
 s7.t3.lead.n183,s7,183,s1.n_treat,data,,정제 뒤 개입 집단
-s7.t3.read.d4,s7,.4,,fixed,,계획값
+s7.t3.read.d4,s7,0.40,,fixed,,계획값
 s7.t3.read.n100,s7,100,s7.need_d40,data,,비중심 t 역산 (파이썬 scipy nct ; R power.t.test strict 올림)
 s7.t3.read.d22,s7,0.22,,fixed,,가정한 실제 효과
 s7.t3.read.p34,s7,.34,s7.pow_100_d22,data,,0.3404
@@ -23,8 +23,8 @@ s7.t3.read.n190,s7,190,s1.raw_n_per_group,data,,
 s7.t3.read.p57,s7,.57,s7.pow_190_d22,data,,0.5710 = s1.power 와 같은 계산
 s7.t3.read.n183,s7,183,s1.n_treat,data,,
 s7.t3.read.p56,s7,.56,s7.pow_183_d22,data,,0.5553 (코드 출력 0.555 를 둘째 자리로 ; 반 아님)
-s7.t3.src.d4,s7,.4,,paper,,Rogers 넷째 연구 계획값
-s7.t3.src.d22,s7,.22,,paper,,Rogers 다섯째 연구 d = .22 (p. 765)
+s7.t3.src.d4,s7,0.40,,paper,,Rogers 넷째 연구 계획값
+s7.t3.src.d22,s7,0.22,,paper,,Rogers 다섯째 연구 d = .22 (p. 765)
 s7.t3.choice.n,s7,190,s1.raw_n_per_group,data,,
 s7.t3.choice.p,s7,.57,s7.pow_190_d22,data,,
 s7.t3.fac.n,s7,448,s7.fac_raw,data,,요인판 배정 표본
@@ -76,6 +76,7 @@ s7.t6.h4.p,s7,.176,s2.p3,data,,
 s7.t6.h4.pow,s7,.45,s2.fac_power_448,sim,0.11,
 s7.t6.dev.n554,s7,554,s3.n554,data,,편차 표
 s7.t6.dev.n12,s7,12,s3.other_n,data,,편차 표
+s7.t6.dev.n12b,s7,12,s3.other_n,data,,편차 표 (같은 12명)
 s7.t6.dev.n566,s7,566,s3.n,data,,
 s7.t6.rob.b,s7,0.29,s1.adj_b,data,,
 s7.t6.rob.p,s7,.007,s1.adj_p,data,,
@@ -93,3 +94,112 @@ s7.sc.alpha,s7,.05,,fixed,,유의수준
 s7.sc.truthb3,s7,0.38,s2.truth_b3,sim,0.06,s2.truth.b3 비고
 s7.sc.b3,s7,0.34,s2.b3,data,,
 s7.sc.pow45,s7,.45,s2.fac_power_448,sim,0.11,
+s7.p1.b74,s7,.74,,paper,,Rogers et al. (2023) Study 1 (β = .74) ; 출판본 757쪽 ; s3.paper.b74 와 같은 근거 (2026-11-24 T3 연구 1 단락)
+s7.p1.r20,s7,.20,,fixed,,계획값 = 최소 관심 상관 (예시 설정)
+s7.p1.a05,s7,.05,,fixed,,유의수준 관례
+s7.p1.p80,s7,.80,,fixed,,목표 검정력 관례
+s7.p1.n194,s7,194,s7.plan_r20_n,data,,피셔 z 근사 ((z.975 + z.80) / atanh(.20))² + 3 = 193.97 → 올림 194 (반올림도 194)
+s7.p1.r20b,s7,.20,,fixed,,모의시행 참값
+s7.p1.reps,s7,"2,000",,fixed,,반복 횟수
+s7.p1.n194b,s7,194,s7.plan_r20_n,data,,
+s7.p1.simpow,s7,.80,s7.plan_r20_simpow,sim,0.04,"파이썬 = default_rng(73) · 2,000번 · pearsonr p < .05 비율 0.8045 ; R = set.seed(73) · cor.test ; mc_tol = 3√2 × √(.8 × .2 / 2000) = 0.038"
+s7.p1.b3,s7,0.15,,fixed,,계획값 = 표준화 곱항 계수 (예시 설정 ; 16장 노트북 셀 4 설계의 0.2 를 바꿈)
+s7.p1.rel,s7,.8,,fixed,,계획값 = 신뢰도 (회고 습관 한 문항이라 낮춰 잡음)
+s7.p1.n600,s7,600,,fixed,,인원 후보
+s7.p1.pw400,s7,.64,s7.plan_int_pow_400,sim,0.073,16장 노트북 셀 4 설계 (주효과 .2 · .2 · 잡음 SD 1 · 신뢰도 rel 의 오차를 X · W 에) · 곱항 .15 · rel .8 · 800번 · |t| > 1.96 ; 파이썬 default_rng(73) 0.6425 ; R set.seed(73) · lm ; mc_tol = 3√2 × √(.64 × .36 / 800) = 0.072
+s7.p1.pw500,s7,.74,s7.plan_int_pow_500,sim,0.066,같은 설계 n = 500 ; 파이썬 0.74125 ; mc_tol = 3√2 × √(.74 × .26 / 800) = 0.066
+s7.p1.pw600,s7,.82,s7.plan_int_pow_600,sim,0.058,같은 설계 n = 600 ; 파이썬 0.81625 ; mc_tol = 3√2 × √(.82 × .18 / 800) = 0.058
+s7.p1.p80b,s7,.80,,fixed,,목표 검정력
+s7.p1.n600b,s7,600,,fixed,,인원 후보 중 .80 을 넘는 가장 작은 수
+s7.p1.m39,s7,.39,,paper,,Fritz & MacKinnon 2007 표 3 (ch17.t16c.L450.1..39 와 같은 근거)
+s7.p1.m78,s7,78,,paper,,Fritz & MacKinnon 2007 표 3 백분위 부트스트랩 MM (ch17.t16c.L450.1.78 과 같은 근거)
+s7.p1.n590,s7,590,s3.raw_n,data,,설문판 원자료 행 수
+s7.p1.n500,s7,500,,fixed,,어림 (590 에서 주의 점검 탈락을 뺀 범위)
+s7.p1.pw500b,s7,.74,s7.plan_int_pow_500,sim,0.066,
+s7.p1.n500b,s7,500,,fixed,,인원 후보
+s7.p1.pw600b,s7,.82,s7.plan_int_pow_600,sim,0.058,
+s7.p1.n600c,s7,600,,fixed,,인원 후보
+s7.p1.p80c,s7,.80,,fixed,,목표 검정력
+s7.t4.n590,s7,590,s3.raw_n,data,,사전등록 표 연구 1 열
+s7.t4.a05,s7,.05,,fixed,,유의수준 (D2 다중 검정 정책)
+s7.t5.swl,s7,.89,s7.r1_swl_alpha,data,,설문판 566명 swl 5문항 α 0.8865
+s7.t5.swl5,s7,5,,fixed,,문항 수
+s7.t6.h1a.ab,s7,0.44,s7.r1_med_ab,data,,a × b (나이 · 성별 공변인 ; 554명)
+s7.t6.h1a.lv,s7,95,,fixed,,신뢰수준
+s7.t6.h1a.lo,s7,0.35,s7.r1_med_boot_lo,sim,0.008,"백분위 부트스트랩 5,000번 2.5% ; 파이썬 default_rng(73) 0.3508 ; R set.seed(73) sample.int ; 씨앗 200개 몬테카를로 SD 0.0017 → 3√2 × 0.0019 ≈ 0.008"
+s7.t6.h1a.hi,s7,0.53,s7.r1_med_boot_hi,sim,0.008,97.5% ; 파이썬 0.5324 ; 씨앗 200개 몬테카를로 SD 0.0019 → 0.008
+s7.t6.h1a.n,s7,554,s3.n554,data,,
+s7.t6.mt.a05,s7,.05,,fixed,,유의수준 (D2)
+s7.r1.n590,s7,590,s3.raw_n,data,,결과 절 본보기
+s7.r1.ex24,s7,24,s7.svy_excl,data,,
+s7.r1.n566,s7,566,s3.n,data,,
+s7.r1.n12,s7,12,s3.other_n,data,,
+s7.r1.n554,s7,554,s3.n554,data,,
+s7.r1.a_hjs,s7,.93,s3.hjs_alpha,data,,566명
+s7.r1.a_mil,s7,.93,s3.mil_alpha,data,,566명
+s7.r1.a_swl,s7,.89,s7.r1_swl_alpha,data,,566명
+s7.r1.r_df,s7,564,s7.r1_r_df,data,,n − 2 (566명)
+s7.r1.r,s7,.63,s3.r_hjs_mil,data,,
+s7.r1.r_lv,s7,95,,fixed,,신뢰수준
+s7.r1.r_lo,s7,.58,s7.r1_r_lo,data,,피셔 z 구간 (R = cor.test)
+s7.r1.r_hi,s7,.68,s7.r1_r_hi,data,,
+s7.r1.r_p,s7,.001,s7.r1_r_p_lt,data,,문턱 판정
+s7.r1.r2_1,s7,.002,s3.mil_r2_1,data,,위계 1단계
+s7.r1.f1_df,s7,551,s7.r1_f1_df2,data,,554 − 3
+s7.r1.f1,s7,0.64,s7.r1_f1,data,,1단계 전체 F
+s7.r1.f1_p,s7,.529,s7.r1_f1_p,data,,
+s7.r1.pp39,s7,39,s3.mil_dr2_2_pp,data,,ΔR² × 100
+s7.r1.dr2_2,s7,.389,s3.mil_dr2_2,data,,
+s7.r1.f2_df,s7,550,s7.r1_f2_df2,data,,
+s7.r1.f2,s7,351.78,s7.r1_f2,data,,F 변화 (R = anova)
+s7.r1.f2_p,s7,.001,s7.r1_f2_p_lt,data,,문턱 판정
+s7.r1.b_hjs,s7,0.98,s3.mil_b_hjs2,data,,위계 2단계
+s7.r1.se_hjs,s7,0.05,s7.r1_se_hjs2,data,,
+s7.r1.lv_hjs,s7,95,,fixed,,신뢰수준
+s7.r1.lo_hjs,s7,0.88,s3.ci_hjs_lo,data,,
+s7.r1.hi_hjs,s7,1.08,s3.ci_hjs_hi,data,,
+s7.r1.p_hjs,s7,.001,s3.mil_p_hjs2_lt,data,,
+s7.r1.b_hjs_read,s7,0.98,s3.mil_b_hjs2,data,,
+s7.r1.dr2_3,s7,.002,s7.r1_dr2_3,data,,3단계 ΔR² 0.00195
+s7.r1.dr2_4,s7,.025,s3.mil_dr2_int,data,,곱항만의 증분
+s7.r1.f4_df,s7,548,s7.r1_f4_df2,data,,
+s7.r1.f4,s7,23.62,s7.r1_f4,data,,F 변화 (R = anova)
+s7.r1.f4_p,s7,.001,s7.r1_f4_p_lt,data,,
+s7.r1.b_int,s7,0.19,s3.mil_b_int,data,,
+s7.r1.se_int,s7,0.04,s7.r1_se_int,data,,
+s7.r1.lv_int,s7,95,,fixed,,신뢰수준
+s7.r1.lo_int,s7,0.12,s3.ci_int_lo,data,,
+s7.r1.hi_int,s7,0.27,s3.ci_int_hi,data,,
+s7.r1.p_int,s7,.001,s3.mil_p_int_lt,data,,
+s7.r1.sl_lo,s7,0.73,s3.slope_lo,data,,조건별 기울기 (회고 −1SD)
+s7.r1.sl_lo_lv,s7,95,,fixed,,신뢰수준
+s7.r1.sl_lo_lo,s7,0.59,s7.r1_slope_lo_lo,data,,회고 습관을 −1SD 로 옮겨 다시 중심화한 모형의 t 구간
+s7.r1.sl_lo_hi,s7,0.87,s7.r1_slope_lo_hi,data,,
+s7.r1.sl_hi,s7,1.25,s3.slope_hi,data,,조건별 기울기 (회고 +1SD)
+s7.r1.sl_hi_lv,s7,95,,fixed,,신뢰수준
+s7.r1.sl_hi_lo,s7,1.09,s7.r1_slope_hi_lo,data,,
+s7.r1.sl_hi_hi,s7,1.40,s7.r1_slope_hi_hi,data,,1.4047
+s7.r1.m_a,s7,0.98,s7.r1_med_a,data,,매개 a (나이 · 성별 공변인)
+s7.r1.m_a_se,s7,0.05,s7.r1_med_a_se,data,,
+s7.r1.m_a_p,s7,.001,s7.r1_med_a_p_lt,data,,
+s7.r1.m_b,s7,0.45,s7.r1_med_b,data,,매개 b
+s7.r1.m_b_se,s7,0.04,s7.r1_med_b_se,data,,
+s7.r1.m_b_p,s7,.001,s7.r1_med_b_p_lt,data,,
+s7.r1.m_c,s7,0.52,s7.r1_med_c,data,,총효과 c
+s7.r1.m_c_se,s7,0.05,s7.r1_med_c_se,data,,
+s7.r1.m_c_p,s7,.001,s7.r1_med_c_p_lt,data,,
+s7.r1.m_cp,s7,0.08,s7.r1_med_cp,data,,직접효과 c′
+s7.r1.m_cp_se,s7,0.06,s7.r1_med_cp_se,data,,
+s7.r1.m_cp_p,s7,.203,s7.r1_med_cp_p,data,,
+s7.r1.m_ab,s7,0.44,s7.r1_med_ab,data,,a × b
+s7.r1.m_lv,s7,95,,fixed,,신뢰수준
+s7.r1.m_lo,s7,0.35,s7.r1_med_boot_lo,sim,0.008,s7.t6.h1a.lo 비고
+s7.r1.m_hi,s7,0.53,s7.r1_med_boot_hi,sim,0.008,s7.t6.h1a.hi 비고
+s7.r1.flr_b,s7,0.42,s3.flr_b_hjs3,data,,S3 ⑧ 번영 (곱항까지 넣은 모형 ; 0.42497)
+s7.r1.flr_i,s7,0.10,s3.flr_b_int,data,,
+s7.r1.flr_p,s7,.004,s3.flr_p_int,data,,
+s7.r1.noctl,s7,0.98,s3.b_hjs_raw554,data,,통제 없음 554명 (0.982)
+s7.r1.hc3_hjs,s7,0.05,s7.r1_hc3_hjs,data,,HC3 (2단계 ; R = 기본 R 샌드위치 식)
+s7.r1.hc3_int,s7,0.04,s7.r1_hc3_int,data,,HC3 (4단계 곱항 0.0429)
+s7.r1.tab_lv,s7,95,,fixed,,신뢰수준
+s7.r1.tab_n,s7,554,s3.n554,data,,

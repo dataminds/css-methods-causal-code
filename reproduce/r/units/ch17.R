@@ -100,6 +100,19 @@ xm <- list(fwd = c("refl", "hjs", "mil"), rev = c("mil", "hjs", "refl"))
 for (nm in names(xm)) for (k in c("c", "ab", "lo", "hi")) local({ n1 <- nm; k1 <- k; v <- xm[[n1]]
   calc(paste0("ch17.xmed_", n1, "_", k1), function() xmed(v[1], v[2], v[3])[[k1]])
 })
+# 2026-11-24c 개선안 주제 B = §17.5 결과 단락 본보기 = 나이를 두 식 모두에 넣은 매개 (lm.fit · R 난수 · 5,000 번)
+xmedage <- function(x, m, y) memo(paste("xmedage", x, m, y), function() { s <- S()
+  d <- data.frame(X = s[[x]], M = s[[m]], Y = s[[y]], A = s$age)
+  a <- coef(lm(M ~ X + A, data = d))[["X"]]; b <- coef(lm(Y ~ M + X + A, data = d))[["M"]]
+  set.seed(73); n <- nrow(d); one <- rep(1, n)
+  ab <- replicate(5000, { i <- sample.int(n, n, replace = TRUE)
+    lm.fit(cbind(one, d$X[i], d$A[i]), d$M[i])$coefficients[2] *
+      lm.fit(cbind(one, d$M[i], d$X[i], d$A[i]), d$Y[i])$coefficients[2] })
+  q <- unname(quantile(ab, c(.025, .975)))
+  list(c = coef(lm(Y ~ X + A, data = d))[["X"]], ab = a * b, lo = q[1], hi = q[2]) })
+for (nm in names(xm)) for (k in c("c", "ab", "lo", "hi")) local({ n1 <- nm; k1 <- k; v <- xm[[n1]]
+  calc(paste0("ch17.xmedage_", n1, "_", k1), function() xmedage(v[1], v[2], v[3])[[k1]])
+})
 # 2026-11-16c §17.4 「실제 도구로 맞추기」 · §17.1 「매개변수가 둘 이상일 때」 = lavaan (fixed.x = FALSE · 부트스트랩 5,000 · 백분위)
 pmod <- list(
   m1 = "hjs ~ a*refl
@@ -150,4 +163,10 @@ for (k in c("serial", "viamil", "i1", "i2", "tot", "diff")) local({ k1 <- k
 calc("ch17.pm_daic", function() unname(lavaan::fitMeasures(pfit("m3"), "aic") - lavaan::fitMeasures(pfit("m1"), "aic")))
 calc("ch17.n_raw", function() nrow(load_data("svy", clean = FALSE)))
 calc("ch17.n_drop", function() nrow(load_data("svy", clean = FALSE)) - nrow(S()))
+# 2026-11-24b §17.4 정보 기준 · 충돌형 모형 (lavaan ; 두 출발 변수 공분산 0 고정)
+collfit <- function() memo("coll_rhm", function() lavaan::sem("hjs ~ refl + mil\nrefl ~~ 0*mil", data = S(), fixed.x = FALSE))
+calc("ch17.coll_rhm_r", function() cor(S()$refl, S()$mil))
+calc("ch17.coll_rhm_chi", function() unname(lavaan::fitMeasures(collfit(), "chisq")))
+calc("ch17.coll_rhm_p", function() unname(lavaan::fitMeasures(collfit(), "pvalue")))
+calc("ch17.pm_bic_minus_aic", function() unname(lavaan::fitMeasures(pfit("m1"), "bic") - lavaan::fitMeasures(pfit("m1"), "aic")))
 })

@@ -6,23 +6,23 @@
    "import glob, os, pandas as pd\nfor f in sorted(glob.glob(\"data/journey_*.csv\")):        # ① 이름 규칙으로 다 찾는다\n    d = pd.read_csv(f)                                   # ② 하나씩 연다\n    print(os.path.basename(f), d.shape[0], d.shape[1])   # ③ 이름 · 행 · 열\n# journey_coding.csv 200 16\n# journey_cohort.csv 1800 7\n# journey_exp.csv 380 30\n# journey_fac.csv 448 8\n# journey_panel.csv 1270 5\n# journey_svy.csv 590 51\n# journey_ts.csv 104 3"
   ],
   [
-   177,
-   "import numpy as np\ndef make(seed):\n    r = np.random.default_rng(seed)\n    cond = np.repeat([0, 1], 190)                       # 통제 190 · 개입 190\n    mil = 4.83 + 0.31 * cond + r.normal(0, 1.05, 380)   # 심은 차이 = 0.31\n    return mil[cond == 1].mean() - mil[cond == 0].mean()\nfor s in (73, 37, 2026):\n    print(s, round(make(s), 2))\n# 73 0.4\n# 37 0.28\n# 2026 0.25"
+   186,
+   "import numpy as np\ndef make(seed):\n    r = np.random.default_rng(seed)\n    cond = np.repeat([0, 1], 190)                       # 통제 190 · 개입 190\n    mil = 4.83 + 0.31 * cond + r.normal(0, 1.05, 380)   # 정한 차이 = 0.31\n    return mil[cond == 1].mean() - mil[cond == 0].mean()\nfor s in (73, 37, 2026):\n    print(s, round(make(s), 2))\n# 73 0.4\n# 37 0.28\n# 2026 0.25"
   ],
   [
-   197,
+   206,
    "diffs = [make(s) for s in range(1, 501)]\nprint(round(np.mean(diffs), 3), round(min(diffs), 2), round(max(diffs), 2))\n# 0.303 -0.07 0.62"
   ],
   [
-   242,
+   267,
    "print(round(np.random.default_rng().normal(0, 1, 5).mean(), 3))     # 0.024\nprint(round(np.random.default_rng().normal(0, 1, 5).mean(), 3))     # -0.649\nprint(round(np.random.default_rng(73).normal(0, 1, 5).mean(), 3))   # -0.013\nprint(round(np.random.default_rng(73).normal(0, 1, 5).mean(), 3))   # -0.013"
   ],
   [
-   261,
+   286,
    "import pandas as pd\n\nexp = pd.read_csv(\"data/journey_exp.csv\")\nprint(exp.shape)\nprint(exp[[\"id\", \"age\", \"gender\", \"cond\", \"mil_t1\", \"hjs\", \"mil\"]].head(3))"
   ],
   [
-   295,
+   321,
    "exp = pd.read_csv(\"data/journey_exp.csv\")\ngap = exp[exp.cond==1].mil.mean() - exp.mil.mean()"
   ]
  ]

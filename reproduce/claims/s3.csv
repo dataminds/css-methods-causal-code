@@ -15,6 +15,7 @@ s3.tab.b14b,s3,0.14,,paper,,Rogers et al. (2023) Study 2 b = .14 를 풀어 쓴 
 s3.clean.raw,s3,590,s3.raw_n,data,,③ 설문판 원자료
 s3.clean.n,s3,566,s3.n,data,,③ attn_1 = 1
 s3.clean.other,s3,12,s3.other_n,data,,③ gender == 3 (정제 566명 안)
+s3.clean.other3,s3,12,s3.other_n,data,,③ 소수 범주 처리 까닭 (2026-11-24)
 s3.clean.n554,s3,554,s3.n554,data,,③ gender ∈ {1 · 2}
 s3.clean.other2,s3,12,s3.other_n,data,,③
 s3.meas.items,s3,21,s3.hjs_items,data,,④ hjs_ 문항 수

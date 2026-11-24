@@ -98,4 +98,18 @@ calc("ch13.inv_first_n80", function() { g <- c(80, 90, 100, 110); g[which(sapply
 # 측정 잡음 = 두 집단에 같은 분산 (1 − rel)/rel 의 잡음 → 관찰 d = 참 d × √rel
 calc("ch13.noise_10", function() pw(.22, 190))
 calc("ch13.noise_07", function() pw(.22 * sqrt(.7), 190))
+
+# §13.4 「설문 · 연속 변수라면」 = 피셔 z 근사 + R 자기 난수 모의시행 (씨앗 73)
+fz <- function() ((qnorm(.975) + qnorm(.80)) / atanh(.20))^2 + 3
+calc("ch13.fz_n_raw", fz)
+calc("ch13.fz_n", function() ceiling(fz()))
+calc("ch13.fz_recruit", function() ceiling(ceiling(fz()) / (1 - .15)))
+fz_sim <- function(n) {
+  set.seed(73)
+  mean(replicate(2000, { x <- rnorm(n); y <- .2 * x + sqrt(1 - .2^2) * rnorm(n); cor.test(x, y)$p.value < .05 }))
+}
+for (n in c(150, 194, 300)) local({
+  nn <- n
+  calc(paste0("ch13.fz_pw_", nn), function() fz_sim(nn))
+})
 })

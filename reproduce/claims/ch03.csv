@@ -177,10 +177,6 @@ ch03.mine.n,ch03,566,ch03.svy_n,data,,§3.8
 ch03.chk.60,ch03,60,,fixed,,§3.9 가정 표본 크기 (§3.3 의 60명 설계)
 ch03.chk.500,ch03,500,ch03.panel_ids,data,,§3.9
 ch03.chk.gap,ch03,0.12,ch03.hjs_rev_gap,data,,§3.9
-ch03.dtype.32,ch03,32.0,,fixed,,§3.2 저장 형식 상자 = 손으로 만든 세 사람 예 (23 · 모름 · 41 → (23 + 41) / 2) ; 원고 코드 블록이 출력으로 대조
-ch03.na.350,ch03,350,ch03.n_w3,data,,§3.5 빈칸 상자
-ch03.na.mean,ch03,4.926,ch03.w3_mean,data,,§3.5 빈칸 상자 = 3차 삶의 의미 평균 (빈칸 뺌)
-ch03.na.mean_r,ch03,4.926,ch03.w3_mean,data,,§3.5 빈칸 상자 = R na.rm = TRUE
 ch03.blank.mean,ch03,4.600,ch03.row1_blank_mean,data,,§3.4 ⚠ 1번 응답자 첫 문항 비움 = 20문항 평균
 ch03.blank.sum,ch03,4.381,ch03.row1_blank_sum21,data,,§3.4 ⚠ 같은 행 합 ÷ 21
 ch03.ex8.mean,ch03,4.600,ch03.row1_blank_mean,data,,실습 8
@@ -197,7 +193,9 @@ ch03.cmpt.cn,ch03,366,ch03.exp_n,data,,§3.3 제외 전후 표
 ch03.cmpt.c1,ch03,5.264,ch03.exp_clean_m1,data,,§3.3 정제본 개입 평균
 ch03.cmpt.c0,ch03,4.981,ch03.exp_clean_m0,data,,§3.3 정제본 통제 평균
 ch03.cmpt.cd,ch03,0.283,ch03.exp_clean_diff,data,,§3.3 정제본 차이
-ch03.sd.thr,ch03,0.5,,fixed,,§3.3 일자 응답 문턱 (설계값)
+ch03.sd.thr.example,ch03,0.5,,fixed,,§3.3 일자 응답 문턱 = 예시 값 표기 (2026-11-24 ; 근거 문헌 없음 = ch03.sd.thr note)
+ch03.my.thr.example,ch03,0.5,,fixed,,§3.8 둘째 = §3.3 일자 응답 문턱 예시 값 (2026-11-24)
+ch03.sd.thr,ch03,0.5,,fixed,,§3.3 일자 응답 문턱 (설계값 = 이 책이 고른 예시 값 ; 2026-11-24 출처 탐색 = 이 책 참고문헌 · _shared/references · readings 에서 이 문턱의 근거 문헌을 찾지 못함 → 본문에 「예시 값」 표기)
 ch03.ax.n1,ch03,566,ch03.svy_n,data,,§3.4 축
 ch03.rc.mine,ch03,4.571429,ch03.row1_hjs_mine,data,,§3.4 독립 재계산
 ch03.rc.n,ch03,566,ch03.svy_n,data,,§3.4
@@ -210,7 +208,5 @@ ch03.ai.n,ch03,566,ch03.svy_n,data,,AI 절 판단 1
 ch03.ai.max,ch03,0.000476,ch03.hjs_recalc_maxdiff,data,,AI 절 판단 3
 ch03.ai.ids,ch03,500,ch03.panel_ids,data,,AI 절 판단 4
 ch03.ai.rows,ch03,"1,270",ch03.panel_rows,data,,AI 절 판단 4
-ch03.c8.n1,ch03,566,,fixed,,복습 코드 8 표본 크기 (설계값)
-ch03.c8.n2,ch03,60,,fixed,,복습 코드 8 표본 크기 (설계값)
 ch03.c10.n,ch03,566,ch03.svy_n,data,,복습 코드 10
-ch03.box2.nanmean,ch03,5.0,ch03.toy_nan_mean,data,,§3.5 둘째 상자 = 4 · 빈칸 · 6 의 평균 (빈칸 제외 ; 예시 산술)
+ch03.spec.svy,ch03,566,ch03.svy_n,data,,실습 10 자료 명세서 예상

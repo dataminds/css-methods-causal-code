@@ -80,6 +80,26 @@ for k in ("b_lo", "b_mid", "b_hi", "se_lo", "se_mid", "se_hi", "cl_lo", "cu_lo",
     calc(f"ch16.ss_{k}")(lambda k=k: memo("ss", _ss)[k])
 
 
+# 2026-11-24d §16.0 「곱항은 두 방향으로 읽힌다」 · 실습 7 = 같은 곱항을 거꾸로 읽은 refl 의 조건별 기울기
+# (hjs 기준을 −1SD · 평균 · +1SD 로 옮겨 다시 맞춘 refl 계수와 그 95% CI)
+def _rs():
+    s = S()
+    r = s.refl - s.refl.mean()
+    sd, n = s.hjs.std(ddof=1), len(s)
+    tq = stats.t.ppf(.975, n - 4)
+    out = {"hjs_sd": sd}
+    for lab, v in (("lo", -sd), ("mid", 0.0), ("hi", sd)):
+        hh = s.hjs - s.hjs.mean() - v
+        b, se, *_ = ols(s.mil, [hh, r, hh * r])
+        out[f"b_{lab}"] = b[2]
+        out[f"cl_{lab}"], out[f"cu_{lab}"] = b[2] - tq * se[2], b[2] + tq * se[2]
+    return out
+
+
+for k in ("hjs_sd", "b_lo", "b_mid", "b_hi", "cl_lo", "cu_lo", "cl_mid", "cu_mid", "cl_hi", "cu_hi"):
+    calc(f"ch16.rs_{k}")(lambda k=k: memo("rs", _rs)[k])
+
+
 # ── 모의시행 (책 코드와 같은 난수 순서 ; 씨앗 73) ──
 def _gs():
     """§16.1 [더 나아가기] 상자 = 참 기울기 0.3, 인원 300 · 40."""
@@ -344,3 +364,32 @@ def _cross():
 
 for _k in ("r", "b_grow", "b_cyn", "bx", "bint", "pint_lt001", "bx_eff"):
     calc(f"ch16.cross_{_k}")(lambda k=_k: _cross()[k])
+
+
+# 2026-11-24c 개선안 상 5 = 위계 회귀 554명에서 통제변수(나이 · 여성 표시)와 hjs · refl 의 네 상관 가운데 가장 큰 절댓값
+def _ctrl_maxr():
+    s = S(); s = s[s.gender.isin([1, 2])]
+    fem = (s.gender == 2).astype(float)
+    return max(abs(np.corrcoef(c, v)[0, 1]) for c in (s.age, fem) for v in (s.hjs, s.refl))
+
+
+calc("ch16.ctrl_maxr")(_ctrl_maxr)
+
+
+# 2026-11-24c 개선안 상 1 = 코드 11 의 0/1 조절변수 검정력 (두 집단 기울기 차이 0.3 · X 신뢰도 0.7 · 800 번 ; 책 코드와 같은 난수 순서)
+def _power01(n, b_int=0.3, rel=0.7, reps=800):
+    rng = np.random.default_rng(73)
+    sd_e = np.sqrt((1 - rel) / rel)
+    hit = 0
+    for _ in range(reps):
+        X = rng.normal(0, 1, n)
+        W = rng.integers(0, 2, n)
+        Y = .2 * X + .2 * W + b_int * X * W + rng.normal(0, 1, n)
+        Xo = X + rng.normal(0, sd_e, n)
+        b, se, *_ = ols(Y, [Xo, W, Xo * W])
+        hit += abs(b[3] / se[3]) > 1.96
+    return hit / reps
+
+
+calc("ch16.pow01_n300")(lambda: memo("pow01_300", lambda: _power01(300)))
+calc("ch16.pow01_n600")(lambda: memo("pow01_600", lambda: _power01(600)))

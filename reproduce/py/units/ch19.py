@@ -23,7 +23,7 @@ calc("ch19.f_two_p")(lambda: stats.f_oneway(*_ab()).pvalue)
 
 
 def _perm():
-    """책 §19.2 코드와 같은 난수 순서 (씨앗 73, 1만 번)."""
+    """책 §19.4 코드와 같은 난수 순서 (씨앗 73, 1만 번)."""
     if "perm" not in _c:
         a, b = _ab()
         rng = np.random.default_rng(73)
@@ -69,7 +69,7 @@ for _k in ("n", "r", "t_pair", "t_ind"):
     calc(f"ch19.pan_{_k}")(lambda k=_k: _panel()[k])
 calc("ch19.z975")(lambda: stats.norm.ppf(.975))
 
-# §19.5 오즈 산술
+# §19.6 오즈 산술
 _odds = lambda p: p / (1 - p)
 _p1 = lambda p0: _odds(p0) * 2 / (1 + _odds(p0) * 2)
 calc("ch19.odds_p05")(lambda: _odds(.5))

@@ -185,3 +185,54 @@ ch04.rv.true,ch04,.60,,fixed,,복습 대조표 참 상관 (설계값)
 ch04.rv.c10,ch04,.60,,fixed,,복습 코드 10 머리 (설계값)
 ch04.rv.c10a,ch04,0.60,,fixed,,복습 코드 10 실습 3 안내 (설계값)
 ch04.rv.c10b,ch04,0.30,,fixed,,실습 3 참 상관 (설계값)
+ch05.nunique.mil,ch04,24,ch05.mil_nunique,data,,§5.4
+ch05.nunique.hjs,ch04,79,ch05.hjs_nunique,data,,§5.4
+ch05.gender.mean,ch04,1.54,ch05.raw_gender_mean,data,,§5.4 (원자료 590명)
+ch05.alpha.mil,ch04,.93,ch05.mil_alpha,data,,실습 5
+ch05.likert.equal,ch04,−0.10,ch05.likert_equal_diff,data,,§5.4 산술
+ch05.likert.weighted,ch04,−0.45,ch05.likert_weighted_diff,data,,§5.4 산술
+ch05.likert.rescaled,ch04,−0.20,ch05.likert_weighted_rescaled,data,,§5.4 산술
+ch05.likert.equal.b,ch04,−0.10,ch05.likert_equal_diff,data,,§5.4 산술
+ch05.nuniq.v1,ch04,1.00,,fixed,,4문항 평균이 가질 수 있는 값 = k/4 (정의)
+ch05.nuniq.v2,ch04,1.25,,fixed,,4문항 평균이 가질 수 있는 값 = k/4 (정의)
+ch05.nuniq.v3,ch04,1.50,,fixed,,4문항 평균이 가질 수 있는 값 = k/4 (정의)
+ch05.nuniq.step,ch04,0.25,,fixed,,4문항 평균의 간격 = 1/4 (정의)
+ch05.cl.n.wa,ch04,"13,064",,paper,,Cheung & Lucas 2014 초록 p. 2809 (Quality of Life Research 23(10) 2809–2818 ; 쪽 = 원문 txt 의 쪽 머리로 산정)
+ch05.cl.n.or,ch04,"2,277",,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.n.de,ch04,"1,312",,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.r.lo,ch04,.62,,paper,,Cheung & Lucas 2014 초록 p. 2809 (zero-order r = 0.62–0.64)
+ch05.cl.r.hi,ch04,.64,,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.dr.lo,ch04,.78,,paper,,Cheung & Lucas 2014 초록 p. 2809 (disattenuated r = 0.78–0.80)
+ch05.cl.dr.hi,ch04,.80,,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.diff.lo,ch04,.015,,paper,,Cheung & Lucas 2014 초록 p. 2809 (average difference = 0.015–0.042)
+ch05.cl.diff.hi,ch04,.042,,paper,,Cheung & Lucas 2014 초록 p. 2809
+ch05.cl.rel.m,ch04,.72,,paper,,Cheung & Lucas 2014 p. 2812 (Lucas & Donnellan 의 평균 신뢰도 0.72)
+ch05.cl.rel.lo,ch04,.68,,paper,,Cheung & Lucas 2014 p. 2810 (estimates ranging from 0.68 to 0.74)
+ch05.cl.rel.hi,ch04,.74,,paper,,Cheung & Lucas 2014 p. 2810
+ch05.cl.back.r,ch04,.62,,paper,,Cheung & Lucas 2014 p. 2809 · 2812 (워싱턴 zero-order 0.62)
+ch05.cl.back.dr,ch04,.78,,paper,,Cheung & Lucas 2014 p. 2809 · 2812 (워싱턴 disattenuated 0.78)
+ch05.cl.eq.r,ch04,.62,,paper,,Cheung & Lucas 2014 p. 2809
+ch05.cl.eq.dr,ch04,.78,,paper,,Cheung & Lucas 2014 p. 2809
+ch05.cl.eq.prod,ch04,.63,ch05.cl_reliab_product,data,,(.62 ÷ .78)² = 0.6318 (산술)
+ch05.cl.eq2.prod,ch04,.63,ch05.cl_reliab_product,data,,(.62 ÷ .78)² = 0.6318 (산술)
+ch05.cl.eq2.rel,ch04,.72,,paper,,Cheung & Lucas 2014 p. 2812
+ch05.cl.eq2.alpha,ch04,.88,ch05.cl_swls_alpha,data,,(.62 ÷ .78)² ÷ .72 = 0.8775 (반올림 전 곱으로 ; 반올림한 .63 ÷ .72 = 0.875 도 .88)
+ch05.ex5.gender.mean,ch04,1.54,ch05.raw_gender_mean,data,,실습 5 (원자료 590명)
+ch05.ex5.gender.k,ch04,3,ch05.gender_nunique,data,,실습 5 (정제본)
+ch05.ex5.mil1.k,ch04,7,ch05.mil1_nunique,data,,실습 5 (정제본)
+ch05.c3.mix,ch04,.72,,fixed,,4장 §4.2 반례 알파 (대조 = claims/ch04.csv 의 반례 행 ; 단위 밖 계산이라 fixed)
+ch05.ex5.med,ch04,5.00,ch05.mil_median,data,,실습 5 우수 기준
+ch05.ex5.mean,ch04,4.89,ch05.mil_mean,data,,실습 5 우수 기준
+ch05.lk.n,ch04,100,,fixed,,§5.4 간격 가정 예시의 집단 크기 (설계값)
+ch05.lk.eq,ch04,−0.10,ch05.likert_equal_diff,data,,§5.4 산술
+ch05.lk.w,ch04,−0.45,ch05.likert_weighted_diff,data,,§5.4 산술
+ch04.rx.miss.a.0,ch04,.93,ch04.alpha_hjs21,data,,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.miss.a.1,ch04,.91,ch04.alpha_rev21,data,,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.miss.d.0,ch04,.71,ch04.alpha_el_a,data,,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.miss.d.1,ch04,.62,ch04.alpha_a_drop1,data,,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.eig.0,ch04,2.65,ch04.cx_ev1,sim,0.27,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.eig.1,ch04,2.52,ch04.cx_ev2,sim,0.28,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.eig.2,ch04,0.2,ch04.cx_ev_rest_max,sim,0.05,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.gap.0,ch04,−0.10,ch05.likert_equal_diff,data,,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.gap2.0,ch04,−0.20,ch05.likert_weighted_rescaled,data,,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)
+ch04.rx.rep.0,ch04,.93,ch05.mil_alpha,data,,4 · 5장 재구성 (2026-11-24 ; 기획 ch04-ch05-restructure-plan)

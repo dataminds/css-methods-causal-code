@@ -147,6 +147,25 @@ for _nm, _t in {"fwd": ("refl", "hjs", "mil"), "rev": ("mil", "hjs", "refl")}.it
         calc(f"ch17.xmed_{_nm}_{_k}")(lambda t=_t, k=_k: _xmed(*t)[k])
 
 
+# 2026-11-24c 개선안 주제 B = §17.5 횡단 설문 결과 단락 본보기 = 나이를 두 식 모두에 넣은 매개 (부트스트랩 5,000 번 · 씨앗 73)
+def _xmedage(x, m, y):
+    def f():
+        s = S(); X, M, Y, A = s[x].values, s[m].values, s[y].values, s.age.values
+        c = ols(Y, [X, A])[0][1]; a = ols(M, [X, A])[0][1]; b = ols(Y, [M, X, A])[0][1]
+        g = np.random.default_rng(73); n = len(X); ab = []
+        for _ in range(5000):
+            i = g.integers(0, n, n)
+            ab.append(ols(M[i], [X[i], A[i]])[0][1] * ols(Y[i], [M[i], X[i], A[i]])[0][1])
+        lo, hi = np.percentile(ab, [2.5, 97.5])
+        return dict(c=c, ab=a * b, lo=lo, hi=hi)
+    return memo(("xmedage", x, m, y), f)
+
+
+for _nm, _t in {"fwd": ("refl", "hjs", "mil"), "rev": ("mil", "hjs", "refl")}.items():
+    for _k in ("c", "ab", "lo", "hi"):
+        calc(f"ch17.xmedage_{_nm}_{_k}")(lambda t=_t, k=_k: _xmedage(*t)[k])
+
+
 # 2026-11-16c §17.4 「실제 도구로 맞추기」 · §17.1 「매개변수가 둘 이상일 때」 = lavaan 결과를 numpy 로 따로 계산
 # 재귀 경로 모형의 최대우도 추정 = 식마다 최소제곱 · 잔차 분산 = 잔차 제곱합 ÷ N · 출발 변수의 분산 · 공분산은 자료값 (fixed.x = FALSE)
 from scipy import stats as _st2
@@ -242,3 +261,11 @@ for _k in ("serial", "viamil", "i1", "i2", "tot", "diff"):
 calc("ch17.pm_daic")(lambda: memo(("pm", "m3"), lambda: _path_fit(*_PM["m3"]))["aic"] - memo(("pm", "m1"), lambda: _path_fit(*_PM["m1"]))["aic"])
 calc("ch17.n_raw")(lambda: len(load("svy", clean=False)))
 calc("ch17.n_drop")(lambda: len(load("svy", clean=False)) - len(S()))
+
+# 2026-11-24b §17.4 정보 기준 · 충돌형 모형 (회고 습관 → 여정 지각 ← 삶의 의미 = 두 출발 변수 무관 고정 ; χ² = −N ln(1 − r²))
+def _coll():
+    s = S(); r = np.corrcoef(s.refl, s.mil)[0, 1]; chi = -len(s) * np.log(1 - r ** 2)
+    return dict(r=r, chi=chi, p=_st.chi2.sf(chi, 1))
+for _k in ("r", "chi", "p"):
+    calc(f"ch17.coll_rhm_{_k}")(lambda k=_k: memo("coll_rhm", _coll)[k])
+calc("ch17.pm_bic_minus_aic")(lambda: memo(("pm", "m1"), lambda: _path_fit(*_PM["m1"]))["bic"] - memo(("pm", "m1"), lambda: _path_fit(*_PM["m1"]))["aic"])

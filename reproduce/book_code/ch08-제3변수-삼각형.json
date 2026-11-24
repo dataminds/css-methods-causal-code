@@ -3,7 +3,7 @@
  "blocks": [
   [
    66,
-   "def make_simpson(seed=73, n=400):\n    rng = np.random.default_rng(seed)\n    sex = rng.integers(0, 2, n)                             # 0 = 암컷, 1 = 수컷\n    dose = np.clip(rng.normal(2 + 4*sex, 1.5), 0, 10)       # 수컷이 더 많이 먹는다\n    vigor = 55 + 20*sex - 1.5*dose + rng.normal(0, 4, n)    # 심은 값: 성별 +20, 복용량 -1.5\n    return pd.DataFrame({\"sex\": sex, \"dose\": dose.round(1), \"vigor\": vigor.round(1)})\n\nzg = make_simpson()\nprint(round(np.polyfit(zg.dose, zg.vigor, 1)[0], 2))\n# 1.7"
+   "def make_simpson(seed=73, n=400):\n    rng = np.random.default_rng(seed)\n    sex = rng.integers(0, 2, n)                             # 0 = 암컷, 1 = 수컷\n    dose = np.clip(rng.normal(2 + 4*sex, 1.5), 0, 10)       # 수컷이 더 많이 먹는다\n    vigor = 55 + 20*sex - 1.5*dose + rng.normal(0, 4, n)    # 정한 값: 성별 +20, 복용량 -1.5\n    return pd.DataFrame({\"sex\": sex, \"dose\": dose.round(1), \"vigor\": vigor.round(1)})\n\nzg = make_simpson()\nprint(round(np.polyfit(zg.dose, zg.vigor, 1)[0], 2))\n# 1.7"
   ],
   [
    91,
@@ -22,15 +22,15 @@
    "rng = np.random.default_rng(73)\nlook, skill = rng.normal(0, 1, 2000), rng.normal(0, 1, 2000)   # 서로 무관하게 짓는다\nwin = (look + skill) > 1.8                                     # 둘의 합이 크면 수상\n\nprint(round(np.corrcoef(look, skill)[0, 1], 2),\n      round(np.corrcoef(look[win], skill[win])[0, 1], 2), win.sum())\n# 0.01 -0.72 225"
   ],
   [
-   270,
+   273,
    "def 세_세계(seed=73, n=2000):\n    g = np.random.default_rng(seed)\n    C = g.normal(0,1,n); X1 = .8*C + g.normal(0,1,n); Y1 = .8*C + g.normal(0,1,n)\n    X2 = g.normal(0,1,n); M2 = .8*X2 + g.normal(0,1,n); Y2 = .8*M2 + g.normal(0,1,n)\n    X3 = g.normal(0,1,n); Y3 = g.normal(0,1,n); C3 = .8*X3 + .8*Y3 + g.normal(0,1,n)\n    return {\"혼란\": (X1,Y1,C), \"사슬\": (X2,Y2,M2), \"충돌\": (X3,Y3,C3)}\n\ndef 차이(X, Y, keep=None):                       # X 상위 절반과 하위 절반의 Y 평균차\n    m = np.median(X[keep]) if keep is not None else np.median(X)\n    sel = np.ones(len(X), bool) if keep is None else keep\n    return Y[sel & (X > m)].mean() - Y[sel & (X <= m)].mean()\n\nfor name, (X, Y, Z) in 세_세계().items():\n    q = pd.qcut(Z, 10, labels=False)             # 제3변수를 열 층으로\n    층별 = [차이(X, Y, q == k) for k in range(10)]\n    print(name, round(차이(X, Y), 2), round(float(np.mean(층별)), 2))\n# 혼란 0.89 0.1\n# 사슬 1.02 0.03\n# 충돌 -0.11 -0.58"
   ],
   [
-   318,
+   321,
    "g = np.random.default_rng(73)\nng, per = 30, 40\ngrp = np.repeat(np.arange(ng), per)\nlvl = g.normal(0, 1, ng)[grp]                      # 집단마다 다른 수준\ne = g.normal(0, 1, ng * per)\nx = lvl + e\ny = lvl - 0.62 * e + g.normal(0, .6, ng * per)     # 집단 안에서는 반대로 움직인다\nd = pd.DataFrame({\"g\": grp, \"x\": x, \"y\": y})\ngm = d.groupby(\"g\").mean()\nwi = d.groupby(\"g\")[[\"x\", \"y\"]].transform(lambda v: v - v.mean())\nprint(round(d.x.corr(d.y), 3), round(wi.x.corr(wi.y), 3), round(gm.x.corr(gm.y), 3))\n# 0.237 -0.729 0.973"
   ],
   [
-   347,
+   350,
    "def make2(seed=73, n=400, sexeff=20.0):        # 성별 → 기력 만 조절\n    rng = np.random.default_rng(seed)\n    sex = rng.integers(0, 2, n)\n    dose = np.clip(rng.normal(2 + 4*sex, 1.5), 0, 10)\n    vigor = 55 + sexeff*sex - 1.5*dose + rng.normal(0, 4, n)\n    return pd.DataFrame({\"sex\": sex, \"dose\": dose.round(1), \"vigor\": vigor.round(1)})\n\nfor e in (20.0, 0.0):\n    print(e, round(np.polyfit(make2(sexeff=e).dose, make2(sexeff=e).vigor, 1)[0], 2))\n# 20.0 1.7\n# 0.0 -1.66"
   ]
  ]
