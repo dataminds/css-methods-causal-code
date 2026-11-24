@@ -2,31 +2,31 @@
  "unit": "s4-시나리오-종단-패널과-코호트.md",
  "blocks": [
   [
-   81,
+   89,
    "pan = load(\"panel\")\nw1 = pan[pan.wave == 1].set_index(\"id\")\nw2 = pan[pan.wave == 2].set_index(\"id\")\nstay = w1.index.intersection(w2.index)\nleft = w1.index.difference(w2.index)\nprint(len(stay), len(left),\n      round(w1.loc[stay].mil.mean(), 2), round(w1.loc[left].mil.mean(), 2),\n      round(cohen_d(w1.loc[stay].mil, w1.loc[left].mil), 2))\n# 420 80 5.01 4.15 0.86"
   ],
   [
-   97,
+   105,
    "p2 = pan.copy()\nfor c in (\"hjs\", \"mil\"):                      # 각자의 평균에서 벗어난 몫만 남긴다\n    p2[c + \"_c\"] = p2[c] - p2.groupby(\"id\")[c].transform(\"mean\")\nprint(round(float(w1.hjs.corr(w1.mil)), 3),\n      round(float(p2.hjs_c.corr(p2.mil_c)), 3))\n# 0.286 0.056"
   ],
   [
-   127,
+   135,
    "wide = pan.pivot(index=\"id\", columns=\"wave\", values=[\"hjs\", \"mil\"]).dropna()\nz = lambda v: (v - v.mean()) / v.std(ddof=1)\nfor lab, (y, y1, x1) in {\"여정→의미 1→2\": ((\"mil\", 2), (\"mil\", 1), (\"hjs\", 1)),\n                          \"여정→의미 2→3\": ((\"mil\", 3), (\"mil\", 2), (\"hjs\", 2)),\n                          \"의미→여정 1→2\": ((\"hjs\", 2), (\"hjs\", 1), (\"mil\", 1)),\n                          \"의미→여정 2→3\": ((\"hjs\", 3), (\"hjs\", 2), (\"mil\", 2))}.items():\n    b, se, p, _ = ols(z(wide[y]), [z(wide[y1]), z(wide[x1])])\n    print(lab, round(b[2], 3), round(float(p[2]), 3))\n# 여정→의미 1→2 0.191 0.0\n# 여정→의미 2→3 0.212 0.0\n# 의미→여정 1→2 0.114 0.009\n# 의미→여정 2→3 0.105 0.021"
   ],
   [
-   158,
+   166,
    "co = load(\"cohort\")\nprint(co.groupby(\"year\").mil.mean().round(2).to_dict())\nprint(co.groupby(\"year\").age.mean().round(1).to_dict())\n# {2015: 4.42, 2020: 4.19, 2025: 4.6}\n# {2015: 36.2, 2020: 40.7, 2025: 45.6}"
   ],
   [
-   184,
+   192,
    "pan = load(\"panel\")\nw1 = pan[pan.wave == 1].set_index(\"id\")\nwide = pan.pivot(index=\"id\", columns=\"wave\", values=[\"hjs\", \"mil\"]).dropna()\ncomp = w1.loc[wide.index]                       # 완주자 350명의 1차 자료\nprint(round(float(w1.hjs.corr(w1.mil)), 3), round(float(____), 3))"
   ],
   [
-   197,
+   205,
    "p2 = pan.copy()\np2[\"hjs_c\"] = p2.hjs - p2.groupby(\"id\").hjs.transform(\"mean\")\np2[\"mil_c\"] = ____\nprint(round(float(p2.hjs_c.corr(p2.mil_c)), 3))"
   ],
   [
-   209,
+   217,
    "rng = np.random.default_rng(73)\nfake = pan.copy()\nfake[\"id\"] = rng.permutation(fake.id.values)     # 사람 연결만 끊는다\n# 여기서부터 실습 2 의 중심화를 그대로 반복"
   ]
  ]
