@@ -134,3 +134,11 @@ def _contrast():
 
 for _k in ("est", "se", "t", "p", "lo", "hi", "df", "wsum"):
     calc(f"b2.con_{_k}")(lambda k=_k: _contrast()[k])
+
+
+# §B2.2 「쌍」 = 네 칸 표 (칸마다 사람 수 · 평균) · 앞뒤를 바꾼 차이 (2026-11-24)
+for _c, _nm in enumerate(("00", "01", "10", "11")):
+    calc(f"b2.cm{_nm}")(lambda c=_c: grp()[c].mean())
+    calc(f"b2.cn{_nm}")(lambda c=_c: len(grp()[c]))
+calc("b2.tk13_diff_rev")(lambda: -_tukey()[4]["diff"])
+calc("b2.tk01_absdiff")(lambda: abs(_tukey()[0]["diff"]))

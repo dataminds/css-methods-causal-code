@@ -94,4 +94,13 @@ for (k in c("est", "se", "t", "p", "lo", "hi", "df", "wsum")) local({
   kk <- k
   calc(paste0("b2.con_", kk), function() con()[[kk]])
 })
+
+# §B2.2 「쌍」 = 네 칸 표 (칸마다 사람 수 · 평균) · 앞뒤를 바꾼 차이 (2026-11-24)
+for (i in 1:4) local({
+  ii <- i; nm <- gsub(" ", "", lv[ii])
+  calc(paste0("b2.cm", nm), function() unname(tapply(FAC()$mil_t2, FAC()$cell, mean)[lv[ii]]))
+  calc(paste0("b2.cn", nm), function() unname(table(FAC()$cell)[lv[ii]]))
+})
+calc("b2.tk13_diff_rev", function() -unname(tk()["1 1-0 1", "diff"]))
+calc("b2.tk01_absdiff", function() abs(unname(tk()["0 1-0 0", "diff"])))
 })

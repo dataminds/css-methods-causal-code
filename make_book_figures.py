@@ -1215,6 +1215,74 @@ def fig_ch15_collinear(seed=73):
     return rows
 
 
+def make_free(seed=73, n=400):
+    """성별 → 복용량 다리만 끊은 저그마을 (15장 §15.1 합산모형 ; 코드 12 와 같은 생성기)."""
+    rng = np.random.default_rng(seed)
+    sex = rng.integers(0, 2, n)
+    dose = np.clip(rng.normal(4, 2.5, n), 0, 10)   # 성별과 상관없이 뽑는다
+    vigor = 55 + 20 * sex - 1.5 * dose + rng.normal(0, 4, n)
+    return pd.DataFrame({"sex": sex, "dose": dose.round(1), "vigor": vigor.round(1)})
+
+
+def fig_ch15_additive():
+    """묶인 마을 ⊥ 끊은 마을: 통제가 계수를 바꾸는가 · 설명량이 더해지는가 (2026-11-24)."""
+    def fit(y, cols):
+        X = np.column_stack([np.ones(len(y))] + cols)
+        b = np.linalg.lstsq(X, y, rcond=None)[0]
+        r2 = 1 - ((y - X @ b) ** 2).sum() / ((y - y.mean()) ** 2).sum()
+        return b, r2
+
+    villages = (("묶인 마을", make_simpson()), ("끊은 마을", make_free()))
+    fig, axes = plt.subplots(2, 2, figsize=(9.4, 7.0),
+                             gridspec_kw={"height_ratios": [1.35, 1]})
+    out = {}
+    for j, (name, z) in enumerate(villages):
+        y = z.vigor.values
+        bd, r2d = fit(y, [z.dose.values])
+        _, r2s = fit(y, [z.sex.values])
+        bj, r2j = fit(y, [z.dose.values, z.sex.values])
+        r = np.corrcoef(z.sex, z.dose)[0, 1]
+        out[name] = dict(r=r, simple=bd[1], joint=bj[1], r2d=r2d, r2s=r2s, r2j=r2j)
+        ax = axes[0, j]
+        for i, (sx, lab) in enumerate(((0, "암컷"), (1, "수컷"))):
+            d = z[z.sex == sx]
+            ax.scatter(d.dose, d.vigor, s=8, alpha=.45, color=BW["color"][i],
+                       marker=BW["marker"][i], label=f"{lab}")
+            xs = np.linspace(d.dose.min(), d.dose.max(), 30)
+            ax.plot(xs, bj[0] + bj[2] * sx + bj[1] * xs, color=BW["color"][i],
+                    linestyle=BW["line"][i], linewidth=1.8)
+        xs = np.linspace(z.dose.min(), z.dose.max(), 40)
+        ax.plot(xs, bd[0] + bd[1] * xs, color=OI[7], linestyle=":", linewidth=2.2,
+                label=f"복용량만: {bd[1]:+.2f}")
+        ax.plot([], [], color="gray", linewidth=1.8, label=f"성별 통제(나란한 두 선): {bj[1]:+.2f}")
+        ax.set_title(f"{name} (성별과 복용량의 상관 {r:+.2f})\n"
+                     f"복용량 계수 {bd[1]:+.2f} → {bj[1]:+.2f}", fontsize=10)
+        ax.set_xlabel("복용량"); ax.set_ylabel("기력")
+        ax.legend(fontsize=7.5, loc="lower left" if j == 0 else "lower left")
+        # 아래 줄: 설명량(R²)
+        ax2 = axes[1, j]
+        ax2.bar(0, r2d, color=BW["color"][0], edgecolor="black", hatch="", width=.55,
+                label="복용량만")
+        ax2.bar(0, r2s, bottom=r2d, color="white", edgecolor="black", hatch="//",
+                width=.55, label="성별만")
+        ax2.bar(1, r2j, color="lightgray", edgecolor="black", width=.55,
+                label="둘 함께")
+        ax2.text(0, r2d + r2s + .02, f"{r2d:.3f} + {r2s:.3f}\n= {r2d + r2s:.3f}",
+                 ha="center", va="bottom", fontsize=8.5)
+        ax2.text(1, r2j + .02, f"{r2j:.3f}", ha="center", va="bottom", fontsize=8.5)
+        ax2.set_xticks([0, 1], ["단순회귀 둘의 R²를 더하면", "함께 넣은 모형의 R²"],
+                       fontsize=8.5)
+        ax2.set_ylim(0, 1.32); ax2.set_ylabel("설명량 R² (0~1)")
+        ax2.set_title("겹친 몫을 두 번 센다" if j == 0 else "거의 그대로 더해진다",
+                      fontsize=10)
+        ax2.legend(fontsize=7.5, loc="upper center", ncol=3)
+    fig.suptitle("성별이 복용량과 묶여 있으면 통제가 계수를 바꾸고, "
+                 "묶임을 끊으면 계수와 설명량이 거의 그대로다 (저그마을 400마리, 씨앗 73)",
+                 y=1.01, fontsize=10.5)
+    save(fig, "fig-ch15-additive.png")
+    return out
+
+
 def _ch16_forks(df, cond):
     """갈림길 60개(결과 2 × 표본 3 × 하위집단 5 × 공변인 2)의 p 목록과 이름."""
     from scipy import stats
@@ -2195,6 +2263,8 @@ if __name__ == "__main__":
     r_all, r_win = fig_ch08_collider()
     ctrl = fig_ch08_control()
     fig_ch15_control()
+    print("15장 합산모형", {k: {kk: round(vv, 3) for kk, vv in v.items()}
+                         for k, v in fig_ch15_additive().items()})
     coll = fig_ch15_collinear()
     fig_apxc_rules()
     fig_s6_kappa()

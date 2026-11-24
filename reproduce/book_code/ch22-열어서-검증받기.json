@@ -2,15 +2,15 @@
  "unit": "ch22-열어서-검증받기.md",
  "blocks": [
   [
-   294,
+   295,
    "!python check_anonymity.py . --name \"홍길동\" \"Hong, Gildong\" --org 제주대 jejunu"
   ],
   [
-   302,
+   303,
    "def ai_회귀(y, x):                       # AI 가 준 코드. 판정 전에는 읽지 않는다.\n    X = np.column_stack([np.asarray(x, float)])\n    b, *_ = np.linalg.lstsq(X, np.asarray(y, float), rcond=None)\n    resid = np.asarray(y, float) - X @ b\n    n, k = X.shape\n    se = np.sqrt(np.diag(resid @ resid / (n - k) * np.linalg.inv(X.T @ X)))\n    return float(b[-1]), float(se[-1])\n\nsvy = load(\"svy\")\nx, y = svy.hjs.values, svy.mil.values\nprint(round(ai_회귀(y, x)[0], 3), round(ai_회귀(y, x)[1], 3), \"|\",\n      round(float(ols(y, [x])[0][1]), 3), round(float(ols(y, [x])[1][1]), 3))\n# 0.976 0.008 | 0.978 0.051"
   ],
   [
-   322,
+   323,
    "def ai_기울기(yy, xx):    return ai_회귀(yy, xx)[0]\ndef 바른_기울기(yy, xx):                 # 절편 열을 붙이고 기울기만 구한다 ; 상수 입력에서도 돈다\n    yy = np.asarray(yy, float)\n    X = np.column_stack([np.ones(len(yy)), np.asarray(xx, float)])\n    return float(np.linalg.lstsq(X, yy, rcond=None)[0][1])\n\ng = np.random.default_rng(73)\ni = g.permutation(len(x))\nfor 이름, f in ((\"AI 판 \", ai_기울기), (\"바른 판\", 바른_기울기)):\n    b0 = f(y, x)\n    print(이름, \"①\", round(f(y[i], x[i]) - b0, 6),\n                \"③\", round(f(y + 5, x) - b0, 4),\n                \"④\", round(f(np.full(len(y), 4.0), x), 4))\n# AI 판  ① 0.0 ③ 0.9729 ④ 0.7783\n# 바른 판 ① 0.0 ③ -0.0 ④ -0.0"
   ]
  ]
