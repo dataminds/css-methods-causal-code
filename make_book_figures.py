@@ -2528,6 +2528,65 @@ def fig_ch03_rows():
     return dict(svy_rows=len(svy), pan_rows=len(pan), pan_people=pan.id.nunique())
 
 
+def fig_ch03_longwide():
+    """3장 §3.5 long 과 wide: 패널판 id 1 · 2 · 3 의 같은 값을 두 생김새로 나란히 (2026-11-25).
+
+    왼쪽 = long (한 행 = 사람의 한 시점) · 오른쪽 = wide (한 행 = 사람). 시점마다 같은 색이라
+    long 의 한 칸이 wide 의 어느 칸으로 가는지 색으로 따라간다. 빠진 시점은 wide 에서 빈칸으로 드러난다.
+    """
+    pan = pd.read_csv(os.path.join(DATA, "journey_panel.csv")).sort_values(["id", "wave"])
+    ids = [1, 2, 3]
+    lo = pan[pan.id.isin(ids)][["id", "wave", "mil"]]
+    wd = pan.pivot(index="id", columns="wave", values="mil")
+    w3 = wd.loc[ids]
+    wave_col = {1: "#dbe9f6", 2: "#fde5c8", 3: "#dcefd8"}       # 시점 1 · 2 · 3
+
+    fig, (ax_l, ax_m, ax_r) = plt.subplots(1, 3, figsize=(8.2, 3.0), gridspec_kw={"width_ratios": [1, 0.42, 1.25]})
+    axes = [ax_l, ax_r]
+    ax_m.axis("off")
+    ax_m.annotate("", xy=(0.95, 0.62), xytext=(0.05, 0.62), xycoords="axes fraction",
+                  arrowprops=dict(arrowstyle="-|>", color="#333333", lw=1.3))
+    ax_m.text(0.5, 0.70, "펼치기", ha="center", va="bottom", fontsize=8.5, transform=ax_m.transAxes)
+    ax_m.annotate("", xy=(0.05, 0.40), xytext=(0.95, 0.40), xycoords="axes fraction",
+                  arrowprops=dict(arrowstyle="-|>", color="#333333", lw=1.3))
+    ax_m.text(0.5, 0.32, "모으기", ha="center", va="top", fontsize=8.5, transform=ax_m.transAxes)
+    # 왼쪽: long
+    ax = axes[0]; ax.axis("off")
+    cells = [[str(int(r.id)), f"{int(r.wave)}차", f"{r.mil:.2f}"] for r in lo.itertuples()]
+    tb = ax.table(cellText=cells, colLabels=["id", "wave", "mil"], loc="center", cellLoc="center")
+    tb.auto_set_font_size(False); tb.set_fontsize(9); tb.scale(1, 1.25)
+    for (r, c), cell in tb.get_celld().items():
+        cell.set_edgecolor("#999999"); cell.set_linewidth(.5)
+        if r == 0:
+            cell.set_facecolor("#e6e6e6"); cell.set_text_props(weight="bold")
+        else:
+            cell.set_facecolor(wave_col[int(lo.iloc[r - 1].wave)])
+    ax.set_title("long (길게) · 한 행 = 사람의 한 시점", fontsize=9.5, loc="left")
+    ax.text(0.0, -0.04, f"id 1 · 2 · 3 = {len(lo)}행 · 패널판 전체 {len(pan):,}행",
+            transform=ax.transAxes, ha="left", va="top", fontsize=8)
+    # 오른쪽: wide
+    ax = axes[1]; ax.axis("off")
+    cells = [[str(i)] + [("빈칸" if pd.isna(w3.loc[i, t]) else f"{w3.loc[i, t]:.2f}") for t in (1, 2, 3)] for i in ids]
+    tb = ax.table(cellText=cells, colLabels=["id", "mil 1차", "mil 2차", "mil 3차"], loc="center", cellLoc="center")
+    tb.auto_set_font_size(False); tb.set_fontsize(9); tb.scale(1, 1.25)
+    for (r, c), cell in tb.get_celld().items():
+        cell.set_edgecolor("#999999"); cell.set_linewidth(.5)
+        if r == 0:
+            cell.set_facecolor("#e6e6e6"); cell.set_text_props(weight="bold")
+        elif c >= 1:
+            if cells[r - 1][c] == "빈칸":
+                cell.set_facecolor("white"); cell.set_text_props(color="#888888", style="normal")
+                cell.set_edgecolor("#333333"); cell.set_linewidth(1.2)
+            else:
+                cell.set_facecolor(wave_col[c])
+    ax.set_title("wide (넓게) · 한 행 = 사람", fontsize=9.5, loc="left")
+    ax.text(0.0, -0.04, f"id 1 · 2 · 3 = 3행 · 패널판 전체 {len(wd)}행 × 시점 3열",
+            transform=ax.transAxes, ha="left", va="top", fontsize=8)
+    fig.suptitle("같은 값, 두 생김새: 색이 같은 칸이 같은 시점이다", fontsize=10.5, y=1.02)
+    save(fig, "fig-ch03-longwide.png")
+    return dict(long_rows=len(pan), wide_rows=len(wd), id2_rows=int((lo.id == 2).sum()))
+
+
 # ── ch17 §17.1: 매개 그림 셋 (기본 · 병렬 · 직렬) ── 2026-11-24 (기획 = book/ch17-mediation-logic-plan-2026-11-24.md)
 #   값은 계산 단위(ch17.med_* · ch17.par_* · ch17.pm_m1_*)와 같은 최소제곱으로 낸다.
 def _b(y, cols):
@@ -2629,6 +2688,7 @@ def fig_ch17_serial():
 if __name__ == "__main__":
     print("S0 겹친 분포", fig_s0_overlap())
     print("3장 한 행", fig_ch03_rows())
+    print("3장 long · wide", fig_ch03_longwide())
     fig_ch01_map()
     fig_colab_sidebar()
     fig_ch06_arcimboldo()

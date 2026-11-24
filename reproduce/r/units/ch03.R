@@ -120,4 +120,22 @@ calc("ch03.w1_mean_all", function() mean(W()$mil.1))
 calc("ch03.w3_mean", function() mean(W()$mil.3, na.rm = TRUE))   # §3.5 빈칸 상자 (R 은 na.rm = TRUE 라야 값이 나온다)
 calc("ch03.w1_lw_gap", function() mean(.lw()$mil.1) - mean(W()$mil.1))
 calc("ch03.toy_nan_mean", function() mean(c(4, NA, 6), na.rm = TRUE))   # §3.5 둘째 상자 (2026-11-22)
+
+# §3.2 날짜 · 시각 (2026-11-24) = 오전 · 오후를 24시간제로 직접 바꿔 읽는다 (로캘에 기대지 않음)
+.tm <- function(v) {
+  m <- regmatches(v, regexec("^(\\d+)\\. (\\d+)\\. (\\d+)\\. (\\S+) (\\d+):(\\d+):(\\d+)$", v))
+  sapply(m, function(x) {
+    h <- as.integer(x[6]) %% 12 + ifelse(x[5] == "오후", 12, 0)   # 오후
+    as.numeric(ISOdatetime(as.integer(x[2]), as.integer(x[3]), as.integer(x[4]), h,
+                           as.integer(x[7]), as.integer(x[8]), tz = "UTC"))
+  })
+}
+.sec <- function() {
+  pm <- "오후"; am <- "오전"   # 오후 · 오전
+  st <- paste("2026. 11.", c("24.", "24.", "24."), pm, c("3:12:05", "3:15:30", "11:58:20"))
+  en <- paste("2026. 11.", c("24.", "24.", "25."), c(pm, pm, am), c("3:24:41", "3:16:02", "12:09:05"))
+  .tm(en) - .tm(st)
+}
+for (i in 1:3) local({ j <- i; calc(paste0("ch03.dt_sec", j), function() .sec()[j]) })
+calc("ch03.dt_excel_serial", function() as.numeric(as.Date("2026-11-24") - as.Date("1899-12-30")))
 })

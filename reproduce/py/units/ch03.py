@@ -142,3 +142,17 @@ calc("ch03.w1_mean_all")(lambda: W()[1].mean())
 calc("ch03.w3_mean")(lambda: W()[3].mean())   # §3.5 빈칸 상자 = pandas 는 빈칸을 빼고 평균
 calc("ch03.w1_lw_gap")(lambda: W().dropna()[1].mean() - W()[1].mean())
 calc("ch03.toy_nan_mean")(lambda: np.nanmean([4, np.nan, 6]))   # §3.5 둘째 상자 = 빈칸을 빼고 평균 (2026-11-22)
+
+
+def _times():   # §3.2 날짜 · 시각 (2026-11-24) = 구글 설문 한국어 표기 세 사람
+    import pandas as pd
+    st = ["2026. 11. 24. 오후 3:12:05", "2026. 11. 24. 오후 3:15:30", "2026. 11. 24. 오후 11:58:20"]
+    en = ["2026. 11. 24. 오후 3:24:41", "2026. 11. 24. 오후 3:16:02", "2026. 11. 25. 오전 12:09:05"]
+    f = lambda v: pd.to_datetime(pd.Series(v).str.replace("오전", "AM").str.replace("오후", "PM"),
+                                 format="%Y. %m. %d. %p %I:%M:%S")
+    return (f(en) - f(st)).dt.total_seconds()
+
+
+for _i in range(3):
+    calc(f"ch03.dt_sec{_i + 1}")(lambda i=_i: _times()[i])
+calc("ch03.dt_excel_serial")(lambda: (__import__("pandas").Timestamp("2026-11-24") - __import__("pandas").Timestamp("1899-12-30")).days)

@@ -16,6 +16,9 @@ ch03.rows.panel,ch03,"1,270",ch03.panel_rows,data,,§3.1
 ch03.rows.panel.n,ch03,500,ch03.panel_ids,data,,§3.1 서로 다른 id 수
 ch03.rows.panel.n.b,ch03,500,ch03.panel_ids,data,,§3.1
 ch03.rows.panel.b,ch03,"1,270",ch03.panel_rows,data,,§3.1
+ch03.lw.long,ch03,"1,270",ch03.panel_rows,data,,§3.5 그림 읽는 법 3
+ch03.lw.wide,ch03,500,ch03.panel_ids,data,,§3.5 그림 읽는 법 3 = wide 행 수 = 사람 수
+ch03.lw.ppl,ch03,500,ch03.panel_ids,data,,§3.5 그림 읽는 법 3
 ch03.gender.f,ch03,295,ch03.raw_gender2_n,data,,§3.2 원자료 590명 value_counts
 ch03.gender.m,ch03,282,ch03.raw_gender1_n,data,,§3.2
 ch03.gender.o,ch03,13,ch03.raw_gender3_n,data,,§3.2
@@ -210,3 +213,8 @@ ch03.ai.ids,ch03,500,ch03.panel_ids,data,,AI 절 판단 4
 ch03.ai.rows,ch03,"1,270",ch03.panel_rows,data,,AI 절 판단 4
 ch03.c10.n,ch03,566,ch03.svy_n,data,,복습 코드 10
 ch03.spec.svy,ch03,566,ch03.svy_n,data,,실습 10 자료 명세서 예상
+ch03.dt.serial,ch03,46350,ch03.dt_excel_serial,data,,§3.2 날짜 · 시각 = 엑셀 일련번호 (1899-12-30 기점)
+ch03.dt.s1,ch03,756,ch03.dt_sec1,data,,§3.2 세 사람 예 (복습 코드 8)
+ch03.dt.s2,ch03,32,ch03.dt_sec2,data,,§3.2 세 사람 예
+ch03.dt.s3,ch03,645,ch03.dt_sec3,data,,§3.2 세 사람 예 (자정을 넘긴 응답)
+ch03.dt.pdver,ch03,3.0,,fixed,,pandas 판 번호 (기본 문자열 자료형이 str 로 바뀐 판)
