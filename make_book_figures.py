@@ -250,17 +250,37 @@ def fig_b1_two_dists(n_draw=30, n_rep=2000, seed=73):
 
 # ── ch05: 집단 비교는 분포째 (성별 × mil) ───────────────────────
 def fig_ch05_groups():
+    """성별 × mil = 상자 그림 위에 시나 그림 (2026-11-25 ; 바이올린 그림에서 바꿈).
+
+    시나 그림(sina plot) = 사람마다 점 하나를 찍되, 가로로 흩뜨리는 폭을 그 높이의 밀도에 비례시킨다.
+    사람이 몰린 점수대일수록 점이 옆으로 넓게 퍼져 바이올린의 윤곽이 점으로 그려진다.
+    흩뜨리기 난수 = 씨앗 73 (점의 가로 위치만 바꾼다 ; 값은 그대로).
+    """
+    from scipy.stats import gaussian_kde
     svy = load_clean("svy")
-    men = svy.loc[svy.gender == 1, "mil"]
-    women = svy.loc[svy.gender == 2, "mil"]
-    fig, ax = plt.subplots(figsize=(6.5, 3.4))
-    parts = ax.violinplot([men, women], showmeans=True, showextrema=False)
-    for body, c in zip(parts["bodies"], (OI[1], OI[2])):
-        body.set_facecolor(c); body.set_alpha(.6)
-    ax.set_xticks([1, 2], [f"남 (n={len(men)})", f"여 (n={len(women)})"])
+    groups = [(1, "남"), (2, "여")]
+    jit = np.random.default_rng(73)
+    fig, ax = plt.subplots(figsize=(6.5, 3.6))
+    data = []
+    for i, ((g, lab), c, mk) in enumerate(zip(groups, (OI[5], OI[4]), ("o", "s")), start=1):
+        y = svy.loc[svy.gender == g, "mil"].to_numpy()
+        data.append(y)
+        dens = gaussian_kde(y)(y)
+        x = i + jit.uniform(-1, 1, len(y)) * 0.32 * dens / dens.max()
+        ax.scatter(x, y, s=9, marker=mk, color=c, alpha=.45, linewidths=0)
+    bp = ax.boxplot(data, positions=[1, 2], widths=.55, showfliers=False, patch_artist=True)
+    for box, c in zip(bp["boxes"], (OI[5], OI[4])):
+        box.set_facecolor("none"); box.set_edgecolor(c); box.set_linewidth(1.4)
+    for k in ("whiskers", "caps"):
+        for ln, c in zip(bp[k], [OI[5], OI[5], OI[4], OI[4]]):
+            ln.set_color(c); ln.set_linewidth(1.1)
+    for ln, c in zip(bp["medians"], (OI[5], OI[4])):
+        ln.set_color(c); ln.set_linewidth(2.2)
+    ax.set_xticks([1, 2], [f"{lab} (n={len(d)})" for (g, lab), d in zip(groups, data)])
     ax.set_ylabel("삶의 의미 (1~7)")
-    ax.set_title("집단 비교는 평균 막대가 아니라 분포째 (설문판, 씨앗 73)")
+    ax.set_title("집단 비교는 평균 막대가 아니라 분포째: 상자 그림 + 시나 그림 (설문판, 씨앗 73)", fontsize=10)
     save(fig, "fig-ch05-groups.png")
+    return dict(n_men=len(data[0]), n_women=len(data[1]))
 
 
 # ── ch06: 표집분포를 직접 생성 ──────────────────────────────────
@@ -2417,10 +2437,13 @@ def fig_ch05_boxplot_anatomy(seed=73, var="mil"):
                whiskerprops=dict(color=OI[7], linewidth=1.3),
                capprops=dict(color=OI[7], linewidth=1.3),
                flierprops=dict(marker="o", markerfacecolor="none", markeredgecolor=OI[7], markersize=7))
+    # 2026-11-25 = 흔든 점(가로 · 세로 무작위) → 시나 그림 (가로 폭 ∝ 그 점수대의 밀도 ; 세로 = 실제 값 그대로)
+    from scipy.stats import gaussian_kde
     rng = np.random.default_rng(seed)
-    ax.scatter(0.62 + rng.uniform(-.14, .14, len(x)), x + rng.uniform(-.06, .06, len(x)),
+    dens = gaussian_kde(x)(x)
+    ax.scatter(0.62 + rng.uniform(-1, 1, len(x)) * .2 * dens / dens.max(), x,
                s=6, alpha=.35, color=BW["color"][0], edgecolors="none")
-    ax.text(0.62, 7.45, f"원자료 {len(x)}명\n(겹치지 않게 조금 흔들었다)", ha="center", va="bottom", fontsize=8.5)
+    ax.text(0.62, 7.45, f"원자료 {len(x)}명 (시나 그림)\n(사람이 몰린 점수대일수록 옆으로 넓게)", ha="center", va="bottom", fontsize=8.5)
     L = -0.42                                         # 왼쪽 이름표의 x
     def lab(y, text, ytext=None):
         ax.annotate(text, xy=(-0.24, y), xytext=(L, y if ytext is None else ytext),

@@ -1,4 +1,5 @@
 id,unit,printed,calc,kind,mc_tol,note
+ch05.sina.step,ch05,0.25,,fixed,,§5.3 시나 그림 = 1 ~ 7 정수 응답 4문항 평균의 간격 1/4 (정의)
 ch05.t1.age.m,ch05,45.9,ch05.age_mean,data,,§5.3 표 1
 ch05.t1.age.sd,ch05,12.4,ch05.age_sd,data,,§5.3 표 1
 ch05.t1.age.min,ch05,18,ch05.age_min,data,,§5.3 표 1 범위

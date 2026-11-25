@@ -226,7 +226,7 @@ STEPS = {
   '# swl   4.60   1.10   1.20   7.00'),
  ("## 3. 상관: 이 책 내내 따라올 숫자\n여정과 의미의 상관 .63. 아직 아무 인과도 아닙니다(6·7장).",
   'print("r(여정, 의미) =", round(svy.hjs.corr(svy.mil), 2))'),
- ("## 4. 분포를 그림으로 (실습 2 · 3 의 출발점)\n§5.1 의 히스토그램과 평균선, §5.3 의 성별 바이올린입니다. "
+ ("## 4. 분포를 그림으로 (실습 2 · 3 의 출발점)\n§5.1 의 히스토그램과 평균선, §5.3 의 성별 상자 그림 + 시나 그림입니다. "
   "⚠ 한글 축 이름이 네모로 나오면 글꼴을 지정하세요(부록 E 의 `plt.rcParams[\"font.family\"]` 안내).",
   'import matplotlib.pyplot as plt\n'
   'fig, ax = plt.subplots(figsize=(6, 3.2))\n'
@@ -235,8 +235,15 @@ STEPS = {
   'ax.set_xlabel("삶의 의미 (1~7점)")\n'
   'ax.set_ylabel("사람 수")\n'
   '\n'
+  'from scipy.stats import gaussian_kde\n'
+  'jit = np.random.default_rng(73)                     # 흩뜨리기 전용\n'
   'fig, ax = plt.subplots(figsize=(6, 3.2))\n'
-  'ax.violinplot([svy[svy.gender == 1]["mil"], svy[svy.gender == 2]["mil"]])   # 1 = 남, 2 = 여\n'
+  'groups = [svy[svy.gender == g]["mil"].to_numpy() for g in (1, 2)]   # 1 = 남, 2 = 여\n'
+  'for i, y in enumerate(groups, start=1):\n'
+  '    dens = gaussian_kde(y)(y)                       # 점마다 그 점수대의 밀도\n'
+  '    x = i + jit.uniform(-1, 1, len(y)) * 0.32 * dens / dens.max()\n'
+  '    ax.scatter(x, y, s=9, alpha=.45)                # 시나 그림\n'
+  'ax.boxplot(groups, positions=[1, 2], widths=.55, showfliers=False)   # 상자 그림 겹치기\n'
   'ax.set_xticks([1, 2], ["남", "여"])'),
  ("## 5. 참여자 문단에 옮길 수 (실습 5)\n표 1 주와 참여자 문단에 들어갈 인원 · 나이 · 성별 비율을 코드 출력에서 바로 찍습니다(§5.6). 손으로 옮기지 않습니다.",
   'raw = load("svy", clean=False)\n'
