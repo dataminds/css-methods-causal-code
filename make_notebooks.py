@@ -40,7 +40,7 @@ SLUG = {
     "s5": "s5-시나리오-2차자료-자연실험", "s6": "s6-시나리오-내용분석",
 }
 TITLE = {
-    "ch02": "2장 · 도구와 자료: 첫 파일 열기", "ch03": "3장 · 자료 다루기",
+    "ch02": "2장 · 도구와 자료: 첫 파일 열기", "ch03": "3장 · 분석 전에 자료를 안다",
     "ch04": "4장 · 측정: 신뢰도", "ch05": "5장 · 기술과 시각화: 표 1",
     "ch11": "11장 · 우연을 수로 나타내는 두 방법: 표집분포와 사후분포", "ch12": "12장 · 가설검정: 뒤섞기",
     "ch13": "13장 · 신뢰구간·효과크기", "ch14": "14장 · 회귀",
@@ -104,15 +104,26 @@ STEPS = {
  ("## 2. 정제: 몇 명이 남나\n주의 점검 통과자만 남깁니다. 380→366, 590→566.",
   'exp = load("exp"); svy = load("svy")\n'
   'print("실험판:", 380, "->", len(exp), " 설문판:", 590, "->", len(svy))'),
- ("## 3. 파생변수 검산\n21문항 평균을 직접 만들어, 저장된 hjs와 전원 일치하는지 두 경로로 확인.",
+ ("## 3. 열의 저장 형식 (§3.2)\n열마다 저장 형식을 봅니다. 번호 · 성별 · 문항은 정수형, 척도 점수는 실수형입니다. 저장 형식은 척도 수준(5장 §5.4)과 다릅니다. 성별은 정수형으로 저장돼 있어도 이름표입니다.",
+  'print(svy[["id", "gender", "mil_1", "mil"]].dtypes.astype(str).tolist())\n'
+  'print(svy.dtypes.astype(str).value_counts().to_dict())\n'
+  "# ['int64', 'int64', 'int64', 'float64']\n"
+  "# {'float64': 26, 'int64': 25}"),
+ ("## 4. 「모름」이 섞인 열 (§3.2)\n나이 칸에 「모름」이 하나 섞이면 열 전체가 글자로 읽힙니다. 합을 내면 수를 더하지 않고 글자를 이어 붙이고, 숫자로 바꾸면 그 칸은 오류 메시지 없이 빈칸이 됩니다. 바꾼 뒤 빈칸 수(1)를 함께 봅니다.",
+  'import io\n'
+  't = pd.read_csv(io.StringIO("id,age\\n1,23\\n2,모름\\n3,41\\n"))     # 나이 칸에 「모름」 하나\n'
+  'print(pd.api.types.is_numeric_dtype(t["age"]), t["age"].sum())  # 숫자형인가 · 합\n'
+  'age = pd.to_numeric(t["age"], errors="coerce")                  # 숫자로 못 바꾸는 칸은 빈칸으로\n'
+  'print(age.tolist(), age.isna().sum(), age.mean())\n'
+  'print(pd.Series([5, 7]).dtype, pd.Series([5, None]).dtype)       # 빈칸이 생기면 정수형 → 실수형\n'
+  '# False 23모름41\n'
+  '# [23.0, nan, 41.0] 1 32.0\n'
+  '# int64 float64'),
+ ("## 5. 파생변수 검산\n21문항 평균을 직접 만들어, 저장된 hjs와 전원 일치하는지 두 경로로 확인.",
   'items = [c for c in svy.columns if c.startswith("hjs_") and c != "hjs"]\n'
   'print("1번 응답자 합÷21 =", round(svy[items].iloc[0].sum()/21, 3))   # 4.571\n'
   'print("내가 만든 열과 저장된 열의 최대 차이 =", round((svy[items].mean(axis=1)-svy.hjs).abs().max(), 4))'),
- ("## 4. long과 wide, 그리고 결측\n패널판을 wide로 펼치면 이탈이 결측으로 드러납니다(2차 80, 3차 150).",
-  'panel = pd.read_csv("data/journey_panel.csv")\n'
-  'w = panel.pivot(index="id", columns="wave", values="mil")\n'
-  'print("2차 결측:", int(w[2].isna().sum()), " 3차 결측:", int(w[3].isna().sum()))'),
- ("## 5. 기준을 하나씩 얹어 보기 (§3.3 상자)\n정제 기준 넷을 차례로 얹어 남는 인원과 여정–의미 상관을 봅니다. 인원은 590 → 517로 줄지만 상관은 거의 안 움직입니다.",
+ ("## 6. 기준을 하나씩 얹어 보기 (§3.3 상자)\n정제 기준 넷을 차례로 얹어 남는 인원과 여정–의미 상관을 봅니다. 인원은 590 → 517로 줄지만 상관은 거의 안 움직입니다.",
   'raw = load("svy", clean=False)\n'
   'items_r = [c for c in raw.columns if c.startswith("hjs_")]\n'
   'sd_item = raw[items_r].std(axis=1)                 # 문항 사이 흩어짐 (0 에 가까우면 일자 응답)\n'
@@ -124,7 +135,7 @@ STEPS = {
   '    sub = raw[m]\n'
   '    print(lab, len(sub), round(sub.hjs.corr(sub.mil), 3))\n'
   '# 정제 없음 590 0.635 / 주의점검 566 0.629 / + 일자응답 563 0.624 / + 나이 19~65 517 0.628'),
- ("## 6. 표본이 작으면 기준 선택이 무거워진다 (실습 4)\n566명과 60명을 300번씩 뽑아, 네 기준이 내는 상관의 최대 격차를 봅니다. 먼저 60명이면 격차가 얼마나 커질지 예측해 적고 돌리세요.",
+ ("## 7. 표본이 작으면 기준 선택이 무거워진다 (실습 4)\n566명과 60명을 300번씩 뽑아, 네 기준이 내는 상관의 최대 격차를 봅니다. 먼저 60명이면 격차가 얼마나 커질지 예측해 적고 돌리세요.",
   'rng = np.random.default_rng(73)\n'
   'for n in (566, 60):\n'
   '    격차 = []\n'
@@ -138,6 +149,29 @@ STEPS = {
   '    print(n, round(np.mean(격차), 3), round(max(격차), 3))\n'
   '# 566 0.011 0.014\n'
   '# 60 0.028 0.111'),
+ ("## 8. long과 wide, 그리고 결측\n패널판을 wide로 펼치면 이탈이 결측으로 드러납니다(2차 80, 3차 150).",
+  'panel = pd.read_csv("data/journey_panel.csv")\n'
+  'w = panel.pivot(index="id", columns="wave", values="mil")\n'
+  'print("2차 결측:", int(w[2].isna().sum()), " 3차 결측:", int(w[3].isna().sum()))'),
+ ("## 9. 빈칸의 기본 동작 (§3.6)\n3차 삶의 의미에는 빈칸이 150칸 있습니다. pandas 평균은 빈칸을 빼고 350명으로 내고(4.926), numpy 평균은 nan을 냅니다. 빈칸은 `==`로는 찾지 못하고 `isna()`로 셉니다.",
+  'm3 = w[3]                                            # 3차 삶의 의미 (빈칸 150칸)\n'
+  'print(round(m3.mean(), 3), m3.to_numpy().mean())     # pandas 는 빈칸을 빼고, numpy 는 nan\n'
+  'print(m3.isna().sum(), (m3 == float("nan")).sum())   # 빈칸 세기 = isna 는 150, == 는 0\n'
+  '# 4.926 nan\n'
+  '# 150 0'),
+ ("## 10. 값이 아닌 값과 범주의 순서 (§3.6 · 부록 B §B.4)\n`None`은 숫자 열에서 빈칸(NaN)이 되고, 0으로 나눈 칸은 무한대(inf)가 돼 평균까지 무한대로 만듭니다. 순서 있는 범주는 순서를 알려 주지 않으면 글자순으로 늘어섭니다.",
+  'x = pd.Series([4, None, 6])                                       # None 은 숫자 열에서 NaN 이 된다\n'
+  'print(x.tolist(), x.mean(), x.count())\n'
+  'ratio = pd.Series([3.0, 5.0, 4.0]) / pd.Series([1.0, 0.0, 2.0])   # 둘째 사람은 0으로 나눈다\n'
+  'print(ratio.tolist(), ratio.mean(), int(np.isinf(ratio).sum()))\n'
+  'edu = pd.Series(["중졸", "대졸", "고졸", "대졸", "고졸"])\n'
+  'print(edu.value_counts().sort_index().index.tolist())            # 순서를 알려 주지 않으면 글자순\n'
+  'edu = pd.Series(pd.Categorical(edu, categories=["중졸", "고졸", "대졸"], ordered=True))\n'
+  'print(edu.value_counts().sort_index().index.tolist(), int((edu >= "고졸").sum()))\n'
+  "# [4.0, nan, 6.0] 5.0 2\n"
+  "# [3.0, inf, 2.0] inf 1\n"
+  "# ['고졸', '대졸', '중졸']\n"
+  "# ['중졸', '고졸', '대졸'] 4"),
 ],
 "ch04": [
  ("## 2. 신뢰도(크론바흐 알파)\n여정 척도 21문항의 내적 일관성. .93이 나옵니다.",
